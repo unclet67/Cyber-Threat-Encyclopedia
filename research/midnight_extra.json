@@ -1,0 +1,121 @@
+{
+ "mitre": "G0016",
+ "identification": {
+  "summary": "Russian foreign intelligence (SVR) cyber-espionage actor that conducts long-term, patient intrusions against governments, diplomatic entities, NGOs and IT service providers, mainly in the US and Europe [S1]. Responsible for the SolarWinds supply-chain compromise (attributed 2021) [S3] and the 2023\u20132024 breach of Microsoft's corporate email [S1]. Known for identity- and cloud-focused tradecraft: password spraying, OAuth application abuse and residential proxy networks [S1].",
+  "firstObserved": "MITRE: operating since at least 2008 [S4].",
+  "notes": "Microsoft name: Midnight Blizzard (formerly NOBELIUM). Microsoft maps COZY BEAR, UNC2452 and APT29 to it [S6]; MITRE tracks it as APT29 (G0016) [S4]. CERT-UA tracks overlapping 2024 activity as UAC-0215 [S2]."
+ },
+ "attribution": {
+  "sponsor": "Russian Federation: Foreign Intelligence Service (SVR) [S1][S3].",
+  "confidence": "The US Intelligence Community assessed attribution of SolarWinds to the SVR with HIGH confidence (White House, 15 Apr 2021); the UK NCSC judged it 'highly likely' [S3]. Microsoft cites US and UK government attribution to the SVR [S1][S2].",
+  "basis": "US and UK government attribution with joint NSA/CISA/FBI advisory [S3]; Microsoft incident response on its own corporate environment [S1]; Microsoft telemetry [S2]."
+ },
+ "objectives": "Strategic intelligence collection through long-standing, dedicated espionage [S1], focused on foreign policy, government decision-making, diplomacy and the technology supply chain. Access to IT and cloud service providers gives a route into many downstream customers, as SolarWinds showed [S3].",
+ "targeting": {
+  "sectors": [
+   "Government and diplomatic entities",
+   "Non-governmental organizations and think tanks",
+   "IT service providers and cloud/technology companies (including Microsoft)",
+   "Higher education",
+   "Defense"
+  ],
+  "regions": [
+   "United States",
+   "Europe, including the United Kingdom",
+   "Australia and Japan (Oct 2024 RDP campaign)"
+  ],
+  "notes": "Sectors and regions from Microsoft [S1][S2]."
+ },
+ "capabilities": {
+  "summary": "Identity and cloud tradecraft: password spraying from residential proxies against accounts without MFA, abuse of legacy OAuth applications to grant itself mailbox access (full_access_as_app) through Exchange Web Services [S1]. Large-scale spear-phishing with signed RDP configuration files that map local resources to actor-controlled servers (Oct 2024, thousands of targets in over 100 organizations) [S2]. Supply-chain compromise (SolarWinds Orion) [S3]. MITRE lists 66 techniques and 49 software entries, including the 'Duke' malware families, WellMess and Cobalt Strike [S4]."
+ },
+ "campaigns": [
+  {
+   "date": "2020-12 (disclosed)",
+   "name": "SolarWinds supply-chain compromise",
+   "summary": "Trojanized SolarWinds Orion updates gave access to US government agencies and companies. The White House formally attributed it to the SVR on 15 Apr 2021, alongside sanctions and a joint NSA/CISA/FBI advisory.",
+   "sources": [
+    "S3",
+    "S5"
+   ]
+  },
+  {
+   "date": "2024-01-12 (detected)",
+   "name": "Microsoft corporate email breach",
+   "summary": "Password spray of a legacy non-production test tenant account without MFA, then abuse of a legacy test OAuth application to read corporate mailboxes. Microsoft detected the attack on 12 Jan 2024 and published responder guidance on 25 Jan 2024. The start date of the intrusion is not stated in the cited source.",
+   "sources": [
+    "S1"
+   ]
+  },
+  {
+   "date": "2024-10-22",
+   "name": "Signed RDP file spear-phishing",
+   "summary": "Thousands of emails to more than 100 organizations, especially in the UK, Europe, Australia and Japan, impersonating Microsoft employees with AWS and Zero Trust lures.",
+   "sources": [
+    "S2"
+   ]
+  }
+ ],
+ "diamond": {
+  "adversary": "SVR cyber operators [S1][S3].",
+  "capability": "Password spraying; OAuth application abuse; signed RDP-file phishing; supply-chain trojanization; Duke malware families, WellMess, Cobalt Strike [S1][S2][S3][S4].",
+  "infrastructure": "Residential proxy networks that blend with legitimate users' IP addresses [S1]; actor-controlled RDP servers [S2]; compromised software build and update pipelines [S3].",
+  "victim": "Governments, diplomatic entities, NGOs, IT and cloud providers, higher education and defense in the US, Europe, the UK, Australia and Japan [S1][S2].",
+  "socioPolitical": "Foreign-policy and government intelligence for the Russian state; supply-chain access to multiply collection [S1][S3].",
+  "technology": "Exploits identity systems and cloud trust relationships (OAuth, tenant configurations) rather than endpoint vulnerabilities [S1]."
+ },
+ "gaps": [
+  "Full scope of data taken from Microsoft and downstream customers in the 2024 breach.",
+  "The Feb 2024 Five Eyes advisory on SVR cloud-access tactics and the Dec 2023 TeamCity advisory were not fetched (government sites blocked); add them after primary review.",
+  "Relationship between Midnight Blizzard and other SVR-linked clusters is not addressed in the sources gathered.",
+  "Several APT29 vendor names were moved here from the Forest Blizzard record (e.g. BlueBravo, Cloaked Ursa). Confirm each against vendor reporting."
+ ],
+ "implications": {
+  "jipoe": "Analyst assessment derived from cited sources; validate before use. STEP 1: The cyberspace OE includes cloud identity tenants (Entra ID/M365), SaaS providers and IT service providers. For this actor, key terrain is identity infrastructure, not network perimeters. STEP 2: Residential-proxy sourcing defeats IP reputation and geolocation, so detection terrain is authentication telemetry. STEP 3: The template is low-and-slow password spray, then a foothold in an overlooked or legacy account without MFA, then OAuth app abuse or privilege grants, then mailbox and document collection. A parallel option is a supply-chain or provider compromise. STEP 4: MLCOA is persistent collection on NATO and US government decision-making and on IT providers. MDCOA is a supply-chain compromise of a DoD or DIB software or cloud provider giving broad access during a crisis. Candidate indicators: new OAuth app consents or role grants (full_access_as_app), spray patterns against legacy accounts, and RDP files arriving by email [S1][S2].",
+  "jcc2": "Analyst assessment derived from cited sources; validate before use. (1) Identity is the primary sensor: JCC2 situational awareness must include cloud sign-in and app-consent logs from DoD and partner tenants. (2) Third-party risk: a breach at a provider (cloud, IT service, software vendor) is a DoD event, so reporting agreements with providers are part of C2. (3) MFA and legacy-account hygiene across test and non-production tenants is a mission assurance requirement. (4) Counterintelligence fusion: SVR collection is foreign intelligence, so coordinate cyber findings with CI channels."
+ },
+ "sources": [
+  {
+   "ref": "S1",
+   "title": "Midnight Blizzard: Guidance for responders on nation-state attack",
+   "publisher": "Microsoft Threat Intelligence",
+   "date": "2024-01-25",
+   "url": "https://www.microsoft.com/en-us/security/blog/2024/01/25/midnight-blizzard-guidance-for-responders-on-nation-state-attack/"
+  },
+  {
+   "ref": "S2",
+   "title": "Midnight Blizzard conducts large-scale spear-phishing campaign using RDP files",
+   "publisher": "Microsoft Threat Intelligence",
+   "date": "2024-10-29",
+   "url": "https://www.microsoft.com/en-us/security/blog/2024/10/29/midnight-blizzard-conducts-large-scale-spear-phishing-campaign-using-rdp-files/"
+  },
+  {
+   "ref": "S3",
+   "title": "Biden administration sanctions Russia, attributes SolarWinds hack to SVR (reporting White House statement)",
+   "publisher": "CyberScoop",
+   "date": "2021-04-15",
+   "url": "https://cyberscoop.com/biden-russia-solarwinds-sanctions-white-house/"
+  },
+  {
+   "ref": "S4",
+   "title": "APT29, G0016 (description, techniques and software)",
+   "publisher": "MITRE ATT&CK",
+   "date": "2026-07-31 (object modified)",
+   "url": "https://attack.mitre.org/groups/G0016/"
+  },
+  {
+   "ref": "S5",
+   "title": "SolarWinds Compromise, C0024",
+   "publisher": "MITRE ATT&CK",
+   "date": "2026-10-14 (accessed)",
+   "url": "https://attack.mitre.org/campaigns/C0024/"
+  },
+  {
+   "ref": "S6",
+   "title": "Microsoft threat actor naming mapping (MicrosoftMapping.json)",
+   "publisher": "Microsoft Threat Intelligence",
+   "date": "2026-10-14 (retrieved)",
+   "url": "https://github.com/microsoft/mstic/blob/master/PublicFeeds/ThreatActorNaming/MicrosoftMapping.json"
+  }
+ ]
+}

@@ -3,3 +3,4 @@ __pycache__/
 .DS_Store
 # large upstream inputs; re-download instead of committing
 src/
+.stage/

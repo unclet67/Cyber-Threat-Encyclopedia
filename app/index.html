@@ -8,7 +8,7 @@
   --bg:#eef1f0; --surface:#fbfcfb; --sunk:#e3e8e6; --ink:#17201e; --muted:#5a6663; --line:#cdd5d2;
   --accent:#1d5a86; --accent-ink:#ffffff; --accent-soft:#dbe7f0;
   --banner:#007a33; --banner-ink:#ffffff;
-  --cn:#a8382c; --ru:#34559c; --ir:#2c7149; --kp:#6f4a99;
+  --cn:#a8382c; --ru:#34559c; --ir:#2c7149; --kp:#6f4a99; --fin:#8a6a12; --dev:#5f6b6a; --psoa:#9b3f74; --oth:#2f6f78;
   --ok:#2c7149; --warn:#9a6200; --warn-soft:#f6ead2; --bad:#a8382c; --bad-soft:#f5dfdb;
   --display:"Archivo Narrow","Arial Narrow",Arial,sans-serif;
   --body:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
@@ -19,13 +19,13 @@
   --bg:#121816; --surface:#19211f; --sunk:#0e1312; --ink:#e3eae7; --muted:#97a5a1; --line:#2c3835;
   --accent:#7db4dc; --accent-ink:#0d1a24; --accent-soft:#1d3142;
   --banner:#0f7a3c; --banner-ink:#ffffff;
-  --cn:#e47d70; --ru:#8ea9e6; --ir:#79c497; --kp:#b99be0;
+  --cn:#e47d70; --ru:#8ea9e6; --ir:#79c497; --kp:#b99be0; --fin:#d9b456; --dev:#a3b0ae; --psoa:#e08cbd; --oth:#7cc3cc;
   --ok:#79c497; --warn:#e2b056; --warn-soft:#3a2f17; --bad:#e47d70; --bad-soft:#3b211d; color-scheme:dark}}
 :root[data-theme="dark"]{
   --bg:#121816; --surface:#19211f; --sunk:#0e1312; --ink:#e3eae7; --muted:#97a5a1; --line:#2c3835;
   --accent:#7db4dc; --accent-ink:#0d1a24; --accent-soft:#1d3142;
   --banner:#0f7a3c; --banner-ink:#ffffff;
-  --cn:#e47d70; --ru:#8ea9e6; --ir:#79c497; --kp:#b99be0;
+  --cn:#e47d70; --ru:#8ea9e6; --ir:#79c497; --kp:#b99be0; --fin:#d9b456; --dev:#a3b0ae; --psoa:#e08cbd; --oth:#7cc3cc;
   --ok:#79c497; --warn:#e2b056; --warn-soft:#3a2f17; --bad:#e47d70; --bad-soft:#3b211d; color-scheme:dark}
 *{box-sizing:border-box}
 body{background:var(--bg);color:var(--ink);font:15px/1.55 var(--body);}
@@ -57,7 +57,7 @@ main{max-width:1240px;margin:0 auto;padding-block:20px 60px}
 .facet button[aria-pressed="true"]{background:var(--surface);border-color:var(--line);font-weight:600}
 .facet .ct{font:400 12px var(--mono);color:var(--muted);font-variant-numeric:tabular-nums}
 .dot{display:inline-block;width:9px;height:9px;border-radius:2px;margin-right:8px;vertical-align:0}
-.c-CN{--cc:var(--cn)} .c-RU{--cc:var(--ru)} .c-IR{--cc:var(--ir)} .c-KP{--cc:var(--kp)} .c-ALL{--cc:var(--muted)}
+.c-CN{--cc:var(--cn)} .c-RU{--cc:var(--ru)} .c-IR{--cc:var(--ir)} .c-KP{--cc:var(--kp)} .c-FIN{--cc:var(--fin)} .c-DEV{--cc:var(--dev)} .c-PSOA{--cc:var(--psoa)} .c-OTH{--cc:var(--oth)} .c-ALL{--cc:var(--muted)}
 .dot{background:var(--cc)}
 .note{font-size:12.5px;color:var(--muted);line-height:1.5}
 .feature{border:1px solid var(--line);background:var(--surface);border-radius:var(--r);padding:16px 18px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px 16px;align-items:center;margin-bottom:16px;border-left:4px solid var(--cn)}
@@ -152,7 +152,7 @@ td.mono,.mono{font-family:var(--mono);font-size:12.5px;white-space:nowrap;font-v
 .cmpbar .in{max-width:1240px;margin:0 auto;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
 .features{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin-bottom:16px}
 .features .feature{margin:0;grid-template-columns:minmax(0,1fr)}
-.feature.c-RU{border-left-color:var(--ru)} .feature.c-IR{border-left-color:var(--ir)} .feature.c-KP{border-left-color:var(--kp)}
+.feature.c-RU{border-left-color:var(--ru)} .feature.c-IR{border-left-color:var(--ir)} .feature.c-KP{border-left-color:var(--kp)} .feature.c-FIN{border-left-color:var(--fin)} .feature.c-DEV{border-left-color:var(--dev)} .feature.c-PSOA{border-left-color:var(--psoa)} .feature.c-OTH{border-left-color:var(--oth)}
 .related{display:grid;gap:4px;margin-top:8px}
 .related div{font-size:13px} .related b{font-weight:600}
 .exbanner{background:var(--warn-soft);color:var(--warn);font:600 12px/1.5 var(--mono);letter-spacing:.04em;padding:8px 12px;border-radius:var(--r);margin-bottom:14px}
@@ -190,7 +190,7 @@ footer{max-width:1240px;margin:0 auto;padding-block:0 80px;color:var(--muted);fo
 <header class="mast gut">
   <div class="mast-in">
     <div>
-      <div class="eyebrow">Nation-state cyber actors · China · Russia · Iran · North Korea</div>
+      <div class="eyebrow">China · Russia · Iran · North Korea · plus all other Microsoft-tracked actors</div>
       <h1>Cyber Threat Actor Encyclopedia</h1>
     </div>
     <div class="mast-tools">
@@ -213,7 +213,7 @@ footer{max-width:1240px;margin:0 auto;padding-block:0 80px;color:var(--muted);fo
 <script>
 (() => {
 "use strict";
-const COUNTRIES = {CN:"China", RU:"Russia", IR:"Iran", KP:"North Korea"};
+const COUNTRIES = {CN:"China", RU:"Russia", IR:"Iran", KP:"North Korea", FIN:"Financially motivated", DEV:"Groups in development", PSOA:"Private-sector offensive actors", OTH:"Other nations & networks"};
 const SECTIONS = [
   ["identification","Identification"],["attribution","Attribution"],["objectives","Strategic objectives"],
   ["targeting","Targeting"],["capabilities","Capabilities"],["attack","MITRE ATT&CK mappings"],
@@ -329,9 +329,9 @@ function renderList(){
   const byC=c=>all.filter(a=>c==="ALL"||a.country===c).length;
   const inC=all.filter(a=>S.country==="ALL"||a.country===S.country);
   const rail=h("aside",{class:"rail"},
-    facet("Country",[["ALL","All four",byC("ALL"),"c-ALL"],...Object.entries(COUNTRIES).map(([c,n])=>[c,n,byC(c),`c-${c}`])],S.country,v=>S.country=v),
+    facet("Country / category",[["ALL","All actors",byC("ALL"),"c-ALL"],...Object.entries(COUNTRIES).map(([c,n])=>[c,n,byC(c),`c-${c}`])],S.country,v=>S.country=v),
     facet("Record status",[["ALL","Any status",inC.length],["C","Complete",inC.filter(isComplete).length],["RR","Research Required",inC.filter(a=>!isComplete(a)).length],["FLAG","Import flags",inC.filter(a=>arr(a.importFlags).length).length]],S.status,v=>S.status=v),
-    h("div",{class:"note"}, "Primary names follow Microsoft's weather-family taxonomy (Typhoon = China, Blizzard = Russia, Sandstorm = Iran, Sleet = North Korea). Where a source record has no single Microsoft name, the source name is kept and the record is flagged.")
+    h("div",{class:"note"}, "Primary names follow Microsoft's taxonomy (Typhoon = China, Blizzard = Russia, Sandstorm = Iran, Sleet = North Korea, Tempest = financially motivated, Tsunami = private-sector offensive actors, Storm-#### = in development). The four focus countries come first; other Microsoft-tracked actors are grouped below them. Where a source record has no single Microsoft name, the source name is kept and the record is flagged.")
   );
   const col=h("section",{});
   const done=all.filter(a=>a.provenance?.origin==="import+research" || isComplete(a)).filter(a=>S.country==="ALL"||a.country===S.country);
@@ -391,18 +391,20 @@ function renderProfile(a){
     s(id.summary)?h("p",{},id.summary):RR("no descriptive summary"),
     h("dl",{class:"kv"},
       h("dt",{},"Microsoft name"), h("dd",{}, a.msName || (arr(a.msCandidates).length>1 ? "Conflict in source: "+a.msCandidates.join(", ") : "None in source")),
+      s(a.origin)?h("dt",{},"Microsoft origin"):null, s(a.origin)?h("dd",{},a.origin):null,
       h("dt",{},"First observed"), h("dd",{}, s(id.firstObserved) || "Research Required"),
       s(id.notes)?h("dt",{},"Naming notes"):null, s(id.notes)?h("dd",{},id.notes):null),
     h("h4",{class:"eyebrow",style:"margin:14px 0 8px"},`Aliases (${arr(a.aliases).length}) · vendor inferred from naming convention`),
     arr(a.aliases).length ? h("div",{class:"aliases"}, a.aliases.map(x=>h("span",{class:"alias"}, x.name, h("small",{},x.vendor||"")))) : RR("no aliases in source"),
-    arr(a.relatedMs).length ? h("div",{}, h("h4",{class:"eyebrow",style:"margin:14px 0 4px"},"Related Microsoft clusters · not aliases"), h("div",{class:"related"}, a.relatedMs.map(r=>{ const tgt=[...S.actors.values()].find(x=>x.primaryName===r.name); return h("div",{}, tgt?h("a",{href:"#"+tgt.id,onclick:e=>{e.preventDefault();openProfile(tgt.id);}},h("b",{},r.name)):h("b",{},r.name), " · ", r.note||""); }))) : null);
+    arr(a.relatedMs).length ? h("div",{}, h("h4",{class:"eyebrow",style:"margin:14px 0 4px"},"Related Microsoft clusters · not aliases"), h("div",{class:"related"}, a.relatedMs.map(r=>{ const tgt=[...S.actors.values()].find(x=>x.primaryName===r.name); return h("div",{}, tgt?h("a",{href:"#"+tgt.id,onclick:e=>{e.preventDefault();openProfile(tgt.id);}},h("b",{},r.name)):h("b",{},r.name), " · ", r.note||""); }))) : null,
+    arr(a.relatedRecords).length ? h("div",{}, h("h4",{class:"eyebrow",style:"margin:14px 0 4px"},"Overlapping records in this encyclopedia · not merged"), h("div",{class:"related"}, a.relatedRecords.map(r=>{ const tgt=S.actors.get(r.id); return h("div",{}, tgt?h("a",{href:"#"+r.id,onclick:e=>{e.preventDefault();openProfile(r.id);}},h("b",{},tgt.primaryName)):h("b",{},r.id), " · ", r.note||""); }))) : null);
 
   const at=a.attribution||{};
   const sec2=(s(at.sponsor)||s(at.confidence)||s(at.basis)) ? h("dl",{class:"kv"},
     h("dt",{},"Sponsor"),h("dd",{},s(at.sponsor)||"Research Required"),
     h("dt",{},"Confidence"),h("dd",{},s(at.confidence)||"Research Required"),
     h("dt",{},"Basis"),h("dd",{},s(at.basis)||"Research Required")) :
-    h("div",{}, h("p",{class:"note"},`Source database records origin as ${COUNTRIES[a.country]}. Sponsor, confidence and basis are not recorded.`), RR("sponsor, confidence, basis"));
+    h("div",{}, h("p",{class:"note"},`Recorded origin: ${s(a.origin)||COUNTRIES[a.country]||a.country}. Sponsor, confidence and basis are not recorded.`), RR("sponsor, confidence, basis"));
 
   const tg=a.targeting||{};
   const sec4=(arr(tg.sectors).length||arr(tg.regions).length||s(tg.notes)) ? h("div",{},

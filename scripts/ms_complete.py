@@ -35,6 +35,13 @@ def mitre(gid):
             [{"id": i, "name": n, "type": ty} for i, n, ty in sorted(sw)], g)
 
 C = {"China": "CN", "Russia": "RU", "Iran": "IR", "North Korea": "KP"}
+def category(origin):
+    c = next((v for k, v in C.items() if k in origin), None)
+    if c: return c
+    if "Financially motivated" in origin: return "FIN"
+    if "Private sector offensive actor" in origin: return "PSOA"
+    if origin.strip() == "Group in development": return "DEV"
+    return "OTH"
 ENT = {e["Threat actor name"]: {"origin": e["Origin/Threat"], "other": [x.strip() for x in e["Other names"].split(",") if x.strip()]} for e in ms}
 count = collections.Counter(n.lower() for k, v in ENT.items() for n in set([k] + v["other"]))
 GENERIC = {n for n, c in count.items() if c > 1}
@@ -83,13 +90,16 @@ MATCH_NOTE = {"Smoke Sandstorm": "MITRE match is via the shared alias UNC1549 (M
 
 created = []
 for name, e in ENT.items():
-    c = next((v for k, v in C.items() if k in e["origin"]), None)
-    if not c or name in primaries: continue
+    c = category(e["origin"])
+    if name in primaries: continue
     if any(name in v["other"] for k, v in ENT.items() if k != name): continue  # renamed designations (e.g. Storm-1516 -> Neva Flood)
     sid = slug(name); assert sid not in docs, sid
     al = [{"name": n, "vendor": vendor(n)} for n in e["other"]]
     attack, sw, summary, gid, notes = [], [], "", "", f"Microsoft name: {name} ({e['origin']}). Other names per Microsoft: {', '.join(e['other']) or 'none listed'}."
     sources = [dict(MS_SRC)]
+    if name not in MATCH:
+        hits = [gid for gid, g in groups.items() if name.lower() in {a.lower() for a in g.get("aliases", []) + [g["name"]]}]
+        if len(hits) == 1: MATCH[name] = hits[0]
     if name in MATCH:
         gid = MATCH[name]; attack, sw, g = mitre(gid)
         summary = re.sub(r"\[([^\]]+)\]\([^)]*\)", r"\1", re.sub(r"\(Citation:[^)]*\)", "", g.get("description", ""))).strip()
@@ -98,7 +108,7 @@ for name, e in ENT.items():
         sources.append({"ref": "M", "title": f"{g['name']}, {gid} (description, techniques and software)", "publisher": "MITRE ATT&CK", "date": f"{g['modified'][:10]} (object modified)", "url": f"https://attack.mitre.org/groups/{gid}/"})
         if name in MATCH_NOTE: notes += " " + MATCH_NOTE[name]
     docs[sid] = {
-        "id": sid, "primaryName": name, "msName": name, "msCandidates": [], "country": c, "aliases": al, "relatedMs": [],
+        "id": sid, "primaryName": name, "msName": name, "msCandidates": [], "country": c, "origin": e["origin"], "aliases": al, "relatedMs": [],
         "mitreGroupId": gid,
         "identification": {"summary": summary, "firstObserved": "", "notes": notes},
         "attribution": {"sponsor": "", "confidence": "", "basis": ""}, "objectives": "",

@@ -1,1 +1,280 @@
-{"id": "onyx-sleet", "primaryName": "Onyx Sleet", "msName": "Onyx Sleet", "msCandidates": [], "country": "KP", "aliases": [{"name": "PLUTONIUM", "vendor": "Microsoft (legacy element name)"}, {"name": "SILENT CHOLLIMA", "vendor": "CrowdStrike"}, {"name": "StoneFly", "vendor": "Other / unspecified"}, {"name": "Tdrop2 campaign", "vendor": "Other / unspecified"}, {"name": "DarkSeoul", "vendor": "Other / unspecified"}, {"name": "Black Chollima", "vendor": "CrowdStrike"}, {"name": "Andariel", "vendor": "Other / unspecified"}, {"name": "APT45", "vendor": "Mandiant / Google TI"}], "relatedMs": [], "mitreGroupId": "G0138", "identification": {"summary": "Andariel is a North Korean state-sponsored threat group that has been active since at least 2009. Andariel has primarily focused its operations--which have included destructive attacks--against South Korean government agencies, military organizations, and a variety of domestic companies; they have also conducted cyber financial operations against ATMs, banks, and cryptocurrency exchanges. Andariel's notable activity includes Operation Black Mine, Operation GoldenAxe, and Campaign Rifle.\n\nAndariel is considered a sub-set of Lazarus Group, and has been attributed to North Korea's Reconnaissance General Bureau.\n\nNorth Korean group definitions are known to have significant overlap, and some security researchers report all North Korean state-sponsored cyber activity under the name Lazarus Group instead of tracking clusters or subgroups.", "firstObserved": "", "notes": "Microsoft name: Onyx Sleet (North Korea). Other names per Microsoft: PLUTONIUM, SILENT CHOLLIMA, StoneFly, Tdrop2 campaign, DarkSeoul, Black Chollima, Andariel, APT45."}, "attribution": {"sponsor": "", "confidence": "", "basis": ""}, "objectives": "", "targeting": {"sectors": [], "regions": [], "notes": ""}, "capabilities": {"summary": "", "software": [{"id": "S0032", "name": "gh0st RAT", "type": "malware"}, {"id": "S0433", "name": "Rifdoor", "type": "malware"}]}, "attack": [{"id": "T1005", "name": "Data from Local System", "source": "MITRE ATT&CK G0138 (2026-07-31)", "tactics": ["collection"]}, {"id": "T1027.003", "name": "Steganography", "source": "MITRE ATT&CK G0138 (2026-07-31)", "tactics": ["stealth"]}, {"id": "T1049", "name": "System Network Connections Discovery", "source": "MITRE ATT&CK G0138 (2026-07-31)", "tactics": ["discovery"]}, {"id": "T1057", "name": "Process Discovery", "source": "MITRE ATT&CK G0138 (2026-07-31)", "tactics": ["discovery"]}, {"id": "T1105", "name": "Ingress Tool Transfer", "source": "MITRE ATT&CK G0138 (2026-07-31)", "tactics": ["command-and-control"]}, {"id": "T1189", "name": "Drive-by Compromise", "source": "MITRE ATT&CK G0138 (2026-07-31)", "tactics": ["initial-access"]}, {"id": "T1203", "name": "Exploitation for Client Execution", "source": "MITRE ATT&CK G0138 (2026-07-31)", "tactics": ["execution"]}, {"id": "T1204.002", "name": "Malicious File", "source": "MITRE ATT&CK G0138 (2026-07-31)", "tactics": ["execution"]}, {"id": "T1566.001", "name": "Spearphishing Attachment", "source": "MITRE ATT&CK G0138 (2026-07-31)", "tactics": ["initial-access"]}, {"id": "T1588.001", "name": "Malware", "source": "MITRE ATT&CK G0138 (2026-07-31)", "tactics": ["resource-development"]}, {"id": "T1590.005", "name": "IP Addresses", "source": "MITRE ATT&CK G0138 (2026-07-31)", "tactics": ["reconnaissance"]}, {"id": "T1592.002", "name": "Software", "source": "MITRE ATT&CK G0138 (2026-07-31)", "tactics": ["reconnaissance"]}], "campaigns": [], "diamond": {"adversary": "", "capability": "", "infrastructure": "", "victim": ""}, "gaps": [], "implications": {"jipoe": "", "jcc2": ""}, "sources": [{"ref": "MS", "title": "Microsoft threat actor naming mapping (MicrosoftMapping.json)", "publisher": "Microsoft Threat Intelligence", "date": "2026-10-14 (retrieved)", "url": "https://github.com/microsoft/mstic/blob/master/PublicFeeds/ThreatActorNaming/MicrosoftMapping.json"}, {"ref": "M", "title": "Andariel, G0138 (description, techniques and software)", "publisher": "MITRE ATT&CK", "date": "2026-07-31 (object modified)", "url": "https://attack.mitre.org/groups/G0138/"}], "importFlags": [], "provenance": {"origin": "microsoft-mapping", "file": "MicrosoftMapping.json", "generated": "2026-10-14", "upstream": ["Microsoft Threat Intelligence", "MITRE ATT&CK"]}, "updatedAt": "2026-10-14T00:00:00Z", "updatedBy": "Microsoft name completion"}
+{
+ "id": "onyx-sleet",
+ "primaryName": "Onyx Sleet",
+ "msName": "Onyx Sleet",
+ "msCandidates": [],
+ "country": "KP",
+ "aliases": [
+  {
+   "name": "PLUTONIUM",
+   "vendor": "Microsoft (legacy element name)"
+  },
+  {
+   "name": "SILENT CHOLLIMA",
+   "vendor": "CrowdStrike"
+  },
+  {
+   "name": "StoneFly",
+   "vendor": "Other / unspecified"
+  },
+  {
+   "name": "Tdrop2 campaign",
+   "vendor": "Other / unspecified"
+  },
+  {
+   "name": "DarkSeoul",
+   "vendor": "Other / unspecified"
+  },
+  {
+   "name": "Black Chollima",
+   "vendor": "CrowdStrike"
+  },
+  {
+   "name": "Andariel",
+   "vendor": "Other / unspecified"
+  },
+  {
+   "name": "APT45",
+   "vendor": "Mandiant / Google TI"
+  }
+ ],
+ "relatedMs": [],
+ "mitreGroupId": "G0138",
+ "identification": {
+  "summary": "North Korean actor within the Reconnaissance General Bureau (RGB) that conducts cyber espionage against military, defense and technology targets to advance the regime's military and nuclear programs, and that has expanded into financial gain, including ransomware [S1][S2]. A US indictment unsealed in July 2024 charged an alleged member for Maui ransomware attacks on US hospitals [S2].",
+  "firstObserved": "Microsoft first observed the actor in 2014 [S1]; MITRE: active since at least 2009 [S4]. TigerRAT in use since 2020 [S1].",
+  "notes": "Microsoft name: Onyx Sleet (formerly PLUTONIUM). Microsoft maps SILENT CHOLLIMA, StoneFly, DarkSeoul, Andariel and APT45 to it [S5]; MITRE tracks it as Andariel (G0138) [S4]. These names were previously merged into the Diamond Sleet (Lazarus) record and have been separated."
+ },
+ "attribution": {
+  "sponsor": "Democratic People's Republic of Korea: Reconnaissance General Bureau [S2].",
+  "confidence": "Formal US government attribution through the indictment of Rim Jong Hyok, announced 25 Jul 2024, which describes him as an RGB member associated with Andariel / Onyx Sleet / APT45 [S2]. Microsoft attributes the activity to Onyx Sleet [S1].",
+  "basis": "DOJ indictment and FBI investigation [S2]; Microsoft telemetry [S1]; CISA-linked advisory reporting cited by Microsoft [S1]."
+ },
+ "objectives": "Intelligence collection supporting DPRK military and nuclear programs, primarily from military, defense and technology targets [S1]. Revenue generation through ransomware and possibly online gambling [S1][S2], with ransom proceeds laundered through Hong Kong-based facilitators [S2].",
+ "targeting": {
+  "sectors": [
+   "Military and defense (including US defense contractors and US Air Force bases)",
+   "Technology and manufacturing",
+   "Healthcare (Maui ransomware)",
+   "Government (NASA Office of Inspector General)"
+  ],
+  "regions": [
+   "South Korea",
+   "United States",
+   "India"
+  ],
+  "notes": "Regions and sectors from Microsoft [S1]. FBI-reported victims: five healthcare providers, four US defense contractors, two US Air Force bases and NASA OIG [S2]."
+ },
+ "capabilities": {
+  "summary": "Custom malware including TigerRAT (since 2020), SmallTiger (against South Korean defense and manufacturing), LightHand, ValidAlpha/BlackRAT and Dtrack [S1]. Custom ransomware, notably Maui, used against US hospitals [S1][S2]. MITRE lists 12 techniques for Andariel (G0138), including gh0st RAT and Rifdoor usage [S4]. The MITRE mapping is thin relative to the public reporting, so treat the ATT&CK list as incomplete.",
+  "software": [
+   {
+    "id": "S0032",
+    "name": "gh0st RAT",
+    "type": "malware"
+   },
+   {
+    "id": "S0433",
+    "name": "Rifdoor",
+    "type": "malware"
+   }
+  ]
+ },
+ "attack": [
+  {
+   "id": "T1005",
+   "name": "Data from Local System",
+   "source": "MITRE ATT&CK G0138 (2026-07-31)",
+   "tactics": [
+    "collection"
+   ]
+  },
+  {
+   "id": "T1027.003",
+   "name": "Steganography",
+   "source": "MITRE ATT&CK G0138 (2026-07-31)",
+   "tactics": [
+    "stealth"
+   ]
+  },
+  {
+   "id": "T1049",
+   "name": "System Network Connections Discovery",
+   "source": "MITRE ATT&CK G0138 (2026-07-31)",
+   "tactics": [
+    "discovery"
+   ]
+  },
+  {
+   "id": "T1057",
+   "name": "Process Discovery",
+   "source": "MITRE ATT&CK G0138 (2026-07-31)",
+   "tactics": [
+    "discovery"
+   ]
+  },
+  {
+   "id": "T1105",
+   "name": "Ingress Tool Transfer",
+   "source": "MITRE ATT&CK G0138 (2026-07-31)",
+   "tactics": [
+    "command-and-control"
+   ]
+  },
+  {
+   "id": "T1189",
+   "name": "Drive-by Compromise",
+   "source": "MITRE ATT&CK G0138 (2026-07-31)",
+   "tactics": [
+    "initial-access"
+   ]
+  },
+  {
+   "id": "T1203",
+   "name": "Exploitation for Client Execution",
+   "source": "MITRE ATT&CK G0138 (2026-07-31)",
+   "tactics": [
+    "execution"
+   ]
+  },
+  {
+   "id": "T1204.002",
+   "name": "Malicious File",
+   "source": "MITRE ATT&CK G0138 (2026-07-31)",
+   "tactics": [
+    "execution"
+   ]
+  },
+  {
+   "id": "T1566.001",
+   "name": "Spearphishing Attachment",
+   "source": "MITRE ATT&CK G0138 (2026-07-31)",
+   "tactics": [
+    "initial-access"
+   ]
+  },
+  {
+   "id": "T1588.001",
+   "name": "Malware",
+   "source": "MITRE ATT&CK G0138 (2026-07-31)",
+   "tactics": [
+    "resource-development"
+   ]
+  },
+  {
+   "id": "T1590.005",
+   "name": "IP Addresses",
+   "source": "MITRE ATT&CK G0138 (2026-07-31)",
+   "tactics": [
+    "reconnaissance"
+   ]
+  },
+  {
+   "id": "T1592.002",
+   "name": "Software",
+   "source": "MITRE ATT&CK G0138 (2026-07-31)",
+   "tactics": [
+    "reconnaissance"
+   ]
+  }
+ ],
+ "campaigns": [
+  {
+   "date": "Before 2024 (charged 2024)",
+   "name": "Maui ransomware against US healthcare",
+   "summary": "RGB-developed Maui ransomware encrypted medical testing and records systems at US hospitals; ransoms laundered via Hong Kong facilitators. Charged in the 2024 indictment.",
+   "sources": [
+    "S2"
+   ]
+  },
+  {
+   "date": "2024-07-25",
+   "name": "Indictment of Rim Jong Hyok",
+   "summary": "Kansas grand jury charges for conspiracy to commit computer hacking and money laundering; $10M reward; added to FBI Most Wanted. Victims include defense contractors, US Air Force bases and NASA OIG.",
+   "sources": [
+    "S2",
+    "S3"
+   ]
+  },
+  {
+   "date": "2020 to 2024",
+   "name": "TigerRAT / SmallTiger espionage",
+   "summary": "Custom RATs against defense, manufacturing and technology targets, primarily in South Korea, the US and India.",
+   "sources": [
+    "S1"
+   ]
+  }
+ ],
+ "diamond": {
+  "adversary": "RGB operators; Rim Jong Hyok charged in 2024 [S2].",
+  "capability": "TigerRAT, SmallTiger, LightHand, ValidAlpha, Dtrack; Maui ransomware [S1][S2].",
+  "infrastructure": "Actor-controlled C2; cryptocurrency ransom payment and laundering through Hong Kong facilitators [S2].",
+  "victim": "Defense contractors, military installations, NASA OIG, US hospitals, South Korean defense and manufacturing, Indian targets [S1][S2].",
+  "socioPolitical": "Support to DPRK military and nuclear programs, plus sanctions-evading revenue [S1][S2].",
+  "technology": "Vulnerable internet-facing systems and weak healthcare IT resilience exploited for ransomware leverage [S2]."
+ },
+ "gaps": [
+  "Primary indictment PDF and the joint technical advisory issued alongside it were not fetched (government sites blocked); the advisory identifier should be confirmed.",
+  "MITRE's Andariel technique list (12) is far smaller than the reported tradecraft; analyst mapping from Microsoft and advisory reporting is needed.",
+  "How ransomware revenue and espionage tasking are balanced within the group is not public.",
+  "Overlap with the Diamond Sleet record's historical 'Lazarus' events (e.g. DarkSeoul) should be reconciled."
+ ],
+ "implications": {
+  "jipoe": "Analyst assessment derived from cited sources; validate before use. STEP 1: The OE includes DIB contractors, military installations' IT and healthcare systems supporting military communities. This actor targets all three. STEP 2: Ransomware against hospitals near installations can degrade medical support to forces and families. STEP 3: The template is exploitation of internet-facing systems, then custom RATs for espionage, and in some cases ransomware deployment for revenue. STEP 4: MLCOA is persistent espionage against defense and aerospace technology to support weapons programs. MDCOA is ransomware against healthcare or installation-support providers during a Korean Peninsula crisis, combining revenue with disruption. Candidate indicators: TigerRAT or SmallTiger detections, ransomware staging in healthcare networks, and intrusions at aerospace and defense suppliers [S1][S2].",
+  "jcc2": "Analyst assessment derived from cited sources; validate before use. (1) Coordinate with USFK and INDOPACOM, and with South Korean partners, since South Korea is the primary target. (2) Include Defense Health Agency and community hospital partners in situational awareness for ransomware threats. (3) Financial disruption (seizures, sanctions) is a DOJ and Treasury lead but affects the actor's resources; track it as part of campaign assessment. (4) DIB CS program reporting is a primary sensor for this actor's espionage."
+ },
+ "sources": [
+  {
+   "ref": "S1",
+   "title": "Onyx Sleet uses array of malware to gather intelligence for North Korea",
+   "publisher": "Microsoft Threat Intelligence",
+   "date": "2024-07-25",
+   "url": "https://www.microsoft.com/en-us/security/blog/2024/07/25/onyx-sleet-uses-array-of-malware-to-gather-intelligence-for-north-korea/"
+  },
+  {
+   "ref": "S2",
+   "title": "North Korean Government Hacker Charged for Involvement in Ransomware Attacks Targeting U.S. Hospitals (content via coverage)",
+   "publisher": "U.S. Department of Justice",
+   "date": "2024-07-25",
+   "url": "https://www.justice.gov/opa/pr/north-korean-government-hacker-charged-involvement-ransomware-attacks-targeting-us-hospitals"
+  },
+  {
+   "ref": "S3",
+   "title": "US indicts North Korean hacker over ransomware attacks",
+   "publisher": "The Record",
+   "date": "2024-07-25",
+   "url": "https://therecord.media/us-indicts-north-korean-hacker-ransomware"
+  },
+  {
+   "ref": "S4",
+   "title": "Andariel, G0138 (description, techniques and software)",
+   "publisher": "MITRE ATT&CK",
+   "date": "2026-07-31 (object modified)",
+   "url": "https://attack.mitre.org/groups/G0138/"
+  },
+  {
+   "ref": "S5",
+   "title": "Microsoft threat actor naming mapping (MicrosoftMapping.json)",
+   "publisher": "Microsoft Threat Intelligence",
+   "date": "2026-10-14 (retrieved)",
+   "url": "https://github.com/microsoft/mstic/blob/master/PublicFeeds/ThreatActorNaming/MicrosoftMapping.json"
+  }
+ ],
+ "importFlags": [],
+ "provenance": {
+  "origin": "import+research",
+  "file": "MicrosoftMapping.json",
+  "generated": "2026-10-14",
+  "upstream": [
+   "Microsoft Threat Intelligence",
+   "MITRE ATT&CK"
+  ],
+  "importedRefs": [
+   "https://github.com/microsoft/mstic/blob/master/PublicFeeds/ThreatActorNaming/MicrosoftMapping.json",
+   "https://attack.mitre.org/groups/G0138/"
+  ],
+  "importedSummary": "Andariel is a North Korean state-sponsored threat group that has been active since at least 2009. Andariel has primarily focused its operations--which have included destructive attacks--against South Korean government agencies, military organizations, and a variety of domestic companies; they have also conducted cyber financial operations against ATMs, banks, and cryptocurrency exchanges. Andariel's notable activity includes Operation Black Mine, Operation GoldenAxe, and Campaign Rifle.\n\nAndariel is considered a sub-set of Lazarus Group, and has been attributed to North Korea's Reconnaissance General Bureau.\n\nNorth Korean group definitions are known to have significant overlap, and some security researchers report all North Korean state-sponsored cyber activity under the name Lazarus Group instead of tracking clusters or subgroups."
+ },
+ "updatedAt": "2026-10-14T00:00:00Z",
+ "updatedBy": "Research build 2026-10-14"
+}

@@ -1,1 +1,1223 @@
-{"id": "forest-blizzard", "primaryName": "Forest Blizzard", "msName": "Forest Blizzard", "msCandidates": [], "country": "RU", "aliases": [{"name": "APT28", "vendor": "Source record name"}, {"name": "APT-C-20", "vendor": "Other / unspecified"}, {"name": "ATG2", "vendor": "Other / unspecified"}, {"name": "ATK5", "vendor": "Other / unspecified"}, {"name": "ATK7", "vendor": "Other / unspecified"}, {"name": "Blue Athena", "vendor": "Other / unspecified"}, {"name": "BlueDelta", "vendor": "Other / unspecified"}, {"name": "CrisisFour", "vendor": "Other / unspecified"}, {"name": "Fancy Bear", "vendor": "CrowdStrike"}, {"name": "Fighting Ursa", "vendor": "Palo Alto Unit 42"}, {"name": "FROZENLAKE", "vendor": "Other / unspecified"}, {"name": "Grizzly Steppe", "vendor": "Other / unspecified"}, {"name": "Group 74", "vendor": "Other / unspecified"}, {"name": "Group 100", "vendor": "Other / unspecified"}, {"name": "GruesomeLarch", "vendor": "Other / unspecified"}, {"name": "HELLFIRE", "vendor": "Other / unspecified"}, {"name": "IRON TWILIGHT", "vendor": "Secureworks CTU"}, {"name": "ITG05", "vendor": "Other / unspecified"}, {"name": "ITG11", "vendor": "Other / unspecified"}, {"name": "Minidionis", "vendor": "Other / unspecified"}, {"name": "Operation Pawn Storm", "vendor": "Other / unspecified"}, {"name": "Pawn Storm", "vendor": "Other / unspecified"}, {"name": "Sednit", "vendor": "Other / unspecified"}, {"name": "SIG40", "vendor": "Other / unspecified"}, {"name": "SNAKEMACKEREL", "vendor": "Other / unspecified"}, {"name": "Sofacy", "vendor": "Other / unspecified"}, {"name": "Solar Phoenix", "vendor": "Other / unspecified"}, {"name": "STRONTIUM", "vendor": "Other / unspecified"}, {"name": "Swallowtail", "vendor": "Other / unspecified"}, {"name": "T-APT-12", "vendor": "Other / unspecified"}, {"name": "TA421", "vendor": "Proofpoint"}, {"name": "TA422", "vendor": "Proofpoint"}, {"name": "TG-4127", "vendor": "Other / unspecified"}, {"name": "Threat Group-4127", "vendor": "Other / unspecified"}, {"name": "Tsar Team", "vendor": "Other / unspecified"}, {"name": "UAC-0001", "vendor": "Other / unspecified"}, {"name": "UAC-0028", "vendor": "Other / unspecified"}, {"name": "UAC-0029", "vendor": "Other / unspecified"}, {"name": "Z-Lom Team", "vendor": "Other / unspecified"}], "mitreGroupId": "G0007", "identification": {"summary": "A 2015 report by F-Secure describe APT29 as: 'The Dukes are a well-resourced, highly dedicated and organized cyberespionage group that we believe has been working for the Russian Federation since at least 2008 to collect intelligence in support of foreign and security policy decision-making. The Dukes show unusual confidence in their ability to continue successfully compromising their targets, as well as in their ability to operate with impunity. The Dukes primarily target Western governments and related organizations, such as government ministries and agencies, political think tanks, and governmental subcontractors. Their targets have also included the governments of members of the Commonwealth of Independent States;Asian, African, and Middle Eastern governments;organizations associated with Chechen extremism;and Russian speakers engaged in the illicit trade of controlled substances and drugs. The Dukes are known to employ a vast arsenal of malware toolsets, which we identify as MiniDuke, CosmicDuke, OnionDuke, CozyDuke, CloudDuke, SeaDuke, HammerDuke, PinchDuke, and GeminiDuke. In recent years, the Dukes have engaged in apparently biannual large - scale spear - phishing campaigns against hundreds or even thousands of recipients associated with governmental institutions and affiliated organizations. These campaigns utilize a smash - and - grab approach involving a fast but noisy breakin followed by the rapid collection and exfiltration of as much data as possible.If the compromised target is discovered to be of value, the Dukes will quickly switch the toolset used and move to using stealthier tactics focused on persistent compromise and long - term intelligence gathering. This threat actor targets government ministries and agencies in the West, Central Asia, East Africa, and the Middle East; Chechen extremist groups; Russian organized crime; and think tanks. It is suspected to be behind the 2015 compromise of unclassified networks at the White House, Department of State, Pentagon, and the Joint Chiefs of Staff. The threat actor includes all of the Dukes tool sets, including MiniDuke, CosmicDuke, OnionDuke, CozyDuke, SeaDuke, CloudDuke (aka MiniDionis), and HammerDuke (aka Hammertoss). '", "firstObserved": "", "notes": "Microsoft mapping: Microsoft maps APT28 to Forest Blizzard. Midnight Blizzard is APT29 / NOBELIUM; the source merge listed it in error."}, "attribution": {"sponsor": "", "confidence": "", "basis": ""}, "objectives": "", "targeting": {"sectors": [], "regions": [], "notes": ""}, "capabilities": {"summary": "", "software": [{"id": "S0002", "name": "Mimikatz", "type": "tool"}, {"id": "S0023", "name": "CHOPSTICK", "type": "malware"}, {"id": "S0039", "name": "Net", "type": "tool"}, {"id": "S0044", "name": "JHUHUGIT", "type": "malware"}, {"id": "S0045", "name": "ADVSTORESHELL", "type": "malware"}, {"id": "S0117", "name": "XTunnel", "type": "malware"}, {"id": "S0134", "name": "Downdelph", "type": "malware"}, {"id": "S0135", "name": "HIDEDRV", "type": "malware"}, {"id": "S0136", "name": "USBStealer", "type": "malware"}, {"id": "S0137", "name": "CORESHELL", "type": "malware"}, {"id": "S0138", "name": "OLDBAIT", "type": "malware"}, {"id": "S0160", "name": "certutil", "type": "tool"}, {"id": "S0161", "name": "XAgentOSX", "type": "malware"}, {"id": "S0162", "name": "Komplex", "type": "malware"}, {"id": "S0174", "name": "Responder", "type": "tool"}, {"id": "S0183", "name": "Tor", "type": "tool"}, {"id": "S0191", "name": "Winexe", "type": "tool"}, {"id": "S0193", "name": "Forfiles", "type": "tool"}, {"id": "S0243", "name": "DealersChoice", "type": "malware"}, {"id": "S0250", "name": "Koadic", "type": "tool"}, {"id": "S0251", "name": "Zebrocy", "type": "malware"}, {"id": "S0351", "name": "Cannon", "type": "malware"}, {"id": "S0397", "name": "LoJax", "type": "malware"}, {"id": "S0410", "name": "Fysbis", "type": "malware"}, {"id": "S0502", "name": "Drovorub", "type": "malware"}, {"id": "S0645", "name": "Wevtutil", "type": "tool"}, {"id": "S1187", "name": "reGeorg", "type": "malware"}, {"id": "S1205", "name": "cipher.exe", "type": "tool"}, {"id": "S9035", "name": "LAMEHUG", "type": "malware"}]}, "attack": [{"id": "T1001.001", "name": "Junk Data", "source": "MITRE ATT&CK G0007 (2026-07-31)", "tactics": ["command-and-control"]}, {"id": "T1003", "name": "OS Credential Dumping", "source": "MITRE ATT&CK G0007 (2026-07-31)", "tactics": ["credential-access"]}, {"id": "T1003.001", "name": "LSASS Memory", "source": "MITRE ATT&CK G0007 (2026-07-31)", "tactics": ["credential-access"]}, {"id": "T1003.003", "name": "NTDS", "source": "MITRE ATT&CK G0007 (2026-07-31)", "tactics": ["credential-access"]}, {"id": "T1005", "name": "Data from Local System", "source": "MITRE ATT&CK G0007 (2026-07-31)", "tactics": ["collection"]}, {"id": "T1014", "name": "Rootkit", "source": "MITRE ATT&CK G0007 (2026-07-31)", "tactics": ["stealth"]}, {"id": "T1021.002", "name": "SMB/Windows Admin Shares", "source": "MITRE ATT&CK G0007 (2026-07-31)", "tactics": ["lateral-movement"]}, {"id": "T1025", "name": "Data from Removable Media", "source": "MITRE ATT&CK G0007 (2026-07-31)", "tactics": ["collection"]}, {"id": "T1027.013", "name": "Encrypted/Encoded File", "source": "MITRE ATT&CK G0007 (2026-07-31)", "tactics": ["stealth"]}, {"id": "T1030", "name": "Data Transfer Size Limits", "source": "MITRE ATT&CK G0007 (2026-07-31)", "tactics": ["exfiltration"]}, {"id": "T1036", "name": "Masquerading", "source": "MITRE ATT&CK G0007 (2026-07-31)", "tactics": ["stealth"]}, {"id": "T1036.005", "name": "Match Legitimate Resource Name or Location", "source": "MITRE ATT&CK G0007 (2026-07-31)", "tactics": ["stealth"]}, {"id": "T1037.001", "name": "Logon Script (Windows)", "source": "MITRE ATT&CK G0007 (2026-07-31)", "tactics": ["persistence", "privilege-escalation"]}, {"id": "T1039", "name": "Data from Network Shared Drive", "source": "MITRE ATT&CK G0007 (2026-07-31)", "tactics": ["collection"]}, {"id": "T1040", "name": "Network Sniffing", "source": "MITRE ATT&CK G0007 (2026-07-31)", "tactics": ["credential-access", "discovery"]}, {"id": "T1048.002", "name": "Exfiltration Over Asymmetric Encrypted Non-C2 Protocol", "source": "MITRE ATT&CK G0007 (2026-07-31)", "tactics": ["exfiltration"]}, {"id": "T1056.001", "name": "Keylogging", "source": "MITRE ATT&CK G0007 (2026-07-31)", "tactics": ["collection", "credential-access"]}, {"id": "T1057", "name": "Process Discovery", "source": "MITRE ATT&CK G0007 (2026-07-31)", "tactics": ["discovery"]}, {"id": "T1059.001", "name": "PowerShell", "source": "MITRE ATT&CK G0007 (2026-07-31)", "tactics": ["execution"]}, {"id": "T1059.003", "name": "Windows Command Shell", "source": "MITRE ATT&CK G0007 (2026-07-31)", "tactics": ["execution"]}, {"id": "T1068", "name": "Exploitation for Privilege Escalation", "source": "MITRE ATT&CK G0007 (2026-07-31)", "tactics": ["privilege-escalation"]}, {"id": "T1070.004", "name": "File Deletion", "source": "MITRE ATT&CK G0007 (2026-07-31)", "tactics": ["stealth"]}, {"id": "T1070.006", "name": "Timestomp", "source": "MITRE ATT&CK G0007 (2026-07-31)", "tactics": ["stealth"]}, {"id": "T1071.001", "name": "Web Protocols", "source": "MITRE ATT&CK G0007 (2026-07-31)", "tactics": ["command-and-control"]}, {"id": "T1071.003", "name": "Mail Protocols", "source": "MITRE ATT&CK G0007 (2026-07-31)", "tactics": ["command-and-control"]}, {"id": "T1074.001", "name": "Local Data Staging", "source": "MITRE ATT&CK G0007 (2026-07-31)", "tactics": ["collection"]}, {"id": "T1074.002", "name": "Remote Data Staging", "source": "MITRE ATT&CK G0007 (2026-07-31)", "tactics": ["collection"]}, {"id": "T1078", "name": "Valid Accounts", "source": "MITRE ATT&CK G0007 (2026-07-31)", "tactics": ["stealth", "persistence", "privilege-escalation", "initial-access"]}, {"id": "T1078.004", "name": "Cloud Accounts", "source": "MITRE ATT&CK G0007 (2026-07-31)", "tactics": ["stealth", "persistence", "privilege-escalation", "initial-access"]}, {"id": "T1083", "name": "File and Directory Discovery", "source": "MITRE ATT&CK G0007 (2026-07-31)", "tactics": ["discovery"]}, {"id": "T1090.002", "name": "External Proxy", "source": "MITRE ATT&CK G0007 (2026-07-31)", "tactics": ["command-and-control"]}, {"id": "T1090.003", "name": "Multi-hop Proxy", "source": "MITRE ATT&CK G0007 (2026-07-31)", "tactics": ["command-and-control"]}, {"id": "T1091", "name": "Replication Through Removable Media", "source": "MITRE ATT&CK G0007 (2026-07-31)", "tactics": ["lateral-movement", "initial-access"]}, {"id": "T1092", "name": "Communication Through Removable Media", "source": "MITRE ATT&CK G0007 (2026-07-31)", "tactics": ["command-and-control"]}, {"id": "T1098.002", "name": "Additional Email Delegate Permissions", "source": "MITRE ATT&CK G0007 (2026-07-31)", "tactics": ["persistence", "privilege-escalation"]}, {"id": "T1102.002", "name": "Bidirectional Communication", "source": "MITRE ATT&CK G0007 (2026-07-31)", "tactics": ["command-and-control"]}, {"id": "T1105", "name": "Ingress Tool Transfer", "source": "MITRE ATT&CK G0007 (2026-07-31)", "tactics": ["command-and-control"]}, {"id": "T1110", "name": "Brute Force", "source": "MITRE ATT&CK G0007 (2026-07-31)", "tactics": ["credential-access"]}, {"id": "T1110.001", "name": "Password Guessing", "source": "MITRE ATT&CK G0007 (2026-07-31)", "tactics": ["credential-access"]}, {"id": "T1110.003", "name": "Password Spraying", "source": "MITRE ATT&CK G0007 (2026-07-31)", "tactics": ["credential-access"]}, {"id": "T1113", "name": "Screen Capture", "source": "MITRE ATT&CK G0007 (2026-07-31)", "tactics": ["collection"]}, {"id": "T1114.002", "name": "Remote Email Collection", "source": "MITRE ATT&CK G0007 (2026-07-31)", "tactics": ["collection"]}, {"id": "T1119", "name": "Automated Collection", "source": "MITRE ATT&CK G0007 (2026-07-31)", "tactics": ["collection"]}, {"id": "T1120", "name": "Peripheral Device Discovery", "source": "MITRE ATT&CK G0007 (2026-07-31)", "tactics": ["discovery"]}, {"id": "T1133", "name": "External Remote Services", "source": "MITRE ATT&CK G0007 (2026-07-31)", "tactics": ["persistence", "initial-access"]}, {"id": "T1134.001", "name": "Token Impersonation/Theft", "source": "MITRE ATT&CK G0007 (2026-07-31)", "tactics": ["stealth", "privilege-escalation"]}, {"id": "T1137.002", "name": "Office Test", "source": "MITRE ATT&CK G0007 (2026-07-31)", "tactics": ["persistence"]}, {"id": "T1140", "name": "Deobfuscate/Decode Files or Information", "source": "MITRE ATT&CK G0007 (2026-07-31)", "tactics": ["stealth"]}, {"id": "T1189", "name": "Drive-by Compromise", "source": "MITRE ATT&CK G0007 (2026-07-31)", "tactics": ["initial-access"]}, {"id": "T1190", "name": "Exploit Public-Facing Application", "source": "MITRE ATT&CK G0007 (2026-07-31)", "tactics": ["initial-access"]}, {"id": "T1199", "name": "Trusted Relationship", "source": "MITRE ATT&CK G0007 (2026-07-31)", "tactics": ["initial-access"]}, {"id": "T1203", "name": "Exploitation for Client Execution", "source": "MITRE ATT&CK G0007 (2026-07-31)", "tactics": ["execution"]}, {"id": "T1204.001", "name": "Malicious Link", "source": "MITRE ATT&CK G0007 (2026-07-31)", "tactics": ["execution"]}, {"id": "T1204.002", "name": "Malicious File", "source": "MITRE ATT&CK G0007 (2026-07-31)", "tactics": ["execution"]}, {"id": "T1210", "name": "Exploitation of Remote Services", "source": "MITRE ATT&CK G0007 (2026-07-31)", "tactics": ["lateral-movement"]}, {"id": "T1211", "name": "Exploitation for Stealth", "source": "MITRE ATT&CK G0007 (2026-07-31)", "tactics": ["stealth"]}, {"id": "T1213", "name": "Data from Information Repositories", "source": "MITRE ATT&CK G0007 (2026-07-31)", "tactics": ["collection"]}, {"id": "T1213.002", "name": "Sharepoint", "source": "MITRE ATT&CK G0007 (2026-07-31)", "tactics": ["collection"]}, {"id": "T1218.011", "name": "Rundll32", "source": "MITRE ATT&CK G0007 (2026-07-31)", "tactics": ["stealth"]}, {"id": "T1221", "name": "Template Injection", "source": "MITRE ATT&CK G0007 (2026-07-31)", "tactics": ["stealth"]}, {"id": "T1498", "name": "Network Denial of Service", "source": "MITRE ATT&CK G0007 (2026-07-31)", "tactics": ["impact"]}, {"id": "T1505.003", "name": "Web Shell", "source": "MITRE ATT&CK G0007 (2026-07-31)", "tactics": ["persistence"]}, {"id": "T1528", "name": "Steal Application Access Token", "source": "MITRE ATT&CK G0007 (2026-07-31)", "tactics": ["credential-access"]}, {"id": "T1542.003", "name": "Bootkit", "source": "MITRE ATT&CK G0007 (2026-07-31)", "tactics": ["stealth", "persistence"]}, {"id": "T1546.015", "name": "Component Object Model Hijacking", "source": "MITRE ATT&CK G0007 (2026-07-31)", "tactics": ["privilege-escalation", "persistence"]}, {"id": "T1547.001", "name": "Registry Run Keys / Startup Folder", "source": "MITRE ATT&CK G0007 (2026-07-31)", "tactics": ["persistence", "privilege-escalation"]}, {"id": "T1550.001", "name": "Application Access Token", "source": "MITRE ATT&CK G0007 (2026-07-31)", "tactics": ["lateral-movement"]}, {"id": "T1550.002", "name": "Pass the Hash", "source": "MITRE ATT&CK G0007 (2026-07-31)", "tactics": ["lateral-movement"]}, {"id": "T1557.004", "name": "Evil Twin", "source": "MITRE ATT&CK G0007 (2026-07-31)", "tactics": ["credential-access", "collection"]}, {"id": "T1559.002", "name": "Dynamic Data Exchange", "source": "MITRE ATT&CK G0007 (2026-07-31)", "tactics": ["execution"]}, {"id": "T1560", "name": "Archive Collected Data", "source": "MITRE ATT&CK G0007 (2026-07-31)", "tactics": ["collection"]}, {"id": "T1560.001", "name": "Archive via Utility", "source": "MITRE ATT&CK G0007 (2026-07-31)", "tactics": ["collection"]}, {"id": "T1564.001", "name": "Hidden Files and Directories", "source": "MITRE ATT&CK G0007 (2026-07-31)", "tactics": ["stealth"]}, {"id": "T1564.003", "name": "Hidden Window", "source": "MITRE ATT&CK G0007 (2026-07-31)", "tactics": ["stealth"]}, {"id": "T1566.001", "name": "Spearphishing Attachment", "source": "MITRE ATT&CK G0007 (2026-07-31)", "tactics": ["initial-access"]}, {"id": "T1567", "name": "Exfiltration Over Web Service", "source": "MITRE ATT&CK G0007 (2026-07-31)", "tactics": ["exfiltration"]}, {"id": "T1573.001", "name": "Symmetric Cryptography", "source": "MITRE ATT&CK G0007 (2026-07-31)", "tactics": ["command-and-control"]}, {"id": "T1583.001", "name": "Domains", "source": "MITRE ATT&CK G0007 (2026-07-31)", "tactics": ["resource-development"]}, {"id": "T1583.003", "name": "Virtual Private Server", "source": "MITRE ATT&CK G0007 (2026-07-31)", "tactics": ["resource-development"]}, {"id": "T1583.006", "name": "Web Services", "source": "MITRE ATT&CK G0007 (2026-07-31)", "tactics": ["resource-development"]}, {"id": "T1584.008", "name": "Network Devices", "source": "MITRE ATT&CK G0007 (2026-07-31)", "tactics": ["resource-development"]}, {"id": "T1586.002", "name": "Email Accounts", "source": "MITRE ATT&CK G0007 (2026-07-31)", "tactics": ["resource-development"]}, {"id": "T1588.002", "name": "Tool", "source": "MITRE ATT&CK G0007 (2026-07-31)", "tactics": ["resource-development"]}, {"id": "T1588.007", "name": "Artificial Intelligence", "source": "MITRE ATT&CK G0007 (2026-07-31)", "tactics": ["resource-development"]}, {"id": "T1589.001", "name": "Credentials", "source": "MITRE ATT&CK G0007 (2026-07-31)", "tactics": ["reconnaissance"]}, {"id": "T1591", "name": "Gather Victim Org Information", "source": "MITRE ATT&CK G0007 (2026-07-31)", "tactics": ["reconnaissance"]}, {"id": "T1595.002", "name": "Vulnerability Scanning", "source": "MITRE ATT&CK G0007 (2026-07-31)", "tactics": ["reconnaissance"]}, {"id": "T1596", "name": "Search Open Technical Databases", "source": "MITRE ATT&CK G0007 (2026-07-31)", "tactics": ["reconnaissance"]}, {"id": "T1598", "name": "Phishing for Information", "source": "MITRE ATT&CK G0007 (2026-07-31)", "tactics": ["reconnaissance"]}, {"id": "T1598.003", "name": "Spearphishing Link", "source": "MITRE ATT&CK G0007 (2026-07-31)", "tactics": ["reconnaissance"]}, {"id": "T1669", "name": "Wi-Fi Networks", "source": "MITRE ATT&CK G0007 (2026-07-31)", "tactics": ["initial-access"]}, {"id": "T1684.001", "name": "Impersonation", "source": "MITRE ATT&CK G0007 (2026-07-31)", "tactics": ["stealth"]}, {"id": "T1685.005", "name": "Clear Windows Event Logs", "source": "MITRE ATT&CK G0007 (2026-07-31)", "tactics": ["defense-impairment"]}], "campaigns": [], "diamond": {"adversary": "", "capability": "", "infrastructure": "", "victim": ""}, "gaps": [], "implications": {"jipoe": "", "jcc2": ""}, "sources": [{"title": "", "publisher": "", "date": "", "url": "https://attack.mitre.org/groups/G0007/"}, {"title": "", "publisher": "", "date": "", "url": "https://attack.mitre.org/groups/G0016/"}, {"title": "", "publisher": "", "date": "", "url": "https://en.wikipedia.org/wiki/Fancy_Bear"}, {"title": "", "publisher": "", "date": "", "url": "https://en.wikipedia.org/wiki/Sofacy_Group"}, {"title": "", "publisher": "", "date": "", "url": "https://www.bbc.com/news/technology-37590375"}, {"title": "", "publisher": "", "date": "", "url": "https://www.bbc.co.uk/news/technology-45257081"}, {"title": "", "publisher": "", "date": "", "url": "https://www.cfr.org/interactive/cyber-operations/apt-28"}, {"title": "", "publisher": "", "date": "", "url": "https://www.apnews.com/4d174e45ef5843a0ba82e804f080988f"}, {"title": "", "publisher": "", "date": "", "url": "https://www.voanews.com/a/iaaf-hack-fancy-bears/3793874.html"}, {"title": "", "publisher": "", "date": "", "url": "https://securelist.com/a-slice-of-2017-sofacy-activity/83930/"}, {"title": "", "publisher": "", "date": "", "url": "https://www.dw.com/en/hackers-lurking-parliamentarians-told/a-19564630"}, {"title": "", "publisher": "", "date": "", "url": "https://unit42.paloaltonetworks.com/unit42-sofacys-komplex-os-x-trojan/"}, {"title": "", "publisher": "", "date": "", "url": "https://unit42.paloaltonetworks.com/dear-joohn-sofacy-groups-global-campaign/"}, {"title": "", "publisher": "", "date": "", "url": "https://www.fireeye.com/blog/threat-research/2015/04/probable_apt28_useo.html"}, {"title": "", "publisher": "", "date": "", "url": "https://www2.fireeye.com/rs/848-DID-242/images/wp-mandiant-matryoshka-mining.pdf"}, {"title": "", "publisher": "", "date": "", "url": "https://www.eff.org/deeplinks/2015/08/new-spear-phishing-campaign-pretends-be-eff"}, {"title": "", "publisher": "", "date": "", "url": "https://aptnotes.malwareconfig.com/web/viewer.html?file=../APTnotes/2014/apt28.pdf"}, {"title": "", "publisher": "", "date": "", "url": "https://www.accenture.com/us-en/blogs/blogs-snakemackerel-delivers-zekapab-malware"}, {"title": "", "publisher": "", "date": "", "url": "https://www.wired.com/story/russian-fancy-bears-hackers-release-apparent-ioc-emails/"}, {"title": "", "publisher": "", "date": "", "url": "https://symantec-blogs.broadcom.com/blogs/election-security/apt28-espionage-military-government"}, {"title": "Microsoft threat actor naming mapping (MicrosoftMapping.json)", "publisher": "Microsoft Threat Intelligence", "date": "2026-10-14 (retrieved)", "url": "https://github.com/microsoft/mstic/blob/master/PublicFeeds/ThreatActorNaming/MicrosoftMapping.json"}], "importFlags": [], "provenance": {"origin": "import", "file": "actors.json", "generated": "2026-07-14T22:45:41.952Z", "upstream": ["MITRE ATT&CK", "MISP Galaxy", "Microsoft Threat Intelligence", "Google Threat Intelligence / Mandiant"]}, "updatedAt": "2026-10-14T00:00:00Z", "updatedBy": "", "relatedMs": [{"name": "Midnight Blizzard", "note": "Separate Microsoft actor (Russia): NOBELIUM, COZY BEAR, UNC2452, APT29. Names moved from this record's source merge: APT29, Blue Kitsune, BlueBravo, Cloaked Ursa, Cozy Bear, CozyDuke, Dark Halo, DarkHalo, IRON HEMLOCK, IRON RITUAL, NOBELIUM, NobleBaron, SeaDuke, SolarStorm, StellarParticle, The Dukes, UNC2452, UNC3524, YTTRIUM."}]}
+{
+ "id": "forest-blizzard",
+ "primaryName": "Forest Blizzard",
+ "msName": "Forest Blizzard",
+ "msCandidates": [],
+ "country": "RU",
+ "aliases": [
+  {
+   "name": "APT28",
+   "vendor": "Source record name"
+  },
+  {
+   "name": "APT-C-20",
+   "vendor": "Other / unspecified"
+  },
+  {
+   "name": "ATG2",
+   "vendor": "Other / unspecified"
+  },
+  {
+   "name": "ATK5",
+   "vendor": "Other / unspecified"
+  },
+  {
+   "name": "ATK7",
+   "vendor": "Other / unspecified"
+  },
+  {
+   "name": "Blue Athena",
+   "vendor": "Other / unspecified"
+  },
+  {
+   "name": "BlueDelta",
+   "vendor": "Other / unspecified"
+  },
+  {
+   "name": "CrisisFour",
+   "vendor": "Other / unspecified"
+  },
+  {
+   "name": "Fancy Bear",
+   "vendor": "CrowdStrike"
+  },
+  {
+   "name": "Fighting Ursa",
+   "vendor": "Palo Alto Unit 42"
+  },
+  {
+   "name": "FROZENLAKE",
+   "vendor": "Other / unspecified"
+  },
+  {
+   "name": "Grizzly Steppe",
+   "vendor": "Other / unspecified"
+  },
+  {
+   "name": "Group 74",
+   "vendor": "Other / unspecified"
+  },
+  {
+   "name": "Group 100",
+   "vendor": "Other / unspecified"
+  },
+  {
+   "name": "GruesomeLarch",
+   "vendor": "Other / unspecified"
+  },
+  {
+   "name": "HELLFIRE",
+   "vendor": "Other / unspecified"
+  },
+  {
+   "name": "IRON TWILIGHT",
+   "vendor": "Secureworks CTU"
+  },
+  {
+   "name": "ITG05",
+   "vendor": "Other / unspecified"
+  },
+  {
+   "name": "ITG11",
+   "vendor": "Other / unspecified"
+  },
+  {
+   "name": "Minidionis",
+   "vendor": "Other / unspecified"
+  },
+  {
+   "name": "Operation Pawn Storm",
+   "vendor": "Other / unspecified"
+  },
+  {
+   "name": "Pawn Storm",
+   "vendor": "Other / unspecified"
+  },
+  {
+   "name": "Sednit",
+   "vendor": "Other / unspecified"
+  },
+  {
+   "name": "SIG40",
+   "vendor": "Other / unspecified"
+  },
+  {
+   "name": "SNAKEMACKEREL",
+   "vendor": "Other / unspecified"
+  },
+  {
+   "name": "Sofacy",
+   "vendor": "Other / unspecified"
+  },
+  {
+   "name": "Solar Phoenix",
+   "vendor": "Other / unspecified"
+  },
+  {
+   "name": "STRONTIUM",
+   "vendor": "Other / unspecified"
+  },
+  {
+   "name": "Swallowtail",
+   "vendor": "Other / unspecified"
+  },
+  {
+   "name": "T-APT-12",
+   "vendor": "Other / unspecified"
+  },
+  {
+   "name": "TA421",
+   "vendor": "Proofpoint"
+  },
+  {
+   "name": "TA422",
+   "vendor": "Proofpoint"
+  },
+  {
+   "name": "TG-4127",
+   "vendor": "Other / unspecified"
+  },
+  {
+   "name": "Threat Group-4127",
+   "vendor": "Other / unspecified"
+  },
+  {
+   "name": "Tsar Team",
+   "vendor": "Other / unspecified"
+  },
+  {
+   "name": "UAC-0001",
+   "vendor": "Other / unspecified"
+  },
+  {
+   "name": "UAC-0028",
+   "vendor": "Other / unspecified"
+  },
+  {
+   "name": "UAC-0029",
+   "vendor": "Other / unspecified"
+  },
+  {
+   "name": "Z-Lom Team",
+   "vendor": "Other / unspecified"
+  }
+ ],
+ "mitreGroupId": "G0007",
+ "identification": {
+  "summary": "Russian military intelligence (GRU Unit 26165) cyber actor focused on strategic intelligence targets [S1]. Since 2022 it has focused on Ukraine's war effort and on Western logistics and technology companies that coordinate and deliver aid to Ukraine, including compromising IP cameras at border crossings to track shipments [S2]. It uses custom tools such as GooseEgg alongside public exploits [S1].",
+  "firstObserved": "MITRE: active since at least 2004 [S3]. GooseEgg in use since at least June 2020, possibly April 2019 [S1].",
+  "notes": "Microsoft name: Forest Blizzard (formerly STRONTIUM). Microsoft maps FANCY BEAR, APT28, Sofacy, Sednit and others to it [S5]; MITRE tracks it as APT28 (G0007) [S3]. Nineteen APT29 names that the source merge had placed on this record (e.g. Cozy Bear, NOBELIUM, Dark Halo) were moved to Midnight Blizzard."
+ },
+ "attribution": {
+  "sponsor": "Russian Federation: GRU 85th Main Special Service Center (GTsSS), military Unit 26165 [S1][S2].",
+  "confidence": "US and UK governments attribute the actor to GRU Unit 26165 [S1]. A multinational joint advisory (21 May 2025) attributes the logistics-targeting campaign to Unit 26165 [S2].",
+  "basis": "Government attribution and joint advisory [S2]; Microsoft telemetry and malware analysis [S1]."
+ },
+ "objectives": "Strategic intelligence for the Russian military and state. Since 2022, collection on Ukraine and on the Western logistics and technology firms that move aid to Ukraine, including tracking shipments through compromised cameras, which agencies assess could enable sabotage or kinetic targeting [S2].",
+ "targeting": {
+  "sectors": [
+   "Government and non-governmental organizations",
+   "Defense",
+   "Transportation and logistics",
+   "Information technology",
+   "Education",
+   "IP cameras at Ukrainian border crossings and in Ukraine and bordering NATO states"
+  ],
+  "regions": [
+   "Ukraine",
+   "NATO member states, Western Europe and North America"
+  ],
+  "notes": "Sector targeting from Microsoft [S1] and the 2025 joint advisory as summarized by the German BfV and coverage [S2][S4]."
+ },
+ "capabilities": {
+  "summary": "Credential theft and privilege escalation with GooseEgg, which exploits Windows Print Spooler CVE-2022-38028 [S1]. Public exploits, including CVE-2023-23397 [S1]. In the 2025 campaign: password spraying, spear-phishing and modification of Exchange mailbox permissions to maintain access [S2][S4]. Compromise of internet-connected IP cameras for surveillance [S2]. MITRE lists 93 techniques and 29 software entries, including X-Agent (CHOPSTICK), Zebrocy, LoJax, Drovorub and LAMEHUG [S3].",
+  "software": [
+   {
+    "id": "S0002",
+    "name": "Mimikatz",
+    "type": "tool"
+   },
+   {
+    "id": "S0023",
+    "name": "CHOPSTICK",
+    "type": "malware"
+   },
+   {
+    "id": "S0039",
+    "name": "Net",
+    "type": "tool"
+   },
+   {
+    "id": "S0044",
+    "name": "JHUHUGIT",
+    "type": "malware"
+   },
+   {
+    "id": "S0045",
+    "name": "ADVSTORESHELL",
+    "type": "malware"
+   },
+   {
+    "id": "S0117",
+    "name": "XTunnel",
+    "type": "malware"
+   },
+   {
+    "id": "S0134",
+    "name": "Downdelph",
+    "type": "malware"
+   },
+   {
+    "id": "S0135",
+    "name": "HIDEDRV",
+    "type": "malware"
+   },
+   {
+    "id": "S0136",
+    "name": "USBStealer",
+    "type": "malware"
+   },
+   {
+    "id": "S0137",
+    "name": "CORESHELL",
+    "type": "malware"
+   },
+   {
+    "id": "S0138",
+    "name": "OLDBAIT",
+    "type": "malware"
+   },
+   {
+    "id": "S0160",
+    "name": "certutil",
+    "type": "tool"
+   },
+   {
+    "id": "S0161",
+    "name": "XAgentOSX",
+    "type": "malware"
+   },
+   {
+    "id": "S0162",
+    "name": "Komplex",
+    "type": "malware"
+   },
+   {
+    "id": "S0174",
+    "name": "Responder",
+    "type": "tool"
+   },
+   {
+    "id": "S0183",
+    "name": "Tor",
+    "type": "tool"
+   },
+   {
+    "id": "S0191",
+    "name": "Winexe",
+    "type": "tool"
+   },
+   {
+    "id": "S0193",
+    "name": "Forfiles",
+    "type": "tool"
+   },
+   {
+    "id": "S0243",
+    "name": "DealersChoice",
+    "type": "malware"
+   },
+   {
+    "id": "S0250",
+    "name": "Koadic",
+    "type": "tool"
+   },
+   {
+    "id": "S0251",
+    "name": "Zebrocy",
+    "type": "malware"
+   },
+   {
+    "id": "S0351",
+    "name": "Cannon",
+    "type": "malware"
+   },
+   {
+    "id": "S0397",
+    "name": "LoJax",
+    "type": "malware"
+   },
+   {
+    "id": "S0410",
+    "name": "Fysbis",
+    "type": "malware"
+   },
+   {
+    "id": "S0502",
+    "name": "Drovorub",
+    "type": "malware"
+   },
+   {
+    "id": "S0645",
+    "name": "Wevtutil",
+    "type": "tool"
+   },
+   {
+    "id": "S1187",
+    "name": "reGeorg",
+    "type": "malware"
+   },
+   {
+    "id": "S1205",
+    "name": "cipher.exe",
+    "type": "tool"
+   },
+   {
+    "id": "S9035",
+    "name": "LAMEHUG",
+    "type": "malware"
+   }
+  ]
+ },
+ "attack": [
+  {
+   "id": "T1001.001",
+   "name": "Junk Data",
+   "source": "MITRE ATT&CK G0007 (2026-07-31)",
+   "tactics": [
+    "command-and-control"
+   ]
+  },
+  {
+   "id": "T1003",
+   "name": "OS Credential Dumping",
+   "source": "MITRE ATT&CK G0007 (2026-07-31)",
+   "tactics": [
+    "credential-access"
+   ]
+  },
+  {
+   "id": "T1003.001",
+   "name": "LSASS Memory",
+   "source": "MITRE ATT&CK G0007 (2026-07-31)",
+   "tactics": [
+    "credential-access"
+   ]
+  },
+  {
+   "id": "T1003.003",
+   "name": "NTDS",
+   "source": "MITRE ATT&CK G0007 (2026-07-31)",
+   "tactics": [
+    "credential-access"
+   ]
+  },
+  {
+   "id": "T1005",
+   "name": "Data from Local System",
+   "source": "MITRE ATT&CK G0007 (2026-07-31)",
+   "tactics": [
+    "collection"
+   ]
+  },
+  {
+   "id": "T1014",
+   "name": "Rootkit",
+   "source": "MITRE ATT&CK G0007 (2026-07-31)",
+   "tactics": [
+    "stealth"
+   ]
+  },
+  {
+   "id": "T1021.002",
+   "name": "SMB/Windows Admin Shares",
+   "source": "MITRE ATT&CK G0007 (2026-07-31)",
+   "tactics": [
+    "lateral-movement"
+   ]
+  },
+  {
+   "id": "T1025",
+   "name": "Data from Removable Media",
+   "source": "MITRE ATT&CK G0007 (2026-07-31)",
+   "tactics": [
+    "collection"
+   ]
+  },
+  {
+   "id": "T1027.013",
+   "name": "Encrypted/Encoded File",
+   "source": "MITRE ATT&CK G0007 (2026-07-31)",
+   "tactics": [
+    "stealth"
+   ]
+  },
+  {
+   "id": "T1030",
+   "name": "Data Transfer Size Limits",
+   "source": "MITRE ATT&CK G0007 (2026-07-31)",
+   "tactics": [
+    "exfiltration"
+   ]
+  },
+  {
+   "id": "T1036",
+   "name": "Masquerading",
+   "source": "MITRE ATT&CK G0007 (2026-07-31)",
+   "tactics": [
+    "stealth"
+   ]
+  },
+  {
+   "id": "T1036.005",
+   "name": "Match Legitimate Resource Name or Location",
+   "source": "MITRE ATT&CK G0007 (2026-07-31)",
+   "tactics": [
+    "stealth"
+   ]
+  },
+  {
+   "id": "T1037.001",
+   "name": "Logon Script (Windows)",
+   "source": "MITRE ATT&CK G0007 (2026-07-31)",
+   "tactics": [
+    "persistence",
+    "privilege-escalation"
+   ]
+  },
+  {
+   "id": "T1039",
+   "name": "Data from Network Shared Drive",
+   "source": "MITRE ATT&CK G0007 (2026-07-31)",
+   "tactics": [
+    "collection"
+   ]
+  },
+  {
+   "id": "T1040",
+   "name": "Network Sniffing",
+   "source": "MITRE ATT&CK G0007 (2026-07-31)",
+   "tactics": [
+    "credential-access",
+    "discovery"
+   ]
+  },
+  {
+   "id": "T1048.002",
+   "name": "Exfiltration Over Asymmetric Encrypted Non-C2 Protocol",
+   "source": "MITRE ATT&CK G0007 (2026-07-31)",
+   "tactics": [
+    "exfiltration"
+   ]
+  },
+  {
+   "id": "T1056.001",
+   "name": "Keylogging",
+   "source": "MITRE ATT&CK G0007 (2026-07-31)",
+   "tactics": [
+    "collection",
+    "credential-access"
+   ]
+  },
+  {
+   "id": "T1057",
+   "name": "Process Discovery",
+   "source": "MITRE ATT&CK G0007 (2026-07-31)",
+   "tactics": [
+    "discovery"
+   ]
+  },
+  {
+   "id": "T1059.001",
+   "name": "PowerShell",
+   "source": "MITRE ATT&CK G0007 (2026-07-31)",
+   "tactics": [
+    "execution"
+   ]
+  },
+  {
+   "id": "T1059.003",
+   "name": "Windows Command Shell",
+   "source": "MITRE ATT&CK G0007 (2026-07-31)",
+   "tactics": [
+    "execution"
+   ]
+  },
+  {
+   "id": "T1068",
+   "name": "Exploitation for Privilege Escalation",
+   "source": "MITRE ATT&CK G0007 (2026-07-31)",
+   "tactics": [
+    "privilege-escalation"
+   ]
+  },
+  {
+   "id": "T1070.004",
+   "name": "File Deletion",
+   "source": "MITRE ATT&CK G0007 (2026-07-31)",
+   "tactics": [
+    "stealth"
+   ]
+  },
+  {
+   "id": "T1070.006",
+   "name": "Timestomp",
+   "source": "MITRE ATT&CK G0007 (2026-07-31)",
+   "tactics": [
+    "stealth"
+   ]
+  },
+  {
+   "id": "T1071.001",
+   "name": "Web Protocols",
+   "source": "MITRE ATT&CK G0007 (2026-07-31)",
+   "tactics": [
+    "command-and-control"
+   ]
+  },
+  {
+   "id": "T1071.003",
+   "name": "Mail Protocols",
+   "source": "MITRE ATT&CK G0007 (2026-07-31)",
+   "tactics": [
+    "command-and-control"
+   ]
+  },
+  {
+   "id": "T1074.001",
+   "name": "Local Data Staging",
+   "source": "MITRE ATT&CK G0007 (2026-07-31)",
+   "tactics": [
+    "collection"
+   ]
+  },
+  {
+   "id": "T1074.002",
+   "name": "Remote Data Staging",
+   "source": "MITRE ATT&CK G0007 (2026-07-31)",
+   "tactics": [
+    "collection"
+   ]
+  },
+  {
+   "id": "T1078",
+   "name": "Valid Accounts",
+   "source": "MITRE ATT&CK G0007 (2026-07-31)",
+   "tactics": [
+    "stealth",
+    "persistence",
+    "privilege-escalation",
+    "initial-access"
+   ]
+  },
+  {
+   "id": "T1078.004",
+   "name": "Cloud Accounts",
+   "source": "MITRE ATT&CK G0007 (2026-07-31)",
+   "tactics": [
+    "stealth",
+    "persistence",
+    "privilege-escalation",
+    "initial-access"
+   ]
+  },
+  {
+   "id": "T1083",
+   "name": "File and Directory Discovery",
+   "source": "MITRE ATT&CK G0007 (2026-07-31)",
+   "tactics": [
+    "discovery"
+   ]
+  },
+  {
+   "id": "T1090.002",
+   "name": "External Proxy",
+   "source": "MITRE ATT&CK G0007 (2026-07-31)",
+   "tactics": [
+    "command-and-control"
+   ]
+  },
+  {
+   "id": "T1090.003",
+   "name": "Multi-hop Proxy",
+   "source": "MITRE ATT&CK G0007 (2026-07-31)",
+   "tactics": [
+    "command-and-control"
+   ]
+  },
+  {
+   "id": "T1091",
+   "name": "Replication Through Removable Media",
+   "source": "MITRE ATT&CK G0007 (2026-07-31)",
+   "tactics": [
+    "lateral-movement",
+    "initial-access"
+   ]
+  },
+  {
+   "id": "T1092",
+   "name": "Communication Through Removable Media",
+   "source": "MITRE ATT&CK G0007 (2026-07-31)",
+   "tactics": [
+    "command-and-control"
+   ]
+  },
+  {
+   "id": "T1098.002",
+   "name": "Additional Email Delegate Permissions",
+   "source": "MITRE ATT&CK G0007 (2026-07-31)",
+   "tactics": [
+    "persistence",
+    "privilege-escalation"
+   ]
+  },
+  {
+   "id": "T1102.002",
+   "name": "Bidirectional Communication",
+   "source": "MITRE ATT&CK G0007 (2026-07-31)",
+   "tactics": [
+    "command-and-control"
+   ]
+  },
+  {
+   "id": "T1105",
+   "name": "Ingress Tool Transfer",
+   "source": "MITRE ATT&CK G0007 (2026-07-31)",
+   "tactics": [
+    "command-and-control"
+   ]
+  },
+  {
+   "id": "T1110",
+   "name": "Brute Force",
+   "source": "MITRE ATT&CK G0007 (2026-07-31)",
+   "tactics": [
+    "credential-access"
+   ]
+  },
+  {
+   "id": "T1110.001",
+   "name": "Password Guessing",
+   "source": "MITRE ATT&CK G0007 (2026-07-31)",
+   "tactics": [
+    "credential-access"
+   ]
+  },
+  {
+   "id": "T1110.003",
+   "name": "Password Spraying",
+   "source": "MITRE ATT&CK G0007 (2026-07-31)",
+   "tactics": [
+    "credential-access"
+   ]
+  },
+  {
+   "id": "T1113",
+   "name": "Screen Capture",
+   "source": "MITRE ATT&CK G0007 (2026-07-31)",
+   "tactics": [
+    "collection"
+   ]
+  },
+  {
+   "id": "T1114.002",
+   "name": "Remote Email Collection",
+   "source": "MITRE ATT&CK G0007 (2026-07-31)",
+   "tactics": [
+    "collection"
+   ]
+  },
+  {
+   "id": "T1119",
+   "name": "Automated Collection",
+   "source": "MITRE ATT&CK G0007 (2026-07-31)",
+   "tactics": [
+    "collection"
+   ]
+  },
+  {
+   "id": "T1120",
+   "name": "Peripheral Device Discovery",
+   "source": "MITRE ATT&CK G0007 (2026-07-31)",
+   "tactics": [
+    "discovery"
+   ]
+  },
+  {
+   "id": "T1133",
+   "name": "External Remote Services",
+   "source": "MITRE ATT&CK G0007 (2026-07-31)",
+   "tactics": [
+    "persistence",
+    "initial-access"
+   ]
+  },
+  {
+   "id": "T1134.001",
+   "name": "Token Impersonation/Theft",
+   "source": "MITRE ATT&CK G0007 (2026-07-31)",
+   "tactics": [
+    "stealth",
+    "privilege-escalation"
+   ]
+  },
+  {
+   "id": "T1137.002",
+   "name": "Office Test",
+   "source": "MITRE ATT&CK G0007 (2026-07-31)",
+   "tactics": [
+    "persistence"
+   ]
+  },
+  {
+   "id": "T1140",
+   "name": "Deobfuscate/Decode Files or Information",
+   "source": "MITRE ATT&CK G0007 (2026-07-31)",
+   "tactics": [
+    "stealth"
+   ]
+  },
+  {
+   "id": "T1189",
+   "name": "Drive-by Compromise",
+   "source": "MITRE ATT&CK G0007 (2026-07-31)",
+   "tactics": [
+    "initial-access"
+   ]
+  },
+  {
+   "id": "T1190",
+   "name": "Exploit Public-Facing Application",
+   "source": "MITRE ATT&CK G0007 (2026-07-31)",
+   "tactics": [
+    "initial-access"
+   ]
+  },
+  {
+   "id": "T1199",
+   "name": "Trusted Relationship",
+   "source": "MITRE ATT&CK G0007 (2026-07-31)",
+   "tactics": [
+    "initial-access"
+   ]
+  },
+  {
+   "id": "T1203",
+   "name": "Exploitation for Client Execution",
+   "source": "MITRE ATT&CK G0007 (2026-07-31)",
+   "tactics": [
+    "execution"
+   ]
+  },
+  {
+   "id": "T1204.001",
+   "name": "Malicious Link",
+   "source": "MITRE ATT&CK G0007 (2026-07-31)",
+   "tactics": [
+    "execution"
+   ]
+  },
+  {
+   "id": "T1204.002",
+   "name": "Malicious File",
+   "source": "MITRE ATT&CK G0007 (2026-07-31)",
+   "tactics": [
+    "execution"
+   ]
+  },
+  {
+   "id": "T1210",
+   "name": "Exploitation of Remote Services",
+   "source": "MITRE ATT&CK G0007 (2026-07-31)",
+   "tactics": [
+    "lateral-movement"
+   ]
+  },
+  {
+   "id": "T1211",
+   "name": "Exploitation for Stealth",
+   "source": "MITRE ATT&CK G0007 (2026-07-31)",
+   "tactics": [
+    "stealth"
+   ]
+  },
+  {
+   "id": "T1213",
+   "name": "Data from Information Repositories",
+   "source": "MITRE ATT&CK G0007 (2026-07-31)",
+   "tactics": [
+    "collection"
+   ]
+  },
+  {
+   "id": "T1213.002",
+   "name": "Sharepoint",
+   "source": "MITRE ATT&CK G0007 (2026-07-31)",
+   "tactics": [
+    "collection"
+   ]
+  },
+  {
+   "id": "T1218.011",
+   "name": "Rundll32",
+   "source": "MITRE ATT&CK G0007 (2026-07-31)",
+   "tactics": [
+    "stealth"
+   ]
+  },
+  {
+   "id": "T1221",
+   "name": "Template Injection",
+   "source": "MITRE ATT&CK G0007 (2026-07-31)",
+   "tactics": [
+    "stealth"
+   ]
+  },
+  {
+   "id": "T1498",
+   "name": "Network Denial of Service",
+   "source": "MITRE ATT&CK G0007 (2026-07-31)",
+   "tactics": [
+    "impact"
+   ]
+  },
+  {
+   "id": "T1505.003",
+   "name": "Web Shell",
+   "source": "MITRE ATT&CK G0007 (2026-07-31)",
+   "tactics": [
+    "persistence"
+   ]
+  },
+  {
+   "id": "T1528",
+   "name": "Steal Application Access Token",
+   "source": "MITRE ATT&CK G0007 (2026-07-31)",
+   "tactics": [
+    "credential-access"
+   ]
+  },
+  {
+   "id": "T1542.003",
+   "name": "Bootkit",
+   "source": "MITRE ATT&CK G0007 (2026-07-31)",
+   "tactics": [
+    "stealth",
+    "persistence"
+   ]
+  },
+  {
+   "id": "T1546.015",
+   "name": "Component Object Model Hijacking",
+   "source": "MITRE ATT&CK G0007 (2026-07-31)",
+   "tactics": [
+    "privilege-escalation",
+    "persistence"
+   ]
+  },
+  {
+   "id": "T1547.001",
+   "name": "Registry Run Keys / Startup Folder",
+   "source": "MITRE ATT&CK G0007 (2026-07-31)",
+   "tactics": [
+    "persistence",
+    "privilege-escalation"
+   ]
+  },
+  {
+   "id": "T1550.001",
+   "name": "Application Access Token",
+   "source": "MITRE ATT&CK G0007 (2026-07-31)",
+   "tactics": [
+    "lateral-movement"
+   ]
+  },
+  {
+   "id": "T1550.002",
+   "name": "Pass the Hash",
+   "source": "MITRE ATT&CK G0007 (2026-07-31)",
+   "tactics": [
+    "lateral-movement"
+   ]
+  },
+  {
+   "id": "T1557.004",
+   "name": "Evil Twin",
+   "source": "MITRE ATT&CK G0007 (2026-07-31)",
+   "tactics": [
+    "credential-access",
+    "collection"
+   ]
+  },
+  {
+   "id": "T1559.002",
+   "name": "Dynamic Data Exchange",
+   "source": "MITRE ATT&CK G0007 (2026-07-31)",
+   "tactics": [
+    "execution"
+   ]
+  },
+  {
+   "id": "T1560",
+   "name": "Archive Collected Data",
+   "source": "MITRE ATT&CK G0007 (2026-07-31)",
+   "tactics": [
+    "collection"
+   ]
+  },
+  {
+   "id": "T1560.001",
+   "name": "Archive via Utility",
+   "source": "MITRE ATT&CK G0007 (2026-07-31)",
+   "tactics": [
+    "collection"
+   ]
+  },
+  {
+   "id": "T1564.001",
+   "name": "Hidden Files and Directories",
+   "source": "MITRE ATT&CK G0007 (2026-07-31)",
+   "tactics": [
+    "stealth"
+   ]
+  },
+  {
+   "id": "T1564.003",
+   "name": "Hidden Window",
+   "source": "MITRE ATT&CK G0007 (2026-07-31)",
+   "tactics": [
+    "stealth"
+   ]
+  },
+  {
+   "id": "T1566.001",
+   "name": "Spearphishing Attachment",
+   "source": "MITRE ATT&CK G0007 (2026-07-31)",
+   "tactics": [
+    "initial-access"
+   ]
+  },
+  {
+   "id": "T1567",
+   "name": "Exfiltration Over Web Service",
+   "source": "MITRE ATT&CK G0007 (2026-07-31)",
+   "tactics": [
+    "exfiltration"
+   ]
+  },
+  {
+   "id": "T1573.001",
+   "name": "Symmetric Cryptography",
+   "source": "MITRE ATT&CK G0007 (2026-07-31)",
+   "tactics": [
+    "command-and-control"
+   ]
+  },
+  {
+   "id": "T1583.001",
+   "name": "Domains",
+   "source": "MITRE ATT&CK G0007 (2026-07-31)",
+   "tactics": [
+    "resource-development"
+   ]
+  },
+  {
+   "id": "T1583.003",
+   "name": "Virtual Private Server",
+   "source": "MITRE ATT&CK G0007 (2026-07-31)",
+   "tactics": [
+    "resource-development"
+   ]
+  },
+  {
+   "id": "T1583.006",
+   "name": "Web Services",
+   "source": "MITRE ATT&CK G0007 (2026-07-31)",
+   "tactics": [
+    "resource-development"
+   ]
+  },
+  {
+   "id": "T1584.008",
+   "name": "Network Devices",
+   "source": "MITRE ATT&CK G0007 (2026-07-31)",
+   "tactics": [
+    "resource-development"
+   ]
+  },
+  {
+   "id": "T1586.002",
+   "name": "Email Accounts",
+   "source": "MITRE ATT&CK G0007 (2026-07-31)",
+   "tactics": [
+    "resource-development"
+   ]
+  },
+  {
+   "id": "T1588.002",
+   "name": "Tool",
+   "source": "MITRE ATT&CK G0007 (2026-07-31)",
+   "tactics": [
+    "resource-development"
+   ]
+  },
+  {
+   "id": "T1588.007",
+   "name": "Artificial Intelligence",
+   "source": "MITRE ATT&CK G0007 (2026-07-31)",
+   "tactics": [
+    "resource-development"
+   ]
+  },
+  {
+   "id": "T1589.001",
+   "name": "Credentials",
+   "source": "MITRE ATT&CK G0007 (2026-07-31)",
+   "tactics": [
+    "reconnaissance"
+   ]
+  },
+  {
+   "id": "T1591",
+   "name": "Gather Victim Org Information",
+   "source": "MITRE ATT&CK G0007 (2026-07-31)",
+   "tactics": [
+    "reconnaissance"
+   ]
+  },
+  {
+   "id": "T1595.002",
+   "name": "Vulnerability Scanning",
+   "source": "MITRE ATT&CK G0007 (2026-07-31)",
+   "tactics": [
+    "reconnaissance"
+   ]
+  },
+  {
+   "id": "T1596",
+   "name": "Search Open Technical Databases",
+   "source": "MITRE ATT&CK G0007 (2026-07-31)",
+   "tactics": [
+    "reconnaissance"
+   ]
+  },
+  {
+   "id": "T1598",
+   "name": "Phishing for Information",
+   "source": "MITRE ATT&CK G0007 (2026-07-31)",
+   "tactics": [
+    "reconnaissance"
+   ]
+  },
+  {
+   "id": "T1598.003",
+   "name": "Spearphishing Link",
+   "source": "MITRE ATT&CK G0007 (2026-07-31)",
+   "tactics": [
+    "reconnaissance"
+   ]
+  },
+  {
+   "id": "T1669",
+   "name": "Wi-Fi Networks",
+   "source": "MITRE ATT&CK G0007 (2026-07-31)",
+   "tactics": [
+    "initial-access"
+   ]
+  },
+  {
+   "id": "T1684.001",
+   "name": "Impersonation",
+   "source": "MITRE ATT&CK G0007 (2026-07-31)",
+   "tactics": [
+    "stealth"
+   ]
+  },
+  {
+   "id": "T1685.005",
+   "name": "Clear Windows Event Logs",
+   "source": "MITRE ATT&CK G0007 (2026-07-31)",
+   "tactics": [
+    "defense-impairment"
+   ]
+  }
+ ],
+ "campaigns": [
+  {
+   "date": "2019 to 2024",
+   "name": "GooseEgg / Print Spooler exploitation",
+   "summary": "Custom tool exploiting CVE-2022-38028 against Ukrainian, Western European and North American government, NGO, education and transportation organizations. Used since at least June 2020.",
+   "sources": [
+    "S1"
+   ]
+  },
+  {
+   "date": "2022 to 2025",
+   "name": "Targeting Western logistics and technology firms",
+   "summary": "Campaign against organizations coordinating, transporting and delivering aid to Ukraine, plus wide-scale IP camera targeting in Ukraine and bordering NATO nations. Joint advisory published 21 May 2025.",
+   "sources": [
+    "S2",
+    "S4"
+   ]
+  }
+ ],
+ "diamond": {
+  "adversary": "GRU Unit 26165 (85th GTsSS) [S1][S2].",
+  "capability": "GooseEgg; public exploits (CVE-2023-23397, CVE-2022-38028); password spraying; spear-phishing; Exchange mailbox permission abuse; X-Agent, Zebrocy, LoJax and related families [S1][S2][S3].",
+  "infrastructure": "Actor-controlled and compromised infrastructure for phishing and C2; compromised IP cameras used as collection sensors [S2].",
+  "victim": "Ukrainian and Western government, defense, logistics, transportation, IT and education organizations [S1][S2].",
+  "socioPolitical": "Military intelligence support to Russia's war in Ukraine, especially visibility into Western aid flows [S2].",
+  "technology": "Weak authentication on mail systems and widespread, poorly secured IoT cameras [S2]."
+ },
+ "gaps": [
+  "Primary text of the 21 May 2025 joint advisory (AA25-141A) could not be fetched (CISA and BSI blocked); verify CVE list, camera counts and named countries against the PDF.",
+  "Earlier landmark events (2016 DNC intrusion and the 2018 DOJ indictment of GRU officers, Drovorub advisory, Ubiquiti EdgeRouter disruption in 2024) are not yet sourced in this profile.",
+  "Whether camera-derived intelligence has been used to cue physical sabotage or strikes is an agency assessment, not a confirmed event.",
+  "Some remaining aliases (e.g. Grizzly Steppe, which named joint APT28/APT29 activity) are ambiguous."
+ ],
+ "implications": {
+  "jipoe": "Analyst assessment derived from cited sources; validate before use. STEP 1: The cyberspace OE includes commercial logistics providers, rail and port operators, and the IoT cameras along supply routes into Ukraine and NATO's eastern flank. These are intelligence collection points for the adversary. STEP 2: Compromised cameras turn the physical terrain itself into adversary ISR, which affects OPSEC for movements. STEP 3: The template is password spraying or phishing against mail accounts, then mailbox permission changes for persistence, then collection on shipments and schedules. In parallel, mass compromise of exposed cameras. STEP 4: MLCOA is continued collection on aid logistics to inform Russian targeting and diplomacy. MDCOA is using collected movement data to cue sabotage or strikes on aid shipments or nodes. Candidate indicators: new mailbox delegation or folder permissions, spray activity against logistics firms, and anomalous access to camera management interfaces near routes [S2].",
+  "jcc2": "Analyst assessment derived from cited sources; validate before use. (1) Treat commercial partners' camera and mail exposure as part of force-protection planning for movements. (2) JCC2 situational awareness should take in partner and industry reporting on logistics-sector intrusions, since the victims are mostly private. (3) Authorities: hardening of commercial and allied camera networks is a partner-nation and owner responsibility. DoD influence is through contracts, requirements and liaison. (4) OPSEC: plan movement security assuming adversary visibility through compromised cameras on routes."
+ },
+ "sources": [
+  {
+   "ref": "S1",
+   "title": "Analyzing Forest Blizzard's custom post-compromise tool for exploiting CVE-2022-38028 to obtain credentials",
+   "publisher": "Microsoft Threat Intelligence",
+   "date": "2024-04-22",
+   "url": "https://www.microsoft.com/en-us/security/blog/2024/04/22/analyzing-forest-blizzards-custom-post-compromise-tool-for-exploiting-cve-2022-38028-to-obtain-credentials/"
+  },
+  {
+   "ref": "S2",
+   "title": "Joint cybersecurity advisory on malicious cyber activities of the Russian GRU unit 26165 (AA25-141A) - BfV summary",
+   "publisher": "Bundesamt f\u00fcr Verfassungsschutz (co-author); joint with US, UK and other partners",
+   "date": "2025-05-21",
+   "url": "https://www.verfassungsschutz.de/SharedDocs/kurzmeldungen/EN/2025/2025-05-21-joint-cybersecurity-advisory-gru.html"
+  },
+  {
+   "ref": "S3",
+   "title": "APT28, G0007 (techniques and software)",
+   "publisher": "MITRE ATT&CK",
+   "date": "2026-07-31 (object modified)",
+   "url": "https://attack.mitre.org/groups/G0007/"
+  },
+  {
+   "ref": "S4",
+   "title": "Russian Hackers Target Western Firms Aiding Ukraine, Spy on Shipments (reporting AA25-141A)",
+   "publisher": "eSecurity Planet",
+   "date": "2025-05",
+   "url": "https://www.esecurityplanet.com/ja/news/russian-hackers-target-western-firms/"
+  },
+  {
+   "ref": "S5",
+   "title": "Microsoft threat actor naming mapping (MicrosoftMapping.json)",
+   "publisher": "Microsoft Threat Intelligence",
+   "date": "2026-10-14 (retrieved)",
+   "url": "https://github.com/microsoft/mstic/blob/master/PublicFeeds/ThreatActorNaming/MicrosoftMapping.json"
+  }
+ ],
+ "importFlags": [],
+ "provenance": {
+  "origin": "import+research",
+  "file": "actors.json",
+  "generated": "2026-07-14T22:45:41.952Z",
+  "upstream": [
+   "MITRE ATT&CK",
+   "MISP Galaxy",
+   "Microsoft Threat Intelligence",
+   "Google Threat Intelligence / Mandiant"
+  ],
+  "importedRefs": [
+   "https://attack.mitre.org/groups/G0007/",
+   "https://attack.mitre.org/groups/G0016/",
+   "https://en.wikipedia.org/wiki/Fancy_Bear",
+   "https://en.wikipedia.org/wiki/Sofacy_Group",
+   "https://www.bbc.com/news/technology-37590375",
+   "https://www.bbc.co.uk/news/technology-45257081",
+   "https://www.cfr.org/interactive/cyber-operations/apt-28",
+   "https://www.apnews.com/4d174e45ef5843a0ba82e804f080988f",
+   "https://www.voanews.com/a/iaaf-hack-fancy-bears/3793874.html",
+   "https://securelist.com/a-slice-of-2017-sofacy-activity/83930/",
+   "https://www.dw.com/en/hackers-lurking-parliamentarians-told/a-19564630",
+   "https://unit42.paloaltonetworks.com/unit42-sofacys-komplex-os-x-trojan/",
+   "https://unit42.paloaltonetworks.com/dear-joohn-sofacy-groups-global-campaign/",
+   "https://www.fireeye.com/blog/threat-research/2015/04/probable_apt28_useo.html",
+   "https://www2.fireeye.com/rs/848-DID-242/images/wp-mandiant-matryoshka-mining.pdf",
+   "https://www.eff.org/deeplinks/2015/08/new-spear-phishing-campaign-pretends-be-eff",
+   "https://aptnotes.malwareconfig.com/web/viewer.html?file=../APTnotes/2014/apt28.pdf",
+   "https://www.accenture.com/us-en/blogs/blogs-snakemackerel-delivers-zekapab-malware",
+   "https://www.wired.com/story/russian-fancy-bears-hackers-release-apparent-ioc-emails/",
+   "https://symantec-blogs.broadcom.com/blogs/election-security/apt28-espionage-military-government",
+   "https://github.com/microsoft/mstic/blob/master/PublicFeeds/ThreatActorNaming/MicrosoftMapping.json"
+  ],
+  "importedSummary": "A 2015 report by F-Secure describe APT29 as: 'The Dukes are a well-resourced, highly dedicated and organized cyberespionage group that we believe has been working for the Russian Federation since at least 2008 to collect intelligence in support of foreign and security policy decision-making. The Dukes show unusual confidence in their ability to continue successfully compromising their targets, as well as in their ability to operate with impunity. The Dukes primarily target Western governments and related organizations, such as government ministries and agencies, political think tanks, and governmental subcontractors. Their targets have also included the governments of members of the Commonwealth of Independent States;Asian, African, and Middle Eastern governments;organizations associated with Chechen extremism;and Russian speakers engaged in the illicit trade of controlled substances and drugs. The Dukes are known to employ a vast arsenal of malware toolsets, which we identify as MiniDuke, CosmicDuke, OnionDuke, CozyDuke, CloudDuke, SeaDuke, HammerDuke, PinchDuke, and GeminiDuke. In recent years, the Dukes have engaged in apparently biannual large - scale spear - phishing campaigns against hundreds or even thousands of recipients associated with governmental institutions and affiliated organizations. These campaigns utilize a smash - and - grab approach involving a fast but noisy breakin followed by the rapid collection and exfiltration of as much data as possible.If the compromised target is discovered to be of value, the Dukes will quickly switch the toolset used and move to using stealthier tactics focused on persistent compromise and long - term intelligence gathering. This threat actor targets government ministries and agencies in the West, Central Asia, East Africa, and the Middle East; Chechen extremist groups; Russian organized crime; and think tanks. It is suspected to be behind the 2015 compromise of unclassified networks at the White House, Department of State, Pentagon, and the Joint Chiefs of Staff. The threat actor includes all of the Dukes tool sets, including MiniDuke, CosmicDuke, OnionDuke, CozyDuke, SeaDuke, CloudDuke (aka MiniDionis), and HammerDuke (aka Hammertoss). '"
+ },
+ "updatedAt": "2026-10-14T00:00:00Z",
+ "updatedBy": "Research build 2026-10-14",
+ "relatedMs": [
+  {
+   "name": "Midnight Blizzard",
+   "note": "Separate Microsoft actor (Russia): NOBELIUM, COZY BEAR, UNC2452, APT29. Names moved from this record's source merge: APT29, Blue Kitsune, BlueBravo, Cloaked Ursa, Cozy Bear, CozyDuke, Dark Halo, DarkHalo, IRON HEMLOCK, IRON RITUAL, NOBELIUM, NobleBaron, SeaDuke, SolarStorm, StellarParticle, The Dukes, UNC2452, UNC3524, YTTRIUM."
+  }
+ ]
+}

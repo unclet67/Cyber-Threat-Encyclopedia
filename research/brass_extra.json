@@ -1,0 +1,61 @@
+{
+  "mitre": "G0096",
+  "identification": {
+    "summary": "China-based actor that combines state-sponsored espionage with financially motivated intrusions. US charges describe members working through a Chengdu company and compromising more than 100 victims worldwide, stealing source code, code-signing certificates, customer data and business information [S1]. Mandiant documented a deliberate 2021–2022 campaign that compromised at least six US state government networks [S2]. Google disrupted a 2025 campaign that used Google Calendar for command and control [S3].",
+    "firstObserved": "MITRE: active since at least 2012 [S4]. US indictments were returned in August 2019 and August 2020 [S1].",
+    "notes": "Microsoft name: Brass Typhoon (formerly BARIUM). Microsoft maps WICKED PANDA and APT41 to it [S5]. Microsoft tracks Leopard Typhoon (LEAD / Winnti Group) separately, though both share the CrowdStrike label WICKED PANDA; public 'Winnti' reporting often blurs the two."
+  },
+  "attribution": {
+    "sponsor": "People's Republic of China. Indicted members include employees of Chengdu 404 Network Technology [S1].",
+    "confidence": "Formal US charges against five PRC nationals (announced 16 Sep 2020) [S1]. Mandiant describes APT41 as state-sponsored with a history of moonlighting for personal financial gain [S2].",
+    "basis": "DOJ indictments and domain/server seizures [S1]; Mandiant incident response [S2]; Google Threat Intelligence [S3]."
+  },
+  "objectives": "Dual-purpose: espionage aligned with PRC state priorities and theft for profit. Mandiant could not determine the motive of the state-government campaign, given the group's history of financially motivated activity [S2]. Theft of source code and code-signing certificates enables later supply-chain operations [S1].",
+  "targeting": {
+    "sectors": [
+      "Software and video-game companies (source code, signing certificates)",
+      "Telecommunications",
+      "US state governments",
+      "Government entities (2025 TOUGHPROGRESS campaign)",
+      "Healthcare, higher education and technology (broad victim set in indictment)"
+    ],
+    "regions": [
+      "United States",
+      "Global: more than 100 victims across multiple countries"
+    ],
+    "notes": "Victims from the 2020 indictment coverage [S1], Mandiant [S2] and GTIG [S3]."
+  },
+  "capabilities": {
+    "summary": "Exploitation of internet-facing web applications, including .NET deserialization, SQL injection, directory traversal and a zero-day in the USAHerds livestock-tracking application (CVE-2021-44207) [S2]. Supply-chain compromise using stolen code-signing certificates [S1]. Abuse of cloud services for C2: TOUGHPROGRESS used hidden Google Calendar events for commands and exfiltration [S3]. MITRE lists 82 techniques and 32 software entries, including ShadowPad, Winnti for Linux, KEYPLUG, DUSTPAN, DUSTTRAP and MESSAGETAP [S4]."
+  },
+  "campaigns": [
+    {"date": "2019-08 / 2020-08 (indictments); announced 2020-09-16", "name": "DOJ charges against five APT41 members", "summary": "Racketeering and computer intrusion charges for attacks on more than 100 victims; seizure of websites, domains and servers.", "sources": ["S1"]},
+    {"date": "2021-05 to 2022-02", "name": "US state government campaign", "summary": "At least six state government networks compromised through vulnerable web applications, including a USAHerds zero-day; one state re-compromised two weeks after containment. Published 8 Mar 2022.", "sources": ["S2"]},
+    {"date": "2024-08 to 2025-05", "name": "TOUGHPROGRESS / Google Calendar C2", "summary": "Spear-phishing with archives hosted on a compromised government website; malware used Google Calendar events for C2. Google terminated the attacker's Workspace accounts. Reported 28–29 May 2025.", "sources": ["S3"]}
+  ],
+  "diamond": {
+    "adversary": "PRC-based operators including Chengdu 404 employees charged by the DOJ [S1].",
+    "capability": "Web-application exploitation and zero-days; stolen code-signing certificates; ShadowPad, KEYPLUG, DUSTTRAP, TOUGHPROGRESS [S1][S2][S3][S4].",
+    "infrastructure": "Actor-controlled domains and servers (seized in 2020) [S1]; abuse of legitimate cloud services (Google Calendar, free web hosting) and compromised government websites [S3].",
+    "victim": "Software and gaming firms, telecoms, US state governments and government entities worldwide [S1][S2][S3].",
+    "socioPolitical": "PRC intelligence priorities, alongside personal financial gain by the operators [S1][S2].",
+    "technology": "Vulnerable custom and commercial web applications and trust in legitimate cloud platforms [S2][S3]."
+  },
+  "gaps": [
+    "Boundary between Brass Typhoon (APT41/BARIUM) and Leopard Typhoon (Winnti Group/LEAD): vendor reporting often merges them.",
+    "APT41 activity after May 2025 was not found in this research pass.",
+    "DOJ press release and indictment text not fetched (government sites blocked); details come from coverage.",
+    "Whether the 2021–2022 state-government campaign was espionage or financially motivated remains open per Mandiant [S2]."
+  ],
+  "implications": {
+    "jipoe": "Analyst assessment derived from cited sources; validate before use. STEP 1: Include state and local government systems and commercial software suppliers in the OE. They support National Guard, emergency management and DoD-adjacent functions and are soft entry points. STEP 2: Abuse of legitimate cloud services for C2 blends with normal business traffic. STEP 3: The template is web-application exploitation or spear-phishing, then web shells and custom backdoors, then credential theft and lateral movement, plus theft of code-signing material for later supply-chain use. Re-compromise after eviction is likely. STEP 4: MLCOA is continued espionage against government and technology targets mixed with profit-driven theft. MDCOA is a supply-chain operation using stolen signing certificates to reach DoD or DIB networks during a crisis. Candidate indicators: .NET deserialization exploit attempts, newly signed binaries with unexpected certificates, and calendar or cloud-API traffic from servers [S1][S2][S3].",
+    "jcc2": "Analyst assessment derived from cited sources; validate before use. (1) Expect re-entry after eviction: JCC2 tracking should keep cases open with heightened monitoring after remediation. (2) Coordinate with state partners (National Guard cyber units, state CISOs, CISA) because state networks are in the target set. (3) Monitor code-signing certificate revocations and abuse reports as part of supply-chain situational awareness. (4) Cloud-service C2 requires provider cooperation (e.g. Google, Microsoft) for disruption, which should be built into response playbooks."
+  },
+  "sources": [
+    {"ref": "S1", "title": "Justice Department charges five Chinese members of APT41 over cyberattacks on US companies", "publisher": "TechCrunch (reporting DOJ announcement)", "date": "2020-09-16", "url": "https://techcrunch.com/2020/09/16/justice-department-charges-apt41-chinese-hackers"},
+    {"ref": "S2", "title": "Does This Look Infected? A Summary of APT41 Targeting U.S. State Governments", "publisher": "Mandiant (Google Cloud)", "date": "2022-03-08", "url": "https://cloud.google.com/blog/topics/threat-intelligence/apt41-us-state-governments/"},
+    {"ref": "S3", "title": "China-linked APT41 used Google Calendar as C2 to control its TOUGHPROGRESS malware (reporting Google Threat Intelligence Group)", "publisher": "Security Affairs", "date": "2025-05", "url": "https://securityaffairs.com/178424/apt/china-linked-apt41-used-google-calendar-as-c2-to-control-its-toughprogress-malware.html"},
+    {"ref": "S4", "title": "APT41, G0096 (techniques and software)", "publisher": "MITRE ATT&CK", "date": "2026-07-31 (object modified)", "url": "https://attack.mitre.org/groups/G0096/"},
+    {"ref": "S5", "title": "Microsoft threat actor naming mapping (MicrosoftMapping.json)", "publisher": "Microsoft Threat Intelligence", "date": "2026-10-14 (retrieved)", "url": "https://github.com/microsoft/mstic/blob/master/PublicFeeds/ThreatActorNaming/MicrosoftMapping.json"}
+  ]
+}
