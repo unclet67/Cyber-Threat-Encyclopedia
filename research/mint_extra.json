@@ -1,0 +1,67 @@
+{
+  "mitre": "G0059",
+  "identification": {
+    "summary": "Iranian state-sponsored actor associated with an intelligence arm of the Islamic Revolutionary Guard Corps (IRGC). It runs long-term espionage through targeted phishing and social engineering against dissidents, journalists, academics, think tanks, policymakers and government officials. One subgroup rapidly weaponizes newly public vulnerabilities against critical-infrastructure targets [S1]. It targeted a 2024 US presidential campaign [S2][S3].",
+    "firstObserved": "FireEye identified APT35 operations dating back to 2014 (imported record). Microsoft reports a subgroup moving from reconnaissance to direct targeting of US critical infrastructure from late 2021 to mid-2022 [S1].",
+    "notes": "Microsoft name: Mint Sandstorm (formerly PHOSPHORUS). Microsoft maps CHARMING KITTEN, APT35, Newscaster and Parastoo to it [S5]. MITRE tracks it as Magic Hound (G0059) [S4]. Google/Mandiant's APT42 overlaps with part of this activity, and coverage of the 2024 election case uses 'Mint Sandstorm or APT42' interchangeably. This encyclopedia holds a separate APT42 record; vendor cluster boundaries differ."
+  },
+  "attribution": {
+    "sponsor": "Islamic Republic of Iran: IRGC intelligence elements [S1]. The September 2024 indictment charged three individuals described as IRGC employees [S3].",
+    "confidence": "Microsoft assesses the IRGC association, corroborated by Mandiant, Proofpoint and Secureworks; the US Treasury sanctioned elements of the group in 2022 citing IRGC sponsorship [S1]. Formal US attribution through the 2024 indictment of three named IRGC employees for the campaign hack [S3].",
+    "basis": "Microsoft telemetry and vendor corroboration [S1]; DOJ indictment [S3]; Treasury sanctions (2022), as cited by Microsoft [S1]."
+  },
+  "objectives": "Intelligence collection in support of IRGC priorities: monitoring dissidents and activists, collecting on foreign policy, defense and nuclear-related experts, and gaining access to critical infrastructure that could support retaliation [S1]. In 2024 it ran a hack-and-leak operation against a US presidential campaign, attempting to pass stolen material to people it believed were tied to the opposing campaign [S3].",
+  "targeting": {
+    "sectors": [
+      "Government and policy (current and former officials)",
+      "Political campaigns",
+      "Think tanks and universities",
+      "Media and journalists",
+      "Human rights activists and dissidents",
+      "Defense industrial base",
+      "Critical infrastructure: seaports, energy, transit, a major US utility and gas entity (subgroup)"
+    ],
+    "regions": [
+      "United States",
+      "Israel",
+      "Europe",
+      "Middle East"
+    ],
+    "notes": "Sector targeting from Microsoft [S1] and the 2024 indictment [S3]. Phishing against Israeli, North American and European think tanks and universities per Microsoft [S1]."
+  },
+  "capabilities": {
+    "summary": "Social engineering is the core tradecraft: tailored spear-phishing, impersonation and credential harvesting, including multi-week rapport building before delivery [S1][S3]. A subgroup weaponizes public proofs of concept within days: Zoho ManageEngine CVE-2022-47966 (exploited the day the PoC appeared), IBM Aspera Faspex CVE-2022-47986 (within five days) and Log4Shell [S1]. Custom tooling includes Drokbk and Soldier (.NET implants) and CharmPower (modular PowerShell backdoor delivered through template injection) [S1]."
+  },
+  "campaigns": [
+    {"date": "2014", "name": "Newscaster", "summary": "Fake personas on social networks used to target US and Middle Eastern defense and government personnel. Reported 2014; imported record.", "sources": ["S6"]},
+    {"date": "2021-09 to 2022", "name": "Critical infrastructure targeting subgroup", "summary": "Microsoft observes a subgroup moving from reconnaissance to direct targeting of US seaports, energy companies, transit systems and a major utility and gas entity.", "sources": ["S1"]},
+    {"date": "2023-01 to 2023-02", "name": "Rapid n-day exploitation", "summary": "Exploitation of ManageEngine CVE-2022-47966 from 19 Jan 2023 and Aspera Faspex CVE-2022-47986 within five days of its PoC.", "sources": ["S1"]},
+    {"date": "2024-05 to 2024-06", "name": "US presidential campaign hack-and-leak", "summary": "Compromise of accounts tied to a presidential campaign, then attempts to leak stolen material. Microsoft reported spear-phishing of a high-ranking campaign official in June 2024. DOJ unsealed charges against three IRGC employees on 27 Sep 2024.", "sources": ["S2", "S3"]}
+  ],
+  "diamond": {
+    "adversary": "IRGC intelligence elements; three named IRGC employees charged in 2024 [S1][S3].",
+    "capability": "Spear-phishing and persona operations; credential harvesting; rapid n-day exploitation; Drokbk, Soldier, CharmPower [S1].",
+    "infrastructure": "Lookalike domains and fake personas for phishing; actor-controlled C2 for .NET and PowerShell implants. Reporting links the 2024 indictees to the Iranian ISP Respina Networks (secondary coverage) [S3].",
+    "victim": "Dissidents, journalists, academics, think tanks, policymakers, a US presidential campaign, and US critical infrastructure (subgroup) [S1][S3].",
+    "socioPolitical": "Regime security and foreign-policy intelligence; influence on US politics through hack-and-leak; retaliatory positioning against adversary infrastructure [S1][S3].",
+    "technology": "Exploits human trust (email and social media) and slow patching of internet-facing enterprise applications [S1]."
+  },
+  "gaps": [
+    "Cluster boundaries with Google/Mandiant APT42 and with this encyclopedia's separate APT42 record. Decide whether to merge, and on whose definition.",
+    "Mint Sandstorm activity during and after the June 2025 Israel–Iran conflict was not gathered in this research pass.",
+    "Primary text of the 2024 indictment and the 2022 Treasury designation not fetched here (DOJ and Treasury sites blocked); details come from coverage and Microsoft's citation.",
+    "Whether the critical-infrastructure subgroup has moved from access to disruptive capability."
+  ],
+  "implications": {
+    "jipoe": "Analyst assessment derived from cited sources; validate before use. STEP 1: The OE includes the personal accounts and devices of staff, policy advisers and family members, because this actor works through people more than networks. STEP 2: In a US–Iran crisis, expect collection against planners, think tanks and media plus opportunistic access to US port, energy and transit infrastructure. STEP 3: The template is persona-driven rapport building, then credential phishing or a malicious template, then a PowerShell or .NET implant. In parallel, a separate team exploits newly published CVEs within days. STEP 4: MLCOA is intensified phishing of government, military and policy personnel to inform IRGC decision-making. MDCOA is hack-and-leak or opportunistic infrastructure disruption timed to political events or military action. Candidate indicators: new lookalike domains for US government or think-tank brands, phishing that references real conferences or interviews, and exploitation within days of a public PoC [S1][S3].",
+    "jcc2": "Analyst assessment derived from cited sources; validate before use. (1) Personnel-centric defense: phishing-resistant MFA and reporting channels for personal accounts of key staff are C2 protection measures. (2) Patch tempo as an operational metric: the subgroup's days-to-exploit window means JCC2 situational awareness should track exposure time on internet-facing systems, not just patch compliance. (3) Information environment: hack-and-leak threats require coordination with public affairs and counterintelligence before material surfaces. (4) Authorities: election and campaign infrastructure defense is led by the FBI and CISA, so DoD's role is limited to its own personnel and networks."
+  },
+  "sources": [
+    {"ref": "S1", "title": "Nation-state threat actor Mint Sandstorm refines tradecraft to attack high-value targets", "publisher": "Microsoft Threat Intelligence", "date": "2023-04-18", "url": "https://www.microsoft.com/en-us/security/blog/2023/04/18/nation-state-threat-actor-mint-sandstorm-refines-tradecraft-to-attack-high-value-targets/"},
+    {"ref": "S2", "title": "Iranian hackers target U.S. presidential campaign official, Microsoft says", "publisher": "Axios (reporting Microsoft MTAC)", "date": "2024-08-09", "url": "https://www.axios.com/2024/08/09/iran-presidential-campaign-2024-hacking"},
+    {"ref": "S3", "title": "US charges 3 Iranians over hack of Trump campaign emails (reporting DOJ indictment)", "publisher": "ABC / Associated Press", "date": "2024-09-27", "url": "https://abc7news.com/us-charges-3-iranians-over-hack-of-trump-campaign-emails/15362462/"},
+    {"ref": "S4", "title": "Magic Hound, G0059 (techniques and software)", "publisher": "MITRE ATT&CK", "date": "2026-07-31 (object modified)", "url": "https://attack.mitre.org/groups/G0059/"},
+    {"ref": "S5", "title": "Microsoft threat actor naming mapping (MicrosoftMapping.json)", "publisher": "Microsoft Threat Intelligence", "date": "2026-10-14 (retrieved)", "url": "https://github.com/microsoft/mstic/blob/master/PublicFeeds/ThreatActorNaming/MicrosoftMapping.json"},
+    {"ref": "S6", "title": "NewsCaster: An Iranian Threat Within Social Networks (iSIGHT Partners)", "publisher": "iSIGHT Partners, archived", "date": "2014-05-28", "url": "https://paper.seebug.org/papers/APT/APT_CyberCriminal_Campagin/2014/2014.05.28.NewsCaster_An_Iranian_Threat_Within_Social_Networks/file-2581720763-pdf.pdf"}
+  ]
+}

@@ -1,0 +1,64 @@
+{
+  "mitre": "G0027",
+  "identification": {
+    "summary": "China-based state-sponsored espionage actor that Microsoft says has focused on stealing intellectual property since 2012, targeting government, defense, strategic planning and human rights organizations [S1]. It is known for drive-by compromises (watering holes) and for relying on existing exploits. In July 2025 it exploited on-premises SharePoint vulnerabilities [S1].",
+    "firstObserved": "Microsoft: active since 2012 [S1]. Operation Iron Tiger reporting dates to 2015 [S6].",
+    "notes": "Microsoft name: Linen Typhoon (formerly IODINE). Microsoft maps TG-3390, Lucky Mouse, Emissary Panda, APT27, UNC215, Hippo, BOWSER, Wekby2 and Red Phoenix to it [S4]. Microsoft lists APT27 and EMISSARY PANDA under both Linen and Circle Typhoon; APT6 and DEV-0322 belong to Circle Typhoon only and were removed from this record's aliases. MITRE tracks the group as Threat Group-3390 (G0027) [S3]."
+  },
+  "attribution": {
+    "sponsor": "People's Republic of China. The March 2025 US indictments describe APT27 members operating in the PRC hacker-for-hire ecosystem, at times at the direction of the Ministry of Public Security (MPS) and Ministry of State Security (MSS) [S2].",
+    "confidence": "Microsoft attributes the 2025 SharePoint exploitation to Linen Typhoon by name [S1]. Formal US charges against two alleged APT27 members (Yin Kecheng and Zhou Shuai) were announced in March 2025 [S2].",
+    "basis": "Microsoft telemetry [S1]; DOJ indictments and Treasury sanctions [S2]; long-running vendor reporting (Secureworks, Trend Micro, Kaspersky) in imported references [S5][S6]."
+  },
+  "objectives": "Long-term espionage and intellectual-property theft supporting PRC strategic, defense and political priorities, including monitoring human-rights organizations [S1].",
+  "targeting": {
+    "sectors": [
+      "Government",
+      "Defense",
+      "Strategic planning organizations",
+      "Human rights organizations",
+      "National data centers (government hosting)"
+    ],
+    "regions": [
+      "Global; Microsoft does not restrict Linen Typhoon to one region [S1]",
+      "Central Asia (2018 national data-center compromise) [S5]",
+      "United States and East Asia (Iron Tiger) [S6]"
+    ],
+    "notes": "Sector focus from Microsoft [S1]; regional examples from imported vendor references [S5][S6]."
+  },
+  "capabilities": {
+    "summary": "Drive-by and watering-hole compromise; reuse of existing public exploits; and in July 2025 exploitation of on-premises SharePoint CVE-2025-49704 and CVE-2025-49706 (part of the 'ToolShell' chain), with exploitation by threat actors observed as early as 7 July 2025 [S1]. MITRE lists 57 techniques and 24 software entries for Threat Group-3390, including HyperBro and PlugX-family tooling [S3]."
+  },
+  "campaigns": [
+    {"date": "2015", "name": "Operation Iron Tiger", "summary": "Trend Micro reports espionage against US government and defense-related targets after earlier East Asia focus.", "sources": ["S6"]},
+    {"date": "2018", "name": "National data-center compromise (LuckyMouse)", "summary": "Kaspersky reports compromise of a Central Asian national data center used to support watering-hole attacks.", "sources": ["S5"]},
+    {"date": "2025-03", "name": "DOJ charges against APT27 members", "summary": "US charges Yin Kecheng and Zhou Shuai as alleged APT27 members alongside i-Soon employees; rewards of up to $2M each.", "sources": ["S2"]},
+    {"date": "2025-07", "name": "SharePoint 'ToolShell' exploitation", "summary": "Microsoft names Linen Typhoon, Violet Typhoon and Storm-2603 as exploiting on-premises SharePoint vulnerabilities.", "sources": ["S1"]}
+  ],
+  "diamond": {
+    "adversary": "PRC state-sponsored operators; two alleged APT27 members charged in 2025 [S1][S2].",
+    "capability": "Watering-hole and drive-by compromise; public exploits; SharePoint CVE-2025-49704/49706; HyperBro and related RATs [S1][S3].",
+    "infrastructure": "Compromised legitimate websites used as watering holes, including a national data center [S5]; actor-controlled C2.",
+    "victim": "Government, defense, strategic planning and human rights organizations; SharePoint-hosting organizations in 2025 [S1].",
+    "socioPolitical": "Intellectual-property and policy intelligence for PRC priorities; monitoring of human-rights groups [S1].",
+    "technology": "Exposure of internet-facing collaboration servers such as on-premises SharePoint, and trust in frequently visited websites [S1][S5]."
+  },
+  "gaps": [
+    "Naming conflict: press coverage of the March 2025 indictment labels Yin Kecheng and Zhou Shuai 'APT27, also known as Silk Typhoon', but Microsoft maps APT27 to Linen and Circle Typhoon and tracks Silk Typhoon (HAFNIUM) separately. Treasury tied Yin to the 2024 Treasury breach. Do not treat these names as interchangeable without the primary indictment text [S2][S4].",
+    "Overlap between Linen Typhoon and Circle Typhoon: Microsoft lists APT27 and Emissary Panda under both. Circle Typhoon has no record in this encyclopedia.",
+    "Post-exploitation activity and victims of the July 2025 SharePoint campaign attributable specifically to Linen Typhoon are not public in the sources gathered.",
+    "Imported summary text described APT6, which Microsoft maps to Circle Typhoon; it has been replaced and kept in provenance."
+  ],
+  "implications": {
+    "jipoe": "Analyst assessment derived from cited sources; validate before use. STEP 1: Collaboration servers (on-premises SharePoint) and government-hosted websites are key terrain. They hold planning documents and can be turned into watering holes. STEP 2: Rapid uptake of newly disclosed collaboration-server CVEs narrows the defender's window to days. STEP 3: The template is a watering hole or public exploit, then web shell or RAT, then document collection from collaboration platforms. STEP 4: MLCOA is persistent IP and policy theft from government and defense targets. MDCOA is mass exploitation of a newly disclosed enterprise vulnerability across DoD-adjacent organizations during a crisis to harvest planning data. Candidate indicators: new web shells on SharePoint servers, unexpected ASPX files, and outbound traffic from collaboration servers to unfamiliar hosts [S1].",
+    "jcc2": "Analyst assessment derived from cited sources; validate before use. (1) Emergency patch and mitigation tracking for collaboration platforms should feed JCC2 situational awareness in near real time when a CVE like ToolShell drops. (2) Multiple PRC actors exploited the same SharePoint flaw, so attribution to a single actor may be slow; prioritize containment over naming. (3) Coordinate with DC3 and the DIB CS program for contractor-hosted collaboration servers. (4) Watering-hole risk extends to coalition and government websites personnel visit; include web-traffic telemetry in hunt planning."
+  },
+  "sources": [
+    {"ref": "S1", "title": "Disrupting active exploitation of on-premises SharePoint vulnerabilities", "publisher": "Microsoft Threat Intelligence", "date": "2025-07-22", "url": "https://www.microsoft.com/en-us/security/blog/2025/07/22/disrupting-active-exploitation-of-on-premises-sharepoint-vulnerabilities/"},
+    {"ref": "S2", "title": "U.S. Charges 12 Chinese Nationals in State-Backed Hacking Operations (reporting DOJ indictments)", "publisher": "The Hacker News", "date": "2025-03", "url": "https://thehackernews.com/2025/03/us-charges-12-chinese-nationals-in.html"},
+    {"ref": "S3", "title": "Threat Group-3390, G0027 (techniques and software)", "publisher": "MITRE ATT&CK", "date": "2026-07-31 (object modified)", "url": "https://attack.mitre.org/groups/G0027/"},
+    {"ref": "S4", "title": "Microsoft threat actor naming mapping (MicrosoftMapping.json)", "publisher": "Microsoft Threat Intelligence", "date": "2026-10-14 (retrieved)", "url": "https://github.com/microsoft/mstic/blob/master/PublicFeeds/ThreatActorNaming/MicrosoftMapping.json"},
+    {"ref": "S5", "title": "LuckyMouse hits national data center to organize country-level waterholing campaign", "publisher": "Kaspersky (Securelist)", "date": "2018-06", "url": "https://securelist.com/luckymouse-hits-national-data-center/86083/"},
+    {"ref": "S6", "title": "Operation Iron Tiger (appendix)", "publisher": "Trend Micro, archived", "date": "2015-09-17", "url": "https://paper.seebug.org/papers/APT/APT_CyberCriminal_Campagin/2015/2015.09.17.Operation_Iron_Tiger/Operation%20Iron%20Tiger%20Appendix.pdf"}
+  ]
+}

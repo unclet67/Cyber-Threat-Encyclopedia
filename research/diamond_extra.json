@@ -1,0 +1,67 @@
+{
+  "mitre": "G0032",
+  "identification": {
+    "summary": "North Korean state-sponsored actor that pursues espionage, data theft, financial gain and network destruction, typically targeting media, IT services and defense organizations worldwide [S1][S2]. Microsoft tracks it as one of several separate North Korean clusters that public reporting often groups as 'Lazarus Group'.",
+    "firstObserved": "US charges tie the Lazarus-associated program to the 2014 Sony Pictures attack and 2016–2017 operations [S3]. Microsoft reporting on Diamond Sleet specifically covers 2022–2023 activity [S1][S2].",
+    "notes": "Microsoft name: Diamond Sleet (formerly ZINC). Microsoft maps ZINC, LABYRINTH CHOLLIMA, Black Artemis and Lazarus to it [S6]; Microsoft also notes overlap with Temp.Hermit [S1]. The imported record merged the whole Lazarus umbrella. Names Microsoft and MITRE track separately have been moved out of the alias list (see Related Microsoft clusters): Andariel/APT45/Silent Chollima (Onyx Sleet), BlueNoroff/APT38/Stardust Chollima (Sapphire Sleet and MITRE G0082), TraderTraitor/UNC4899 (Jade Sleet), AppleJeus/UNC4736 (Citrine Sleet), Storm-1789 (Moonstone Sleet)."
+  },
+  "attribution": {
+    "sponsor": "Democratic People's Republic of Korea: Reconnaissance General Bureau (RGB)-associated hacking program, per US charging documents describing the Lazarus Group [S3].",
+    "confidence": "Microsoft attributes the 2023 CyberLink supply-chain compromise to Diamond Sleet with HIGH confidence [S1]. US government attribution of the broader Lazarus program through the 2018 criminal complaint and Treasury sanctions on Chosun Expo [S3].",
+    "basis": "Microsoft telemetry and malware analysis [S1][S2]; DOJ complaint and Treasury designations [S3]; long-running US-CERT HIDDEN COBRA reporting [S7]."
+  },
+  "objectives": "Espionage, data theft, financial gain and network destruction in support of DPRK regime priorities, including revenue generation that evades sanctions [S1][S2][S3].",
+  "targeting": {
+    "sectors": [
+      "Media",
+      "Defense",
+      "Information technology and IT services",
+      "Software supply chain (signed installers)",
+      "Financial institutions and cryptocurrency (Lazarus-associated program)"
+    ],
+    "regions": [
+      "Global, including Japan, Taiwan, Canada and the United States (CyberLink victims)",
+      "United States (Sony, 2014)",
+      "South Korea"
+    ],
+    "notes": "Sectors from Microsoft [S1][S2]. Financial and crypto targeting is a feature of the wider Lazarus-associated program [S3]. The $1.5B Bybit theft (Feb 2025) was attributed by the FBI to TraderTraitor, which Microsoft tracks as Jade Sleet rather than Diamond Sleet [S4]."
+  },
+  "capabilities": {
+    "summary": "Software supply-chain compromise: a modified CyberLink installer signed with a valid CyberLink certificate and hosted on CyberLink's update infrastructure delivered LambLoad to over 100 devices [S1]. Rapid n-day exploitation of JetBrains TeamCity CVE-2023-42793 from early October 2023, using the ForestTiger backdoor (LSASS credential dumping) and RollSling (DLL search-order hijacking) [S2]. Destructive capability demonstrated in the 2014 Sony attack attributed to the Lazarus program [S3]. MITRE lists 93 techniques for Lazarus Group (G0032) [S5]."
+  },
+  "campaigns": [
+    {"date": "2014-11", "name": "Sony Pictures Entertainment attack", "summary": "Destructive attack and data leak attributed to the Lazarus-associated program in the 2018 DOJ complaint.", "sources": ["S3"]},
+    {"date": "2016-02", "name": "Bangladesh Bank SWIFT theft", "summary": "$81 million stolen. Named in the 2018 complaint; MITRE separates this financial activity under APT38 (G0082).", "sources": ["S3"]},
+    {"date": "2017-05", "name": "WannaCry", "summary": "Global ransomware worm attributed to the Lazarus-associated program in the 2018 complaint.", "sources": ["S3"]},
+    {"date": "2018-09-06", "name": "DOJ complaint against Park Jin Hyok", "summary": "First US criminal charges against a North Korean hacker; Treasury sanctions Park and Chosun Expo Joint Venture.", "sources": ["S3"]},
+    {"date": "2023-10", "name": "TeamCity CVE-2023-42793 exploitation", "summary": "Diamond Sleet and Onyx Sleet exploit JetBrains TeamCity servers; Diamond Sleet deploys ForestTiger and RollSling.", "sources": ["S2"]},
+    {"date": "2023-10-20", "name": "CyberLink supply-chain compromise", "summary": "Modified, validly signed CyberLink installer (LambLoad) reaches over 100 devices in Japan, Taiwan, Canada, the US and elsewhere. High-confidence Microsoft attribution.", "sources": ["S1"]}
+  ],
+  "diamond": {
+    "adversary": "DPRK RGB-associated operators; Park Jin Hyok named in the 2018 complaint as part of the Lazarus-associated program [S3].",
+    "capability": "Supply-chain trojanization with stolen or abused code-signing; n-day exploitation; ForestTiger, RollSling, LambLoad; destructive malware [S1][S2][S3].",
+    "infrastructure": "Legitimate vendor update infrastructure abused for distribution; compromised and actor-controlled C2 servers [S1].",
+    "victim": "Media, defense and IT organizations worldwide; software-vendor customers [S1][S2].",
+    "socioPolitical": "Regime intelligence needs and sanctions-evading revenue; retaliation against perceived insults, as with Sony [S3].",
+    "technology": "Trust in signed software and update channels; slow patching of developer infrastructure such as CI/CD servers [S1][S2]."
+  },
+  "gaps": [
+    "Diamond Sleet-specific reporting after 2023 was not gathered in this pass.",
+    "Boundary between Diamond Sleet and the other Sleet clusters in historical 'Lazarus' reporting. Older events (Sony, WannaCry) are attributed to the Lazarus program, not to Diamond Sleet specifically.",
+    "Primary DOJ complaint and Treasury release not fetched here; details come from coverage.",
+    "Imported summary text described CryptoCore, a different crypto-theft cluster; it has been replaced and kept in provenance."
+  ],
+  "implications": {
+    "jipoe": "Analyst assessment derived from cited sources; validate before use. STEP 1: The OE includes software vendors and CI/CD infrastructure that supply DoD and DIB networks; supply-chain paths are key terrain. STEP 2: A validly signed installer defeats allow-listing based on signer trust, so terrain analysis must include update channels. STEP 3: The template is n-day exploitation of developer infrastructure or trojanized signed software, then credential theft (ForestTiger) and hijack-based persistence (RollSling), then espionage or destruction. STEP 4: MLCOA is espionage against defense and IT targets with opportunistic financial theft. MDCOA is a destructive attack, Sony-style, against a high-profile target during a Korean Peninsula crisis. Candidate indicators: unexpected child processes from vendor updaters, DLL search-order hijacks in IT tools, and newly exploited CI/CD CVEs [S1][S2].",
+    "jcc2": "Analyst assessment derived from cited sources; validate before use. (1) Supply-chain visibility: JCC2 data should flag vendor-signed binaries behaving abnormally, not just unsigned code. (2) Coordinate with INDOPACOM and USFK on Korean Peninsula crisis I&W, since DPRK cyber activity can precede or accompany provocations. (3) Revenue-focused operations (crypto theft) are a Treasury, FBI and law-enforcement lead, but they finance regime programs and so are relevant to campaign-level assessment. (4) Naming discipline: reporting chains should carry the specific cluster (Diamond, Onyx, Jade, Sapphire Sleet), because 'Lazarus' aggregates distinct actors with different targets."
+  },
+  "sources": [
+    {"ref": "S1", "title": "Diamond Sleet supply chain compromise distributes a modified CyberLink installer", "publisher": "Microsoft Threat Intelligence", "date": "2023-11-22", "url": "https://www.microsoft.com/en-us/security/blog/2023/11/22/diamond-sleet-supply-chain-compromise-distributes-a-modified-cyberlink-installer/"},
+    {"ref": "S2", "title": "Multiple North Korean threat actors exploiting the TeamCity CVE-2023-42793 vulnerability", "publisher": "Microsoft Threat Intelligence", "date": "2023-10-18", "url": "https://www.microsoft.com/en-us/security/blog/2023/10/18/multiple-north-korean-threat-actors-exploiting-the-teamcity-cve-2023-42793-vulnerability/"},
+    {"ref": "S3", "title": "U.S. charges North Korean hacker over Sony, WannaCry incidents (reporting DOJ complaint and Treasury sanctions)", "publisher": "CyberScoop", "date": "2018-09-06", "url": "https://cyberscoop.com/?p=29578"},
+    {"ref": "S4", "title": "FBI: North Korea-linked TraderTraitor is responsible for $1.5 Billion Bybit hack", "publisher": "Security Affairs (reporting FBI PSA)", "date": "2025-02-26", "url": "https://securityaffairs.com/174735/cyber-crime/fbi-north-korea-responsible-bybit-hack.html"},
+    {"ref": "S5", "title": "Lazarus Group, G0032 (techniques and software)", "publisher": "MITRE ATT&CK", "date": "2026-07-31 (object modified)", "url": "https://attack.mitre.org/groups/G0032/"},
+    {"ref": "S6", "title": "Microsoft threat actor naming mapping (MicrosoftMapping.json)", "publisher": "Microsoft Threat Intelligence", "date": "2026-10-14 (retrieved)", "url": "https://github.com/microsoft/mstic/blob/master/PublicFeeds/ThreatActorNaming/MicrosoftMapping.json"},
+    {"ref": "S7", "title": "TA17-164A: HIDDEN COBRA – North Korea's DDoS Botnet Infrastructure", "publisher": "US-CERT (CISA)", "date": "2017-06-13", "url": "https://www.us-cert.gov/ncas/alerts/TA17-164A"}
+  ]
+}
