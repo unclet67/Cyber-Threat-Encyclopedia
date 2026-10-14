@@ -1,80 +1,209 @@
 {
   "identification": {
-    "summary": "Periwinkle Tempest (formerly DEV-0193, also called Trickbot LLC) is a financially motivated cybercriminal group that Microsoft says develops, distributes and manages many different payloads, including Trickbot, BazaLoader and AnchorDNS [S1][S2]. Microsoft says it ran the Ryuk ransomware-as-a-service operation until Ryuk shut down in June 2021, then ran Ryuk's successor Conti and also Diavol [S1][S2]. Microsoft calls it the most prolific ransomware-associated cybercriminal activity group active today [S1][S2]. Microsoft also says it hired developers from Emotet, Qakbot and IcedID as those operations shut down [S1][S2]. In May 2025 Germany's BKA publicly named Vitaly Nikolaevich Kovalev ('Stern') as the suspected founder of the Trickbot group (also known as Wizard Spider) and said the group at times had more than 100 members [S8].",
-    "firstObserved": "Microsoft has tracked the group since October 2020 [S1][S2]. The September 2023 US Trickbot indictment alleges a conspiracy beginning in November 2015 (reporting the DOJ indictment) [S7].",
-    "notes": "Microsoft name: Periwinkle Tempest (formerly DEV-0193; also Trickbot LLC) [S1]. Microsoft tracks DEV-0365 as a subgroup of DEV-0193 that provides Cobalt Strike Beacon infrastructure as a service to other criminals [S2]. Microsoft tracks the Conti/Ryuk affiliate DEV-0237 (now Pistachio Tempest) and the Conti Manual author DEV-0230 as separate actors that bought access or payloads from DEV-0193 [S2]. Mandiant's FIN12 (formerly UNC1878) is a Ryuk-deploying affiliate cluster that relied on partners, originally TrickBot, for initial access [S9]. FIN12 is a vendor cluster and is not stated by any cited source to be the same as Periwinkle Tempest. The BKA uses 'Trickbot group' and 'Wizard Spider' interchangeably [S8]."
+    "summary": "Periwinkle Tempest (formerly DEV-0193) is what Microsoft calls a financially motivated cybercriminal group. It develops, distributes and manages several payloads, including Trickbot, BazaLoader and AnchorDNS [S1][S2]. Microsoft describes it as the most prolific ransomware-associated cybercriminal activity group it tracked. It managed the Ryuk ransomware-as-a-service program until Ryuk shut down in June 2021 and also managed Ryuk's successor, Conti, as well as Diavol [S1][S2]. As other malware operations shut down, the group hired developers from Emotet, Qakbot and IcedID [S1][S2]. Microsoft also tracks DEV-0365, which provides Cobalt Strike Beacon infrastructure as a service to other cybercriminals, as a subgroup of DEV-0193 [S2].",
+    "firstObserved": "Microsoft has tracked DEV-0193 since October 2020 [S1][S2]. Per DOJ charges reported by TRM Labs, the Trickbot conspiracy began in November 2015 [S7].",
+    "notes": "Microsoft also associates the name 'Trickbot LLC' with this group [S1][S2]. Microsoft said DEV-0193 overlaps with activity Mandiant tracks as UNC1878 [S3]. Mandiant later promoted UNC1878 to FIN12, a Ryuk-deploying intrusion actor that 'worked closely with TrickBot-affiliated actors' [S10]. FIN12 is therefore best treated as a closely linked affiliate cluster, not a synonym for the Trickbot developers. German BKA reporting refers to the Trickbot group as 'Wizard Spider' [S9]. Microsoft's mapping places some Wizard Spider and Conti names under separate entries (Storm-0230, Conti Team 1, and Pistachio Tempest/DEV-0237, a Ryuk and Conti affiliate) [S2], so these boundaries should not be merged."
   },
   "attribution": {
-    "sponsor": "No state sponsor. The group is a Russia-based criminal enterprise [S6][S8]. US Treasury said in February 2023 that sanctioned Trickbot members had close links to Russia's intelligence services, and that the group's preparations in 2020 aligned with Russian state objectives and with targeting previously conducted by Russian Intelligence Services (reporting Treasury press release) [S6].",
-    "confidence": "Microsoft attributes the Trickbot, BazaLoader, AnchorDNS, Ryuk, Conti and Diavol operations to Periwinkle Tempest/DEV-0193 by name [S1][S2]. The US and UK governments sanctioned seven alleged Trickbot members in February 2023 and eleven more in September 2023 (reporting Treasury/FCDO actions) [S6][S7]. The US unsealed criminal indictments in September 2023 (reporting DOJ) [S7]. The BKA named the alleged leader in May 2025 [S8]. The Treasury link to Russian intelligence is an assessment of alignment, not a statement that the state directs the group [S6].",
-    "basis": "Microsoft telemetry and threat intelligence [S1][S2]; US/UK sanctions designations [S6]; US federal indictments in the Northern District of Ohio, Middle District of Tennessee and Southern District of California (reporting DOJ) [S7]; German BKA investigation under Operation Endgame [S8]."
+    "sponsor": "No state sponsor is assessed. Microsoft classifies Periwinkle Tempest as financially motivated [S1]. The US and UK governments describe the Trickbot group as Russia-based [S7].",
+    "confidence": "Microsoft attributes the Trickbot, BazaLoader, AnchorDNS, Ryuk, Conti and Diavol management roles to DEV-0193/Periwinkle Tempest based on its telemetry and says leaked Conti chats from February 2022 confirmed the scale of the activity [S2]. The US and UK sanctioned alleged members in February and September 2023, and DOJ unsealed indictments of nine Russian nationals in September 2023 [S7]. In 2025 Germany's BKA publicly named a suspected founder and leader known as 'Stern' [S9].",
+    "basis": "Microsoft telemetry and the Conti chat leak [S1][S2]; Microsoft's 2020 civil and technical action against Trickbot infrastructure [S4]; US Treasury and UK sanctions and DOJ indictments (via secondary coverage) [S7]; and the BKA's Operation Endgame identification (via secondary coverage) [S9]."
   },
-  "objectives": "Financial gain through banking-malware fraud, the sale of access and payloads, and big-game ransomware extortion [S1][S2][S7]. The Trickbot indictment alleges a conspiracy to use Trickbot to steal money and confidential information (reporting DOJ) [S7].",
+  "objectives": "Financial gain. The group runs malware and ransomware services that enable ransomware extortion of large organizations, and earlier ran banking and credential theft [S1][S2][S7]. According to DOJ charges as reported by TRM Labs, Trickbot was used to steal money and personal information [S7].",
   "targeting": {
     "sectors": [
-      "Healthcare and public health [S1][S3][S5]",
+      "Healthcare and public health [S1][S5][S7]",
       "Education [S1]",
-      "Government, including national ministries and local law enforcement and emergency medical services [S7][S10]",
-      "Businesses and nonprofits [S7]"
+      "US critical infrastructure [S7]",
+      "National government institutions, e.g. Costa Rica's finance and customs systems (Conti) [S8]"
     ],
     "regions": [
-      "United States [S3][S7]",
-      "Ireland (2021 HSE attack, Conti) [S5]",
-      "Costa Rica (2022 government attack, Conti) [S10]"
+      "United States [S5][S7]",
+      "Costa Rica (Conti, 2022) [S8]",
+      "Global, opportunistic (inferred from RaaS and botnet model; not region-limited in Microsoft reporting) [S1][S2]"
     ],
-    "notes": "Microsoft names education and healthcare as targeted industries [S1]. CISA, FBI and HHS warned in October 2020 of an increased and imminent Ryuk/Trickbot threat to US hospitals (reporting AA20-302A) [S3]. Mandiant reported that FIN12, a Ryuk affiliate cluster, disproportionately targeted healthcare and large organizations, usually with revenue above $300 million [S9]; FIN12 is a separate vendor cluster."
+    "notes": "Microsoft's profile lists education and healthcare [S1]. Treasury said the group targeted many US critical infrastructure and health care providers during the COVID-19 pandemic [S7]. A joint CISA/FBI/HHS advisory warned of an imminent Trickbot and Ryuk threat to US hospitals in October 2020 [S5]. Mandiant found that nearly 20% of directly observed FIN12 victims were in healthcare [S10], but FIN12 is a separate, affiliated cluster."
   },
   "capabilities": {
-    "summary": "Develops and runs a loader and botnet ecosystem (Trickbot, BazaLoader, AnchorDNS) that serves as an initial-access source for its own and others' ransomware operations [S1][S2]. Microsoft says DEV-0193 infrastructure was implicated in exploitation of CVE-2021-40444 [S2]. Its DEV-0365 subgroup provides Cobalt Strike Beacon infrastructure as a service [S2]. The BKA lists Bazarloader, SystemBC, IcedID, Ryuk, Conti and Diavol in the group's alleged toolkit [S8]. The 2020 CISA/FBI/HHS advisory says Ryuk was typically deployed as a payload after banking trojans such as Trickbot (reporting AA20-302A) [S3]. In the 2021 HSE intrusion, the PwC post-incident review found initial access came through a malicious Excel attachment in a phishing email on 16 March 2021, about two months before Conti was deployed [S5]."
+    "summary": "The group develops and operates modular malware and loaders (Trickbot, BazaLoader, AnchorDNS) and manages ransomware programs (Ryuk, Conti, Diavol) [S1][S2]. Its DEV-0365 subgroup provides Cobalt Strike Beacon command-and-control as a service [S2]. In the typical Trickbot/Ryuk chain described by CISA, FBI and HHS, a malicious email installs Emotet and/or Trickbot, Trickbot moves laterally, disables protections and steals data, and Ryuk then encrypts systems [S5]. In 2021 its infrastructure hosted BazaLoader and Trickbot payloads alongside oleObjects used in CVE-2021-40444 (MSHTML) exploitation [S3]. The group recruits talent from other malware operations (Emotet, Qakbot, IcedID) [S1][S2], and the BKA said the group had more than 100 members at times [S9]. MITRE ATT&CK tracks the broader Wizard Spider cluster as G0102 [S11]."
   },
   "campaigns": [
-    {"date": "2015-11", "name": "Trickbot fraud conspiracy (alleged start)", "summary": "The US indictment alleges a conspiracy to use Trickbot to steal money and confidential information beginning in November 2015 (reporting DOJ).", "sources": ["S7"]},
-    {"date": "2020-10", "name": "Trickbot botnet disruption", "summary": "Microsoft used an Eastern District of Virginia court order to take down Trickbot C2 servers, citing election security risk. Reporting indicated only part of the botnet was taken down.", "sources": ["S4"]},
-    {"date": "2020-10", "name": "Ryuk wave against US hospitals", "summary": "CISA, FBI and HHS issued AA20-302A warning of an increased and imminent Ryuk/Trickbot threat to US healthcare providers.", "sources": ["S3"]},
-    {"date": "2021-05", "name": "Ireland Health Service Executive (Conti)", "summary": "Conti ransomware forced a nationwide shutdown of HSE IT systems. Initial access was a phishing email on 16 March 2021, and full server decryption took until September 2021.", "sources": ["S5"]},
-    {"date": "2021-06", "name": "Ryuk retired; Conti and Diavol continue", "summary": "Microsoft says DEV-0193 managed Ryuk until its June 2021 shutdown, then its successor Conti and Diavol.", "sources": ["S1", "S2"]},
-    {"date": "2022-04", "name": "Costa Rica government attack (Conti)", "summary": "Conti breached Costa Rica's Finance Ministry on 12 April 2022 and hit other agencies. A national emergency was declared on 8 May 2022.", "sources": ["S10"]},
-    {"date": "2022-04", "name": "Conti deployments cease", "summary": "Microsoft observed no Conti deployments after 19 April 2022, suggesting the program had shut down or paused.", "sources": ["S2"]},
-    {"date": "2023-02", "name": "First US/UK Trickbot sanctions", "summary": "Seven alleged Trickbot members, including Vitaly Kovalev, were sanctioned. Treasury cited links to Russian intelligence services (reporting Treasury).", "sources": ["S6"]},
-    {"date": "2023-09", "name": "Second sanctions round and indictments", "summary": "Eleven more alleged members were sanctioned, and Trickbot and Conti indictments in Ohio, Tennessee and California were unsealed (reporting DOJ/Treasury).", "sources": ["S7"]},
-    {"date": "2025-05", "name": "BKA names 'Stern' (Operation Endgame)", "summary": "Germany's BKA identified Vitaly Nikolaevich Kovalev as the suspected Trickbot founder 'Stern' and sought him under an Interpol red notice. He is believed to be in Russia.", "sources": ["S8"]}
+    {
+      "date": "2015-11",
+      "name": "Trickbot banking and credential theft conspiracy begins",
+      "summary": "DOJ charges allege Russian nationals conspired to use Trickbot to steal money and personal information beginning in November 2015 (reported by TRM Labs) [S7].",
+      "sources": [
+        "S7"
+      ]
+    },
+    {
+      "date": "2020-10-12",
+      "name": "Microsoft-led Trickbot infrastructure disruption",
+      "summary": "Using a court order and technical action with partners including FS-ISAC and NTT, Microsoft moved to cut off Trickbot infrastructure so that operators could not start new infections or activate ransomware already dropped. Microsoft framed the action partly as protection for the US elections [S4].",
+      "sources": [
+        "S4"
+      ]
+    },
+    {
+      "date": "2020-10-28",
+      "name": "Trickbot/Ryuk threat to US hospitals (AA20-302A)",
+      "summary": "CISA, FBI and HHS warned of credible information about an increased and imminent cybercrime threat to US hospitals from Trickbot leading to Ryuk ransomware [S5].",
+      "sources": [
+        "S5"
+      ]
+    },
+    {
+      "date": "2021-06",
+      "name": "Ryuk RaaS shutdown; Conti and Diavol continue",
+      "summary": "Microsoft says Periwinkle Tempest managed the Ryuk RaaS program until its June 2021 shutdown and also managed Conti and Diavol [S1][S2].",
+      "sources": [
+        "S1",
+        "S2"
+      ]
+    },
+    {
+      "date": "2021-08",
+      "name": "CVE-2021-40444 MSHTML exploitation infrastructure overlap",
+      "summary": "Microsoft found that some infrastructure hosting oleObjects used in the August 2021 MSHTML attacks also delivered BazaLoader and Trickbot payloads, which overlaps with DEV-0193 [S3].",
+      "sources": [
+        "S3"
+      ]
+    },
+    {
+      "date": "2022-02",
+      "name": "Conti chat leak",
+      "summary": "Leaked Conti chat files from February 2022 confirmed the scale of DEV-0193 activity, according to Microsoft [S2]. Coverage tied the leak to Conti's public support for Russia's invasion of Ukraine [S8].",
+      "sources": [
+        "S2",
+        "S8"
+      ]
+    },
+    {
+      "date": "2022-04",
+      "name": "Conti attacks on Costa Rican government",
+      "summary": "The State Department tied Conti to attacks on Costa Rican government institutions that severely hampered tax and customs processing, and offered up to $10 million for information on Conti leaders [S8]. Microsoft last observed a Conti deployment on 19 April 2022 [S2].",
+      "sources": [
+        "S8",
+        "S2"
+      ]
+    },
+    {
+      "date": "2023-09-07",
+      "name": "Second sanctions round and DOJ indictments",
+      "summary": "OFAC and the UK sanctioned eleven more individuals, and DOJ unsealed indictments of nine people tied to Trickbot and Conti (reported by TRM Labs) [S7].",
+      "sources": [
+        "S7"
+      ]
+    },
+    {
+      "date": "2025-05",
+      "name": "BKA names suspected Trickbot founder 'Stern' (Operation Endgame)",
+      "summary": "Germany's BKA named Vitaly Nikolaevich Kovalev, alias 'Stern', as the suspected founder of the Trickbot group, during an Operation Endgame round (reported by Heise) [S9].",
+      "sources": [
+        "S9"
+      ]
+    }
   ],
   "diamond": {
-    "adversary": "Russia-based cybercriminal enterprise of more than 100 members at times; suspected founder Vitaly Kovalev ('Stern') [S8]; sanctioned and indicted members [S6][S7].",
-    "capability": "Trickbot, BazaLoader, AnchorDNS, IcedID and SystemBC loaders; Ryuk, Conti and Diavol ransomware; Cobalt Strike Beacon via the DEV-0365 subgroup; CVE-2021-40444 exploitation [S1][S2][S8].",
-    "infrastructure": "Trickbot botnet C2 servers (disrupted in 2020) [S4]; Cobalt Strike Beacon infrastructure offered as a service [S2]; phishing email delivery [S5].",
-    "victim": "Healthcare and education [S1]; US hospitals [S3]; Ireland's HSE [S5]; Costa Rican government ministries [S10]; US businesses, nonprofits, police, sheriff and EMS organizations [S7].",
-    "socioPolitical": "Profit-driven extortion from a safe haven in Russia; Treasury assessed in 2020 that the group's preparations aligned with Russian state objectives [S6][S8].",
-    "technology": "Windows enterprise networks reached through malicious Office documents and loader botnets; disruption of hospital and government IT services [S3][S5][S10]."
+    "adversary": "A Russia-based, financially motivated criminal enterprise (Trickbot LLC) whose BKA-named suspected leader is 'Stern' [S1][S7][S9]. The BKA said it had more than 100 members at times [S9].",
+    "capability": "Trickbot, BazaLoader, AnchorDNS, Ryuk, Conti, Diavol, and Cobalt Strike Beacon as a service [S1][S2]. Infrastructure overlapped with CVE-2021-40444 exploitation [S3].",
+    "infrastructure": "Trickbot botnet C2, which Microsoft and partners targeted in 2020 [S4]. DEV-0365 Cobalt Strike C2-as-a-service [S2]. Infrastructure that hosted MSHTML exploit documents also delivered BazaLoader and Trickbot payloads [S3].",
+    "victim": "Healthcare and public health, education, US critical infrastructure, and government institutions (Costa Rica) [S1][S5][S7][S8].",
+    "socioPolitical": "Ransomware-as-a-service gig economy relationships with affiliates and access brokers [S2]. Members operate from Russia beyond Western arrest [S9]. Pro-Russia stance by Conti in 2022 triggered an insider leak [S8].",
+    "technology": "Windows enterprise networks reached via malicious email, commodity loaders and lateral movement before encryption [S5]. Microsoft Office/MSHTML exploitation (CVE-2021-40444) [S3]."
   },
   "gaps": [
-    "Primary documents not opened: Treasury press releases (Feb and Sep 2023), the DOJ indictments, CISA AA20-302A and the BKA release. Facts come from press or trade-association coverage of them.",
-    "Microsoft cluster boundary: Periwinkle Tempest (DEV-0193) runs the payloads, while affiliates such as DEV-0237/Pistachio Tempest and DEV-0230 deployed them [S2]. Which specific incidents (HSE, Costa Rica) Microsoft attributes to Periwinkle Tempest's own operators, rather than to Conti affiliates, is not stated in the sources gathered.",
-    "This record's aliases include FIN12/UNC1878 (Mandiant), which Mandiant describes as a Ryuk affiliate that relied on partners for access [S9]. That may overlap more with Microsoft's affiliate clusters than with Periwinkle Tempest. Equivalence is unverified.",
-    "Microsoft also lists Storm-0230 as a 'Wizard Spider/Conti Team 1' development group (per the record's import notes). The relationship to Periwinkle Tempest is not documented in the sources gathered.",
-    "Activity after Conti's 2022 shutdown (successor brands, current loader operations) is not documented in sources gathered beyond the 2025 BKA action.",
-    "The nature and extent of any Russian intelligence tasking is unverified beyond Treasury's alignment statement [S6].",
-    "Microsoft's Security Insider profile gives no origin or targeted regions [S1]."
+    "Microsoft's current mapping splits Wizard Spider/Conti names across Periwinkle Tempest, Storm-0230 and Pistachio Tempest; how much of MITRE G0102 activity belongs to Periwinkle Tempest specifically is unresolved.",
+    "Primary US government documents (Treasury press releases, DOJ indictments, the CISA advisory page, the State Department reward notice) could not be opened; facts rely on secondary coverage or AHA's copy.",
+    "BKA primary statement not reviewed; the exact date of the Kovalev/Stern announcement (late May 2025) is unverified.",
+    "No sourced reporting found on Periwinkle Tempest-branded activity after 2024 (e.g., successor ransomware brands, current loaders).",
+    "FIN12/UNC1878 overlap: Microsoft says DEV-0193 overlaps UNC1878 [S3], but Mandiant treats FIN12 as a Ryuk-deploying affiliate; the precise relationship is unclear.",
+    "MITRE G0102 page not fetched for this file; the software list comes from the imported record."
   ],
   "implications": {
-    "jipoe": "Analyst assessment derived from cited sources; validate before use. STEP 1: Defense health facilities, education and installation-support networks that depend on commercial and local-government services fall within the operational environment, given the healthcare, education and local-government victimology [S1][S3][S7]. STEP 2: Loader botnets (Trickbot, BazaLoader, IcedID) feed affiliate ransomware. Phishing-to-ransomware dwell time can be weeks, as in the HSE intrusion (about two months) [S2][S5]. Law-enforcement takedowns have degraded the operation only partly and temporarily [S4]. STEP 3: The doctrinal template is a phishing Office document, then a loader, then Cobalt Strike Beacon, then domain-wide ransomware with data theft [S2][S3][S5]. STEP 4: MLCOA is opportunistic ransomware extortion against healthcare, education or local-government enablers of military installations through affiliates using this group's loaders. MDCOA is a coordinated wave against hospitals or national government services during a crisis, as in the 2020 US hospital warning and the 2022 Costa Rica emergency [S3][S10]. The MDCOA might be timed to align with Russian state interests [S6]. Candidate indicators: Trickbot/BazaLoader/IcedID detections, Cobalt Strike Beacon C2 associated with DEV-0365 infrastructure, CVE-2021-40444 exploitation attempts, and malicious Excel or Word attachments [S2][S5].",
-    "jcc2": "Analyst assessment derived from cited sources; validate before use. SITUATIONAL AWARENESS: Loader infections are precursors to ransomware, so treat loader detections on DODIN-adjacent or mission-partner networks as pre-ransomware warnings [S2][S3]. AUTHORITIES: This is a criminal actor under US/UK sanctions and indictment [S6][S7]. Response is chiefly law-enforcement and DCO-led, with private-sector disruption precedent [S4]. Coordinate with the FBI, CISA and HHS for health-sector cases [S3]. MISSION ASSURANCE: Hospital, EMS and local-government dependencies were disrupted for weeks to months [S5][S10]. Plan for degraded medical and civil support to installations. COORDINATION: Multinational action (US, UK, Germany/Operation Endgame) supports information sharing with allied law enforcement [S6][S8]."
+    "jipoe": "Analyst assessment derived from cited sources; validate before use. Step 1 (operational environment): Treat the defense industrial base, base hospitals and medical treatment facilities, and education and training enclaves on commercial or DODIN-adjacent networks as in scope, since the group has hit healthcare, education and critical infrastructure [S1][S5][S7]. Step 2 (effects): Ransomware encryption of Windows enterprise systems can degrade medical, logistics and administrative mission support, and the Costa Rica case shows national government services can be disrupted [S5][S8]. Step 3 (adversary model): Email-delivered loaders (Emotet/Trickbot/BazaLoader) lead to Cobalt Strike, then lateral movement, then data theft, then Ryuk/Conti-family encryption. Access is often shared or sold to affiliates [S2][S5]. Step 4 (courses of action): The most likely course of action is opportunistic loader infection of a mission-partner or support network, followed by affiliate ransomware within days. The most dangerous is a time-sensitive ransomware event against healthcare or a critical-infrastructure dependency (power, water, comms supporting an installation) during a crisis or surge, timed for maximum leverage, as with the 2020 hospital threat [S5][S7]. Candidate indicators: Trickbot/BazaLoader/AnchorDNS artifacts; Cobalt Strike Beacon C2 matching DEV-0365 patterns; malicious Office documents exploiting MSHTML; and protection tampering before encryption [S2][S3][S5].",
+    "jcc2": "Analyst assessment derived from cited sources; validate before use. Situational awareness: Fuse Microsoft, CISA/FBI and vendor indicators for Trickbot-lineage loaders and Cobalt Strike-as-a-service infrastructure into DODIN and mission-partner monitoring [S2][S3][S5]. Authorities: This is a criminal actor, so the primary responses are law enforcement (DOJ indictments, BKA/Operation Endgame), sanctions (OFAC/UK) and private civil action (Microsoft's 2020 court order) [S4][S7][S9]. Any DoD role should be coordinated through those lanes and existing defense-support authorities. Mission assurance: Prioritize backup integrity and recovery for medical and logistics systems and plan for loss of supporting civilian infrastructure, given healthcare and critical-infrastructure targeting [S5][S7]. Coordination: Coordinate with CISA, FBI, HHS (for medical facilities) and allied partners such as the UK and Germany, who have acted jointly against the group [S5][S7][S9]."
   },
   "sources": [
-    {"ref": "S1", "title": "Periwinkle Tempest (threat actor profile)", "publisher": "Microsoft Security Insider", "date": "2024-01-25", "url": "https://www.microsoft.com/en-us/security/security-insider/threat-landscape/periwinkle-tempest"},
-    {"ref": "S2", "title": "Ransomware as a service: Understanding the cybercrime gig economy and how to protect yourself", "publisher": "Microsoft Threat Intelligence", "date": "2022-05-09", "url": "https://www.microsoft.com/en-us/security/blog/2022/05/09/ransomware-as-a-service-understanding-the-cybercrime-gig-economy-and-how-to-protect-yourself/"},
-    {"ref": "S3", "title": "Joint Cybersecurity Advisory AA20-302A: Ransomware Activity Targeting the HPH Sector (reporting CISA/FBI/HHS advisory)", "publisher": "American Hospital Association", "date": "2020-10-28", "url": "https://www.aha.org/other-cybersecurity-reports/2020-10-28-joint-cybersecurity-advisory-tlp-white-aa20-302a-ransomware"},
-    {"ref": "S4", "title": "Microsoft leads effort to disrupt infamous TrickBot botnet", "publisher": "SiliconANGLE", "date": "2020-10-12", "url": "https://siliconangle.com/2020/10/12/microsoft-leads-effort-disrupt-infamous-trickbot-botnet/"},
-    {"ref": "S5", "title": "Irish health service Conti ransomware attack report (reporting PwC post-incident review)", "publisher": "The Register", "date": "2021-12-10", "url": "https://www.theregister.com/2021/12/10/ireland_health_conti_ransomware_attack_report/"},
-    {"ref": "S6", "title": "US, UK sanction Trickbot members (reporting Treasury/UK sanctions)", "publisher": "CyberScoop", "date": "2023-02-09", "url": "https://cyberscoop.com/us-uk-sanction-trickbot-russia-ransomware/"},
-    {"ref": "S7", "title": "US and UK sanction more Trickbot members; indictments unsealed (reporting Treasury and DOJ)", "publisher": "The Register", "date": "2023-09-07", "url": "https://www.theregister.com/2023/09/07/trickbot_us_uk_sanctions/"},
-    {"ref": "S8", "title": "Germany doxxes Conti ransomware and TrickBot ring leader (reporting BKA)", "publisher": "BleepingComputer", "date": "2025-05-30", "url": "https://www.bleepingcomputer.com/news/security/germany-doxxes-conti-ransomware-and-trickbot-ring-leader"},
-    {"ref": "S9", "title": "Ransomware Group FIN12 Aggressively Going After Healthcare Targets (reporting Mandiant)", "publisher": "The Hacker News", "date": "2021-10", "url": "https://thehackernews.com/2021/10/ransomware-group-fin12-aggressively.html"},
-    {"ref": "S10", "title": "Costa Rica declares national emergency after Conti ransomware attacks", "publisher": "BleepingComputer", "date": "2022-05", "url": "https://www.bleepingcomputer.com/news/security/costa-rica-declares-national-emergency-after-conti-ransomware-attacks/"}
+    {
+      "ref": "S1",
+      "title": "Periwinkle Tempest (threat actor profile)",
+      "publisher": "Microsoft Security Insider",
+      "date": "2024-01-25",
+      "url": "https://www.microsoft.com/en-us/security/security-insider/threat-landscape/periwinkle-tempest"
+    },
+    {
+      "ref": "S2",
+      "title": "Ransomware as a service: Understanding the cybercrime gig economy and how to protect yourself",
+      "publisher": "Microsoft Threat Intelligence",
+      "date": "2022-05-09",
+      "url": "https://www.microsoft.com/en-us/security/blog/2022/05/09/ransomware-as-a-service-understanding-the-cybercrime-gig-economy-and-how-to-protect-yourself/"
+    },
+    {
+      "ref": "S3",
+      "title": "Analyzing attacks that exploit the MSHTML CVE-2021-40444 vulnerability",
+      "publisher": "Microsoft Threat Intelligence",
+      "date": "2021-09-15",
+      "url": "https://www.microsoft.com/security/blog/2021/09/15/analyzing-attacks-that-exploit-the-mshtml-cve-2021-40444-vulnerability"
+    },
+    {
+      "ref": "S4",
+      "title": "Microsoft takes action to disrupt botnet and combat ransomware",
+      "publisher": "Microsoft News",
+      "date": "2020-10-13",
+      "url": "https://news.microsoft.com/apac/2020/10/13/microsoft-takes-action-to-disrupt-botnet-and-combat-ransomware/"
+    },
+    {
+      "ref": "S5",
+      "title": "Joint Cybersecurity Advisory AA20-302A: Ransomware Activity Targeting the Healthcare and Public Health Sector (AHA copy of CISA/FBI/HHS advisory)",
+      "publisher": "American Hospital Association",
+      "date": "2020-10-28",
+      "url": "https://www.aha.org/other-cybersecurity-reports/2020-10-28-joint-cybersecurity-advisory-tlp-white-aa20-302a-ransomware"
+    },
+    {
+      "ref": "S7",
+      "title": "U.S. DOJ, Treasury and U.K. Authorities Take Action Against Russian Cybercriminal Group Trickbot (reporting DOJ indictments and OFAC designations)",
+      "publisher": "TRM Labs",
+      "date": "2023-09",
+      "url": "https://www.trmlabs.com/resources/blog/u-s-doj-treasury-and-u-k-authorities-take-action-against-russian-cybercriminal-group-trickbot"
+    },
+    {
+      "ref": "S8",
+      "title": "State Department offers $10 million reward for information on Russian-linked Conti ransomware gang (reporting State Department reward offer)",
+      "publisher": "Fox News",
+      "date": "2022-05",
+      "url": "https://www.foxnews.com/us/state-department-offers-million-reward-information-russian-linked-conti-ransomware-gang.amp"
+    },
+    {
+      "ref": "S9",
+      "title": "BKA names identity of the suspected boss of the Trickbot gang (reporting BKA/Operation Endgame)",
+      "publisher": "heise online",
+      "date": "2025-05",
+      "url": "https://heise.de/-10421313"
+    },
+    {
+      "ref": "S10",
+      "title": "FIN12: The Prolific Ransomware Intrusion Threat Actor That Has Aggressively Pursued Healthcare Targets",
+      "publisher": "Mandiant (Google Cloud)",
+      "date": "2021-10",
+      "url": "https://cloud.google.com/blog/topics/threat-intelligence/fin12-ransomware-intrusion-actor-pursuing-healthcare-targets"
+    },
+    {
+      "ref": "S11",
+      "title": "Wizard Spider, G0102",
+      "publisher": "MITRE ATT&CK",
+      "date": "2026-07",
+      "url": "https://attack.mitre.org/groups/G0102/"
+    }
   ],
   "aliasesAdd": [
-    {"name": "Trickbot LLC", "vendor": "Microsoft"},
-    {"name": "DEV-0193", "vendor": "Microsoft (former designation)"},
-    {"name": "Wizard Spider", "vendor": "German BKA (as reported)"}
+    {
+      "name": "Trickbot LLC",
+      "vendor": "Microsoft"
+    },
+    {
+      "name": "DEV-0193",
+      "vendor": "Microsoft"
+    }
   ]
 }

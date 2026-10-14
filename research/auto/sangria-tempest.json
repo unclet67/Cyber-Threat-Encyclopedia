@@ -1,0 +1,191 @@
+{
+  "identification": {
+    "summary": "Sangria Tempest (formerly ELBRUS) is Microsoft's name for a financially motivated cybercriminal group also tracked as Carbon Spider and FIN7 [S1]. Microsoft says it conducts intrusions that often end in data theft followed by extortion or ransomware deployment such as Clop [S1]. US prosecutors charged three alleged senior FIN7 members in 2018 with attacks on more than 100 US companies and theft of more than 15 million card records [S3]. The group has persisted after those arrests, advertising an EDR-evasion tool to other criminals in 2024 and running a 4,000-plus domain phishing and malvertising network [S7][S8].",
+    "firstObserved": "Microsoft: the actor has used the Carbanak backdoor since 2014 [S1].",
+    "notes": "Microsoft name: Sangria Tempest (formerly ELBRUS); Microsoft equates it with Carbon Spider and FIN7 [S1]. MITRE ATT&CK tracks Carbanak (G0008) and FIN7 (G0046) as separate groups, while Microsoft treats Carbanak as a tool of Sangria Tempest [S1]. The 2014-2018 'Carbanak' bank-heist reporting (Kaspersky, Europol) concerns a cluster that may not be identical to FIN7; keep the two lines of reporting distinct [S5]. Microsoft tracks Lace Tempest (FIN11) separately and reports collaboration between the two [S1][S2]."
+  },
+  "attribution": {
+    "sponsor": "No state sponsor is claimed in the cited sources; Microsoft describes Sangria Tempest as a financially motivated cybercriminal group [S1]. The three members charged by DOJ in 2018 were Ukrainian nationals [S3]. KrebsOnSecurity describes the group as 'Russia's Fin7' [S8].",
+    "confidence": "Microsoft names Sangria Tempest as the actor behind the 2023 Clop deployments and the late-2023 App Installer abuse [S1][S2]. US federal charges and convictions cover individual FIN7 members (not a state), including a 10-year sentence for Fedir Hladyr and a 7-year sentence for Andrii Kolpakov in 2021 [S3][S4].",
+    "basis": "Microsoft Threat Intelligence telemetry [S1][S2]; DOJ indictment as reported by CyberScoop [S3] and sentencing as reported by The Hacker News [S4]; vendor research from Gemini Advisory, SentinelOne, Silent Push and PRODAFT as reported or published [S6][S7][S8][S9]."
+  },
+  "objectives": "Financial gain: theft of payment card data from US companies [S3], and in later years data theft followed by extortion or ransomware deployment [S1][S2]. The group also earns money by selling tooling, such as the AvNeutralizer EDR-evasion tool, to other ransomware operators [S7].",
+  "targeting": {
+    "sectors": [
+      "Restaurants [S3]",
+      "Gaming [S3]",
+      "Hospitality [S3]",
+      "Enterprises reached through search-ad lures for fake software downloads (sector-agnostic) [S1]",
+      "Users of impersonated brands such as Microsoft 365, Zoom, Bloomberg, Reuters, Dropbox and Google [S8]"
+    ],
+    "regions": [
+      "United States (more than 100 companies, per DOJ) [S3]"
+    ],
+    "notes": "Early FIN7 targeting centered on US point-of-sale environments [S3]. Microsoft's 2023 reporting names no particular industries or regions [S1]. Later activity is opportunistic and driven by malvertising and impersonation of widely used brands [S1][S8]. Europol-reported Carbanak bank heists (over 100 banks in 40 countries) belong to the related Carbanak line of reporting [S5]."
+  },
+  "capabilities": {
+    "summary": "Long-running custom tooling: the Carbanak backdoor (in use since 2014), the obfuscated PowerShell loader POWERTRASH, and the Lizar post-exploitation kit [S1][S2]. In April 2023 Microsoft saw POWERTRASH load Lizar, followed by OpenSSH and Impacket for lateral movement and deployment of Clop ransomware [S2]. In late 2023 the actor used Google ads and malicious MSIX packages delivered through ms-appinstaller. One chain used Storm-1113's EugenLoader to drop Carbanak and Gracewire; another used POWERTRASH to load NetSupport and Gracewire [S1]. SentinelOne reports that FIN7 developed AvNeutralizer, an EDR-tampering tool sold on criminal forums with Black Basta among the first customers; a newer version abuses the Windows ProcLaunchMon.sys driver [S7]. Silent Push mapped more than 4,000 FIN7 domains and IPs used for typosquatting, malicious ads, fake browser extensions and spearphishing, with domains aged before use [S8]. In 2025 PRODAFT reported the Python-based Anubis backdoor, delivered from compromised SharePoint sites [S9]. The group has used front companies (Combi Security, Bastion Secure) to recruit IT workers who did not know they were doing intrusion work [S3][S6]."
+  },
+  "campaigns": [
+    {
+      "date": "2014",
+      "name": "Carbanak backdoor adoption",
+      "summary": "Microsoft states that Sangria Tempest has used the Carbanak backdoor since 2014.",
+      "sources": [
+        "S1"
+      ]
+    },
+    {
+      "date": "2018-03",
+      "name": "Arrest of alleged Carbanak leader in Spain",
+      "summary": "Europol announced the arrest in Alicante of a Ukrainian national, 'Denis K.', alleged leader of the Carbanak gang blamed for more than EUR 1 billion in bank losses. This is the Carbanak line of reporting, which MITRE tracks separately from FIN7.",
+      "sources": [
+        "S5"
+      ]
+    },
+    {
+      "date": "2018-08",
+      "name": "DOJ charges three FIN7 members",
+      "summary": "DOJ charged Ukrainians Fedorov, Hladyr and Kolpakov, citing more than 100 US victims, more than 15 million stolen card records, and the front company Combi Security.",
+      "sources": [
+        "S3"
+      ]
+    },
+    {
+      "date": "2021-06",
+      "name": "Kolpakov sentenced",
+      "summary": "A FIN7 supervisor received 7 years in prison; Hladyr had received 10 years in April 2021.",
+      "sources": [
+        "S4"
+      ]
+    },
+    {
+      "date": "2021-10",
+      "name": "Bastion Secure front company",
+      "summary": "Gemini Advisory exposed a fake security firm used to recruit IT staff. Recruits were handed Carbanak and Lizar/Tirion tooling and given tasks consistent with ransomware preparation.",
+      "sources": [
+        "S6"
+      ]
+    },
+    {
+      "date": "2023-04",
+      "name": "Clop ransomware deployments",
+      "summary": "Microsoft saw Sangria Tempest use POWERTRASH and Lizar, then OpenSSH and Impacket, to deploy Clop. It was the group's first ransomware campaign Microsoft had seen since late 2021. Microsoft noted possible collaboration with Lace Tempest during PaperCut exploitation.",
+      "sources": [
+        "S2"
+      ]
+    },
+    {
+      "date": "2023-11",
+      "name": "ms-appinstaller / MSIX malvertising",
+      "summary": "Google ads led victims to malicious MSIX packages delivering EugenLoader, Carbanak and Gracewire, or POWERTRASH and NetSupport. Microsoft disabled the ms-appinstaller handler by default in response.",
+      "sources": [
+        "S1"
+      ]
+    },
+    {
+      "date": "2024-07",
+      "name": "AvNeutralizer sales and FIN7 resurgence",
+      "summary": "SentinelOne reported FIN7 selling the AvNeutralizer EDR-evasion tool on forums. Silent Push and KrebsOnSecurity documented a network of more than 4,000 brand-impersonation domains.",
+      "sources": [
+        "S7",
+        "S8"
+      ]
+    },
+    {
+      "date": "2025-04",
+      "name": "Anubis backdoor",
+      "summary": "PRODAFT reported a Python-based Anubis backdoor delivered through spam and payloads hosted on compromised SharePoint sites.",
+      "sources": [
+        "S9"
+      ]
+    }
+  ],
+  "diamond": {
+    "adversary": "A financially motivated criminal group (Microsoft: Sangria Tempest, formerly ELBRUS; aka FIN7, Carbon Spider) [S1]. Charged members are Ukrainian nationals [S3]. The group runs a structured organization with supervisors, system administrators and front companies [S3][S4][S6].",
+    "capability": "Carbanak, POWERTRASH, Lizar, Gracewire, NetSupport, AvNeutralizer, Anubis; Clop ransomware deployment; OpenSSH and Impacket for lateral movement [S1][S2][S7][S9].",
+    "infrastructure": "Google search ads, more than 4,000 typosquatting and impersonation domains (some hosted at Stark Industries Solutions), compromised SharePoint sites used for payload hosting, and Storm-1113 installer and landing-page services [S1][S8][S9].",
+    "victim": "US restaurant, gaming and hospitality companies (card theft) [S3]; organizations hit by data-theft extortion and Clop ransomware [S1][S2]; users searching for popular software and brands [S1][S8].",
+    "socioPolitical": "Profit-driven cybercrime that cooperates with ransomware ecosystems: collaboration with Lace Tempest and sales of tooling to Black Basta and other ransomware groups [S1][S2][S7].",
+    "technology": "Windows endpoints; the App Installer/MSIX protocol handler that bypassed SmartScreen; EDR products targeted for tampering; vulnerable PaperCut servers in Lace Tempest-linked activity [S1][S2][S7]."
+  },
+  "gaps": [
+    "MITRE separates Carbanak (G0008) from FIN7 (G0046), while Microsoft folds both under Sangria Tempest; how much the 2014-2018 bank-heist cluster and the FIN7 card-theft and ransomware cluster overlap is unresolved in cited sources.",
+    "Primary DOJ press releases (2018 indictment, 2021 sentencings) and the Europol release could not be opened; facts here come from CyberScoop, The Hacker News and Dark Reading coverage.",
+    "The Gemini Advisory, Silent Push and PRODAFT primary reports were not read directly; secondary coverage was used.",
+    "No cited source makes any claim about Russian state sponsorship, tasking or tolerance; KrebsOnSecurity's 'Russia's Fin7' description is not a government attribution.",
+    "Microsoft's 2023 reporting names no specific victims, sectors or regions for the App Installer campaign.",
+    "The imported aliases JokerStash, Coreid, Calcium, ITG14, ATK32 and GOLD NIAGARA were not confirmed by any source cited here.",
+    "The extent of FIN7 activity after the 2025 Anubis reporting is unknown from gathered sources."
+  ],
+  "implications": {
+    "jipoe": "Analyst assessment derived from cited sources; validate before use. STEP 1 (operational environment): The relevant cyberspace includes user endpoints reached through search ads and lookalike domains, the software-installation path (App Installer/MSIX), EDR sensors, and collaboration platforms (SharePoint) used to host payloads [S1][S8][S9]. STEP 2 (effects): Malvertising and brand impersonation turn routine software downloads and brand trust into initial access, and EDR tampering degrades defensive visibility [S1][S7][S8]. STEP 3 (threat model): Template chain of malicious ad or phishing, then MSIX or loader (EugenLoader/POWERTRASH), then Carbanak, Lizar or NetSupport, then lateral movement with OpenSSH or Impacket, then data theft and Clop ransomware [S1][S2]. STEP 4: MLCOA is opportunistic access to an installation that supports defense contractors or base services through fake-software downloads, followed by data-theft extortion. MDCOA is ransomware deployment after EDR neutralization, or access handed to partner groups (Lace Tempest, Black Basta), disrupting mission-support IT [S1][S2][S7]. Candidate indicators: Defender alerts naming POWERTRASH, Carbanak or Sangria Tempest; MSIX installs launched from browser downloads; NetSupport on systems with no admin need; ProcLaunchMon.sys loading; newly registered domains impersonating Microsoft 365, Zoom or Reuters [S1][S7][S8].",
+    "jcc2": "Analyst assessment derived from cited sources; validate before use. Situational awareness: track Microsoft, SentinelOne and Silent Push reporting on Sangria Tempest tooling, and correlate it with DODIN endpoint telemetry for MSIX, POWERTRASH and EDR tamper events [S1][S7][S8]. Authorities: this is a criminal actor pursued by DOJ and Europol [S3][S5], so response coordination runs through law-enforcement and DC3 and CISA channels rather than an adversary-state framework; do not imply state attribution. Mission assurance: enforce Microsoft's ms-appinstaller handler disablement, restrict sideloading, protect EDR integrity, and keep offline backups against Clop-style extortion [S1][S2][S7]. Coordination: share brand-impersonation domain indicators with defense industrial base partners and ad platforms, and coordinate with service providers on takedown of hosting such as Stark Industries Solutions [S8]."
+  },
+  "sources": [
+    {
+      "ref": "S1",
+      "title": "Financially motivated threat actors misusing App Installer",
+      "publisher": "Microsoft Threat Intelligence",
+      "date": "2023-12-28",
+      "url": "https://www.microsoft.com/en-us/security/blog/2023/12/28/financially-motivated-threat-actors-misusing-app-installer/"
+    },
+    {
+      "ref": "S2",
+      "title": "Microsoft: Notorious FIN7 hackers return in Clop ransomware attacks (reporting Microsoft Threat Intelligence)",
+      "publisher": "BleepingComputer",
+      "date": "2023-05",
+      "url": "https://www.bleepingcomputer.com/news/security/microsoft-notorious-fin7-hackers-return-in-clop-ransomware-attacks/"
+    },
+    {
+      "ref": "S3",
+      "title": "DOJ charges three FIN7/Carbanak members (reporting DOJ indictment)",
+      "publisher": "CyberScoop",
+      "date": "2018-08",
+      "url": "https://cyberscoop.com/fin7-carbanak-indictment-doj-ukraine/"
+    },
+    {
+      "ref": "S4",
+      "title": "FIN7 Supervisor Gets 7-Year Jail Term for Stealing 20 Million Card Data (reporting DOJ sentencing)",
+      "publisher": "The Hacker News",
+      "date": "2021-06",
+      "url": "https://thehackernews.com/2021/06/fin7-supervisor-gets-7-year-jail-term.html"
+    },
+    {
+      "ref": "S5",
+      "title": "Leader of Cybercrime APT Behind $1.2 Billion in Bank Heists Arrested (reporting Europol)",
+      "publisher": "Dark Reading",
+      "date": "2018-03",
+      "url": "https://www.darkreading.com/attacks-breaches/leader-of-cybercrime-apt-behind-1-2-billion-in-bank-heists-arrested"
+    },
+    {
+      "ref": "S6",
+      "title": "FIN7 hackers set up a fake company to recruit for cyberattacks (reporting Gemini Advisory)",
+      "publisher": "TechCrunch",
+      "date": "2021-10-21",
+      "url": "https://techcrunch.com/2021/10/21/fin7-fake-company-recruit-hacks"
+    },
+    {
+      "ref": "S7",
+      "title": "FIN7 Reboot | Cybercrime Gang Enhances Ops with New EDR Bypasses and Automated Attacks",
+      "publisher": "SentinelOne SentinelLabs",
+      "date": "2024-07-17",
+      "url": "https://www.sentinelone.com/labs/fin7-reboot-cybercrime-gang-enhances-ops-with-new-edr-bypasses-and-automated-attacks/"
+    },
+    {
+      "ref": "S8",
+      "title": "The Stark Truth Behind the Resurgence of Russia's Fin7 (reporting Silent Push research)",
+      "publisher": "KrebsOnSecurity",
+      "date": "2024-07-10",
+      "url": "https://krebsonsecurity.com/2024/07/the-stark-truth-behind-the-resurgence-of-russias-fin7/"
+    },
+    {
+      "ref": "S9",
+      "title": "FIN7 Deploys Anubis Backdoor to Hijack Windows Systems (reporting PRODAFT)",
+      "publisher": "The Hacker News",
+      "date": "2025-04",
+      "url": "https://thehackernews.com/2025/04/fin7-deploys-anubis-backdoor-to-hijack.html"
+    }
+  ],
+  "aliasesAdd": []
+}

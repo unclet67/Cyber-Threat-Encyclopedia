@@ -1,0 +1,75 @@
+{
+  "identification": {
+    "summary": "China-based cyber-espionage actor that Microsoft tracks as Satin Typhoon and maps to APT18, Wekby, Dynamite Panda, TG-0416 and SCANDIUM [S1]. Mandiant attributed the 2014 Community Health Systems breach, which exposed data on about 4.5 million patients, to the group under the name APT 18 [S3][S4]. FireEye reported in July 2015 that APT18 quickly weaponized the Hacking Team-leaked Flash zero-day CVE-2015-5119 in spearphishing campaigns launched before Adobe's July 8, 2015 patch [S2]. Palo Alto Networks Unit 42 reported in May 2016 that Wekby used a new malware family, pisloader, that uses DNS requests for command and control [S6].",
+    "firstObserved": "",
+    "notes": "Microsoft name: Satin Typhoon (formerly SCANDIUM). Microsoft maps SCANDIUM, DYNAMITE PANDA, COMBINE, TG-0416, SILVERVIPER, Red Wraith, APT18, Elderwood Group and Wekby to it [S1]. Vendor names reported in 2014 coverage: APT 18 (Mandiant), Dynamite Panda (CrowdStrike), TG-0416 (SecureWorks), Wekby (Palo Alto Networks), Scandium (Microsoft) [S3]. MITRE ATT&CK tracks the group as APT18 (G0026) [S8]. Microsoft tracks Salmon Typhoon (APT4/SODIUM/MAVERICK PANDA) separately; those names do not belong to this record."
+  },
+  "attribution": {
+    "sponsor": "People's Republic of China (assessed by vendors; no government attribution found in sources gathered). Microsoft lists the actor's origin as China [S1]; security experts quoted in 2014 coverage said the group may have links to the Chinese government [S4].",
+    "confidence": "Vendor assessment only. Mandiant attributed the Community Health Systems intrusion to APT 18 [S3][S4]; FireEye attributed the July 2015 Flash campaign to APT18 using a previously known APT18 C2 address [S2]. No indictment, sanctions or government advisory naming this actor was found in the sources gathered.",
+    "basis": "Incident-response attribution by Mandiant [S3]; infrastructure overlap with previously known APT18 C2 (FireEye) [S2]; Volexity observation of Wekby C2 reused across years [S5]; malware lineage linking pisloader to HTTPBrowser (Unit 42) [S6]."
+  },
+  "objectives": "Espionage and intellectual-property theft. Mandiant said the group has been known to steal medical technology and pharmaceutical manufacturing intellectual property, while the 2014 Community Health Systems intrusion took patient personal data rather than medical device information [S3]. The motive for collecting bulk patient identity data was not publicly established [S3][S4].",
+  "targeting": {
+    "sectors": [
+      "Aerospace and defense [S2][S3]",
+      "Construction and engineering [S2][S3]",
+      "Education [S2]",
+      "Health and biotechnology, including hospital operators [S2][S3]",
+      "High technology [S2][S3]",
+      "Telecommunications [S2]",
+      "Transportation [S2]",
+      "Financial services [S3]"
+    ],
+    "regions": [
+      "United States (Community Health Systems; US-based organization targeted with pisloader) [S3][S6]"
+    ],
+    "notes": "Sector list for July 2015 comes from FireEye [S2] (search excerpts confirmed these sectors only for the combined APT3/APT18 activity; the APT18-specific list and victim count were not confirmed); Mandiant's broader sector description comes from 2014 interview coverage [S3]. FireEye described APT18's 2015 lures as nonspecific and likely reused across multiple targets [S2]."
+  },
+  "capabilities": {
+    "summary": "Rapid adoption of newly public exploits: APT18 used the Hacking Team-leaked Flash zero-day CVE-2015-5119 in 'Important: Flash Update' spearphishing emails that linked to a malicious SWF file, which delivered a Gh0st RAT variant [S2][S5]. FireEye said APT18 relied on procured (not compromised) infrastructure [S2]; Volexity noted a Singapore C2 IP reused in many Wekby attacks over prior years [S5]. Unit 42 reported pisloader, a variant tied to the HTTPBrowser family, using DNS TXT requests for C2 plus return-oriented programming and other anti-analysis techniques [S6]. In the 2014 Community Health Systems case, TrustedSec reported (citing anonymous sources close to the investigation) that the attackers stole credentials from a Heartbleed-vulnerable Juniper device and used them for VPN access; Mandiant did not confirm the initial access vector [S3][S7]. MITRE lists gh0st RAT, HTTPBrowser, hcdLoader, Pisloader and cmd as software used by the group [S8]."
+  },
+  "campaigns": [
+    {"date": "2014-04", "name": "Community Health Systems intrusion", "summary": "Intrusions in April and June 2014 into the US hospital operator exposed non-medical identifiers of about 4.5 million patients; Mandiant attributed them to APT 18. TrustedSec claimed Heartbleed-enabled VPN credential theft as initial access; this was not confirmed.", "sources": ["S3", "S4", "S7"]},
+    {"date": "2015-07", "name": "Hacking Team Flash zero-day spearphishing (CVE-2015-5119)", "summary": "'Important: Flash Update' emails led to a malicious SWF that delivered a Gh0st RAT variant calling back to a previously known APT18 C2. FireEye reported targeting in aerospace and defense, construction and engineering, education, health and biotechnology, high tech, telecommunications and transportation. Volexity reported the same activity under the Wekby name.", "sources": ["S2", "S5"]},
+    {"date": "2016-05", "name": "Wekby pisloader DNS C2 attack", "summary": "Unit 42 observed Wekby targeting a US-based organization with pisloader, an HTTPBrowser-related malware that uses DNS requests for command and control.", "sources": ["S6"]}
+  ],
+  "diamond": {
+    "adversary": "China-based espionage operators tracked as Satin Typhoon / APT18 / Wekby / Dynamite Panda [S1][S3]; no individual operators publicly named in sources gathered.",
+    "capability": "Rapidly weaponized public exploits (CVE-2015-5119), Gh0st RAT, HTTPBrowser-family pisloader with DNS C2, and reported VPN credential abuse [S2][S6][S7].",
+    "infrastructure": "Procured infrastructure, including a long-reused C2 IP in Singapore and a lure server masquerading as an Adobe download page [S2][S5].",
+    "victim": "US organizations in aerospace and defense, engineering, health care, high tech, telecommunications, transportation and education; Community Health Systems patient data [S2][S3].",
+    "socioPolitical": "Theft of medical, pharmaceutical and defense-relevant intellectual property, plus bulk personal data from a US health care provider [S3].",
+    "technology": "Unpatched internet-facing remote-access devices (reported Heartbleed on Juniper VPN), browser plug-ins (Adobe Flash), and DNS as a C2 channel [S2][S6][S7]."
+  },
+  "gaps": [
+    "No recent reporting (after 2016) specifically naming Satin Typhoon, APT18 or Wekby was found; current activity level is unknown.",
+    "First observed date not established from a primary source. Secondary summaries say 'active since about 2009' and claim PLA Navy affiliation; neither was verified in a primary source, so both are left out.",
+    "The existing record's aliases BRONZE EDISON, SAMURAI PANDA, PLA Navy and Wisp Team do not appear in Microsoft's Satin Typhoon mapping [S1]; the Secureworks BRONZE EDISON profile could not be opened to confirm its overlap.",
+    "Imported references to Sykipot (AlienVault, Trend Micro, SANS, CFR) may reflect MISP Galaxy merging of Elderwood/Sykipot activity with APT18; that link was not verified in the sources gathered.",
+    "The Heartbleed initial-access claim for Community Health Systems comes from TrustedSec's account citing anonymous sources and was not confirmed by Mandiant [S3][S7].",
+    "A July 2015 Zscaler report of HttpBrowser delivered via Hacking Team exploits against a financial services firm was attributed in coverage to Emissary Panda, a different cluster (Microsoft Linen Typhoon); it is excluded here even though HTTPBrowser is shared tooling.",
+    "Primary documents not opened: Secureworks BRONZE EDISON profile, Unit 42 pisloader post, Volexity post, Mandiant APT groups page, MITRE G0026 page (content taken from search-result summaries and the record's ATT&CK import)."
+  ],
+  "implications": {
+    "jipoe": "Analyst assessment derived from cited sources; validate before use. STEP 1: Key terrain is internet-facing remote-access appliances (VPN gateways), end-user browsers and plug-ins, and DNS resolution paths, all of which the actor has reportedly used [S2][S6][S7]. STEP 2: The actor weaponized a leaked zero-day within days of its disclosure, so the patch window against it may be days or less [S2][S5]. STEP 3: The doctrinal template is a generic spearphish or exploited edge device, then Gh0st RAT or an HTTPBrowser-family implant, then C2 over HTTP or DNS to procured infrastructure, then IP or PII theft [S2][S6][S7]. STEP 4: The MLCOA is opportunistic exploitation of newly disclosed vulnerabilities against defense-industrial-base, aerospace and health organizations to steal IP [S2][S3]. The MDCOA is credential theft from unpatched VPN appliances giving persistent access to defense-supporting networks and bulk personnel data [S3][S7]. Candidate indicators: 'Flash/software update' themed emails from look-alike domains, unusual DNS TXT query volume to rare domains, VPN logins with credentials reused from edge-device memory exposure, and contact with previously reported C2 such as 223.25.233.248 [S2][S6].",
+    "jcc2": "Analyst assessment derived from cited sources; validate before use. (1) Situational awareness: track exploit publication and patch status for edge VPN devices and client software in near real time, given the actor's speed of exploit adoption [S2][S5]. (2) Authorities: attribution rests on vendor assessments only, with no government attribution in the sources gathered, so response actions should not presume a formal attribution [S3][S4]. (3) Mission assurance: health and personnel data systems that support installations are proven targets for bulk PII theft [S3]. (4) Coordination: share DNS-C2 and C2 IP indicators with DC3/DIB partners, because the targeted sectors overlap with aerospace and defense contractors [S2][S6]."
+  },
+  "sources": [
+    {"ref": "S1", "title": "Microsoft threat actor naming mapping (MicrosoftMapping.json)", "publisher": "Microsoft Threat Intelligence", "date": "2026-10-14 (retrieved)", "url": "https://github.com/microsoft/mstic/blob/master/PublicFeeds/ThreatActorNaming/MicrosoftMapping.json"},
+    {"ref": "S2", "title": "Demonstrating Hustle, Chinese APT Groups Quickly Use Zero-Day Vulnerability (CVE-2015-5119) Following Hacking Team Leak", "publisher": "FireEye (Google Cloud Threat Intelligence blog)", "date": "2015-07-13", "url": "https://cloud.google.com/blog/topics/threat-intelligence/demonstrating-hustle"},
+    {"ref": "S3", "title": "APT Gang Branches Out to Medical Espionage in Community Health Breach", "publisher": "Threatpost", "date": "2014-08", "url": "https://threatpost.com/apt-gang-branches-out-to-medical-espionage-in-community-health-breach/107828"},
+    {"ref": "S4", "title": "Community Health Says Chinese Hackers Stole Data on 4.5 Million", "publisher": "NBC News", "date": "2014-08", "url": "https://www.nbcnews.com/tech/security/community-health-says-chinese-hackers-stole-data-4-5-million-n183391"},
+    {"ref": "S5", "title": "Chinese APT Group Uses Hacking Team's Flash Player Exploit (reporting Volexity research)", "publisher": "SecurityWeek", "date": "2015-07", "url": "https://www.securityweek.com/chinese-apt-group-uses-hacking-teams-flash-player-exploit/"},
+    {"ref": "S6", "title": "New Wekby Attacks Use DNS Requests As Command and Control Mechanism", "publisher": "Palo Alto Networks Unit 42", "date": "2016-05-24", "url": "https://unit42.paloaltonetworks.com/unit42-new-wekby-attacks-use-dns-requests-as-command-and-control-mechanism/"},
+    {"ref": "S7", "title": "Heartbleed Exploit Linked to Community Health Data Breach (reporting TrustedSec claim)", "publisher": "Threatpost", "date": "2014-08", "url": "https://threatpost.com/heartbleed-exploit-linked-to-community-health-data-breach"},
+    {"ref": "S8", "title": "APT18, G0026 (techniques and software)", "publisher": "MITRE ATT&CK", "date": "2026-07-31 (object modified, per record import)", "url": "https://attack.mitre.org/groups/G0026/"}
+  ],
+  "aliasesAdd": [
+    {"name": "SCANDIUM", "vendor": "Microsoft (former name)"},
+    {"name": "TG-0416", "vendor": "SecureWorks"},
+    {"name": "Wekby", "vendor": "Palo Alto Networks"},
+    {"name": "Dynamite Panda", "vendor": "CrowdStrike"},
+    {"name": "APT18", "vendor": "Mandiant"}
+  ]
+}

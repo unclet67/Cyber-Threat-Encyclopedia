@@ -1,81 +1,190 @@
 {
   "mitre": "G1030",
   "identification": {
-    "summary": "Pink Sandstorm (Agrius) is an Iranian threat actor that has run destructive wiper and fake-ransomware operations, mainly against Israeli organizations [S3][S4]. SentinelLabs first described the group in May 2021 as starting with espionage and moving to wipers disguised as ransomware against Israeli targets [S4][S5]. Microsoft describes Pink Sandstorm as MOIS-linked. Microsoft also reports that the group conducted a hack-and-leak against an Israeli hospital in late November 2023 and has collaborated with Hezbollah cyber units since the October 2023 war began [S1]. Later operations added data theft before wiping, as in Unit 42's 2023 reporting on Israeli higher-education and technology victims [S8][S9].",
-    "firstObserved": "2020. MITRE says the group has been active since 2020 [S3], and SentinelOne reported it operating in Israel from the beginning of 2020 [S5].",
-    "notes": "Microsoft name: Pink Sandstorm (formerly AMERICIUM). Microsoft maps SPECTRAL KITTEN, Agrius, Deadwood, BlackShadow, SharpBoys, FireAnt and Justice Blade to it [S2]. MITRE tracks the group as Agrius (G1030) and lists Pink Sandstorm, AMERICIUM, Agonizing Serpens and BlackShadow as associated names [S3]. Palo Alto Unit 42 tracks it as Agonizing Serpens and equates it with Agrius, BlackShadow, Pink Sandstorm and DEV-0022 [S8]. 'Deadwood' is also the name of a wiper (DEADWOOD/Detbosit) that SentinelLabs linked to the group's operations [S4]. Moneybird is a ransomware strain, not a group name [S7]. Microsoft names Pink Sandstorm as 'a.k.a. Agrius' in its February 2024 report [S1]."
+    "summary": "Iranian threat actor that Microsoft tracks as Pink Sandstorm (also known as Agrius) [S2]; public reporting has linked it to Iran's Ministry of Intelligence and Security (MOIS) [S3]. It is known for destructive wiper and fake-ransomware operations focused on Israeli targets since 2020 [S3][S4]. Over time its operations moved from wipers disguised as ransomware (DEADWOOD, Apostle) to supply-chain wiper deployment (Fantasy, 2022), new ransomware (Moneybird, 2023), and data theft followed by wiping in Israeli higher education and technology (2023) [S4][S6][S7][S9]. In December 2023 Israel's National Cyber Directorate named Agrius, working with Hezbollah's Lebanese Cedar, in a late-November 2023 attack on Ziv Medical Center [S10].",
+    "firstObserved": "SentinelLabs observed Agrius operating in Israel starting in 2020 [S4]. MITRE also dates the group's activity to 2020 [S3].",
+    "notes": "Microsoft name: Pink Sandstorm (formerly AMERICIUM). Microsoft lists SPECTRAL KITTEN, Agrius, Deadwood, BlackShadow, SharpBoys, FireAnt and Justice Blade as other names [S2]. Palo Alto Unit 42 tracks the group as Agonizing Serpens and equates it with Agrius, BlackShadow, Pink Sandstorm and DEV-0022 [S9]. MITRE tracks it as Agrius (G1030) [S3]. Check Point says the group has operated under multiple aliases and leaked Moneybird victim data through one of its previous personas [S7][S8]. BlackShadow is the persona that extorted Israeli insurer Shirbit in 2020 [S8]."
   },
   "attribution": {
-    "sponsor": "Iran, with links to the Ministry of Intelligence and Security (MOIS). Microsoft calls Pink Sandstorm an 'MOIS-linked group' [S1]. MITRE notes that public reporting links Agrius to MOIS [S3]. Israeli authorities reportedly attributed the late-2023 Ziv hospital attack to Iran's Ministry of Intelligence, working with Hezbollah [S10].",
-    "confidence": "In 2021 SentinelOne assessed with medium confidence that Agrius is of Iranian origin and engaged in both espionage and disruptive activity [S4][S5]. ESET calls the group 'Iran-aligned' [S6]. Unit 42 says it is believed to be sponsored by the Iranian government [S8][S9]. Microsoft's MOIS link is a vendor assessment [S1]. The only government attribution found is Israel's, as press reporting describes it [S10]; no US government attribution was found in the sources gathered here.",
-    "basis": "Vendor incident response and malware analysis: SentinelLabs on Apostle, DEADWOOD and IPsec Helper [S4]; ESET on Fantasy and Sandals [S6]; Check Point on Moneybird, as BleepingComputer reports it [S7]; Unit 42 on MultiLayer, PartialWasher and BFG Agonizer [S8]. Microsoft telemetry [S1]. Israeli National Cyber Directorate statements, as press reporting describes them [S10]."
+    "sponsor": "Iran, Ministry of Intelligence and Security (MOIS). MITRE notes that public reporting has linked Agrius to MOIS [S3]. Israel's National Cyber Directorate (INCD), as reported by the press, described Agrius as affiliated with the Iranian Ministry of Intelligence [S10].",
+    "confidence": "SentinelLabs (2021) assessed with medium confidence that Agrius is of Iranian origin [S4]. Check Point (2023) said the group's affiliation was not fully clear [S8]. The INCD attribution of the Ziv Medical Center attack is an Israeli government statement reported by the press [S10]; no US government attribution was found in the sources gathered.",
+    "basis": "Vendor incident response and malware analysis (SentinelLabs, ESET, Check Point, Unit 42) [S4][S6][S7][S9]; INCD statement on the Ziv Medical Center incident, based on a joint investigation with the IDF and Shin Bet [S10]."
   },
-  "objectives": "Disruption and destruction of Israeli organizations' systems, disguised as financially motivated ransomware [S4][S7]. SentinelLabs judged that the ransom demands were cover for disruption rather than a profit motive [S4]. Since 2023 the group has also stolen and leaked data (personal data and intellectual property) before wiping, which supports Iranian influence and retaliation goals [S1][S8]. Microsoft framed the November 2023 hospital hack-and-leak as apparent retaliation for Israel's siege of al-Shifa Hospital in Gaza [S1]. SentinelOne also assessed an espionage component [S5].",
+  "objectives": "Disruption and destruction against Israeli organizations, with ransomware used as cover rather than for profit; SentinelLabs judged it unlikely that Agrius is financially motivated [S4]. Espionage and data theft come before destructive operations [S4][S9].",
   "targeting": {
     "sectors": [
-      "Higher education [S8]",
-      "Technology [S8]",
-      "Healthcare (hospital) [S1][S10]",
-      "Diamond industry and a software supply chain serving it [S6]",
-      "Insurance and financial services (Shirbit, per reporting) [S5][S7]",
-      "HR consulting and IT support services [S6]"
+      "Insurance [S8]",
+      "Higher education [S8][S9]",
+      "Technology [S9]",
+      "Diamond industry and jewelry [S6]",
+      "Software developers (supply chain) [S6]",
+      "HR consulting and IT support services [S6]",
+      "Healthcare (hospitals) [S10]"
     ],
     "regions": [
-      "Israel (primary) [S4][S6][S8]",
-      "South Africa [S6]",
-      "Hong Kong [S6]"
+      "Israel (primary) [S3][S4][S9]",
+      "South Africa (diamond sector, 2022) [S6]",
+      "Hong Kong (jeweler, 2022) [S6]"
     ],
-    "notes": "Israel is the consistent focus across vendors [S4][S6][S8]. ESET's 2022 victims outside Israel (South Africa, Hong Kong) were reached through a supply chain serving the diamond trade, not targeted as countries in their own right [S6]. Shirbit (2020) and Bar-Ilan University (2021) are attributed to Agrius in press coverage of Check Point's work [S7]. The Shirbit attribution in SentinelOne-era reporting comes from unnamed industry sources [S5]."
+    "notes": "Israel is the consistent focus across all vendor reporting [S3][S4][S9]. Victims outside Israel came through the 2022 supply-chain compromise of an Israeli software developer [S6]. Check Point did not specify which sectors Moneybird hit [S8]."
   },
   "capabilities": {
-    "summary": "Initial access comes through exploitation of known vulnerabilities in public-facing web servers, followed by ASPXSpy-variant web shells [S7][S8]. In the Moneybird case those web shells were hidden in 'Certificate' text files [S7]. The group's custom .NET tooling includes the IPsec Helper backdoor and the Apostle wiper, which it later turned into working ransomware. SentinelLabs also linked the DEADWOOD (Detbosit) wiper to its operations [S4]. In 2022 the group used a software supply-chain compromise to deliver the Fantasy wiper (built largely on Apostle code) with the Sandals lateral-movement and execution tool [S6]. In 2023 it used Moneybird, a C++ ransomware [S7], and the MultiLayer, PartialWasher and BFG Agonizer wipers plus Sqlextractor, a database-extraction tool [S8][S9]. Its pattern is to steal data first, then wipe to cover tracks and make endpoints unusable [S8]. In the Unit 42 incident the actor tried and failed to bypass the endpoint security product [S9]. MITRE lists nine software entries for G1030 [S3]."
+    "summary": "Initial access usually comes through internet-facing web servers and known vulnerabilities, including FortiOS CVE-2018-13379, and is followed by ASPXSpy web shells [S5][S7]. After access the group uses public tools for lateral movement, credential harvesting and exfiltration [S7]. Its custom destructive tooling has evolved over time: the DEADWOOD wiper; the .NET Apostle wiper, which later gained working ransomware encryption; and the IPsec Helper .NET backdoor [S4]. Fantasy, a wiper built from Apostle code, was pushed through a compromised Israeli software vendor's updates; the campaign lasted under three hours [S6]. Moneybird is C++ ransomware using AES-256 GCM [S7][S8]. In 2023 the group used the MultiLayer, PartialWasher and BFG Agonizer wipers and the Sqlextractor database-theft tool. It also switched between public proof-of-concept tools and custom code to evade EDR [S9]."
   },
   "campaigns": [
-    {"date": "2020", "name": "Shirbit insurance attack", "summary": "Coverage of Check Point's research attributes ransomware on the Israeli insurer Shirbit in late 2020 to Agrius. 2021 reporting tied the attack to the group through unnamed industry sources.", "sources": ["S5", "S7"]},
-    {"date": "2021-05", "name": "Apostle / DEADWOOD wiper-to-ransomware operations (SentinelLabs disclosure)", "summary": "SentinelLabs reported Agrius wiper attacks on Israeli targets disguised as ransomware. Tools included the Apostle wiper, later made into working ransomware, the IPsec Helper backdoor and the DEADWOOD wiper. SentinelLabs assessed Iranian origin with medium confidence.", "sources": ["S4", "S5"]},
-    {"date": "2021", "name": "Bar-Ilan University wiper attack", "summary": "Press coverage of Check Point's research attributes wiper attacks on Israel's Bar-Ilan University in 2021 to Agrius.", "sources": ["S7"]},
-    {"date": "2022-03", "name": "Fantasy wiper supply-chain attack (diamond industry)", "summary": "Agrius abused an Israeli software developer's diamond-industry suite to deploy the Fantasy wiper and Sandals tool. Credential harvesting at a South African victim on 2022-02-20 preceded wiping on 2022-03-12. Victims were in Israel, South Africa and Hong Kong. ESET disclosed the campaign on 2022-12-07.", "sources": ["S6"]},
-    {"date": "2023-01", "name": "Agonizing Serpens campaign against Israeli higher education and technology", "summary": "From January to October 2023 the group stole PII and intellectual property, then deployed the MultiLayer, PartialWasher and BFG Agonizer wipers. Unit 42 reported the campaign in November 2023.", "sources": ["S8", "S9"]},
-    {"date": "2023-05", "name": "Moneybird ransomware", "summary": "Check Point incident responders found Moneybird, a new C++ ransomware, in an attack on an Israeli organization and attributed it to Agrius based on TTPs.", "sources": ["S7"]},
-    {"date": "2023-10", "name": "Collaboration with Hezbollah cyber units", "summary": "Microsoft detected collaboration between Pink Sandstorm and Hezbollah cyber units after the October 2023 war began.", "sources": ["S1"]},
-    {"date": "2023-11", "name": "Israeli hospital hack-and-leak (Ziv Medical Center, per Israeli reporting)", "summary": "Microsoft reports a Pink Sandstorm hack-and-leak against an Israeli hospital in late November 2023, apparently in retaliation for the al-Shifa siege. Israeli authorities reportedly attributed an attack on Ziv Medical Center to Iranian intelligence (naming Agrius) and Hezbollah's Lebanese Cedar unit. The data was leaked under the 'Malek Team' name.", "sources": ["S1", "S10"]}
+    {
+      "date": "2020",
+      "name": "Shirbit attack (BlackShadow persona)",
+      "summary": "Agrius hit Israeli insurer Shirbit with ransomware in late 2020; BlackShadow was the extortion persona.",
+      "sources": [
+        "S8"
+      ]
+    },
+    {
+      "date": "2020/2021",
+      "name": "DEADWOOD/Apostle wiper-as-ransomware operations",
+      "summary": "SentinelLabs reports Agrius moving from espionage to destructive attacks on Israeli targets, using DEADWOOD and Apostle wipers disguised as ransomware and the IPsec Helper backdoor.",
+      "sources": [
+        "S4",
+        "S5"
+      ]
+    },
+    {
+      "date": "2021",
+      "name": "Bar-Ilan University wiper attack",
+      "summary": "The Record reports that Agrius hit Bar-Ilan University with wipers in 2021.",
+      "sources": [
+        "S8"
+      ]
+    },
+    {
+      "date": "2022-03-12",
+      "name": "Fantasy wiper supply-chain attack",
+      "summary": "After deploying credential harvesters on 20 Feb 2022, Agrius abused an Israeli diamond-industry software developer to wipe customers in Israel, South Africa and Hong Kong in under three hours.",
+      "sources": [
+        "S6"
+      ]
+    },
+    {
+      "date": "2023-01/2023-10",
+      "name": "Israeli higher education and technology campaign",
+      "summary": "Unit 42 reports data theft followed by MultiLayer, PartialWasher and BFG Agonizer wipers to cover tracks and disable systems.",
+      "sources": [
+        "S9"
+      ]
+    },
+    {
+      "date": "2023-05",
+      "name": "Moneybird ransomware",
+      "summary": "Check Point attributes new C++ Moneybird ransomware against Israeli organizations to Agrius; victim data was later leaked through a prior Agrius alias.",
+      "sources": [
+        "S7",
+        "S8"
+      ]
+    },
+    {
+      "date": "2023-11",
+      "name": "Ziv Medical Center attack",
+      "summary": "The INCD said Agrius, working with Hezbollah's Lebanese Cedar, attacked Ziv Medical Center in late November 2023; the attackers claimed to have stolen patient records.",
+      "sources": [
+        "S10"
+      ]
+    }
   ],
   "diamond": {
-    "adversary": "Iranian operators, assessed by Microsoft as MOIS-linked [S1]. Israel reportedly attributed the group's 2023 hospital attack to Iranian intelligence working with Hezbollah [S10].",
-    "capability": "ASPXSpy web shells, the IPsec Helper backdoor, and a run of wipers and fake ransomware: Apostle, DEADWOOD, Fantasy, Moneybird, MultiLayer, PartialWasher and BFG Agonizer. Also Sandals and Sqlextractor [S4][S6][S7][S8].",
-    "infrastructure": "Compromised public-facing web servers used as entry points [S8]. A compromised software vendor's update path [S6]. Legitimate file-hosting platforms used to stage payloads [S7]. Microsoft reports infrastructure-level collaboration with Hezbollah cyber units but gives no indicators [S1].",
-    "victim": "Israeli higher-education, technology, healthcare, insurance and diamond-trade organizations, plus supply-chain victims in South Africa and Hong Kong [S1][S6][S7][S8].",
-    "socioPolitical": "Iran-Israel conflict. Destructive attacks are framed as criminal ransomware for deniability [S4][S7], and leaks retaliate for Israeli military actions in Gaza [S1].",
-    "technology": "Unpatched internet-facing web applications, Windows/.NET environments, database servers and vendor software-update mechanisms [S6][S8]."
+    "adversary": "MOIS-linked Iranian operators (Pink Sandstorm/Agrius) using rotating personas such as BlackShadow [S3][S8]. The INCD reported Agrius working with Hezbollah's Lebanese Cedar [S10].",
+    "capability": "Web-server exploitation and ASPXSpy web shells [S7]. Wipers include DEADWOOD, Apostle, Fantasy, MultiLayer, PartialWasher and BFG Agonizer; other tools are Moneybird ransomware, the IPsec Helper backdoor and Sqlextractor [S4][S6][S7][S9].",
+    "infrastructure": "A compromised software vendor's update channel [S6]; leak personas and channels used to publish stolen data [S7][S8].",
+    "victim": "Israeli insurance, higher education, technology, diamond and healthcare organizations, plus supply-chain victims in South Africa and Hong Kong [S6][S8][S9][S10].",
+    "socioPolitical": "Iran-Israel confrontation [S3][S10]. The ransomware disguise provides deniability for state-directed disruption [S4].",
+    "technology": "Exposure of internet-facing web applications and VPN appliances (FortiOS) [S5][S7]; trusted software update paths [S6]; Windows enterprise networks and database servers [S9]."
   },
   "gaps": [
-    "Primary vendor reports could not be opened (SentinelLabs, ESET WeLiveSecurity, Unit 42, Check Point, CFR were unreachable by fetch). Their content here comes from search-result summaries and secondary coverage [S4][S6][S7][S8].",
-    "The web search budget ran out before searches for Microsoft's 2023 Iran report (AMERICIUM/MOIS), Check Point's Iran capabilities overview and any 2024-2026 Pink Sandstorm activity. No post-2023 campaigns are recorded here, including any activity during the 2025-2026 Israel-Iran hostilities.",
-    "Microsoft does not name the hospital in its report [S1]. The link to Ziv Medical Center rests on Israeli press reporting of government statements [S10]. Leaked-data volumes differ between outlets and are unverified.",
-    "The BlackShadow, Justice Blade, SharpBoys and FireAnt names appear in Microsoft's mapping [S2]. The sources here do not establish whether they are personas or separate vendor clusters, so no activity under those names is recorded here.",
-    "Microsoft's Hezbollah collaboration claim gives no technical detail (shared infrastructure, tools or division of labor) in the public report [S1].",
-    "Exact CVEs used for initial access are not given in the sources reviewed.",
-    "No US government (CISA, FBI, DOJ, Treasury) attribution of Agrius/Pink Sandstorm was located in this research pass."
+    "No Microsoft reporting on Pink Sandstorm operations was verified during fact-check; Microsoft detail here is limited to the naming page [S2].",
+    "Microsoft alias list includes Justice Blade, SharpBoys and FireAnt, but no cited source describes the operations behind those personas [S2].",
+    "Attribution of the Ziv Medical Center incident: the INCD named Agrius with Lebanese Cedar, while a separate 'Malek Team' persona claimed a data leak; press reporting does not settle whether these are one operation [S10].",
+    "No 2024-2026 Pink Sandstorm operational reporting (for example during the 2025 Israel-Iran conflict) was found in the searches run.",
+    "The SentinelLabs confidence assessment is medium, and Check Point in 2023 called the affiliation not fully clear; no US government attribution was located [S4][S8].",
+    "The Unit 42 alias DEV-0022 and the Malpedia aliases DEV-0227 are not confirmed against Microsoft's current mapping [S2][S9].",
+    "Vendor profiles of UAE targeting were seen in search results but not verified from primary reporting, so the UAE is excluded from regions."
   ],
   "implications": {
-    "jipoe": "Analyst assessment derived from cited sources; validate before use. STEP 1: The operational environment is the Iran-Israel conflict. Key terrain includes internet-facing web servers, database servers holding PII and IP, and software vendors' update channels that reach downstream customers [S6][S8]. STEP 2: Initial access through known web-server vulnerabilities and ASPXSpy web shells means that patch latency on public-facing systems sets the window of exposure [S7][S8]. STEP 3: The doctrinal template is exploit a web server, drop a web shell, harvest credentials, move laterally, steal data, then deploy a wiper or fake ransomware, followed by leaks or ransom notes for influence effect [S4][S6][S8]. STEP 4: MLCOA is a destructive attack disguised as ransomware against Israeli or Israel-linked civilian institutions (education, health, tech), timed to retaliate for kinetic events [S1][S8]. MDCOA is a supply-chain wiper deployment through a trusted vendor that reaches multinational victims, including US or coalition partners sharing that vendor, possibly coordinated with Hezbollah cyber units [S1][S6]. Candidate indicators: new ASPX files or 'Certificate' text files on IIS servers [S7]; unexpected .NET or C++ binaries fetched from file-hosting sites [S7]; mass file deletion or boot-sector modification [S8]; bulk database extraction before destructive activity [S8].",
-    "jcc2": "Analyst assessment derived from cited sources; validate before use. (1) Situational awareness: a ransomware event at a partner organization during an Israel-related crisis should be checked for wiper behavior and Iranian state links before it is treated as crime, because this actor deliberately disguises destruction as ransomware [S4][S7]. (2) Authorities: the attribution behind this record is vendor and Israeli government reporting, not US government reporting, so response actions relying on state attribution need validation through official channels [S1][S10]. (3) Mission assurance: inventory third-party software with auto-update paths and internet-facing IIS/web servers on DoD-adjacent networks. The Fantasy supply-chain case shows that victims can be reached through a vendor rather than targeted directly [S6]. Offline backups limit wiper impact. (4) Coordination: share indicators with Israeli and Gulf partners through existing channels. Track Hezbollah-linked cyber activity jointly with Iranian MOIS activity, given Microsoft's reporting that the two collaborate [S1]."
+    "jipoe": "Analyst assessment derived from cited sources; validate before use. STEP 1 (operational environment): Key terrain includes internet-facing web servers and VPN appliances, software vendors' update channels and database servers at Israeli and partner organizations [S5][S6][S7][S9]. The environment also includes the information space, where leak personas publish stolen data [S8]. STEP 2 (effects): Unpatched public-facing applications and trusted update paths let the actor turn one intrusion into many victims within hours [S6]. Ransomware branding hides state intent and complicates attribution and response priorities [S4]. STEP 3 (threat model): web-server exploit, then ASPXSpy web shell, then credential harvesting and lateral movement with public tools, then data theft (including Sqlextractor), then wiper or ransomware deployment and a leak via a persona [S7][S9]. STEP 4 (COAs): MLCOA is continued data theft followed by wiping or fake ransomware against Israeli education, technology and healthcare targets, amplified through hack-and-leak during periods of Israel-Iran tension [S9][S10]. MDCOA is a supply-chain wiper push through a trusted vendor, or a joint operation with Hezbollah-linked cyber actors such as Lebanese Cedar, hitting healthcare or partner-nation organizations at scale, including entities outside Israel [S6][S10]. Candidate indicators: ASPXSpy web shells on IIS servers; exploitation of known FortiOS or web-application CVEs; credential harvesting tools appearing weeks before a destructive event [S6]; new ransomware families with no payment infrastructure; and leak-persona claims after intrusions [S5][S7][S8].",
+    "jcc2": "Analyst assessment derived from cited sources; validate before use. Situational awareness: Track Israeli INCD and vendor reporting (Unit 42, Check Point, ESET), because the group's operations are usually first exposed through incident response [S6][S7][S9][S10]. Treat a 'ransomware' event at an Israel-linked or partner organization as possibly state-directed destruction [S4]. Authorities: The 'ransomware' framing can steer cases toward criminal channels. Coordinating early with intelligence and partner-nation cyber authorities supports a correct attribution and response posture [S4][S10]. Mission assurance: Prioritize patching internet-facing servers, monitoring for web shells, verifying the integrity of third-party software updates and maintaining offline backups for mission-relevant databases [S6][S7][S9]. Coordination: The INCD attributed the Ziv Medical Center attack to Agrius working with Hezbollah's Lebanese Cedar, so combined Iran-proxy activity needs coordination across CCMD and partner-nation boundaries, with information sharing with Israeli partners [S10]."
   },
   "sources": [
-    {"ref": "S1", "title": "Iran surges cyber-enabled influence operations in support of Hamas", "publisher": "Microsoft Threat Intelligence (Security Insider)", "date": "2024-02-26", "url": "https://www.microsoft.com/en-us/security/security-insider/intelligence-reports/iran-surges-cyber-enabled-influence-operations-in-support-of-hamas"},
-    {"ref": "S2", "title": "Microsoft threat actor naming mapping (MicrosoftMapping.json), Pink Sandstorm entry", "publisher": "Microsoft Threat Intelligence (GitHub)", "date": "2026-10-14", "url": "https://github.com/microsoft/mstic/blob/master/PublicFeeds/ThreatActorNaming/MicrosoftMapping.json"},
-    {"ref": "S3", "title": "Agrius, G1030 (via search-result summary and encyclopedia import)", "publisher": "MITRE ATT&CK", "date": "2026-07-31", "url": "https://attack.mitre.org/groups/G1030/"},
-    {"ref": "S4", "title": "From Wiper to Ransomware | The Evolution of Agrius (via search-result summary; page not fetched)", "publisher": "SentinelLabs (SentinelOne)", "date": "2021-05", "url": "https://sentinelone.com/labs/from-wiper-to-ransomware-the-evolution-of-agrius/"},
-    {"ref": "S5", "title": "Report: Criminal cyber actions are used to cover Iranian strategic operations against Israel (reporting SentinelOne research)", "publisher": "Calcalist (CTech)", "date": "2021-05-26", "url": "https://www.calcalistech.com/ctech/articles/0,7340,L-3908586,00.html"},
-    {"ref": "S6", "title": "Fantasy - a new Agrius wiper deployed through a supply-chain attack (via search-result summary; page not fetched)", "publisher": "ESET Research (WeLiveSecurity)", "date": "2022-12-07", "url": "https://welivesecurity.com/2022/12/07/fantasy-new-agrius-wiper-supply-chain-attack"},
-    {"ref": "S7", "title": "Iranian hackers use new Moneybird ransomware to attack Israeli orgs (reporting Check Point research)", "publisher": "BleepingComputer", "date": "2023-05", "url": "https://www.bleepingcomputer.com/news/security/iranian-hackers-use-new-moneybird-ransomware-to-attack-israeli-orgs/"},
-    {"ref": "S8", "title": "Agonizing Serpens (Aka Agrius) Targeting the Israeli Higher Education and Tech Sectors (via search-result summary; page not fetched)", "publisher": "Palo Alto Networks Unit 42", "date": "2023-11", "url": "https://unit42.paloaltonetworks.com/agonizing-serpens-targets-israeli-tech-higher-ed-sectors/"},
-    {"ref": "S9", "title": "Iranian hackers launch destructive cyberattacks on Israeli tech and education sectors (reporting Unit 42 research)", "publisher": "The Hacker News", "date": "2023-11", "url": "https://thehackernews.com/2023/11/iranian-hackers-launches-destructive.html"},
-    {"ref": "S10", "title": "Iran, Hezbollah behind cyber attack on Israeli hospital (reporting Israel National Cyber Directorate statement)", "publisher": "Israel Hayom", "date": "2023-12-18", "url": "https://israelhayom.com/2023/12/18/iran-hezbollah-behind-cyber-attack-on-israeli-hospital"}
+    {
+      "ref": "S2",
+      "title": "How Microsoft names threat actors",
+      "publisher": "Microsoft Learn",
+      "date": "2026-10-14 (retrieved)",
+      "url": "https://learn.microsoft.com/en-us/microsoft-365/security/defender/microsoft-threat-actor-naming?view=o365-worldwide"
+    },
+    {
+      "ref": "S3",
+      "title": "Agrius, G1030",
+      "publisher": "MITRE ATT&CK",
+      "date": "2026-07-31",
+      "url": "https://attack.mitre.org/groups/G1030/"
+    },
+    {
+      "ref": "S4",
+      "title": "From Wiper to Ransomware: The Evolution of Agrius",
+      "publisher": "SentinelLabs (SentinelOne)",
+      "date": "2021-05",
+      "url": "https://sentinelone.com/labs/from-wiper-to-ransomware-the-evolution-of-agrius/"
+    },
+    {
+      "ref": "S5",
+      "title": "New Iranian Threat Actor Using Ransomware, Wipers in Destructive Attacks (reporting SentinelLabs research)",
+      "publisher": "Dark Reading",
+      "date": "2021-05",
+      "url": "https://darkreading.com/threat-intelligence/new-iranian-threat-actor-using-ransomware-wipers-in-destructive-attacks"
+    },
+    {
+      "ref": "S6",
+      "title": "Fantasy - a new Agrius wiper deployed through a supply-chain attack",
+      "publisher": "ESET (WeLiveSecurity)",
+      "date": "2022-12-07",
+      "url": "https://welivesecurity.com/2022/12/07/fantasy-new-agrius-wiper-supply-chain-attack"
+    },
+    {
+      "ref": "S7",
+      "title": "Agrius Deploys Moneybird in Targeted Attacks Against Israeli Organizations",
+      "publisher": "Check Point Research",
+      "date": "2023-05",
+      "url": "https://research.checkpoint.com/2023/agrius-deploys-moneybird-in-targeted-attacks-against-israeli-organizations/"
+    },
+    {
+      "ref": "S8",
+      "title": "Iran hackers Agrius deploying new ransomware (reporting Check Point research)",
+      "publisher": "The Record (Recorded Future News)",
+      "date": "2023-05",
+      "url": "https://therecord.media/iran-hackers-agrius-deploying-new-ransomware"
+    },
+    {
+      "ref": "S9",
+      "title": "Agonizing Serpens (Aka Agrius) Targeting the Israeli Higher Education and Tech Sectors",
+      "publisher": "Palo Alto Networks Unit 42",
+      "date": "2023-11",
+      "url": "https://unit42.paloaltonetworks.com/agonizing-serpens-targets-israeli-tech-higher-ed-sectors/"
+    },
+    {
+      "ref": "S10",
+      "title": "Iran, Hezbollah behind cyber attack on Israeli hospital (reporting Israel National Cyber Directorate statement)",
+      "publisher": "Israel Hayom",
+      "date": "2023-12-18",
+      "url": "https://israelhayom.com/2023/12/18/iran-hezbollah-behind-cyber-attack-on-israeli-hospital"
+    }
   ],
   "aliasesAdd": [
-    {"name": "Agonizing Serpens", "vendor": "Palo Alto Unit 42"},
-    {"name": "DEV-0022", "vendor": "Microsoft (legacy, per Unit 42)"},
-    {"name": "Malek Team", "vendor": "Leak persona (Israeli press reporting; Ziv hospital leak)"}
+    {
+      "name": "Agonizing Serpens",
+      "vendor": "Palo Alto Unit 42"
+    },
+    {
+      "name": "DEV-0022",
+      "vendor": "Microsoft (per Unit 42)"
+    }
   ]
 }

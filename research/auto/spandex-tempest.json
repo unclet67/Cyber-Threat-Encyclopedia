@@ -1,0 +1,86 @@
+{
+  "mitre": "G0092",
+  "identification": {
+    "summary": "Spandex Tempest is Microsoft's name for the financially motivated cybercrime actor that Proofpoint tracks as TA505 and CrowdStrike as MONTY SPIDER [S1]. Proofpoint describes TA505 as responsible for some of the largest malicious spam campaigns it has observed, distributing Dridex, Locky, Jaff, The Trick and other malware at high volume [S2][S3]. From 2018 the group moved from mass spam toward more targeted campaigns using remote access trojans such as FlawedAmmyy, FlawedGrace and ServHelper against financial and retail organizations [S3][S4][S6]. By 2019 it was deploying Clop ransomware inside victim networks and ran a leak site for stolen data from non-paying victims [S7].",
+    "firstObserved": "Proofpoint has tracked TA505 since at least 2014 [S2]; CERT-FR dates the intrusion set to at least 2014 and notes it was first mentioned publicly in 2017 [S10].",
+    "notes": "Microsoft name: Spandex Tempest (formerly CHIMBORAZO in Microsoft reporting; Microsoft Security Intelligence also used Dudear for TA505 activity) [S1][S8][S9]. Microsoft's mapping lists only MONTY SPIDER and TA505 as other names [S1]; other record aliases (GRACEFUL SPIDER, GOLD TAHOE, Hive0065, SectorJ04, ATK103) come from the imported MISP/MITRE records and were not re-verified here. Microsoft tracks Lace Tempest (DEV-0950), the Clop affiliate behind 2023 PaperCut exploitation, as a separate actor whose activity overlaps FIN11 and TA505 [S1][S13]. Mandiant tracks FIN11 separately as a group split out from the broader TA505 umbrella [S11]."
+  },
+  "attribution": {
+    "sponsor": "No state sponsor; financially motivated cybercrime per Microsoft's categorization [S1]. Microsoft's October 2020 Zerologon warning was reported as describing a Russian cybercrime group [S9].",
+    "confidence": "Microsoft categorizes Spandex Tempest as financially motivated [S1]. Russian origin rests on press characterization of Microsoft reporting [S9]; no government attribution of TA505 to a specific state or named individuals was found in sources gathered.",
+    "basis": "Microsoft threat actor naming mapping [S1]; Microsoft Security Intelligence posts as reported in the press [S8][S9]; Proofpoint, Trend Micro, Fox-IT/NCC Group and CERT-FR vendor and agency reporting [S2][S3][S4][S5][S6][S7][S10]."
+  },
+  "objectives": "Financial gain: banking-credential theft (Dridex), ransomware (Locky, then Clop) and data-theft extortion of non-paying victims [S1][S2][S7].",
+  "targeting": {
+    "sectors": [
+      "Financial services and banks [S4][S5]",
+      "Retail [S4]",
+      "Restaurants and hospitality [S4]",
+      "Higher education (Maastricht University, 2019) [S7]",
+      "Opportunistic enterprise victims [S7]"
+    ],
+    "regions": [
+      "Greece, Singapore, UAE, Georgia, Sweden, Lithuania (2019 financial-sector campaign) [S5]",
+      "United States and Canada [S5]",
+      "Chile, Mexico, Italy, China, South Korea, Taiwan (2019) [S6]",
+      "Netherlands (Maastricht University) [S7]"
+    ],
+    "notes": "Early operations were high-volume, largely untargeted spam via the Necurs botnet [S2][S3]; from 2018 targeting narrowed toward financial and retail organizations [S3][S4], and Fox-IT describes later ransomware victim selection as opportunistic [S7]."
+  },
+  "capabilities": {
+    "summary": "Large-scale malspam distribution of banking trojans and ransomware (Dridex, Locky, Jaff, GlobeImposter) [S2][S3]; macro-laden Office documents, HTML redirector attachments leading to Excel droppers, and URL-shortener lure links [S4][S5][S8]; custom and repurposed RATs and downloaders including ServHelper, FlawedGrace/GraceWire, FlawedAmmyy, Remote Manipulator System, Get2 and SDBbot (with application-shim persistence) [S4][S5][S6][S8]; Clop ransomware deployment across enterprise Windows servers with leak-site extortion [S7]; Zerologon (CVE-2020-1472) exploitation using fake software updates, UAC bypass, wscript abuse and an MSBuild-compiled Mimikatz with Zerologon functionality [S9]; MirrorBlast and KiXtart loaders in 2021 [S12]. MITRE ATT&CK G0092 lists Cobalt Strike, TrickBot, Azorult, BloodHound and AdFind among associated software [S14]."
+  },
+  "campaigns": [
+    {"date": "2014", "name": "Proofpoint tracking begins", "summary": "Proofpoint begins tracking TA505 high-volume spam campaigns.", "sources": ["S2", "S10"]},
+    {"date": "2015", "name": "Dridex mass distribution", "summary": "TA505 is behind many 2015 Dridex campaigns, briefly shifting to Shifu after law-enforcement disruption before returning to Dridex.", "sources": ["S2", "S3"]},
+    {"date": "2016", "name": "Locky ransomware via Necurs", "summary": "TA505 introduces Locky and, after July 2016, relies almost exclusively on it through year end.", "sources": ["S2", "S3"]},
+    {"date": "2018-11", "name": "ServHelper and FlawedGrace campaigns", "summary": "Malicious Word/Publisher documents deliver the new ServHelper backdoor, which drops FlawedGrace, against banks, retail and restaurants.", "sources": ["S4"]},
+    {"date": "2019-04", "name": "FlawedAmmyy/RMS campaigns in Latin America and East Asia", "summary": "Trend Micro reports targeting of Chile, Mexico, Italy, then China, South Korea and Taiwan with FlawedAmmyy or RMS.", "sources": ["S6"]},
+    {"date": "2019-09", "name": "Get2 and SDBbot financial-sector campaign", "summary": "Excel attachments drop Get2, which delivers SDBbot against financial institutions in Greece, Singapore, UAE and elsewhere, then US and Canadian targets.", "sources": ["S5"]},
+    {"date": "2019-12", "name": "Maastricht University Clop ransomware", "summary": "Fox-IT attributes the Clop deployment at Maastricht University to TA505.", "sources": ["S7"]},
+    {"date": "2020-01", "name": "Dudear HTML redirector campaign", "summary": "Microsoft reports a shift to HTML redirector attachments leading to Excel files that install GraceWire.", "sources": ["S8"]},
+    {"date": "2020-10", "name": "Zerologon exploitation (CHIMBORAZO)", "summary": "Microsoft warns of fake software updates connecting to CHIMBORAZO infrastructure and exploiting Zerologon.", "sources": ["S9"]},
+    {"date": "2021-09", "name": "Return of mass email campaigns", "summary": "Proofpoint reports TA505 resuming mass emailing with FlawedGrace, KiXtart and MirrorBlast after a lull.", "sources": ["S12"]}
+  ],
+  "diamond": {
+    "adversary": "Financially motivated cybercrime actor tracked as Spandex Tempest/TA505/MONTY SPIDER [S1]; press reporting of Microsoft describes it as Russian [S9].",
+    "capability": "Malspam with Office/HTML lures; ServHelper, FlawedGrace, FlawedAmmyy, Get2, SDBbot RATs; Clop ransomware; Zerologon exploitation [S4][S5][S7][S8][S9].",
+    "infrastructure": "Necurs botnet for spam delivery [S2][S3]; actor C2 reached by fake update payloads [S9]; IP traceback services to log victims [S8]; Clop leak site [S7].",
+    "victim": "Banks, financial, retail and restaurant organizations, universities and opportunistic enterprises across Europe, the Americas, the Middle East and Asia [S4][S5][S6][S7].",
+    "socioPolitical": "Profit-driven extortion and fraud ecosystem; no state tasking identified in sources [S1][S7].",
+    "technology": "Windows enterprise environments, Office macro execution, Active Directory domain controllers vulnerable to Zerologon [S4][S9]."
+  },
+  "gaps": [
+    "Proofpoint, NCC Group/Fox-IT and CERT-FR primary documents could not be fetched (DNS failures); their content is cited from search-result summaries and secondary coverage.",
+    "Cluster boundaries: Microsoft tracks Lace Tempest (Clop affiliate; PaperCut, GoAnywhere, MOVEit-era activity) separately from Spandex Tempest, and Mandiant tracks FIN11 separately; 2021 Accellion and 2023 MOVEit/GoAnywhere activity is therefore not attributed to Spandex Tempest here [S11][S13].",
+    "Some press (e.g. coverage of Microsoft's 2020 posts) equates TA505 with Evil Corp; Microsoft's mapping does not support this and it is treated as a conflation [S1][S8].",
+    "No government attribution, indictment, or named individuals tied to TA505 were found in sources gathered.",
+    "Activity after 2021 that is specific to Spandex Tempest (as opposed to Lace Tempest/Clop) is not confirmed by Microsoft reporting found.",
+    "Aliases GRACEFUL SPIDER, GOLD TAHOE, Hive0065, SectorJ04 and ATK103 were not re-verified against vendor primary sources in this pass."
+  ],
+  "implications": {
+    "jipoe": "Analyst assessment derived from cited sources; validate before use. STEP 1: Email gateways, user workstations running Office, and Active Directory domain controllers are the relevant terrain, since the actor relies on malspam and has exploited Zerologon [S4][S9]. STEP 2: Rapid adoption of new exploits by a commodity actor signals near-term broad exploitation of disclosed flaws [S9]. STEP 3: Template is phishing (macro document or HTML redirector) to downloader (Get2/ServHelper), RAT (SDBbot/FlawedGrace), credential theft and domain compromise, then Clop deployment and leak-site extortion [S5][S7][S8]. STEP 4: MLCOA is opportunistic ransomware or extortion against installation-supporting contractors, universities or financial service providers. MDCOA is domain-wide encryption of mission-support networks via domain controller compromise. Candidate indicators: Excel/HTML attachments with macros, MSBuild or wscript launching unexpected code, application-shim persistence, Netlogon anomalies on DCs [S5][S8][S9].",
+    "jcc2": "Analyst assessment derived from cited sources; validate before use. (1) Situational awareness: track Microsoft, Proofpoint and CERT advisories naming TA505/Spandex Tempest and overlapping Clop clusters, keeping cluster names distinct [S1][S11][S13]. (2) Authorities: this is criminal activity, so response coordination runs through law enforcement and DC3 channels rather than military attribution of a state. (3) Mission assurance: prioritize patching of domain controllers and email hardening, since Zerologon and macro lures were key enablers [S9][S4]. (4) Coordination: share indicators with DIB and partner CERTs given the multinational victim set [S5][S6]."
+  },
+  "sources": [
+    {"ref": "S1", "title": "Microsoft threat actor naming mapping (MicrosoftMapping.json)", "publisher": "Microsoft Threat Intelligence", "date": "2026-10-14 (retrieved)", "url": "https://github.com/microsoft/mstic/blob/master/PublicFeeds/ThreatActorNaming/MicrosoftMapping.json"},
+    {"ref": "S2", "title": "Threat Actor Profile: TA505, From Dridex to GlobeImposter", "publisher": "Proofpoint", "date": "2017-09", "url": "https://www.proofpoint.com/us/threat-insight/post/threat-actor-profile-ta505-dridex-globeimposter"},
+    {"ref": "S3", "title": "TA505 shifts with the times", "publisher": "Proofpoint", "date": "2018-06", "url": "https://www.proofpoint.com/us/threat-insight/post/ta505-shifts-times"},
+    {"ref": "S4", "title": "ServHelper and FlawedGrace - New malware introduced by TA505", "publisher": "Proofpoint", "date": "2019-01", "url": "https://www.proofpoint.com/us/threat-insight/post/servhelper-and-flawedgrace-new-malware-introduced-ta505"},
+    {"ref": "S5", "title": "TA505 distributes new SDBbot remote access trojan with Get2 downloader", "publisher": "Proofpoint", "date": "2019-10", "url": "https://www.proofpoint.com/us/threat-insight/post/ta505-distributes-new-sdbbot-remote-access-trojan-get2-downloader"},
+    {"ref": "S6", "title": "Shifting Tactics: Breaking Down TA505 Group's Use of HTML, RATs and Other Techniques in Latest Campaigns", "publisher": "Trend Micro", "date": "2019-06", "url": "https://www.trendmicro.com/en/research/19/f/shifting-tactics-breaking-down-ta505-groups-use-of-html-rats-and-other-techniques-in-latest-campaigns.html"},
+    {"ref": "S7", "title": "TA505: A Brief History Of Their Time", "publisher": "Fox-IT (NCC Group)", "date": "2020-11-16", "url": "https://blog.fox-it.com/2020/11/16/ta505-a-brief-history-of-their-time/"},
+    {"ref": "S8", "title": "TA505 APT Group Returns With New Techniques: Report (reporting Microsoft Security Intelligence)", "publisher": "BankInfoSecurity", "date": "2020-01", "url": "https://www.bankinfosecurity.com/ta505-apt-group-returns-new-techniques-report-a-13678"},
+    {"ref": "S9", "title": "Microsoft Warns Russian Cybercriminals Exploiting Zerologon Vulnerability (reporting Microsoft Security Intelligence)", "publisher": "SecurityWeek", "date": "2020-10", "url": "https://www.securityweek.com/microsoft-warns-russian-cybercriminals-exploiting-zerologon-vulnerability/"},
+    {"ref": "S10", "title": "Development of the activity of the TA505 cybercriminal group (CERTFR-2020-CTI-009)", "publisher": "CERT-FR (ANSSI)", "date": "2020-08-20", "url": "https://www.cert.ssi.gouv.fr/uploads/CERTFR-2020-CTI-009.pdf"},
+    {"ref": "S11", "title": "FIN11 Spun Out From TA505 Umbrella as Distinct Attack Group (reporting Mandiant)", "publisher": "SecurityWeek", "date": "2020-10-14", "url": "https://www.securityweek.com/fin11-spun-out-ta505-umbrella-distinct-attack-group/"},
+    {"ref": "S12", "title": "TA505 email phishing threat group returns (reporting Proofpoint)", "publisher": "The Register", "date": "2021-10-19", "url": "https://www.theregister.com/2021/10/19/ta505_email_phishing_threat_group_returns/"},
+    {"ref": "S13", "title": "Microsoft Blames Clop Affiliate for PaperCut Attacks (reporting Microsoft Threat Intelligence on Lace Tempest)", "publisher": "Infosecurity Magazine", "date": "2023-04", "url": "https://www.infosecurity-magazine.com/news/microsoft-blames-clop-affiliate/"},
+    {"ref": "S14", "title": "TA505, G0092 (techniques and software)", "publisher": "MITRE ATT&CK", "date": "2026-07-31 (object modified)", "url": "https://attack.mitre.org/groups/G0092/"}
+  ],
+  "aliasesAdd": [
+    {"name": "CHIMBORAZO", "vendor": "Microsoft (former name)"},
+    {"name": "Dudear", "vendor": "Microsoft Security Intelligence"},
+    {"name": "MONTY SPIDER", "vendor": "CrowdStrike"}
+  ]
+}

@@ -1,0 +1,95 @@
+{
+  "mitre": "G1033",
+  "identification": {
+    "summary": "Russia-based espionage actor focused on credential theft through tailored spear-phishing against high-profile people in government, defense, think tanks, academia, NGOs and journalism, mostly in NATO countries [S1][S2][S3]. Microsoft says it supports espionage and cyber-influence objectives, including occasional hack-and-leak operations [S1][S2]. The UK NCSC and Five Eyes partners assess it is almost certainly subordinate to FSB Centre 18 [S3][S4]. Since 2023-2025 it has added selective malware (SPICA, LOSTKEYS, and the NOROBOT/MAYBEROBOT chain) to its phishing work [S8][S9][S11].",
+    "firstObserved": "Microsoft has tracked the actor since 2017 [S2]. NCSC reports spear-phishing of UK parliamentarians since at least 2015 and an Institute for Statecraft compromise in 2018 [S4]. Press coverage of Google TAG reporting says targeting dates to at least 2015 [S9].",
+    "notes": "Microsoft name: Star Blizzard (formerly SEABORGIUM; renamed April 2023). Microsoft notes overlaps with Callisto Group (F-Secure), TA446 (Proofpoint) and COLDRIVER (Google) [S2]. Google lists COLDRIVER as also known as UNC4057, Star Blizzard and Callisto [S8]. The joint advisory lists SEABORGIUM, Callisto Group, TA446, COLDRIVER, TAG-53 and BlueCharlie [S3]. Microsoft did not confirm a link to Gamaredon/ACTINIUM that Ukraine's SSU proposed [S2]. Citizen Lab's COLDWASTREL is a separate cluster [S10]."
+  },
+  "attribution": {
+    "sponsor": "Russian Federation. The UK NCSC and partners in the US, Australia, Canada and New Zealand assess that Star Blizzard is almost certainly subordinate to FSB Centre 18 [S3][S4]. DOJ describes Centre 18 as the FSB unit involved [S5][S6].",
+    "confidence": "Government: NCSC uses 'almost certainly' for Centre 18 subordination (December 2023) [S3][S4]. Microsoft attributes the actor to Russia and says its objectives align with Russian state interests, with no formal confidence rating [S2]. Google calls COLDRIVER 'Russian government-backed' without naming an agency [S8].",
+    "basis": "Five Eyes joint advisory and UK attribution statement [S3][S4]. A US indictment (unsealed December 2023) charges Ruslan Peretyatko, described as an FSB Centre 18 officer, and Andrey Korinets, and the US and UK imposed sanctions [S5]. Microsoft and Google telemetry and infrastructure analysis [S1][S2][S8]. Microsoft and DOJ domain seizures in October 2024 [S6]."
+  },
+  "objectives": "Intelligence collection supporting Russia's strategic interests [S8]. Microsoft also cites cyber-influence objectives [S1][S2]. Stolen material has been selectively leaked to advance Russian goals, including undermining trust in UK politics [S4][S12]. The actor has also targeted exiled Russian opposition figures and civil society [S10].",
+  "targeting": {
+    "sectors": [
+      "Government and diplomacy [S1][S3]",
+      "Defense, intelligence consultancies and defense-industrial organizations [S2][S3]",
+      "Logistics support to Ukraine [S1]",
+      "Think tanks and international-relations researchers [S1][S2]",
+      "Academia and higher education [S2][S3]",
+      "NGOs, IGOs and civil society [S2][S6]",
+      "Journalists and media [S6][S8]",
+      "Politicians and parliamentarians [S3][S12]",
+      "US Department of Energy facilities (2022) [S3]"
+    ],
+    "regions": [
+      "United States and United Kingdom (most affected) [S2][S3]",
+      "Other NATO countries [S2][S3]",
+      "Countries neighbouring Russia [S3]",
+      "Ukraine-related individuals [S8]",
+      "Exiled Russian opposition and diaspora [S10]"
+    ],
+    "notes": "The actor mainly targets personal webmail accounts rather than corporate ones [S3]. Microsoft says about 30% of its related nation-state notifications went to consumer accounts [S2]. Microsoft observed targeting of more than 30 civil-society organizations between January 2023 and August 2024 [S6]."
+  },
+  "capabilities": {
+    "summary": "Core trade: research on targets, fake profiles and impersonation of trusted contacts, followed by rapport-building emails sent from webmail accounts (Outlook, Gmail, Yahoo, Proton) [S2][S3]. It harvests credentials with Evilginx adversary-in-the-middle phishing, which captures MFA tokens [S1]. Lures include PDFs (some password-protected) hosted on Proton Drive, URL shorteners, open redirects, Microsoft Safe Links wrapping, and the HubSpot and MailerLite email marketing platforms (2023) [S1]. It evades detection with a DNS/reverse-proxy service, anti-automation scripts, hCaptcha, randomized domains and multiple registrars [S1]. After compromise it exfiltrates mailboxes and sets forwarding rules to dead-drop accounts [S2]. In 2024 it took over WhatsApp accounts by luring targets to scan a QR code that linked their account to an actor-controlled device [S7]. Selective malware includes: the Rust backdoor SPICA, delivered as a fake decryption tool and used since about November 2022 [S9]; LOSTKEYS, a VBS file stealer delivered by a ClickFix fake CAPTCHA (January-April 2025) [S8]; and, after LOSTKEYS was exposed, the COLDCOPY lure, NOROBOT DLL and YESROBOT/MAYBEROBOT backdoors (2025) [S11]."
+  },
+  "campaigns": [
+    {"date": "2018", "name": "Institute for Statecraft compromise", "summary": "NCSC says the UK think tank was compromised in 2018 and documents were later leaked; its founder's account was compromised from December 2021.", "sources": ["S12"]},
+    {"date": "2019", "name": "UK-US trade documents leak", "summary": "NCSC cites the leak of UK-US trade documents ahead of the 2019 UK general election.", "sources": ["S12"]},
+    {"date": "2022-05", "name": "Brexit proponents email leak", "summary": "Emails allegedly stolen from Brexit proponents' ProtonMail accounts were leaked. Microsoft independently linked the campaign to SEABORGIUM through technical indicators.", "sources": ["S2"]},
+    {"date": "2022-08", "name": "Microsoft SEABORGIUM disruption", "summary": "Microsoft disabled actor accounts and published IOCs, citing more than 30 organizations targeted since the start of 2022.", "sources": ["S2"]},
+    {"date": "2023-09", "name": "SPICA backdoor deployment", "summary": "Google TAG saw the SPICA backdoor delivered by fake PDF decryption tools from early September 2023 and believes it has been used since November 2022.", "sources": ["S9"]},
+    {"date": "2023-12", "name": "Five Eyes advisory, indictment and sanctions", "summary": "Joint advisory attributes Star Blizzard to FSB Centre 18; the US charges Peretyatko and Korinets; the US and UK impose sanctions.", "sources": ["S3", "S4", "S5"]},
+    {"date": "2024-08", "name": "'River of Phish' campaign against civil society", "summary": "Citizen Lab and Access Now report COLDRIVER phishing of exiled Russians, former US officials and NGOs, including impersonation of people known to targets.", "sources": ["S10"]},
+    {"date": "2024-10", "name": "Microsoft/DOJ domain takedown", "summary": "A Microsoft civil order covered 66 domains and DOJ seized 41 more used by Star Blizzard.", "sources": ["S6"]},
+    {"date": "2024-11", "name": "WhatsApp account-takeover phishing", "summary": "Lures impersonating a US government official used QR codes to link targets' WhatsApp accounts to actor devices. Microsoft disclosed the campaign in January 2025.", "sources": ["S7", "S1"]},
+    {"date": "2025-01", "name": "LOSTKEYS ClickFix malware", "summary": "GTIG observed LOSTKEYS delivered by a fake CAPTCHA in January, March and April 2025.", "sources": ["S8"]},
+    {"date": "2025-05", "name": "ROBOT malware chain", "summary": "After LOSTKEYS was exposed, GTIG reports COLDRIVER moved to the COLDCOPY, NOROBOT and YESROBOT/MAYBEROBOT chain, with MAYBEROBOT appearing by June 2025.", "sources": ["S11"]}
+  ],
+  "diamond": {
+    "adversary": "FSB Centre 18-linked operators (NCSC: almost certainly) [S3][S4]. US charges name Peretyatko (FSB officer) and Korinets (alleged co-conspirator) [S5].",
+    "capability": "Evilginx AiTM credential theft; PDF and link lures; WhatsApp device linking; SPICA, LOSTKEYS and NOROBOT/MAYBEROBOT malware [S1][S7][S8][S9][S11].",
+    "infrastructure": "Batch-registered domains (Namecheap, Hostinger and others) with Let's Encrypt certificates; paired VPS redirector and Evilginx servers; a DNS/reverse-proxy service; email marketing platforms; Proton Drive file hosting; webmail sender accounts [S1][S3].",
+    "victim": "Government, defense, think tank, academic, NGO and journalist individuals in the US, the UK and NATO, often through personal email [S2][S3][S8].",
+    "socioPolitical": "Collection on Russia, Ukraine and NATO policy; hack-and-leak operations to undermine trust in UK politics; pressure on Russian dissidents abroad [S4][S10][S12].",
+    "technology": "Consumer webmail and cloud email, MFA that can be phished, WhatsApp linked-device features, and Windows scripting (PowerShell, rundll32) [S1][S7][S8][S11]."
+  },
+  "gaps": [
+    "Primary government documents were not opened: the joint advisory PDF, the NCSC pages, the DOJ press release and the indictment were unreachable or blocked. Their content is taken from search summaries and press coverage [S3][S4][S5][S6].",
+    "The GTIG October 2025 ROBOT-chain report and Zscaler's BAITSWITCH/SIMPLEFIX report (a mapping that comes from press coverage) were not opened directly [S11].",
+    "Microsoft's January 2025 WhatsApp blog was seen only through secondary coverage and an update note on the 2023 blog [S1][S7].",
+    "Original Google TAG SPICA blog, Citizen Lab 'River of Phish' report, F-Secure Callisto report and Recorded Future TAG-53/BlueCharlie reports were not opened; vendor cluster overlaps (TAG-53, BlueCharlie, IRON FRONTIER, GOSSAMER BEAR) are not independently verified here.",
+    "Relationship to Citizen Lab's COLDWASTREL cluster and the SSU-proposed Gamaredon link are unresolved [S2][S10].",
+    "Google could not confirm whether December 2023 Maltego-themed LOSTKEYS samples are COLDRIVER's [S8].",
+    "Activity after October 2025 was not researched."
+  ],
+  "implications": {
+    "jipoe": "Analyst assessment derived from cited sources; validate before use. STEP 1: Key terrain is the personal and cloud email accounts, messaging apps (WhatsApp) and home devices of senior leaders, policy advisers, defense-industrial staff and Ukraine-support logistics personnel. Much of this sits outside DoD network boundaries [S1][S3][S7]. STEP 2: The actor's reliance on credible impersonation and phishable MFA makes identity and personal accounts the operating environment. Rapid infrastructure turnover after exposure shortens the useful life of indicators [S1][S6]. STEP 3: The doctrinal template is reconnaissance and a fake persona, a benign rapport email, a PDF or link lure, Evilginx or QR-code device linking, then mailbox exfiltration and forwarding rules. A selective malware branch delivers ClickFix PowerShell leading to LOSTKEYS or the NOROBOT/MAYBEROBOT chain [S1][S2][S7][S8][S11]. STEP 4: MLCOA is continued credential phishing of personal accounts of US, UK and NATO defense and policy figures for intelligence on Ukraine support. MDCOA is a timed hack-and-leak of stolen planning or political correspondence during a crisis or election to undermine allied cohesion [S4][S12]. Candidate indicators: unsolicited emails from known contacts on new webmail addresses; password-protected PDFs on Proton Drive; Safe Links-wrapped shortened URLs; new inbox forwarding rules; unexpected WhatsApp linked devices; rundll32 or PowerShell launched from the Run dialog after a CAPTCHA page [S1][S2][S7][S8][S11].",
+    "jcc2": "Analyst assessment derived from cited sources; validate before use. (1) Situational awareness: the victims are mostly personal and NGO accounts, so DoD sensors will miss much of this activity. JCC2 pictures should include partner reporting from NCSC, Microsoft and Google notifications [S2][S3][S8]. (2) Authorities: personal accounts and commercial messaging platforms fall outside DoDIN defensive authorities. Response depends on FBI, DOJ and industry actions such as the October 2024 domain seizures [S5][S6]. (3) Mission assurance: phishing-resistant MFA (FIDO2) and personal-account hygiene for key leaders and Ukraine-support logistics staff reduce exposure to AiTM credential theft [S1]. (4) Coordination: share indicators with Five Eyes partners and the DIB, and expect the actor to rebuild infrastructure quickly after exposure [S3][S6]."
+  },
+  "sources": [
+    {"ref": "S1", "title": "Star Blizzard increases sophistication and evasion in ongoing attacks (with updates through Jan 2025)", "publisher": "Microsoft Threat Intelligence", "date": "2023-12-07", "url": "https://www.microsoft.com/en-us/security/blog/2023/12/07/star-blizzard-increases-sophistication-and-evasion-in-ongoing-attacks/"},
+    {"ref": "S2", "title": "Disrupting SEABORGIUM's ongoing phishing operations", "publisher": "Microsoft Threat Intelligence", "date": "2022-08-15", "url": "https://www.microsoft.com/security/blog/2022/08/15/disrupting-seaborgiums-ongoing-phishing-operations"},
+    {"ref": "S3", "title": "Russian FSB cyber actor Star Blizzard continues worldwide spear-phishing campaigns (joint advisory; content via search summary, PDF not opened)", "publisher": "UK NCSC, NSA, FBI, CISA and Five Eyes partners", "date": "2023-12-07", "url": "https://media.defense.gov/2023/Dec/07/2003353251/-1/-1/0/ADVISORY-RUSSIAN-FSB-CYBER-ACTOR-STAR-BLIZZARD-CONTINUES-WORLDWIDE-SPEAR-SPHISHING-CAMPAIGNS.PDF"},
+    {"ref": "S4", "title": "UK and allies expose Russian intelligence services for cyber campaign of attempted political interference (content via search summary)", "publisher": "UK NCSC", "date": "2023-12-07", "url": "https://www.ncsc.gov.uk/news/uk-and-allies-expose-cyber-campaign-attempted-political-interference"},
+    {"ref": "S5", "title": "US indicts alleged Russian hackers for years-long cyber espionage campaign against Western countries (reporting DOJ indictment and US/UK sanctions)", "publisher": "TechCrunch", "date": "2023-12-07", "url": "https://techcrunch.com/2023/12/07/us-indicts-alleged-russian-hackers-for-years-long-cyber-espionage-campaign-against-western-countries"},
+    {"ref": "S6", "title": "DOJ, Microsoft disrupt FSB-linked Star Blizzard infrastructure (reporting DOJ seizure and Microsoft civil action)", "publisher": "CyberScoop", "date": "2024-10-03", "url": "https://cyberscoop.com/doj-microsoft-fsb-espionage-star-blizzard/"},
+    {"ref": "S7", "title": "Russia-linked APT Star Blizzard targets WhatsApp accounts (reporting Microsoft Threat Intelligence)", "publisher": "Security Affairs", "date": "2025-01-17", "url": "https://securityaffairs.com/173165/apt/russia-star-blizzard-targets-whatsapp-accounts.html"},
+    {"ref": "S8", "title": "COLDRIVER Using New Malware To Steal Documents From Western Targets and NGOs (LOSTKEYS)", "publisher": "Google Threat Intelligence Group", "date": "2025-05-07", "url": "https://cloud.google.com/blog/topics/threat-intelligence/coldriver-steal-documents-western-targets-ngos"},
+    {"ref": "S9", "title": "Google TAG: COLDRIVER using SPICA custom malware (reporting Google TAG)", "publisher": "The Register", "date": "2024-01-18", "url": "https://www.theregister.com/2024/01/18/google_tag_coldriver_malware"},
+    {"ref": "S10", "title": "Russian state-sponsored phishing campaign targets Western NGOs, diplomats (reporting Citizen Lab / Access Now 'River of Phish')", "publisher": "SiliconANGLE", "date": "2024-08-15", "url": "https://siliconangle.com/2024/08/15/russian-state-sponsored-phishing-campaign-targets-western-ngos-diplomats/"},
+    {"ref": "S11", "title": "Google identifies three new Russian malware families (reporting GTIG COLDRIVER NOROBOT/YESROBOT/MAYBEROBOT)", "publisher": "The Hacker News", "date": "2025-10", "url": "https://thehackernews.com/2025/10/google-identifies-three-new-russian.html"},
+    {"ref": "S12", "title": "UK exposes Russia for attempted political interference (reporting NCSC attribution)", "publisher": "UK Defence Journal", "date": "2023-12-07", "url": "https://ukdefencejournal.org.uk/uk-exposes-russia-for-attempted-political-interference/"}
+  ],
+  "aliasesAdd": [
+    {"name": "SEABORGIUM", "vendor": "Microsoft (former name)"},
+    {"name": "Callisto Group", "vendor": "F-Secure"},
+    {"name": "TA446", "vendor": "Proofpoint"},
+    {"name": "COLDRIVER", "vendor": "Google"},
+    {"name": "UNC4057", "vendor": "Google / Mandiant"},
+    {"name": "TAG-53", "vendor": "Recorded Future"},
+    {"name": "BlueCharlie", "vendor": "Recorded Future"}
+  ]
+}

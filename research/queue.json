@@ -1,55 +1,10 @@
 {
  "note": "Research queue for the automatic wave runner. Waves take items from the front; finished ids move to 'done'.",
  "verify": [
-  "peach-sandstorm",
-  "pink-sandstorm",
-  "periwinkle-tempest"
+  "spandex-tempest",
+  "star-blizzard"
  ],
  "research": [
-  {
-   "id": "purple-typhoon",
-   "tier": "T1"
-  },
-  {
-   "id": "raspberry-typhoon",
-   "tier": "T1"
-  },
-  {
-   "id": "red-sandstorm",
-   "tier": "T1"
-  },
-  {
-   "id": "sangria-tempest",
-   "tier": "T1"
-  },
-  {
-   "id": "sapphire-sleet",
-   "tier": "T1"
-  },
-  {
-   "id": "satin-typhoon",
-   "tier": "T1"
-  },
-  {
-   "id": "secret-blizzard",
-   "tier": "T1"
-  },
-  {
-   "id": "silk-typhoon",
-   "tier": "T1"
-  },
-  {
-   "id": "smoke-sandstorm",
-   "tier": "T1"
-  },
-  {
-   "id": "spandex-tempest",
-   "tier": "T1"
-  },
-  {
-   "id": "star-blizzard",
-   "tier": "T1"
-  },
   {
    "id": "storm-0133",
    "tier": "T1"
@@ -1627,8 +1582,20 @@
   "mulberry-typhoon",
   "nylon-typhoon",
   "onyx-sleet",
+  "peach-sandstorm",
+  "periwinkle-tempest",
+  "pink-sandstorm",
+  "purple-typhoon",
+  "raspberry-typhoon",
+  "red-sandstorm",
   "salt-typhoon",
+  "sangria-tempest",
+  "sapphire-sleet",
+  "satin-typhoon",
   "seashell-blizzard",
+  "secret-blizzard",
+  "silk-typhoon",
+  "smoke-sandstorm",
   "volt-typhoon"
  ],
  "thin": [],

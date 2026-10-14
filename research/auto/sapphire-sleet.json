@@ -1,0 +1,177 @@
+{
+  "mitre": "G0082",
+  "identification": {
+    "summary": "Microsoft describes Sapphire Sleet as a North Korean state actor focused on the finance sector, especially cryptocurrency, venture capital and blockchain organizations, whose main motive is stealing cryptocurrency wallets to generate revenue [S2][S3][S4]. Its signature tradecraft is social engineering. Operators pose as venture capitalists or recruiters, set up fake Zoom or Teams meetings or skills assessments, and then get the victim to run a script that installs malware [S1][S3]. In 2026 Microsoft also attributed two npm software supply-chain compromises to it: Axios (March 2026) and Mastra (June 2026) [S2][S4].",
+    "firstObserved": "Microsoft: cryptocurrency theft and computer network exploitation since at least 2020 [S1]; 'active since at least March 2020' [S2][S3][S4]. Mandiant tracks the overlapping UNC1069 cluster as active since at least 2018 [S7][S8].",
+    "notes": "Microsoft name: Sapphire Sleet (legacy element name COPERNICIUM per Microsoft's mapping) [S5]. Microsoft says the actor is also tracked as UNC1069, STARDUST CHOLLIMA, Alluring Pisces, BlueNoroff, CageyChameleon and CryptoCore [S4][S5]. This record is linked to MITRE G0082 (APT38), but the Microsoft sources gathered here do not list APT38, BeagleBoyz or NICKEL GLADSTONE as Sapphire Sleet names. Keep the APT38 bank-heist history (2016 Bangladesh Bank and similar) separate from Sapphire Sleet's documented 2020+ cryptocurrency activity [S4][S6]."
+  },
+  "attribution": {
+    "sponsor": "Democratic People's Republic of Korea (North Korea). Microsoft calls Sapphire Sleet a North Korean state actor [S2][S4]. MITRE attributes the linked APT38 group to the Reconnaissance General Bureau [S6], but no source gathered here ties Sapphire Sleet itself to a specific DPRK organization.",
+    "confidence": "Microsoft assessed with high confidence that the June 2026 Mastra npm compromise is attributable to Sapphire Sleet [S4]. Microsoft attributed the infrastructure and Axios compromise to Sapphire Sleet without stating a confidence level [S2]. Google Threat Intelligence Group separately attributed the Axios compromise to UNC1069 [S8]. All of these are vendor assessments; no government attribution of Sapphire Sleet by name was found.",
+    "basis": "Microsoft telemetry and incident analysis, including C2 hosting at Hostwinds, a VPS provider Microsoft says Sapphire Sleet commonly uses [S2][S3][S4]. GTIG cited reuse of the WAVESHAPER.V2 backdoor and infrastructure overlaps with known UNC1069 activity, as reported by Security Affairs [S8]. Kaspersky's attribution of the GhostCall/GhostHire campaigns is to BlueNoroff [S9][S10]."
+  },
+  "objectives": "Revenue generation for the DPRK through cryptocurrency theft. Microsoft says the actor's primary motivation is stealing cryptocurrency wallets [S2][S3][S4] and estimated that more than US$10 million in cryptocurrency was stolen from multiple companies over a six-month period [S1]. Access to credentials, keychains and developer environments supports follow-on theft [S3][S4].",
+  "targeting": {
+    "sectors": [
+      "Finance [S2][S4]",
+      "Cryptocurrency and blockchain organizations [S2][S3][S4]",
+      "Venture capital [S2][S3][S4]",
+      "Web3 firms and centralized exchanges (overlapping UNC1069/BlueNoroff reporting) [S7][S9]",
+      "Software developers and open-source maintainers; npm consumers and CI/CD pipelines [S2][S4][S9]",
+      "Job seekers approached through fake recruiting [S1][S3]"
+    ],
+    "regions": [
+      "Global; Microsoft gives no regional restriction [S1][S2]",
+      "India, Turkey, Australia, and parts of Europe and Asia (Kaspersky, BlueNoroff GhostCall/GhostHire since April 2025) [S9]"
+    ],
+    "notes": "Targeting is individual-centric. Executives, investors and developers are approached through LinkedIn and Telegram [S1][S3][S7][S9]. The 2026 npm compromises extended exposure to any developer workstation or CI/CD pipeline that installed the poisoned versions, even if the package was never imported in code [S4]. Kaspersky's regional data comes from its BlueNoroff cluster and may not match Microsoft's Sapphire Sleet boundaries [S9]."
+  },
+  "capabilities": {
+    "summary": "Social engineering is the core capability. Lures include fake venture-capital investment meetings, where a staged connection error prompts the victim to run a .scpt (macOS) or .vbs (Windows) 'fix', and fake recruiter skills assessments hosted on actor-controlled sites [S1]. In an April 2026 macOS intrusion, a 'Zoom SDK Update.scpt' padded with thousands of blank lines launched a curl-to-osascript chain. The chain deployed backdoors (e.g., 'services', 'com.google.chromes.updaters'), a fake password prompt whose capture was exfiltrated via the Telegram Bot API, and theft of browser data, keychain, crypto wallets (Ledger Live, Exodus), Telegram sessions, SSH keys and Apple Notes. It also modified the TCC database and persisted via LaunchDaemons and LaunchAgents [S3]. A June 2026 Teams-themed variant used 'MSTeams SDK Update.scpt' [S3]. Supply-chain capability: in the Axios compromise (axios 1.14.1/0.30.4), a fake dependency, plain-crypto-js@4.2.1, used an install hook to deliver OS-specific payloads for macOS, Windows and Linux [S2]. GTIG identified that payload as the WAVESHAPER.V2 backdoor [S8]. In the Mastra compromise, a takeover of a maintainer account pushed 140+ packages that depended on the typosquat easy-day-js. Its postinstall hook disabled TLS verification and staged a Node.js implant, followed by reflective .NET injection, a PowerShell backdoor, a Defender exclusion and a SYSTEM service [S4]. Mandiant reporting on overlapping UNC1069 describes ClickFix lures, AI-generated video in fake meetings and new families SILENCELIFT, DEEPBREATH and CHROMEPUSH [S7]."
+  },
+  "campaigns": [
+    {
+      "date": "2023 to 2024",
+      "name": "Fake venture-capitalist meetings and recruiter skills assessments",
+      "summary": "Microsoft reported that impersonating venture capitalists with failing meetings, plus fake LinkedIn recruiters, was the primary scheme for the preceding 18 months; more than US$10M in crypto was stolen over six months.",
+      "sources": [
+        "S1"
+      ]
+    },
+    {
+      "date": "2025-04",
+      "name": "GhostCall / GhostHire (Kaspersky: BlueNoroff)",
+      "summary": "Fake VC calls imitating Zoom/Teams targeting macOS users, and fake developer job skills tests delivered via GitHub; seven infection chains; activity since at least April 2025 (GhostCall since mid-2023). Attributed by Kaspersky to BlueNoroff.",
+      "sources": [
+        "S9",
+        "S10"
+      ]
+    },
+    {
+      "date": "2026-02-09",
+      "name": "UNC1069 AI-enabled fintech intrusion (Mandiant)",
+      "summary": "Hijacked Telegram account, spoofed Zoom meeting with suspected AI-generated video, and ClickFix execution leading to seven malware families including SILENCELIFT, DEEPBREATH and CHROMEPUSH.",
+      "sources": [
+        "S7"
+      ]
+    },
+    {
+      "date": "2026-03-31",
+      "name": "Axios npm supply-chain compromise",
+      "summary": "Malicious axios 1.14.1 and 0.30.4 pulled plain-crypto-js@4.2.1 to drop OS-specific RAT payloads; attributed by Microsoft to Sapphire Sleet and by GTIG to UNC1069.",
+      "sources": [
+        "S2",
+        "S8"
+      ]
+    },
+    {
+      "date": "2026-04-16",
+      "name": "macOS 'Zoom SDK Update' intrusion",
+      "summary": "Microsoft detailed a fake-recruiter-to-fake-Zoom-update intrusion chain that harvests credentials and wallets; Apple deployed XProtect and Safari Safe Browsing protections after disclosure. A Teams-themed variant followed in June 2026.",
+      "sources": [
+        "S3"
+      ]
+    },
+    {
+      "date": "2026-06-17",
+      "name": "Mastra npm supply-chain compromise",
+      "summary": "Through a takeover of a maintainer account, 140+ mastra/@mastra packages were published with the typosquat easy-day-js, whose postinstall hook installed a cross-platform implant; attributed by Microsoft to Sapphire Sleet with high confidence on 2026-06-19.",
+      "sources": [
+        "S4"
+      ]
+    }
+  ],
+  "diamond": {
+    "adversary": "North Korean state actor tracked by Microsoft as Sapphire Sleet, overlapping with UNC1069, STARDUST CHOLLIMA, BlueNoroff and others [S4][S5].",
+    "capability": "Persona-based social engineering (fake VC, recruiter, meeting support) leading to AppleScript/VBScript execution; macOS backdoors and credential stealers; npm install-hook supply-chain payloads; WAVESHAPER.V2 (per GTIG) [S1][S2][S3][S4][S8].",
+    "infrastructure": "Fake LinkedIn recruiter profiles and skills-assessment sites [S1]; meeting-themed domains such as uw04webzoom[.]us [S3]; Hostwinds VPS C2 (e.g., sfrclak[.]com, 142.11.206.73:8000) [S2]; C2 at 23.254.164.92 and teams.onweblive[.]org [S4]; Telegram Bot API for credential exfiltration [S3]; hijacked Telegram accounts [S7].",
+    "victim": "Individuals at cryptocurrency, blockchain, venture-capital and fintech organizations; developers and open-source maintainers; downstream npm consumers [S1][S2][S4][S7].",
+    "socioPolitical": "Cryptocurrency theft to generate revenue for the DPRK [S2][S4].",
+    "technology": "macOS Script Editor/osascript and TCC permissions; Windows VBScript and PowerShell; npm lifecycle (postinstall) scripts and semver caret ranges; browser wallet extensions and keychains [S2][S3][S4]."
+  },
+  "gaps": [
+    "Cluster boundaries: this record is linked to MITRE G0082 (APT38), but the Microsoft sources gathered list UNC1069, STARDUST CHOLLIMA, Alluring Pisces, BlueNoroff, CageyChameleon and CryptoCore, not APT38, BeagleBoyz or NICKEL GLADSTONE. APT38-era bank heists should not be attributed to Sapphire Sleet without a source that explicitly links them [S4][S5][S6].",
+    "First-observed dates conflict: Microsoft says March 2020 [S2]; Mandiant says UNC1069 has been active since 2018 [S7][S8].",
+    "Kaspersky (BlueNoroff) and Mandiant (UNC1069) campaign details are mapped to Sapphire Sleet only through alias overlap; Microsoft has not confirmed that each named campaign is Sapphire Sleet activity [S7][S9].",
+    "Primary document not opened: GTIG's Axios attribution, used via secondary coverage [S8]; full Securelist GhostCall/GhostHire report (host unreachable), used via Kaspersky press materials [S9][S10].",
+    "No US government advisory or indictment naming Sapphire Sleet specifically was found; the specific RGB unit responsible is not established in the sources gathered.",
+    "Total cryptocurrency losses attributable specifically to Sapphire Sleet beyond Microsoft's >$10M six-month estimate [S1] are unknown, as are downstream victims of the Axios and Mastra compromises."
+  ],
+  "implications": {
+    "jipoe": "Analyst assessment derived from cited sources; validate before use. STEP 1 (Operational environment): Key terrain includes personnel identities on LinkedIn and Telegram, developer workstations, CI/CD pipelines and the npm dependency graph, all exploited in sourced activity [S1][S2][S4]. STEP 2 (Effects): Any installation of a poisoned package executes code with no user action beyond npm install, so build systems that pull public packages are exposed [S4]. macOS endpoints are directly targeted [S3]. STEP 3 (Threat evaluation): The template is a persona lure (VC, recruiter, meeting support), then a user-run .scpt/.vbs or ClickFix command, then a backdoor, then credential, keychain and wallet theft [S1][S3][S7]. A parallel path is maintainer account takeover, then a malicious dependency with an install hook, then a cross-platform implant [S2][S4]. STEP 4 (COAs): MLCOA is continued financially motivated social engineering against crypto and fintech staff, with incidental compromise of developers who also support DoD-adjacent software [S1][S3]. MDCOA is a supply-chain compromise of a widely used package pulled into DoD or DIB build pipelines, giving broad implant access that could be repurposed beyond theft (analyst extrapolation from [S2][S4]). Candidate indicators: Script Editor or osascript spawning curl; files named '*SDK Update.scpt'; unexpected LaunchDaemons or LaunchAgents such as com.google.webkit.service.plist; Telegram Bot API traffic from endpoints [S3]; npm installs of plain-crypto-js or easy-day-js; outbound traffic to Hostwinds-hosted IPs on port 8000; new Defender exclusions or an 'scdev' service [S2][S4].",
+    "jcc2": "Analyst assessment derived from cited sources; validate before use. (1) Situational awareness: feed software-composition and package-registry alerts (e.g., poisoned Axios or Mastra versions) into JCC2 common operating picture in near real time, because Microsoft reports a window of minutes to hours between malicious publication and detection or removal [S4][S8]. (2) Authorities: DoD software consumed from public registries and contractor development environments sit across DODIN and DIB boundaries; response requires coordination with DC3 and DIB partners rather than unilateral action. (3) Mission assurance: enforce dependency pinning, install with --ignore-scripts, and rebuild from a trusted baseline after exposure, as Microsoft recommends [S2]; harden macOS fleets against user-run AppleScript [S3]. (4) Coordination: vendor attribution differs by name (Microsoft Sapphire Sleet, GTIG UNC1069, Kaspersky BlueNoroff) [S2][S8][S9], so deconflict naming in intelligence products and prioritize indicator sharing over naming disputes."
+  },
+  "sources": [
+    {
+      "ref": "S1",
+      "title": "Microsoft shares latest intelligence on North Korean and Chinese threat actors at CYBERWARCON",
+      "publisher": "Microsoft Threat Intelligence",
+      "date": "2024-11-22",
+      "url": "https://www.microsoft.com/en-us/security/blog/2024/11/22/microsoft-shares-latest-intelligence-on-north-korean-and-chinese-threat-actors-at-cyberwarcon/"
+    },
+    {
+      "ref": "S2",
+      "title": "Mitigating the Axios npm supply chain compromise",
+      "publisher": "Microsoft Threat Intelligence",
+      "date": "2026-04-01",
+      "url": "https://www.microsoft.com/en-us/security/blog/2026/04/01/mitigating-the-axios-npm-supply-chain-compromise/"
+    },
+    {
+      "ref": "S3",
+      "title": "Dissecting Sapphire Sleet's macOS intrusion from lure to compromise",
+      "publisher": "Microsoft Threat Intelligence",
+      "date": "2026-04-16",
+      "url": "https://www.microsoft.com/en-us/security/blog/2026/04/16/dissecting-sapphire-sleets-macos-intrusion-from-lure-to-compromise/"
+    },
+    {
+      "ref": "S4",
+      "title": "From package to postinstall payload: Inside the Mastra npm supply chain compromise (updated 2026-06-19 with Sapphire Sleet attribution)",
+      "publisher": "Microsoft Threat Intelligence",
+      "date": "2026-06-17",
+      "url": "https://www.microsoft.com/en-us/security/blog/2026/06/17/postinstall-payload-inside-mastra-npm-supply-chain-compromise/"
+    },
+    {
+      "ref": "S5",
+      "title": "Microsoft threat actor naming mapping (MicrosoftMapping.json)",
+      "publisher": "Microsoft Threat Intelligence",
+      "date": "2026-10-14",
+      "url": "https://github.com/microsoft/mstic/blob/master/PublicFeeds/ThreatActorNaming/MicrosoftMapping.json"
+    },
+    {
+      "ref": "S6",
+      "title": "APT38, G0082 (description, techniques and software)",
+      "publisher": "MITRE ATT&CK",
+      "date": "2026-10-09",
+      "url": "https://attack.mitre.org/groups/G0082/"
+    },
+    {
+      "ref": "S7",
+      "title": "UNC1069 Targets Cryptocurrency Sector with New Tooling and AI-Enabled Social Engineering",
+      "publisher": "Mandiant / Google Threat Intelligence",
+      "date": "2026-02-09",
+      "url": "https://cloud.google.com/blog/topics/threat-intelligence/unc1069-targets-cryptocurrency-ai-social-engineering"
+    },
+    {
+      "ref": "S8",
+      "title": "Google links Axios npm supply chain attack to North Korea-linked APT UNC1069 (reporting GTIG attribution)",
+      "publisher": "Security Affairs",
+      "date": "2026-04-01",
+      "url": "https://securityaffairs.com/190256/security/google-links-axios-npm-supply-chain-attack-to-north-korea-linked-apt-unc1069.html"
+    },
+    {
+      "ref": "S9",
+      "title": "Kaspersky: BlueNoroff targets executives on Windows and macOS using AI-driven tools",
+      "publisher": "Kaspersky (press release)",
+      "date": "2025-10-28",
+      "url": "https://www.kaspersky.com/about/press-releases/2025_kaspersky-bluenoroff-targets-executives-on-windows-and-macos-using-ai-driven-tools"
+    },
+    {
+      "ref": "S10",
+      "title": "BlueNoroff APT campaigns GhostCall and GhostHire (not opened; host unreachable)",
+      "publisher": "Kaspersky GReAT (Securelist)",
+      "date": "2025-10",
+      "url": "https://securelist.com/bluenoroff-apt-campaigns-ghostcall-and-ghosthire/"
+    }
+  ],
+  "aliasesAdd": []
+}
