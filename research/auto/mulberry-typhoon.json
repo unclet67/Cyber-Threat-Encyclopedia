@@ -1,0 +1,80 @@
+{
+  "mitre": "G1023",
+  "identification": {
+    "summary": "China-based espionage actor that MITRE describes as active since at least 2007, mainly targeting the telecommunications, aerospace and defense industries in the U.S., Europe and Asia. It has a strong interest in compromising networking devices and their underlying software, including with zero-day exploits [S3]. Mandiant (Google) tracks the group as APT5 and describes it as a large group made up of several subgroups, often with distinct tactics and infrastructure [S7]. In 2023 Microsoft named Mulberry Typhoon (formerly MANGANESE) among China-based groups targeting the US defense industrial base, most notably with a zero-day exploit against devices [S1].",
+    "firstObserved": "Active since at least 2007 per Mandiant and MITRE [S3][S7].",
+    "notes": "Microsoft name: Mulberry Typhoon (formerly MANGANESE), origin China. Microsoft maps KEYHOLE PANDA, Backdoor-DPD, COVENANT, CYSERVICE, Bottle, Red Horus, Red Naga, Auriga, APT5, ATG48, TG-2754 and tabcteng to it [S2]. MITRE (G1023) lists APT5, Mulberry Typhoon, MANGANESE, BRONZE FLEETWOOD (Secureworks), Keyhole Panda and UNC2630 [S3]. MISP Galaxy also lists TEMP.Bottle (FireEye), Poisoned Flight and BASALT CASTLE as synonyms [S8]. UNC2630 is a Mandiant cluster that Mandiant itself linked to APT5 only tentatively ('may have ties'); MITRE folds it into G1023 [S3][S4]. Do not confuse this actor with APT12 (Hexagon Typhoon)."
+  },
+  "attribution": {
+    "sponsor": "People's Republic of China. Microsoft lists the actor's origin as China [S2]; Mandiant lists suspected attribution as China [S7]. For the UNC2630 cluster, Mandiant suspected it 'operates on behalf of the Chinese government' [S4].",
+    "confidence": "Mandiant's 2021 wording on UNC2630 is hedged: it suspects UNC2630 operates for the Chinese government and 'may have ties to APT5', and found only 'limited evidence' of government sponsorship. Mandiant said it could not definitively connect UNC2630 to APT5, although a trusted third party had found evidence linking the activity to historic APT5 campaigns [S4]. A Mandiant report says the NSA attributed exploitation of Citrix ADC CVE-2022-27518 to APT5 in December 2022 [S6][S9]. Microsoft names Mulberry Typhoon directly in its 2023 East Asia report [S1].",
+    "basis": "Microsoft threat intelligence and naming taxonomy [S1][S2]; Mandiant incident response and threat intelligence, including similarities to APT5 intrusions from 2014-2015 [S4][S7]; an NSA cybersecurity advisory as described by Mandiant and MITRE (not opened here) [S6][S9]; and MITRE ATT&CK group G1023 [S3]."
+  },
+  "objectives": "Espionage, collecting technical, military and commercial information. Mandiant reports a focus on telecommunications and technology companies, especially information about satellite communications. It also reports theft of military-technology files whose names suggest interest in product specifications, procurement bids and proposals, and UAV documents [S7]. Mandiant reports direct evidence of UNC2630 and other Chinese actors stealing credentials, email and intellectual property with dual commercial and military uses, in sectors aligned with China's 14th Five-Year Plan [S5].",
+  "targeting": {
+    "sectors": [
+      "Telecommunications (regional providers and global telecom firms) [S7][S3]",
+      "Technology and high-tech manufacturing [S7][S5]",
+      "Aerospace and defense, including the US defense industrial base [S3][S4][S1]",
+      "Military-application technology and electronics firms [S7][S8]",
+      "Government [S5]",
+      "Transportation, financial and education (Pulse Secure-era victims) [S5]"
+    ],
+    "regions": [
+      "United States [S1][S3][S4]",
+      "Europe [S3][S5]",
+      "Asia, including Southeast Asia and a South Asian defense organization [S7][S8]"
+    ],
+    "notes": "The Pulse Secure victim set (defense, government, telecom, high tech, education, transportation, financial in the US and Europe) covers several Chinese clusters, including UNC2717, which Mandiant did not tie to APT5. Mandiant said historic Mandiant and BAE investigations had identified many of these organizations as earlier APT5 targets [S5]."
+  },
+  "capabilities": {
+    "summary": "Zero-day and n-day exploitation of edge and network appliances: Pulse Secure VPN (CVE-2021-22893 plus earlier 2019-2020 flaws) [S4], and Citrix ADC CVE-2022-27518 as reported by NSA via Mandiant [S6][S9] and footnoted by Microsoft [S1]. On Pulse Secure appliances, UNC2630 used trojanized shared objects (SLOWPULSE) to log credentials and bypass authentication flows, including MFA. It also used webshells (ATRIUM, SLIGHTPULSE, RAPIDPULSE), patched the upgrade script (DSUpgrade.pm) to survive appliance upgrades, and used tools for log tampering (CLEANPULSE) and log or credential harvesting (BLOODMINE, BLOODBANK) [S4][S5]. UNC2630 used harvested VPN credentials to move laterally with legitimate accounts [S4]. Earlier APT5 activity included unauthorized code changes to an embedded OS (2014) and downloading and modifying a telecom company's router images (2015) [S7]. Mandiant also lists keylogging malware used against telecom executives and a large custom malware set (e.g., BRIGHTCREST, SWEETCOLA, LEOUNCIA, Poison Ivy) [S7][S8]."
+  },
+  "campaigns": [
+    {"date": "2014", "name": "Embedded OS code modification", "summary": "Mandiant incident response found APT5 making unauthorized code changes to files in the embedded operating system of a technology platform.", "sources": ["S7"]},
+    {"date": "2014", "name": "International telecom executive monitoring", "summary": "In late 2014, APT5 breached an international telecommunications company and used keylogging malware to monitor an executive who manages relationships with other telecom companies.", "sources": ["S8"]},
+    {"date": "2015", "name": "US telecom router image tampering; South Asian defense theft", "summary": "APT5 compromised a US telecom provider serving private and government customers and downloaded and modified router images. In the same period it stole military-technology files from a South Asian defense organization.", "sources": ["S7"]},
+    {"date": "2020-08", "name": "Pulse Secure VPN exploitation (UNC2630)", "summary": "From as early as August 2020 to March 2021, UNC2630 targeted US defense industrial base companies through Pulse Secure appliances, including zero-day CVE-2021-22893, using SLOWPULSE and related families. Mandiant said UNC2630 may have ties to APT5.", "sources": ["S4", "S6"]},
+    {"date": "2021-04", "name": "UNC2630 cleanup after disclosure", "summary": "Between 17 and 20 April 2021, UNC2630 accessed dozens of compromised devices and removed webshells such as ATRIUM and SLIGHTPULSE. Mandiant added four new families (BLOODMINE, BLOODBANK, CLEANPULSE, RAPIDPULSE).", "sources": ["S5"]},
+    {"date": "2022-12", "name": "Citrix ADC zero-day CVE-2022-27518", "summary": "Citrix reported in-the-wild exploitation of CVE-2022-27518 in Citrix ADC, which NSA attributed to APT5 and covered in threat-hunting guidance.", "sources": ["S6", "S9"]},
+    {"date": "2023-09-07", "name": "Microsoft names Mulberry Typhoon targeting the US DIB", "summary": "Microsoft reports that Mulberry Typhoon targeted the US defense industrial base, most notably with a zero-day exploit against devices (footnote cites CVE-2022-27518).", "sources": ["S1"]}
+  ],
+  "diamond": {
+    "adversary": "China-based espionage actor (Microsoft: Mulberry Typhoon; Mandiant: APT5), possibly with several subgroups. UNC2630 is linked to it tentatively [S1][S4][S7].",
+    "capability": "Edge-device zero-days (Pulse Secure CVE-2021-22893, Citrix ADC CVE-2022-27518). Trojanized appliance components that harvest credentials and bypass MFA, webshells, persistence that survives upgrades, log tampering, and keyloggers and custom malware on Windows networks [S4][S5][S6][S7].",
+    "infrastructure": "Compromised VPN and ADC appliances used as entry and pivot points. Mandiant described UNC2630's infrastructure as unique and not seen in other campaigns, but published no details [S4].",
+    "victim": "Telecommunications and technology firms, the US defense industrial base, aerospace, government, and military-technology suppliers in the US, Europe and Asia [S1][S3][S5][S7].",
+    "socioPolitical": "Collection of dual-use military and commercial technology aligned with Chinese government priorities and the 14th Five-Year Plan [S5].",
+    "technology": "Internet-facing remote-access and application-delivery appliances (Pulse Secure/Ivanti, Citrix ADC), router firmware images, and embedded operating systems [S4][S6][S7]."
+  },
+  "gaps": [
+    "NSA advisory 'APT5: Citrix ADC Threat Hunting Guidance' (December 2022) was not opened (media.defense.gov blocked). Its content is known here only through Mandiant's and MITRE's descriptions [S6][S3].",
+    "The full Microsoft East Asia report PDF and Microsoft Learn naming page were unreachable. Only the Microsoft web summary was read [S1].",
+    "Secureworks BRONZE FLEETWOOD profile, the FireEye 2015 Southeast Asia report and the MITRE ATT&CK web page were not reachable. MITRE content was read from the official ATT&CK STIX data instead.",
+    "The UNC2630-to-APT5 link is tentative in Mandiant's own reporting [S4]. MITRE merges UNC2630 into G1023 [S3]. Pulse Secure activity attributed to UNC2717 or other actors must not be assigned to Mulberry Typhoon.",
+    "Web search budget was exhausted before searching. No reporting after 2023 (2024-2026 campaigns, if any) was found, and current activity is unverified.",
+    "Alias conflict: this encyclopedia maps TG-2754 to Mulberry Typhoon (per Microsoft [S2]), but MISP Galaxy associates TG-2754 with APT12 / BRONZE GLOBE. The vendors behind BASALT CASTLE and Poisoned Flight are not stated in [S8].",
+    "No public government indictment or sanctions naming APT5 or Mulberry Typhoon individuals or front companies was found in the sources gathered.",
+    "The specific victims and data stolen in the Citrix ADC campaign are not public in the sources gathered."
+  ],
+  "implications": {
+    "jipoe": "Analyst assessment derived from cited sources; validate before use. STEP 1 (OE): Key terrain is internet-facing remote-access and application-delivery appliances (SSL VPN, ADC) at DIB, telecom and government enclaves, plus router and embedded firmware at telecom providers [S4][S6][S7]. STEP 2 (Effects): Appliance compromise gives the adversary valid credentials, MFA bypass and persistence that survives patching or upgrades. Patching alone does not restore trust [S4][S5]. STEP 3 (Adversary template): Edge zero-day or n-day; trojanized appliance component or webshell; credential harvesting from VPN login flows; lateral movement with legitimate accounts; collection of technical, procurement and email data; log tampering and webshell cleanup after public disclosure [S4][S5][S7]. STEP 4: MLCOA is continued exploitation of newly found edge-appliance flaws against DIB and telecom targets to steal dual-use military technology [S1][S5]. MDCOA (analyst extrapolation from the 2015 router-image modification [S7]) is tampering with telecom or network-device firmware that carries DoD traffic, enabling persistent access during a crisis. Candidate indicators: VPN logins that succeed when the matching LDAP or RADIUS authentication failed [S4]; integrity-checker mismatches or unexpected changes to appliance system files or upgrade scripts [S4]; webshell files on appliances; unexplained gaps or suppression in appliance logs [S5].",
+    "jcc2": "Analyst assessment derived from cited sources; validate before use. (1) Situational awareness: JCC2 views should track the inventory, version and integrity-check status of all VPN and ADC edge devices on the DODIN and DIB partner networks, because this actor's documented entry points are those devices [S1][S4][S6]. (2) Authorities: Many targets are DIB and telecom networks outside DoD control. Hunting and response there depend on DC3/DIB CS, CISA and partner coordination rather than direct DoD action. (3) Mission assurance: Treat credentials that crossed a compromised appliance as compromised and plan enterprise-wide resets, as Ivanti and Mandiant recommended [S4]. Assume upgrade-persistent implants until devices are rebuilt [S4]. (4) Coordination: Vendor disclosures of edge-device zero-days should trigger immediate cross-command hunt tasking. The actor removed webshells within days of public disclosure, so the window for forensic capture is short [S5]."
+  },
+  "sources": [
+    {"ref": "S1", "title": "Digital threats from East Asia increase in breadth and effectiveness", "publisher": "Microsoft Threat Intelligence", "date": "2023-09-07", "url": "https://www.microsoft.com/en-us/security/security-insider/intelligence-reports/digital-threats-from-east-asia-increase-in-breadth-and-effectiveness"},
+    {"ref": "S2", "title": "Microsoft threat actor naming mapping (MicrosoftMapping.json)", "publisher": "Microsoft Threat Intelligence", "date": "2026-10-14 (retrieved)", "url": "https://github.com/microsoft/mstic/blob/master/PublicFeeds/ThreatActorNaming/MicrosoftMapping.json"},
+    {"ref": "S3", "title": "APT5, G1023 (read via official ATT&CK STIX data)", "publisher": "MITRE ATT&CK", "date": "2026-07-31 (object modified)", "url": "https://attack.mitre.org/groups/G1023/"},
+    {"ref": "S4", "title": "Check Your Pulse: Suspected APT Actors Leverage Authentication Bypass Techniques and Pulse Secure Zero-Day", "publisher": "Mandiant (Google Cloud)", "date": "2021-04-20", "url": "https://cloud.google.com/blog/topics/threat-intelligence/suspected-apt-actors-leverage-bypass-techniques-pulse-secure-zero-day"},
+    {"ref": "S5", "title": "Re-Checking Your Pulse: Updates on Chinese APT Actors Compromising Pulse Secure VPN Devices", "publisher": "Mandiant (Google Cloud)", "date": "2021-05-27", "url": "https://cloud.google.com/blog/topics/threat-intelligence/updates-on-chinese-apt-compromising-pulse-secure-vpn-devices"},
+    {"ref": "S6", "title": "Stealth Mode: Chinese Cyber Espionage Actors Continue to Evolve Tactics to Avoid Detection (reporting NSA attribution of CVE-2022-27518 to APT5)", "publisher": "Mandiant (Google Cloud)", "date": "2023-07-18", "url": "https://cloud.google.com/blog/topics/threat-intelligence/chinese-espionage-tactics"},
+    {"ref": "S7", "title": "APT groups and threat actors (APT5 entry)", "publisher": "Google Cloud / Mandiant", "date": "2026-10-14 (retrieved)", "url": "https://cloud.google.com/security/resources/insights/apt-groups"},
+    {"ref": "S8", "title": "MISP Galaxy threat-actor cluster (APT5 entry)", "publisher": "MISP Project", "date": "2026-10-14 (retrieved)", "url": "https://raw.githubusercontent.com/MISP/misp-galaxy/main/clusters/threat-actor.json"},
+    {"ref": "S9", "title": "APT5: Citrix ADC Threat Hunting Guidance (not opened; cited via Mandiant [S6] and MITRE [S3])", "publisher": "National Security Agency", "date": "2022-12-13", "url": "https://media.defense.gov/2022/Dec/13/2003131586/-1/-1/0/CSA-APT5-CITRIXADC-V1.PDF"}
+  ],
+  "aliasesAdd": [
+    {"name": "TEMP.Bottle", "vendor": "FireEye (per MISP Galaxy)"},
+    {"name": "Poisoned Flight", "vendor": "Other / unspecified (per MISP Galaxy)"},
+    {"name": "BASALT CASTLE", "vendor": "Other / unspecified (per MISP Galaxy)"}
+  ]
+}

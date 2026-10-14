@@ -1,0 +1,64 @@
+{
+  "identification": {
+    "summary": "China-based nation-state activity group that Microsoft tracks as the primary threat group targeting nations that ring the South China Sea [S1][S2]. Microsoft reports that it consistently targets government ministries, military entities, and corporate entities connected to critical infrastructure, particularly telecoms, and that it has been particularly persistent since January 2023 [S1]. In June 2023 it successfully targeted military and executive entities in Indonesia and a Malaysian maritime system [S2].",
+    "firstObserved": "",
+    "notes": "Microsoft name: Raspberry Typhoon (formerly RADIUM) [S1][S3]. Microsoft's public naming map lists RADIUM, LOTUS PANDA, LotusBlossom and APT30 as other names for Raspberry Typhoon but does not say which vendor uses each name [S3]. Microsoft does not map Naikon, Spring Dragon, Billbug/Thrip or PLA Unit 78020 to Raspberry Typhoon [S3]. MITRE tracks APT30 as G0013 and tracks Naikon (G0019), Lotus Blossom (G0030) and Thrip (G0076) as separate groups [S4]. Treat vendor reporting on those clusters as related but not the same as Microsoft's Raspberry Typhoon."
+  },
+  "attribution": {
+    "sponsor": "China. Microsoft describes Raspberry Typhoon as a nation-state activity group based out of China [S2] and discusses it under Chinese state-sponsored targeting that mirrors strategic goals in the South China Sea [S1].",
+    "confidence": "Microsoft attributes the activity to Raspberry Typhoon by name but does not state a confidence level or a specific sponsoring organization in the sources reviewed [S1][S2]. No government attribution of the Microsoft-defined cluster was found in the sources reviewed.",
+    "basis": "Microsoft Threat Intelligence observations reported in its East Asia threat reports [S1][S2]; Microsoft's public actor-name mapping [S3]."
+  },
+  "objectives": "Intelligence collection from governments, militaries and critical-infrastructure entities in South China Sea littoral states, consistent with Chinese strategic goals in the South China Sea [S1][S2]. Microsoft's 2024 report places the June 2023 Indonesia and Malaysia activity in the weeks before a rare multilateral naval exercise involving Indonesia, China and the United States [S2].",
+  "targeting": {
+    "sectors": [
+      "Government ministries, from defense and intelligence to economic and trade ministries [S1]",
+      "Military entities [S1][S2]",
+      "Critical infrastructure, particularly telecommunications [S1]",
+      "Executive (government leadership) entities [S2]",
+      "Maritime systems [S2]"
+    ],
+    "regions": [
+      "Nations ringing the South China Sea [S1]",
+      "Indonesia [S2]",
+      "Malaysia [S2]"
+    ],
+    "notes": "Microsoft's 2023 report notes that targets in many countries range from defense and intelligence-related ministries to economic and trade-related ministries, but that sentence is not explicitly limited to Raspberry Typhoon [S1]. Microsoft's 2024 report lists Raspberry Typhoon with Flax Typhoon and Granite Typhoon as the actors behind observed events in countries in or around the South China Sea [S2]."
+  },
+  "capabilities": {
+    "summary": "When it targets government ministries or infrastructure, Microsoft says Raspberry Typhoon typically conducts intelligence collection and malware execution [S1]. The Microsoft sources reviewed do not describe its initial-access methods or tooling [S1][S2]. MITRE's APT30 entry (G0013), which Microsoft maps to Raspberry Typhoon, lists the SHIPSHAPE, BACKSPACE, NETEAGLE, SPACESHIP and FLASHFLOOD malware families, as captured in this encyclopedia's MITRE import [S3][S4]."
+  },
+  "campaigns": [
+    {"date": "2023-01", "name": "Sustained South China Sea targeting", "summary": "Microsoft reports Raspberry Typhoon has been particularly persistent since January 2023 against government, military and telecom-linked critical-infrastructure targets around the South China Sea.", "sources": ["S1"]},
+    {"date": "2023-06", "name": "Indonesia and Malaysia targeting before multilateral naval exercise", "summary": "Raspberry Typhoon successfully targeted military and executive entities in Indonesia and a Malaysian maritime system in the weeks before a rare naval exercise involving Indonesia, China and the United States.", "sources": ["S2"]}
+  ],
+  "diamond": {
+    "adversary": "China-based nation-state activity group (Microsoft: Raspberry Typhoon, formerly RADIUM) [S1][S2][S3].",
+    "capability": "Intelligence collection and malware execution [S1]; APT30-associated malware families listed by MITRE G0013 [S4].",
+    "infrastructure": "",
+    "victim": "Government ministries, military and executive entities, and telecom and maritime critical infrastructure in South China Sea littoral states, including Indonesia and Malaysia [S1][S2].",
+    "socioPolitical": "Collection that mirrors Chinese strategic goals in the South China Sea, with activity timed before a multilateral naval exercise involving the United States [S1][S2].",
+    "technology": "Government and military networks, telecommunications infrastructure and maritime systems in the region [S1][S2]."
+  },
+  "gaps": [
+    "Research was limited in this run. The web search budget was exhausted before searching began, and only microsoft.com and github.com were reachable. MITRE ATT&CK (G0013, G0019, G0030, G0076), Kaspersky/Securelist (Naikon, Spring Dragon), FireEye/Mandiant APT30 report (2015), Secureworks BRONZE GENEVA profile, ThreatConnect CameraShy, Cluster25, CFR and Cyware references in the actor record could not be opened. Rerun to add pre-2023 history and tooling.",
+    "First-observed date for the Microsoft-defined cluster is not stated in the Microsoft sources reviewed.",
+    "Cluster boundaries are unresolved. The imported alias list merges Naikon (linked by ThreatConnect to PLA Unit 78020), Lotus Blossom/Spring Dragon, Billbug/Thrip and APT30. Microsoft maps only RADIUM, LOTUS PANDA, LotusBlossom and APT30 [S3], and MITRE keeps these as separate groups. The PLA Unit 78020 attribution belongs to Naikon reporting and has not been verified against the Microsoft cluster.",
+    "Microsoft does not state a confidence level, a sponsoring organization (MSS or PLA), or initial-access methods for Raspberry Typhoon in the sources reviewed.",
+    "No infrastructure details (C2 domains, hosting patterns) were found in accessible sources.",
+    "Post-2024 Raspberry Typhoon activity was not found in accessible sources."
+  ],
+  "implications": {
+    "jipoe": "Analyst assessment derived from cited sources; validate before use. STEP 1 (OE): Key terrain includes partner-nation defense, intelligence, executive and trade ministry networks, regional telecom carriers, and maritime systems around the South China Sea [S1][S2]. STEP 2 (effects): Compromise of partner military and maritime systems can expose combined-exercise planning, port and maritime data, and coalition communications that pass over regional telecoms [S1][S2]. STEP 3 (adversary template): Sustained, persistent collection against government and military targets with malware execution; tradecraft details beyond this are not described by Microsoft [S1]. STEP 4: MLCOA is continued intelligence collection against South China Sea littoral governments and telecoms, increasing before multilateral exercises involving the United States [S1][S2]. MDCOA is use of telecom or maritime-system access during a regional crisis to collect on coalition force movements. Candidate indicators: new targeting of partner military and executive networks in the weeks before announced exercises, intrusions at regional telecom providers, and anomalous access to maritime-system networks [S2].",
+    "jcc2": "Analyst assessment derived from cited sources; validate before use. (1) Situational awareness: share Microsoft-reported Raspberry Typhoon activity windows with exercise planners, because Microsoft observed targeting timed before a multilateral naval exercise [S2]. (2) Authorities: activity sits mostly on partner-nation and commercial telecom networks outside the DODIN [S1], so response depends on partner and host-nation channels rather than DoD authorities. (3) Mission assurance: assume coalition data transiting or stored in partner ministry and regional telecom networks may be exposed [S1][S2]; use protected channels for exercise planning. (4) Coordination: coordinate with INDOPACOM, partner CERTs in Indonesia and Malaysia, and vendors to deconflict overlapping cluster names (Lotus Blossom, Naikon, APT30) before reporting [S3]."
+  },
+  "sources": [
+    {"ref": "S1", "title": "Digital threats from East Asia increase in breadth and effectiveness", "publisher": "Microsoft Threat Intelligence (Security Insider)", "date": "2023-09-07", "url": "https://www.microsoft.com/en-us/security/security-insider/intelligence-reports/digital-threats-from-east-asia-increase-in-breadth-and-effectiveness"},
+    {"ref": "S2", "title": "East Asia threat actors employ unique methods", "publisher": "Microsoft Threat Intelligence (Security Insider)", "date": "2024-04-04", "url": "https://www.microsoft.com/en-us/security/security-insider/threat-landscape/east-asia-threat-actors-employ-unique-methods"},
+    {"ref": "S3", "title": "Microsoft threat actor naming mapping (MicrosoftMapping.json)", "publisher": "Microsoft Threat Intelligence", "date": "2026-10-14", "url": "https://github.com/microsoft/mstic/blob/master/PublicFeeds/ThreatActorNaming/MicrosoftMapping.json"},
+    {"ref": "S4", "title": "APT30, G0013 (software list from this encyclopedia's MITRE import; page not reachable this run)", "publisher": "MITRE ATT&CK", "date": "2026-07-31", "url": "https://attack.mitre.org/groups/G0013/"}
+  ],
+  "aliasesAdd": [
+    {"name": "RADIUM", "vendor": "Microsoft (former name)"}
+  ]
+}

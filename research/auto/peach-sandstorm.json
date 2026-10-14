@@ -1,0 +1,78 @@
+{
+  "identification": {
+    "summary": "Peach Sandstorm is an Iranian nation-state group that has targeted organizations in multiple countries. Its past targets span aviation, construction, defense, education, energy, financial services, healthcare, government, satellite and telecommunications [S1]. Since February 2023 it has run large password-spray campaigns against thousands of organizations. Its main intelligence targets are satellite, government and defense, plus some pharmaceutical organizations [S1][S2]. In 2024 it deployed a custom multi-stage backdoor called Tickler [S2]. Mandiant, tracking the group as APT33, has described cyber espionage operations since at least 2013 [S3].",
+    "firstObserved": "Mandiant (as APT33): active since at least 2013 [S3]. Microsoft cites a 2019 wave of activity and password spraying observed since February 2023 [S1][S2].",
+    "notes": "Microsoft name: Peach Sandstorm (formerly HOLMIUM). Microsoft states its activity overlaps with public reporting on APT33, Elfin and Refined Kitten [S1]. MITRE tracks the group as APT33 (G0064); the MITRE page could not be fetched for this research. Mandiant's 2018 RULER/POWERTON report first linked that activity to APT33 with low confidence, then attributed it in a July 2019 update [S4]."
+  },
+  "attribution": {
+    "sponsor": "Iran. Microsoft assesses that Peach Sandstorm operates on behalf of the Islamic Revolutionary Guard Corps (IRGC), based on victimology and operational focus [S2].",
+    "confidence": "Microsoft's IRGC assessment has no stated confidence level in the source reviewed [S2]. Mandiant assessed in 2017 that APT33 works at the behest of the Iranian government. It noted that the overlap in tools and hosting providers is not conclusive by itself [S3]. Mandiant cited open-source reporting that links an APT33-associated persona to the Nasr Institute, and treated this only as supporting evidence [S3]. No government attribution document was reviewed.",
+    "basis": "Microsoft cites victimology and operational focus, plus activity clustered between 09:00 and 17:00 Iran Standard Time in mid-2023 [S1][S2]. Mandiant cites sector targeting aligned with Iranian interests, activity during Iranian working hours (UTC+4:30) and the Saturday-Wednesday workweek, Iranian tools and hosting, Farsi artifacts in DROPSHOT, and the persona 'xman_1365_x' in TURNEDUP PDB paths [S3]."
+  },
+  "objectives": "Strategic intelligence collection in support of Iranian state interests [S1][S2]. Microsoft notes that some password-spray targeting was opportunistic [S1]. Mandiant assessed in 2017 that APT33 targeting may aim to gain insight into Saudi military aviation capabilities and to support Iran's petrochemical competitiveness [S3]. Mandiant also noted possible links to destructive capability (the SHAPESHIFT wiper) but had not directly observed destructive operations [S3].",
+  "targeting": {
+    "sectors": [
+      "Satellite and space [S1][S2]",
+      "Defense and defense industrial base [S1][S2]",
+      "Government, federal and state [S2]",
+      "Communications equipment and telecommunications [S1][S2]",
+      "Oil and gas, energy and petrochemical [S2][S3]",
+      "Aerospace and aviation, military and commercial [S3]",
+      "Education and higher education, both as targets and as a source of hijacked infrastructure [S2]",
+      "Pharmaceutical [S1]",
+      "Engineering firms in energy and aerospace [S4]"
+    ],
+    "regions": [
+      "United States [S2][S3]",
+      "United Arab Emirates [S2]",
+      "Australia [S2]",
+      "Saudi Arabia [S3]",
+      "South Korea [S3]",
+      "Europe, including a European defense organization [S2]",
+      "Middle East, including a satellite operator [S2]"
+    ],
+    "notes": "Microsoft reports Tickler targeting of satellite, communications equipment, oil and gas, and federal and state government organizations in the US and UAE in 2024. In April-May 2024 it saw password spraying against defense, space, education and government targets in the US and Australia [S2]. Mandiant's 2017 regional focus was the US, Saudi Arabia and South Korea [S3]."
+  },
+  "capabilities": {
+    "summary": "Initial access relies mainly on high-volume, low-and-slow password spraying, often sent over TOR or commercial VPN infrastructure with a 'go-http-client' user agent [S1][S2]. The group has also exploited public-facing applications, including Confluence CVE-2022-26134 and Zoho ManageEngine CVE-2022-47966 [S1]. Its social engineering includes job-themed spearphishing with malicious HTA files and domains impersonating aviation firms [S3]. From at least November 2021 to mid-2024 it ran fake LinkedIn personas posing as students, developers and recruiters [S2]. It has also delivered malicious ZIP files through Microsoft Teams messages [S2].\n\nAfter gaining access, the group performs cloud identity reconnaissance with AzureHound and ROADtools [S1]. In March 2023 it used Golden SAML to reach a target's cloud resources [S1]. It maintains access with AnyDesk, Azure Arc tied to an actor-controlled subscription, the EagleRelay tunneling tool, and VMware search-order hijacking [S1]. Other observed activity includes Active Directory snapshots with AD Explorer and lateral movement over SMB [S2].\n\nTickler is a custom backdoor seen April-July 2024. It uses a DLL-sideloading dropper and Run-key persistence, and supports systeminfo, dir, run, delete, interval, upload and download commands [S2]. Tickler's C2 ran on fraudulent Azure App Service (azurewebsites.net) domains, set up through Azure for Students subscriptions and compromised education accounts [S2].\n\nEarlier custom tooling includes the DROPSHOT dropper, SHAPESHIFT wiper and TURNEDUP backdoor [S3]. In 2017-2018 the group used RULER to abuse Outlook rules and the home page (CVE-2017-11774), deploying PoshC2 and the custom POWERTON PowerShell backdoor [S4]. It regained access within weeks of containment by password spraying again [S4]."
+  },
+  "campaigns": [
+    {"date": "2016", "name": "Aviation job-lure spearphishing", "summary": "Mandiant reports recruitment-themed spearphishing with malicious HTA files against aviation-industry employees. It also observed domains masquerading as Boeing, Alsalam Aircraft, Northrop Grumman Aviation Arabia and Vinnell Arabia.", "sources": ["S3"]},
+    {"date": "2017-09-20", "name": "Mandiant public disclosure of APT33", "summary": "Mandiant describes APT33 espionage against aerospace and energy/petrochemical targets in the US, Saudi Arabia and South Korea. The report covers the DROPSHOT, SHAPESHIFT and TURNEDUP tools.", "sources": ["S3"]},
+    {"date": "2017-11/2018-12", "name": "RULER / Outlook home page intrusions (OVERRULED)", "summary": "Password spraying against OWA and O365, followed by exploitation of the Outlook home page (CVE-2017-11774) to deploy PoshC2 and POWERTON against engineering, energy and aerospace organizations. Mandiant attributed the activity to APT33 in a July 2019 update.", "sources": ["S4"]},
+    {"date": "2019", "name": "Wave coinciding with US-Iran tensions", "summary": "Microsoft says a 2019 wave of Peach Sandstorm attacks coincided with rising US-Iran tensions.", "sources": ["S1"]},
+    {"date": "2021-11/2024", "name": "LinkedIn persona social engineering", "summary": "Fake LinkedIn profiles posing as students, developers and talent-acquisition managers targeted higher education, satellite and defense sectors. The accounts were taken down.", "sources": ["S2"]},
+    {"date": "2023-02/2023-07", "name": "Global password-spray campaign", "summary": "Password spraying hit thousands of organizations, with follow-on intrusions against satellite, defense and pharmaceutical targets. The campaign included Confluence and ManageEngine exploitation, Golden SAML (March 2023), Azure Arc persistence and AnyDesk.", "sources": ["S1"]},
+    {"date": "2024-04/2024-07", "name": "Tickler backdoor and Azure infrastructure abuse", "summary": "Tickler was deployed against satellite, communications equipment, oil and gas, and government targets in the US and UAE. C2 ran on fraudulent Azure apps, and password spraying hit US and Australian defense, space, education and government targets. Microsoft disrupted the infrastructure.", "sources": ["S2"]}
+  ],
+  "diamond": {
+    "adversary": "Iranian state-sponsored operators that Microsoft assesses act on behalf of the IRGC [S2]. Mandiant assessed that APT33 works at the behest of the Iranian government and tied it to the persona 'xman_1365_x' [S3].",
+    "capability": "Password spraying, public-facing exploits (CVE-2022-26134, CVE-2022-47966, CVE-2017-11774), Golden SAML, AzureHound and ROADtools, AnyDesk, Azure Arc, EagleRelay, the Tickler backdoor, and older tools including DROPSHOT, SHAPESHIFT, TURNEDUP, POWERTON and PoshC2 [S1][S2][S3][S4].",
+    "infrastructure": "TOR and commercial VPN egress for spraying [S1][S2]. Actor-created Azure tenants and Azure for Students subscriptions, compromised education accounts, and fraudulent azurewebsites.net C2 domains [S2]. Lookalike aviation-company domains for phishing [S3].",
+    "victim": "Satellite, defense, space, government, communications, oil and gas, aviation, education and pharmaceutical organizations, mainly in the US, Gulf states, Australia and Europe [S1][S2][S3].",
+    "socioPolitical": "Collection that supports Iranian state interests, including insight into adversary military aviation and space capabilities and the regional petrochemical competition [S1][S2][S3]. Microsoft notes that activity rose during US-Iran tensions in 2019 [S1].",
+    "technology": "Cloud identity (Entra ID, OWA/O365) without MFA, exposed Confluence and ManageEngine servers, Outlook clients, Azure tenant and subscription trust, and Microsoft Teams and LinkedIn as delivery channels [S1][S2][S4]."
+  },
+  "gaps": [
+    "The search budget ran out during this research, and MITRE ATT&CK G0064, Symantec (Elfin), Secureworks (COBALT TRINITY), Trend Micro, ThreatConnect, CFR and Dragos (MAGNALLIUM) pages could not be fetched (DNS failures). Their content is not used here.",
+    "FalseFont backdoor activity against the defense industrial base (Microsoft, late 2023) is widely attributed to Peach Sandstorm but could not be verified from a fetched source in this session.",
+    "Activity from 2025 onward, including any activity during the June 2025 Israel-Iran conflict, was not reviewed.",
+    "No US government attribution document (indictment, advisory or sanctions) linking Peach Sandstorm or APT33 to a specific IRGC unit was reviewed. The IRGC link rests on Microsoft's assessment.",
+    "Links to destructive operations (Shamoon/StoneDrill, SHAPESHIFT) are unverified. Mandiant stated it had not directly observed APT33 carry out destructive operations [S3][S4].",
+    "Dragos MAGNALLIUM and Proofpoint TA451 overlaps with Peach Sandstorm were not confirmed against a fetched source. Cluster boundaries for those names are taken from the actor record's alias list only.",
+    "Victims of the Tickler and 2023 spray campaigns are not named publicly, so the scale of data theft is unknown."
+  ],
+  "implications": {
+    "jipoe": "Analyst assessment derived from cited sources; validate before use. STEP 1 (OE): Key cyber terrain includes cloud identity providers (Entra ID, O365/OWA), Azure tenants and subscriptions, internet-facing collaboration and IT management servers (Confluence, ManageEngine), and the personal social-media presence of space, satellite and defense personnel [S1][S2]. STEP 2 (Effects): Password spraying from TOR and VPN infrastructure blends with background authentication noise. Hostile infrastructure on Azure for Students and azurewebsites.net inherits trust from Microsoft-owned domains, which weakens domain-reputation defenses [S1][S2]. STEP 3 (Adversary template): Spray or exploit a public-facing app, then run cloud recon with AzureHound/ROADtools, then persist via AnyDesk, Azure Arc or Golden SAML, then take an AD snapshot, move laterally over SMB, and deploy a custom backdoor such as Tickler [S1][S2]. Operators work Iranian business hours [S1]. STEP 4: MLCOA is persistent espionage against satellite, space, defense and government networks of the US, partners and Gulf states, possibly intensifying during US-Iran tension [S1][S2]. MDCOA is using access to a defense or energy network to stage destructive wiper effects; Mandiant noted SHAPESHIFT capability but never observed its use [S3]. Candidate indicators include bursts of failed sign-ins with the 'go-http-client' user agent from TOR or VPN ranges, new Azure Arc registrations or unexpected AnyDesk installs, and AD Explorer execution. Further indicators are DLL sideloading from user directories, outbound traffic to newly created azurewebsites.net apps, and unsolicited Teams or LinkedIn file shares to space and defense staff [S1][S2].",
+    "jcc2": "Analyst assessment derived from cited sources; validate before use. Situational awareness: Fuse identity telemetry (Entra sign-in logs, spray detection) with endpoint and C2 detection. Peach Sandstorm intrusions begin in cloud identity rather than on-premises perimeters [S1][S2]. Authorities: Much of the attack surface sits in commercial cloud tenants and defense-industrial-base contractor networks outside DODIN boundaries. Response depends on partner notification and on cloud-provider takedowns, such as Microsoft's disruption of Tickler infrastructure [S2]. Mission assurance: MFA enforcement, conditional access and patching of exposed Confluence, ManageEngine and Outlook clients directly counter the documented access vectors [S1][S4]. Space and satellite mission partners need priority protection [S1][S2]. Coordination: Share spray, Azure-app and LinkedIn-persona indicators with defense-industrial-base, space-sector and education partners. The group abuses education-sector accounts to build infrastructure against defense targets [S2]."
+  },
+  "sources": [
+    {"ref": "S1", "title": "Peach Sandstorm password spray campaigns enable intelligence collection at high-value targets", "publisher": "Microsoft Threat Intelligence", "date": "2023-09-14", "url": "https://www.microsoft.com/en-us/security/blog/2023/09/14/peach-sandstorm-password-spray-campaigns-enable-intelligence-collection-at-high-value-targets/"},
+    {"ref": "S2", "title": "Peach Sandstorm deploys new custom Tickler malware in long-running intelligence gathering operations", "publisher": "Microsoft Threat Intelligence", "date": "2024-08-28", "url": "https://www.microsoft.com/en-us/security/blog/2024/08/28/peach-sandstorm-deploys-new-custom-tickler-malware-in-long-running-intelligence-gathering-operations/"},
+    {"ref": "S3", "title": "Insights into Iranian Cyber Espionage: APT33 Targets Aerospace and Energy Sectors and has Ties to Destructive Malware", "publisher": "Mandiant (FireEye), Google Cloud blog", "date": "2017-09-20", "url": "https://cloud.google.com/blog/topics/threat-intelligence/apt33-insights-into-iranian-cyber-espionage"},
+    {"ref": "S4", "title": "OVERRULED: Containing a Potentially Destructive Adversary", "publisher": "Mandiant (FireEye), Google Cloud blog", "date": "2018-12-21", "url": "https://cloud.google.com/blog/topics/threat-intelligence/overruled-containing-a-potentially-destructive-adversary"}
+  ],
+  "aliasesAdd": [
+    {"name": "HOLMIUM", "vendor": "Microsoft (former name)"}
+  ]
+}

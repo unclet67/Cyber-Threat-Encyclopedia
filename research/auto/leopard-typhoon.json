@@ -1,0 +1,74 @@
+{
+  "identification": {
+    "summary": "Leopard Typhoon is Microsoft's name for a China-origin actor. Microsoft maps the names LEAD, WICKED PANDA, TG-2633, TG-3279, Mana, KAOS, Red Diablo and Winnti Group to it [S1]. MITRE ATT&CK tracks the actor as Winnti Group (G0044), with Blackfly as an associated name. MITRE describes a group with Chinese origins, active since at least 2010, that has heavily targeted the gaming industry and has widened its targeting since then [S2][S3][S4][S5]. Kaspersky's 2015 follow-up report says the group had moved to pharmaceutical companies [S4].",
+    "firstObserved": "MITRE: active since at least 2010 [S2]. Kaspersky's first public report on the group is dated 2013-04-11 [S3].",
+    "notes": "Microsoft name: Leopard Typhoon (legacy element name LEAD) [S1]. MITRE match is Winnti Group (G0044), aliases Winnti Group and Blackfly; MITRE cites Symantec's March 2016 Suckfly report for the Blackfly name [S2][S11]. Naming caution: Microsoft lists WICKED PANDA under both Leopard Typhoon and Brass Typhoon (BARIUM/APT41) [S1], and MITRE also gives Wicked Panda as an APT41 alias [S10]. 'Winnti' is also a malware family name, and MITRE says Winnti for Windows has likely been used by multiple groups since at least 2010 [S2][S8]. Do not treat every 'Winnti' malware report as Leopard Typhoon activity."
+  },
+  "attribution": {
+    "sponsor": "People's Republic of China (origin per Microsoft) [S1]. MITRE describes the group as having Chinese origins [S2]. The 401 TRG 'Burning Umbrella' report describes a 'Winnti Umbrella' of associated state-sponsored attackers [S6].",
+    "confidence": "No Microsoft confidence statement on sponsorship was found in the sources accessed. Microsoft assigns China as the origin in its public naming mapping [S1]. MITRE notes that some reporting links Axiom, APT17 and Ke3chang closely to Winnti Group, citing 401 TRG [S2][S6]. MITRE also says Axiom and Winnti Group appear to be distinct, based on differences in TTPs and targeting [S2]. No US government indictment or advisory that names Leopard Typhoon or Winnti Group specifically was verified for this record.",
+    "basis": "Microsoft naming mapping [S1]; MITRE ATT&CK group record and its cited vendor reporting (Kaspersky 2013 and 2015, Novetta 2015, 401 TRG 2018, ESET 2020) [S2][S3][S4][S5][S6][S7]."
+  },
+  "objectives": "The sources show interest in the gaming industry, and Kaspersky's 2015 reporting describes a move to pharmaceutical companies [S2][S4]. The group's theft and reuse of code-signing certificates to sign its malware points to certificate theft as a supporting objective [S2][S3]. A related, overlapping cluster (Operation CuckooBees, attributed by Cybereason to actors affiliated with Winnti Group, APT41 and BARIUM) likely aimed to steal proprietary information, R&D documents, source code and blueprints [S9]. The cited sources do not settle how much of this activity is state espionage and how much is financial.",
+  "targeting": {
+    "sectors": [
+      "Online gaming / video game industry [S2][S3]",
+      "Pharmaceutical companies [S4]",
+      "Industrial companies (Germany; Microsoft 2017 reporting cited by MITRE for Winnti malware) [S8]",
+      "Technology and manufacturing (Operation CuckooBees; overlapping cluster) [S9]"
+    ],
+    "regions": [
+      "Germany (Microsoft January 2017 post on German industrial attacks, cited by MITRE for Winnti for Windows) [S8]",
+      "East Asia, Western Europe and North America (Operation CuckooBees, 2019-2022; overlapping cluster) [S9]"
+    ],
+    "notes": "The sources accessed for this record do not give a country-level victim list for Leopard Typhoon itself. The CuckooBees regions come from a campaign that MITRE attributes jointly to actors affiliated with Winnti Group, APT41 and BARIUM, so they may reflect Brass Typhoon activity [S9][S10]."
+  },
+  "capabilities": {
+    "summary": "MITRE and the reports it cites describe several capabilities. The group signs malware with stolen code-signing certificates [S2][S3]. It uses a rootkit to modify typical server functionality [S2][S3]. It registers C2 domains that mimic the sites of its intended targets [S2][S3]. It deploys auxiliary tools for document search on compromised hosts [S2][S3]. Its main tooling is the modular Winnti for Windows RAT [S2][S3][S4] and PlugX [S2][S3]. ESET's May 2020 report adds PipeMon, a multi-stage modular backdoor [S2][S7]. A Linux variant of the Winnti family exists, but MITRE says that family is shared by several actors [S2]."
+  },
+  "campaigns": [
+    {"date": "2013-04", "name": "Winnti: 'More than just a game' (Kaspersky)", "summary": "Kaspersky's first public exposure of the group's intrusions into gaming companies, including stolen code-signing certificates used to sign malware and a rootkit on servers. Summary taken from MITRE's citations; the report itself was not opened.", "sources": ["S3", "S2"]},
+    {"date": "2015-04", "name": "Novetta Winnti analysis", "summary": "Novetta technical analysis of Winnti malware, cited by MITRE for the group and the Winnti for Windows RAT.", "sources": ["S5", "S2"]},
+    {"date": "2015-06", "name": "Pivot to pharmaceutical targets (Kaspersky)", "summary": "Kaspersky reports that Winnti moved beyond gaming to target pharmaceutical companies.", "sources": ["S4"]},
+    {"date": "2017-01", "name": "German industrial attacks (Microsoft)", "summary": "A Microsoft Malware Protection Center post on threat actors in recent German industrial attacks is cited by MITRE for Winnti for Windows. Microsoft's original LEAD-specific findings in this post were not verified.", "sources": ["S8"]},
+    {"date": "2018-05", "name": "'Burning Umbrella' (401 TRG)", "summary": "401 TRG report on the 'Winnti Umbrella' and associated state-sponsored attackers, which MITRE cites for links between Winnti Group and Axiom, APT17 and Ke3chang.", "sources": ["S6", "S2"]},
+    {"date": "2020-05", "name": "PipeMon against gaming (ESET)", "summary": "ESET's 'No Game over for the Winnti Group' report introduces the PipeMon multi-stage modular backdoor, which MITRE attributes to Winnti Group.", "sources": ["S7", "S2"]},
+    {"date": "2019-2022", "name": "Operation CuckooBees (overlapping cluster)", "summary": "Espionage against technology and manufacturing companies in East Asia, Western Europe and North America, still ongoing as of May 2022. Cybereason attributes it to actors affiliated with Winnti Group, APT41 and BARIUM, so attribution is shared with Brass Typhoon.", "sources": ["S9"]}
+  ],
+  "diamond": {
+    "adversary": "China-origin actor that Microsoft calls Leopard Typhoon (LEAD) [S1]. MITRE tracks it as Winnti Group (G0044), with Blackfly as an associated name [S2][S11].",
+    "capability": "Winnti for Windows RAT, PlugX and PipeMon; a server rootkit; malware signed with stolen certificates; document-search tooling [S2][S3][S7].",
+    "infrastructure": "Actor-registered C2 domains that mimic the sites of intended targets [S2][S3].",
+    "victim": "Gaming companies [S2][S3]; pharmaceutical companies [S4]; German industrial organizations (Microsoft 2017, as cited by MITRE) [S8].",
+    "socioPolitical": "Chinese-origin actor whose targets match commercial and intellectual-property collection [S2][S4]. 401 TRG places it within a wider PRC state-sponsored 'umbrella' [S6].",
+    "technology": "Windows server environments (rootkit modification of server functionality) and software-signing trust chains, which stolen certificates abuse [S2][S3]."
+  },
+  "gaps": [
+    "Microsoft's LEAD reporting was not opened. The 2017-01-25 MMPC post (blogs.technet.microsoft.com) is cited only through MITRE, and its microsoft.com redirect resolves to a blog listing page. Microsoft's own description of LEAD targeting, objectives and confidence is unverified [S8].",
+    "Primary vendor reports (Kaspersky 2013 and 2015, Novetta 2015, 401 TRG 2018, ESET 2020, Cybereason 2022, Symantec 2016) were blocked by the network proxy. Their content is represented only as MITRE ATT&CK summarizes it.",
+    "The web search budget ran out before any search could run, so post-2022 reporting on Leopard Typhoon or Winnti Group was not reviewed. Recent campaigns may be missing.",
+    "The boundary with Brass Typhoon (BARIUM/APT41) is unresolved. Microsoft lists WICKED PANDA under both actors [S1]; MITRE says APT41 overlaps at least partially with Winnti Group [S10]; and CuckooBees is attributed jointly [S9].",
+    "MITRE cites Symantec's 2016 Suckfly report for the Blackfly name [S2][S11]. The relationship between Suckfly, Blackfly and Leopard Typhoon was not verified from the primary source.",
+    "Microsoft's mapping also lists the names TG-2633, TG-3279, Mana, KAOS and Red Diablo, but their originating vendors and supporting reports were not identified [S1].",
+    "No government (DOJ, CISA, Treasury) document naming Leopard Typhoon or Winnti Group was verified.",
+    "Regional targeting specific to this cluster, beyond Germany in 2017, is undocumented in the accessed sources."
+  ],
+  "implications": {
+    "jipoe": "Analyst assessment derived from cited sources; validate before use. Step 1 (OE): the relevant cyber terrain includes commercial software developers and their code-signing infrastructure, gaming platforms, pharmaceutical and industrial networks, and Windows servers [S2][S3][S4][S8]. Defense-industrial-base and supplier networks that depend on vendor-signed software fall inside this environment. Step 2 (effects): signed malware lowers the defender's ability to tell trusted from malicious binaries, and C2 domains that mimic target sites blend into normal traffic [S2][S3]. Step 3 (adversary template): access through compromised developer or industrial environments; persistence with Winnti RAT, PlugX or PipeMon plus server rootkits; discovery and document search; exfiltration of intellectual property and certificates [S2][S3][S7][S9]. Step 4 (MLCOA): continued IP and certificate theft from commercial technology, gaming and manufacturing firms. Candidate indicators: binaries signed with certificates from unrelated or compromised software vendors; unexpected server-side driver or rootkit changes; look-alike domains of the victim organization in DNS logs [S2][S3]. MDCOA: stolen signing certificates or compromised developer environments used to stage malware into downstream DoD-supplier software. This is inferred from certificate-abuse TTPs and is not a documented Leopard Typhoon campaign.",
+    "jcc2": "Analyst assessment derived from cited sources; validate before use. Situational awareness: track code-signing certificate revocations and vendor compromises, and correlate Winnti, PlugX and PipeMon detections with the naming caveats in mind (Winnti malware is shared across actors) [S2][S7][S10]. Authorities: most observed victims are private-sector gaming, pharmaceutical, industrial and technology firms [S2][S4][S8][S9]. DoD response to defense-industrial-base exposure would normally run through DC3/DIB partnership and interagency channels, not direct DODIN action. Mission assurance: the risk to the DODIN is mainly supply-chain trust in signed third-party software and in suppliers holding sensitive IP. Prioritize application allow-listing that does not rely on signature alone [S2][S3]. Coordination: deconflict attribution with partners that track Brass Typhoon/APT41, given the overlapping names and the jointly attributed CuckooBees campaign [S1][S9][S10]."
+  },
+  "sources": [
+    {"ref": "S1", "title": "Microsoft threat actor naming mapping (MicrosoftMapping.json): Leopard Typhoon and Brass Typhoon entries", "publisher": "Microsoft Threat Intelligence", "date": "2026-10-14", "url": "https://github.com/microsoft/mstic/blob/master/PublicFeeds/ThreatActorNaming/MicrosoftMapping.json"},
+    {"ref": "S2", "title": "Winnti Group, G0044 (read from the ATT&CK STIX bundle on GitHub: description, aliases, relationships, software)", "publisher": "MITRE ATT&CK", "date": "2026-07-31", "url": "https://attack.mitre.org/groups/G0044"},
+    {"ref": "S3", "title": "Winnti. More than just a game (cited via MITRE ATT&CK; not opened)", "publisher": "Kaspersky Lab GReAT", "date": "2013-04-11", "url": "https://securelist.com/winnti-more-than-just-a-game/37029/"},
+    {"ref": "S4", "title": "Games are over: Winnti is now targeting pharmaceutical companies (cited via MITRE ATT&CK; not opened)", "publisher": "Kaspersky (D. Tarakanov)", "date": "2015-06-22", "url": "https://securelist.com/games-are-over/70991/"},
+    {"ref": "S5", "title": "Winnti Analysis (archived PDF, cited via MITRE ATT&CK; not opened)", "publisher": "Novetta Threat Research Group", "date": "2015-04-07", "url": "https://web.archive.org/web/20150412223949/http://www.novetta.com/wp-content/uploads/2015/04/novetta_winntianalysis.pdf"},
+    {"ref": "S6", "title": "Burning Umbrella: An Intelligence Report on the Winnti Umbrella and Associated State-Sponsored Attackers (cited via MITRE ATT&CK; not opened)", "publisher": "401 TRG (T. Hegel)", "date": "2018-05-03", "url": "https://401trg.github.io/pages/burning-umbrella.html"},
+    {"ref": "S7", "title": "No 'Game over' for the Winnti Group (PipeMon) (cited via MITRE ATT&CK; not opened)", "publisher": "ESET (M. Tartare et al.)", "date": "2020-05-21", "url": "https://www.welivesecurity.com/2020/05/21/no-game-over-winnti-group/"},
+    {"ref": "S8", "title": "Detecting threat actors in recent German industrial attacks with Windows Defender ATP (cited via MITRE ATT&CK Winnti for Windows S0141; not opened)", "publisher": "Microsoft (P. Cap et al.)", "date": "2017-01-25", "url": "https://blogs.technet.microsoft.com/mmpc/2017/01/25/detecting-threat-actors-in-recent-german-industrial-attacks-with-windows-defender-atp/"},
+    {"ref": "S9", "title": "Operation CuckooBees: Deep-Dive into Stealthy Winnti Techniques (reporting via MITRE ATT&CK campaign C0012; not opened)", "publisher": "Cybereason Nocturnus", "date": "2022-05-04", "url": "https://www.cybereason.com/blog/operation-cuckoobees-deep-dive-into-stealthy-winnti-techniques"},
+    {"ref": "S10", "title": "APT41, G0096 (aliases including Wicked Panda, Brass Typhoon and BARIUM; partial overlap with Winnti Group)", "publisher": "MITRE ATT&CK", "date": "2026-07-31", "url": "https://attack.mitre.org/groups/G0096"},
+    {"ref": "S11", "title": "Suckfly: Revealing the secret life of your code signing certificates (cited via MITRE ATT&CK for the Blackfly alias; not opened)", "publisher": "Symantec (J. DiMaggio)", "date": "2016-03-15", "url": "http://www.symantec.com/connect/blogs/suckfly-revealing-secret-life-your-code-signing-certificates"}
+  ],
+  "aliasesAdd": []
+}

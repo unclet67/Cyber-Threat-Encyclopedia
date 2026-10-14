@@ -1,0 +1,53 @@
+{
+  "mitre": "G0045",
+  "identification": {
+    "summary": "MITRE ATT&CK describes menuPass (tracked by Microsoft as Purple Typhoon) as a threat group active since at least 2006 [S1]. MITRE states that individual members are known to have acted in association with the Chinese Ministry of State Security's (MSS) Tianjin State Security Bureau and worked for the Huaying Haitai Science and Technology Development Company [S1].",
+    "firstObserved": "MITRE ATT&CK: active since at least 2006 [S1].",
+    "notes": "Microsoft name: Purple Typhoon. The record's alias list (APT10, menuPass, Stone Panda, BRONZE RIVERSIDE, Granite Taurus, Cicada, POTASSIUM and others) comes from the repository import (MITRE ATT&CK, MISP Galaxy, Microsoft, Google TI). This research pass could not re-verify it against a live Microsoft source. MirrorFace and TA410/Witchetty have separate records in this encyclopedia: vendors describe possible links to APT10 but track them as distinct clusters. Do not merge their activity into this profile."
+  },
+  "attribution": {
+    "sponsor": "People's Republic of China. MITRE ATT&CK states individual members acted in association with the MSS Tianjin State Security Bureau [S1].",
+    "confidence": "",
+    "basis": "MITRE ATT&CK group description G0045, taken from this repository's ATT&CK import dated 2026-07-31 [S1]. The primary government documents behind this statement (the US DOJ indictment and the FBI release of December 2018, listed in the record's references) could not be opened in this pass."
+  },
+  "objectives": "",
+  "targeting": {
+    "sectors": [],
+    "regions": [],
+    "notes": ""
+  },
+  "capabilities": {
+    "summary": "MITRE ATT&CK associates 25 software entries with menuPass. They include custom or group-linked malware (ChChes, RedLeaves, UPPERCUT, SNUGRIDE, EvilGrab, Ecipekac, P8RAT, SodaMaster, FYAnti, HUI Loader), shared RATs (PlugX, PoisonIvy, QuasarRAT, Cobalt Strike) and dual-use or credential tools (Mimikatz, pwdump, PsExec, Impacket, AdFind, PowerSploit, certutil, esentutl) [S1]."
+  },
+  "campaigns": [],
+  "diamond": {
+    "adversary": "PRC-linked operators; MITRE ties individual members to the MSS Tianjin State Security Bureau and Huaying Haitai Science and Technology Development Company [S1].",
+    "capability": "Custom loaders and backdoors (ChChes, RedLeaves, UPPERCUT, Ecipekac, SodaMaster, P8RAT, HUI Loader) alongside PlugX, QuasarRAT, Cobalt Strike and credential-dumping tools [S1].",
+    "infrastructure": "",
+    "victim": "",
+    "socioPolitical": "",
+    "technology": ""
+  },
+  "gaps": [
+    "RESEARCH INCOMPLETE: in this run the web search budget was used up, and every fetch (WebFetch and direct HTTPS) was refused by the network proxy. No source could be opened live. The only citation is the MITRE ATT&CK G0045 data already in the repository import (dated 2026-07-31). The profile needs a full re-run with network access.",
+    "Microsoft's own Purple Typhoon description, its confidence statement and its alias mapping were not retrieved. The Microsoft threat actor naming taxonomy page was unreachable.",
+    "Primary documents not opened: the US DOJ indictment and FBI release on the APT10 members (December 2018, fbi.gov/news/stories/chinese-hackers-indicted-122018), the PwC/BAE 'Operation Cloud Hopper' report, the US-CERT alert IR-ALERT-MED-17-093-01C, Mandiant/FireEye APT10 reporting (2017, 2018), Unit 42 menuPass reporting, Symantec 'Cicada' reporting, the Secureworks BRONZE RIVERSIDE profile, the CrowdStrike Stone Panda blog and the CFR Cyber Operations Tracker entry. All appear in the record's reference list but were not verified in this pass.",
+    "Objectives, targeting (sectors and regions), the campaign timeline, infrastructure and victimology are unsourced in this pass. Do not fill them from general knowledge.",
+    "Cluster boundaries are unverified: MirrorFace (ESET) and TA410/Witchetty have been linked to APT10/Cicada in vendor reporting but are tracked separately. Proofpoint's TA410 reporting is listed in this record's references and needs review to confirm it concerns a distinct cluster.",
+    "Attribution confidence: no vendor or government confidence statement could be retrieved and quoted, so the field is blank."
+  ],
+  "implications": {
+    "jipoe": "",
+    "jcc2": ""
+  },
+  "sources": [
+    {
+      "ref": "S1",
+      "title": "menuPass, Group G0045 (MITRE ATT&CK group page; content taken from this repository's ATT&CK import dated 2026-07-31, not re-fetched in this pass)",
+      "publisher": "MITRE ATT&CK",
+      "date": "2026-07-31",
+      "url": "https://attack.mitre.org/groups/G0045/"
+    }
+  ],
+  "aliasesAdd": []
+}

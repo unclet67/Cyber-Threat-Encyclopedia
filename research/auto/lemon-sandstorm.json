@@ -1,0 +1,88 @@
+{
+  "identification": {
+    "summary": "Lemon Sandstorm is Microsoft's name for an Iran-origin threat actor formerly tracked by Microsoft as RUBIDIUM and also known as Pioneer Kitten [S1]. MITRE ATT&CK tracks it as Fox Kitten (G0117) and describes it as a threat actor with a suspected nexus to the Iranian government. MITRE says it has been active since at least 2017 against entities in the Middle East, North Africa, Europe, Australia and North America [S2][S4][S5]. Its signature is broad exploitation of known vulnerabilities in internet-facing VPN appliances (Fortinet, Pulse Secure, Palo Alto), followed by hands-on intrusion that relies largely on open-source and dual-use tools [S2][S5][S6][S10]. Microsoft implicated RUBIDIUM in the Pay2Key and N3tw0rm ransomware campaigns that targeted Israel in late 2020 and early 2021 [S3].",
+    "firstObserved": "Active since at least 2017, per MITRE ATT&CK and CrowdStrike as summarized by MITRE [S2][S4].",
+    "notes": "Microsoft name: Lemon Sandstorm (formerly RUBIDIUM). Microsoft's naming feed lists RUBIDIUM and PIONEER KITTEN as other names [S1]. MITRE G0117 lists the associated names Fox Kitten, UNC757, Parisite, Pioneer Kitten, RUBIDIUM and Lemon Sandstorm [S2]. The MISP galaxy cluster also lists PARISITE and UNC757 and attributes UNC757 to Mandiant [S10]. Parisite is Dragos's name, and Dragos's reporting focuses on ICS-related targeting [S2][S10]. Vendor clusters overlap but are not guaranteed to be identical; see gaps."
+  },
+  "attribution": {
+    "sponsor": "Iran. Microsoft lists the actor's origin as Iran and calls RUBIDIUM 'Iran-linked' [S1][S3]. MITRE ATT&CK and CrowdStrike, as summarized by MITRE and MISP, describe a suspected nexus to the Iranian government [S2][S4][S10]. The sources gathered do not name a specific Iranian government organization as sponsor.",
+    "confidence": "Microsoft attributes the Pay2Key and N3tw0rm ransomware activity to RUBIDIUM in its 2021 Digital Defense Report coverage, but publishes no confidence level [S3]. MITRE and CrowdStrike use 'suspected nexus' wording, which is lower than a firm state attribution [S2][S4][S10]. CISA's 2020 alert described an 'Iran-based' actor, as cited by MITRE [S6][S2]. The government advisory text was not opened for this record.",
+    "basis": "Microsoft threat intelligence and naming taxonomy [S1][S3]; MITRE ATT&CK procedure mapping drawn from ClearSky, CrowdStrike, CISA, Check Point and Fortinet reporting [S2][S4][S5][S6][S7][S8][S9]; MISP galaxy cluster drawn from CrowdStrike and Dragos [S10]."
+  },
+  "objectives": "Gaining and maintaining access to entities that hold sensitive information of likely intelligence interest to the Iranian government, per CrowdStrike's description as carried in the MISP galaxy [S10]. ClearSky called the campaign 'espionage-offensive' [S5]. In 2020-2021 the actor's activity extended to disruptive or financially framed ransomware (Pay2Key, N3tw0rm) against Israeli targets [S3][S7][S8].",
+  "targeting": {
+    "sectors": [
+      "Oil and gas [S2]",
+      "Technology [S2]",
+      "Government [S2]",
+      "Defense [S2]",
+      "Healthcare [S2]",
+      "Manufacturing [S2]",
+      "Engineering [S2]",
+      "ICS-related entities (per Dragos, as cited in MISP) [S10]",
+      "Critical infrastructure in the Middle East (2025 Fortinet incident report, as cited by MITRE) [S9][S2]"
+    ],
+    "regions": [
+      "Middle East [S2]",
+      "North Africa [S2]",
+      "Europe [S2]",
+      "Australia [S2]",
+      "North America [S2]",
+      "Israel (Pay2Key and N3tw0rm ransomware, 2020-2021) [S3][S7]"
+    ],
+    "notes": "Targeting is driven mainly by exposure of vulnerable internet-facing VPN and remote-access appliances, not by sector alone [S2][S5][S6]. Sector and region lists come from MITRE's group description [S2]. Microsoft separately reported that Iranian actors in general targeted Israeli logistics and maritime firms in the same period; that statement is not attributed specifically to RUBIDIUM [S3]."
+  },
+  "capabilities": {
+    "summary": "Initial access comes through exploitation of known vulnerabilities in Fortinet, Pulse Secure and Palo Alto VPN appliances and other remote services, including RDP brute forcing [S2][S5][S6][S7]. Persistence relies on web shells (including China Chopper), scheduled tasks, locally created administrator accounts and the sticky-keys accessibility backdoor [S2][S6][S7]. For command and control and tunneling the actor uses ngrok, the custom SSHMinion tool, the FRPC and Go Proxy reverse proxies, PuTTY/Plink and AWS-hosted C2. MITRE also associates the SystemBC proxy malware with the group, citing a 2025 Fortinet incident report [S2][S4][S6][S7][S9]. Credentials are harvested from LSASS dumps, NTDS via Volume Shadow Copy, KeePass databases and credential files [S2][S6]. Collection draws on network shares, local documents, cloud storage and Microsoft Teams, with 7-Zip used for staging [S2][S6]. In 2020 the actor deployed Pay2Key ransomware and used Keybase and Twitter accounts to communicate with victims [S2][S7][S8]. MITRE lists 41 techniques and 5 software entries for G0117 [S2]."
+  },
+  "campaigns": [
+    {"date": "2017", "name": "Earliest reported activity", "summary": "MITRE and CrowdStrike place the start of the actor's activity in at least 2017.", "sources": ["S2", "S4"]},
+    {"date": "2020-02-16", "name": "Fox Kitten: widespread Iranian espionage-offensive campaign (ClearSky)", "summary": "ClearSky reports a campaign that exploited known VPN vulnerabilities (Fortinet, Pulse Secure, Palo Alto) and remote services for initial access across multiple countries; MITRE uses this report as a core reference for the group.", "sources": ["S5", "S2"]},
+    {"date": "2020-08-31", "name": "Who Is PIONEER KITTEN? (CrowdStrike)", "summary": "CrowdStrike profiles PIONEER KITTEN, including VPN exploitation and tunneling with ngrok and the custom SSHMinion tool.", "sources": ["S4", "S2"]},
+    {"date": "2020-09-15", "name": "CISA AA20-259A: Iran-based actor exploits VPN vulnerabilities", "summary": "CISA alert, as cited by MITRE, describes VPN exploitation followed by web shells, reverse proxies, credential dumping, and collection from shares, cloud storage and Microsoft Teams.", "sources": ["S6", "S2"]},
+    {"date": "2020-11", "name": "Pay2Key ransomware campaign", "summary": "Check Point (2020-11-06) and ClearSky (2020-12-17) report Pay2Key ransomware attacks; ClearSky attributes the campaign to Fox Kitten. Microsoft says RUBIDIUM was implicated in Pay2Key attacks targeting Israel.", "sources": ["S8", "S7", "S3"]},
+    {"date": "2021", "name": "N3tw0rm ransomware campaign", "summary": "Microsoft says RUBIDIUM was implicated in the N3tw0rm ransomware campaign that targeted Israel in late 2020 and early 2021.", "sources": ["S3"]},
+    {"date": "2025-03-07", "name": "Middle East critical infrastructure intrusion (Fortinet incident response)", "summary": "Fortinet reports an Iranian intrusion into strategic Middle East critical infrastructure; MITRE cites the report to associate SystemBC with the group. The report's own attribution wording was not reviewed.", "sources": ["S9", "S2"]}
+  ],
+  "diamond": {
+    "adversary": "Iran-origin actor with a suspected Iranian government nexus; Microsoft Lemon Sandstorm (formerly RUBIDIUM) [S1][S2][S3].",
+    "capability": "Exploitation of n-day VPN and remote-access vulnerabilities; web shells; open-source tunneling and proxy tools (ngrok, FRPC, Go Proxy, Plink, SSHMinion); credential dumping; SystemBC; Pay2Key ransomware [S2][S4][S6][S7][S9].",
+    "infrastructure": "Tunnels and reverse proxies from victim hosts to actor C2, including ngrok and AWS-hosted C2. Keybase and Twitter accounts were used for ransomware victim communication [S2][S7].",
+    "victim": "Oil and gas, technology, government, defense, healthcare, manufacturing and engineering entities in the Middle East, North Africa, Europe, Australia and North America; Israeli organizations hit by ransomware in 2020-2021 [S2][S3].",
+    "socioPolitical": "Access to information of intelligence interest to the Iranian government [S10], and ransomware operations against Israel during a period Microsoft describes as escalating Iran-Israel tensions [S3].",
+    "technology": "Unpatched internet-facing VPN appliances (Fortinet, Pulse Secure, Palo Alto) and exposed RDP; Windows Active Directory environments; collaboration and cloud storage including Microsoft Teams [S2][S5][S6]."
+  },
+  "gaps": [
+    "Primary documents were not opened in this session; their content is taken from MITRE ATT&CK's STIX procedure descriptions and the MISP galaxy. These include CrowdStrike 'Who Is PIONEER KITTEN?', ClearSky's Fox Kitten and Pay2Kitten reports, CISA AA20-259A, Check Point's Pay2Key alert, the Fortinet 2025 incident report and Dragos PARISITE (the hosts were blocked or unreachable).",
+    "Web search was unavailable for this run because the shared search budget was exhausted. Reporting after 2021 is therefore thin. That includes any 2024 US government advisory on Iran-based actors cooperating with ransomware affiliates and access brokering, and any 'Br0k3r' or 'xplfinder' persona; these were not verified and are not included here.",
+    "ZDNet reporting on the sale of network access on underground forums and an FBI flash on F5 device exploitation appears in the imported references, but could not be opened. Access-brokering claims are therefore not included.",
+    "Microsoft has no public Lemon Sandstorm actor profile or dedicated blog post that could be found; Microsoft coverage here is limited to the naming taxonomy and the 2021 MDDR blog [S1][S3].",
+    "Cluster boundaries: Parisite (Dragos), UNC757 (Mandiant) and Fox Kitten/Pioneer Kitten (ClearSky/CrowdStrike) are mapped together by MITRE and MISP [S2][S10]. No vendor statement confirming full equivalence with Lemon Sandstorm was reviewed. Microsoft's own mapping lists only RUBIDIUM and PIONEER KITTEN [S1].",
+    "The specific Iranian sponsoring organization (for example IRGC or MOIS) is not stated in any source gathered.",
+    "The 2025 Fortinet report's own attribution language and the victim's identity are unverified; MITRE uses it only to support the SystemBC association [S2][S9].",
+    "ICS targeting rests on the MISP summary of Dragos reporting; the specific ICS victims and any OT impact are unverified [S10]."
+  ],
+  "implications": {
+    "jipoe": "Analyst assessment derived from cited sources; validate before use. STEP 1 (OE): Internet-facing VPN concentrators, remote-access gateways and exposed RDP are key cyber terrain. The actor's entry depends on known, patchable flaws in Fortinet, Pulse Secure and Palo Alto appliances [S2][S5][S6]. Defense, government, oil and gas, and engineering networks in CENTCOM-, EUCOM- and NORTHCOM-relevant regions fall within its reported victimology [S2]. STEP 2 (effects): Public disclosure of VPN CVEs gives this actor a wide target set. Delayed patching on mission-partner and DIB networks widens exposure, and the actor's use of legitimate tunneling tools blends with administrative traffic [S2][S6]. STEP 3 (adversary template): VPN n-day exploitation; then web shell or local admin account; then scheduled-task reverse proxy (FRPC, ngrok, SSHMinion, SystemBC); then credential dumping (LSASS, NTDS, KeePass); then RDP/SMB lateral movement; then collection from shares, cloud storage and Teams. Ransomware is optional, as with Pay2Key [S2][S4][S6][S7][S9]. STEP 4: MLCOA is persistent access to defense, government and energy networks for collection of interest to Iran [S2][S10]. MDCOA is a pivot from long-held access to ransomware or disruptive effects against partner-nation critical infrastructure during a regional crisis. Candidate indicators: Pay2Key against Israel [S3][S7] and the 2025 Middle East critical-infrastructure intrusion [S9]. Further candidate indicators: new scheduled tasks with legitimate-looking names such as 'lpupdate'; binaries named svhost or dllhost in unusual paths; outbound ngrok or FRP connections; new local administrator accounts; and VSS-based NTDS access after VPN logins from unfamiliar sources [S2][S6].",
+    "jcc2": "Analyst assessment derived from cited sources; validate before use. (1) Situational awareness: JCC2 views should track patch and compromise-assessment status of internet-facing VPN appliances across the DODIN and mission partners. Exploitation of known VPN CVEs is this actor's primary entry vector, and patching alone may not evict an actor already installed [S2][S6]. (2) Authorities: Activity spans espionage and ransomware [S3][S7]. Response may involve DC3, FBI and CISA coordination, and possibly treatment as a criminal incident. Clarify lead-agency roles early, especially for DIB victims. (3) Mission assurance: Ransomware deployment after long-term access threatens availability. Prioritize offline backups and segmentation for mission-critical and ICS-adjacent systems [S7][S9][S10]. (4) Coordination: Share VPN-exploitation and tunneling indicators with coalition partners in the Middle East and Europe, who appear in the actor's victimology [S2]. Track vendor aliases (Pioneer Kitten, Fox Kitten, Parisite, UNC757) so partner reporting is linked to the same cluster [S1][S2]."
+  },
+  "sources": [
+    {"ref": "S1", "title": "Microsoft threat actor naming mapping (MicrosoftMapping.json): Lemon Sandstorm, origin Iran, other names RUBIDIUM, PIONEER KITTEN", "publisher": "Microsoft Threat Intelligence (GitHub)", "date": "2026-10-14 (retrieved)", "url": "https://github.com/microsoft/mstic/blob/master/PublicFeeds/ThreatActorNaming/MicrosoftMapping.json"},
+    {"ref": "S2", "title": "Fox Kitten, G0117 (group description, associated names, procedures; read from ATT&CK STIX data)", "publisher": "MITRE ATT&CK", "date": "2026-07-31", "url": "https://attack.mitre.org/groups/G0117/"},
+    {"ref": "S3", "title": "Microsoft Digital Defense Report shares new insights on nation-state attacks", "publisher": "Microsoft Security Blog", "date": "2021-10-25", "url": "https://www.microsoft.com/en-us/security/blog/2021/10/25/microsoft-digital-defense-report-shares-new-insights-on-nation-state-attacks/"},
+    {"ref": "S4", "title": "Who Is PIONEER KITTEN? (as summarized by MITRE ATT&CK and MISP; not opened)", "publisher": "CrowdStrike", "date": "2020-08-31", "url": "https://www.crowdstrike.com/blog/who-is-pioneer-kitten/"},
+    {"ref": "S5", "title": "Fox Kitten - Widespread Iranian Espionage-Offensive Campaign (as summarized by MITRE ATT&CK; not opened)", "publisher": "ClearSky Cyber Security", "date": "2020-02-16", "url": "https://www.clearskysec.com/wp-content/uploads/2020/02/ClearSky-Fox-Kitten-Campaign.pdf"},
+    {"ref": "S6", "title": "AA20-259A: Iran-Based Threat Actor Exploits VPN Vulnerabilities (as cited by MITRE ATT&CK; not opened)", "publisher": "CISA", "date": "2020-09-15", "url": "https://us-cert.cisa.gov/ncas/alerts/aa20-259a"},
+    {"ref": "S7", "title": "Pay2Key Ransomware - A New Campaign by Fox Kitten (as cited by MITRE ATT&CK; not opened)", "publisher": "ClearSky Cyber Security", "date": "2020-12-17", "url": "https://www.clearskysec.com/wp-content/uploads/2020/12/Pay2Kitten.pdf"},
+    {"ref": "S8", "title": "Ransomware Alert: Pay2Key (as cited by MITRE ATT&CK; not opened)", "publisher": "Check Point Research", "date": "2020-11-06", "url": "https://research.checkpoint.com/2020/ransomware-alert-pay2key/"},
+    {"ref": "S9", "title": "Investigating Iranian Intrusion into Strategic Middle East Critical Infrastructure (as cited by MITRE ATT&CK for SystemBC; not opened)", "publisher": "Fortinet", "date": "2025-03-07", "url": "https://www.fortinet.com/content/dam/fortinet/assets/reports/report-incident-response-middle-east.pdf"},
+    {"ref": "S10", "title": "MISP galaxy threat-actor cluster: Fox Kitten (description derived from CrowdStrike; Dragos ICS note; synonyms)", "publisher": "MISP Project (GitHub)", "date": "2026-10-14 (retrieved)", "url": "https://raw.githubusercontent.com/MISP/misp-galaxy/main/clusters/threat-actor.json"}
+  ],
+  "aliasesAdd": [
+    {"name": "RUBIDIUM", "vendor": "Microsoft (former name)"},
+    {"name": "Pioneer Kitten", "vendor": "CrowdStrike"},
+    {"name": "Fox Kitten", "vendor": "ClearSky"},
+    {"name": "Parisite", "vendor": "Dragos"},
+    {"name": "UNC757", "vendor": "Mandiant"}
+  ]
+}

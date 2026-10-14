@@ -1,0 +1,88 @@
+{
+  "identification": {
+    "summary": "Gingham Typhoon is a China-based espionage group that Microsoft calls the most active actor in the South Pacific. In summer 2023 Microsoft observed it targeting nearly every South Pacific Island country with complex phishing campaigns against international organizations, government entities and the IT sector [S1]. The July 2024 Five Eyes-led advisory lists GINGHAM TYPHOON as an industry name that overlaps with APT40, along with Kryptonite Panda, Leviathan and Bronze Mohawk [S3]. Under its earlier Microsoft name GADOLINIUM, the group historically focused on the maritime and health industries. It later expanded to Asia Pacific organizations, higher education and regional government [S2]. Mandiant ties APT40 to China's naval modernization effort [S4].",
+    "firstObserved": "Mandiant: operating since at least 2013 [S4]. Microsoft (2020): compromising targets for nearly a decade [S2]. The 2021 US indictment covers hacking from 2011 to 2018 [S5]. The FBI/CISA advisory AA21-200A, as summarized in search results, says the group has been active since at least 2009 [S6].",
+    "notes": "Microsoft name: Gingham Typhoon. Microsoft reporting used the name GADOLINIUM in 2020 [S2]. The link between the two names comes from secondary coverage, not a Microsoft mapping page that was opened (see gaps). Other names include APT40, TEMP.Periscope and TEMP.Jumper (Mandiant) [S4]; Leviathan, Kryptonite Panda and Bronze Mohawk [S3]; and TA423 / Red Ladon (Proofpoint / PwC) [S7]. MITRE tracks the group as Leviathan (G0065) [S8]."
+  },
+  "attribution": {
+    "sponsor": "People's Republic of China, Ministry of State Security (MSS). Earlier reporting places the group in Haikou, Hainan, with tasking from the MSS Hainan State Security Department [S3][S5][S6].",
+    "confidence": "The authoring agencies of the July 2024 advisory (led by ASD's ACSC with CISA, NSA, FBI, UK NCSC, the Canadian Centre for Cyber Security and NCSC-NZ) assess that APT40 conducts malicious cyber operations for the PRC MSS [S3]. In July 2021 the US Department of Justice charged three alleged Hainan State Security Department officers and one contractor [S5]. Mandiant assesses with moderate confidence that APT40 is a state-sponsored Chinese cyber espionage operation [S4]. Microsoft describes Gingham Typhoon as China-based but does not name a sponsoring agency in the sources gathered [S1].",
+    "basis": "Mandiant's technical indicators: activity centered on China Standard Time (UTC+8), C2 domains registered through China-based resellers, a C2 administration IP in Hainan, and logins from systems with Chinese language settings [S4]. A 2021 indictment names Ding Xiaoyang, Cheng Qingmin and Zhu Yunmin (alleged Hainan State Security Department officers) and Wu Shurong, operating through the front company Hainan Xiandun Technology Development Co. [S5]. A multinational government advisory in 2024 [S3]."
+  },
+  "objectives": "Strategic espionage supporting PRC geopolitical and economic priorities. Specific goals include support to China's naval modernization [S4], intelligence on Belt and Road Initiative partner states [S1][S4], and collection against South Pacific governments and against vocal critics of the Chinese government amid regional diplomatic competition [S1]. The 2021 indictment also charged conspiracy to commit economic espionage, covering theft of trade secrets and research [S5].",
+  "targeting": {
+    "sectors": [
+      "Government, including executive offices and trade-related departments [S1][S3]",
+      "International organizations [S1]",
+      "IT sector and internet service providers [S1]",
+      "Transportation [S1][S4]",
+      "Maritime industries and naval research [S2][S4][S6]",
+      "Defense industry and defense contractors [S4][S5]",
+      "Engineering [S4]",
+      "Health care and biomedical [S2][S5][S6]",
+      "Higher education and universities [S2][S5]",
+      "Aviation [S5]",
+      "Energy and heavy-industry manufacturing, including offshore wind maintenance in the South China Sea [S7]",
+      "News media [S7]"
+    ],
+    "regions": [
+      "South Pacific Island countries, including Papua New Guinea [S1]",
+      "Australia [S3][S7]",
+      "Southeast Asia and South China Sea claimant states, including Cambodia, Malaysia, the Philippines and Indonesia [S4][S5]",
+      "United States [S4][S5]",
+      "Europe, including the United Kingdom, Germany, Belgium, Norway, Switzerland and Austria [S4][S5]",
+      "Canada, Saudi Arabia, South Africa and Hong Kong [S4][S5]"
+    ],
+    "notes": "Microsoft says much of the South Pacific targeting reflects a yearslong focus on the region. It observed Gingham Typhoon events from June 2023 to January 2024 [S1]. Mandiant ties the choice of countries to Belt and Road Initiative interests [S4]. Country lists differ between sources: Mandiant's text and its figure list different countries [S4]."
+  },
+  "capabilities": {
+    "summary": "Initial access comes through spearphishing with malicious attachments and links, strategic web compromises, and exploitation of public-facing web servers followed by web shells [S4]. The group weaponizes newly disclosed exploits within days [S4]. The 2024 advisory says APT40 can rapidly adapt public proof-of-concept exploits for new vulnerabilities, still succeeds with vulnerabilities as old as 2017, and is relying less on procured or leased C2 infrastructure [S3]. It also abuses stolen VPN and remote-desktop credentials [S4]. Tools include AIRBREAK, FRESHAIR, BEACON, PHOTO, BADFLICK, China Chopper, HOMEFRY, MURKYTOP and DISHCLOTH [S4]. Microsoft documented C2 through cloud services: commands hidden in TechNet profiles (2016) and GitHub repositories (2018); Outlook Tasks C2 (2019); and a modified PowerShell Empire using OneDrive via the Microsoft Graph API with Azure AD applications (2020) [S2]. Proofpoint and PwC reported the ScanBox reconnaissance framework delivered through a fake Australian news site in 2022 [S7]. Fake online personas, spoofed domains and stolen credentials appear in the 2021 indictment [S5]. MITRE lists 17 software entries for G0065 [S8]."
+  },
+  "campaigns": [
+    {"date": "2016", "name": "UUV-related naval research targeting", "summary": "Mandiant says that within a year of China's December 2016 seizure of a US Navy unmanned underwater vehicle, APT40 was masquerading as a UUV manufacturer and targeting universities engaged in naval research.", "sources": ["S4"]},
+    {"date": "2016-2020", "name": "Abuse of Microsoft and GitHub cloud services for C2 (GADOLINIUM)", "summary": "Microsoft documents a progression from TechNet-profile and GitHub command hosting to Outlook Tasks C2. It then saw OneDrive/Graph API C2 via modified PowerShell Empire with COVID-19-themed lures. Microsoft suspended 18 Azure AD applications in April 2020.", "sources": ["S2"]},
+    {"date": "2019-03", "name": "APT40 public exposure (Mandiant)", "summary": "Mandiant publishes its assessment of APT40 as a moderate-confidence Chinese state-sponsored operation. The report covers naval-modernization and Belt and Road targeting, including victims with links to Southeast Asian elections.", "sources": ["S4"]},
+    {"date": "2021-07-19", "name": "US indictment of Hainan State Security Department officers", "summary": "DOJ unsealed charges against four PRC nationals for intrusions from 2011 to 2018 through the front company Hainan Xiandun. The 20-plus victims included universities, a US defense contractor and a Swiss chemical company. FBI and CISA issued advisory AA21-200A the same day.", "sources": ["S5", "S6"]},
+    {"date": "2022-04/2022-06", "name": "ScanBox campaign via fake 'Australian Morning News'", "summary": "Proofpoint and PwC assess with moderate confidence that TA423 / Red Ladon phished Australian government agencies, news media and heavy-industry firms maintaining wind turbines in the South China Sea. The phishing led victims to the ScanBox framework.", "sources": ["S7"]},
+    {"date": "2023-06/2024-01", "name": "South Pacific Island targeting", "summary": "Microsoft observed Gingham Typhoon targeting nearly every South Pacific Island country, including large-scale targeting of multinational organizations in Papua New Guinea. Victims included government, trade departments, ISPs, a transportation entity and critics of the Chinese government.", "sources": ["S1", "S9"]},
+    {"date": "2024-07-08", "name": "Joint advisory 'APT40 Tradecraft in Action'", "summary": "A seven-agency advisory led by ASD's ACSC attributes APT40 to the PRC MSS. It describes rapid exploitation of new vulnerabilities and repeated targeting of Australian networks, illustrated by two remediated case studies.", "sources": ["S3"]}
+  ],
+  "diamond": {
+    "adversary": "PRC MSS-linked operators, previously reported as tasked by the Hainan State Security Department and using the front company Hainan Xiandun [S3][S5]. Microsoft tracks them as Gingham Typhoon [S1].",
+    "capability": "Spearphishing, strategic web compromise, rapid public-exploit adaptation and web shells [S3][S4]. Malware includes BADFLICK, PHOTO, China Chopper and HOMEFRY [S4]. Also used: cloud-service C2 such as OneDrive/Graph API with modified PowerShell Empire [S2], and the ScanBox reconnaissance framework [S7].",
+    "infrastructure": "C2 domains registered through China-based resellers, plus a Hainan-based administration IP [S4]. Legitimate cloud services (TechNet, GitHub, Outlook, OneDrive, Azure AD apps) used as C2 [S2]. Fake news websites and spoofed domains [S5][S7]. Declining use of procured or leased C2 [S3].",
+    "victim": "South Pacific governments, international organizations, ISPs and IT firms [S1]. Also maritime, defense, engineering, health and university targets in the US, Europe and Southeast Asia [S2][S4][S5], and Australian government and media [S3][S7].",
+    "socioPolitical": "Geopolitical and diplomatic competition in the South Pacific; Belt and Road partner states; South China Sea disputes; and China's naval modernization [S1][S4].",
+    "technology": "Internet-facing web servers and unpatched public applications [S3][S4]. VPN and remote-desktop access [S4]. Microsoft 365 / Azure AD cloud services abused for C2 [S2]."
+  },
+  "gaps": [
+    "Microsoft's threat-actor naming page (learn.microsoft.com) could not be opened. The Gingham Typhoon = GADOLINIUM = APT40 mapping rests on the 2024 joint advisory's alias list and secondary coverage [S3], not a Microsoft mapping table.",
+    "The full text of joint advisory AA24-190A was not opened. Its PDF on cisa.gov, cyber.gov.au and media.defense.gov was blocked, so the case-study details, specific CVEs and the reported use of compromised SOHO devices could not be verified from the primary document.",
+    "The DOJ indictment and press release (justice.gov) and CISA AA21-200A were not opened. Facts come from press and search-result coverage [S5][S6].",
+    "The Proofpoint/PwC 'Rising Tide' report was not opened, and its exact publication date is unconfirmed. S7 is press coverage.",
+    "The start date is inconsistent across sources (2009, 2011, 2013, 'nearly a decade' before 2020).",
+    "Microsoft has not publicly named the malware, lures or specific Pacific victims for the 2023-2024 Gingham Typhoon activity [S1].",
+    "No activity after mid-2024 was checked: the web search budget ran out before 2025-2026 reporting could be reviewed.",
+    "Imported references (Intrusion Truth 2020, MyCERT 2020, Elastic, Recorded Future, Secureworks BRONZE MOHAWK profile, the 2018 Cambodia election targeting report) were not reviewed in this pass."
+  ],
+  "implications": {
+    "jipoe": "Analyst assessment derived from cited sources; validate before use. STEP 1 (OE): Relevant terrain includes Indo-Pacific partner networks, especially South Pacific Island governments, ISPs and international organizations [S1], plus Australian government networks [S3][S7]. It also includes maritime, naval-research and defense-industrial networks in the US and allied states [S4][S5]. Partner and ISP networks in the region are shared terrain for coalition operations. STEP 2 (effects): Rapid weaponization of public exploits [S3][S4] shrinks patch windows for internet-facing services. C2 over legitimate cloud services [S2] reduces the value of domain and IP blocking. STEP 3 (adversary template): Spearphishing or web-server exploitation, then web shell or first-stage backdoor, then credential theft (HOMEFRY, VPN/RDP credentials), then lateral movement with native tools, then RAR staging and exfiltration [S4]. Cloud-API C2 is an alternate branch [S2]. STEP 4: MLCOA is sustained espionage against Pacific and Southeast Asian partner governments and maritime/defense research, timed to diplomatic and Belt and Road events [S1][S4]. MDCOA is compromise of partner ISPs or government executive offices that support coalition operations, giving persistent access to shared communications [S1]. Candidate indicators: exploitation attempts against newly disclosed CVEs on edge web servers within days of disclosure [S3]; web-shell creation; anomalous Azure AD application consent or Graph API OneDrive traffic [S2]; lookalike news or vendor domains in phishing [S5][S7]; and logon activity on UTC+8 working hours [S4].",
+    "jcc2": "Analyst assessment derived from cited sources; validate before use. Situational awareness: Fuse partner reporting (ASD's ACSC, NCSC-NZ, Canadian Centre for Cyber Security, UK NCSC) with US advisories, since the 2024 advisory was multinational and Australia-led [S3]. Track Microsoft reporting on South Pacific activity [S1]. Authorities: Much of the activity is in partner-nation and commercial networks (ISPs, IT firms, universities) [S1][S5], so action depends on partner consent, hunt-forward agreements, and coordination with FBI/CISA for domestic victims [S5][S6]. Mission assurance: Prioritize patching and web-shell hunting on DoD and DIB internet-facing servers, and monitor cloud tenants for malicious Azure AD applications [S2][S3][S4]. Coordination: Coordinate with Microsoft and cloud providers, which have previously suspended actor Azure AD applications [S2]. Coordinate with allied CERTs for Pacific Island and Southeast Asian partners targeted around Belt and Road and South China Sea issues [S1][S4]."
+  },
+  "sources": [
+    {"ref": "S1", "title": "Same targets, new playbooks: East Asia threat actors employ unique methods", "publisher": "Microsoft Threat Intelligence (Security Insider)", "date": "2024-04-04", "url": "https://www.microsoft.com/en-us/security/business/security-insider/reports/east-asia-threat-actors-employ-unique-methods/"},
+    {"ref": "S2", "title": "Microsoft Security - detecting empires in the cloud (GADOLINIUM)", "publisher": "Microsoft Security Blog", "date": "2020-09-24", "url": "https://www.microsoft.com/en-us/security/blog/2020/09/24/gadolinium-detecting-empires-cloud/"},
+    {"ref": "S3", "title": "AA24-190A: People's Republic of China (PRC) Ministry of State Security APT40 Tradecraft in Action (via search-result coverage; primary not opened)", "publisher": "ASD's ACSC, CISA, NSA, FBI, UK NCSC, CCCS, NCSC-NZ", "date": "2024-07-08", "url": "https://www.cisa.gov/news-events/cybersecurity-advisories/aa24-190a"},
+    {"ref": "S4", "title": "APT40: Examining a China-Nexus Espionage Actor", "publisher": "Mandiant (FireEye), Google Cloud Blog repost", "date": "2019-03-04", "url": "https://cloud.google.com/blog/topics/threat-intelligence/apt40-examining-a-china-nexus-espionage-actor"},
+    {"ref": "S5", "title": "US indicts members of Chinese-backed hacking group APT40 (reporting DOJ indictment)", "publisher": "BleepingComputer", "date": "2021-07-19", "url": "https://www.bleepingcomputer.com/news/security/us-indicts-members-of-chinese-backed-hacking-group-apt40"},
+    {"ref": "S6", "title": "AA21-200A: Tactics, Techniques, and Procedures of Indicted APT40 Actors Associated with China's MSS Hainan State Security Department (via search-result coverage; primary not opened)", "publisher": "CISA / FBI", "date": "2021-07-19", "url": "https://us-cert.cisa.gov/ncas/alerts/aa21-200a"},
+    {"ref": "S7", "title": "Chinese hacker group TA423 targets Australian governmental entities, countries in South China Sea (reporting Proofpoint/PwC 'Rising Tide' research)", "publisher": "Industrial Cyber", "date": "2022-08", "url": "https://industrialcyber.co/news/chinese-hacker-group-ta423-targets-australian-governmental-entities-countries-in-south-china-sea/"},
+    {"ref": "S8", "title": "Leviathan, G0065", "publisher": "MITRE ATT&CK", "date": "2026-07-31", "url": "https://attack.mitre.org/groups/G0065/"},
+    {"ref": "S9", "title": "The Microsoft Threat Intelligence Podcast (episode on East Asia report; show notes)", "publisher": "Microsoft / CyberWire", "date": "2024-10-09", "url": "https://thecyberwire.com/podcasts/microsoft-threat-intelligence/29/notes"}
+  ],
+  "aliasesAdd": [
+    {"name": "GADOLINIUM", "vendor": "Microsoft (former name)"},
+    {"name": "TA423", "vendor": "Proofpoint"},
+    {"name": "Red Ladon", "vendor": "PwC"}
+  ]
+}

@@ -1,0 +1,68 @@
+{
+  "identification": {
+    "summary": "Pink Sandstorm (Agrius) is an Iranian threat actor active since 2020 that has run a series of ransomware and wiper operations in the Middle East, with an emphasis on Israeli targets [S3]. Microsoft describes Pink Sandstorm as linked to Iran's Ministry of Intelligence and Security (MOIS). Microsoft reports that the group conducted a hack-and-leak against an Israeli hospital in late November 2023 and has collaborated with Hezbollah cyber units since the Israel-Hamas war began [S1].",
+    "firstObserved": "2020, per MITRE ATT&CK G1030 [S3].",
+    "notes": "Microsoft name: Pink Sandstorm (Iran). Microsoft maps AMERICIUM, SPECTRAL KITTEN, Agrius, Deadwood, BlackShadow, SharpBoys, FireAnt and Justice Blade to it [S2]. MITRE tracks the group as Agrius (G1030) [S3]. Microsoft's February 2024 report names the group 'Pink Sandstorm (a.k.a. Agrius)' [S1]. BlackShadow and Justice Blade appear in Microsoft's mapping as other names [S2], but the sources gathered here do not say whether they are personas, separate clusters or vendor names. This record does not treat activity under those names as Pink Sandstorm activity unless a cited source does. A legacy merge in this encyclopedia attached these names to Twill Typhoon (Mustang Panda) by mistake; they belong here."
+  },
+  "attribution": {
+    "sponsor": "Iran. Microsoft describes Pink Sandstorm as an MOIS-linked group [S1], and MITRE notes public reporting linking Agrius to MOIS [S3].",
+    "confidence": "Microsoft calls Pink Sandstorm 'MOIS-linked' without a stated confidence level in the source reviewed [S1]. MITRE attributes the MOIS link to public reporting [S3]. No US government attribution was found in the sources gathered.",
+    "basis": "Microsoft Threat Intelligence observations, including infrastructure overlaps and shared tooling with Hezbollah cyber units [S1]; MITRE ATT&CK group profile compiled from vendor reporting [S3]."
+  },
+  "objectives": "Microsoft reports that Iran's cyber and influence operations against Israel after 7 October 2023 pursued destabilization, retaliation and intimidation, and sought to undermine international support for Israel [S1]. Pink Sandstorm's November 2023 hack-and-leak against an Israeli hospital appeared to be retaliation for Israel's siege of al-Shifa Hospital in Gaza two weeks earlier [S1]. MITRE describes the group's activity as ransomware and wiper operations, which points to disruptive and destructive objectives [S3].",
+  "targeting": {
+    "sectors": [
+      "Healthcare (Israeli hospital, November 2023) [S1]"
+    ],
+    "regions": [
+      "Israel (primary emphasis) [S1][S3]",
+      "Middle East [S3]"
+    ],
+    "notes": "MITRE describes an emphasis on Israeli targets within Middle East operations [S3]. Microsoft documents one healthcare victim [S1]. Beyond that, the sector breakdown is unsourced here because the vendor reports that name the sectors could not be opened."
+  },
+  "capabilities": {
+    "summary": "Pink Sandstorm runs ransomware and wiper operations [S3] and hack-and-leak operations [S1]. MITRE associates the group with custom destructive and backdoor malware: DEADWOOD, Apostle, IPsec Helper, MultiLayer Wiper, BFG Agonizer and Moneybird. It also uses commodity and public tools, including Mimikatz, ASPXSpy and NBTscan [S3]. Microsoft observed infrastructure overlaps and shared tooling between Pink Sandstorm and Hezbollah cyber units [S1]."
+  },
+  "campaigns": [
+    {
+      "date": "2023-11",
+      "name": "Israeli hospital hack-and-leak",
+      "summary": "Microsoft reports that Pink Sandstorm conducted a hack-and-leak against an Israeli hospital in late November 2023. The attack appeared to retaliate for Israel's siege of al-Shifa Hospital in Gaza about two weeks earlier.",
+      "sources": ["S1"]
+    },
+    {
+      "date": "2023-10",
+      "name": "Collaboration with Hezbollah cyber units",
+      "summary": "Microsoft detected collaboration between Pink Sandstorm and Hezbollah cyber units after the war began in October 2023, including infrastructure overlaps and shared tooling.",
+      "sources": ["S1"]
+    }
+  ],
+  "diamond": {
+    "adversary": "MOIS-linked Iranian operators [S1][S3], collaborating with Hezbollah cyber units since late 2023 [S1].",
+    "capability": "Ransomware and wipers (Apostle, MultiLayer Wiper, BFG Agonizer, Moneybird), the DEADWOOD wiper, the IPsec Helper backdoor, ASPXSpy web shell, Mimikatz and NBTscan [S3]; hack-and-leak [S1].",
+    "infrastructure": "Infrastructure that overlaps with infrastructure used by Hezbollah cyber units [S1]. No specific infrastructure details are sourced here.",
+    "victim": "Israeli organizations, including a hospital in November 2023 [S1]; other Middle East targets [S3].",
+    "socioPolitical": "Iranian retaliation and intimidation against Israel during the Israel-Hamas war, aimed at undermining support for Israel [S1].",
+    "technology": "Windows enterprise networks targeted with wipers and ransomware [S3]; hospital data systems exposed to theft and leaking [S1]."
+  },
+  "gaps": [
+    "Research constraint: web search was unavailable for this run, and the fetch tool could reach only microsoft.com and GitHub raw content. The primary vendor reports could not be opened: SentinelOne 'From Wiper to Ransomware: The Evolution of Agrius' (2021), ESET reporting on the Fantasy wiper supply-chain attack, Check Point reporting on Moneybird (2023), and Palo Alto Unit 42 reporting on Agonizing Serpens (2023). Their facts are not included here and should be added on a follow-up run.",
+    "MITRE ATT&CK G1030 could not be re-fetched. Its description and software list are cited from the copy imported into this encyclopedia's actor record (object modified 2026-07-31).",
+    "Microsoft's stated confidence in the MOIS link, and any US government attribution, were not found in the sources reviewed.",
+    "The persona used for the November 2023 Israeli hospital leak and the scope of the stolen data are not stated in the Microsoft report.",
+    "The relationship between Pink Sandstorm and the names BlackShadow and Justice Blade is unverified. Microsoft lists them as other names [S2], but no reviewed source defines them, so activity under those names is not merged into this record.",
+    "Initial access methods, sector breakdown beyond healthcare, and activity after February 2024 remain unsourced."
+  ],
+  "implications": {
+    "jipoe": "Analyst assessment derived from cited sources; validate before use. STEP 1 (OE): Israeli organizations and Middle East partners are the primary operating environment [S3]. Healthcare data is demonstrated target terrain [S1]. STEP 2 (effects): Wiper and ransomware payloads deny data and services, and hack-and-leak adds psychological and reputational effects timed to political events [S1][S3]. STEP 3 (adversary template): access and credential theft (ASPXSpy, Mimikatz, NBTscan), then a backdoor (IPsec Helper), then deployment of a wiper or ransomware disguised as extortion, or theft followed by a public leak [S1][S3]. STEP 4: MLCOA is retaliatory hack-and-leak or disruptive attacks on Israeli institutions following kinetic events in the region [S1]. MDCOA is coordinated destructive operations with Hezbollah cyber units using shared infrastructure, extending to Israel's partners [S1]. Candidate indicators include ASPX web shells on internet-facing servers, Mimikatz and NBTscan activity, signatures of the cited wipers and ransomware, and leak-site claims after regional escalation [S1][S3].",
+    "jcc2": "Analyst assessment derived from cited sources; validate before use. Situational awareness: tie warning indicators to regional escalation events, because Microsoft links the hospital attack in timing to Gaza operations [S1]. Track reporting on Hezbollah cyber units alongside Pink Sandstorm, given the shared infrastructure [S1]. Authorities: ransomware-style payloads may be destructive operations rather than criminal extortion [S3], which affects reporting channels and response authorities. Mission assurance: partner-nation medical and logistics data are plausible targets for leaks or wipers [S1][S3], so offline backups and web-shell hunting should be prioritized. Coordination: share indicators with partner CERTs, because this is coalition-relevant activity aimed at undermining support for Israel [S1]."
+  },
+  "sources": [
+    {"ref": "S1", "title": "Iran surges cyber-enabled influence operations in support of Hamas", "publisher": "Microsoft Threat Intelligence (Security Insider)", "date": "2024-02-26", "url": "https://www.microsoft.com/en-us/security/security-insider/intelligence-reports/iran-surges-cyber-enabled-influence-operations-in-support-of-hamas"},
+    {"ref": "S2", "title": "Microsoft threat actor naming mapping (MicrosoftMapping.json), Pink Sandstorm entry", "publisher": "Microsoft Threat Intelligence (GitHub)", "date": "2026-10-14", "url": "https://github.com/microsoft/mstic/blob/master/PublicFeeds/ThreatActorNaming/MicrosoftMapping.json"},
+    {"ref": "S3", "title": "Agrius, G1030 (description and software; cited from encyclopedia import, not re-fetched)", "publisher": "MITRE ATT&CK", "date": "2026-07-31", "url": "https://attack.mitre.org/groups/G1030/"}
+  ],
+  "aliasesAdd": [
+    {"name": "Agrius", "vendor": "Microsoft (stated a.k.a.) / MITRE ATT&CK"}
+  ]
+}
