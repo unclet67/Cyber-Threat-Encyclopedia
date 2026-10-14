@@ -1,22 +1,23 @@
 {
   "identification": {
-    "summary": "Nylon Typhoon (formerly NICKEL) is a China-based espionage actor that Microsoft says targets governments, diplomatic entities and non-governmental organizations (NGOs) across Central and South America, the Caribbean, Europe and North America [S1][S4]. MITRE ATT&CK tracks the same group as Ke3chang (G0004), attributed to actors operating out of China, which has targeted oil, government, diplomatic, military and NGO organizations since at least 2010 [S3]. Microsoft reports that the actor achieved long-term access to several victims and ran regularly scheduled data exfiltration [S1].",
-    "firstObserved": "MITRE: targeting since at least 2010 [S3]. Microsoft has tracked NICKEL since 2016 and tracked the operations it disclosed in 2021 since September 2019 [S1].",
-    "notes": "Microsoft name: Nylon Typhoon (formerly NICKEL). Microsoft maps NICKEL, VIXEN PANDA, Playful Dragon, RedRiver, ke3chang, APT15 and Mirage to it [S4]. In 2021 Microsoft wrote that it 'observed some common activity' with actors known as APT15, APT25 and KeChang, which is an overlap statement rather than a one-to-one equivalence [S1]. MITRE lists Ke3chang, APT15, Mirage, Vixen Panda, GREF, Playful Dragon, RoyalAPT, NICKEL and Nylon Typhoon as associated names [S3]. The imported summary on this record described ESET's 'GREF' cluster (active since March 2017, Android BadBazaar campaigns against Uyghurs). That summary was not carried forward because no source gathered here ties that ESET cluster to Microsoft's Nylon Typhoon (see gaps)."
+    "summary": "Nylon Typhoon (formerly NICKEL) is a China-based espionage actor that Microsoft says uses exploits against unpatched systems to compromise remote access services and appliances, targeting government agencies, diplomatic organizations and NGOs in Central and South America, the Caribbean, Europe and North America [S1][S11]. MITRE ATT&CK tracks the same group as Ke3chang (G0004), attributed to actors operating out of China, which has targeted oil, government, diplomatic, military and NGO organizations since at least 2010 [S3]. Microsoft reports that the actor achieved long-term access to several victims and ran regularly scheduled data exfiltration [S1]. Symantec reported the group, which it tracks as Flea, still attacking foreign ministries in the Americas in late 2022 and early 2023 with a new Microsoft Graph-based backdoor, Graphican [S12][S13].",
+    "firstObserved": "MITRE: targeting since at least 2010 [S3]. Microsoft has tracked NICKEL since 2016 and tracked the operations it disclosed in 2021 since September 2019 [S1]. Latest dated public campaign found: late 2022 to early 2023 (Symantec, Flea) [S12][S13].",
+    "notes": "Microsoft name: Nylon Typhoon (formerly NICKEL). Microsoft maps NICKEL, VIXEN PANDA, Playful Dragon, RedRiver, ke3chang, APT15 and Mirage to it [S4]. In 2021 Microsoft wrote that it 'observed some common activity' with actors known as APT15, APT25 and KeChang, which is an overlap statement rather than a one-to-one equivalence [S1]. Microsoft's Security Insider profile (dated 2024-01-25) lists APT15 and Vixen Panda as other names [S11]. Symantec's Flea is linked to APT15/Nickel in coverage of its 2023 report [S13]. MITRE lists Ke3chang, APT15, Mirage, Vixen Panda, GREF, Playful Dragon, RoyalAPT, NICKEL and Nylon Typhoon as associated names [S3]. The imported summary on this record described ESET's 'GREF' cluster (active since March 2017, Android BadBazaar campaigns against Uyghurs). That summary was not carried forward because no source gathered here ties that ESET cluster to Microsoft's Nylon Typhoon (see gaps)."
   },
   "attribution": {
     "sponsor": "People's Republic of China (state nexus). Microsoft describes NICKEL as a China-based threat actor [S1][S4], and MITRE attributes Ke3chang to actors operating out of China [S3]. None of the sources gathered names a specific PRC agency or unit.",
-    "confidence": "Microsoft attributes the activity to NICKEL / Nylon Typhoon by name and assesses that China-based actors will keep targeting government, diplomatic and NGO sectors, likely for economic espionage or traditional intelligence collection [S1]. Microsoft did not publish a numeric or worded confidence level for state sponsorship. The December 2021 domain seizure was a civil action by Microsoft's Digital Crimes Unit under a US District Court order, not a US government attribution [S1][S2].",
-    "basis": "Microsoft MSTIC telemetry and customer notifications, plus the DCU seizure of NICKEL-operated websites [S1][S2]; sign-in activity concentrated Monday to Friday, 08:00 to 17:00 China Standard Time [S1]; long-running vendor reporting summarized by MITRE ATT&CK (Mandiant, NCC Group, Intezer, ESET) [S3][S6][S7][S8][S9]; Mandiant reporting on shared China-nexus ORB infrastructure [S5]."
+    "confidence": "Microsoft attributes the activity to NICKEL / Nylon Typhoon by name and assesses that China-based actors will keep targeting government, diplomatic and NGO sectors, likely for economic espionage or traditional intelligence collection [S1]. Microsoft did not publish a numeric or worded confidence level for state sponsorship. The December 2021 domain seizure was a civil action by Microsoft's Digital Crimes Unit under a US District Court order, not a US government attribution [S1][S2]. Symantec assesses Flea as China-linked [S13]; that is a vendor assessment, not government attribution.",
+    "basis": "Microsoft MSTIC telemetry and customer notifications, plus the DCU seizure of NICKEL-operated websites [S1][S2]; sign-in activity concentrated Monday to Friday, 08:00 to 17:00 China Standard Time [S1]; long-running vendor reporting summarized by MITRE ATT&CK (Mandiant, NCC Group, Intezer, ESET) [S3][S6][S7][S8][S9]; Symantec reporting on Flea/Graphican, as covered by the press [S12][S13]; Mandiant reporting on shared China-nexus ORB infrastructure [S5]."
   },
-  "objectives": "Intelligence collection against foreign ministries, diplomatic entities, other government bodies and NGOs. Microsoft assesses this is likely in pursuit of economic espionage or traditional intelligence collection as China expands bilateral relations and Belt and Road partnerships [S1]. Mandiant's 2014 Operation Ke3chang report focused on attacks against Ministries of Foreign Affairs [S3][S9].",
+  "objectives": "Intelligence collection against foreign ministries, diplomatic entities, other government bodies and NGOs. Microsoft assesses this is likely in pursuit of economic espionage or traditional intelligence collection as China expands bilateral relations and Belt and Road partnerships [S1]. Mandiant's 2014 Operation Ke3chang report focused on attacks against Ministries of Foreign Affairs [S3][S9]. Symantec's 2022-2023 Flea victims were mainly foreign affairs ministries in the Americas, plus a government finance department, consistent with continued diplomatic intelligence collection [S12][S13].",
   "targeting": {
     "sectors": [
-      "Government, including ministries of foreign affairs [S1][S9]",
+      "Government, including ministries of foreign affairs and a finance department [S1][S9][S12][S13]",
       "Diplomatic entities [S1]",
       "Non-governmental organizations [S1][S3]",
       "Military [S3]",
-      "Oil [S3]"
+      "Oil [S3]",
+      "Private corporation in Central and South America (2022-2023) [S13]"
     ],
     "regions": [
       "Central and South America, with a large share of activity against Central and South American governments [S1]",
@@ -24,66 +25,255 @@
       "Europe [S1][S3]",
       "North America, including the United States [S1][S3]",
       "Africa: Mali appears among the 29 countries Microsoft listed [S1]",
-      "Middle East: Mandiant lists it among regions historically targeted by APT15 and APT5 via SPACEHOP [S5]"
+      "Middle East: Mandiant lists it among regions historically targeted by APT15 and APT5 [S5]"
     ],
-    "notes": "Microsoft's December 2021 list of 29 targeted countries: Argentina, Barbados, Bosnia and Herzegovina, Brazil, Bulgaria, Chile, Colombia, Croatia, Czech Republic, Dominican Republic, Ecuador, El Salvador, France, Guatemala, Honduras, Hungary, Italy, Jamaica, Mali, Mexico, Montenegro, Panama, Peru, Portugal, Switzerland, Trinidad and Tobago, United Kingdom, United States and Venezuela [S1]. In its 2021 Digital Defense Report summary, Microsoft names NICKEL among the four nation-state groups most active against the government sector from July 2020 to June 2021, mostly against government entities involved in international affairs [S10]."
+    "notes": "Microsoft's December 2021 list of 29 targeted countries: Argentina, Barbados, Bosnia and Herzegovina, Brazil, Bulgaria, Chile, Colombia, Croatia, Czech Republic, Dominican Republic, Ecuador, El Salvador, France, Guatemala, Honduras, Hungary, Italy, Jamaica, Mali, Mexico, Montenegro, Panama, Peru, Portugal, Switzerland, Trinidad and Tobago, United Kingdom, United States and Venezuela [S1]. In its 2021 Digital Defense Report summary, Microsoft names NICKEL among the four nation-state groups most active against the government sector from July 2020 to June 2021, mostly against government entities involved in international affairs [S10]. Symantec's 2022-2023 activity hit foreign ministries in the Americas, a corporation in Central and South America and one European victim [S12][S13]."
   },
   "capabilities": {
-    "summary": "Initial access through exploits against unpatched internet-facing Microsoft Exchange and SharePoint servers and remote-access appliances such as VPNs, including a Pulse Secure VPN vulnerability [S1]. MITRE also records VPN access using compromised accounts and stolen VPN certificates [S3][S6]. Credential theft uses keyloggers, Mimikatz, WDigest abuse and NTDSDump [S1]. Custom backdoors include Neoichor, Leeson, NumbIdea, NullItch and Rokum; several use the Internet Explorer COM interface for C2 hidden in legitimate-looking web pages, and implants are dropped into existing application paths to blend in [S1]. Stolen credentials are used for routine Microsoft 365 email collection through browser sign-ins and legacy Exchange Web Services, routed through commercial VPNs and actor infrastructure [S1]. Scheduled, incremental file collection is staged and archived with renamed RAR or 7-Zip [S1]. Earlier tooling includes RoyalCLI and RoyalDNS (DNS C2) and the SharePoint dumping tool spwebmember [S3][S6], the MirageFox RAT, an upgraded Mirage [S3][S7], and the Okrum backdoor, in use since December 2016 [S3][S8]. Mandiant reports that APT15 has used the provisioned ORB network SPACEHOP for reconnaissance scanning and vulnerability exploitation [S5]."
+    "summary": "Initial access through exploits against unpatched internet-facing Microsoft Exchange and SharePoint servers and remote-access appliances such as VPNs, including a Pulse Secure VPN vulnerability [S1]. MITRE also records VPN access using compromised accounts and stolen VPN certificates [S3][S6]. Credential theft uses keyloggers, Mimikatz, WDigest abuse and NTDSDump [S1]. Custom backdoors include Neoichor, Leeson, NumbIdea, NullItch and Rokum; several use the Internet Explorer COM interface for C2 hidden in legitimate-looking web pages, and implants are dropped into existing application paths to blend in [S1]. Stolen credentials are used for routine Microsoft 365 email collection through browser sign-ins and legacy Exchange Web Services, routed through commercial VPNs and actor infrastructure [S1]. Scheduled, incremental file collection is staged and archived with renamed RAR or 7-Zip [S1]. Earlier tooling includes RoyalCLI and RoyalDNS (DNS C2) and the SharePoint dumping tool spwebmember [S3][S6], the MirageFox RAT, an upgraded Mirage [S3][S7], and the Okrum backdoor, in use since December 2016 [S3][S8]. Mandiant reports that APT15 has used the provisioned ORB network SPACEHOP for reconnaissance scanning and vulnerability exploitation [S5]. In 2022-2023 the group (as Symantec's Flea) used Graphican, an evolution of the Ketrican backdoor (itself based on BS2005), which uses the Microsoft Graph API and OneDrive to retrieve encrypted C2 addresses and supports an interactive shell, file transfer, hidden process creation and hidden PowerShell execution [S12][S13]. The same campaign used the EWSTEW Exchange email-extraction backdoor, the Zerologon flaw CVE-2020-1472, Mimikatz, Pypykatz, Safetykatz and the public K8Tools toolkit [S12][S13]."
   },
   "campaigns": [
-    {"date": "2014-11", "name": "Operation Ke3chang (Mandiant)", "summary": "Mandiant reported targeted attacks against Ministries of Foreign Affairs, including spearphishing attachments disguised with the right-to-left override character (as summarized by MITRE).", "sources": ["S9", "S3"]},
-    {"date": "2016-12", "name": "Okrum and Ketrican backdoors (ESET)", "summary": "ESET's July 2019 report describes Okrum, a Windows backdoor in use since December 2016 with strong links to Ke3chang (as summarized by MITRE).", "sources": ["S8", "S3"]},
-    {"date": "2018-03", "name": "RoyalCLI and RoyalDNS intrusion (NCC Group)", "summary": "NCC Group reported APT15 activity using the RoyalCLI and RoyalDNS backdoors, Exchange mailbox dumping with compromised credentials, VPN access with stolen certificates and spwebmember SharePoint dumping (as summarized by MITRE).", "sources": ["S6", "S3"]},
-    {"date": "2018-06", "name": "MirageFox (Intezer)", "summary": "Intezer reported MirageFox, an upgraded version of the Mirage RAT attributed to APT15 (as summarized by MITRE).", "sources": ["S7", "S3"]},
-    {"date": "2019-09", "name": "NICKEL operations against Latin American and European governments", "summary": "Microsoft tracked NICKEL attacks against government, diplomatic and NGO targets in 29 countries from September 2019. The actor exploited Exchange, SharePoint and VPN flaws, used custom backdoors and collected email through Microsoft 365.", "sources": ["S1"]},
-    {"date": "2019", "name": "Use of SPACEHOP (ORB3) relay network", "summary": "Mandiant reports that the SPACEHOP provisioned ORB network, active since at least 2019, supported reconnaissance and exploitation by China-nexus actors including APT15. MITRE tracks this as campaign C0052.", "sources": ["S5", "S3"]},
-    {"date": "2021-10", "name": "Microsoft Digital Defense Report 2021", "summary": "Microsoft names NICKEL among the nation-state groups most active against the government sector from July 2020 to June 2021.", "sources": ["S10"]},
-    {"date": "2021-12-06", "name": "Microsoft DCU seizure of NICKEL websites", "summary": "Under a court order from the US District Court for the Eastern District of Virginia, Microsoft's Digital Crimes Unit seized a set of NICKEL-operated websites to disrupt attacks on organizations in 29 countries.", "sources": ["S1", "S2"]}
+    {
+      "date": "2014-11",
+      "name": "Operation Ke3chang (Mandiant)",
+      "summary": "Mandiant reported targeted attacks against Ministries of Foreign Affairs, including spearphishing attachments disguised with the right-to-left override character (as summarized by MITRE).",
+      "sources": [
+        "S9",
+        "S3"
+      ]
+    },
+    {
+      "date": "2016-12",
+      "name": "Okrum and Ketrican backdoors (ESET)",
+      "summary": "ESET's July 2019 report describes Okrum, a Windows backdoor in use since December 2016 with strong links to Ke3chang (as summarized by MITRE).",
+      "sources": [
+        "S8",
+        "S3"
+      ]
+    },
+    {
+      "date": "2018-03",
+      "name": "RoyalCLI and RoyalDNS intrusion (NCC Group)",
+      "summary": "NCC Group reported APT15 activity using the RoyalCLI and RoyalDNS backdoors, Exchange mailbox dumping with compromised credentials, VPN access with stolen certificates and spwebmember SharePoint dumping (as summarized by MITRE).",
+      "sources": [
+        "S6",
+        "S3"
+      ]
+    },
+    {
+      "date": "2018-06",
+      "name": "MirageFox (Intezer)",
+      "summary": "Intezer reported MirageFox, an upgraded version of the Mirage RAT attributed to APT15 (as summarized by MITRE).",
+      "sources": [
+        "S7",
+        "S3"
+      ]
+    },
+    {
+      "date": "2019-09",
+      "name": "NICKEL operations against Latin American and European governments",
+      "summary": "Microsoft tracked NICKEL attacks against government, diplomatic and NGO targets in 29 countries from September 2019. The actor exploited Exchange, SharePoint and VPN flaws, used custom backdoors and collected email through Microsoft 365.",
+      "sources": [
+        "S1"
+      ]
+    },
+    {
+      "date": "2021-10",
+      "name": "Microsoft Digital Defense Report 2021",
+      "summary": "Microsoft names NICKEL among the nation-state groups most active against the government sector from July 2020 to June 2021.",
+      "sources": [
+        "S10"
+      ]
+    },
+    {
+      "date": "2021-12-06",
+      "name": "Microsoft DCU seizure of NICKEL websites",
+      "summary": "Under a court order from the US District Court for the Eastern District of Virginia, Microsoft's Digital Crimes Unit seized a set of NICKEL-operated websites to disrupt attacks on organizations in 29 countries.",
+      "sources": [
+        "S1",
+        "S2"
+      ]
+    },
+    {
+      "date": "2022-2023",
+      "name": "Flea Graphican campaign against foreign ministries (Symantec)",
+      "summary": "Symantec reported late-2022 to early-2023 attacks on foreign affairs ministries in the Americas, a government finance department, a Central/South American corporation and one European victim, using the new Graphican backdoor (Graph API/OneDrive C2), EWSTEW, Zerologon (CVE-2020-1472) and credential dumpers.",
+      "sources": [
+        "S12",
+        "S13"
+      ]
+    },
+    {
+      "date": "2024-01-25",
+      "name": "Microsoft Security Insider profile of Nylon Typhoon",
+      "summary": "Microsoft's profile restates exploitation of unpatched remote access services, credential theft and custom malware for long-term persistence against government, diplomatic and NGO targets in the Americas and Europe.",
+      "sources": [
+        "S11"
+      ]
+    },
+    {
+      "date": "2024-05",
+      "name": "Use of SPACEHOP (ORB3) relay network (Mandiant reporting)",
+      "summary": "Mandiant reported that the SPACEHOP provisioned ORB network, run by a single entity in China with relay servers in Hong Kong or China, supported reconnaissance scanning and vulnerability exploitation by China-nexus actors including APT15. Mandiant did not give APT15-specific dates.",
+      "sources": [
+        "S5"
+      ]
+    }
   ],
   "diamond": {
     "adversary": "China-based espionage operators that Microsoft tracks as Nylon Typhoon (NICKEL) [S1][S4]. Sign-in activity clusters on weekdays from 08:00 to 17:00 China Standard Time, with possible shift-based scheduling [S1].",
-    "capability": "Exploits for Exchange, SharePoint and VPN appliances. Credential theft with Mimikatz, WDigest, NTDSDump and keyloggers. Custom backdoors Neoichor, Leeson, NumbIdea, NullItch and Rokum [S1]. Legacy tools RoyalCLI, RoyalDNS, MirageFox and Okrum [S3][S6][S7][S8].",
-    "infrastructure": "Actor-operated websites used for C2, seized by Microsoft DCU in 2021 [S1][S2]. Hardcoded C2 servers return legitimate-looking HTML that hides Base64 shellcode [S1]. Commercial VPN providers carry account sign-ins [S1]. The SPACEHOP ORB network uses leased VPS nodes, with relay servers in China or Hong Kong [S5]. RoyalDNS used DNS for C2 [S3].",
-    "victim": "Foreign ministries and other government bodies, diplomatic entities and NGOs in Latin America, the Caribbean, Europe, North America and Mali [S1]. MITRE adds oil and military targets [S3].",
+    "capability": "Exploits for Exchange, SharePoint and VPN appliances. Credential theft with Mimikatz, WDigest, NTDSDump and keyloggers. Custom backdoors Neoichor, Leeson, NumbIdea, NullItch and Rokum [S1]. Legacy tools RoyalCLI, RoyalDNS, MirageFox and Okrum [S3][S6][S7][S8]. Graphican (Graph API/OneDrive C2), EWSTEW, Zerologon exploitation and K8Tools in 2022-2023 [S12][S13].",
+    "infrastructure": "Actor-operated websites used for C2, seized by Microsoft DCU in 2021 [S1][S2]. Hardcoded C2 servers return legitimate-looking HTML that hides Base64 shellcode [S1]. Commercial VPN providers carry account sign-ins [S1]. The SPACEHOP ORB network, provisioned by a single entity in China, uses relay servers hosted in Hong Kong or China [S5]. RoyalDNS used DNS for C2 [S3]. Graphican retrieves its C2 address from OneDrive through the Microsoft Graph API, hiding C2 lookup in legitimate cloud traffic [S12][S13].",
+    "victim": "Foreign ministries and other government bodies, diplomatic entities and NGOs in Latin America, the Caribbean, Europe, North America and Mali [S1]. MITRE adds oil and military targets [S3]. Foreign ministries and a finance department in the Americas, plus one European victim, in 2022-2023 [S12][S13].",
     "socioPolitical": "Microsoft links the targeting to China's growing global influence, its bilateral relations and Belt and Road partnerships, with likely economic-espionage or traditional intelligence-collection aims [S1].",
-    "technology": "Unpatched on-premises Exchange and SharePoint, remote-access VPN appliances, Microsoft 365 accounts reachable through legacy authentication (EWS), and Windows hosts where credentials are cached in memory [S1]."
+    "technology": "Unpatched on-premises Exchange and SharePoint, remote-access VPN appliances, Microsoft 365 accounts reachable through legacy authentication (EWS), and Windows hosts where credentials are cached in memory [S1]. Microsoft 365 Graph API and OneDrive as C2 channels, and domain controllers unpatched for Zerologon [S12][S13]."
   },
   "gaps": [
-    "No public Microsoft reporting dated after 2021 specifically on Nylon Typhoon was found. Activity since the December 2021 seizure is undocumented in the sources gathered, apart from Mandiant's 2024 mention of APT15 using SPACEHOP [S5].",
-    "Microsoft's DCU announcement and the court filings (S2) could not be opened. Seizure details come from the MSTIC blog [S1].",
+    "No Microsoft reporting dated after 2021 with new Nylon Typhoon technical detail was found; the 2024 Security Insider profile is a summary [S11]. The latest dated campaign found is Symantec's 2022-2023 Flea/Graphican activity [S12][S13]. No 2024-2026 campaign reporting was found.",
+    "Microsoft's DCU announcement and the court filings could not be opened. Seizure details come from the MSTIC blog [S1] and press coverage reporting 42 domains [S2].",
+    "Symantec's Graphican report (S12) and most of its press coverage could not be opened (hosts blocked). Its details come from search-result summaries of Symantec and CSO Online coverage [S13]. Symantec's Flea name is not in Microsoft's mapping [S4], so the Flea-to-Nylon Typhoon link rests on Symantec's APT15/Nickel linkage.",
     "Primary reports were not opened because their hosts were blocked: Mandiant Operation Ke3chang (2014), NCC Group RoyalCLI/RoyalDNS (2018), Intezer MirageFox (2018), ESET Okrum and Ketrican (2019), and Palo Alto Unit 42 TidePool. Their content is used only as summarized by MITRE ATT&CK.",
     "Cluster boundary: ESET's 'GREF' (active since March 2017; Android BadBazaar trojanized Signal and Telegram apps targeting Uyghurs) appears in the imported summary, and MISP lists it as a separate entry from APT15. MITRE's GREF alias rests on older NCC Group reporting [S3]. No source gathered here establishes that ESET's GREF mobile activity belongs to Microsoft's Nylon Typhoon, so it is excluded.",
     "Microsoft stated only 'common activity' with APT15, APT25 and KeChang in 2021 [S1]. APT25 is not in Microsoft's current Nylon Typhoon mapping [S4]. The exact boundary with Mandiant's APT15 and APT25 is unresolved.",
     "Secureworks BRONZE PALACE, BRONZE DAVENPORT and BRONZE IDLEWOOD, plus the aliases Lurid, Metushy, Red Vulture, Social Network Team and Royal APT, are unverified. The Secureworks profile could not be opened.",
     "No specific PRC sponsoring agency (MSS, PLA or contractor) and no US government indictment or advisory naming this actor was found.",
     "Google Threat Intelligence's APT15 profile (sectors: trade, economic and financial, energy, military; ENFAL, BALDEAGLE, NOISEMAKER and MIRAGE malware) was read but carries no publication date, so it is not cited.",
-    "The Microsoft mapping file (S4) is a living document. Its date is the access date, not a publication date."
+    "The Microsoft mapping file (S4) is a living document. Its date is the access date, not a publication date.",
+    "MITRE ATT&CK pages could not be opened directly this session. The G0004 description and aliases were confirmed through search results (version 3.1, modified 2025-04-04) [S3]; software and campaign C0052 details come from earlier reading of the ATT&CK bundle and were not re-verified."
   ],
   "implications": {
-    "jipoe": "Analyst assessment derived from cited sources; validate before use. STEP 1 (define the OE): Key cyber terrain is internet-facing Exchange, SharePoint and VPN appliances, plus Microsoft 365 tenants that still allow legacy authentication (EWS). It matters most for foreign-affairs, diplomatic and partner-nation government networks in Latin America, the Caribbean, Europe and North America [S1]. STEP 2 (describe effects): Exposed and unpatched remote-access edges are the entry point. Shared ORB relay networks such as SPACEHOP spread source infrastructure across commercial VPS providers, which weakens IP-based blocking and attribution [S1][S5]. STEP 3 (adversary template): Exploit edge service or VPN, then dump credentials (Mimikatz, NTDSDump, WDigest, keylogger), then deploy an IE-COM backdoor in a legitimate software path, then collect mailboxes through M365/EWS sign-ins over commercial VPNs, then run recurring, date-filtered file collection archived with renamed RAR or 7-Zip [S1]. STEP 4 (COAs): MLCOA is quiet, long-term diplomatic and government intelligence collection with scheduled exfiltration from partner-nation ministries [S1]. MDCOA is persistent access to partner-nation foreign-affairs and military networks, or to shared coalition email, exposing coalition planning or negotiating positions (analyst extrapolation from the targeting [S1][S3]). Candidate indicators: EWS or legacy-auth sign-ins from commercial VPN ranges during 00:00-09:00 UTC on weekdays; WDigest UseLogonCredential being enabled; executables such as AcroRd64.exe or FoxitRdr64.exe in unexpected application folders; IE registry changes (IEHarden=0, ClearBrowsingHistoryOnExit=1); renamed rar.exe or 7z.exe with keyboard-walk passwords [S1].",
-    "jcc2": "Analyst assessment derived from cited sources; validate before use. Situational awareness: Fuse identity telemetry (legacy-auth and EWS sign-ins, VPN-sourced logons) with edge-device patch status. The actor relies on valid credentials after initial exploitation, so host-only sensing will miss mailbox collection [S1]. Track ORB/SPACEHOP-linked infrastructure as shared China-nexus terrain rather than as a single-actor indicator [S5]. Authorities: The 2021 disruption came through a private civil seizure (Microsoft DCU under a US District Court order), not government action [S1][S2]. Planners should not count such actions as DoD effects, and they should coordinate deconfliction with private-sector disruption efforts. Mission assurance: Block legacy authentication, enforce MFA, apply the ASR rule against LSASS credential theft, and prioritize patching of Exchange, SharePoint and VPN appliances on DODIN and mission-partner enclaves [S1]. Coordination: Many victims are partner-nation and Western Hemisphere foreign ministries [S1]. Information sharing with partner nations and combatant commands, especially SOUTHCOM-area partners, is an analyst-inferred coordination need for protecting shared diplomatic and military communications."
+    "jipoe": "Analyst assessment derived from cited sources; validate before use. STEP 1 (define the OE): Key cyber terrain is internet-facing Exchange, SharePoint and VPN appliances, plus Microsoft 365 tenants that still allow legacy authentication (EWS). It matters most for foreign-affairs, diplomatic and partner-nation government networks in Latin America, the Caribbean, Europe and North America [S1]. STEP 2 (describe effects): Exposed and unpatched remote-access edges are the entry point. Shared ORB relay networks such as SPACEHOP spread source infrastructure across commercial VPS providers, which weakens IP-based blocking and attribution [S1][S5]. STEP 3 (adversary template): Exploit edge service or VPN, then dump credentials (Mimikatz, NTDSDump, WDigest, keylogger), then deploy an IE-COM backdoor in a legitimate software path, then collect mailboxes through M365/EWS sign-ins over commercial VPNs, then run recurring, date-filtered file collection archived with renamed RAR or 7-Zip [S1]. STEP 4 (COAs): MLCOA is quiet, long-term diplomatic and government intelligence collection with scheduled exfiltration from partner-nation ministries [S1]. MDCOA is persistent access to partner-nation foreign-affairs and military networks, or to shared coalition email, exposing coalition planning or negotiating positions (analyst extrapolation from the targeting [S1][S3]). Graphican shows the actor moving C2 into Microsoft Graph/OneDrive traffic, which blends with normal M365 use [S12][S13]. Candidate indicators: unexpected Graph API or OneDrive access by non-browser processes on servers; Zerologon (CVE-2020-1472) exploitation attempts against domain controllers [S12][S13]; EWS or legacy-auth sign-ins from commercial VPN ranges during 00:00-09:00 UTC on weekdays; WDigest UseLogonCredential being enabled; executables such as AcroRd64.exe or FoxitRdr64.exe in unexpected application folders; IE registry changes (IEHarden=0, ClearBrowsingHistoryOnExit=1); renamed rar.exe or 7z.exe with keyboard-walk passwords [S1].",
+    "jcc2": "Analyst assessment derived from cited sources; validate before use. Situational awareness: Fuse identity telemetry (legacy-auth and EWS sign-ins, VPN-sourced logons) with edge-device patch status. The actor relies on valid credentials after initial exploitation, so host-only sensing will miss mailbox collection [S1]. Track ORB/SPACEHOP-linked infrastructure as shared China-nexus terrain rather than as a single-actor indicator [S5]. Authorities: The 2021 disruption came through a private civil seizure (Microsoft DCU under a US District Court order), not government action [S1][S2]. Planners should not count such actions as DoD effects, and they should coordinate deconfliction with private-sector disruption efforts. Situational awareness should also cover cloud API telemetry, because Graph/OneDrive C2 bypasses traditional C2 domain blocking [S12][S13]. Mission assurance: Block legacy authentication, enforce MFA, apply the ASR rule against LSASS credential theft, and prioritize patching of Exchange, SharePoint and VPN appliances on DODIN and mission-partner enclaves [S1]. Coordination: Many victims are partner-nation and Western Hemisphere foreign ministries [S1]. Information sharing with partner nations and combatant commands, especially SOUTHCOM-area partners, is an analyst-inferred coordination need for protecting shared diplomatic and military communications."
   },
   "sources": [
-    {"ref": "S1", "title": "NICKEL targeting government organizations across Latin America and Europe", "publisher": "Microsoft Threat Intelligence (MSTIC) and Microsoft Digital Security Unit", "date": "2021-12-06", "url": "https://www.microsoft.com/en-us/security/blog/2021/12/06/nickel-targeting-government-organizations-across-latin-america-and-europe/"},
-    {"ref": "S2", "title": "Microsoft DCU announcement of NICKEL website seizure (linked from S1; not opened, host blocked)", "publisher": "Microsoft On the Issues", "date": "2021-12-06", "url": "https://blogs.microsoft.com/on-the-issues/2021/12/06/cyberattacks-nickel-dcu-china/"},
-    {"ref": "S3", "title": "Ke3chang, G0004 (read from the ATT&CK STIX bundle: description, aliases, relationships, software, campaign C0052)", "publisher": "MITRE ATT&CK", "date": "2026-07-31", "url": "https://attack.mitre.org/groups/G0004/"},
-    {"ref": "S4", "title": "Microsoft threat actor naming mapping (MicrosoftMapping.json): Nylon Typhoon entry", "publisher": "Microsoft Threat Intelligence", "date": "2026-10-14", "url": "https://github.com/microsoft/mstic/blob/master/PublicFeeds/ThreatActorNaming/MicrosoftMapping.json"},
-    {"ref": "S5", "title": "IOC Extinction? China-Nexus Cyber Espionage Actors Use ORB Networks to Raise Cost on Defenders", "publisher": "Mandiant (Google Cloud)", "date": "2024-05-22", "url": "https://cloud.google.com/blog/topics/threat-intelligence/china-nexus-espionage-orb-networks"},
-    {"ref": "S6", "title": "APT15 is alive and strong: An analysis of RoyalCli and RoyalDNS (as summarized by MITRE ATT&CK; not opened)", "publisher": "NCC Group", "date": "2018-03-10", "url": "https://research.nccgroup.com/2018/03/10/apt15-is-alive-and-strong-an-analysis-of-royalcli-and-royaldns/"},
-    {"ref": "S7", "title": "MirageFox: APT15 Resurfaces With New Tools Based On Old Ones (as summarized by MITRE ATT&CK; not opened)", "publisher": "Intezer", "date": "2018-06-14", "url": "https://www.intezer.com/miragefox-apt15-resurfaces-with-new-tools-based-on-old-ones/"},
-    {"ref": "S8", "title": "Okrum and Ketrican: An overview of recent Ke3chang group activity (as summarized by MITRE ATT&CK; not opened)", "publisher": "ESET", "date": "2019-07", "url": "https://www.welivesecurity.com/wp-content/uploads/2019/07/ESET_Okrum_and_Ketrican.pdf"},
-    {"ref": "S9", "title": "Operation 'Ke3chang': Targeted Attacks Against Ministries of Foreign Affairs (as summarized by MITRE ATT&CK; not opened; date per MITRE citation label)", "publisher": "Mandiant / FireEye", "date": "2014-11", "url": "https://www.fireeye.com/content/dam/fireeye-www/global/en/current-threats/pdfs/wp-operation-ke3chang.pdf"},
-    {"ref": "S10", "title": "Microsoft Digital Defense Report shares new insights on nation-state attacks", "publisher": "Microsoft Security", "date": "2021-10-25", "url": "https://www.microsoft.com/en-us/security/blog/2021/10/25/microsoft-digital-defense-report-shares-new-insights-on-nation-state-attacks/"}
+    {
+      "ref": "S1",
+      "title": "NICKEL targeting government organizations across Latin America and Europe",
+      "publisher": "Microsoft Threat Intelligence (MSTIC) and Microsoft Digital Security Unit",
+      "date": "2021-12-06",
+      "url": "https://www.microsoft.com/en-us/security/blog/2021/12/06/nickel-targeting-government-organizations-across-latin-america-and-europe/"
+    },
+    {
+      "ref": "S2",
+      "title": "Microsoft seizes control of 42 domains used by China-based Nickel hacking group (reporting Microsoft DCU court action)",
+      "publisher": "Computing",
+      "date": "2021-12",
+      "url": "https://www.computing.co.uk/news/4041815/microsoft-seizes-control-domains-china-nickel-hacking-group"
+    },
+    {
+      "ref": "S3",
+      "title": "Ke3chang, G0004 (version 3.1; description and aliases confirmed via search results)",
+      "publisher": "MITRE ATT&CK",
+      "date": "2025-04-04",
+      "url": "https://attack.mitre.org/groups/G0004/"
+    },
+    {
+      "ref": "S4",
+      "title": "Microsoft threat actor naming mapping (MicrosoftMapping.json): Nylon Typhoon entry (retrieved 2026-10-14)",
+      "publisher": "Microsoft Threat Intelligence",
+      "date": "2026-10-14",
+      "url": "https://github.com/microsoft/mstic/blob/master/PublicFeeds/ThreatActorNaming/MicrosoftMapping.json"
+    },
+    {
+      "ref": "S5",
+      "title": "IOC Extinction? China-Nexus Cyber Espionage Actors Use ORB Networks to Raise Cost on Defenders",
+      "publisher": "Mandiant (Google Cloud)",
+      "date": "2024-05-22",
+      "url": "https://cloud.google.com/blog/topics/threat-intelligence/china-nexus-espionage-orb-networks"
+    },
+    {
+      "ref": "S6",
+      "title": "APT15 is alive and strong: An analysis of RoyalCli and RoyalDNS (as summarized by MITRE ATT&CK; not opened)",
+      "publisher": "NCC Group",
+      "date": "2018-03-10",
+      "url": "https://research.nccgroup.com/2018/03/10/apt15-is-alive-and-strong-an-analysis-of-royalcli-and-royaldns/"
+    },
+    {
+      "ref": "S7",
+      "title": "MirageFox: APT15 Resurfaces With New Tools Based On Old Ones (as summarized by MITRE ATT&CK; not opened)",
+      "publisher": "Intezer",
+      "date": "2018-06-14",
+      "url": "https://www.intezer.com/miragefox-apt15-resurfaces-with-new-tools-based-on-old-ones/"
+    },
+    {
+      "ref": "S8",
+      "title": "Okrum and Ketrican: An overview of recent Ke3chang group activity (as summarized by MITRE ATT&CK; not opened)",
+      "publisher": "ESET",
+      "date": "2019-07",
+      "url": "https://www.welivesecurity.com/wp-content/uploads/2019/07/ESET_Okrum_and_Ketrican.pdf"
+    },
+    {
+      "ref": "S9",
+      "title": "Operation 'Ke3chang': Targeted Attacks Against Ministries of Foreign Affairs (as summarized by MITRE ATT&CK; not opened; date per MITRE citation label)",
+      "publisher": "Mandiant / FireEye",
+      "date": "2014-11",
+      "url": "https://www.fireeye.com/content/dam/fireeye-www/global/en/current-threats/pdfs/wp-operation-ke3chang.pdf"
+    },
+    {
+      "ref": "S10",
+      "title": "Microsoft Digital Defense Report shares new insights on nation-state attacks",
+      "publisher": "Microsoft Security",
+      "date": "2021-10-25",
+      "url": "https://www.microsoft.com/en-us/security/blog/2021/10/25/microsoft-digital-defense-report-shares-new-insights-on-nation-state-attacks/"
+    },
+    {
+      "ref": "S11",
+      "title": "Nylon Typhoon (threat actor profile)",
+      "publisher": "Microsoft Security Insider",
+      "date": "2024-01-25",
+      "url": "https://www.microsoft.com/en-us/security/security-insider/nylon-typhoon"
+    },
+    {
+      "ref": "S12",
+      "title": "Flea: Backdoor.Graphican uses Microsoft Graph API (not opened; host blocked; details via secondary coverage)",
+      "publisher": "Symantec Threat Hunter Team (Broadcom)",
+      "date": "2023-06-21",
+      "url": "https://www.security.com/threat-intelligence/flea-backdoor-microsoft-graph-apt15"
+    },
+    {
+      "ref": "S13",
+      "title": "China-sponsored APT group targets government ministries in the Americas (reporting Symantec research; content via search summary)",
+      "publisher": "CSO Online",
+      "date": "2023-06",
+      "url": "https://www.csoonline.com/article/643014/china-sponsored-apt-group-targets-government-ministries-in-the-americas.html"
+    }
   ],
   "aliasesAdd": [
-    {"name": "NICKEL", "vendor": "Microsoft (former name)"},
-    {"name": "VIXEN PANDA", "vendor": "CrowdStrike (per Microsoft mapping)"},
-    {"name": "Playful Dragon", "vendor": "Other / unspecified (per Microsoft mapping)"},
-    {"name": "RedRiver", "vendor": "Other / unspecified (per Microsoft mapping)"},
-    {"name": "Ke3chang", "vendor": "MITRE ATT&CK / Mandiant 2014"},
-    {"name": "APT15", "vendor": "Mandiant / Google TI"},
-    {"name": "Mirage", "vendor": "Other / unspecified (per Microsoft mapping)"},
-    {"name": "RoyalAPT", "vendor": "Intezer (per MITRE)"}
+    {
+      "name": "NICKEL",
+      "vendor": "Microsoft (former name)"
+    },
+    {
+      "name": "VIXEN PANDA",
+      "vendor": "CrowdStrike (per Microsoft mapping)"
+    },
+    {
+      "name": "Playful Dragon",
+      "vendor": "Other / unspecified (per Microsoft mapping)"
+    },
+    {
+      "name": "RedRiver",
+      "vendor": "Other / unspecified (per Microsoft mapping)"
+    },
+    {
+      "name": "Ke3chang",
+      "vendor": "MITRE ATT&CK / Mandiant 2014"
+    },
+    {
+      "name": "APT15",
+      "vendor": "Mandiant / Google TI"
+    },
+    {
+      "name": "Mirage",
+      "vendor": "Other / unspecified (per Microsoft mapping)"
+    },
+    {
+      "name": "Flea",
+      "vendor": "Symantec (Broadcom)"
+    },
+    {
+      "name": "RoyalAPT",
+      "vendor": "Other / unspecified (per MITRE)"
+    }
   ]
 }

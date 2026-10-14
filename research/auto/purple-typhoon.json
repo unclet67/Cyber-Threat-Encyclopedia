@@ -1,53 +1,60 @@
 {
   "mitre": "G0045",
   "identification": {
-    "summary": "MITRE ATT&CK describes menuPass (tracked by Microsoft as Purple Typhoon) as a threat group active since at least 2006 [S1]. MITRE states that individual members are known to have acted in association with the Chinese Ministry of State Security's (MSS) Tianjin State Security Bureau and worked for the Huaying Haitai Science and Technology Development Company [S1].",
-    "firstObserved": "MITRE ATT&CK: active since at least 2006 [S1].",
-    "notes": "Microsoft name: Purple Typhoon. The record's alias list (APT10, menuPass, Stone Panda, BRONZE RIVERSIDE, Granite Taurus, Cicada, POTASSIUM and others) comes from the repository import (MITRE ATT&CK, MISP Galaxy, Microsoft, Google TI). This research pass could not re-verify it against a live Microsoft source. MirrorFace and TA410/Witchetty have separate records in this encyclopedia: vendors describe possible links to APT10 but track them as distinct clusters. Do not merge their activity into this profile."
+    "summary": "China-origin threat actor that Microsoft tracks as Purple Typhoon (formerly POTASSIUM), mapped by Microsoft to APT10, MenuPass, Stone Panda and Red Apollo among other names [S1]. US prosecutors allege that two Chinese nationals linked to APT10 conducted global intrusion campaigns from at least 2006 through 2018 against managed service providers (MSPs), more than 45 technology companies in at least a dozen US states, and US government agencies [S2].",
+    "firstObserved": "At least 2006, per the December 2018 US indictment [S2].",
+    "notes": "Microsoft name: Purple Typhoon (formerly POTASSIUM). Microsoft's mapping lists STONE PANDA, GOLEM, Evilgrab, AEON, LIVESAFE, ChChes, APT10, Haymaker, Webmonder, Foxtrot, Foxmail, MenuPass and Red Apollo as other names [S1]. 'CVNX' appears in DOJ material as a personal alias of the charged individual Zhu Hua, not as a vendor group name [S2]. MITRE tracks the group as menuPass (G0045). Cicada, BRONZE RIVERSIDE, Granite Taurus, TA429, HOGFISH and ATK41 are in this record's imported aliases but were not confirmed against a cited source in this research pass."
   },
   "attribution": {
-    "sponsor": "People's Republic of China. MITRE ATT&CK states individual members acted in association with the MSS Tianjin State Security Bureau [S1].",
-    "confidence": "",
-    "basis": "MITRE ATT&CK group description G0045, taken from this repository's ATT&CK import dated 2026-07-31 [S1]. The primary government documents behind this statement (the US DOJ indictment and the FBI release of December 2018, listed in the record's references) could not be opened in this pass."
+    "sponsor": "People's Republic of China; the US Department of Justice alleges the charged APT10 members acted in association with the Ministry of State Security's (MSS) Tianjin State Security Bureau while working for Huaying Haitai Science and Technology Development Company in Tianjin [S2].",
+    "confidence": "Microsoft lists the actor's origin as China [S1]. The US government brought criminal charges (unproven allegations) against Zhu Hua and Zhang Shilong in December 2018 [S2]. No vendor confidence statement was gathered in this pass.",
+    "basis": "DOJ indictment returned 2018-12-17 in the Southern District of New York and announced 2018-12-20, with FBI wanted notices [S2]; Microsoft naming taxonomy [S1]."
   },
-  "objectives": "",
+  "objectives": "Theft of intellectual property and confidential business information from technology companies, MSP clients and US government agencies, per the 2018 US indictment [S2].",
   "targeting": {
-    "sectors": [],
-    "regions": [],
-    "notes": ""
+    "sectors": [
+      "Managed service providers and their clients [S2]",
+      "Technology companies [S2]",
+      "US government agencies [S2]"
+    ],
+    "regions": [
+      "United States (technology companies in at least a dozen states) [S2]",
+      "Global (MSP campaign) [S2]"
+    ],
+    "notes": "Sector and regional detail is limited to what the indictment summary states [S2]. Country-level victim lists for the MSP campaign were not verified in this pass."
   },
   "capabilities": {
-    "summary": "MITRE ATT&CK associates 25 software entries with menuPass. They include custom or group-linked malware (ChChes, RedLeaves, UPPERCUT, SNUGRIDE, EvilGrab, Ecipekac, P8RAT, SodaMaster, FYAnti, HUI Loader), shared RATs (PlugX, PoisonIvy, QuasarRAT, Cobalt Strike) and dual-use or credential tools (Mimikatz, pwdump, PsExec, Impacket, AdFind, PowerSploit, certutil, esentutl) [S1]."
+    "summary": "Compromise of managed service providers to reach their clients' networks, enabling large-scale theft of intellectual property and business data [S2]. Malware and tooling detail was not gathered from cited sources in this pass; see the MITRE G0045 software list."
   },
-  "campaigns": [],
+  "campaigns": [
+    {"date": "2006-2018", "name": "Technology and government intrusion campaign", "summary": "DOJ alleges intrusions into more than 45 technology companies in at least a dozen US states and into US government agencies.", "sources": ["S2"]},
+    {"date": "2006-2018", "name": "Managed service provider campaign (commonly called Cloud Hopper)", "summary": "DOJ alleges APT10 members compromised MSPs to steal intellectual property and confidential business information from their clients; the 'Cloud Hopper' label is industry usage not taken from the cited source.", "sources": ["S2"]},
+    {"date": "2018-12", "name": "US indictment of Zhu Hua and Zhang Shilong", "summary": "Grand jury in SDNY returned charges of conspiracy to commit computer intrusion, wire fraud conspiracy and aggravated identity theft on 2018-12-17; unsealed and announced 2018-12-20.", "sources": ["S2"]}
+  ],
   "diamond": {
-    "adversary": "PRC-linked operators; MITRE ties individual members to the MSS Tianjin State Security Bureau and Huaying Haitai Science and Technology Development Company [S1].",
-    "capability": "Custom loaders and backdoors (ChChes, RedLeaves, UPPERCUT, Ecipekac, SodaMaster, P8RAT, HUI Loader) alongside PlugX, QuasarRAT, Cobalt Strike and credential-dumping tools [S1].",
+    "adversary": "PRC operators; charged individuals Zhu Hua and Zhang Shilong of Huaying Haitai, associated with the MSS Tianjin State Security Bureau [S2].",
+    "capability": "MSP compromise as an access path to client networks; data theft [S2].",
     "infrastructure": "",
-    "victim": "",
-    "socioPolitical": "",
-    "technology": ""
+    "victim": "MSPs and their clients, more than 45 US technology companies and US government agencies [S2].",
+    "socioPolitical": "Collection of intellectual property and business information to benefit PRC interests, as alleged by DOJ [S2].",
+    "technology": "Trusted administrative access held by MSPs into client environments [S2]."
   },
   "gaps": [
-    "RESEARCH INCOMPLETE: in this run the web search budget was used up, and every fetch (WebFetch and direct HTTPS) was refused by the network proxy. No source could be opened live. The only citation is the MITRE ATT&CK G0045 data already in the repository import (dated 2026-07-31). The profile needs a full re-run with network access.",
-    "Microsoft's own Purple Typhoon description, its confidence statement and its alias mapping were not retrieved. The Microsoft threat actor naming taxonomy page was unreachable.",
-    "Primary documents not opened: the US DOJ indictment and FBI release on the APT10 members (December 2018, fbi.gov/news/stories/chinese-hackers-indicted-122018), the PwC/BAE 'Operation Cloud Hopper' report, the US-CERT alert IR-ALERT-MED-17-093-01C, Mandiant/FireEye APT10 reporting (2017, 2018), Unit 42 menuPass reporting, Symantec 'Cicada' reporting, the Secureworks BRONZE RIVERSIDE profile, the CrowdStrike Stone Panda blog and the CFR Cyber Operations Tracker entry. All appear in the record's reference list but were not verified in this pass.",
-    "Objectives, targeting (sectors and regions), the campaign timeline, infrastructure and victimology are unsourced in this pass. Do not fill them from general knowledge.",
-    "Cluster boundaries are unverified: MirrorFace (ESET) and TA410/Witchetty have been linked to APT10/Cicada in vendor reporting but are tracked separately. Proofpoint's TA410 reporting is listed in this record's references and needs review to confirm it concerns a distinct cluster.",
-    "Attribution confidence: no vendor or government confidence statement could be retrieved and quoted, so the field is blank."
+    "Web search budget was exhausted after three searches and most fetch targets failed DNS resolution; this profile rests mainly on Microsoft's naming map and search-result summaries of the DOJ release.",
+    "Primary DOJ indictment and press release (justice.gov) could not be opened; facts come from search-result summaries of that release.",
+    "Not reviewed: PwC/BAE 'Operation Cloud Hopper' report, FireEye/Mandiant APT10 reporting (2017, 2018 Japan targeting), Symantec Cicada (2020), Kaspersky A41APT, Unit 42 menuPass, CFR Cyber Operations entries, US-CERT/NCSC advisories.",
+    "Tooling (PlugX, RedLeaves, ChChes, QuasarRAT, SodaMaster, UPPERCUT etc.) appears in the MITRE import but was not tied to a cited source here.",
+    "Post-2018 activity is unverified. A CFR entry seen in search results reports APT10 exploiting Microsoft Exchange and deploying the SodaMaster backdoor, but it was not opened and is undated, so it is not cited.",
+    "Relationship to related clusters (e.g., MirrorFace/Earth Kasha) was not researched; vendor boundaries are unconfirmed.",
+    "A threat-aggregator profile seen in search results describes 'Purple Typhoon' as targeting South Asian telecoms. It is uncorroborated and not cited."
   ],
   "implications": {
-    "jipoe": "",
-    "jcc2": ""
+    "jipoe": "Analyst assessment derived from cited sources; validate before use. STEP 1: Key terrain includes the MSPs, IT outsourcers and contractor networks that hold administrative access into DoD-adjacent and defense-industrial environments [S2]. STEP 2: Trusted third-party access lets the actor bypass perimeter defenses of the ultimate target [S2]. STEP 3: The template is compromise of a service provider, pivot through its trusted connections into client networks, then theft of intellectual property and business data [S2]. STEP 4: MLCOA is sustained IP theft from technology and government clients through shared service providers. MDCOA is simultaneous access to many defense-sector clients through one compromised provider, used for collection or pre-positioning during a crisis. Candidate indicators: anomalous logins from MSP administrative accounts outside contracted windows, and unexpected bulk data movement from client environments to provider-managed hosts.",
+    "jcc2": "Analyst assessment derived from cited sources; validate before use. (1) Situational awareness should map which mission systems depend on third-party administrators [S2]. (2) Authorities: activity crossing from contractor or MSP networks into DoD systems will need coordination with law enforcement (FBI), consistent with the DOJ-led 2018 action [S2]. (3) Mission assurance: restrict and monitor provider access paths. (4) Coordinate with DC3 and the DIB CS program on provider-sourced intrusions."
   },
   "sources": [
-    {
-      "ref": "S1",
-      "title": "menuPass, Group G0045 (MITRE ATT&CK group page; content taken from this repository's ATT&CK import dated 2026-07-31, not re-fetched in this pass)",
-      "publisher": "MITRE ATT&CK",
-      "date": "2026-07-31",
-      "url": "https://attack.mitre.org/groups/G0045/"
-    }
+    {"ref": "S1", "title": "Microsoft threat actor naming mapping (MicrosoftMapping.json)", "publisher": "Microsoft Threat Intelligence", "date": "2026-10-14 (retrieved)", "url": "https://github.com/microsoft/mstic/blob/master/PublicFeeds/ThreatActorNaming/MicrosoftMapping.json"},
+    {"ref": "S2", "title": "Two Chinese Hackers Associated With the Ministry of State Security Charged with Global Computer Intrusion Campaigns (DOJ press release; content via search-result summaries, page not opened)", "publisher": "US Department of Justice", "date": "2018-12-20", "url": "https://www.justice.gov/opa/pr/two-chinese-hackers-associated-ministry-state-security-charged-global-computer-intrusion"}
   ],
   "aliasesAdd": []
 }

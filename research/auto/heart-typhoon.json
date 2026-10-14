@@ -1,80 +1,183 @@
 {
-  "mitre": "G0025",
   "identification": {
-    "summary": "Heart Typhoon is Microsoft's name for a China-origin actor that Microsoft maps to HELIUM, AURORA PANDA, APT17, Hidden Lynx, DeputyDog and other vendor names [S1]. MITRE describes APT17 as a China-based group that has conducted network intrusions against U.S. government entities, the defense industry, law firms, information technology companies, mining companies and non-government organizations [S2][S3]. Symantec described Hidden Lynx in 2013 as a professional team with advanced capabilities, responsible for compromising security firm Bit9's code-signing certificate as part of the larger VOHO watering-hole campaign [S4].",
-    "firstObserved": "Symantec: Hidden Lynx in operation since at least 2009, with affiliations to 'Operation Aurora' [S4]. FireEye's named APT17 report was published 2015-05-14 [S3].",
-    "notes": "Microsoft name: Heart Typhoon (legacy element name HELIUM); Microsoft also lists AURORA PANDA, APT17, Hidden Lynx, ATG3, Red Typhoon, KAOS, TG-8153, SportsFans, DeputyDog and Tailgater for this actor [S1]. MITRE tracks APT17 as G0025 with the alias Deputy Dog [S2]. The MISP galaxy APT17 entry also lists BRONZE KEYSTONE (Secureworks) and merges Axiom/Group 72 (MITRE G0001) into the same entry [S7]; Microsoft tracks Axiom-related names separately, so Axiom facts are not merged here. Note that Microsoft also lists KAOS under Leopard Typhoon [S1]."
+    "summary": "China-based espionage actor that Microsoft tracks as Heart Typhoon and that Mandiant/Google tracks as APT17 [S1][S2]. FireEye reported that APT17 had conducted network intrusions against the U.S. government, international law firms and information technology companies, and that it had used the BLACKCOFFEE malware since 2013 [S3]. In 2014-2015 the group hid encoded command-and-control (C2) addresses in Microsoft TechNet forum profiles and posts [S3]. In 2024 Italian firm TG Soft attributed spear-phishing campaigns against Italian companies and government entities, using a 9002 RAT variant, to APT17 [S9].",
+    "firstObserved": "The Hacker News says Mandiant (then FireEye) first documented APT17 in 2013 [S9]. FireEye says APT17 had used BLACKCOFFEE since 2013 [S3]. Symantec dates the related Hidden Lynx cluster to 2009 and links it to Operation Aurora (2009-2010) [S5][S6].",
+    "notes": "Microsoft lists HELIUM, AURORA PANDA, APT17, Hidden Lynx, ATG3, Red Typhoon, KAOS, TG-8153, SportsFans, DeputyDog and Tailgater as other names for Heart Typhoon [S1]. MITRE tracks the group as APT17 (G0025) [S2]. FireEye states that APT17 is also known as Deputy Dog [S3]. Symantec's Hidden Lynx is a broader cluster (an estimated 50-100 operators in two teams) that Symantec did not equate with APT17 in the sources reviewed here, so Hidden Lynx facts are kept separate below [S5][S6]."
   },
   "attribution": {
-    "sponsor": "People's Republic of China (suspected). The Council on Foreign Relations data in the MISP galaxy lists China as the suspected state sponsor [S7]. Symantec assessed Hidden Lynx as likely a 'hackers for hire' organization whose attacks on government contractors and the defense industry suggest it had been working for nation states, with much of its infrastructure and tooling originating from network infrastructure in China [S4].",
-    "confidence": "Microsoft records the actor's origin as China in its naming mapping [S1]; no Microsoft confidence statement was located. MISP records an attribution-confidence value of 50 [S7]. No U.S. government indictment or advisory naming APT17/Heart Typhoon was located in the sources gathered.",
-    "basis": "Vendor technical reporting: Symantec Hidden Lynx analysis of tooling, infrastructure and targeting [S4]; FireEye infrastructure links between DeputyDog and the Bit9 intrusion [S5]; FireEye APT17 report as summarized by MITRE [S2][S3]; Microsoft naming mapping [S1]."
+    "sponsor": "People's Republic of China (assessed). FireEye calls APT17 a China-based threat group [S3]. In July 2019 the anonymous research group Intrusion Truth alleged that APT17 is run by the Jinan bureau of the Ministry of State Security (MSS) through contractors managed by alleged MSS officer Guo Lin [S7][S8].",
+    "confidence": "FireEye 'assesses' that APT17 was behind the TechNet activity but gives no formal confidence level [S3]. The MSS Jinan link rests on Intrusion Truth's allegations, which press coverage and CERT-EU treat as unverified claims [S7][S8]. No U.S. government indictment or advisory naming APT17 was found in this research.",
+    "basis": "Vendor technical reporting (FireEye/Microsoft joint TechNet investigation) [S3]; Intrusion Truth open-source identity research covering Guo Lin, Wang Qingwei and Zeng Xiaoyong, and Jinan front companies, plus code similarities to the ZoxRPC malware [S7][S8]; Microsoft and MITRE name mappings [S1][S2]."
   },
-  "objectives": "Espionage and theft of specific information for competitive advantage at corporate and nation-state level, according to Symantec, which judged it unlikely the group used stolen data for direct financial gain [S4]. Targeting of government contractors and the defense industry indicates pursuit of confidential information and advanced technology such as aerospace [S4]. Symantec also notes Microsoft's claim that the related Operation Aurora targeted databases of emails marked for court-ordered wiretaps, characterized as counter-intelligence [S4].",
+  "objectives": "Cyber-espionage against government, defense, legal and technology targets [S2][S3]. CFR reports that APT17 also targeted Chinese citizens for financial gain [S10]. Symantec assessed the related Hidden Lynx cluster as a hacker-for-hire operation that collects information for clients, while CrowdStrike's Dmitri Alperovitch argued it was closely tied to the Chinese government [S5].",
   "targeting": {
     "sectors": [
-      "Government (local to national) [S2][S4]",
-      "Defense industrial base and government contractors [S2][S4]",
-      "Financial services (investment banks, asset managers, stock exchanges) [S4]",
-      "Law firms [S2]",
-      "Information technology and security vendors (e.g., Bit9) [S2][S4]",
-      "Mining [S2]",
-      "Non-government organizations [S2]",
-      "Aerospace and advanced technology [S4]"
+      "Government",
+      "Defense industrial base",
+      "Law firms",
+      "Information technology",
+      "Mining",
+      "Non-governmental organizations",
+      "Media",
+      "Manufacturing",
+      "Security vendors (Bit9, via the Hidden Lynx cluster)"
     ],
     "regions": [
-      "United States [S2][S4]",
-      "Japan [S4][S5]",
-      "South Korea [S4]",
-      "Western countries' defense sector [S4]",
-      "CFR-listed suspected victims: Netherlands, Italy, United Kingdom, Belgium, Russia, Indonesia, Germany, Switzerland, China [S7]"
+      "United States [S2][S3]",
+      "Japan (DeputyDog, 2013) [S4]",
+      "Italy (2024) [S9]",
+      "Global; 52 percent of Hidden Lynx targets were in the U.S. [S5]"
     ],
-    "notes": "Symantec reported hundreds of organizations worldwide targeted since November 2011, with financial services the most heavily targeted industry [S4]. The VOHO watering hole predominantly targeted US organizations, including the Boston, Massachusetts area, and nearly 4,000 machines downloaded a payload [S4]."
+    "notes": "U.S. government, defense, law, IT, mining and NGO targeting is from MITRE [S2] and FireEye [S3]. Japanese media, manufacturing and government targeting is from FireEye's 2013 DeputyDog reporting, as covered by the press [S4]. Italian corporate and government targeting is from TG Soft, as covered by the press [S9]. Hidden Lynx figures apply to Symantec's broader cluster [S5]."
   },
   "capabilities": {
-    "summary": "Symantec described two teams: one distributing Backdoor.Moudoor (a customized Gh0st RAT) for large-scale campaigns and one using Trojan.Naid against high-value targets; Backdoor.Hikit was installed on public-facing DMZ servers [S4]. The group used strategic web compromises (watering holes), spear-phishing, supply-chain compromise and trojanized software updates, and used three zero-day browser exploits between 2011 and 2013 (including CVE-2012-1875 and CVE-2012-1889) [S4]. It stole a code-signing certificate from Bit9 and signed 32 malicious files to defeat application whitelisting [S4]. FireEye tied the 2013 CVE-2013-3893 Internet Explorer zero-day campaign (DeputyDog) to the same actor that compromised Bit9 [S5]. MITRE, citing FireEye, reports that APT17 created and cultivated Microsoft TechNet profile pages and used them as C2 infrastructure, and lists BLACKCOFFEE malware [S2][S3]."
+    "summary": "Uses legitimate public sites as dead-drop resolvers: BLACKCOFFEE retrieved encoded C2 IPs that had been posted to TechNet profiles and forums [S3]. Used strategic web compromise (watering holes) with an Internet Explorer zero-day (CVE-2013-3893) in the 2013 DeputyDog campaign [S4]. In 2024 used spear-phishing with Office documents and links to a fake Skype for Business MSI hosted on a domain that imitated an Italian government site; the chain ran a VBS script and a Java archive that decrypted 9002 RAT shellcode [S9]. TG Soft describes 9002 RAT as modular, with traffic monitoring, screenshots, file enumeration, process management, command execution and diskless variants [S9]. In the related Hidden Lynx cluster, Symantec describes code-signing abuse after the Bit9 breach, plus the Moudoor and Naid trojans [S5][S6]. MITRE lists BLACKCOFFEE as APT17 software [S2]."
   },
   "campaigns": [
-    {"date": "2009", "name": "Operation Aurora affiliation", "summary": "Symantec states Hidden Lynx has affiliations to Operation Aurora; Trojan.Naid was also found in Aurora.", "sources": ["S4"]},
-    {"date": "2012-05", "name": "GOTHAM watering hole", "summary": "First zero-day of 2012 (IE CVE-2012-1875) used via a compromised website.", "sources": ["S4"]},
-    {"date": "2012-06", "name": "VOHO watering-hole campaign", "summary": "Ten legitimate websites compromised; two phases from 25 June to 18 July 2012 using CVE-2012-1889 and then CVE-2012-1723; nearly 4,000 machines downloaded payloads, mostly in the US.", "sources": ["S4"]},
-    {"date": "2012-07", "name": "Bit9 compromise", "summary": "SQL injection against a Bit9 public-facing server, Hikit installed, code-signing certificate used to sign 32 malicious files; disclosed by Bit9 in February 2013; three Bit9 customers impacted.", "sources": ["S4"]},
-    {"date": "2013-02", "name": "FINSHO campaign", "summary": "Early use of Java CVE-2013-1493 against Japanese targets to deliver Moudoor and Naid.", "sources": ["S4"]},
-    {"date": "2013-08", "name": "Operation DeputyDog", "summary": "IE zero-day CVE-2013-3893 used against entities in Japan from as early as 19 August 2013; FireEye linked C2 infrastructure to the Bit9 attackers.", "sources": ["S5"]},
-    {"date": "2015-05", "name": "TechNet C2 obfuscation exposed (BLACKCOFFEE)", "summary": "FireEye report, titled as a FireEye and Microsoft exposure, describes APT17 using TechNet profile pages as C2 for BLACKCOFFEE.", "sources": ["S2", "S3"]},
-    {"date": "2017-09", "name": "CCleaner supply-chain backdoor (contested attribution)", "summary": "Intezer reported code overlap between the backdoor in CCleaner v5.33 and earlier APT17 samples, following a Kaspersky researcher's Axiom-umbrella link; this is a vendor code-similarity assessment, not confirmed attribution.", "sources": ["S6"]}
+    {
+      "date": "2009-2010",
+      "name": "Operation Aurora (Hidden Lynx linkage)",
+      "summary": "Symantec links the Hidden Lynx cluster to Operation Aurora: the Naid trojan was used there, and Symantec says the group either carried out the attack or worked with the attackers [S5][S6]. The Hacker News notes that 9002 RAT (Hydraq/McRAT) was the tool used in Aurora [S9].",
+      "sources": [
+        "S5",
+        "S6",
+        "S9"
+      ]
+    },
+    {
+      "date": "2012",
+      "name": "VOHO watering hole / Bit9 compromise (Hidden Lynx)",
+      "summary": "According to Symantec as reported by the press, Hidden Lynx breached security firm Bit9 and signed malware with Bit9 keys after Bit9 software blocked attacks on U.S. defense contractors; Bit9 disclosed the breach in February 2013. The VOHO watering-hole campaign compromised about 4,000 machines [S5][S6].",
+      "sources": [
+        "S5",
+        "S6"
+      ]
+    },
+    {
+      "date": "2013-08/2013-09",
+      "name": "Operation DeputyDog",
+      "summary": "Starting 19 August 2013, watering-hole attacks compromised at least three major Japanese media sites and served an IE zero-day (CVE-2013-3893) against manufacturing, government and media targets. FireEye linked the actor to the Bit9 compromise through a shared IP address [S4].",
+      "sources": [
+        "S4"
+      ]
+    },
+    {
+      "date": "2014-2015-05",
+      "name": "TechNet C2 obfuscation",
+      "summary": "FireEye and Microsoft found that a BLACKCOFFEE variant retrieved encoded C2 IPs from TechNet profiles and forum posts. They sinkholed the activity by encoding a sinkhole IP into the posts, and released IOCs and signatures in May 2015 [S3][S10].",
+      "sources": [
+        "S3",
+        "S10"
+      ]
+    },
+    {
+      "date": "2019-07",
+      "name": "Intrusion Truth exposure",
+      "summary": "Intrusion Truth alleged that APT17 is run by the MSS Jinan bureau and named Guo Lin, Wang Qingwei and Zeng Xiaoyong [S7][S8].",
+      "sources": [
+        "S7",
+        "S8"
+      ]
+    },
+    {
+      "date": "2024-06/2024-07",
+      "name": "Italian 9002 RAT campaign",
+      "summary": "On 24 June and 2 July 2024, spear-phishing delivered a fake Skype for Business package that dropped a 9002 RAT variant on Italian companies and government entities; TG Soft attributed the activity to APT17 [S9].",
+      "sources": [
+        "S9"
+      ]
+    }
   ],
   "diamond": {
-    "adversary": "China-origin actor per Microsoft [S1]; assessed by Symantec as a 50 to 100 person professional hacker-for-hire organization likely tasked for nation-state ends [S4].",
-    "capability": "Moudoor (Gh0st RAT variant), Naid, Hikit, BLACKCOFFEE; browser and Java zero-days; stolen code-signing certificates; supply-chain trojanization [S2][S4][S5].",
-    "infrastructure": "Compromised legitimate websites used as watering holes [S4]; C2 hosts in Hong Kong and South Korea and actor-registered domains during DeputyDog [S5]; Microsoft TechNet profile pages abused for C2 [S2][S3].",
-    "victim": "US government and defense contractors, financial services, IT and security vendors, law firms, mining and NGOs; Japanese and South Korean organizations [S2][S4][S5].",
-    "socioPolitical": "Collection of corporate and nation-state information, including advanced technology, to close technological gaps and gain competitive advantage [S4].",
-    "technology": "Trust in legitimate websites, signed binaries and application whitelisting, legitimate web services such as TechNet, and software update channels [S2][S4]."
+    "adversary": "PRC-based operators tracked as Heart Typhoon/APT17 [S1][S3]. Intrusion Truth alleges MSS Jinan bureau management through Jinan front companies [S7][S8].",
+    "capability": "BLACKCOFFEE [S2][S3]; 9002 RAT variant [S9]; IE zero-day CVE-2013-3893 [S4]; Moudoor/Naid and stolen code-signing keys in the related Hidden Lynx cluster [S5][S6].",
+    "infrastructure": "Legitimate public sites (TechNet) used as dead-drop resolvers for C2 [S3]; compromised Japanese media sites as watering holes and a Hong Kong payload host [S4]; a look-alike Italian government domain [S9].",
+    "victim": "U.S. government, defense, law and IT organizations [S2][S3]; Japanese media, manufacturing and government organizations [S4]; Italian companies and government entities [S9].",
+    "socioPolitical": "Intelligence collection that serves PRC interests; Intrusion Truth alleges MSS tasking [S7][S8]. Symantec's hacker-for-hire framing of Hidden Lynx is disputed [S5].",
+    "technology": "Windows endpoints and Internet Explorer [S4]; user trust in collaboration software (Skype for Business) [S9]; web forums used for C2 resolution [S3]."
   },
   "gaps": [
-    "No Microsoft Threat Intelligence report describing Heart Typhoon activity was located; Microsoft's coverage here is limited to the naming mapping [S1].",
-    "The FireEye APT17 report (2015) could not be opened; its content is cited only through MITRE ATT&CK's summary [S2][S3].",
-    "Bit9's 2013 disclosure, RSA's 2012 VOHO paper, CFR, Recorded Future and Secureworks (BRONZE KEYSTONE) profiles could not be opened; facts about them come through Symantec [S4] and MISP [S7].",
-    "Intrusion Truth (2019) public claims linking APT17 to the MSS Jinan bureau could not be accessed and are not included; no government attribution of APT17 to a specific PRC organization was verified.",
-    "Cluster boundaries: MISP merges APT17 with Axiom/Group 72 (G0001) [S7], while Microsoft and MITRE track them separately. KAOS appears under both Heart Typhoon and Leopard Typhoon in Microsoft's mapping [S1]. Hidden Lynx, DeputyDog and APT17 are linked by vendor mapping, not by a single primary report.",
-    "The 2017 CCleaner attribution rests on code similarity; the Intezer post also contains an unsupported statement tying earlier attacks to PLA Unit 61398 (APT1), which conflicts with Symantec's distinction between Hidden Lynx and APT1 [S4][S6].",
-    "No public reporting after 2017 attributed to Heart Typhoon/APT17 was found in the sources gathered; current activity status is unknown. Web search budget was exhausted during this research run."
+    "No Microsoft Threat Intelligence publication describing activity under the Heart Typhoon name was found; the Microsoft name rests on Microsoft's naming mapping [S1]. learn.microsoft.com could not be fetched.",
+    "The Hidden Lynx/APT17 relationship is asserted by Microsoft's alias list [S1] but is not detailed in the sources reviewed; Symantec's cluster is broader and may include other actors.",
+    "Intrusion Truth's MSS Jinan attribution is unverified, and no U.S. government indictment, sanction or advisory naming APT17 was found.",
+    "The primary reports could not be opened: TG Soft (2024), Symantec's Hidden Lynx white paper, FireEye's DeputyDog blog, and Intrusion Truth's posts. Their details rely on secondary coverage.",
+    "Activity after 2024 and current infrastructure are unknown."
   ],
   "implications": {
-    "jipoe": "Analyst assessment derived from cited sources; validate before use. STEP 1 (OE): Key terrain includes websites frequented by defense, government and financial personnel, public-facing DMZ servers, code-signing infrastructure of security vendors, and software build/update channels [S4][S6]. STEP 2 (effects): Signed malware and abused legitimate services (TechNet) degrade the value of whitelisting and reputation-based defenses and blend C2 into trusted traffic [S2][S4]. STEP 3 (adversary template): strategic web compromise or supply-chain implant, browser or Java exploit, Naid/Moudoor/Hikit or BLACKCOFFEE implant, C2 via actor domains or legitimate web pages, targeted data theft [S2][S4][S5]. STEP 4: MLCOA is targeted espionage against defense contractors and government networks via watering holes on sector-specific websites [S4]. MDCOA is compromise of a trusted software vendor or code-signing chain to reach many DoD-adjacent networks at once [S4][S6]. Candidate indicators: unexpected binaries signed by security or software vendors; outbound HTTP on port 443 that is not TLS with unusual headers such as 'Agtid' [S5]; endpoints retrieving content from forum or profile pages followed by connections to newly decoded hosts [S2]; compromised sector websites serving exploits shortly after zero-day disclosures [S4].",
-    "jcc2": "Analyst assessment derived from cited sources; validate before use. (1) Situational awareness: track code-signing certificate revocations and vendor supply-chain incidents as mission-relevant events, since this actor used a stolen certificate to defeat whitelisting at defense-sector customers [S4]. (2) Authorities: watering-hole and supply-chain intrusions sit on civilian and vendor infrastructure outside DoD networks; response requires coordination with DC3, the DIB CS program and law enforcement rather than direct DoD action [S4]. (3) Mission assurance: rapid patching of browser and Java zero-days used against defense-industry visitors, and egress controls on DMZ servers that hosted Hikit [S4][S5]. (4) Coordination: share indicators with Microsoft and vendors when legitimate cloud or community services are abused for C2, as with TechNet [S2][S3]."
+    "jipoe": "Analyst assessment derived from cited sources; validate before use. STEP 1: Key terrain includes widely visited public websites (news, forum and government look-alike domains) that can serve as watering holes or dead-drop resolvers, and user endpoints at government, defense, legal and IT organizations [S2][S3][S4][S9]. STEP 2: C2 hidden in legitimate sites blends with normal traffic and weakens IP blocklists [S3]. STEP 3: Observed templates are a watering hole with a browser zero-day leading to a RAT [S4], and spear-phishing with a fake software installer leading to MSI, VBS, JAR and in-memory 9002 RAT [S9]. STEP 4: MLCOA is spear-phishing with trusted-software lures against government and defense-adjacent organizations to deploy modular RATs for espionage [S9]. MDCOA is a supply-chain or code-signing compromise of a security or IT vendor, as in the Hidden Lynx Bit9 case, to deliver trusted-signed malware into defense networks [S5][S6]. Candidate indicators: endpoints fetching forum or profile pages and then contacting unrelated IPs; MSI installers that spawn wscript and java; unsigned 'Skype for Business' packages from non-Microsoft domains [S3][S9].",
+    "jcc2": "Analyst assessment derived from cited sources; validate before use. Situational awareness: correlate dead-drop-resolver patterns and look-alike government domains across DODIN and partner feeds [S3][S9]. Authorities: the TechNet sinkhole was a private-sector (FireEye/Microsoft) action [S3], so disruption of public-platform abuse likely depends on coordination with platform owners rather than military action alone. Mission assurance: prioritize monitoring and patch speed on defense-contractor and legal-support enclaves that hold program data [S2][S3]. Coordination: the actor's victims span allied nations (Japan, Italy) [S4][S9], which supports sharing indicators with partner CERTs; attribution to the MSS remains unofficial [S7]."
   },
   "sources": [
-    {"ref": "S1", "title": "Microsoft threat actor naming mapping (MicrosoftMapping.json), Heart Typhoon entry", "publisher": "Microsoft Threat Intelligence", "date": "2026-10-14", "url": "https://github.com/microsoft/mstic/blob/master/PublicFeeds/ThreatActorNaming/MicrosoftMapping.json"},
-    {"ref": "S2", "title": "APT17, G0025 (description, techniques, software; read from MITRE attack-stix-data)", "publisher": "MITRE ATT&CK", "date": "2026-07-31", "url": "https://attack.mitre.org/groups/G0025/"},
-    {"ref": "S3", "title": "Hiding in Plain Sight: FireEye and Microsoft Expose Obfuscation Tactic (APT17 report; not opened, cited via MITRE ATT&CK)", "publisher": "FireEye Labs / FireEye Threat Intelligence", "date": "2015-05-14", "url": "https://web.archive.org/web/20240119213200/https://www2.fireeye.com/rs/fireye/images/APT17_Report.pdf"},
-    {"ref": "S4", "title": "Hidden Lynx - Professional Hackers for Hire", "publisher": "Symantec Security Response", "date": "2013-09-17", "url": "https://paper.seebug.org/papers/APT/APT_CyberCriminal_Campagin/2013/hidden_lynx.pdf"},
-    {"ref": "S5", "title": "Operation DeputyDog: Zero-Day (CVE-2013-3893) Attack Against Japanese Targets (archived)", "publisher": "FireEye", "date": "2013-09-21", "url": "https://web.archive.org/web/20130924130243/https://www.fireeye.com/blog/technical/cyber-exploits/2013/09/operation-deputydog-zero-day-cve-2013-3893-attack-against-japanese-targets.html"},
-    {"ref": "S6", "title": "Evidence Aurora Operation Still Active: Supply Chain Attack Through CCleaner (archived copy)", "publisher": "Intezer", "date": "2017-09-20", "url": "https://github.com/CyberMonitor/APT_CyberCriminal_Campagin_Collections/blob/master/2017/2017.09.20.Aurora_Operation_CCleaner/Aurora_Operation_CCleaner.pdf"},
-    {"ref": "S7", "title": "MISP galaxy threat-actor cluster, APT17 entry (includes CFR Cyber Operations Tracker fields)", "publisher": "MISP Project", "date": "2026-10-14", "url": "https://github.com/MISP/misp-galaxy/blob/main/clusters/threat-actor.json"}
+    {
+      "ref": "S1",
+      "title": "Microsoft threat actor naming mapping (MicrosoftMapping.json)",
+      "publisher": "Microsoft Threat Intelligence",
+      "date": "2026-10-14",
+      "url": "https://github.com/microsoft/mstic/blob/master/PublicFeeds/ThreatActorNaming/MicrosoftMapping.json"
+    },
+    {
+      "ref": "S2",
+      "title": "APT17, G0025",
+      "publisher": "MITRE ATT&CK",
+      "date": "2026-07-31",
+      "url": "https://attack.mitre.org/groups/G0025/"
+    },
+    {
+      "ref": "S3",
+      "title": "Hiding in Plain Sight: FireEye and Microsoft Expose Obfuscation Tactic",
+      "publisher": "FireEye Threat Intelligence (Google Cloud blog repost)",
+      "date": "2015-05-14",
+      "url": "https://cloud.google.com/blog/topics/threat-intelligence/hiding_in_plain_sight"
+    },
+    {
+      "ref": "S4",
+      "title": "APT DeputyDog, EvilGrab target Asian firms (reporting FireEye DeputyDog research)",
+      "publisher": "The Register",
+      "date": "2013-09-23",
+      "url": "https://www.theregister.co.uk/2013/09/23/apt_deputydog_evilgrab_target_asian_firms/"
+    },
+    {
+      "ref": "S5",
+      "title": "Hidden Lynx - Professional Hackers for Hire",
+      "publisher": "Symantec (Broadcom)",
+      "date": "2013-09",
+      "url": "https://www.security.com/threat-intelligence/hidden-lynx-professional-hackers-hire"
+    },
+    {
+      "ref": "S6",
+      "title": "Symantec says hacker group found in China linked to big cyber attacks (reporting Symantec Hidden Lynx report)",
+      "publisher": "Claims Journal (Reuters)",
+      "date": "2013-09-18",
+      "url": "https://www.claimsjournal.com/news/international/2013/09/18/236938.htm"
+    },
+    {
+      "ref": "S7",
+      "title": "Researchers at Intrusion Truth claim APT17 is run by the Jinan bureau of the Chinese MSS (reporting Intrusion Truth)",
+      "publisher": "SC Media",
+      "date": "2019-07",
+      "url": "https://www.scmagazine.com/news/researchers-at-intrusion-truth-are-claiming-the-cyberespionage-group-apt17-is-ran-by-the-jinan-bureau-of-the-chinese-ministry-of-state-security"
+    },
+    {
+      "ref": "S8",
+      "title": "CERT-EU Threat Memo 190729-1 (assessment of Intrusion Truth APT17 claims)",
+      "publisher": "CERT-EU",
+      "date": "2019-07-29",
+      "url": "https://cert.europa.eu/static/MEMO/2019/TLP-WHITE-CERT-EU-MEMO-190729-1.pdf"
+    },
+    {
+      "ref": "S9",
+      "title": "China-linked APT17 targets Italian firms with 9002 RAT malware (reporting TG Soft analysis)",
+      "publisher": "The Hacker News",
+      "date": "2024-07",
+      "url": "https://thehackernews.com/2024/07/china-linked-apt17-targets-italian.html"
+    },
+    {
+      "ref": "S10",
+      "title": "APT 17",
+      "publisher": "Council on Foreign Relations, Cyber Operations Tracker",
+      "date": "2015-05-14",
+      "url": "https://www.cfr.org/cyber-operations/apt-17"
+    }
   ],
-  "aliasesAdd": [
-    {"name": "BRONZE KEYSTONE", "vendor": "Secureworks"}
-  ]
+  "aliasesAdd": []
 }

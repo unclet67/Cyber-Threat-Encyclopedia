@@ -1,71 +1,207 @@
 {
+  "mitre": "G1036",
   "identification": {
-    "summary": "Microsoft describes Moonstone Sleet (formerly Storm-1789) as a North Korean state-aligned threat actor that pursues both espionage and revenue generation [S1]. It uses a mix of tried-and-true techniques used by other North Korean actors and novel ones, including fake companies, trojanized software (PuTTY, npm packages), a fully functional malicious tank game, and custom ransomware (FakePenny) [S1]. Early activity overlapped strongly with Diamond Sleet, including reuse of Diamond Sleet Comebacker code, before the actor moved to its own infrastructure and tradecraft [S1].",
-    "firstObserved": "Earliest dated activity in Microsoft's reporting is early August 2023 (trojanized PuTTY delivery) [S1].",
-    "notes": "Microsoft name: Moonstone Sleet, formerly Storm-1789 [S1][S5]. Microsoft's naming map lists Storm-1789 and LABYRINTH CHOLLIMA as other names [S5]. Microsoft also maps LABYRINTH CHOLLIMA to Diamond Sleet, so that CrowdStrike name does not uniquely identify Moonstone Sleet [S5]. Microsoft says Moonstone Sleet and Diamond Sleet have run concurrent operations [S1]. MITRE tracks the actor as G1036 [S6]. Datadog Security Labs tracks a related npm cluster as Stressed Pungsan and says it 'aligns closest' with Moonstone Sleet. This is a vendor alignment, not a confirmed merger of the two clusters [S2]."
+    "summary": "North Korean threat actor that Microsoft named in May 2024 (formerly Storm-1789). Microsoft says it runs both financially motivated and espionage operations against software and IT, education and defense industrial base targets [S1]. Its signature tradecraft is social engineering through fake companies, fake job offers and personas on LinkedIn, Telegram and freelancing platforms. Through those channels it delivers trojanized PuTTY, malicious npm packages and a fully functional malicious tank game [S1]. It deployed its own FakePenny ransomware in April 2024 [S1]. In February 2025 it began deploying Qilin ransomware-as-a-service payloads, its first use of ransomware not built in-house [S2].",
+    "firstObserved": "Microsoft: earliest dated activity is trojanized PuTTY delivery in early August 2023 [S1].",
+    "notes": "Microsoft name: Moonstone Sleet (formerly Storm-1789) [S1]. Microsoft reports that early activity strongly overlapped with Diamond Sleet, including reuse of Comebacker code. The group later moved to its own infrastructure and attacks, and the two groups have since run concurrent operations [S1]. Microsoft's mapping file lists CrowdStrike's LABYRINTH CHOLLIMA as a related name [S9], but CrowdStrike's LABYRINTH CHOLLIMA is a broader, older cluster (see gaps) [S8]. Checkmarx initially attributed the group's npm packages to Jade Sleet before separating them out by code style [S3][S4]. Datadog tracks an npm cluster called Stressed Pungsan that overlaps with Moonstone Sleet [S5]. MITRE tracks the group as G1036 [S10]."
   },
   "attribution": {
-    "sponsor": "North Korea (DPRK). Microsoft calls the actor 'North Korean state-aligned' [S1]. The sources gathered do not name a specific DPRK government organization.",
-    "confidence": "Microsoft attributes the activity to a North Korean state-aligned actor. The blog does not state a numeric confidence level for that attribution [S1]. Microsoft 'assesses' that the ransomware objective is financial gain [S1]. Datadog says its Stressed Pungsan cluster 'aligns closest' with Moonstone Sleet and gives no formal confidence level [S2]. No government attribution of Moonstone Sleet was located.",
-    "basis": "Microsoft telemetry and malware analysis, including code reuse from Diamond Sleet's Comebacker malware and early infrastructure overlap with known North Korean activity [S1]. Datadog bases its alignment on matching TTPs, C2 infrastructure and targeting [S2]."
+    "sponsor": "Democratic People's Republic of Korea (North Korea). Microsoft describes Moonstone Sleet as a North Korean threat actor [S1] and later as 'a North Korean state actor' [S2].",
+    "confidence": "Attribution to North Korea is Microsoft's assessment [S1][S2]. No government attribution of Moonstone Sleet by name was found in the sources gathered. Bitdefender describes Moonstone Sleet's role in the 2025 'Korean Leaks' campaign as only 'potential' involvement [S6][S7].",
+    "basis": "Microsoft telemetry, code overlap with Diamond Sleet (Comebacker) and infrastructure analysis [S1]. Checkmarx found indicators linking npm packages to Moonstone Sleet [S3][S4]."
   },
-  "objectives": "Microsoft says the actor's primary goals 'appear to be espionage and revenue generation' [S1]. It stole credentials and intellectual property from defense and aerospace-related firms and used ransomware for financial gain [S1]. Microsoft notes that its ransomware use 'may suggest it is expanding its set of capabilities to enable disruptive operations' [S1].",
+  "objectives": "Microsoft assesses dual goals: intelligence collection, such as credential and intellectual-property theft from defense and aerospace firms, and revenue generation through ransomware, possibly also remote IT-worker employment [S1]. Microsoft says the move to Qilin RaaS continues the financially motivated line of effort [S2].",
   "targeting": {
     "sectors": [
       "Software and information technology [S1]",
       "Education, including higher education [S1]",
-      "Defense industrial base, including a defense technology company and a drone technology company [S1]",
-      "Aerospace, including an aircraft parts manufacturer [S1]",
-      "Individuals seeking software development work [S1]",
-      "Blockchain and cryptocurrency-interested users (tank game lure) [S1]",
-      "Software developers using npm [S2]"
+      "Defense industrial base and aerospace, including defense technology, drone technology and aircraft parts makers [S1]",
+      "Individual software developers and job seekers [S1][S3]",
+      "Financial services, potentially, via an MSP compromise in South Korea [S6][S7]"
     ],
-    "regions": [],
-    "notes": "Microsoft describes targeting by sector and individual role and does not list specific countries [S1]. StarGlow Ventures emailed thousands of organizations in software and education [S1]. The actor also pursued software development jobs at legitimate companies. Microsoft says this could be consistent with DOJ reporting on North Korean remote IT workers, or could be another route to access [S1]. Microsoft lists Moonstone Sleet among clusters using fraudulent-employment techniques similar to Jasper Sleet's [S3]."
+    "regions": [
+      "Global; Microsoft does not name specific countries [S1]",
+      "South Korea (potential link through the 2025 Korean Leaks campaign) [S6][S7]"
+    ],
+    "notes": "Microsoft lists aerospace and defense intrusions in December 2023, April 2024 and May 2024 [S1]. The public npm registry gives the group access to an open-ended pool of developers [S3][S4]. Microsoft has not identified a Moonstone Sleet supply-chain attack, but warns that its access to software companies would pose a high risk [S1]."
   },
   "capabilities": {
-    "summary": "Social engineering through fake companies (StarGlow Ventures, C.C. Waterfall) and personas on LinkedIn, Telegram, freelancing platforms and email [S1]. Trojanized PuTTY delivered as a multi-stage chain through the SplitLoader installer/dropper to a trojan loader that pulls a C2 payload [S1]. Malicious npm packages posing as technical skills tests, one of which led to LSASS credential theft [S1]. Datadog observed npm packages (harthat-api, harthat-hash, July 2024) that use preinstall scripts to drop a DLL run with rundll32 and then clean up after themselves [S2]. DeTankWar/DeTankZone, a working tank game that loads YouieLoad for discovery, browser data theft and credential theft [S1]. FakePenny, a custom ransomware loader and encryptor that was the actor's first observed ransomware use, with a $6.6M BTC demand [S1]. Mimikatz is also used [S1]. MITRE lists Qilin ransomware as software associated with G1036 [S6]. Microsoft says the actor 'may be well-resourced' and is 'equipped with capabilities from prior cyber operations' conducted by other North Korean actors [S1]. Microsoft observed no supply-chain compromise by Moonstone Sleet as of May 2024 [S1]."
+    "summary": "Social engineering with fake companies (StarGlow Ventures, C.C. Waterfall, DeTankZone) and fake recruiters or job applicants on LinkedIn, Telegram, freelancing sites and email [S1][S2]. Trojanized PuTTY delivered with the SplitLoader multi-stage dropper [S1]. npm packages disguised as skills tests, which Checkmarx says use a 'single-package approach' that runs at install time [S1][S3][S4]. A fully playable blockchain tank game (DeTankWar/DeTankZone) that delivers the custom YouieLoad loader [S1]. LSASS credential theft with Procdump and Mimikatz [S1]. Custom FakePenny ransomware, with one $6.6M Bitcoin ransom demand [S1]. Qilin RaaS ransomware deployed at a limited number of organizations since late February 2025 [S2]."
   },
   "campaigns": [
-    {"date": "2023-08", "name": "Trojanized PuTTY delivery", "summary": "Microsoft says the actor began sending trojanized PuTTY, with an embedded config file, through LinkedIn, Telegram and freelancing platforms. Execution led to SplitLoader and follow-on malware.", "sources": ["S1"]},
-    {"date": "2023-12", "name": "Defense technology company compromise", "summary": "Microsoft reports the compromise of a defense technology company, with theft of credentials and intellectual property.", "sources": ["S1"]},
-    {"date": "2024-01", "name": "StarGlow Ventures / C.C. Waterfall fake companies", "summary": "Microsoft reports that fake software and IT consulting companies emailed thousands of organizations in software and education from January to April 2024, apparently to build rapport.", "sources": ["S1"]},
-    {"date": "2024-02", "name": "DeTankWar malicious tank game", "summary": "Microsoft reports that the actor posed as a blockchain game developer seeking investment and delivered a working tank game that loaded YouieLoad.", "sources": ["S1"]},
-    {"date": "2024-04", "name": "FakePenny ransomware deployment", "summary": "Microsoft reports that FakePenny ransomware was deployed at a company first compromised in February 2024, with a $6.6M BTC ransom demand. Microsoft describes this as the actor's first ransomware use. A drone technology company was also compromised in April.", "sources": ["S1"]},
-    {"date": "2024-05", "name": "Aircraft parts manufacturer compromise", "summary": "Microsoft reports the compromise of an aircraft parts company.", "sources": ["S1"]},
-    {"date": "2024-07-07", "name": "harthat npm packages (Datadog 'Stressed Pungsan')", "summary": "Datadog reports two malicious npm packages that dropped a DLL via preinstall scripts. It assessed the DLL as likely unweaponized and says the activity aligns closest with Moonstone Sleet.", "sources": ["S2"]}
+    {
+      "date": "2023-08",
+      "name": "Trojanized PuTTY",
+      "summary": "Microsoft reports a trojanized PuTTY delivered as a ZIP over LinkedIn, Telegram and freelancing platforms, with a four-stage SplitLoader chain.",
+      "sources": [
+        "S1"
+      ]
+    },
+    {
+      "date": "2023-12",
+      "name": "Defense-technology compromise",
+      "summary": "Microsoft reports theft of credentials and intellectual property from a defense technology company.",
+      "sources": [
+        "S1"
+      ]
+    },
+    {
+      "date": "2023-12/2024-05",
+      "name": "Malicious npm packages",
+      "summary": "Checkmarx attributes npm packages published in late 2023 and early 2024 to Moonstone Sleet, based on code differences from Jade Sleet. Microsoft notes that one variant led to LSASS credential theft.",
+      "sources": [
+        "S1",
+        "S3",
+        "S4"
+      ]
+    },
+    {
+      "date": "2024-01/2024-04",
+      "name": "StarGlow Ventures and C.C. Waterfall fake firms",
+      "summary": "Fake software and IT consulting companies emailed thousands of education and software organizations, likely to build relationships for access or revenue, according to Microsoft.",
+      "sources": [
+        "S1"
+      ]
+    },
+    {
+      "date": "2024-02",
+      "name": "DeTankWar malicious game",
+      "summary": "A blockchain-themed tank game promoted through fake game studios and investor personas delivered YouieLoad.",
+      "sources": [
+        "S1"
+      ]
+    },
+    {
+      "date": "2024-04",
+      "name": "FakePenny ransomware",
+      "summary": "Custom ransomware was deployed at a company compromised in February 2024, with a $6.6M BTC demand. Microsoft says this was the first ransomware it had seen from this actor.",
+      "sources": [
+        "S1"
+      ]
+    },
+    {
+      "date": "2024-07",
+      "name": "harthat-api / harthat-hash npm packages",
+      "summary": "Datadog reports packages published on 7 July 2024 by a cluster it calls Stressed Pungsan, which overlaps with Moonstone Sleet. The packages saw no downloads and were pulled.",
+      "sources": [
+        "S5"
+      ]
+    },
+    {
+      "date": "2025-02",
+      "name": "Qilin RaaS deployment",
+      "summary": "Microsoft says Moonstone Sleet has deployed Qilin ransomware at a limited number of organizations since late February 2025. This was its first use of a RaaS payload.",
+      "sources": [
+        "S2"
+      ]
+    },
+    {
+      "date": "2025-09",
+      "name": "Korean Leaks (potential link)",
+      "summary": "Bitdefender reports a Qilin campaign against South Korean financial firms through an MSP compromise, with 'potential' Moonstone Sleet involvement. The leaks were published in three waves, the first (10 financial-management victims) on 14 September 2025; Bitdefender's report followed on 24 November 2025. The Hacker News reports more than 1 million files and 2 TB stolen from 28 victims.",
+      "sources": [
+        "S6",
+        "S7"
+      ]
+    }
   ],
   "diamond": {
-    "adversary": "North Korean state-aligned operators tracked by Microsoft as Moonstone Sleet (Storm-1789), with early overlap with Diamond Sleet [S1][S5].",
-    "capability": "Trojanized PuTTY with SplitLoader, malicious npm packages, YouieLoad delivered through a tank game, FakePenny ransomware and Mimikatz [S1][S2]. MITRE also associates Qilin ransomware with the actor [S6].",
-    "infrastructure": "Fake company websites and personas (StarGlow Ventures, C.C. Waterfall, DeTankZone), plus accounts on LinkedIn, Telegram, freelancing platforms and email [S1]. Malicious npm packages and GitHub repositories, and hardcoded C2 IP addresses [S1][S2]. Microsoft says the actor moved from shared Diamond Sleet infrastructure to its own [S1].",
-    "victim": "Software, IT, education, defense industrial base and aerospace organizations. Individual software developers and job seekers. Blockchain-interested users [S1][S2].",
-    "socioPolitical": "Revenue generation and espionage for North Korea. Ransomware may indicate growing disruptive intent [S1].",
-    "technology": "Developer tooling and package ecosystems (npm, PuTTY), Windows endpoints, and LSASS credential stores. Trust in professional networking and freelance hiring channels [S1][S2]."
+    "adversary": "North Korean state actor per Microsoft (formerly Storm-1789), with early overlap with Diamond Sleet [S1][S2].",
+    "capability": "SplitLoader, YouieLoad, FakePenny, malicious npm packages, Mimikatz and Procdump against LSASS, and Qilin RaaS [S1][S2][S3].",
+    "infrastructure": "Fake company websites and domains such as starglowventures[.]com, ccwaterfall[.]com and detankwar[.]com; C2 domains such as mingeloem[.]com and matrixane[.]com; and the public npm registry [S1][S3].",
+    "victim": "Software, IT, education, defense and aerospace organizations and individual developers; potentially South Korean financial firms reached through an MSP [S1][S6].",
+    "socioPolitical": "DPRK requirements for both foreign intelligence and hard-currency revenue, pursued by the same operators [S1][S2].",
+    "technology": "Developer trust in open-source packages, freelance and recruiting platforms, and shared tools such as PuTTY; MSP remote-management trust relationships [S1][S3][S6]."
   },
   "gaps": [
-    "Qilin ransomware association: MITRE ATT&CK G1036 lists Qilin (S1242) as associated software per the imported record [S6]. The underlying public statement (reportedly Microsoft, 2025) could not be retrieved because the web search budget was exhausted and press hosts were unreachable. The date, victims and affiliate relationship are unverified.",
-    "MITRE ATT&CK G1036 page could not be fetched directly (DNS failure). MITRE facts rely on the encyclopedia's imported MITRE record.",
-    "Alias ambiguity: Microsoft maps LABYRINTH CHOLLIMA to both Moonstone Sleet and Diamond Sleet [S5]. CrowdStrike's own current definition of LABYRINTH CHOLLIMA was not retrievable (crowdstrike.com unreachable).",
-    "Datadog's Stressed Pungsan is a separate vendor cluster that only 'aligns closest' with Moonstone Sleet [S2]. Treat its activity as related, not confirmed.",
-    "No specific government (DOJ, Treasury, CISA) attribution or indictment naming Moonstone Sleet was located.",
-    "No geographic targeting data were found in the sources gathered.",
-    "Reporting after mid-2024 is sparse in the sources gathered. Microsoft's 2026 Defender threat analytics 'Actor profile: Moonstone Sleet' is customer-only [S4].",
-    "The relationship to the DPRK remote IT worker program is described by Microsoft only as possibly consistent with it [S1][S3]."
+    "Microsoft's mapping links Moonstone Sleet to LABYRINTH CHOLLIMA [S9]. CrowdStrike's LABYRINTH CHOLLIMA is an older cluster (also UNC4034/Temp.Hermit) that CrowdStrike split into three adversaries in January 2026 [S8]. Which CrowdStrike sub-cluster, if any, corresponds to Moonstone Sleet is not stated in the sources gathered. Do not import LABYRINTH CHOLLIMA or Bureau 121 facts wholesale.",
+    "No government attribution or indictment naming Moonstone Sleet was found. The DPRK organizational sponsor (for example, which RGB element) is unverified.",
+    "Moonstone Sleet's role in Korean Leaks is described only as 'potential' [S6][S7]. The Bitdefender primary report and the CrowdStrike blog could not be fetched (host unreachable); details come from search summaries and secondary coverage.",
+    "BleepingComputer's coverage of Microsoft's March 2025 Qilin statement could not be fetched. The exact publication day and the victims are unknown.",
+    "No sources from 2026 describe new Moonstone Sleet operations, so current activity is unverified.",
+    "Overlap boundaries with Datadog's Stressed Pungsan and with Diamond Sleet and Jade Sleet npm activity are not fully resolved [S1][S3][S5].",
+    "The scale and placements of Moonstone Sleet's IT-worker job seeking are undocumented [S1]."
   ],
   "implications": {
-    "jipoe": "Analyst assessment derived from cited sources; validate before use. STEP 1 (OE): Key terrain is human and developer: LinkedIn, Telegram and freelance hiring channels, npm and GitHub package supply, and the workstations of developers and engineers at defense industrial base and aerospace suppliers [S1][S2]. STEP 2 (effects): Sustained social engineering through fake companies means initial access can come long after first contact. Developer tooling such as PuTTY and npm is a trusted execution path [S1]. STEP 3 (adversary template): Persona or fake-company outreach, then a lure (skills-test npm package, trojanized PuTTY, or game), then a loader (SplitLoader/YouieLoad), then credential theft (LSASS/Mimikatz) and IP theft, with optional ransomware (FakePenny) for revenue [S1]. STEP 4: MLCOA is credential and IP theft from DIB, aerospace and drone suppliers through developer-targeted lures. Candidate indicators include unsolicited 'skills test' packages, PuTTY binaries from non-official sources, npm preinstall scripts launching rundll32, and LSASS access [S1][S2]. MDCOA is ransomware deployment (FakePenny or, per MITRE, Qilin) against a supplier supporting mission systems, causing disruption [S1][S6].",
-    "jcc2": "Analyst assessment derived from cited sources; validate before use. Situational awareness: Fuse Microsoft and Datadog indicators (SplitLoader, YouieLoad, FakePenny, harthat packages) into DIB and supplier monitoring, and track the actor's fake-company personas [S1][S2]. Authorities: Most victims are commercial DIB, aerospace, education and software firms outside the DODIN, so response relies on DC3/DCISE-style information sharing and partner coordination rather than direct DoD action [S1]. Mission assurance: Compromised drone, aircraft-parts and defense-technology suppliers create supply-chain and IP-loss risk to programs. Ransomware at a supplier could disrupt delivery [S1]. Coordination: Coordinate with industry and package-registry operators (GitHub/npm), who removed related repositories and packages [S1][S2]. Coordinate with personnel and hiring security on fraudulent-employment indicators [S3]."
+    "jipoe": "Analyst assessment derived from cited sources; validate before use. STEP 1: Key terrain is the developer and contractor workforce: personal devices used for job hunting, npm and other package registries, and MSP management channels into DIB and aerospace suppliers [S1][S3][S6]. STEP 2: Recruiting platforms (LinkedIn, Telegram, freelance sites) and open package registries put the first contact outside DoD-controlled networks, which limits visibility before compromise [S1][S2]. STEP 3: The template is a persona and fake-company lure, then a trojanized tool, skills-test package or game, then a loader (SplitLoader or YouieLoad), then LSASS credential theft and IP theft, with ransomware optional (FakePenny or Qilin) [S1][S2]. STEP 4: The MLCOA is continued job-lure and npm-package intrusions against defense and aerospace contractors and developers to steal credentials and IP. The MDCOA is turning access at a software vendor or MSP into a supply-chain compromise or ransomware against DIB suppliers that support Air Force programs, a risk Microsoft flags [S1][S6]. Candidate indicators: Procdump run against LSASS; connections to known Moonstone Sleet domains; unsolicited job or skills tests that require running PuTTY or npm code; Defender detections such as SplitLoader, YouieLoad or PennyCrypt [S1].",
+    "jcc2": "Analyst assessment derived from cited sources; validate before use. (1) Situational awareness: fuse Microsoft and vendor npm and package-registry reporting into the JCC2 common operational picture for DIB and aerospace partners, because the first intrusion step happens off-network [S1][S3]. (2) Authorities: the activity mixes espionage with criminal ransomware (FakePenny, Qilin), so incidents may fall under law-enforcement as well as DoD and DC3 lanes. Classify carefully and coordinate early [S1][S2]. (3) Mission assurance: treat contractor developer workstations, build pipelines and MSP connections as mission-relevant terrain; ransomware against a key supplier could degrade sustainment [S1][S6]. (4) Coordination: work with the DIB CS program and industry partners on fake-recruiter and fake-company indicators; brief personnel about job and game lures [S1]."
   },
   "sources": [
-    {"ref": "S1", "title": "Moonstone Sleet emerges as new North Korean threat actor with new bag of tricks", "publisher": "Microsoft Threat Intelligence", "date": "2024-05-28", "url": "https://www.microsoft.com/en-us/security/blog/2024/05/28/moonstone-sleet-emerges-as-new-north-korean-threat-actor-with-new-bag-of-tricks/"},
-    {"ref": "S2", "title": "Stressed Pungsan: DPRK-aligned threat actor leverages npm for initial access", "publisher": "Datadog Security Labs", "date": "2024-07-31", "url": "https://securitylabs.datadoghq.com/articles/stressed-pungsan-dprk-aligned-threat-actor-leverages-npm-for-initial-access/"},
-    {"ref": "S3", "title": "Jasper Sleet: North Korean remote IT workers' evolving tactics to infiltrate organizations", "publisher": "Microsoft Threat Intelligence", "date": "2025-06-30", "url": "https://www.microsoft.com/en-us/security/blog/2025/06/30/jasper-sleet-north-korean-remote-it-workers-evolving-tactics-to-infiltrate-organizations/"},
-    {"ref": "S4", "title": "AI as tradecraft: How threat actors operationalize AI (lists 'Actor profile: Moonstone Sleet' threat analytics report)", "publisher": "Microsoft Threat Intelligence", "date": "2026-03-06", "url": "https://www.microsoft.com/en-us/security/blog/2026/03/06/ai-as-tradecraft-how-threat-actors-operationalize-ai/"},
-    {"ref": "S5", "title": "Microsoft threat actor naming mapping (MicrosoftMapping.json)", "publisher": "Microsoft Threat Intelligence", "date": "2026-10-14", "url": "https://github.com/microsoft/mstic/blob/master/PublicFeeds/ThreatActorNaming/MicrosoftMapping.json"},
-    {"ref": "S6", "title": "Moonstone Sleet, G1036 (via encyclopedia's imported MITRE record; page not directly fetched)", "publisher": "MITRE ATT&CK", "date": "2026-07-31", "url": "https://attack.mitre.org/groups/G1036/"}
+    {
+      "ref": "S1",
+      "title": "Moonstone Sleet emerges as new North Korean threat actor with new bag of tricks",
+      "publisher": "Microsoft Threat Intelligence",
+      "date": "2024-05-28",
+      "url": "https://www.microsoft.com/en-us/security/blog/2024/05/28/moonstone-sleet-emerges-as-new-north-korean-threat-actor-with-new-bag-of-tricks/"
+    },
+    {
+      "ref": "S2",
+      "title": "BleepingComputer article on Moonstone Sleet deploying Qilin ransomware (reporting Microsoft Threat Intelligence statement; exact headline not verified)",
+      "publisher": "BleepingComputer",
+      "date": "2025-03",
+      "url": "https://www.bleepingcomputer.com/news/security/microsoft-north-korean-hackers-now-deploying-qilin-ransomware/"
+    },
+    {
+      "ref": "S3",
+      "title": "A New North Korean Group Emerges, Disrupting the Open-Source Ecosystem",
+      "publisher": "Checkmarx",
+      "date": "2024-06-13",
+      "url": "https://checkmarx.com/blog/a-new-north-korean-group-emerges-disrupting-the-open-source-ecosystem"
+    },
+    {
+      "ref": "S4",
+      "title": "North Korea's Moonstone Sleet Widens Distribution of Malicious Code (reporting Checkmarx research)",
+      "publisher": "Dark Reading",
+      "date": "2024-06",
+      "url": "https://darkreading.com/cyberattacks-data-breaches/north-koreas-moonstone-sleet-widens-distribution-of-malicious-code-packages"
+    },
+    {
+      "ref": "S5",
+      "title": "The Hacker News article on Moonstone Sleet npm packages (reporting Datadog 'Stressed Pungsan' research; exact headline not verified)",
+      "publisher": "The Hacker News",
+      "date": "2024-08",
+      "url": "https://thehackernews.com/2024/08/north-korean-hackers-moonstone-sleet.html"
+    },
+    {
+      "ref": "S6",
+      "title": "The Korean Leaks - Analyzing the Hybrid Geopolitical Campaign Targeting South Korean Financial Services With Qilin RaaS",
+      "publisher": "Bitdefender",
+      "date": "2025-11-24",
+      "url": "https://www.bitdefender.com/en-us/blog/businessinsights/korean-leaks-campaign-targets-south-korean-financial-services-qilin-ransomware"
+    },
+    {
+      "ref": "S7",
+      "title": "The Hacker News article on Qilin and a South Korean MSP compromise (reporting Bitdefender research; exact headline not verified)",
+      "publisher": "The Hacker News",
+      "date": "2025-11",
+      "url": "https://thehackernews.com/2025/11/qilin-ransomware-turns-south-korean-msp.html"
+    },
+    {
+      "ref": "S8",
+      "title": "LABYRINTH CHOLLIMA Evolves into Three Adversaries",
+      "publisher": "CrowdStrike",
+      "date": "2026-01",
+      "url": "https://www.crowdstrike.com/en-us/blog/labyrinth-chollima-evolves-into-three-adversaries/"
+    },
+    {
+      "ref": "S9",
+      "title": "Microsoft threat actor naming mapping (MicrosoftMapping.json)",
+      "publisher": "Microsoft Threat Intelligence",
+      "date": "2026-10-14 (retrieved)",
+      "url": "https://github.com/microsoft/mstic/blob/master/PublicFeeds/ThreatActorNaming/MicrosoftMapping.json"
+    },
+    {
+      "ref": "S10",
+      "title": "Moonstone Sleet, G1036",
+      "publisher": "MITRE ATT&CK",
+      "date": "2026-07-31 (object modified)",
+      "url": "https://attack.mitre.org/groups/G1036/"
+    }
   ],
   "aliasesAdd": [
-    {"name": "Stressed Pungsan (aligned cluster, not confirmed identical)", "vendor": "Datadog Security Labs"}
+    {
+      "name": "Storm-1789",
+      "vendor": "Microsoft (former designation)"
+    }
   ]
 }

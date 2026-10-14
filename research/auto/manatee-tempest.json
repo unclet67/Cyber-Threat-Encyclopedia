@@ -1,62 +1,233 @@
 {
   "identification": {
-    "summary": "Manatee Tempest (formerly DEV-0243) is a ransomware-associated activity group whose activity Microsoft says overlaps with what other vendors track as EvilCorp [S1][S2]. Microsoft cites Dridex as one of the earliest campaigns that made the group notorious [S2]. It has deployed the custom WastedLocker ransomware, the in-house PhoenixLocker and Macaw payloads, and, from around November 2021, the LockBit 2.0 RaaS payload [S1]. It buys access from the access broker DEV-0206 (Mustard Tempest), whose FakeUpdates/SocGholish infections hand off to Manatee Tempest hands-on-keyboard activity [S1][S2][S7]. Microsoft named it among ransomware operators using the ESXi 'ESX Admins' technique in 2024 [S3].",
-    "firstObserved": "Microsoft gives no first-seen date. It cites Dridex as one of the group's earliest campaigns [S2] and first saw it deploying LockBit RaaS payloads in November 2021 [S1][S2].",
-    "notes": "Microsoft name: Manatee Tempest. 'DEV-0243 is now tracked as Manatee Tempest' per Microsoft's April 2023 update note [S2]. Microsoft's naming map lists origin Russia and other names DEV-0243 and INDRIK SPIDER [S5]. Microsoft also maps INDRIK SPIDER to Mustard Tempest (DEV-0206, financially motivated), the SocGholish access broker. Treat the two as separate Microsoft clusters that work in partnership, not one actor [S1][S5][S7]. MITRE tracks the ransomware/Dridex cluster as Indrik Spider (G0119) and the access broker as Mustard Tempest (G1020) [S6][S7]."
+    "summary": "Manatee Tempest (formerly DEV-0243) is a financially motivated, ransomware-associated group that Microsoft says overlaps with activity other vendors track as EvilCorp [S2][S3]. Microsoft cites the Dridex banking trojan as one of the earliest campaigns that made the group notorious [S2]. CrowdStrike, tracking the group as INDRIK SPIDER, says it has operated Dridex since June 2014 and expanded into targeted 'big game hunting' ransomware with BitPaymer in 2017 [S5]. Microsoft says the group buys access from DEV-0206 (Mustard Tempest), supplies custom Cobalt Strike loaders, deployed WastedLocker, then in-house PhoenixLocker and Macaw, and from about November 2021 the LockBit 2.0 RaaS payload [S1][S3]. In October 2024 the UK NCA, with the US and Australia, sanctioned Evil Corp members and described links to Russian intelligence services [S10][S11].",
+    "firstObserved": "CrowdStrike: Dridex operations since June 2014 [S5]. Microsoft gives no first-seen date for Manatee Tempest [S2].",
+    "notes": "Microsoft name: Manatee Tempest; 'DEV-0243 is now tracked as Manatee Tempest' per Microsoft's April 2023 naming update [S2]. Microsoft's Security Insider profile lists EvilCorp as an alias [S3]. Mandiant tracks a highly overlapping cluster as UNC2165 and the FakeUpdates access chain separately as UNC1543 [S7]. CrowdStrike uses INDRIK SPIDER [S5][S13]. The access broker DEV-0206 / Mustard Tempest (SocGholish/FakeUpdates) is a separate Microsoft cluster that hands off access; do not merge their facts [S1]. Per the imported actor record, Microsoft's naming map also lists INDRIK SPIDER under Mustard Tempest; this record keeps Manatee Tempest as the Russia-origin ransomware cluster."
   },
   "attribution": {
-    "sponsor": "Financially motivated cybercriminal group. Microsoft lists its origin as Russia [S5]. The cited sources do not establish a state sponsor.",
-    "confidence": "Microsoft says DEV-0243 'falls under activities tracked by the cyber intelligence industry as EvilCorp' [S1]. In separate reporting it says the group overlaps with EvilCorp activity [S2]. Microsoft assesses that the move to LockBit 2.0 is 'likely an attempt by DEV-0243 to avoid attribution to their group' [S1]. No government attribution statement was retrieved for this file.",
-    "basis": "Microsoft telemetry and incident observations: custom Cobalt Strike loaders after DEV-0206 access [S1], Dridex-like code and behavior in Raspberry Robin/Fauppod samples, which Microsoft presents as supporting rather than conclusive evidence [S2], and ESXi intrusion observations [S3]. Microsoft notes the group's 'sanctioned status', which may discourage victims from paying, but does not name the sanctioning authority [S1]."
+    "sponsor": "Russia-based financially motivated criminal group with documented ties to Russian intelligence services, not a state unit. US Treasury (2019) said leader Maksim Yakubets worked for the FSB as of 2017 [S6]. The UK NCA (2024) said the group cultivated ties with the FSB, SVR and GRU, aided by Yakubets' father-in-law Eduard Benderskiy, a former senior official of the FSB's Vympel unit [S10].",
+    "confidence": "Microsoft describes overlap between Manatee Tempest and EvilCorp, without a stated confidence level [S2]. Mandiant assesses with high confidence that UNC2165 shifted to LockBit to hinder attribution and evade sanctions, and calls UNC2165 highly likely the latest incarnation of Evil Corp [S7][S8]. State-link claims are made by US Treasury (2019) and the UK NCA (2024), not by Microsoft [S6][S10].",
+    "basis": "US Treasury OFAC designations and DOJ indictments of Yakubets and Igor Turashev in December 2019, as reported [S6]; UK/US/Australian sanctions and a US indictment of Aleksandr Ryzhenkov in October 2024, as reported [S10][S11][S13]; Microsoft telemetry on DEV-0206 to DEV-0243 handoffs [S1][S2]; CrowdStrike and Mandiant malware and intrusion analysis [S5][S7]."
   },
-  "objectives": "Financial gain through ransomware extortion, preceded by Dridex-era banking-malware operations [S1][S2]. Microsoft assesses that the group switched to the LockBit 2.0 RaaS payload to avoid attribution, because its sanctioned status could discourage victims from paying [S1].",
+  "objectives": "Primarily financial: Dridex credential theft and wire fraud against banks, then ransomware extortion of organizations [S5][S6]. Treasury said Dridex losses exceeded $100 million [S6]. Secondary state-aligned tasking is alleged: Treasury said Yakubets was tasked with projects for the Russian state, including acquiring confidential documents through cyber means [S6], and the NCA, as reported, said Russian intelligence services tasked the group with cyber attacks and espionage operations against NATO allies [S10][S13]. Since 2021 the group has used RaaS brands such as LockBit to hide its identity and evade sanctions [S1][S7].",
   "targeting": {
-    "sectors": [],
-    "regions": [],
-    "notes": "The Microsoft sources gathered do not name sectors or regions for Manatee Tempest. Targets are enterprise networks reached through DEV-0206 FakeUpdates access or Raspberry Robin infections [S1][S2]. Known targets also include domain-joined VMware ESXi hypervisors [S3] and hybrid on-premises/cloud environments [S4]. Raspberry Robin, a delivery path to this cluster, had payload-related alerts on nearly 3,000 devices in almost 1,000 organizations over 30 days in 2022, but that figure covers Raspberry Robin overall, not Manatee Tempest victims [S2]."
+    "sectors": [
+      "Banking and financial institutions (Dridex) [S6]",
+      "Large enterprises, including consumer technology (Garmin, 2020) [S12]",
+      "Organizations running domain-joined VMware ESXi hypervisors [S4]"
+    ],
+    "regions": [
+      "Global: Dridex victims in over 40 countries [S6]",
+      "United States [S6]",
+      "United Kingdom [S5]",
+      "NATO member states (alleged espionage) [S10][S13]"
+    ],
+    "notes": "Targeting is opportunistic, shaped by the access DEV-0206/FakeUpdates infections provide, then narrowed to high-value organizations [S1][S5][S7]. NCC Group reportedly said the group did not steal or threaten to publish victim data in WastedLocker operations [S12]. Details of the alleged NATO espionage targets were not disclosed [S10]."
   },
   "capabilities": {
-    "summary": "Hands-on-keyboard ransomware operator. It enters through access bought from the DEV-0206 FakeUpdates/SocGholish JavaScript framework and is linked to custom Cobalt Strike loaders [S1]. Its payloads are WastedLocker, PhoenixLocker and Macaw (in-house), and LockBit 2.0 RaaS from around November 2021 [S1]. FakeUpdates delivered through Raspberry Robin USB-worm infections from July 2022 led to follow-on activity resembling DEV-0243 pre-ransomware behavior [S1][S2]. Microsoft names Manatee Tempest among ransomware operators that create an 'ESX Admins' domain group to gain full administrative control of domain-joined ESXi hosts (CVE-2024-37085) for mass encryption of VMs [S3]. Microsoft has also observed it targeting both on-premises and cloud environments and exploiting the interfaces between them [S4]. MITRE lists Dridex, BitPaymer, WastedLocker, Cobalt Strike, Empire, Mimikatz, PsExec and Donut as associated software [S6]."
+    "summary": "Custom malware development across a decade: the Dridex banking trojan with repeated module and anti-analysis updates [S5]; BitPaymer ransomware, with Dridex typically installed before BitPaymer deployment [S5]; WastedLocker, Hades, PhoenixLocker and Macaw ransomware [S1][S3][S7]; and custom Cobalt Strike loaders resembling Blister inner payloads [S1]. Initial access commonly comes from the SocGholish/FakeUpdates chain run by DEV-0206/UNC1543, including FakeUpdates delivered through existing Raspberry Robin infections in 2022 [S1][S2][S7]. Hands-on-keyboard lateral movement resembles nation-state and penetration-testing tradecraft [S5]. Since about November 2021 the group has used the LockBit RaaS payload to avoid attribution [S1][S7]. In 2024 Microsoft named Manatee Tempest among ransomware operators using the 'ESX Admins' technique (CVE-2024-37085) to gain full control of domain-joined ESXi hypervisors [S4]. Aleksandr Ryzhenkov is reported to be a LockBit affiliate [S11][S13]."
   },
   "campaigns": [
-    {"date": "Before 2021-11", "name": "DEV-0206 partnership and WastedLocker ransomware", "summary": "In its first partnerships with DEV-0206, the group deployed the custom WastedLocker ransomware after SocGholish access, then moved to the in-house PhoenixLocker and Macaw payloads.", "sources": ["S1"]},
-    {"date": "2021-11", "name": "Adoption of LockBit 2.0 RaaS payload", "summary": "Around November 2021 the group began deploying LockBit 2.0. Microsoft assesses this was likely an effort to avoid attribution tied to its sanctioned status.", "sources": ["S1", "S2"]},
-    {"date": "2022-07-26", "name": "Raspberry Robin to FakeUpdates handoff", "summary": "Microsoft saw FakeUpdates delivered through existing Raspberry Robin infections, followed by actions resembling DEV-0243 pre-ransomware behavior. Dridex-like traits in Fauppod add supporting evidence.", "sources": ["S1", "S2"]},
-    {"date": "2023-04", "name": "Microsoft renames DEV-0243 to Manatee Tempest", "summary": "Microsoft's taxonomy update renamed DEV-0243 to Manatee Tempest.", "sources": ["S2"]},
-    {"date": "2024-07", "name": "ESXi 'ESX Admins' technique (CVE-2024-37085)", "summary": "Microsoft names Manatee Tempest among ransomware operators using the ESX Admins group technique against domain-joined ESXi hypervisors in numerous attacks.", "sources": ["S3"]}
+    {
+      "date": "2014-06",
+      "name": "Dridex banking trojan operations",
+      "summary": "CrowdStrike says INDRIK SPIDER has operated Dridex since June 2014; Treasury says Dridex harvested banking credentials from institutions in over 40 countries, causing more than $100 million in losses.",
+      "sources": [
+        "S5",
+        "S6"
+      ]
+    },
+    {
+      "date": "2017-08",
+      "name": "BitPaymer big game hunting (UK NHS)",
+      "summary": "BitPaymer ransomed UK NHS organizations with a 53 BTC demand; CrowdStrike attributes BitPaymer to INDRIK SPIDER and estimates about $1.5M in its first 15 months.",
+      "sources": [
+        "S5"
+      ]
+    },
+    {
+      "date": "2019-12-05",
+      "name": "US sanctions and indictments of Evil Corp leaders",
+      "summary": "OFAC designated Evil Corp and Maksim Yakubets, citing his FSB work; DOJ indicted Yakubets and Igor Turashev, and the State Department offered a $5M reward.",
+      "sources": [
+        "S6"
+      ]
+    },
+    {
+      "date": "2020-07",
+      "name": "WastedLocker attack on Garmin",
+      "summary": "Garmin services were disrupted by WastedLocker ransomware, which NCC Group attributed to Evil Corp; a $10M demand was reported.",
+      "sources": [
+        "S12"
+      ]
+    },
+    {
+      "date": "2020-10",
+      "name": "Post-OFAC-advisory rebranding",
+      "summary": "Mandiant reports that WastedLocker activity stopped after an October 2020 OFAC advisory, and several closely related ransomware variants, including HADES, appeared in quick succession.",
+      "sources": [
+        "S7"
+      ]
+    },
+    {
+      "date": "2021-11",
+      "name": "Shift to LockBit 2.0 RaaS payload",
+      "summary": "Microsoft says the group began deploying LockBit 2.0 around November 2021, likely to avoid attribution tied to its sanctioned status; Mandiant reports the same shift for UNC2165.",
+      "sources": [
+        "S1",
+        "S3",
+        "S7"
+      ]
+    },
+    {
+      "date": "2022-07-26",
+      "name": "Raspberry Robin to FakeUpdates to DEV-0243 handoff",
+      "summary": "Microsoft observed FakeUpdates delivered through Raspberry Robin infections, followed by activity resembling DEV-0243 pre-ransomware behavior.",
+      "sources": [
+        "S1",
+        "S2"
+      ]
+    },
+    {
+      "date": "2024-07",
+      "name": "ESXi 'ESX Admins' technique (CVE-2024-37085)",
+      "summary": "Microsoft names Manatee Tempest among ransomware operators using the ESX Admins group technique against domain-joined ESXi hypervisors.",
+      "sources": [
+        "S4"
+      ]
+    },
+    {
+      "date": "2024-10-01",
+      "name": "UK/US/Australia sanctions and Ryzhenkov indictment (Operation Cronos phase)",
+      "summary": "The NCA sanctioned 16 Evil Corp members and exposed ties to the FSB, SVR and GRU; the US indicted Aleksandr Ryzhenkov over BitPaymer and linked him to LockBit.",
+      "sources": [
+        "S10",
+        "S11",
+        "S13"
+      ]
+    }
   ],
   "diamond": {
-    "adversary": "Manatee Tempest (DEV-0243), which overlaps with EvilCorp. Microsoft lists its origin as Russia, and it is a sanctioned group [S1][S2][S5].",
-    "capability": "Custom Cobalt Strike loaders. WastedLocker, PhoenixLocker, Macaw and LockBit 2.0 ransomware. A Dridex lineage. ESX Admins group abuse (CVE-2024-37085) [S1][S2][S3].",
-    "infrastructure": "Access bought from DEV-0206 FakeUpdates/SocGholish malvertising. Raspberry Robin USB-worm infections whose payloads sit on compromised QNAP NAS devices and Tor-hosted C2 [S1][S2]. Microsoft attributes those components to related clusters, not to Manatee Tempest itself.",
-    "victim": "Enterprise networks with domain-joined ESXi hypervisors and hybrid on-premises/cloud estates. No sector or regional victimology appears in the sources gathered [S3][S4].",
-    "socioPolitical": "Financially motivated ransomware extortion. Sanctioned status gives the group a reason to rebrand payloads and hide behind RaaS brands [S1].",
-    "technology": "Windows Active Directory domains, VMware ESXi joined to AD, and hybrid identity links between on-premises and cloud [S3][S4]."
+    "adversary": "Russia-based Evil Corp operators led by Maksim Yakubets, with Igor Turashev and Aleksandr Ryzhenkov named by US and UK authorities [S6][S10][S13]; Microsoft tracks the cluster as Manatee Tempest [S3].",
+    "capability": "Dridex, BitPaymer, WastedLocker, Hades, PhoenixLocker, Macaw, custom Cobalt Strike loaders, LockBit RaaS payloads, and ESXi hypervisor encryption via CVE-2024-37085 [S1][S3][S4][S5][S7].",
+    "infrastructure": "Access bought from DEV-0206 SocGholish/FakeUpdates infections, including those delivered through Raspberry Robin [S1][S2]; LockBit affiliate infrastructure since 2021 [S1][S11].",
+    "victim": "Banks and financial institutions in over 40 countries; healthcare and large enterprises such as Garmin [S5][S6][S12].",
+    "socioPolitical": "Profit-driven crime under sanctions pressure, using RaaS brands to evade attribution [S1][S7]; tolerated and reportedly tasked by Russian intelligence services, including alleged espionage against NATO members [S6][S10][S13].",
+    "technology": "Windows enterprise networks reached through browser-update lures and USB-worm footholds, plus domain-joined VMware ESXi hypervisors [S1][S2][S4]."
   },
   "gaps": [
-    "Only microsoft.com was reachable in this session, and the web-search budget was used up. The CrowdStrike Indrik Spider report, Krebs 'Inside Evil Corp', BBC WastedLocker coverage, Secureworks GOLD DRAKE profile, Wikipedia (Maksim Yakubets) and MITRE G0119/G1020 pages in the record's references could not be opened. The imported summary claims (Dridex since June 2014, BitPaymer and the August 2017 NHS ransom) are therefore unverified here.",
-    "US government actions (the December 2019 DOJ indictment and Treasury/OFAC sanctions on Evil Corp members) and the 2024 UK/US/Australia follow-on actions were not retrieved. Microsoft refers only to the group's 'sanctioned status' without naming the authority [S1].",
-    "Reported Evil Corp links to Russian intelligence services are not covered in any source gathered. Do not assert state direction from this file.",
-    "Cluster boundary: Microsoft maps INDRIK SPIDER to both Manatee Tempest and Mustard Tempest [S5]. MITRE's Indrik Spider (G0119) may cover activity Microsoft splits between the two. Mandiant UNC2165 and Secureworks GOLD DRAKE aliases in the record were not confirmed against their vendor sources.",
-    "No sector or geographic victimology for Manatee Tempest is published in the Microsoft sources gathered.",
-    "Which ransomware Manatee Tempest deployed in the 2024 ESXi intrusions is not stated. Microsoft ties Akira and Black Basta to other operators in that report [S3].",
-    "Post-2024 Manatee Tempest activity was not found in Microsoft blog search results reviewed on 2026-10-14."
+    "Primary government documents (Treasury OFAC 2019 and 2024 releases, DOJ indictments, NCA 'Evil Corp: Behind the Screens' report) were not opened; details rely on press coverage of them.",
+    "Coverage of the NCA report differs on whether SVR and GRU ties were established or only sought. The nature, dates and targets of the alleged NATO espionage operations are undisclosed.",
+    "Microsoft gives no confidence level for the Manatee Tempest/EvilCorp overlap. Vendor cluster boundaries among Manatee Tempest, UNC2165 and INDRIK SPIDER may not coincide exactly.",
+    "Microsoft's naming map reportedly lists INDRIK SPIDER under both Manatee Tempest and Mustard Tempest (per imported record); the mapping file was not re-verified this session.",
+    "No public reporting from 2025-2026 on Manatee Tempest activity was found; current operational status, and whether the group still deploys LockBit after Operation Cronos, is unknown.",
+    "Garmin attribution to Evil Corp came from NCC Group as reported; Arete IR called the evidence inconclusive, and payment was never confirmed by Garmin [S12].",
+    "Which ransomware Manatee Tempest deployed in the 2024 ESXi attacks is not specified by Microsoft [S4].",
+    "CrowdStrike's October 2024 blog and The Register/Infosecurity coverage could not be fetched; claims from them rely on search-result summaries.",
+    "Fact-check 2026-10-14: a TechRadar source (since removed) not found in search and removed with its sole-sourced claims (earnings since 2011, at least $300M, CNI/government targeting). Microsoft S1-S4, CrowdStrike S5 and Computing S12 URLs were not re-verified by search this pass."
   ],
   "implications": {
-    "jipoe": "Analyst assessment derived from cited sources; validate before use. STEP 1 (OE): Key terrain is Active Directory, domain-joined ESXi hypervisors hosting mission VMs, and hybrid identity links between on-premises and cloud [S3][S4]. Removable media and user web browsing are entry points, through Raspberry Robin USB infections and FakeUpdates fake browser-update lures [S1][S2]. STEP 2 (effects): A single domain group created at the hypervisor layer can let an attacker encrypt many VMs at once, which turns one compromised account into a base-wide outage [S3]. STEP 3 (adversary template): access purchased from DEV-0206 (SocGholish JavaScript) or Raspberry Robin, then a Cobalt Strike loader, then credential and AD abuse, then ESX Admins group creation, then ransomware such as WastedLocker or LockBit, often under a borrowed RaaS brand [S1][S2][S3]. STEP 4: MLCOA is opportunistic ransomware against any organization whose access is sold to the group, including DoD-adjacent contractors. MDCOA is hypervisor-level mass encryption that disables mission systems hosted on virtualized infrastructure [S3]. Candidate indicators: creation of or changes to an 'ESX Admins' AD group, FakeUpdates JavaScript execution from browser-update lures, msiexec launched from LNK files on USB drives that reaches external NAS hosts, and Tor C2 traffic [S2][S3].",
-    "jcc2": "Analyst assessment derived from cited sources; validate before use. (1) Situational awareness: feed ESXi patch state for CVE-2024-37085 and alerts on 'ESX Admins' group changes into the common operating picture, and treat hypervisors as critical assets [S3]. (2) Authorities: the group is sanctioned and uses other RaaS brands to avoid attribution, so ransom-note branding alone cannot determine the actor; coordinate legal and payment questions through proper channels [S1]. (3) Mission assurance: back up and segment the virtualization management plane, and plan continuity for mass loss of VMs [S3]. (4) Coordination: access often comes from a separate broker cluster (Mustard Tempest/DEV-0206). Share indicators across the access-broker and ransomware stages with DC3, DIB partners and cloud tenants, because the actor exploits on-premises-to-cloud interfaces [S1][S4]."
+    "jipoe": "Analyst assessment derived from cited sources; validate before use. STEP 1 (environment): Key terrain is enterprise Windows endpoints exposed to browser-update lures and removable media, Active Directory, and domain-joined ESXi hypervisors hosting mission systems [S1][S2][S4]. STEP 2 (effects): A single SocGholish or Raspberry Robin foothold can be sold onward, so commodity infections on DoD or DIB networks are pre-ransomware warning, not noise [S1][S2]. ESXi encryption can take down many virtualized services at once [S4]. STEP 3 (threat model): access broker handoff, Cobalt Strike loader, credential theft and lateral movement, then mass encryption under a RaaS brand that hides the operator [S1][S5][S7]. STEP 4: MLCOA is financially motivated ransomware against large organizations including healthcare, deployed under another brand's payload [S1][S5]. MDCOA is state-tasked intrusion against NATO-member targets under criminal cover, using ransomware access for espionage or disruption [S6][S10][S13]. Candidate indicators: fake browser update ZIP/JS downloads executed by wscript, Raspberry Robin USB LNK infections, unexpected Cobalt Strike beacons after those infections, and creation of an 'ESX Admins' AD group [S1][S2][S4].",
+    "jcc2": "Analyst assessment derived from cited sources; validate before use. (1) Situational awareness: track SocGholish/FakeUpdates and Raspberry Robin detections across DODIN segments as leading indicators, and include ESXi/AD hygiene status in mission-assurance dashboards [S1][S2][S4]. (2) Authorities: Evil Corp and named members are under US, UK and Australian sanctions, so any ransom-payment discussion by mission partners or contractors raises OFAC issues; coordinate with legal before engaging [S6][S11]. Criminal-cover operations with alleged intelligence tasking blur the line between law enforcement and military response [S10][S13]. (3) Mission assurance: plan for simultaneous loss of virtualized services and test restoration of hypervisor clusters [S4]. (4) Coordination: brand-based attribution is unreliable because the group uses LockBit and other RaaS payloads, so share indicators with FBI, CISA, DC3 and coalition partners (NCA) and avoid naming an actor from the ransom note alone [S1][S7][S11]."
   },
   "sources": [
-    {"ref": "S1", "title": "Ransomware as a service: Understanding the cybercrime gig economy and how to protect yourself", "publisher": "Microsoft Threat Intelligence", "date": "2022-05-09", "url": "https://www.microsoft.com/en-us/security/blog/2022/05/09/ransomware-as-a-service-understanding-the-cybercrime-gig-economy-and-how-to-protect-yourself/"},
-    {"ref": "S2", "title": "Raspberry Robin worm part of larger ecosystem facilitating pre-ransomware activity (includes April 2023 naming update)", "publisher": "Microsoft Threat Intelligence", "date": "2022-10-27", "url": "https://www.microsoft.com/en-us/security/blog/2022/10/27/raspberry-robin-worm-part-of-larger-ecosystem-facilitating-pre-ransomware-activity/"},
-    {"ref": "S3", "title": "Ransomware operators exploit ESXi hypervisor vulnerability for mass encryption", "publisher": "Microsoft Threat Intelligence", "date": "2024-07-29", "url": "https://www.microsoft.com/en-us/security/blog/2024/07/29/ransomware-operators-exploit-esxi-hypervisor-vulnerability-for-mass-encryption/"},
-    {"ref": "S4", "title": "Storm-0501: Ransomware attacks expanding to hybrid cloud environments (background reference to Manatee Tempest)", "publisher": "Microsoft Threat Intelligence", "date": "2024-09-26", "url": "https://www.microsoft.com/en-us/security/blog/2024/09/26/storm-0501-ransomware-attacks-expanding-to-hybrid-cloud-environments/"},
-    {"ref": "S5", "title": "Microsoft threat actor naming mapping (MicrosoftMapping.json)", "publisher": "Microsoft Threat Intelligence", "date": "2026-10-14", "url": "https://github.com/microsoft/mstic/blob/master/PublicFeeds/ThreatActorNaming/MicrosoftMapping.json"},
-    {"ref": "S6", "title": "Indrik Spider, G0119 (software and techniques as imported into this encyclopedia; page not reachable this session)", "publisher": "MITRE ATT&CK", "date": "2026-07-31", "url": "https://attack.mitre.org/groups/G0119/"},
-    {"ref": "S7", "title": "Mustard Tempest, G1020 (description as imported into this encyclopedia; page not reachable this session)", "publisher": "MITRE ATT&CK", "date": "2026-07-31", "url": "https://attack.mitre.org/groups/G1020/"}
+    {
+      "ref": "S1",
+      "title": "Ransomware as a service: Understanding the cybercrime gig economy and how to protect yourself",
+      "publisher": "Microsoft Threat Intelligence",
+      "date": "2022-05-09",
+      "url": "https://www.microsoft.com/en-us/security/blog/2022/05/09/ransomware-as-a-service-understanding-the-cybercrime-gig-economy-and-how-to-protect-yourself/"
+    },
+    {
+      "ref": "S2",
+      "title": "Raspberry Robin worm part of larger ecosystem facilitating pre-ransomware activity (includes April 2023 naming update)",
+      "publisher": "Microsoft Threat Intelligence",
+      "date": "2022-10-27",
+      "url": "https://www.microsoft.com/en-us/security/blog/2022/10/27/raspberry-robin-worm-part-of-larger-ecosystem-facilitating-pre-ransomware-activity/"
+    },
+    {
+      "ref": "S3",
+      "title": "Manatee Tempest (Security Insider threat actor profile)",
+      "publisher": "Microsoft Security Insider",
+      "date": "2024-01-25",
+      "url": "https://www.microsoft.com/en-us/security/security-insider/manatee-tempest"
+    },
+    {
+      "ref": "S4",
+      "title": "Ransomware operators exploit ESXi hypervisor vulnerability for mass encryption",
+      "publisher": "Microsoft Threat Intelligence",
+      "date": "2024-07-29",
+      "url": "https://www.microsoft.com/en-us/security/blog/2024/07/29/ransomware-operators-exploit-esxi-hypervisor-vulnerability-for-mass-encryption/"
+    },
+    {
+      "ref": "S5",
+      "title": "Big Game Hunting: The Evolution of INDRIK SPIDER From Dridex Wire Fraud to BitPaymer Targeted Ransomware",
+      "publisher": "CrowdStrike",
+      "date": "2018-11-14",
+      "url": "https://www.crowdstrike.com/en-us/blog/big-game-hunting-the-evolution-of-indrik-spider-from-dridex-wire-fraud-to-bitpaymer-targeted-ransomware/"
+    },
+    {
+      "ref": "S6",
+      "title": "U.S. sanctions Russian group Evil Corp over $100 million hack (reporting Treasury OFAC designations and DOJ indictments)",
+      "publisher": "Bloomberg via BNN Bloomberg",
+      "date": "2019-12-05",
+      "url": "https://www.bnnbloomberg.ca/u-s-sanctions-russian-group-evil-corp-over-100-million-hack-1.1358081"
+    },
+    {
+      "ref": "S7",
+      "title": "To HADES and Back: UNC2165 Shifts to LOCKBIT to Evade Sanctions",
+      "publisher": "Mandiant (Google Cloud)",
+      "date": "2022-06-02",
+      "url": "https://cloud.google.com/blog/topics/threat-intelligence/unc2165-shifts-to-evade-sanctions"
+    },
+    {
+      "ref": "S8",
+      "title": "Evil Corp cybercrime group shifts to LockBit ransomware to evade sanctions (reporting Mandiant)",
+      "publisher": "The Hacker News",
+      "date": "2022-06",
+      "url": "https://thehackernews.com/2022/06/evil-corp-cybercrime-group-shifts-to.html"
+    },
+    {
+      "ref": "S10",
+      "title": "Russian ransomware hackers worked with Kremlin spies, UK says (reporting NCA announcement)",
+      "publisher": "Stars and Stripes",
+      "date": "2024-10-01",
+      "url": "https://stripes.com/theaters/europe/2024-10-01/russian-ransomware-hackers-kremlin-spies-15368934.html"
+    },
+    {
+      "ref": "S11",
+      "title": "Evil Corp's LockBit Ties Exposed in Latest Phase of Operation Cronos (reporting NCA, Treasury and DOJ actions)",
+      "publisher": "Infosecurity Magazine",
+      "date": "2024-10",
+      "url": "https://www.infosecurity-magazine.com/news/evil-corp-lockbit-sanctions/"
+    },
+    {
+      "ref": "S12",
+      "title": "Garmin reportedly hit by ransomware",
+      "publisher": "Computing",
+      "date": "2020-07",
+      "url": "https://computing.co.uk/news/4018216/garmin-reportedly-hit-ransomware"
+    },
+    {
+      "ref": "S13",
+      "title": "Authorities Indict INDRIK SPIDER Members and Detail Ties to BITWISE SPIDER and Russian State",
+      "publisher": "CrowdStrike",
+      "date": "2024-10",
+      "url": "https://www.crowdstrike.com/en-us/blog/authorities-indict-indrik-spider-members-detail-ties-bitwise-spider-russian-state/"
+    }
   ],
   "aliasesAdd": [
-    {"name": "EvilCorp", "vendor": "Industry name cited by Microsoft"},
-    {"name": "INDRIK SPIDER", "vendor": "CrowdStrike (per Microsoft mapping)"}
+    {
+      "name": "EvilCorp",
+      "vendor": "Microsoft (Security Insider alias)"
+    },
+    {
+      "name": "INDRIK SPIDER",
+      "vendor": "CrowdStrike"
+    },
+    {
+      "name": "UNC2165",
+      "vendor": "Mandiant"
+    }
   ]
 }

@@ -52,7 +52,7 @@ for f in sorted(glob.glob(f"{adir}/*.json")):
         report["skipped"][aid] = f"undated or URL-less sources {bad}"; continue
     refs = {s.get("ref") for s in srcs}
     body = " ".join(text_of(x[k]) for k in KEYS if k != "sources") + " " + " ".join(" ".join(c.get("sources", [])) for c in x.get("campaigns", []) if isinstance(c, dict))
-    used = set(re.findall(r"\bS\d+\b", body))
+    used = set(re.findall(r"\bS\d+\b", re.sub(r"\b(former|removed|deleted)\s+S\d+\b", "", body, flags=re.I)))  # audit notes are not citations
     dangling = sorted(used - refs)
     if dangling:
         report["skipped"][aid] = f"cites missing sources {dangling}"; continue

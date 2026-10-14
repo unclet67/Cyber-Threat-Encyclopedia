@@ -1,74 +1,152 @@
 {
   "identification": {
-    "summary": "Granite Typhoon (formerly GALLIUM) is a China-linked cyberespionage actor that first became known for compromising telecommunications providers by exploiting unpatched internet-facing services such as WildFly/JBoss, then deploying web shells and off-the-shelf credential and lateral-movement tools [S1]. Unit 42 reported in 2022 that the group had expanded beyond telecommunications to financial institutions and government entities and was using a new RAT, PingPull [S2]. In 2023 reporting tied the same cluster (Alloy Taurus) to a Linux PingPull variant and a new backdoor, Sword2033, and to intrusions against a Southeast Asian government [S3][S4].",
-    "firstObserved": "MITRE describes GALLIUM as active since at least 2012 [S5]. Cybereason's Operation Soft Cell evidence pointed to activity since at least 2017, possibly linked to activity from 2012 [S6]. Microsoft's 2019 report covered activity observed mainly from 2018 to mid-2019 [S1].",
-    "notes": "Microsoft name: Granite Typhoon (formerly GALLIUM); press coverage of Unit 42's 2023 reporting states that Microsoft tracks Alloy Taurus/Gallium as Granite Typhoon [S3]. In Microsoft's taxonomy, 'Typhoon' denotes origin or attribution to China [S9]. Unit 42 tracks the group as Alloy Taurus and describes GALLIUM as also known as Softcell [S2][S3]. Microsoft and Cybereason describe the same activity under different names: Microsoft's GALLIUM and Cybereason's Operation Soft Cell [S1][S6]. MITRE tracks the group as GALLIUM (G0093) [S5]."
+    "summary": "Granite Typhoon (formerly GALLIUM) is a China-linked cyberespionage actor. It first became known for compromising telecommunications providers by exploiting unpatched internet-facing services such as WildFly/JBoss, then deploying web shells and off-the-shelf credential and lateral-movement tools [S1]. In June 2022 Unit 42 reported that the group had expanded beyond telecommunications to financial institutions and government entities and was using a new RAT, PingPull [S2]. In 2023 Unit 42 tied the same cluster (Alloy Taurus) to a Linux PingPull variant and a new backdoor, Sword2033 [S3]. It also attributed, with moderate confidence, one of three China-nexus clusters active against a Southeast Asian government to Alloy Taurus [S4].",
+    "firstObserved": "MITRE and Unit 42 describe the group as active since at least 2012 [S5]. Microsoft's 2019 report covered activity observed mainly from 2018 to mid-2019 [S1].",
+    "notes": "Microsoft name: Granite Typhoon (formerly GALLIUM). The Hacker News coverage of Unit 42's September 2023 report gives Granite Typhoon as an alias for Alloy Taurus, while Unit 42's own report lists GALLIUM [S4]. In Microsoft's taxonomy, 'Typhoon' indicates origin or attribution to China [S9]. Unit 42 tracks the group as Alloy Taurus and describes Alloy Taurus as also known as GALLIUM and Softcell [S2]. MITRE tracks it as GALLIUM (G0093) [S5]. Cluster boundary caution: SentinelLabs assessed the 2023 Middle East telecom intrusions as highly likely the work of a Chinese cyberespionage group in the nexus of Gallium and APT41, with the exact grouping unclear [S8]."
   },
   "attribution": {
-    "sponsor": "People's Republic of China (vendor assessment; no government attribution found in the sources gathered). MITRE describes GALLIUM as likely Chinese state-sponsored [S5]. Unit 42 says that the group's targeting, its focus, and its use of known Chinese threat-actor tools have led industry assessments to consider it likely a Chinese state-sponsored group [S2].",
-    "confidence": "Vendor assessments only, at 'likely' level [S2][S5]. Cybereason concluded that the Soft Cell operators were likely Chinese, based on tools such as Poison Ivy and China Chopper [S7]. Microsoft's 2019 GALLIUM report does not attribute the group to a specific state [S1]. Microsoft's later 'Typhoon' name signals China origin or attribution under its taxonomy [S9].",
-    "basis": "Tooling overlap with known Chinese actors (China Chopper, Poison Ivy, PlugX-family and Gh0st-derived malware) [S1][S2][S7]; consistent targeting of telecommunications and government entities of strategic interest [S2]; infrastructure reused across operations and observed in mainland China, Hong Kong SAR and Taiwan [S1]."
+    "sponsor": "People's Republic of China (vendor assessments only; no government attribution found in the sources gathered). MITRE describes GALLIUM as likely Chinese state-sponsored [S5]. Unit 42 calls the group a likely Chinese state-sponsored group, citing its geographic and sector focus, technical skill and use of known Chinese threat-actor malware and TTPs [S2].",
+    "confidence": "Vendor assessments only, at the 'likely' level [S2][S5]. Microsoft's 2019 GALLIUM report does not attribute the group to a specific state [S1]; Microsoft's later 'Typhoon' name signals China origin or attribution under its taxonomy [S9]. Unit 42 attributed its 2023 Southeast Asian government cluster (CL-STA-0045) to Alloy Taurus with moderate confidence [S4].",
+    "basis": "Tooling overlap with known Chinese actors, including China Chopper, Poison Ivy and Gh0st-derived malware [S1][S2]; consistent targeting of telecommunications and government entities [S2]; infrastructure hosted in mainland China, Hong Kong SAR and Taiwan [S1]."
   },
-  "objectives": "Intelligence collection from telecommunications providers. Cybereason assessed that the Soft Cell operators sought call detail records (time, duration, and source and destination numbers) for a small set of subscribers [S6]. Targeting later widened to government and financial entities, consistent with broader espionage [S2][S4].",
+  "objectives": "Intelligence collection from telecommunications providers [S1][S2]. Targeting later widened to government and financial entities, consistent with broader espionage [S2][S4].",
   "targeting": {
     "sectors": [
-      "Telecommunications providers [S1][S2][S6]",
-      "Government entities [S2][S4]",
-      "Financial institutions [S2]"
+      "Telecommunications providers [S1][S2]",
+      "Government entities and ministries [S2][S4]",
+      "Financial institutions and public financial administrators [S2][S4]",
+      "Critical infrastructure and public healthcare (Southeast Asian government cluster, shared across three actors) [S4]"
     ],
     "regions": [
       "Southeast Asia, Europe and Africa (historic telecom targeting) [S2]",
       "Afghanistan, Australia, Belgium, Cambodia, Malaysia, Mozambique, the Philippines, Russia and Vietnam (entities linked to 2022 infrastructure) [S2]",
-      "Southeast Asian government (2022-2023 intrusions) [S4]",
+      "An unnamed Southeast Asian government (Alloy Taurus cluster activity from early 2022 into 2023) [S4]",
       "South Africa and Nepal (2023 Linux PingPull/Sword2033 activity) [S3]",
-      "Middle East telecommunications providers (2023 Soft Cell-linked activity reported by SentinelLabs; see gaps) [S8]"
+      "Middle East telecommunications providers (Q1 2023; SentinelLabs places the actor in the Gallium/APT41 nexus) [S8]"
     ],
-    "notes": "Telecommunications has been the most consistent focus [S1][S2]. Unit 42's 2022 country list comes from targeted entities tied to GALLIUM infrastructure, not from confirmed compromises [S2]. A 2023 C2 domain mimicked a South African military domain but was not directly tied to the South African government [S3]."
+    "notes": "Telecommunications has been the most consistent focus [S1][S2]. Unit 42's 2022 country list comes from targeted entities tied to GALLIUM infrastructure, not confirmed compromises [S2]."
   },
   "capabilities": {
-    "summary": "Initial access is mainly through exploitation of unpatched internet-facing services, notably WildFly/JBoss, using public exploits [S1]. After access, the group installs web shells (China Chopper and BlackMould, an IIS variant derived from China Chopper) and relies on compromised domain credentials. Its common tools are HTRAN, Mimikatz, NBTScan, Netcat, PsExec, Windows Credential Editor and WinRAR [S1]. Malware includes modified Gh0st-variant QuarkBandit and Poison Ivy RATs, altered to evade signatures, and SoftEther VPN for persistence [S1][S3]. At least one credential-dumping tool was signed with a stolen code-signing certificate [S1]. PingPull (2022) is a RAT with variants that communicate over ICMP, HTTP(S) or raw TCP. Its ICMP use exploits the limited inspection of ICMP on most networks [S2]. In 2023 the group added a Linux PingPull variant (detected by only 3 of 62 antivirus engines at the time) and the Sword2033 ELF backdoor for file transfer and command execution [S3]."
+    "summary": "Initial access is mainly through exploiting unpatched internet-facing services, notably WildFly/JBoss, with public exploits; this needs no phishing or user interaction [S1]. In later activity Unit 42 and SentinelLabs reported exploitation of Exchange servers [S4][S8]. After access, the group installs web shells (China Chopper and BlackMould, a native IIS web shell based on China Chopper) and moves laterally mainly with compromised domain credentials and PsExec [S1]. Common tools are HTRAN, Mimikatz, NBTScan, Netcat, PsExec, Windows Credential Editor and WinRAR [S1]. Malware includes a modified Poison Ivy that Microsoft said appeared unique to GALLIUM and QuarkBandit, a modified Gh0st RAT. The group changed their communications to evade existing signatures, installed SoftEther VPN on internal systems for persistence, and signed at least one credential dumper with a stolen certificate [S1]. PingPull (2022) is a RAT with variants using ICMP, HTTP(S) or raw TCP for C2; its ICMP use exploits the fact that few organizations inspect ICMP [S2]. In 2023 the group added a Linux PingPull variant, which only 3 of 62 vendors flagged when it was reported, and the Sword2033 backdoor for file upload, download and command execution [S3]."
   },
   "campaigns": [
-    {"date": "2017/2019-06", "name": "Operation Soft Cell", "summary": "Cybereason reported a worldwide campaign against telecommunications providers, with evidence of activity since at least 2017, aimed at call detail records for selected subscribers.", "sources": ["S6", "S7"]},
-    {"date": "2018/2019-12", "name": "GALLIUM telecom intrusions", "summary": "Microsoft reported GALLIUM exploiting WildFly/JBoss and using web shells, Mimikatz, PsExec and modified Poison Ivy and Gh0st-variant malware against telecommunications providers, mainly from 2018 to mid-2019.", "sources": ["S1"]},
-    {"date": "2022-06", "name": "PingPull expansion", "summary": "Unit 42 reported a new PingPull RAT and expansion to government and finance targets, with infrastructure linked to entities in nine countries.", "sources": ["S2"]},
-    {"date": "2022/2023-09", "name": "Southeast Asian government intrusions", "summary": "Unit 42 attributed intrusions against a Southeast Asian government, beginning in early 2022, to Alloy Taurus.", "sources": ["S4"]},
-    {"date": "2023-03", "name": "Middle East telecom intrusions (Soft Cell-linked)", "summary": "SentinelLabs reported Middle Eastern telecommunications providers targeted in activity linked to Operation Soft Cell, with initial access through internet-facing Microsoft Exchange servers. Cluster linkage to Granite Typhoon is not confirmed by Microsoft.", "sources": ["S8"]},
-    {"date": "2023-04", "name": "Linux PingPull and Sword2033", "summary": "Unit 42 reported a Linux PingPull variant and the new Sword2033 backdoor used against targets in South Africa and Nepal.", "sources": ["S3"]}
+    {
+      "date": "2018/2019-12",
+      "name": "GALLIUM telecom intrusions (Microsoft)",
+      "summary": "Microsoft reported GALLIUM exploiting WildFly/JBoss and using web shells, Mimikatz, PsExec, SoftEther VPN and modified Poison Ivy and Gh0st-variant malware against telecommunications providers, mainly from 2018 to mid-2019.",
+      "sources": [
+        "S1"
+      ]
+    },
+    {
+      "date": "2022-06",
+      "name": "PingPull expansion",
+      "summary": "Unit 42 reported the new PingPull RAT and expansion to government and finance targets, with infrastructure linked to entities in nine countries.",
+      "sources": [
+        "S2"
+      ]
+    },
+    {
+      "date": "2022/2023-09",
+      "name": "Southeast Asian government intrusions (CL-STA-0045)",
+      "summary": "Unit 42 attributed CL-STA-0045, one of three China-nexus clusters active against the same Southeast Asian government, to Alloy Taurus with moderate confidence; the activity began in early 2022, continued through 2023, and exploited Exchange servers to deploy web shells for long-term espionage.",
+      "sources": [
+        "S4"
+      ]
+    },
+    {
+      "date": "2023-03",
+      "name": "Operation Tainted Love (Middle East telecoms)",
+      "summary": "SentinelLabs reported Q1 2023 intrusions against Middle East telecom providers through internet-facing Exchange servers, with custom Mimikatz-based credential theft (mim221). It assessed the activity as an evolution of Operation Soft Cell tooling and judged it highly likely to be a Chinese cyberespionage group in the nexus of Gallium and APT41, with the exact grouping unclear.",
+      "sources": [
+        "S8"
+      ]
+    },
+    {
+      "date": "2023-04",
+      "name": "Linux PingPull and Sword2033",
+      "summary": "Unit 42 reported a Linux PingPull variant and the new Sword2033 backdoor used against targets in South Africa and Nepal.",
+      "sources": [
+        "S3"
+      ]
+    }
   ],
   "diamond": {
-    "adversary": "China-linked espionage operators; vendors assess them as likely state-sponsored [S2][S5]. No named individuals or units appear in the sources gathered.",
-    "capability": "Public exploits for internet-facing servers; China Chopper and BlackMould web shells; Mimikatz, WCE, PsExec and HTRAN; modified Poison Ivy and QuarkBandit; PingPull (Windows/Linux) and Sword2033 [S1][S2][S3].",
-    "infrastructure": "Dynamic DNS C2 subdomains (e.g., under ddns.net and myftp.biz); Taiwan-based servers for web shell connections; GALLIUM-exclusive IPs reused across operations [S1]; a C2 domain mimicking a South African military domain [S3]; SoftEther VPN inside victim networks [S1].",
+    "adversary": "China-linked espionage operators that vendors assess as likely state-sponsored [S2][S5]. No named individuals or units appear in the sources gathered.",
+    "capability": "Public exploits for internet-facing servers; China Chopper and BlackMould web shells; Mimikatz, WCE, PsExec and HTRAN; modified Poison Ivy and QuarkBandit; PingPull for Windows and Linux; Sword2033 [S1][S2][S3].",
+    "infrastructure": "C2 mainly on dynamic DNS subdomains (ddns.net, myftp.biz); domains hosted in mainland China, Hong Kong SAR and Taiwan; Taiwan-based servers, apparently exclusive to GALLIUM, used for web shell connections [S1]; SoftEther VPN inside victim networks [S1].",
     "victim": "Telecommunications providers, government entities and financial institutions in Southeast Asia, Europe, Africa and elsewhere [S1][S2][S4].",
-    "socioPolitical": "Telecom metadata collection (call detail records of selected subscribers) supports surveillance of individuals of interest [S6]; government targeting supports broader intelligence requirements [S4].",
-    "technology": "Unpatched internet-facing application servers (WildFly/JBoss, IIS, Exchange) and weak ICMP inspection [S1][S2][S8]."
+    "socioPolitical": "Government targeting supports broader intelligence requirements [S4].",
+    "technology": "Unpatched internet-facing application and mail servers (WildFly/JBoss, IIS, Exchange) and networks that do not inspect ICMP [S1][S2][S8]."
   },
   "gaps": [
-    "Primary Unit 42 reports (2022 PingPull, 2023 Linux PingPull, 2023 SE Asian government) could not be fetched; facts come from search-result coverage and secondary press [S2][S3][S4].",
-    "Microsoft's threat-actor naming table (learn.microsoft.com) could not be opened; the Granite Typhoon = GALLIUM mapping relies on press coverage of Unit 42 reporting [S3].",
-    "The Cybereason Operation Soft Cell primary report was not opened; details come from GovInfoSecurity and Virus Bulletin coverage [S6][S7].",
-    "SentinelLabs' 2023 Middle East telecom activity is described as linked to Soft Cell. Whether Microsoft attributes it to Granite Typhoon, rather than another China-nexus cluster, is unverified [S8].",
-    "The CrowdStrike alias PHANTOM PANDA and the 'Red Dev 4' alias in the imported record were not confirmed in any source gathered.",
-    "No government attribution, indictment or sanctions naming this group was found; sponsoring organization (MSS, PLA or contractor) is unknown.",
-    "Activity after 2023 was not found in the sources gathered."
+    "No Unit 42 primary reports could be fetched (2022 PingPull, 2023 Linux PingPull, 2023 SE Asia clusters); facts come from search-result summaries and press coverage [S2][S3][S4].",
+    "Microsoft's threat-actor naming table could not be opened, and Microsoft's 2023 taxonomy post does not list Granite Typhoon. The Granite Typhoon = Alloy Taurus mapping relies on press coverage of Unit 42 reporting [S4][S9].",
+    "Neither the MITRE ATT&CK page nor the SentinelLabs page could be fetched; content relies on search-result coverage [S5][S8]. Cybereason's Operation Soft Cell reporting (2019) was not included because no verified source URL was retained.",
+    "Cluster boundary: Unit 42 treats Softcell as a GALLIUM alias, while SentinelLabs placed 2023 Middle East activity in the Gallium/APT41 nexus. Shared or leaked tooling (Poison Ivy, China Chopper, Mimikatz) limits confidence in these links [S2][S8].",
+    "The CrowdStrike alias PHANTOM PANDA and the imported 'Red Dev 4' alias were not confirmed in any source opened.",
+    "No government attribution, indictment, sanctions or joint advisory naming this group was found. The sponsoring organization (MSS, PLA or contractor) is unknown.",
+    "No well-sourced activity after 2023 was found."
   ],
   "implications": {
-    "jipoe": "Analyst assessment derived from cited sources; validate before use. STEP 1 (OE): Telecom provider networks hold call detail records, and internet-facing application servers (WildFly/JBoss, IIS, Exchange) at telecom, government and finance entities are key terrain [S1][S2][S6][S8]. STEP 2 (effects): Unpatched public-facing services give a no-interaction foothold, and ICMP-based C2 can evade networks that do not inspect ICMP [S1][S2]. STEP 3 (adversary template): exploit a public-facing server, then install a China Chopper or BlackMould web shell, harvest credentials with Mimikatz or WCE, move laterally with PsExec, persist through RATs (PingPull, Poison Ivy) or SoftEther VPN, and stage data with WinRAR [S1][S2]. STEP 4: MLCOA is sustained, low-cost collection of subscriber metadata and government data from telecom and government networks [S1][S4][S6]. MDCOA is wider access to partner-nation telecom infrastructure that supports surveillance of persons of interest to US or partner forces [S6]. Candidate indicators: web shells on IIS or JBoss servers; anomalous ICMP payloads; SoftEther VPN on servers; dynamic DNS C2 (ddns.net, myftp.biz); tools signed with stolen certificates [S1][S2].",
-    "jcc2": "Analyst assessment derived from cited sources; validate before use. Situational awareness: track exploitation of internet-facing servers and ICMP C2 patterns across DoD-adjacent and partner telecom networks the group has targeted (Southeast Asia, Africa, Europe) [S1][S2]. Authorities: much of the targeted terrain is commercial or partner-nation telecom outside the DODIN, so response depends on coordination with partner nations and private providers rather than direct DoD action [S2][S6]. Mission assurance: communications transiting compromised partner telecoms may expose metadata on deployed personnel; plan for that risk [S6]. Coordination: share indicators (web shells, PingPull, dynamic DNS C2) with partner CERTs and commercial providers, and reconcile vendor naming (GALLIUM, Alloy Taurus, Softcell) in shared reporting [S1][S2][S3]."
+    "jipoe": "Analyst assessment derived from cited sources; validate before use. STEP 1 (define the OE): Key terrain is telecom provider networks that hold call detail records, plus internet-facing application and mail servers (WildFly/JBoss, IIS, Exchange) at telecom, government and finance entities [S1][S2][S8]. STEP 2 (describe effects): Unpatched public-facing services give a foothold with no user interaction, and ICMP-based C2 can evade networks that do not inspect ICMP [S1][S2]. STEP 3 (adversary template): the actor exploits a public-facing server, installs a China Chopper or BlackMould web shell, harvests credentials with Mimikatz or WCE, moves laterally with PsExec, persists with RATs (PingPull, Poison Ivy, QuarkBandit) or SoftEther VPN, and stages data with WinRAR [S1][S2]. STEP 4 (COAs): MLCOA is sustained, low-cost collection of subscriber metadata and government data from partner-nation telecom and government networks [S1][S4]. Candidate indicators: new web shells on IIS or JBoss servers; anomalous ICMP payloads; SoftEther VPN on servers; C2 on dynamic DNS (ddns.net, myftp.biz); tools signed with stolen certificates; Linux hosts beaconing over HTTPS to unfamiliar domains [S1][S2][S3].",
+    "jcc2": "Analyst assessment derived from cited sources; validate before use. Situational awareness: track exploitation of internet-facing servers and ICMP C2 patterns across DoD-adjacent and partner telecom networks in regions the group has targeted (Southeast Asia, Africa, Europe, Middle East) [S1][S2][S8]. Authorities: most of the targeted terrain is commercial or partner-nation telecom outside the DODIN, so response depends on partner nations and private providers rather than direct DoD action [S2]. Coordination: share indicators (web shells, PingPull, Sword2033, dynamic DNS C2) with partner CERTs and providers, and reconcile vendor names (Granite Typhoon, GALLIUM, Alloy Taurus, Softcell) in shared reporting without merging the APT41 cluster [S1][S2][S3][S8]."
   },
   "sources": [
-    {"ref": "S1", "title": "GALLIUM: Targeting global telecom", "publisher": "Microsoft Threat Intelligence (MSTIC)", "date": "2019-12-12", "url": "https://www.microsoft.com/security/blog/2019/12/12/gallium-targeting-global-telecom/"},
-    {"ref": "S2", "title": "GALLIUM Expands Targeting Across Telecommunications, Government and Finance Sectors With New PingPull Tool (via search-result coverage)", "publisher": "Palo Alto Networks Unit 42", "date": "2022-06-13", "url": "https://unit42.paloaltonetworks.com/pingpull-gallium/"},
-    {"ref": "S3", "title": "Chinese hackers using Linux PingPull variant (reporting Unit 42 Alloy Taurus research)", "publisher": "The Hacker News", "date": "2023-04", "url": "https://thehackernews.com/2023/04/chinese-hackers-using-pingpull-linux.html?m=1"},
-    {"ref": "S4", "title": "Alloy Taurus targets Southeast Asian government (via search-result coverage)", "publisher": "Palo Alto Networks Unit 42", "date": "2023-09", "url": "https://unit42.paloaltonetworks.com/alloy-taurus-targets-se-asian-government/"},
-    {"ref": "S5", "title": "GALLIUM, Group G0093 (via search-result coverage)", "publisher": "MITRE ATT&CK", "date": "2026-07-31", "url": "https://attack.mitre.org/groups/G0093/"},
-    {"ref": "S6", "title": "Chinese hackers play operator with global telcos (reporting Cybereason Operation Soft Cell)", "publisher": "GovInfoSecurity", "date": "2019-06", "url": "https://www.govinfosecurity.com/chinese-hackers-play-operator-global-telcos-a-12684"},
-    {"ref": "S7", "title": "VB2019 paper: Operation Soft Cell - a worldwide campaign against telecommunication providers", "publisher": "Virus Bulletin", "date": "2019-12", "url": "https://virusbulletin.com/blog/2019/12/vb2019-paper-operation-soft-cell-worldwide-campaign-against-telecommunication-providers"},
-    {"ref": "S8", "title": "China-linked hackers target telecommunication providers in the Middle East (reporting SentinelLabs)", "publisher": "Security Affairs", "date": "2023-03", "url": "https://securityaffairs.com/143928/apt/operation-soft-cell-china-telecom-providers.html"},
-    {"ref": "S9", "title": "Microsoft shifts to a new threat actor naming taxonomy", "publisher": "Microsoft Security Blog", "date": "2023-04-18", "url": "https://www.microsoft.com/en-us/security/blog/2023/04/18/microsoft-shifts-to-a-new-threat-actor-naming-taxonomy/"}
+    {
+      "ref": "S1",
+      "title": "GALLIUM: Targeting global telecom",
+      "publisher": "Microsoft Threat Intelligence (MSTIC)",
+      "date": "2019-12-12",
+      "url": "https://www.microsoft.com/security/blog/2019/12/12/gallium-targeting-global-telecom/"
+    },
+    {
+      "ref": "S2",
+      "title": "GALLIUM Expands Targeting Across Telecommunications, Government and Finance Sectors With New PingPull Tool (via search-result coverage)",
+      "publisher": "Palo Alto Networks Unit 42",
+      "date": "2022-06-13",
+      "url": "https://unit42.paloaltonetworks.com/pingpull-gallium/"
+    },
+    {
+      "ref": "S3",
+      "title": "Chinese hackers use new Linux malware variants for espionage (reporting Unit 42 Alloy Taurus research)",
+      "publisher": "BleepingComputer",
+      "date": "2023-04",
+      "url": "https://www.bleepingcomputer.com/news/security/chinese-hackers-use-new-linux-malware-variants-for-espionage/"
+    },
+    {
+      "ref": "S4",
+      "title": "Analysis of three attack clusters in Southeast Asia (via search-result coverage, with The Hacker News 2023-09 coverage)",
+      "publisher": "Palo Alto Networks Unit 42",
+      "date": "2023-09",
+      "url": "https://unit42.paloaltonetworks.com/analysis-of-three-attack-clusters-in-se-asia"
+    },
+    {
+      "ref": "S5",
+      "title": "GALLIUM, Group G0093 (via search-result coverage)",
+      "publisher": "MITRE ATT&CK",
+      "date": "2026-07-31",
+      "url": "https://attack.mitre.org/groups/G0093/"
+    },
+    {
+      "ref": "S8",
+      "title": "Operation Tainted Love | Chinese APTs Target Telcos in New Attacks (via search-result coverage)",
+      "publisher": "SentinelLabs (SentinelOne)",
+      "date": "2023-03",
+      "url": "https://www.sentinelone.com/labs/operation-tainted-love-chinese-apts-target-telcos-in-new-attacks/"
+    },
+    {
+      "ref": "S9",
+      "title": "Microsoft shifts to a new threat actor naming taxonomy",
+      "publisher": "Microsoft Security Blog",
+      "date": "2023-04-18",
+      "url": "https://www.microsoft.com/en-us/security/blog/2023/04/18/microsoft-shifts-to-a-new-threat-actor-naming-taxonomy/"
+    }
   ],
   "aliasesAdd": [
-    {"name": "Softcell", "vendor": "Palo Alto Unit 42 (alias for GALLIUM)"}
+    {
+      "name": "Softcell",
+      "vendor": "Palo Alto Unit 42 (stated as GALLIUM alias)"
+    }
   ]
 }

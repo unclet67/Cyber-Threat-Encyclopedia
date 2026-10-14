@@ -1,68 +1,235 @@
 {
   "identification": {
-    "summary": "Marigold Sandstorm is Microsoft's name for an Iran-origin actor that Microsoft previously tracked as DEV-500 (DEV-0500) [S4][S5]. MITRE ATT&CK maps Marigold Sandstorm and DEV-0500 to the group publicly known as Moses Staff (G1009) [S1]. MITRE describes Moses Staff as a suspected Iranian group that has primarily targeted Israeli companies since at least September 2021, with a stated motive of causing damage by leaking stolen data and encrypting networks without demanding a ransom [S1][S2].",
-    "firstObserved": "MITRE: active since at least September 2021 [S1][S2]. Cybereason Nocturnus reported the group first spotted in October 2021 [S3][S7].",
-    "notes": "Microsoft name: Marigold Sandstorm (formerly DEV-500); Microsoft's mapping file lists DEV-500 and VENGEFUL KITTEN as other names [S4]. In Microsoft's taxonomy, the Sandstorm family name denotes Iran attribution [S5]. Microsoft's mapping file does not itself list 'Moses Staff'. The Moses Staff equivalence comes from MITRE ATT&CK, which cites Microsoft's July 2023 naming page for the Marigold Sandstorm and DEV-0500 aliases [S1][S6]. MISP Galaxy groups Moses Staff, Marigold Sandstorm, DEV-0500 and VENGEFUL KITTEN as synonyms [S7]."
+    "summary": "Marigold Sandstorm is Microsoft's name for an Iran-origin actor that Microsoft previously tracked as DEV-500 (DEV-0500) [S4][S5]. MITRE ATT&CK maps Marigold Sandstorm and DEV-0500 to Moses Staff (G1009), a suspected Iranian group that has mainly targeted Israeli companies since at least September 2021 and says it aims to cause damage by leaking stolen data and encrypting networks without demanding a ransom [S1][S2]. Microsoft's February 2024 Iran report calls Moses Staff an 'IRGC-run cyber persona' [S8]. Secureworks tracks the operator behind the Moses Staff and Abraham's Ax personas as COBALT SAPLING [S10].",
+    "firstObserved": "MITRE: active since at least September 2021 [S1]. Kaspersky says Moses Staff was first seen on underground forums in September 2021 [S11].",
+    "notes": "Microsoft name: Marigold Sandstorm (formerly DEV-500). Microsoft's mapping file lists DEV-500 and VENGEFUL KITTEN as other names but not 'Moses Staff' [S4]. The Sandstorm family name denotes Iran attribution [S5]. The Moses Staff equivalence comes from MITRE ATT&CK, which cites Microsoft's July 2023 naming page [S1][S6], and from MISP Galaxy [S7]. Microsoft's February 2024 report refers to 'Moses Staff' as a persona and does not use the name Marigold Sandstorm [S8]. Abraham's Ax (from November 2022) is a second persona that Secureworks assesses is likely run by the same operator (COBALT SAPLING) [S10]."
   },
   "attribution": {
-    "sponsor": "Iran. Microsoft classifies Marigold Sandstorm as Iran-origin [S4]. MITRE calls Moses Staff a 'suspected Iranian threat group' [S1]. No specific Iranian government organization is named in the sources gathered.",
-    "confidence": "Microsoft places the actor in its Iran (Sandstorm) family but states no confidence level in the sources gathered [S4][S5]. MITRE uses hedged language ('suspected Iranian') [S1]. Cybereason Nocturnus describes the group as an Iranian APT [S3][S7]. None of the sources gathered contains a government attribution.",
-    "basis": "Microsoft's naming taxonomy and mapping [S4][S5]; Check Point Research technical analysis (November 2021) [S2] and Cybereason Nocturnus analysis (February 2022) [S3], both as summarized by MITRE ATT&CK [S1]."
+    "sponsor": "Iran. Microsoft describes Moses Staff as an IRGC-run cyber persona [S8], and its naming taxonomy places Marigold Sandstorm in the Iran (Sandstorm) family [S4][S5]. Secureworks believes COBALT SAPLING is Iranian in origin [S10]. MITRE uses 'suspected Iranian' [S1].",
+    "confidence": "Microsoft states the IRGC link as fact in a February 2024 report but does not give a confidence level in the passage reviewed [S8]. Secureworks assesses the Moses Staff/Abraham's Ax link as likely [S10]. MITRE ATT&CK hedges ('suspected Iranian') [S1]. Kaspersky refers to Moses Staff as 'alleged to be an Iranian hacker group' [S11]. The sources gathered contain no US or Israeli government attribution.",
+    "basis": "Microsoft Threat Intelligence assessment [S8] and naming mapping [S4]. Secureworks CTU analysis of shared iconography, videography, leak sites and malware artifacts [S10]. Technical reporting by Check Point (November 2021) and Cybereason (February 2022), as summarized by MITRE [S1][S2][S3]."
   },
-  "objectives": "Politically motivated disruption and hack-and-leak against Israel: Moses Staff openly said its goal was to damage Israeli companies by leaking stolen sensitive data and encrypting victim networks, without asking for a ransom [S1][S2]. MITRE notes that DCSrv has ransomware-like functions but the group neither demands a ransom nor offers a decryption key [S1][S2]. Security researchers assess the group as politically motivated [S1][S3].",
+  "objectives": "Politically motivated disruption and hack-and-leak operations. Moses Staff openly states it aims to damage Israeli companies by leaking stolen data and encrypting networks without asking for a ransom [S1][S2]. Microsoft places the persona inside Iran's IRGC-run cyber-enabled influence activity [S8]. Secureworks reports that the Abraham's Ax persona targets Saudi government ministries. It assesses this is likely a response to Saudi Arabia's leadership role in improving relations between Israel and Arab states. Secureworks adds that such personas give the Government of Iran plausible deniability [S10].",
   "targeting": {
     "sectors": [
       "Government [S1][S3]",
       "Finance [S1][S3]",
       "Travel [S1][S3]",
-      "Energy [S1][S3]",
+      "Energy and electric power [S1][S3][S8]",
       "Manufacturing [S1][S3]",
-      "Utilities [S1][S3]"
+      "Utilities [S1][S3]",
+      "Engineering firms (claimed) [S12]",
+      "Defense ministry (claimed leak) [S13]",
+      "Saudi government ministries (Abraham's Ax persona) [S10]"
     ],
     "regions": [
       "Israel (primary) [S1][S2]",
-      "Italy, India, Germany, Chile, Turkey, the UAE and the United States [S1][S3]"
+      "Italy, India, Germany, Chile, Turkey, the UAE and the United States [S1][S3]",
+      "Saudi Arabia (Abraham's Ax persona) [S10]"
     ],
-    "notes": "Israeli companies are the primary focus [S1][S2]. Targeting outside Israel and the sector list come from Cybereason's February 2022 reporting as summarized by MITRE [S1][S3]. The sources gathered do not name specific victims."
+    "notes": "Israeli companies are the primary focus [S1][S2]. Targeting outside Israel and the sector list come from Cybereason's February 2022 reporting, as summarized by MITRE [S1][S3]. Saudi targeting is attributed to the Abraham's Ax persona, which Secureworks links to the same operator [S10]. Several victim claims (an Israeli power plant, a defense ministry, security cameras) are the persona's own claims and are only partly confirmed [S8][S12][S13]."
   },
   "capabilities": {
-    "summary": "Initial access through exploitation of known vulnerabilities in internet-facing infrastructure such as Microsoft Exchange servers, followed by obfuscated ASPX web shells placed under IIS paths [S1][S2]. Custom malware: PyDCrypt, a Python loader compiled with PyInstaller and tailored to each victim, which spreads across the network by opening firewall rules for SMB, NetBIOS and RPC and then drops DCSrv [S1][S2]. DCSrv is a destructive encryptor that uses the core of the open-source DiskCryptor tool and its signed drivers to encrypt whole drives. It is time-triggered and offers no ransom path [S1][S2]. The group also uses PsExec [S1][S2]. From at least November 2021 it used StrifeWater, a RAT used early in intrusions for reconnaissance, file collection, screenshots and module download, with XOR-encrypted C2 and self-deletion [S1][S3]. Data theft feeds public leaks [S1][S2]."
+    "summary": "Initial access through known vulnerabilities in internet-facing infrastructure such as Microsoft Exchange, followed by obfuscated ASPX web shells [S1][S2]. PyDCrypt is a PyInstaller-compiled loader tailored to each victim. It opens firewall rules for SMB, NetBIOS and RPC to spread through the network, then drops DCSrv [S1][S2]. DCSrv is a time-triggered encryptor built on the open-source DiskCryptor and its signed drivers. It encrypts whole drives and offers no ransom path, so it works as a wiper [S1][S2]. PsExec is used for lateral movement [S1]. Since at least November 2021 the group has used StrifeWater, a reconnaissance RAT with screenshot, file-collection and module-download functions [S1][S3]. Stolen data goes to leak sites and Telegram/social channels. Leaked material has been reused by other Iran-linked personas, for example Cyber Avengers in October 2023 [S8][S11][S12]."
   },
   "campaigns": [
-    {"date": "2021-09", "name": "Encrypt-and-leak operations against Israeli companies", "summary": "Moses Staff begins attacks on Israeli organizations using PyDCrypt and DCSrv to encrypt networks and leak stolen data without demanding ransom.", "sources": ["S1", "S2"]},
-    {"date": "2021-11", "name": "Check Point exposes MosesStaff ('Ideology over Money')", "summary": "Check Point Research publishes the group's TTPs: Exchange exploitation, web shells, PyDCrypt/DCSrv and DiskCryptor-based encryption.", "sources": ["S2", "S1"]},
-    {"date": "2022-02", "name": "StrifeWater RAT and expanded targeting", "summary": "Cybereason reports the StrifeWater RAT, in use since at least November 2021, and targeting of government, finance, travel, energy, manufacturing and utility organizations outside Israel.", "sources": ["S3", "S1"]},
-    {"date": "2023-07", "name": "Microsoft names the actor Marigold Sandstorm", "summary": "Microsoft's threat actor naming guidance lists Marigold Sandstorm (DEV-0500), which MITRE maps to Moses Staff.", "sources": ["S6", "S1", "S4"]}
+    {
+      "date": "2021-09",
+      "name": "Moses Staff emerges; encrypt-and-leak against Israeli companies",
+      "summary": "The persona appears and begins attacks on Israeli organizations using PyDCrypt and DCSrv, leaking data without demanding ransom.",
+      "sources": [
+        "S1",
+        "S2",
+        "S11"
+      ]
+    },
+    {
+      "date": "2021-10",
+      "name": "Claimed Israeli Defense Ministry leak",
+      "summary": "Media reported that the group leaked alleged Israeli Defense Ministry files, including photos of the Defense Minister and IDF deployment details. Authenticity is not confirmed in the sources gathered.",
+      "sources": [
+        "S13"
+      ]
+    },
+    {
+      "date": "2021-11",
+      "name": "Check Point exposes MosesStaff ('Ideology over Money')",
+      "summary": "Check Point Research publishes the group's TTPs: Exchange exploitation, web shells, PyDCrypt and DCSrv/DiskCryptor encryption.",
+      "sources": [
+        "S2",
+        "S1"
+      ]
+    },
+    {
+      "date": "2022-02",
+      "name": "StrifeWater RAT and wider targeting",
+      "summary": "Cybereason reports the StrifeWater RAT and targeting outside Israel in government, finance, travel, energy, manufacturing and utilities.",
+      "sources": [
+        "S3",
+        "S1"
+      ]
+    },
+    {
+      "date": "2022-06",
+      "name": "Israeli power-plant document leak",
+      "summary": "Moses Staff publishes documents from an Israeli power plant. Cyber Avengers recycled the same material in October 2023.",
+      "sources": [
+        "S8",
+        "S11"
+      ]
+    },
+    {
+      "date": "2022-11",
+      "name": "Abraham's Ax persona and Saudi ministries",
+      "summary": "A new persona, Abraham's Ax, appears and targets Saudi government ministries. Secureworks links it to Moses Staff/COBALT SAPLING.",
+      "sources": [
+        "S10"
+      ]
+    },
+    {
+      "date": "2022-11",
+      "name": "Jerusalem bombing CCTV footage claim",
+      "summary": "Moses Staff posts footage of the 23 November Jerusalem bombing and claims it hacked security cameras. Israeli police and the municipality denied the footage came from their cameras.",
+      "sources": [
+        "S12"
+      ]
+    },
+    {
+      "date": "2023-07",
+      "name": "Microsoft names the actor Marigold Sandstorm",
+      "summary": "Microsoft's naming guidance lists Marigold Sandstorm (DEV-0500), which MITRE maps to Moses Staff.",
+      "sources": [
+        "S6",
+        "S1",
+        "S4"
+      ]
+    },
+    {
+      "date": "2023-10",
+      "name": "Moses Staff leaks recycled by Cyber Avengers",
+      "summary": "After 7 October, Cyber Avengers claimed an Israeli power-plant hack using documents Moses Staff had published in June 2022. Kaspersky found no evidence that the two groups are linked. Microsoft calls both IRGC-run personas.",
+      "sources": [
+        "S8",
+        "S11"
+      ]
+    }
   ],
   "diamond": {
-    "adversary": "Suspected Iranian operators presenting as the Moses Staff persona; Microsoft tracks them as the Iran-origin Marigold Sandstorm [S1][S4].",
-    "capability": "Exchange and public-facing exploitation, obfuscated web shells, PyDCrypt, DCSrv (DiskCryptor-based full-disk encryption), StrifeWater RAT and PsExec [S1][S2][S3].",
-    "infrastructure": "Web shells on compromised IIS/Exchange servers (for example under the aspnet_client path) and StrifeWater C2 servers using XOR-encrypted traffic [S1][S2][S3]. Leak-site details are not in the sources gathered.",
-    "victim": "Mainly Israeli companies; also government, finance, travel, energy, manufacturing and utility organizations in Italy, India, Germany, Chile, Turkey, the UAE and the US [S1][S3].",
-    "socioPolitical": "Anti-Israel ideology over profit: the group itself states its aim is to harm Israeli companies through leaks and encryption [S1][S2].",
-    "technology": "Unpatched internet-facing Microsoft Exchange servers, Windows networks reachable over SMB, RPC and NetBIOS, and abuse of signed DiskCryptor drivers [S1][S2]."
+    "adversary": "Operators of the Moses Staff and Abraham's Ax personas. Microsoft tracks the cluster as Marigold Sandstorm and calls Moses Staff IRGC-run [S4][S8]. Secureworks calls the operator COBALT SAPLING [S10].",
+    "capability": "Exchange/public-facing exploitation, obfuscated web shells, PyDCrypt, DCSrv (DiskCryptor-based full-disk encryption), StrifeWater RAT, PsExec, and hack-and-leak publicity [S1][S2][S3][S12].",
+    "infrastructure": "Web shells on compromised IIS/Exchange servers and StrifeWater C2 [S1][S2][S3]. Leak sites shared across personas, plus Telegram and X accounts used for claims [S8][S12].",
+    "victim": "Mainly Israeli companies and government-linked entities. Also organizations in Italy, India, Germany, Chile, Turkey, the UAE and the US, and Saudi ministries via Abraham's Ax [S1][S3][S10].",
+    "socioPolitical": "Anti-Israel hack-and-leak meant to cause damage and psychological effect rather than profit [S1][S2]. Abraham's Ax aims to disrupt Israel-Saudi normalization [S10]. The personas give Iran deniability within IRGC influence activity [S8][S10].",
+    "technology": "Unpatched internet-facing Exchange/IIS servers, Windows networks reachable over SMB, RPC and NetBIOS, and abuse of signed DiskCryptor drivers [S1][S2]."
   },
   "gaps": [
-    "Primary vendor reports could not be opened in this session: the Check Point Research report (2021-11-15), the Cybereason StrifeWater report (2022-02-01), the Fortinet 'Guard Your Drive from DriveGuard' blog and the @campuscodi tweet referenced in the actor record. Their content is cited only as MITRE ATT&CK summarizes it. The Fortinet DriveGuard reporting (newer tooling) is not reflected here.",
-    "Microsoft's own descriptive reporting on Marigold Sandstorm (as distinct from naming/mapping) was not found; the Microsoft naming page on learn.microsoft.com was unreachable. Microsoft's mapping lists DEV-500 and VENGEFUL KITTEN but not 'Moses Staff'. The Moses Staff link rests on MITRE ATT&CK and MISP Galaxy [S1][S4][S7].",
-    "MISP Galaxy records that ESET-named BiBiGun, a pro-Hamas group behind the BiBi-Linux and BiBi-Windows wipers in late 2023, showed TTP overlaps with Moses Staff [S7]. This is a separate cluster; the overlap has not been verified in primary reporting and should not be merged.",
-    "MISP Galaxy also relates Moses Staff ('likely', similar) to another cluster by UUID only. Related Iranian personas reported in the press (for example Abraham's Ax) could not be checked against sources in this session.",
-    "The specific Iranian sponsoring organization (MOIS or IRGC) and Microsoft's confidence level are not established in the sources gathered.",
-    "Activity after 2022 attributable to Marigold Sandstorm specifically, including any operations tied to the 2023-2025 Israel-Hamas or Israel-Iran conflicts, is not documented in the sources gathered.",
-    "The web search budget was exhausted during this run, so open-source coverage is incomplete. Re-run when search is available."
+    "Primary vendor reports could not be opened (host blocked): Check Point (2021-11-15), Cybereason StrifeWater (2022-02-01), Secureworks/Sophos Abraham's Ax analysis (Sophos blog URL could not be confirmed and was removed), Kaspersky Securelist (2023-10), and Fortinet's 'Guard Your Drive from DriveGuard' blog. Their content is cited from MITRE summaries or search-result excerpts only. DriveGuard capabilities and any Moses Staff link from Fortinet are not reflected.",
+    "Cluster boundaries: Microsoft's February 2024 report names the persona 'Moses Staff' and not Marigold Sandstorm [S8]. The Marigold Sandstorm-Moses Staff equivalence rests on MITRE and MISP mappings [S1][S7]. Whether Microsoft's Marigold Sandstorm also covers Abraham's Ax is not stated in the sources gathered.",
+    "Microsoft says the persona is IRGC-run [S8], whereas the Malek Team persona in the same report is attributed to MOIS. The specific IRGC component and Microsoft's confidence level are not public in the sources gathered.",
+    "Kaspersky found no evidence linking Cyber Avengers to Moses Staff even though Microsoft calls both IRGC-run [S8][S11]. Treat them as separate clusters.",
+    "MISP Galaxy notes TTP overlaps between Moses Staff and BiBiGun (BiBi wipers, late 2023) [S7]. Not verified in primary reporting; do not merge.",
+    "Victim claims (Defense Ministry files, Israel Electric/Dorad, engineering firms, CCTV) are largely self-reported by the persona. Israeli officials disputed the CCTV hack [S12][S13].",
+    "No Marigold Sandstorm or Moses Staff activity from 2024 to 2026, including during the June 2025 Israel-Iran conflict, was found in the sources searched.",
+    "The aliases COBALT SAPLING and Abraham's Ax come from Secureworks reporting carried in secondary coverage. Neither MITRE nor Microsoft's mapping lists them [S1][S4][S10]."
   ],
   "implications": {
-    "jipoe": "Analyst assessment derived from cited sources; validate before use. STEP 1 (OE): Key terrain is internet-facing Microsoft Exchange/IIS servers and flat Windows networks where SMB and RPC can be opened between hosts [S1][S2]. Israel and partner-nation organizations in government, energy, utilities and manufacturing make up the relevant part of the environment [S1][S3]. STEP 2 (effects): Whole-disk encryption without a recovery path works as a wiper, and leaks add an information-effects layer, so impacts are both availability loss and reputational/psychological harm [S1][S2]. STEP 3 (adversary template): exploit a public-facing Exchange server, drop an obfuscated ASPX web shell, run reconnaissance (StrifeWater, whoami, domain/admin enumeration), steal data, use PyDCrypt to open firewall rules and spread with PsExec/WMIC, then time-triggered DCSrv encryption and a public leak [S1][S2][S3]. STEP 4: MLCOA is hack-and-leak plus destructive encryption against Israeli commercial and government entities timed to political events. MDCOA is the same template against partner-nation utilities or energy providers that support coalition operations, causing simultaneous outages and leaked operational data. Candidate indicators: new ASPX files under C:\\inetpub\\wwwroot\\aspnet_client\\system_web\\, netsh firewall changes that allow SMB/RPC/NetBIOS on many hosts, DiskCryptor drivers on servers, a svchost.exe-named service outside System32, and a scheduled task impersonating the 'Firefox Default Browser Agent' [S1][S2][S3].",
-    "jcc2": "Analyst assessment derived from cited sources; validate before use. (1) Situational awareness: track patch status of internet-facing Exchange/IIS assets across DODIN and mission-partner enclaves, because that has been this actor's entry point [S1][S2]. (2) Authorities: encryption with no ransom path is destructive, not criminal ransomware, so an incident may need DCO response authorities and coordination on reporting a possible state-linked destructive attack. Do not treat it as extortion. (3) Mission assurance: offline backups and recovery plans for whole-disk encryption on servers supporting critical functions, and network segmentation that resists bulk firewall changes over SMB/RPC [S1][S2]. (4) Coordination: Israeli and other partner-nation victims are the primary targets [S1][S3]. Share indicators with coalition CERTs and with the DIB/critical-infrastructure partners in the sectors named, and expect leak-site publicity that may need coordination with public affairs and information operations."
+    "jipoe": "Analyst assessment derived from cited sources; validate before use. STEP 1 (OE): Key terrain is internet-facing Exchange/IIS servers and flat Windows networks where SMB and RPC can be opened between hosts [S1][S2]. Israeli and partner-nation government, energy, utility and manufacturing organizations make up the relevant part of the environment, along with Saudi ministries via the Abraham's Ax persona [S1][S3][S10]. STEP 2 (effects): Whole-disk encryption with no recovery path works as a wiper. Leaks and Telegram claims add an influence layer that IRGC-linked media amplify, so perceived effects can exceed real ones [S1][S2][S8]. STEP 3 (adversary template): exploit an Exchange server, drop an obfuscated web shell, run StrifeWater reconnaissance, steal data, then spread PyDCrypt via opened firewall rules and PsExec. This ends in time-triggered DCSrv encryption and a public leak through persona channels [S1][S2][S3]. STEP 4: MLCOA is hack-and-leak with destructive encryption against Israeli entities, timed to political events, with claims recycled by sister personas [S8][S11][S12]. MDCOA is the same template against partner-nation energy or utility providers supporting coalition operations, combined with false or exaggerated outage claims to shape perceptions during a crisis [S8]. Candidate indicators: new ASPX files under IIS aspnet_client paths, bulk netsh firewall changes that allow SMB/RPC/NetBIOS, DiskCryptor drivers on servers, StrifeWater beacons, and Moses Staff or Abraham's Ax Telegram/X posts naming a partner organization [S1][S2][S3][S12].",
+    "jcc2": "Analyst assessment derived from cited sources; validate before use. (1) Situational awareness: track patch status of internet-facing Exchange/IIS assets across DODIN and mission-partner enclaves, and monitor persona leak channels as early warning [S1][S2][S12]. (2) Authorities: no-ransom encryption is destructive state-linked activity rather than criminal extortion [S1][S8]. Responses may need DCO and interagency coordination, and public attribution claims should credit the assessing source (Microsoft, Secureworks). (3) Mission assurance: keep offline backups and recovery plans for full-disk encryption, and segment networks to resist bulk SMB/RPC firewall changes [S1][S2]. (4) Coordination: Israeli and Gulf partners are primary targets [S1][S10]. Share indicators with coalition CERTs, and coordinate public messaging to counter exaggerated persona claims amplified by IRGC-linked media [S8]."
   },
-  "sources": [
-    {"ref": "S1", "title": "Moses Staff, Group G1009 (MITRE ATT&CK v. modified 2026-07-31; read from the mitre-attack/attack-stix-data GitHub bundle because attack.mitre.org was unreachable)", "publisher": "MITRE ATT&CK", "date": "2026-07-31", "url": "https://attack.mitre.org/groups/G1009/"},
-    {"ref": "S2", "title": "Uncovering MosesStaff techniques: Ideology over Money (not opened; content via MITRE ATT&CK citations)", "publisher": "Check Point Research", "date": "2021-11-15", "url": "https://research.checkpoint.com/2021/mosesstaff-targeting-israeli-companies/"},
-    {"ref": "S3", "title": "StrifeWater RAT: Iranian APT Moses Staff Adds New Trojan to Ransomware Operations (not opened; content via MITRE ATT&CK citations)", "publisher": "Cybereason Nocturnus", "date": "2022-02-01", "url": "https://www.cybereason.com/blog/research/strifewater-rat-iranian-apt-moses-staff-adds-new-trojan-to-ransomware-operations"},
-    {"ref": "S4", "title": "Microsoft threat actor naming mapping (MicrosoftMapping.json; file undated, retrieved 2026-10-14)", "publisher": "Microsoft Threat Intelligence (MSTIC GitHub)", "date": "2026-10", "url": "https://github.com/microsoft/mstic/blob/master/PublicFeeds/ThreatActorNaming/MicrosoftMapping.json"},
-    {"ref": "S5", "title": "Microsoft shifts to a new threat actor naming taxonomy", "publisher": "Microsoft Security Blog", "date": "2023-04-18", "url": "https://www.microsoft.com/en-us/security/blog/2023/04/18/microsoft-shifts-to-a-new-threat-actor-naming-taxonomy/"},
-    {"ref": "S6", "title": "How Microsoft names threat actors (not opened; cited by MITRE ATT&CK for the Marigold Sandstorm and DEV-0500 aliases)", "publisher": "Microsoft Learn", "date": "2023-07-12", "url": "https://learn.microsoft.com/en-us/microsoft-365/security/intelligence/microsoft-threat-actor-naming?view=o365-worldwide"},
-    {"ref": "S7", "title": "MISP Galaxy threat-actor cluster: MosesStaff and BiBiGun entries (file undated, retrieved 2026-10-14)", "publisher": "MISP Project", "date": "2026-10", "url": "https://raw.githubusercontent.com/MISP/misp-galaxy/main/clusters/threat-actor.json"}
+  "aliasesAdd": [
+    {
+      "name": "COBALT SAPLING",
+      "vendor": "Secureworks"
+    },
+    {
+      "name": "Abraham's Ax",
+      "vendor": "Secureworks (persona linked to the same operator)"
+    }
   ],
-  "aliasesAdd": []
+  "sources": [
+    {
+      "ref": "S1",
+      "title": "Moses Staff, Group G1009 (read from the mitre-attack/attack-stix-data bundle)",
+      "publisher": "MITRE ATT&CK",
+      "date": "2026-07-31",
+      "url": "https://attack.mitre.org/groups/G1009/"
+    },
+    {
+      "ref": "S2",
+      "title": "Uncovering MosesStaff techniques: Ideology over Money (not opened; content via MITRE ATT&CK)",
+      "publisher": "Check Point Research",
+      "date": "2021-11-15",
+      "url": "https://research.checkpoint.com/2021/mosesstaff-targeting-israeli-companies/"
+    },
+    {
+      "ref": "S3",
+      "title": "StrifeWater RAT: Iranian APT Moses Staff Adds New Trojan to Ransomware Operations (not opened; content via MITRE ATT&CK)",
+      "publisher": "Cybereason Nocturnus",
+      "date": "2022-02-01",
+      "url": "https://www.cybereason.com/blog/research/strifewater-rat-iranian-apt-moses-staff-adds-new-trojan-to-ransomware-operations"
+    },
+    {
+      "ref": "S4",
+      "title": "Microsoft threat actor naming mapping (MicrosoftMapping.json; retrieved 2026-10)",
+      "publisher": "Microsoft Threat Intelligence (MSTIC GitHub)",
+      "date": "2026-10",
+      "url": "https://github.com/microsoft/mstic/blob/master/PublicFeeds/ThreatActorNaming/MicrosoftMapping.json"
+    },
+    {
+      "ref": "S5",
+      "title": "Microsoft shifts to a new threat actor naming taxonomy",
+      "publisher": "Microsoft Security Blog",
+      "date": "2023-04-18",
+      "url": "https://www.microsoft.com/en-us/security/blog/2023/04/18/microsoft-shifts-to-a-new-threat-actor-naming-taxonomy/"
+    },
+    {
+      "ref": "S6",
+      "title": "How Microsoft names threat actors (not opened; cited by MITRE ATT&CK)",
+      "publisher": "Microsoft Learn",
+      "date": "2023-07-12",
+      "url": "https://learn.microsoft.com/en-us/microsoft-365/security/intelligence/microsoft-threat-actor-naming?view=o365-worldwide"
+    },
+    {
+      "ref": "S7",
+      "title": "MISP Galaxy threat-actor cluster: MosesStaff and BiBiGun entries (retrieved 2026-10)",
+      "publisher": "MISP Project",
+      "date": "2026-10",
+      "url": "https://raw.githubusercontent.com/MISP/misp-galaxy/main/clusters/threat-actor.json"
+    },
+    {
+      "ref": "S8",
+      "title": "Iran surges cyber-enabled influence operations in support of Hamas (Semi-Annual Iran Report)",
+      "publisher": "Microsoft Threat Intelligence",
+      "date": "2024-02-07",
+      "url": "https://www.microsoft.com/content/dam/microsoft/final/en-us/microsoft-brand/documents/Semi-Annual-Iran-Report-Jan2024.pdf"
+    },
+    {
+      "ref": "S10",
+      "title": "Iran-linked Cyber Group Aims To Disrupt Saudi-Israeli Ties: Report (reporting Secureworks analysis)",
+      "publisher": "Iran International",
+      "date": "2023-01-28",
+      "url": "https://www.iranintl.com/en/202301282532"
+    },
+    {
+      "ref": "S11",
+      "title": "A hack in hand is worth two in the bush (not opened; content via search excerpts)",
+      "publisher": "Kaspersky (Securelist)",
+      "date": "2023-10",
+      "url": "https://securelist.com/a-hack-in-hand-is-worth-two-in-the-bush/110794/"
+    },
+    {
+      "ref": "S12",
+      "title": "Moses Staff Hackers Publish Footage of Jerusalem Explosion (not opened; content via search excerpts)",
+      "publisher": "Hackread",
+      "date": "2022-11",
+      "url": "https://www.hackread.com/moses-staff-hackers-jerusalem-footage/"
+    },
+    {
+      "ref": "S13",
+      "title": "Iranian Hackers Leak 'Israeli Defense Ministry Files' Online (not opened; content via search excerpts)",
+      "publisher": "The Algemeiner",
+      "date": "2021-10-29",
+      "url": "https://www.algemeiner.com/2021/10/29/iranian-hackers-leak-israeli-defense-ministry-files-online/"
+    }
+  ]
 }

@@ -1,48 +1,48 @@
 {
   "identification": {
-    "summary": "China-based cyber-espionage actor that Microsoft tracks as Hexagon Typhoon and maps to APT12, Numbered Panda, Calc Team, DNS-Calc, HYDROGEN, Red Anubis and HORDE [S1]. MITRE ATT&CK describes APT12 as a group attributed to China that has targeted media outlets, high-tech companies and multiple governments [S4]. Mandiant reported that APT12 compromised the New York Times in October 2012 and that in 2014 it ran spear-phishing campaigns against organizations in Taiwan and Japan [S2]. Mandiant also documented a repeated pattern: after public exposure, the group paused briefly and then retooled [S2].",
-    "firstObserved": "Ixeshe malware, which MITRE associates with APT12, has been used since at least 2009 against targets in East Asia [S4][S7]. Arbor Networks (as reported by Mandiant) dated RIPTIDE campaigns to March 2011 [S2].",
+    "summary": "China-based cyber-espionage actor that Microsoft tracks as Hexagon Typhoon and maps to APT12, NUMBERED PANDA, Calc Team, DNS-Calc, HYDROGEN, Red Anubis and HORDE [S1]. MITRE ATT&CK describes APT12 as a group attributed to China that has targeted media outlets, high-tech companies and multiple governments [S4]. Mandiant reported that APT12 compromised the New York Times in October 2012 and in August 2014 ran spear-phishing campaigns against Taiwanese government organizations, with possibly related activity against technology firms in Taiwan and Japan [S2]. Mandiant also documented a repeated pattern: after public exposure, the group paused briefly and then retooled [S2]. FireEye observed renewed, retooled activity in May 2013 [S10], and Zscaler reported a suspected IXESHE-linked watering-hole campaign against Taiwanese government networks in late 2016, while stopping short of confirming APT12 [S11].",
+    "firstObserved": "Trend Micro reported the IXESHE campaign active since at least July 2009 against East Asian targets [S6]; MITRE associates Ixeshe malware with APT12 [S4]. Arbor Networks (as reported by Mandiant) dated RIPTIDE/Etumbot campaigns to March 2011 [S2].",
     "notes": "Microsoft name: Hexagon Typhoon. Microsoft lists HYDROGEN, NUMBERED PANDA, Calc Team, Red Anubis, APT12, DNS-Calc and HORDE as other names [S1]. MITRE tracks the group as APT12 (G0005) with associated names IXESHE, DynCalc, Numbered Panda and DNSCALC [S4]. Mandiant uses APT12 and lists 'Calc Team' as an alias [S3]. MISP Galaxy lists BRONZE GLOBE (Secureworks), BeeBus, Group 22 and Crimson Iron as synonyms [S8]. Do not confuse this actor with APT5 / Mulberry Typhoon (MANGANESE). The imported summary text in this record described APT5 and has been replaced."
   },
   "attribution": {
     "sponsor": "People's Republic of China. Mandiant says APT12 is 'believed to be a cyber espionage group thought to have links to the Chinese People's Liberation Army' [S2][S3]. MITRE records the group as attributed to China [S4], and Microsoft lists its origin as China [S1].",
-    "confidence": "Mandiant's PLA link is hedged ('believed to be', 'thought to have links') and does not name a specific unit [S2][S3]. MISP Galaxy, citing CFR data, records China as the suspected state sponsor with an attribution-confidence value of 50 [S8]. No government indictment or formal government attribution naming APT12 was found in the sources gathered.",
-    "basis": "Vendor technical reporting from Mandiant/FireEye on malware families, delivery documents and targeting that matches PRC interests in Taiwan [S2][S3]; CrowdStrike, Trend Micro and FireEye reporting cited by MITRE [S4][S5][S6][S7]; Microsoft's naming map [S1]."
+    "confidence": "Mandiant's PLA link is hedged ('believed to be', 'thought to have links') and does not name a specific unit [S2][S3]. FireEye's Ned Moran said the company was 'almost certain' the 2013 retooled activity came from the same group that attacked the New York Times [S10]. Zscaler explicitly did not confirm APT12 for the 2016 CNACOM campaign, citing only 'strong reasons for suspicion' [S11]. MISP Galaxy, citing CFR data, records China as the suspected state sponsor with an attribution-confidence value of 50 [S8]. No government indictment or formal government attribution naming APT12 or Hexagon Typhoon was found in the sources gathered.",
+    "basis": "Vendor technical reporting from Mandiant/FireEye on malware families, delivery documents and Taiwan-focused targeting [S2][S3][S10]; Trend Micro IXESHE research [S6]; CrowdStrike and FireEye reporting cited by MITRE [S4][S5][S7]; Zscaler malware-similarity analysis for 2016 activity [S11]; Microsoft's naming map [S1]."
   },
-  "objectives": "Cyber espionage consistent with broader PRC goals, especially PRC self-interest regarding Taiwan, according to Mandiant [S2][S3]. Targeting of journalists and a major US newspaper points to intelligence collection on media coverage [S2][S3].",
+  "objectives": "Cyber espionage consistent with broader PRC goals, especially PRC self-interest regarding Taiwan, according to Mandiant [S2][S3]. The New York Times intrusion coincided with the paper's reporting on the wealth of Premier Wen Jiabao's relatives, pointing to intelligence collection on media coverage of the PRC leadership [S9][S2]. 2013 targeting of an organization that shapes international finance and economic policy suggests economic-policy collection as well [S10].",
   "targeting": {
     "sectors": [
-      "Government (including Taiwanese government ministries) [S2][S3][S4]",
-      "Media and journalists [S2][S3][S4]",
-      "Defense industrial base [S3]",
-      "High-technology and electronics companies [S2][S4]",
-      "Private sector (CFR category) [S8]"
+      "Government (including Taiwanese government ministries and networks) [S2][S6][S11]",
+      "Media and journalists [S2][S3][S4][S9]",
+      "Defense industrial base / defense contractors [S3][S10]",
+      "High-technology and electronics companies [S2][S4][S6]",
+      "Telecommunications [S6]",
+      "International finance and economic-policy organizations [S10]"
     ],
     "regions": [
-      "Taiwan [S2][S8]",
+      "Taiwan [S2][S6][S10][S11]",
       "Japan [S2][S8]",
-      "East Asia (Ixeshe targeting since at least 2009) [S4][S7]",
-      "United States (New York Times compromise, October 2012) [S2]"
+      "East Asia (IXESHE targeting since at least July 2009) [S6]",
+      "United States (New York Times compromise, 2012) [S2][S9]"
     ],
-    "notes": "The August 2014 HIGHTIDE campaign targeted multiple Taiwanese government organizations between 22 and 28 August 2014. Spear-phishing emails appeared to come from valid but compromised Taiwanese government accounts [S2]. Related THREEBYTE and WATERSPOUT activity hit a Taiwanese technology company and a Japanese high-technology/electronics company, but Mandiant did not firmly attribute those two campaigns to APT12 [S2]."
+    "notes": "The August 2014 HIGHTIDE campaign targeted multiple Taiwanese government organizations between 22 and 28 August 2014, with lures sent from apparently valid but compromised Taiwanese government accounts [S2]. Related THREEBYTE and WATERSPOUT activity hit a Taiwanese technology company and a Japanese high-technology company, but Mandiant did not firmly attribute those two campaigns to APT12 [S2]. The 2016 CNACOM watering hole used a compromised Taiwanese public-service website to deliver an IXESHE variant to Taiwanese government targets; Zscaler's attribution to APT12 is suspected only [S11]."
   },
   "capabilities": {
-    "summary": "Spear-phishing with weaponized Microsoft Word and PDF attachments that exploit Office, Adobe Reader and Flash vulnerabilities, including CVE-2012-0158 [S2][S4][S6]. The group sends lures from compromised but legitimate accounts [S2][S3]. Its custom HTTP backdoors include RIPTIDE, a proxy-aware backdoor that uses RC4-encrypted C2 (also called Etumbot by Arbor); its modified successor HIGHTIDE; and THREEBYTE and WATERSPOUT, which Mandiant says are possibly related [S2][S3]. It also used the Ixeshe malware family and the HTRAN connection-proxy tool [S4][S6][S7]. Per CrowdStrike reporting cited by MITRE, the group derived C2 ports by calculating them from IP octets ('DNS calculation') and used blogs and WordPress for C2 [S4][S5]. Mandiant highlights rapid retooling after public disclosure: protocol and string changes after the June 2014 Arbor report, and TTP changes after the New York Times exposure [S2]."
+    "summary": "Spear-phishing with weaponized Word and PDF attachments exploiting Office, Adobe Reader and Flash vulnerabilities (Trend Micro lists CVE-2009-4324, CVE-2009-0927, CVE-2011-0609 and CVE-2011-0611; Mandiant lists CVE-2012-0158 for 2014) [S2][S4][S6]. The group sends lures from compromised but legitimate accounts [S2][S3]. Trend Micro reported IXESHE C2 using dynamic DNS and previously compromised servers [S6]. Custom HTTP backdoors include RIPTIDE (Etumbot to Arbor), a proxy-aware backdoor with RC4-encrypted C2; its modified successor HIGHTIDE; and THREEBYTE and WATERSPOUT, which Mandiant says are possibly related [S2][S3]. It also used Ixeshe, Aumlib and the HTRAN connection-proxy tool [S4][S6][S10]. Per CrowdStrike reporting cited by MITRE, it derived C2 ports from IP octets ('DNS calculation') and used blogs and WordPress for C2 [S4][S5]. The group retools rapidly after disclosure: network-protocol changes to Aumlib and Ixeshe in 2013 to evade IDS signatures [S10], and RIPTIDE protocol and string changes after the June 2014 Arbor report [S2]. Suspected 2016 activity added strategic web compromise with a CVE-2016-0189 Internet Explorer exploit [S11]."
   },
   "campaigns": [
     {
-      "date": "2009",
-      "name": "Ixeshe operations in East Asia",
-      "summary": "Ixeshe malware is used against East Asian targets from at least 2009; MITRE associates it with APT12.",
+      "date": "2009-07",
+      "name": "IXESHE campaign begins",
+      "summary": "Trend Micro reports IXESHE targeted attacks active since at least July 2009 against East Asian governments, Taiwanese electronics manufacturers and a telecommunications company, using PDF exploits and C2 on compromised servers.",
       "sources": [
-        "S4",
-        "S7"
+        "S6"
       ]
     },
     {
       "date": "2012-05",
-      "name": "IXESHE campaign (Trend Micro)",
-      "summary": "Trend Micro publishes 'IXESHE: An APT Campaign'. MITRE cites it for spear-phishing with malicious Office and PDF attachments, exploits of Office, Adobe Reader and Flash flaws, and HTRAN use.",
+      "name": "Trend Micro 'IXESHE: An APT Campaign' published",
+      "summary": "Public exposure of the IXESHE operation; MITRE cites it for spear-phishing attachments, client exploits and HTRAN use.",
       "sources": [
         "S6",
         "S4"
@@ -51,24 +51,34 @@
     {
       "date": "2012-10",
       "name": "New York Times compromise",
-      "summary": "Mandiant reports that APT12 compromised the New York Times. After the intrusion was disclosed, the group paused briefly and changed its TTPs.",
+      "summary": "Attackers persisted in the Times network for about four months, coinciding with its Wen Jiabao investigation published 25 Oct 2012; disclosed by the paper in January 2013. Mandiant later attributed the intrusion to APT12.",
       "sources": [
+        "S9",
         "S2"
       ]
     },
     {
       "date": "2013-03",
       "name": "CrowdStrike 'Whois Numbered Panda' profile",
-      "summary": "CrowdStrike profiles the group as Numbered Panda. MITRE cites the profile for DNS-calculated C2 ports and blog/WordPress C2.",
+      "summary": "CrowdStrike profiles the group as Numbered Panda; MITRE cites it for DNS-calculated C2 ports and blog/WordPress C2.",
       "sources": [
         "S5",
         "S4"
       ]
     },
     {
+      "date": "2013-05",
+      "name": "Retooled Aumlib and Ixeshe operations",
+      "summary": "FireEye observes the NYT attackers resume in early May 2013 with updated Aumlib (against an international finance/economic-policy organization) and Ixeshe (against entities in Taiwan), with protocol changes to evade IDS; published August 2013.",
+      "sources": [
+        "S10",
+        "S7"
+      ]
+    },
+    {
       "date": "2014-06",
       "name": "Retooling after Arbor Etumbot disclosure",
-      "summary": "Arbor Networks publishes on the RIPTIDE (Etumbot) backdoor, which was used from 2011 to May 2014. Mandiant then sees APT12 change RIPTIDE's protocols and strings, producing HIGHTIDE.",
+      "summary": "Arbor publishes on the RIPTIDE (Etumbot) backdoor used March 2011 to May 2014; Mandiant then sees APT12 modify RIPTIDE into HIGHTIDE.",
       "sources": [
         "S2"
       ]
@@ -76,33 +86,42 @@
     {
       "date": "2014-08",
       "name": "HIGHTIDE spear-phishing against Taiwan government",
-      "summary": "Between 22 and 28 August 2014, CVE-2012-0158 Word lures sent from compromised Taiwanese government accounts deliver HIGHTIDE to multiple Taiwanese government organizations. Possibly related THREEBYTE and WATERSPOUT lures target a Taiwanese technology company and a Japanese high-technology company.",
+      "summary": "22-28 August 2014 CVE-2012-0158 Word lures from compromised Taiwanese government accounts deliver HIGHTIDE; possibly related THREEBYTE and WATERSPOUT lures hit a Taiwanese technology company and a Japanese high-tech company.",
       "sources": [
         "S2"
+      ]
+    },
+    {
+      "date": "2016-11",
+      "name": "CNACOM strategic web compromise (suspected)",
+      "summary": "From 7 Nov 2016 an iframe injected into a major Taiwanese public-service website's registration page served a CVE-2016-0189 exploit delivering an IXESHE variant to Taiwanese government targets; Zscaler suspects but does not confirm APT12.",
+      "sources": [
+        "S11"
       ]
     }
   ],
   "diamond": {
     "adversary": "PRC-based espionage operators that Mandiant believes have links to the PLA; Microsoft calls the group Hexagon Typhoon and MITRE tracks it as APT12 [S1][S2][S4].",
-    "capability": "Exploit documents (CVE-2012-0158 and Adobe/Flash CVEs); RIPTIDE, HIGHTIDE, THREEBYTE, WATERSPOUT and Ixeshe backdoors; HTRAN proxying; rapid retooling after disclosure [S2][S4][S6].",
-    "infrastructure": "Hard-coded HTTP C2 servers, including direct IP C2 and dynamic-DNS domains for WATERSPOUT [S2]; compromised legitimate email accounts used to send lures [S2]; blogs and WordPress used for C2, with ports derived by DNS calculation [S4][S5].",
-    "victim": "Taiwanese government ministries, journalists and media (New York Times), defense industrial base, and high-tech and electronics firms in Taiwan and Japan [S2][S3][S4].",
-    "socioPolitical": "Collection that supports PRC strategic goals, especially regarding Taiwan, and intelligence on media coverage of China [S2][S3].",
+    "capability": "Exploit documents (CVE-2012-0158 and Adobe/Flash CVEs); IE exploit CVE-2016-0189 in suspected 2016 activity; RIPTIDE, HIGHTIDE, THREEBYTE, WATERSPOUT, Ixeshe and Aumlib backdoors; HTRAN proxying; rapid retooling after disclosure [S2][S4][S6][S10][S11].",
+    "infrastructure": "Hard-coded HTTP C2 servers, including direct-IP C2 and dynamic-DNS domains [S2][S6]; previously compromised servers used as C2 [S6]; compromised legitimate email accounts used to send lures [S2]; blogs and WordPress used for C2, with ports derived by DNS calculation [S4][S5]; a compromised Taiwanese public-service website used as a watering hole in suspected 2016 activity [S11].",
+    "victim": "Taiwanese government ministries and networks, journalists and media (New York Times), defense contractors, finance/economic-policy organizations, telecommunications, and high-tech and electronics firms in Taiwan and Japan [S2][S3][S6][S9][S10][S11].",
+    "socioPolitical": "Collection that supports PRC strategic goals, especially regarding Taiwan, and intelligence on foreign media coverage of PRC leadership [S2][S3][S9].",
     "technology": "Unpatched Microsoft Office and Adobe client software on Windows endpoints, plus trust in email from known colleagues [S2][S4]."
   },
   "gaps": [
-    "No reporting on Hexagon Typhoon / APT12 activity after 2014 was found in the sources gathered. Current activity level, tooling and any re-designation are unknown.",
-    "Microsoft has published no actor profile or blog content for Hexagon Typhoon in the sources gathered; only the naming map was available [S1].",
-    "Primary documents not opened (network blocked): CrowdStrike 'Whois Numbered Panda' (2013) [S5], Trend Micro IXESHE white paper (2012) [S6], FireEye 'Survival of the Fittest' (2013) [S7], Secureworks BRONZE GLOBE profile, CFR APT12 entry, Arbor Networks Etumbot report, and Mandiant M-Trends 2014. Claims from S5 to S7 rely on MITRE ATT&CK's citations of them [S4].",
-    "Web search was unavailable for this run (shared search budget exhausted). Press coverage of the 2013 New York Times disclosure and any later reporting were not reviewed.",
+    "No vendor or government reporting naming APT12/Hexagon Typhoon after the suspected December 2016 Zscaler CNACOM report was found in the searches run; current activity level, tooling and any re-designation are unknown [S11].",
+    "Microsoft has published no actor profile or blog content for Hexagon Typhoon that was found; only the naming map supports the Microsoft name [S1].",
+    "Primary documents not opened (hosts unreachable from this environment): CrowdStrike 'Whois Numbered Panda' [S5], Trend Micro IXESHE white paper [S6], FireEye 'Survival of the Fittest' [S7], Zscaler CNACOM blog [S11], TechCrunch and PCWorld articles [S9][S10], CFR APT12 entry, Secureworks BRONZE GLOBE profile and Arbor 'Illuminating the Etumbot APT Backdoor'. Claims from these rely on search-result excerpts or MITRE/Mandiant citations.",
+    "2013 press coverage of the New York Times breach attributed it to 'Chinese hackers' generally; the APT12 label comes from Mandiant's later 2014 reporting [S2][S9]. The original NYT article and Mandiant engagement details were not reviewed.",
     "PLA link is a hedged vendor assessment (Mandiant). No specific PLA unit or MSS/contractor tie is public in the sources gathered, and no government attribution was found.",
-    "Alias boundary issue: MISP Galaxy's APT12 entry lists TG-2754 with the same identifier as BRONZE GLOBE [S8], but this encyclopedia maps TG-2754 to Mulberry Typhoon (APT5). This needs reconciling against Secureworks' own profiles.",
+    "2016 CNACOM attribution to APT12 is suspicion based on targeting and malware similarity only [S11]; secondary coverage gives the sandbox-escape CVE inconsistently (CVE-2015-0116 vs CVE-2015-0016).",
+    "Alias boundary issue: MISP Galaxy's APT12 entry lists TG-2754 with the same identifier as BRONZE GLOBE [S8], but this encyclopedia maps TG-2754 to Mulberry Typhoon (APT5). Needs reconciling against Secureworks' own profiles.",
     "THREEBYTE and WATERSPOUT campaigns were not positively attributed to APT12 by Mandiant [S2].",
     "Aliases BeeBus, Group 22, Crimson Iron, Poisoned Flight and IXESHE-as-actor come from aggregator data (MISP) [S8], not from vendor reports reviewed here."
   ],
   "implications": {
-    "jipoe": "Analyst assessment derived from cited sources; validate before use. STEP 1 (OE): Key terrain is user endpoints running Office and PDF readers, and the email trust relationships between government personnel, especially in Taiwan and Japan and partner organizations that work with them [S2]. STEP 2 (effects): Because email arrives from compromised colleague accounts, sender-reputation filtering is weakened. The group's quick retooling after disclosure shortens the shelf life of published signatures [S2]. STEP 3 (adversary template): Spear-phish with an exploit document from a compromised trusted account, then an HTTP backdoor (RIPTIDE/HIGHTIDE-class) with RC4-encrypted C2 or DNS-calculated ports, then document collection; HTRAN can be used to hide C2 origin [S2][S4][S6]. STEP 4: MLCOA is continued spear-phishing espionage against Taiwan-focused government, defense-industrial and media targets [S2][S3]. MDCOA is a renewed or rebranded campaign against US and partner organizations that support Taiwan, using new tooling released immediately after any public exposure [S2]. Candidate indicators: Word documents exploiting CVE-2012-0158 or newer Office flaws; executables dropped as word.exe or winword.exe in user Temp directories; HTTP beacons with anomalous User-Agent/URI patterns to direct IPs or dynamic-DNS domains; C2 ports that look computed from IP octets [S2][S4][S5].",
-    "jcc2": "Analyst assessment derived from cited sources; validate before use. (1) Situational awareness: public reporting on this actor stops in 2014 in the sources gathered, so treat any detection as a prompt to check current vendor reporting rather than to rely on 2014 IOCs [S2]. (2) Authorities: activity traced to commercial media or partner-nation government networks lies outside DoD defensive authorities and needs interagency and partner coordination [S2]. (3) Mission assurance: phishing from compromised partner accounts threatens DODIN users who correspond with Taiwan and Japan counterparts; prioritize patching Office and PDF readers and inspecting attachments [S2][S4]. (4) Coordination: share retooling observations quickly with partners, because Mandiant reports the actor changes tools within weeks of disclosure [S2]."
+    "jipoe": "Analyst assessment derived from cited sources; validate before use. STEP 1 (OE): Key terrain is user endpoints running Office and PDF readers, and the email trust relationships between government personnel, especially in Taiwan and Japan and partner organizations that work with them [S2]. STEP 2 (effects): Because email arrives from compromised colleague accounts, sender-reputation filtering is weakened. The group's quick retooling after disclosure shortens the shelf life of published signatures [S2]. STEP 3 (adversary template): Spear-phish (or, in suspected 2016 activity, a watering hole on a government-used website filtering for target IP ranges [S11]) with an exploit document from a compromised trusted account, then an HTTP backdoor (RIPTIDE/HIGHTIDE-class) with RC4-encrypted C2 or DNS-calculated ports, then document collection; HTRAN can be used to hide C2 origin [S2][S4][S6]. STEP 4: MLCOA is continued spear-phishing espionage against Taiwan-focused government, defense-industrial and media targets [S2][S3]. MDCOA is a renewed or rebranded campaign against US and partner organizations that support Taiwan, using new tooling released immediately after any public exposure [S2]. Candidate indicators: injected iframes on government-used websites serving IE exploits [S11]; Word documents exploiting CVE-2012-0158 or newer Office flaws; executables dropped as word.exe or winword.exe in user Temp directories; HTTP beacons with anomalous User-Agent/URI patterns to direct IPs or dynamic-DNS domains; C2 ports that look computed from IP octets [S2][S4][S5].",
+    "jcc2": "Analyst assessment derived from cited sources; validate before use. (1) Situational awareness: public reporting on this actor stops in 2016 (suspected only) in the sources gathered [S11], so treat any detection as a prompt to check current vendor reporting rather than to rely on 2014 IOCs [S2]. (2) Authorities: activity traced to commercial media or partner-nation government networks lies outside DoD defensive authorities and needs interagency and partner coordination [S2]. (3) Mission assurance: phishing from compromised partner accounts threatens DODIN users who correspond with Taiwan and Japan counterparts; prioritize patching Office and PDF readers and inspecting attachments [S2][S4]. (4) Coordination: share retooling observations quickly with partners, because Mandiant and FireEye report the actor changes tools and protocols within weeks to months of disclosure [S2][S10]."
   },
   "sources": [
     {
@@ -135,17 +154,17 @@
     },
     {
       "ref": "S5",
-      "title": "Whois Numbered Panda (as cited by MITRE ATT&CK; not opened)",
+      "title": "Whois Numbered Panda (as cited by MITRE ATT&CK; host unreachable, not opened)",
       "publisher": "CrowdStrike (A. Meyers)",
       "date": "2013-03-29",
-      "url": "http://www.crowdstrike.com/blog/whois-numbered-panda/"
+      "url": "https://www.crowdstrike.com/en-us/blog/whois-numbered-panda/"
     },
     {
       "ref": "S6",
-      "title": "IXESHE: An APT Campaign (as cited by MITRE ATT&CK; not opened)",
+      "title": "IXESHE: An APT Campaign (white paper; key findings via search excerpts and MITRE citation, not opened)",
       "publisher": "Trend Micro (D. Sancho et al.)",
-      "date": "2012-05-22",
-      "url": "https://www.trendmicro.de/cloud-content/us/pdfs/security-intelligence/white-papers/wp_ixeshe.pdf"
+      "date": "2012-05",
+      "url": "https://documents.trendmicro.com/assets/wp/wp_ixeshe.pdf"
     },
     {
       "ref": "S7",
@@ -160,6 +179,27 @@
       "publisher": "MISP Project",
       "date": "2026-10-14 (retrieved)",
       "url": "https://raw.githubusercontent.com/MISP/misp-galaxy/main/clusters/threat-actor.json"
+    },
+    {
+      "ref": "S9",
+      "title": "The New York Times Was Attacked By Chinese Hackers Over Four Months (reporting NYT disclosure; via search excerpt)",
+      "publisher": "TechCrunch",
+      "date": "2013-01-30",
+      "url": "https://techcrunch.com/2013/01/30/the-new-york-times-was-attacked-by-chinese-hackers-over-four-months"
+    },
+    {
+      "ref": "S10",
+      "title": "Chinese hacker group behind New York Times attack returns with updated tools (reporting FireEye blog; via search excerpt)",
+      "publisher": "PCWorld (IDG News Service, L. Constantin)",
+      "date": "2013-08",
+      "url": "https://www.pcworld.com/article/447123/chinese-hacker-group-behind-new-york-times-attack-returns-with-updated-tools.html"
+    },
+    {
+      "ref": "S11",
+      "title": "CNACOM: Open Source Exploitation in a Strategic Web Compromise (via search excerpts; not opened)",
+      "publisher": "Zscaler ThreatLabz",
+      "date": "2016-12-01",
+      "url": "https://www.zscaler.com/blogs/research/cnacom-open-source-exploitation-strategic-web-compromise"
     }
   ],
   "aliasesAdd": []
