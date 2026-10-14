@@ -1,0 +1,1636 @@
+{
+ "note": "Research queue for the automatic wave runner. Waves take items from the front; finished ids move to 'done'.",
+ "verify": [
+  "peach-sandstorm",
+  "pink-sandstorm",
+  "periwinkle-tempest"
+ ],
+ "research": [
+  {
+   "id": "purple-typhoon",
+   "tier": "T1"
+  },
+  {
+   "id": "raspberry-typhoon",
+   "tier": "T1"
+  },
+  {
+   "id": "red-sandstorm",
+   "tier": "T1"
+  },
+  {
+   "id": "sangria-tempest",
+   "tier": "T1"
+  },
+  {
+   "id": "sapphire-sleet",
+   "tier": "T1"
+  },
+  {
+   "id": "satin-typhoon",
+   "tier": "T1"
+  },
+  {
+   "id": "secret-blizzard",
+   "tier": "T1"
+  },
+  {
+   "id": "silk-typhoon",
+   "tier": "T1"
+  },
+  {
+   "id": "smoke-sandstorm",
+   "tier": "T1"
+  },
+  {
+   "id": "spandex-tempest",
+   "tier": "T1"
+  },
+  {
+   "id": "star-blizzard",
+   "tier": "T1"
+  },
+  {
+   "id": "storm-0133",
+   "tier": "T1"
+  },
+  {
+   "id": "storm-0247",
+   "tier": "T1"
+  },
+  {
+   "id": "swirl-typhoon",
+   "tier": "T1"
+  },
+  {
+   "id": "twill-typhoon",
+   "tier": "T1"
+  },
+  {
+   "id": "violet-typhoon",
+   "tier": "T1"
+  },
+  {
+   "id": "admin-338",
+   "tier": "T2"
+  },
+  {
+   "id": "ajax-security-team",
+   "tier": "T2"
+  },
+  {
+   "id": "antique-typhoon",
+   "tier": "T2"
+  },
+  {
+   "id": "aoqin-dragon",
+   "tier": "T2"
+  },
+  {
+   "id": "apt1",
+   "tier": "T2"
+  },
+  {
+   "id": "apt16",
+   "tier": "T2"
+  },
+  {
+   "id": "apt37",
+   "tier": "T2"
+  },
+  {
+   "id": "apt42",
+   "tier": "T2"
+  },
+  {
+   "id": "axiom",
+   "tier": "T2"
+  },
+  {
+   "id": "berry-sandstorm",
+   "tier": "T2"
+  },
+  {
+   "id": "circle-typhoon",
+   "tier": "T2"
+  },
+  {
+   "id": "clay-typhoon",
+   "tier": "T2"
+  },
+  {
+   "id": "copykittens",
+   "tier": "T2"
+  },
+  {
+   "id": "cotton-sandstorm",
+   "tier": "T2"
+  },
+  {
+   "id": "crescent-typhoon",
+   "tier": "T2"
+  },
+  {
+   "id": "cuboid-sandstorm",
+   "tier": "T2"
+  },
+  {
+   "id": "daggerfly",
+   "tier": "T2"
+  },
+  {
+   "id": "elderwood",
+   "tier": "T2"
+  },
+  {
+   "id": "ferocious-kitten",
+   "tier": "T2"
+  },
+  {
+   "id": "fin13",
+   "tier": "T2"
+  },
+  {
+   "id": "frontier-blizzard",
+   "tier": "T2"
+  },
+  {
+   "id": "gray-sandstorm",
+   "tier": "T2"
+  },
+  {
+   "id": "houndstooth-typhoon",
+   "tier": "T2"
+  },
+  {
+   "id": "inception",
+   "tier": "T2"
+  },
+  {
+   "id": "indigozebra",
+   "tier": "T2"
+  },
+  {
+   "id": "jade-sleet",
+   "tier": "T2"
+  },
+  {
+   "id": "jasper-sleet",
+   "tier": "T2"
+  },
+  {
+   "id": "lilac-typhoon",
+   "tier": "T2"
+  },
+  {
+   "id": "mirrorface",
+   "tier": "T2"
+  },
+  {
+   "id": "moafee",
+   "tier": "T2"
+  },
+  {
+   "id": "mofang",
+   "tier": "T2"
+  },
+  {
+   "id": "neva-flood",
+   "tier": "T2"
+  },
+  {
+   "id": "nomadic-octopus",
+   "tier": "T2"
+  },
+  {
+   "id": "obsidian-sandstorm",
+   "tier": "T2"
+  },
+  {
+   "id": "oka-flood",
+   "tier": "T2"
+  },
+  {
+   "id": "opal-sleet",
+   "tier": "T2"
+  },
+  {
+   "id": "pearl-sleet",
+   "tier": "T2"
+  },
+  {
+   "id": "pepper-typhoon",
+   "tier": "T2"
+  },
+  {
+   "id": "pumpkin-sandstorm",
+   "tier": "T2"
+  },
+  {
+   "id": "putter-panda",
+   "tier": "T2"
+  },
+  {
+   "id": "rancor",
+   "tier": "T2"
+  },
+  {
+   "id": "ruby-sleet",
+   "tier": "T2"
+  },
+  {
+   "id": "ruza-flood",
+   "tier": "T2"
+  },
+  {
+   "id": "salmon-typhoon",
+   "tier": "T2"
+  },
+  {
+   "id": "scarlet-mimic",
+   "tier": "T2"
+  },
+  {
+   "id": "sefid-flood",
+   "tier": "T2"
+  },
+  {
+   "id": "shadow-typhoon",
+   "tier": "T2"
+  },
+  {
+   "id": "silent-librarian",
+   "tier": "T2"
+  },
+  {
+   "id": "storm-0216",
+   "tier": "T2"
+  },
+  {
+   "id": "storm-0593",
+   "tier": "T2"
+  },
+  {
+   "id": "storm-0940",
+   "tier": "T2"
+  },
+  {
+   "id": "storm-0978",
+   "tier": "T2"
+  },
+  {
+   "id": "storm-1175",
+   "tier": "T2"
+  },
+  {
+   "id": "storm-1982",
+   "tier": "T2"
+  },
+  {
+   "id": "storm-2035",
+   "tier": "T2"
+  },
+  {
+   "id": "storm-2077",
+   "tier": "T2"
+  },
+  {
+   "id": "storm-2372",
+   "tier": "T2"
+  },
+  {
+   "id": "storm-2470",
+   "tier": "T2"
+  },
+  {
+   "id": "storm-2603",
+   "tier": "T2"
+  },
+  {
+   "id": "suckfly",
+   "tier": "T2"
+  },
+  {
+   "id": "sunglow-blizzard",
+   "tier": "T2"
+  },
+  {
+   "id": "ta459",
+   "tier": "T2"
+  },
+  {
+   "id": "ta577",
+   "tier": "T2"
+  },
+  {
+   "id": "taffeta-typhoon",
+   "tier": "T2"
+  },
+  {
+   "id": "taizi-flood",
+   "tier": "T2"
+  },
+  {
+   "id": "tropic-trooper",
+   "tier": "T2"
+  },
+  {
+   "id": "tumbleweed-typhoon",
+   "tier": "T2"
+  },
+  {
+   "id": "unc3886",
+   "tier": "T2"
+  },
+  {
+   "id": "vanilla-tempest",
+   "tier": "T2"
+  },
+  {
+   "id": "void-blizzard",
+   "tier": "T2"
+  },
+  {
+   "id": "volga-flood",
+   "tier": "T2"
+  },
+  {
+   "id": "winter-vivern",
+   "tier": "T2"
+  },
+  {
+   "id": "yulong-flood",
+   "tier": "T2"
+  },
+  {
+   "id": "1937cn",
+   "tier": "T3"
+  },
+  {
+   "id": "ababil-of-minab",
+   "tier": "T3"
+  },
+  {
+   "id": "amaranth-dragon",
+   "tier": "T3"
+  },
+  {
+   "id": "angry-likho",
+   "tier": "T3"
+  },
+  {
+   "id": "antlion",
+   "tier": "T3"
+  },
+  {
+   "id": "appmilad",
+   "tier": "T3"
+  },
+  {
+   "id": "apt-3102",
+   "tier": "T3"
+  },
+  {
+   "id": "apt14",
+   "tier": "T3"
+  },
+  {
+   "id": "apt20",
+   "tier": "T3"
+  },
+  {
+   "id": "apt21",
+   "tier": "T3"
+  },
+  {
+   "id": "apt9",
+   "tier": "T3"
+  },
+  {
+   "id": "aptiran",
+   "tier": "T3"
+  },
+  {
+   "id": "avivore",
+   "tier": "T3"
+  },
+  {
+   "id": "big-panda",
+   "tier": "T3"
+  },
+  {
+   "id": "blackgear",
+   "tier": "T3"
+  },
+  {
+   "id": "blackwood",
+   "tier": "T3"
+  },
+  {
+   "id": "bladedfeline",
+   "tier": "T3"
+  },
+  {
+   "id": "blue-termite",
+   "tier": "T3"
+  },
+  {
+   "id": "boulder-bear",
+   "tier": "T3"
+  },
+  {
+   "id": "brazenbamboo",
+   "tier": "T3"
+  },
+  {
+   "id": "bronze-edgewood",
+   "tier": "T3"
+  },
+  {
+   "id": "bronze-spiral",
+   "tier": "T3"
+  },
+  {
+   "id": "bronze-spring",
+   "tier": "T3"
+  },
+  {
+   "id": "bronze-vapor",
+   "tier": "T3"
+  },
+  {
+   "id": "budminer",
+   "tier": "T3"
+  },
+  {
+   "id": "buhtrap",
+   "tier": "T3"
+  },
+  {
+   "id": "calypso",
+   "tier": "T3"
+  },
+  {
+   "id": "cardinallizard",
+   "tier": "T3"
+  },
+  {
+   "id": "ceranakeeper",
+   "tier": "T3"
+  },
+  {
+   "id": "chaya-004",
+   "tier": "T3"
+  },
+  {
+   "id": "chernovite",
+   "tier": "T3"
+  },
+  {
+   "id": "circus-spider",
+   "tier": "T3"
+  },
+  {
+   "id": "cl-sta-0043",
+   "tier": "T3"
+  },
+  {
+   "id": "cl-sta-0048",
+   "tier": "T3"
+  },
+  {
+   "id": "cl-sta-1087",
+   "tier": "T3"
+  },
+  {
+   "id": "cl-unk-1068",
+   "tier": "T3"
+  },
+  {
+   "id": "clever-kitten",
+   "tier": "T3"
+  },
+  {
+   "id": "curious-gorge",
+   "tier": "T3"
+  },
+  {
+   "id": "curly-comrades",
+   "tier": "T3"
+  },
+  {
+   "id": "cutting-kitten",
+   "tier": "T3"
+  },
+  {
+   "id": "cyber-av3ngers",
+   "tier": "T3"
+  },
+  {
+   "id": "cyber-berkut",
+   "tier": "T3"
+  },
+  {
+   "id": "cyber-fighters-of-izz-ad-din-al-qassam",
+   "tier": "T3"
+  },
+  {
+   "id": "cyber-islamic-resistance",
+   "tier": "T3"
+  },
+  {
+   "id": "cyber-serp",
+   "tier": "T3"
+  },
+  {
+   "id": "cyber-toufan",
+   "tier": "T3"
+  },
+  {
+   "id": "dagger-panda",
+   "tier": "T3"
+  },
+  {
+   "id": "dalbit",
+   "tier": "T3"
+  },
+  {
+   "id": "dev-0147",
+   "tier": "T3"
+  },
+  {
+   "id": "dev-0270",
+   "tier": "T3"
+  },
+  {
+   "id": "diceyf",
+   "tier": "T3"
+  },
+  {
+   "id": "domestic-kitten",
+   "tier": "T3"
+  },
+  {
+   "id": "dragonspark",
+   "tier": "T3"
+  },
+  {
+   "id": "driftingcloud",
+   "tier": "T3"
+  },
+  {
+   "id": "earth-alux",
+   "tier": "T3"
+  },
+  {
+   "id": "earth-baxia",
+   "tier": "T3"
+  },
+  {
+   "id": "earth-berberoka",
+   "tier": "T3"
+  },
+  {
+   "id": "earth-freybug",
+   "tier": "T3"
+  },
+  {
+   "id": "earth-krahang",
+   "tier": "T3"
+  },
+  {
+   "id": "earth-lamia",
+   "tier": "T3"
+  },
+  {
+   "id": "earth-naga",
+   "tier": "T3"
+  },
+  {
+   "id": "earth-wendigo",
+   "tier": "T3"
+  },
+  {
+   "id": "edalat-e-ali",
+   "tier": "T3"
+  },
+  {
+   "id": "educated-manticore",
+   "tier": "T3"
+  },
+  {
+   "id": "electric-panda",
+   "tier": "T3"
+  },
+  {
+   "id": "eloquent-panda",
+   "tier": "T3"
+  },
+  {
+   "id": "elusive-comet",
+   "tier": "T3"
+  },
+  {
+   "id": "evilweb",
+   "tier": "T3"
+  },
+  {
+   "id": "femwar02",
+   "tier": "T3"
+  },
+  {
+   "id": "fin1",
+   "tier": "T3"
+  },
+  {
+   "id": "flyingyeti",
+   "tier": "T3"
+  },
+  {
+   "id": "foxy-panda",
+   "tier": "T3"
+  },
+  {
+   "id": "gcman",
+   "tier": "T3"
+  },
+  {
+   "id": "ghost-stadium",
+   "tier": "T3"
+  },
+  {
+   "id": "ghostredirector",
+   "tier": "T3"
+  },
+  {
+   "id": "gibberish-panda",
+   "tier": "T3"
+  },
+  {
+   "id": "goblin-panda",
+   "tier": "T3"
+  },
+  {
+   "id": "goldfactory",
+   "tier": "T3"
+  },
+  {
+   "id": "gopherwhisper",
+   "tier": "T3"
+  },
+  {
+   "id": "grayling",
+   "tier": "T3"
+  },
+  {
+   "id": "greedybear",
+   "tier": "T3"
+  },
+  {
+   "id": "greyvibe",
+   "tier": "T3"
+  },
+  {
+   "id": "gtg-1002",
+   "tier": "T3"
+  },
+  {
+   "id": "hellsing",
+   "tier": "T3"
+  },
+  {
+   "id": "henbox",
+   "tier": "T3"
+  },
+  {
+   "id": "hiddenart",
+   "tier": "T3"
+  },
+  {
+   "id": "houken",
+   "tier": "T3"
+  },
+  {
+   "id": "hummingbad",
+   "tier": "T3"
+  },
+  {
+   "id": "hunt3r-kill3rs",
+   "tier": "T3"
+  },
+  {
+   "id": "hurricane-panda",
+   "tier": "T3"
+  },
+  {
+   "id": "icepeony",
+   "tier": "T3"
+  },
+  {
+   "id": "impersonating-panda",
+   "tier": "T3"
+  },
+  {
+   "id": "infrastructure-destruction-squad",
+   "tier": "T3"
+  },
+  {
+   "id": "infy",
+   "tier": "T3"
+  },
+  {
+   "id": "ironhusky",
+   "tier": "T3"
+  },
+  {
+   "id": "jinx-0164",
+   "tier": "T3"
+  },
+  {
+   "id": "larva-24005",
+   "tier": "T3"
+  },
+  {
+   "id": "longnosedgoblin",
+   "tier": "T3"
+  },
+  {
+   "id": "madi",
+   "tier": "T3"
+  },
+  {
+   "id": "magic-kitten",
+   "tier": "T3"
+  },
+  {
+   "id": "magnetic-spider",
+   "tier": "T3"
+  },
+  {
+   "id": "malkamak",
+   "tier": "T3"
+  },
+  {
+   "id": "mana-team",
+   "tier": "T3"
+  },
+  {
+   "id": "mora-001",
+   "tier": "T3"
+  },
+  {
+   "id": "moshen-dragon",
+   "tier": "T3"
+  },
+  {
+   "id": "nickel-alley",
+   "tier": "T3"
+  },
+  {
+   "id": "night-dragon",
+   "tier": "T3"
+  },
+  {
+   "id": "nitro",
+   "tier": "T3"
+  },
+  {
+   "id": "oldgremlin",
+   "tier": "T3"
+  },
+  {
+   "id": "oniondog",
+   "tier": "T3"
+  },
+  {
+   "id": "operation-bugdrop",
+   "tier": "T3"
+  },
+  {
+   "id": "operation-drbcontrol",
+   "tier": "T3"
+  },
+  {
+   "id": "operation-emmental",
+   "tier": "T3"
+  },
+  {
+   "id": "operation-red-signature",
+   "tier": "T3"
+  },
+  {
+   "id": "operation-shadow-force",
+   "tier": "T3"
+  },
+  {
+   "id": "pale-panda",
+   "tier": "T3"
+  },
+  {
+   "id": "passcv",
+   "tier": "T3"
+  },
+  {
+   "id": "plushdaemon",
+   "tier": "T3"
+  },
+  {
+   "id": "poisonus-panda",
+   "tier": "T3"
+  },
+  {
+   "id": "predator-panda",
+   "tier": "T3"
+  },
+  {
+   "id": "punk-003",
+   "tier": "T3"
+  },
+  {
+   "id": "purplehaze",
+   "tier": "T3"
+  },
+  {
+   "id": "radio-panda",
+   "tier": "T3"
+  },
+  {
+   "id": "rahdit",
+   "tier": "T3"
+  },
+  {
+   "id": "red-dev-17",
+   "tier": "T3"
+  },
+  {
+   "id": "red-menshen",
+   "tier": "T3"
+  },
+  {
+   "id": "red-nue",
+   "tier": "T3"
+  },
+  {
+   "id": "redgolf",
+   "tier": "T3"
+  },
+  {
+   "id": "redjuliett",
+   "tier": "T3"
+  },
+  {
+   "id": "ref2924",
+   "tier": "T3"
+  },
+  {
+   "id": "ref7707",
+   "tier": "T3"
+  },
+  {
+   "id": "ruskinet",
+   "tier": "T3"
+  },
+  {
+   "id": "ruthless-rabbit",
+   "tier": "T3"
+  },
+  {
+   "id": "sabre-panda",
+   "tier": "T3"
+  },
+  {
+   "id": "sandman-apt",
+   "tier": "T3"
+  },
+  {
+   "id": "sands-casino",
+   "tier": "T3"
+  },
+  {
+   "id": "scarab",
+   "tier": "T3"
+  },
+  {
+   "id": "scarred-manticore",
+   "tier": "T3"
+  },
+  {
+   "id": "shadow-earth-053",
+   "tier": "T3"
+  },
+  {
+   "id": "shaggypanther",
+   "tier": "T3"
+  },
+  {
+   "id": "shahid-hemmat",
+   "tier": "T3"
+  },
+  {
+   "id": "shamoon-group",
+   "tier": "T3"
+  },
+  {
+   "id": "shark-spider",
+   "tier": "T3"
+  },
+  {
+   "id": "sharppanda",
+   "tier": "T3"
+  },
+  {
+   "id": "silkspecter",
+   "tier": "T3"
+  },
+  {
+   "id": "sima",
+   "tier": "T3"
+  },
+  {
+   "id": "slime29",
+   "tier": "T3"
+  },
+  {
+   "id": "slime88",
+   "tier": "T3"
+  },
+  {
+   "id": "smishing-triad",
+   "tier": "T3"
+  },
+  {
+   "id": "sneakychef",
+   "tier": "T3"
+  },
+  {
+   "id": "solntsepek",
+   "tier": "T3"
+  },
+  {
+   "id": "spacebears",
+   "tier": "T3"
+  },
+  {
+   "id": "spicy-panda",
+   "tier": "T3"
+  },
+  {
+   "id": "storm-0381",
+   "tier": "T3"
+  },
+  {
+   "id": "storm-0530",
+   "tier": "T3"
+  },
+  {
+   "id": "storm-1084",
+   "tier": "T3"
+  },
+  {
+   "id": "storm-1099",
+   "tier": "T3"
+  },
+  {
+   "id": "storm-cloud",
+   "tier": "T3"
+  },
+  {
+   "id": "ta406",
+   "tier": "T3"
+  },
+  {
+   "id": "ta428",
+   "tier": "T3"
+  },
+  {
+   "id": "ta444",
+   "tier": "T3"
+  },
+  {
+   "id": "ta455",
+   "tier": "T3"
+  },
+  {
+   "id": "ta4922",
+   "tier": "T3"
+  },
+  {
+   "id": "ta530",
+   "tier": "T3"
+  },
+  {
+   "id": "ta570",
+   "tier": "T3"
+  },
+  {
+   "id": "ta829",
+   "tier": "T3"
+  },
+  {
+   "id": "tag-112",
+   "tier": "T3"
+  },
+  {
+   "id": "tag-28",
+   "tier": "T3"
+  },
+  {
+   "id": "tag-56",
+   "tier": "T3"
+  },
+  {
+   "id": "taskmasters",
+   "tier": "T3"
+  },
+  {
+   "id": "teamspy-crew",
+   "tier": "T3"
+  },
+  {
+   "id": "teleboyi",
+   "tier": "T3"
+  },
+  {
+   "id": "temp-heretic",
+   "tier": "T3"
+  },
+  {
+   "id": "temp-hermit",
+   "tier": "T3"
+  },
+  {
+   "id": "temptick",
+   "tier": "T3"
+  },
+  {
+   "id": "test-panda",
+   "tier": "T3"
+  },
+  {
+   "id": "tianwu",
+   "tier": "T3"
+  },
+  {
+   "id": "tidrone",
+   "tier": "T3"
+  },
+  {
+   "id": "toxic-panda",
+   "tier": "T3"
+  },
+  {
+   "id": "tracer-kitten",
+   "tier": "T3"
+  },
+  {
+   "id": "tstark",
+   "tier": "T3"
+  },
+  {
+   "id": "tunnelsnake",
+   "tier": "T3"
+  },
+  {
+   "id": "uac-0020",
+   "tier": "T3"
+  },
+  {
+   "id": "uac-0094",
+   "tier": "T3"
+  },
+  {
+   "id": "uac-0194",
+   "tier": "T3"
+  },
+  {
+   "id": "uac-0245",
+   "tier": "T3"
+  },
+  {
+   "id": "uat-5394",
+   "tier": "T3"
+  },
+  {
+   "id": "uat-6382",
+   "tier": "T3"
+  },
+  {
+   "id": "uat-7237",
+   "tier": "T3"
+  },
+  {
+   "id": "uat-8099",
+   "tier": "T3"
+  },
+  {
+   "id": "uat-8302",
+   "tier": "T3"
+  },
+  {
+   "id": "uat-8837",
+   "tier": "T3"
+  },
+  {
+   "id": "uat-9244",
+   "tier": "T3"
+  },
+  {
+   "id": "uat-9686",
+   "tier": "T3"
+  },
+  {
+   "id": "uat-9921",
+   "tier": "T3"
+  },
+  {
+   "id": "unc1860",
+   "tier": "T3"
+  },
+  {
+   "id": "unc2717",
+   "tier": "T3"
+  },
+  {
+   "id": "unc2814",
+   "tier": "T3"
+  },
+  {
+   "id": "unc2970",
+   "tier": "T3"
+  },
+  {
+   "id": "unc3569",
+   "tier": "T3"
+  },
+  {
+   "id": "unc3890",
+   "tier": "T3"
+  },
+  {
+   "id": "unc4191",
+   "tier": "T3"
+  },
+  {
+   "id": "unc4540",
+   "tier": "T3"
+  },
+  {
+   "id": "unc4841",
+   "tier": "T3"
+  },
+  {
+   "id": "unc5325",
+   "tier": "T3"
+  },
+  {
+   "id": "unc5330",
+   "tier": "T3"
+  },
+  {
+   "id": "unc5337",
+   "tier": "T3"
+  },
+  {
+   "id": "unc5342",
+   "tier": "T3"
+  },
+  {
+   "id": "unc6201",
+   "tier": "T3"
+  },
+  {
+   "id": "unc6293",
+   "tier": "T3"
+  },
+  {
+   "id": "unc6508",
+   "tier": "T3"
+  },
+  {
+   "id": "unc6748",
+   "tier": "T3"
+  },
+  {
+   "id": "unfading-sea-haze",
+   "tier": "T3"
+  },
+  {
+   "id": "union-panda",
+   "tier": "T3"
+  },
+  {
+   "id": "union-spider",
+   "tier": "T3"
+  },
+  {
+   "id": "unk-academicflare",
+   "tier": "T3"
+  },
+  {
+   "id": "unk-remoterogue",
+   "tier": "T3"
+  },
+  {
+   "id": "unnamed-actor",
+   "tier": "T3"
+  },
+  {
+   "id": "unsolicitedbooker",
+   "tier": "T3"
+  },
+  {
+   "id": "usersec",
+   "tier": "T3"
+  },
+  {
+   "id": "uta0178",
+   "tier": "T3"
+  },
+  {
+   "id": "uta0352",
+   "tier": "T3"
+  },
+  {
+   "id": "uta0355",
+   "tier": "T3"
+  },
+  {
+   "id": "uta0388",
+   "tier": "T3"
+  },
+  {
+   "id": "vicious-panda",
+   "tier": "T3"
+  },
+  {
+   "id": "warp-panda",
+   "tier": "T3"
+  },
+  {
+   "id": "wassonite",
+   "tier": "T3"
+  },
+  {
+   "id": "water-gamayun",
+   "tier": "T3"
+  },
+  {
+   "id": "water-sigbin",
+   "tier": "T3"
+  },
+  {
+   "id": "webworm",
+   "tier": "T3"
+  },
+  {
+   "id": "wet-panda",
+   "tier": "T3"
+  },
+  {
+   "id": "wip19",
+   "tier": "T3"
+  },
+  {
+   "id": "witchetty",
+   "tier": "T3"
+  },
+  {
+   "id": "worok",
+   "tier": "T3"
+  },
+  {
+   "id": "xaknet",
+   "tier": "T3"
+  },
+  {
+   "id": "xiaoqiying",
+   "tier": "T3"
+  },
+  {
+   "id": "xinxin",
+   "tier": "T3"
+  },
+  {
+   "id": "z-pentest-alliance",
+   "tier": "T3"
+  },
+  {
+   "id": "zarya",
+   "tier": "T3"
+  },
+  {
+   "id": "amethyst-rain",
+   "tier": "T4"
+  },
+  {
+   "id": "blue-tsunami",
+   "tier": "T4"
+  },
+  {
+   "id": "canvas-cyclone",
+   "tier": "T4"
+  },
+  {
+   "id": "caramel-tsunami",
+   "tier": "T4"
+  },
+  {
+   "id": "carmine-tsunami",
+   "tier": "T4"
+  },
+  {
+   "id": "covertnetwork-1658",
+   "tier": "T4"
+  },
+  {
+   "id": "daffodil-gust",
+   "tier": "T4"
+  },
+  {
+   "id": "denim-tsunami",
+   "tier": "T4"
+  },
+  {
+   "id": "fallow-squall",
+   "tier": "T4"
+  },
+  {
+   "id": "fox-tempest",
+   "tier": "T4"
+  },
+  {
+   "id": "lace-tempest",
+   "tier": "T4"
+  },
+  {
+   "id": "luna-tempest",
+   "tier": "T4"
+  },
+  {
+   "id": "magenta-dust",
+   "tier": "T4"
+  },
+  {
+   "id": "marbled-dust",
+   "tier": "T4"
+  },
+  {
+   "id": "mustard-tempest",
+   "tier": "T4"
+  },
+  {
+   "id": "night-tsunami",
+   "tier": "T4"
+  },
+  {
+   "id": "octo-tempest",
+   "tier": "T4"
+  },
+  {
+   "id": "patched-lightning",
+   "tier": "T4"
+  },
+  {
+   "id": "phlox-tempest",
+   "tier": "T4"
+  },
+  {
+   "id": "pinstripe-lightning",
+   "tier": "T4"
+  },
+  {
+   "id": "pistachio-tempest",
+   "tier": "T4"
+  },
+  {
+   "id": "plaid-rain",
+   "tier": "T4"
+  },
+  {
+   "id": "storm-0230",
+   "tier": "T4"
+  },
+  {
+   "id": "storm-0249",
+   "tier": "T4"
+  },
+  {
+   "id": "storm-0252",
+   "tier": "T4"
+  },
+  {
+   "id": "storm-0259",
+   "tier": "T4"
+  },
+  {
+   "id": "storm-0288",
+   "tier": "T4"
+  },
+  {
+   "id": "storm-0302",
+   "tier": "T4"
+  },
+  {
+   "id": "storm-0408",
+   "tier": "T4"
+  },
+  {
+   "id": "storm-0485",
+   "tier": "T4"
+  },
+  {
+   "id": "storm-0501",
+   "tier": "T4"
+  },
+  {
+   "id": "storm-0538",
+   "tier": "T4"
+  },
+  {
+   "id": "storm-0539",
+   "tier": "T4"
+  },
+  {
+   "id": "storm-0569",
+   "tier": "T4"
+  },
+  {
+   "id": "storm-0671",
+   "tier": "T4"
+  },
+  {
+   "id": "storm-1101",
+   "tier": "T4"
+  },
+  {
+   "id": "storm-1113",
+   "tier": "T4"
+  },
+  {
+   "id": "storm-1125",
+   "tier": "T4"
+  },
+  {
+   "id": "storm-1152",
+   "tier": "T4"
+  },
+  {
+   "id": "storm-1194",
+   "tier": "T4"
+  },
+  {
+   "id": "storm-1249",
+   "tier": "T4"
+  },
+  {
+   "id": "storm-1567",
+   "tier": "T4"
+  },
+  {
+   "id": "storm-1575",
+   "tier": "T4"
+  },
+  {
+   "id": "storm-1607",
+   "tier": "T4"
+  },
+  {
+   "id": "storm-1674",
+   "tier": "T4"
+  },
+  {
+   "id": "storm-1747",
+   "tier": "T4"
+  },
+  {
+   "id": "storm-1811",
+   "tier": "T4"
+  },
+  {
+   "id": "storm-1865",
+   "tier": "T4"
+  },
+  {
+   "id": "storm-2227",
+   "tier": "T4"
+  },
+  {
+   "id": "storm-2460",
+   "tier": "T4"
+  },
+  {
+   "id": "storm-2477",
+   "tier": "T4"
+  },
+  {
+   "id": "storm-2561",
+   "tier": "T4"
+  },
+  {
+   "id": "storm-2581",
+   "tier": "T4"
+  },
+  {
+   "id": "storm-2657",
+   "tier": "T4"
+  },
+  {
+   "id": "storm-2697",
+   "tier": "T4"
+  },
+  {
+   "id": "storm-2755",
+   "tier": "T4"
+  },
+  {
+   "id": "storm-2945",
+   "tier": "T4"
+  },
+  {
+   "id": "storm-2949",
+   "tier": "T4"
+  },
+  {
+   "id": "storm-2981",
+   "tier": "T4"
+  },
+  {
+   "id": "storm-2999",
+   "tier": "T4"
+  },
+  {
+   "id": "storm-3075",
+   "tier": "T4"
+  },
+  {
+   "id": "storm-3127",
+   "tier": "T4"
+  },
+  {
+   "id": "strawberry-tempest",
+   "tier": "T4"
+  },
+  {
+   "id": "velvet-tempest",
+   "tier": "T4"
+  },
+  {
+   "id": "viridian-vortex",
+   "tier": "T4"
+  },
+  {
+   "id": "wheat-tempest",
+   "tier": "T4"
+  },
+  {
+   "id": "wisteria-tsunami",
+   "tier": "T4"
+  },
+  {
+   "id": "zigzag-hail",
+   "tier": "T4"
+  }
+ ],
+ "done": [
+  "aqua-blizzard",
+  "brass-typhoon",
+  "brocade-typhoon",
+  "burgundy-sandstorm",
+  "cadet-blizzard",
+  "canary-typhoon",
+  "charcoal-typhoon",
+  "checkered-typhoon",
+  "cinnamon-tempest",
+  "citrine-sleet",
+  "copper-typhoon",
+  "coral-sleet",
+  "crimson-sandstorm",
+  "diamond-sleet",
+  "emerald-sleet",
+  "flax-typhoon",
+  "forest-blizzard",
+  "ghost-blizzard",
+  "gingham-typhoon",
+  "granite-typhoon",
+  "hazel-sandstorm",
+  "heart-typhoon",
+  "hexagon-typhoon",
+  "lemon-sandstorm",
+  "leopard-typhoon",
+  "linen-typhoon",
+  "manatee-tempest",
+  "mango-sandstorm",
+  "marigold-sandstorm",
+  "midnight-blizzard",
+  "mint-sandstorm",
+  "moonstone-sleet",
+  "mulberry-typhoon",
+  "nylon-typhoon",
+  "onyx-sleet",
+  "salt-typhoon",
+  "seashell-blizzard",
+  "volt-typhoon"
+ ],
+ "thin": [],
+ "halts": []
+}
