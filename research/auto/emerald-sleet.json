@@ -1,0 +1,85 @@
+{
+  "identification": {
+    "summary": "Emerald Sleet (formerly THALLIUM) is a North Korean threat actor that Microsoft says stayed highly active through 2023. It spear-phishes prominent individuals with North Korea expertise and often impersonates academic institutions and NGOs [S1]. Microsoft says it targets diplomats and Korean Peninsula experts in government, think tanks and NGOs, media and education, and assesses the motive as intelligence collection [S2]. Since January 2025 Microsoft has seen the actor trick targets into running PowerShell as administrator and pasting code the actor supplies [S3]. Microsoft and OpenAI also observed it using large language models (LLMs) for reconnaissance, vulnerability research and phishing content [S1][S11].",
+    "firstObserved": "Kaspersky's 2013 'Kimsuky' report dates the earliest signs of activity to 2013-04-03 and the first Kimsuky Trojan samples to 2013-05-05 [S8]. Microsoft was tracking the group as THALLIUM by 2019 [S4].",
+    "notes": "Microsoft name: Emerald Sleet (formerly THALLIUM). Microsoft says Emerald Sleet overlaps with the actors other researchers call Kimsuky and Velvet Chollima [S1]. Microsoft's naming map lists THALLIUM, VELVET CHOLLIMA, RGB-D5, Black Banshee, Kimsuky and Greendinosa as other names. It lists APT43 and Konni separately, under Opal Sleet [S5]. Material that vendors publish under Kimsuky, Springtail [S10] or TA427 [S9] is mapped to this record by alias, and boundaries may not match Microsoft's exactly. Mandiant's APT43 reporting is not merged here because Microsoft maps APT43 to Opal Sleet [S5]. MITRE tracks the group as Kimsuky (G0094) [S14]."
+  },
+  "attribution": {
+    "sponsor": "Democratic People's Republic of Korea. US Treasury describes Kimsuky as subordinate to the Reconnaissance General Bureau (RGB), the DPRK's primary foreign intelligence service [S7]. A May 2024 FBI, State Department and NSA advisory says Kimsuky is administratively subordinate to the 63rd Research Center, an element of the RGB [S6].",
+    "confidence": "Microsoft calls Emerald Sleet a 'North Korean state actor' [S3]. In 2019 Microsoft said THALLIUM is 'believed to operate from North Korea' [S4]. US Treasury sanctioned Kimsuky as an RGB-subordinate entity on 2023-11-30 [S7]. These government statements name Kimsuky, which Microsoft maps to Emerald Sleet [S5]. Kaspersky's 2013 report only surmised North Korean origin from target profiles, Korean-language compile paths and registrant names [S8].",
+    "basis": "Microsoft telemetry and actor tracking, joint Microsoft and OpenAI LLM-abuse research, and a 2019 civil court action [S1][S2][S3][S4]. US Treasury designation [S7]. Joint FBI, State Department and NSA advisory [S6]. Vendor technical reporting from Kaspersky, Proofpoint and Symantec [S8][S9][S10]."
+  },
+  "objectives": "Microsoft assesses the motive as intelligence collection on North Korea-related policy, gathered from diplomats and Korean Peninsula experts [S2]. Through LLM-informed reconnaissance, the actor sought out think tanks, government organizations and experts focused on North Korean defense issues or its nuclear weapons program [S1]. Its 2022 impersonation campaign asked North Korea experts for their views on security issues and offered payment to review a document on the North Korean nuclear program [S12]. The 2024 joint US advisory describes Kimsuky posing as journalists, academics and East Asia experts to collect information for the regime [S6].",
+  "targeting": {
+    "sectors": [
+      "Think tanks and NGOs [S1][S2][S9]",
+      "Government agencies and services, including diplomats [S2][S3]",
+      "Academia and education [S2][S4]",
+      "Media [S2][S3]",
+      "Individuals working in international affairs, especially Northeast Asia [S3]",
+      "Nuclear non-proliferation, world-peace and human-rights organizations and experts [S4]",
+      "South Korean public sector [S10]"
+    ],
+    "regions": [
+      "North America, South America, Europe and East Asia (2025 PowerShell campaign) [S3]",
+      "United States, Japan and South Korea (2019 THALLIUM targets) [S4]",
+      "South Korea (2013 Kimsuky campaign; 2024 Gomir and GoBear activity) [S8][S10]"
+    ],
+    "notes": "Microsoft's victim set centers on people with North Korea or Northeast Asia expertise rather than on infrastructure [S1][S2][S3]. Treasury describes the group's targets as government, research and media figures, mainly in South Korea, Japan and the US [S7]."
+  },
+  "capabilities": {
+    "summary": "Social engineering is the core capability. The actor builds rapport over time while posing as officials, journalists, academics or think-tank staff, then sends spear-phishing emails [S1][S3][S6][S9][S12]. In 2019, THALLIUM's spoofed Microsoft-themed credential phishing led to mailbox access and forwarding rules that sent new mail to actor-controlled accounts [S4]. From December 2023 the group abused lax DMARC policies to spoof personas, and from February 2024 it added web beacons to profile targets [S6][S9]. In 2025 it ran ClickFix-style lures: victims were told to paste PowerShell as administrator, which installed a browser-based remote desktop tool and registered the device for actor access [S3]. Proofpoint saw similar lures deliver QuasarRAT [S13]. Its malware includes Linux (Gomir) and Windows (GoBear) backdoors spread through trojanized South Korean software installers [S10]. The 2013 Kimsuky malware included a module for stealing HWP documents [S8]. LLM use covers vulnerability research (CVE-2022-30190), basic scripting, phishing content and reconnaissance [S1][S11]."
+  },
+  "campaigns": [
+    {"date": "2013-04", "name": "Kimsuky operation (Kaspersky)", "summary": "Espionage against South Korean think tanks and government bodies, including the Sejong Institute, KIDA and the Ministry of Unification; the malware included an HWP-stealing module.", "sources": ["S8"]},
+    {"date": "2019-12", "name": "THALLIUM domain takedown", "summary": "A US court order let Microsoft take control of 50 THALLIUM domains used to phish government, think-tank, university, human-rights and non-proliferation targets.", "sources": ["S4"]},
+    {"date": "2022-12", "name": "Expert impersonation campaign", "summary": "MSTIC reported THALLIUM spoofing journalists and peers, including the 38 North director, to draw North Korea experts into writing analysis.", "sources": ["S12"]},
+    {"date": "2023-11", "name": "US Treasury sanctions Kimsuky", "summary": "Treasury, with Australia, Japan and South Korea, designated Kimsuky as an RGB-subordinate cyber espionage group after the DPRK's satellite launch.", "sources": ["S7"]},
+    {"date": "2023-12", "name": "DMARC abuse and web beacons (TA427)", "summary": "Spoofed think-tank and NGO personas sent through domains with weak DMARC policies, with web beacons added in February 2024. The activity was the subject of a May 2024 joint US advisory.", "sources": ["S6", "S9"]},
+    {"date": "2024-02", "name": "LLM misuse disrupted", "summary": "Microsoft and OpenAI disabled Emerald Sleet accounts that had used LLMs for reconnaissance, vulnerability research, scripting and phishing content.", "sources": ["S1", "S2"]},
+    {"date": "2024-05", "name": "Gomir/GoBear backdoors (Springtail)", "summary": "Symantec reported a Linux backdoor ported from GoBear and spread through trojanized South Korean software installers.", "sources": ["S10"]},
+    {"date": "2025-01", "name": "PowerShell 'device registration' / ClickFix lures", "summary": "Posing as South Korean officials or a Japanese diplomat, the actor got targets to run PowerShell as administrator. The code installed remote desktop tooling or QuasarRAT.", "sources": ["S3", "S13"]}
+  ],
+  "diamond": {
+    "adversary": "DPRK state actor tracked by Microsoft as Emerald Sleet (THALLIUM), which US Treasury and a joint US advisory place under the RGB [S3][S6][S7].",
+    "capability": "Rapport-building spear-phishing and impersonation, credential phishing with mail-forwarding rules, PowerShell paste-and-run lures, remote desktop tooling, QuasarRAT, GoBear and Gomir backdoors, and LLM-assisted reconnaissance [S1][S3][S4][S10][S13].",
+    "infrastructure": "Typosquatted and Microsoft-lookalike domains (50 seized in 2019), spoofed sender domains with weak DMARC policies, free webmail personas, web beacons, and remote servers that host certificates and register devices [S3][S4][S9].",
+    "victim": "Diplomats, Korean Peninsula and Northeast Asia experts, think tanks, NGOs, government, media and academia in the US, South Korea, Japan, Europe and the Americas [S2][S3][S4].",
+    "socioPolitical": "Intelligence collection on foreign policy toward the DPRK, nuclear issues and Korean Peninsula security in support of the regime [S1][S2][S6].",
+    "technology": "Email trust (DMARC misconfiguration, sender spoofing), cloud mailbox rules, Windows PowerShell with administrator rights, and South Korean security and PKI software installers [S3][S4][S6][S10]."
+  },
+  "gaps": [
+    "Cluster boundary: Microsoft maps APT43 and Konni to Opal Sleet, not Emerald Sleet, while many vendors treat APT43 and Kimsuky as one actor. Mandiant APT43 reporting, including cybercrime self-funding, is excluded until reconciled [S5].",
+    "Proofpoint TA427 and Symantec Springtail findings are mapped here by alias; neither source confirms the boundary matches Microsoft's Emerald Sleet [S9][S10].",
+    "The primary documents could not be opened: the IC3/FBI May 2024 advisory and the Treasury press release (blocked), plus the Microsoft On the Issues 2019 post, the Proofpoint blog and Kaspersky Securelist (DNS failures). Content is taken from search snippets and press coverage.",
+    "The full Microsoft write-up of the 2025 PowerShell tactic was seen only as an X thread summary. Victim counts and outcomes are not public.",
+    "No public reporting gathered here shows Emerald Sleet targeting US military networks or conducting disruptive operations.",
+    "An unverified search summary claims QR-code credential phishing by Emerald Sleet in May 2025; no primary source was found, so it is excluded."
+  ],
+  "implications": {
+    "jipoe": "Analyst assessment derived from cited sources; validate before use. STEP 1 (OE): The key terrain is people, not networks: personal and work email of policy, diplomatic, academic and think-tank staff working on Korean Peninsula issues, plus organizational email domains with weak DMARC policies [S2][S3][S6]. STEP 2 (effects): Spoofed trusted personas undermine email-based trust. Compromised mailboxes with forwarding rules give persistent collection without implants [S4][S9]. STEP 3 (adversary template): Benign rapport-building email from a spoofed expert or official, then a lure (PDF, 'secure document', or 'device registration'), then credential capture or PowerShell paste-and-run, then remote desktop or RAT, then mail and document collection [S3][S4][S13]. STEP 4: MLCOA is continued collection against DPRK-policy, nuclear and alliance-planning experts through impersonation and paste-and-run lures [S1][S3]. MDCOA is the compromise of a planner or liaison mailbox that gives sustained access to exercise, alliance or nuclear-policy correspondence [S4][S6]. Candidate indicators include unsolicited expert or official outreach that escalates to document review requests, instructions to run PowerShell as administrator, new inbox forwarding rules, spoofed domains failing DMARC alignment, and web-beacon tracking pixels in first-contact emails [S3][S4][S6][S9].",
+    "jcc2": "Analyst assessment derived from cited sources; validate before use. Situational awareness: Track Emerald Sleet lure themes and personas, such as South Korean officials, Japanese diplomats and think-tank staff. Monitor for PowerShell-as-admin and remote-desktop registration events and mailbox-rule changes [S3][S4][S9][S13]. Authorities: Most victims are civilian think tanks, academics and personal accounts outside the DODIN. Response relies on FBI and partner notification and on private-sector actions such as Microsoft's 2019 civil domain seizure and its account disablement with OpenAI [S1][S4][S6]. Mission assurance: Enforce DMARC quarantine or reject on mission-partner domains, restrict PowerShell for standard users, and train staff who handle Korean Peninsula topics to verify unsolicited expert contact out of band [S3][S6]. Coordination: Share indicators with USFK and INDOPACOM stakeholders and with ROK and Japanese partners, which mirrored the 2023 sanctions, and with industry reporters such as Microsoft and Proofpoint [S7][S9]."
+  },
+  "sources": [
+    {"ref": "S1", "title": "Staying ahead of threat actors in the age of AI", "publisher": "Microsoft Threat Intelligence", "date": "2024-02-14", "url": "https://www.microsoft.com/en-us/security/blog/2024/02/14/staying-ahead-of-threat-actors-in-the-age-of-ai/"},
+    {"ref": "S2", "title": "Same targets, new playbooks: East Asia threat actors employ unique methods", "publisher": "Microsoft Threat Intelligence (Security Insider)", "date": "2024-04-04", "url": "https://www.microsoft.com/en-us/security/security-insider/threat-landscape/east-asia-threat-actors-employ-unique-methods"},
+    {"ref": "S3", "title": "Microsoft Threat Intelligence thread on Emerald Sleet PowerShell-as-admin tactic (X post, via search results)", "publisher": "Microsoft Threat Intelligence", "date": "2025-02-11", "url": "https://x.com/MsftSecIntel/status/1889407814604296490"},
+    {"ref": "S4", "title": "Microsoft takes court action against fourth nation-state cybercrime group (THALLIUM; via search-result coverage)", "publisher": "Microsoft On the Issues", "date": "2019-12-30", "url": "https://blogs.microsoft.com/on-the-issues/2019/12/30/microsoft-court-action-against-nation-state-cybercrime/"},
+    {"ref": "S5", "title": "Microsoft threat actor naming mapping (MicrosoftMapping.json)", "publisher": "Microsoft Threat Intelligence", "date": "2026-10-14", "url": "https://github.com/microsoft/mstic/blob/master/PublicFeeds/ThreatActorNaming/MicrosoftMapping.json"},
+    {"ref": "S6", "title": "North Korean hackers exploiting weak DMARC security policies to mask spearphishing efforts (reporting FBI/State/NSA joint advisory of 2024-05-02)", "publisher": "Industrial Cyber", "date": "2024-05", "url": "https://industrialcyber.co/cisa/north-korean-hackers-exploiting-weak-dmarc-security-policies-to-mask-spearphishing-efforts/"},
+    {"ref": "S7", "title": "U.S. Treasury Sanctions North Korean Cyber Intrusion Group Kimsuky (reporting Treasury designation of 2023-11-30)", "publisher": "TRM Labs", "date": "2023-11", "url": "https://www.trmlabs.com/post/us-treasury-sanctions-north-korean-cyber-intrusion-group-kimsuky"},
+    {"ref": "S8", "title": "Kaspersky Lab analyzes active cyber-espionage campaign primarily targeting South Korean entities (Kimsuky)", "publisher": "Kaspersky", "date": "2013-09-11", "url": "https://www.kaspersky.com/about/press-releases/kaspersky-lab-analyzes-active-cyber-espionage-campaign-primarily-targeting-south-korean-entities"},
+    {"ref": "S9", "title": "From Social Engineering to DMARC Abuse: TA427's Art of Information Gathering (via search snippets)", "publisher": "Proofpoint", "date": "2024-04", "url": "https://www.proofpoint.com/us/blog/threat-insight/social-engineering-dmarc-abuse-ta427s-art-information-gathering"},
+    {"ref": "S10", "title": "Springtail: New Linux Backdoor Added to Toolkit (via search-result coverage)", "publisher": "Symantec (Broadcom)", "date": "2024-05", "url": "https://www.security.com/threat-intelligence/springtail-kimsuky-backdoor-espionage"},
+    {"ref": "S11", "title": "AI as tradecraft: How threat actors operationalize AI", "publisher": "Microsoft Threat Intelligence", "date": "2026-03-06", "url": "https://www.microsoft.com/en-us/security/blog/2026/03/06/ai-as-tradecraft-how-threat-actors-operationalize-ai/"},
+    {"ref": "S12", "title": "North Korean cyber spies deploy new tactic: tricking foreign experts into writing research for them (reporting Reuters/MSTIC)", "publisher": "Voice of America", "date": "2022-12", "url": "https://www.voanews.com/a/north-korean-cyber-spies-deploy-new-tactic-tricking-foreign-experts-into-writing-research-for-them/6872314.html"},
+    {"ref": "S13", "title": "State-Sponsored Hackers Weaponize ClickFix Tactic in Targeted Malware Campaigns (reporting Proofpoint TA427 research)", "publisher": "The Hacker News", "date": "2025-04", "url": "https://thehackernews.com/2025/04/state-sponsored-hackers-weaponize.html"},
+    {"ref": "S14", "title": "Kimsuky, G0094", "publisher": "MITRE ATT&CK", "date": "2026-07-31", "url": "https://attack.mitre.org/groups/G0094/"}
+  ],
+  "aliasesAdd": [
+    {"name": "THALLIUM", "vendor": "Microsoft (former name)"},
+    {"name": "Springtail", "vendor": "Symantec"},
+    {"name": "Velvet Chollima", "vendor": "CrowdStrike"},
+    {"name": "TA427", "vendor": "Proofpoint"}
+  ]
+}

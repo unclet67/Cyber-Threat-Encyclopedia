@@ -643,9 +643,22 @@ window.addEventListener("hashchange",()=>{ if (S.view!=="edit" && applyHash()){ 
 $("#foot").append(h("p",{}, "UNCLASSIFIED. Open-source research aid only. For classified TTPs and current reporting, consult JWICS / SIPR holdings. Base records were imported from actors.json (MISP Galaxy, MITRE ATT&CK, Microsoft Threat Intelligence, Google TI / Mandiant). Nothing absent from that file was added to imported records except Microsoft names confirmed against Microsoft's published mapping (MicrosoftMapping.json, retrieved 2026-10-14) and ATT&CK tactic labels from MITRE's published data. Missing sections are marked Research Required."));
 
 /* ---------- boot ---------- */
+/* Read-only snapshot mode: used outside claude.ai (e.g. GitHub Pages), where the live database is unavailable. */
+async function loadSnapshot(){
+  try{
+    const r = await fetch("data/bundle.json", {cache:"no-cache"});
+    if (!r.ok) throw new Error(r.status);
+    const b = await r.json();
+    S.actors = new Map(arr(b.actors).filter(a=>a&&a.primaryName).map(a=>[a.id,a]));
+    S.scenarios = arr(b.scenarios).filter(x=>x.title).sort((x,y)=>(x.order||0)-(y.order||0));
+    S.loaded = true; S.admin = false;
+    $("#foot").prepend(h("p",{}, h("strong",{},"Read-only snapshot"), ` exported ${s(b.exported)||"from the encyclopedia database"}. Editing and live updates are available only in the claude.ai version.`));
+    applyHash(); render();
+  }catch(_){ S.dbErr="Profiles could not be loaded. Open this encyclopedia on claude.ai, or check that data/bundle.json is published with this page."; S.loaded=false; render(); }
+}
 render();
 (async () => {
-  if (!window.claude?.use){ S.dbErr="Storage is unavailable here. Open this encyclopedia on claude.ai to load profiles."; S.loaded=false; render(); return; }
+  if (!window.claude?.use){ await loadSnapshot(); return; }
   [db, user] = await Promise.all([window.claude.use("db"), window.claude.use("user")]);
   if (user){ try{ S.admin = !!(await user.canEdit()); S.uid = await user.id(); }catch(_){} }
   if (!db){ S.dbErr="Sign in to claude.ai with access to this encyclopedia to load profiles."; render(); return; }

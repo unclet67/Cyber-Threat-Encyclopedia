@@ -25,4 +25,5 @@ Nothing that is absent from those sources has been added to imported records. Re
 
 ## Running
 
-`app/index.html` expects the claude.ai Artifact runtime (`window.claude`). Opened anywhere else, it shows a "storage unavailable" message. The JSON in `data/` is the portable copy of the content.
+- **claude.ai (live, editable):** `app/index.html` is the Artifact source. There it reads and writes the live database, and editors get the research administration interface.
+- **GitHub Pages (read-only):** `index.html` at the repo root is the same page wrapped in the document skeleton claude.ai adds at publish time. Outside claude.ai it loads `data/bundle.json`, a snapshot of every actor and scenario. Rebuild both with `python3 scripts/build_pages.py` after syncing `data/`.
