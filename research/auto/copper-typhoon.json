@@ -1,0 +1,195 @@
+{
+  "identification": {
+    "summary": "China-linked espionage actor that Microsoft tracks as Copper Typhoon and maps to Tonto Team, Earth Akhlut and Sharp-R [S1]. MITRE describes Tonto Team as a suspected Chinese state-sponsored espionage group that has mainly targeted South Korea, Japan, Taiwan and the United States since at least 2009, and that expanded to other Asian and Eastern European countries by 2020 [S2]. Its signature tooling is the long-lived Bisonal backdoor, delivered through spear-phishing documents, including documents built with the Royal Road weaponizer [S3][S4][S7][S8]. In 2020 Kaspersky reported that the group had also moved to more advanced tools such as ShadowPad [S4].",
+    "firstObserved": "MITRE: active since at least 2009, and linked to the Heartbeat Campaign (2009-2012) [S2]. Kaspersky describes CactusPete as active since at least 2012 [S4].",
+    "notes": "Microsoft name: Copper Typhoon. Microsoft's public mapping lists only Tonto Team, Earth Akhlut and Sharp-R as other names [S1]. MITRE G0131 (Tonto Team) lists Earth Akhlut, BRONZE HUNTLEY, CactusPete and Karma Panda as associated names [S2]. Recorded Future tracks TAG-74 as a separate cluster that overlaps with Tonto Team/COPPER/CactusPete/Earth Akhlut/Karma Panda/Bronze Huntley; it is not a confirmed one-to-one match [S3]. Recorded Future also judges that a custom ReVBShell variant is likely shared with Tick Group, which is a different actor [S3]."
+  },
+  "attribution": {
+    "sponsor": "People's Republic of China, People's Liberation Army (per vendor reporting). Recorded Future notes that Tonto Team has been publicly linked to the former Shenyang Military Region Technical Reconnaissance Bureau of the PLA Strategic Support Force, now part of the Northern Theater Command [S3]. In 2017 FireEye described Tonto Team as tied to China's military and based in Shenyang [S5].",
+    "confidence": "Recorded Future assesses with moderate confidence that TAG-74 is aligned with the PLA Northern Theater Command, based on targeting patterns [S3]. MITRE calls Tonto Team a 'suspected' Chinese state-sponsored group [S2]. In the sources gathered, Microsoft gives no public confidence statement beyond assigning the Typhoon (China) name [S1]. No US government indictment or advisory naming this actor was found.",
+    "basis": "Targeting pattern consistent with the Northern Theater Command's area of responsibility [S3]; FireEye statements reported in the press [S5]; exclusive use of Bisonal by Chinese APTs and Simplified Chinese document metadata [S7][S8]; Microsoft naming taxonomy [S1]. China's Ministry of Defense denied that the PLA supports hacking [S5]."
+  },
+  "objectives": "Long-term intelligence collection against military, government, defense-industrial and political targets in states bordering China's northeast, including South Korea, Japan and Russia [S2][S3]. Kaspersky judged that the 2019-2020 Eastern Europe campaign most likely sought confidential information from military and financial organizations [S4]. In 2017 the group targeted South Korean entities connected to the THAAD missile-defense deployment [S5].",
+  "targeting": {
+    "sectors": [
+      "Government [S2][S3]",
+      "Military and defense / aerospace [S2][S3][S4]",
+      "Political organizations and parties [S3]",
+      "Academic / education [S2][S3]",
+      "Financial [S2][S4]",
+      "Energy and mining [S2]",
+      "Healthcare [S2]",
+      "Technology and cybersecurity firms [S2][S6][S8]",
+      "Telecommunications (tentative, Pakistan) [S7]"
+    ],
+    "regions": [
+      "South Korea [S2][S3][S5]",
+      "Japan [S2][S3]",
+      "Taiwan [S2]",
+      "United States [S2]",
+      "Russia [S3][S7][S8]",
+      "Eastern Europe [S4][S6]",
+      "Pakistan (tentative) [S7]"
+    ],
+    "notes": "South Korea is the most consistent focus, from Heartbeat (2009-2012) through TAG-74 (2023) [S2][S3]. Russian targeting rose in 2022, though SentinelLabs' attribution of that activity to Tonto Team is tentative [S7]. Group-IB, a security vendor, was targeted in March 2021 and June 2022 [S8]."
+  },
+  "capabilities": {
+    "summary": "The primary tool is the Bisonal backdoor. Kaspersky linked more than 300 samples to the group from March 2019 to April 2020, about 20 new samples a month. Bisonal can run programs, terminate processes, manage files and support lateral movement [S4]. Group-IB documents the Bisonal.DoubleT variant and a new TontoTeam.Downloader (QuickMute) [S8]. For initial access the group uses spear-phishing with weaponized Office/RTF documents built with Royal Road [S7][S8], and in TAG-74 activity it used .chm files that launch a DLL search-order-hijacking chain to load a customized ReVBShell VBScript backdoor before Bisonal [S3]. In March 2021 ESET observed the group exploiting Exchange ProxyLogon vulnerabilities [S6]. Kaspersky reported a move to ShadowPad in 2020 [S4]. MITRE lists Mimikatz, gsecdump, LaZagne, NBTscan, Bisonal and ShadowPad as associated software [S2]."
+  },
+  "campaigns": [
+    {
+      "date": "2009-2012",
+      "name": "Heartbeat Campaign",
+      "summary": "MITRE associates Tonto Team with the Heartbeat Campaign, an earlier South Korea-focused operation that Trend Micro reported in 2012.",
+      "sources": [
+        "S2",
+        "S5"
+      ]
+    },
+    {
+      "date": "2017",
+      "name": "Operation Bitter Biscuit",
+      "summary": "MITRE lists Operation Bitter Biscuit (2017) as associated activity; the primary report was not retrieved.",
+      "sources": [
+        "S2"
+      ]
+    },
+    {
+      "date": "2017-04",
+      "name": "THAAD-related targeting in South Korea",
+      "summary": "FireEye reported that Tonto Team targeted South Korean government, military and defense entities connected to the THAAD deployment, using phishing emails with malicious attachments.",
+      "sources": [
+        "S5"
+      ]
+    },
+    {
+      "date": "2019-03 to 2020-04",
+      "name": "CactusPete Eastern Europe campaign",
+      "summary": "Kaspersky reported that updated Bisonal samples targeted military and financial organizations in Eastern Europe, a new region for the group.",
+      "sources": [
+        "S4"
+      ]
+    },
+    {
+      "date": "2021-03",
+      "name": "Exchange ProxyLogon exploitation",
+      "summary": "ESET named Tonto Team among at least 10 APT groups exploiting ProxyLogon, and reported that it compromised Exchange servers at a procurement company and a software development and security consultancy in Eastern Europe.",
+      "sources": [
+        "S6"
+      ]
+    },
+    {
+      "date": "2021-03 and 2022-06",
+      "name": "Attacks on Group-IB",
+      "summary": "Group-IB blocked two phishing attempts against its staff. The June 2022 attempt used Royal Road documents, Bisonal.DoubleT and TontoTeam.Downloader.",
+      "sources": [
+        "S8"
+      ]
+    },
+    {
+      "date": "2022-06 to 2022-07",
+      "name": "Russian government-themed phishing",
+      "summary": "SentinelLabs reported a cluster of Royal Road documents with Russian government lures delivering Bisonal, which followed a CERT-UA alert; it tentatively attributed the cluster to Tonto Team.",
+      "sources": [
+        "S7"
+      ]
+    },
+    {
+      "date": "2023-09",
+      "name": "TAG-74 multi-year South Korea campaign",
+      "summary": "Recorded Future reported multi-year targeting of South Korean academic, government and political entities through CHM lures, ReVBShell and Bisonal.",
+      "sources": [
+        "S3"
+      ]
+    }
+  ],
+  "diamond": {
+    "adversary": "PRC-linked operators publicly associated with the PLA's former Shenyang Military Region technical reconnaissance bureau, now under the Northern Theater Command; Microsoft names the cluster Copper Typhoon [S1][S3][S5].",
+    "capability": "Bisonal family (including DoubleT), ReVBShell, TontoTeam.Downloader, ShadowPad, Royal Road documents, CHM/DLL hijacking chains, ProxyLogon exploitation, and credential tools such as Mimikatz and LaZagne [S2][S3][S4][S6][S8].",
+    "infrastructure": "Actor-controlled C2 for Bisonal and ReVBShell [S3][S4], and free webmail (GMX) sender accounts posing as legitimate firms [S8]. Detailed infrastructure patterns are not covered in the sources gathered.",
+    "victim": "Government, military, defense-industrial, political and academic organizations in South Korea, Japan, Russia and Eastern Europe, plus security vendors [S2][S3][S4][S8].",
+    "socioPolitical": "Regional security intelligence on the Korean Peninsula (e.g., THAAD), Japan and Russia, consistent with a Northern Theater Command focus [S3][S5].",
+    "technology": "Microsoft Office and Equation Editor exploitation through Royal Road, Windows CHM handling and DLL search order, and on-premises Exchange servers [S3][S6][S8]."
+  },
+  "gaps": [
+    "No Microsoft Threat Intelligence report on Copper Typhoon activity was found; Microsoft's public mapping gives only the name and its alias links [S1].",
+    "The MITRE and Microsoft naming pages could not be fetched directly (network blocked); MITRE details come from search-result summaries [S2].",
+    "Primary reports by Kaspersky (Securelist), Recorded Future (TAG-74 PDF), SentinelLabs, Trend Micro and ESET could not be fetched; this file relies on search-result coverage of them.",
+    "The 2022 Pakistan E-Office supply-chain attack that delivered ShadowPad (Trend Micro) appears in the imported references, but coverage found states that Trend Micro made no firm attribution; do not credit it to Copper Typhoon without the primary paper [S9].",
+    "The Cybereason PortDoor attack (2021) on Russia's Rubin Design Bureau used Royal Road, which Tonto Team and other groups share; it was not attributed to Tonto Team, so it is excluded.",
+    "TAG-74 (Recorded Future) overlaps with Tonto Team but is not confirmed as identical, and it likely shares tooling with Tick Group [S3].",
+    "No US government indictment, sanction or joint advisory naming Tonto Team/Copper Typhoon was found.",
+    "Operation Bitter Biscuit (2017) and the original Trend Micro HeartBeat paper were not reviewed.",
+    "Activity after 2023 attributable to this actor was not found."
+  ],
+  "implications": {
+    "jipoe": "Analyst assessment derived from cited sources; validate before use. STEP 1 (OE): Key terrain is user endpoints and email at government, military, defense-industrial and academic organizations in Northeast Asia, especially South Korea and Japan, along with exposed on-premises Exchange servers [S2][S3][S6]. STEP 2 (effects): Spear-phishing with Office/RTF exploits and CHM files depends on unpatched Office components and user execution, so patch status and attachment filtering shape the attack surface [S3][S8]. STEP 3 (adversary template): Royal Road document or CHM lure; DLL search-order hijack; ReVBShell or downloader; Bisonal backdoor; credential dumping and lateral movement [S2][S3][S4][S8]. STEP 4: MLCOA is sustained espionage against Korean Peninsula defense and policy entities, including those tied to US-ROK missile-defense cooperation such as THAAD [S3][S5]. MDCOA is opportunistic mass exploitation of a newly disclosed server vulnerability, as with ProxyLogon in 2021, to reach DoD-adjacent or coalition networks [S6]. Candidate indicators: CHM attachments spawning signed executables that side-load DLLs; RTF documents exploiting Equation Editor; Bisonal C2 beacons; Simplified Chinese metadata in lure documents; new web shells on Exchange [S3][S6][S8].",
+    "jcc2": "Analyst assessment derived from cited sources; validate before use. (1) Situational awareness: track Copper Typhoon/Tonto Team, TAG-74 and CactusPete as overlapping clusters with distinct confidence levels, not as a single fused entity [S1][S3]. (2) Authorities: reporting is vendor-sourced; no US government attribution was found, so attribution-dependent responses need IC validation [S2][S3]. (3) Mission assurance: USFK and coalition partners in South Korea and Japan, plus defense contractors supporting missile defense, are high-likelihood targets for phishing and should get priority for email and endpoint hardening against Office and CHM execution chains [S3][S5]. (4) Coordination: share indicators with ROK and Japanese partners and with DIB CS participants, because Tonto activity spans academic, political and defense-industrial targets outside DoD networks [S3][S4]."
+  },
+  "sources": [
+    {
+      "ref": "S1",
+      "title": "Microsoft threat actor naming mapping (MicrosoftMapping.json)",
+      "publisher": "Microsoft Threat Intelligence",
+      "date": "2026-10-14",
+      "url": "https://github.com/microsoft/mstic/blob/master/PublicFeeds/ThreatActorNaming/MicrosoftMapping.json"
+    },
+    {
+      "ref": "S2",
+      "title": "Tonto Team, G0131 (via search-result summary)",
+      "publisher": "MITRE ATT&CK",
+      "date": "2026-07-31",
+      "url": "https://attack.mitre.org/groups/G0131/"
+    },
+    {
+      "ref": "S3",
+      "title": "Multi-year Chinese APT Campaign Targets South Korean Academic, Government, and Political Entities (TAG-74) (via search-result summary)",
+      "publisher": "Recorded Future Insikt Group",
+      "date": "2023-09-19",
+      "url": "https://www.recordedfuture.com/multi-year-chinese-apt-campaign-targets-south-korean-academic-government-political-entities"
+    },
+    {
+      "ref": "S4",
+      "title": "Kaspersky researchers uncover new targeted campaign against financial and military organizations (CactusPete/Bisonal)",
+      "publisher": "Kaspersky",
+      "date": "2020-08",
+      "url": "https://www.kaspersky.com/about/press-releases/kaspersky-researchers-uncover-new-targeted-campaign-against-financial-and-military-organizations"
+    },
+    {
+      "ref": "S5",
+      "title": "Chinese APTs targeted the South Korean THAAD anti-missile systems (reporting WSJ/FireEye)",
+      "publisher": "Security Affairs",
+      "date": "2017-04",
+      "url": "https://securityaffairs.com/58226/cyber-warfare-2/china-targeted-south-korea-thaad.html"
+    },
+    {
+      "ref": "S6",
+      "title": "Exchange servers under siege from at least 10 APT groups (via search-result coverage)",
+      "publisher": "ESET WeLiveSecurity",
+      "date": "2021-03-10",
+      "url": "https://www.welivesecurity.com/2021/03/10/exchange-servers-under-siege-10-apt-groups/"
+    },
+    {
+      "ref": "S7",
+      "title": "Targets of Interest: Russian Organizations Increasingly Under Attack By Chinese APTs (via search-result summary)",
+      "publisher": "SentinelOne SentinelLabs",
+      "date": "2022-07",
+      "url": "https://www.sentinelone.com/labs/targets-of-interest-russian-organizations-increasingly-under-attack-by-chinese-apts/"
+    },
+    {
+      "ref": "S8",
+      "title": "Tonto Team (Group-IB blocks attacks against its employees)",
+      "publisher": "Group-IB",
+      "date": "2023-02",
+      "url": "https://www.group-ib.com/blog/tonto-team/"
+    },
+    {
+      "ref": "S9",
+      "title": "Pakistani Entities Targeted in Sophisticated Attack Deploying ShadowPad Malware (reporting Trend Micro)",
+      "publisher": "The Hacker News",
+      "date": "2023-07",
+      "url": "https://thehackernews.com/2023/07/pakistani-entities-targeted-in.html"
+    }
+  ],
+  "aliasesAdd": []
+}
