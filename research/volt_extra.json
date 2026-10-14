@@ -1,0 +1,95 @@
+{
+  "identification": {
+    "summary": "China-based, PRC state-sponsored cyber actor publicly disclosed on 24 May 2023 by Microsoft and a Five Eyes joint advisory. Known for living-off-the-land (LOTL) tradecraft, valid-account abuse, and proxying traffic through compromised SOHO/edge devices to blend into normal network activity. US agencies assess its focus is pre-positioning in US critical infrastructure IT networks for disruptive or destructive effects during a crisis or conflict, not traditional espionage. [S1][S2][S3]",
+    "firstObserved": "Active since mid-2021 per Microsoft [S2]. In Feb 2024 US agencies reported footholds maintained in some victim environments for at least five years [S3].",
+    "notes": "Microsoft name: Volt Typhoon (Typhoon = China). Earlier Microsoft designation DEV-0391 / Storm-0391. AA24-038A lists the alias set Vanguard Panda, BRONZE SILHOUETTE, Dev-0391, UNC3236, Voltzite, Insidious Taurus [S3]. Dragos describes VOLTZITE as 'highly correlated' with, not identical to, Volt Typhoon [S7]."
+  },
+  "attribution": {
+    "sponsor": "People's Republic of China (state-sponsored). No specific PRC organization (MSS, PLA element, or contractor) is named in the cited US government reporting.",
+    "confidence": "CISA, NSA and FBI assess with HIGH confidence that Volt Typhoon is pre-positioning on IT networks to enable lateral movement to OT for disruption [S3]. Microsoft assesses with MODERATE confidence that the campaign is developing capabilities that could disrupt critical communications between the US and the Asia region during future crises [S2].",
+    "basis": "Incident-response findings from multiple confirmed compromises by US authoring agencies and partners [S3]; Microsoft telemetry [S2]; court-authorized FBI operation against the KV botnet infrastructure [S4]. Counter-narrative: China's CVERC published reports in 2024 (including 'Volt Typhoon III', Oct 2024) claiming the campaign is a US fabrication; independent coverage notes they offer no new evidence [S10]."
+  },
+  "objectives": "Pre-position on critical infrastructure IT networks to enable disruption of OT functions in the event of a major crisis or conflict with the United States [S3]. Microsoft frames the intent as developing capabilities to disrupt critical communications infrastructure between the US and the Asia region during future crises [S2]. Observed behaviour supports access maintenance over data theft: minimal activity after credential access, repeated re-harvesting of domain credentials over years, and collection limited to information enabling follow-on physical effects such as OT/SCADA diagrams [S3].",
+  "targeting": {
+    "sectors": [
+      "Communications",
+      "Energy (electric, oil and gas)",
+      "Transportation Systems",
+      "Water and Wastewater Systems",
+      "Manufacturing, construction, maritime, government, IT, education (Microsoft, 2023)",
+      "ISPs and MSPs (Versa Director exploitation, 2024)"
+    ],
+    "regions": [
+      "United States: continental and non-continental, including Guam",
+      "Canada, Australia, New Zealand assessed as potentially exposed by partner agencies",
+      "One non-US victim in the 2024 Versa Director activity"
+    ],
+    "notes": "Some victims are smaller organizations with limited cybersecurity capability that provide critical services to larger organizations or key geographic locations [S3]. Sector list from CISA [S3]; additional sectors from Microsoft [S2]; ISP/MSP targeting from Lumen [S5]; energy and pipeline activity in 2025 from Dragos via secondary coverage [S7]."
+  },
+  "capabilities": {
+    "summary": "Initial access through known and zero-day vulnerabilities in internet-facing network appliances: Fortinet (CVE-2022-42475 on a FortiGate 300D), Ivanti Connect Secure, NETGEAR, Citrix, Cisco [S3], and Versa Director (CVE-2024-39717) [S5]. Post-compromise activity is hands-on-keyboard LOTL (wmic, ntdsutil, vssadmin, netsh, PowerShell), RDP with valid admin credentials, NTDS.dit extraction via Volume Shadow Copy, LSASS dumping via comsvcs.dll MiniDump, Mimikatz, Impacket, Magnet RAM Capture, UPX-packed FRP clients and ScanLine, and selective Windows event log clearing [S3]. Custom tooling is limited: the KV botnet malware on end-of-life Cisco and NETGEAR SOHO routers [S3][S4] and the VersaMem Java web shell [S5]. In 2025 Dragos moved VOLTZITE to Stage 2 of the ICS Cyber Kill Chain after it manipulated engineering workstation software to pull configuration and alarm data [S7]."
+  },
+  "campaigns": [
+    {"date": "2019 (approx.)", "name": "Earliest reported dwell", "summary": "US agencies observed indications of footholds maintained in some victim IT environments for at least five years as of February 2024.", "sources": ["S3"]},
+    {"date": "2021 (mid)", "name": "Campaign activity begins (Microsoft)", "summary": "Microsoft reports Volt Typhoon active since mid-2021, targeting critical infrastructure in Guam and elsewhere in the US, with initial access through internet-facing Fortinet FortiGuard devices.", "sources": ["S2"]},
+    {"date": "2023-05-24", "name": "Public disclosure", "summary": "Coordinated release of Microsoft's report and joint advisory AA23-144A (CISA, NSA, FBI and Five Eyes partners) detailing LOTL tradecraft and detection guidance.", "sources": ["S1", "S2"]},
+    {"date": "2023-12", "name": "KV botnet exposure and takedown", "summary": "Lumen Black Lotus Labs reports the KV-botnet (13 Dec 2023). In December 2023 the FBI conducted a court-authorized operation that deleted KV botnet malware from hundreds of infected US end-of-life SOHO routers, mostly Cisco and NETGEAR; announced by DOJ on 31 Jan 2024.", "sources": ["S6", "S4"]},
+    {"date": "2024-02-07", "name": "AA24-038A pre-positioning advisory", "summary": "CISA, NSA, FBI and partners confirm compromises in Communications, Energy, Transportation and Water sectors, including Guam. In one water-sector intrusion the actor spent nine months moving to a file server, DC, Oracle Management Server and vCenter, and enumerated PuTTY sessions for water treatment plants, wells and an electrical substation.", "sources": ["S3", "S9"]},
+    {"date": "2024-06 to 2024-08", "name": "Versa Director zero-day (CVE-2024-39717)", "summary": "Exploitation of Versa Director against ISPs, MSPs and IT firms (four US victims, one non-US; earliest 12 Jun 2024), deploying the VersaMem web shell to harvest credentials. Attributed to Volt Typhoon with MODERATE confidence by Lumen.", "sources": ["S5"]},
+    {"date": "2025", "name": "VOLTZITE OT escalation (Dragos)", "summary": "Dragos reports VOLTZITE compromised cellular gateways and routers, including Sierra Wireless AirLink gateways, to reach US pipeline operations and engineering workstations, and pulled configuration and alarm data. A newly named access broker, SYLVANITE, reportedly hands footholds to VOLTZITE. Detail verified through secondary coverage only.", "sources": ["S7"]}
+  ],
+  "diamond": {
+    "adversary": "PRC state-sponsored operators [S3]; Microsoft describes a China-based state-sponsored actor [S2]. Specific sponsoring organization not publicly attributed. Operators show strong OPSEC, sometimes avoiding use of stolen credentials outside normal working hours [S3].",
+    "capability": "LOTL binaries and valid accounts; credential theft (NTDS.dit via VSS/ntdsutil, LSASS via comsvcs.dll, Mimikatz, Impacket); FRP reverse proxies; KV botnet malware; VersaMem web shell; n-day and zero-day exploitation of edge appliances (Fortinet, Ivanti, NETGEAR, Citrix, Cisco, Versa) [S3][S5].",
+    "infrastructure": "Multi-hop proxy chains built from VPSs and compromised SOHO/edge devices: end-of-life Cisco and NETGEAR routers (KV botnet) [S3][S4]; Microsoft also lists ASUS, D-Link and Zyxel devices [S2]. Victim-side FRP clients and a netsh PortProxy on a PRTG server converted into C2 relays [S3]. Cellular gateways in 2025 [S7].",
+    "victim": "US critical infrastructure IT networks adjacent to OT: communications, energy, transportation, water, plus ISPs/MSPs. Includes Guam and smaller providers of critical services [S2][S3][S5].",
+    "socioPolitical": "Victimology aligns with US force-projection and crisis-response dependencies in the Indo-Pacific; intent framed as disruption during crisis or conflict [S2][S3].",
+    "technology": "Exploits internet-facing edge appliances and the trust of valid administrator accounts; avoids malware on endpoints, which defeats signature-based detection [S3]."
+  },
+  "gaps": [
+    "Which PRC organization directs or conducts the activity (MSS, PLA element, or contractor) is not publicly established. The standalone volt-typhoon.json in your Drive lists orgId 'pla-ssf' with no supporting citation; it was not imported.",
+    "Full extent of current access is unknown. Agencies advise assuming long dwell time, and Dragos (2026) indicates some intrusions may never be found [S3][S7].",
+    "No public evidence of an executed disruptive OT effect. Activation triggers, decision authority and timelines are unknown.",
+    "Infrastructure reconstitution after the December 2023 KV botnet takedown needs current reporting.",
+    "Relationship between VOLTZITE, SYLVANITE and Volt Typhoon: Dragos calls VOLTZITE 'highly correlated', not identical. Pull the primary Dragos 2026 Year in Review to confirm the 2025 details [S7].",
+    "Naming conflict in your cti_provider_actor_naming_catalog sheet: it maps Volt Typhoon to Mandiant UNC3886. AA24-038A gives UNC3236 [S3]; UNC3886 is a separate China-nexus cluster."
+  ],
+  "implications": {
+    "jipoe": "Analyst assessment derived from cited sources; validate before use. STEP 1 (Define the OE): extend the cyberspace OE beyond the DODIN to the commercial power, water, communications and ISP networks that force-projection nodes depend on, Guam first among them. Key terrain in cyberspace for an INDOPACOM contingency is largely non-DoD-owned. STEP 2 (Describe OE effects): map mission dependencies such as port, airfield, fuel and communications backhaul to the specific utilities and providers that serve them; smaller regional providers are explicitly in scope [S3]. STEP 3 (Evaluate the adversary): the doctrinal template is edge-device exploitation, then valid accounts, then NTDS.dit theft, then quiet OT-adjacent discovery, with minimal malware and proxying through SOHO, VPS and cellular gateways. Expect years-long dwell and periodic credential refresh. STEP 4 (Adversary COAs): MLCOA is to maintain dormant access, re-harvest credentials and expand OT reconnaissance below detection thresholds. MDCOA is a coordinated disruption of communications, energy and water at deployment and sustainment nodes during a Taiwan-related or other crisis, to delay force flow and generate domestic pressure. Candidate indicators for PIR/SIR development: NTDS.dit extraction (ESENT 216/325/326/327), new netsh portproxy entries, exploitation of newly disclosed edge-appliance CVEs, and collection of OT/SCADA diagrams [S3].",
+    "jcc2": "Analyst assessment derived from cited sources; validate before use. (1) Shared situational awareness: LOTL activity yields few IOCs, so JCC2 data integration must carry behavioural analytics and baselines, not only signatures, and fuse partner-provided data from CISA, the FBI and sector ISACs on non-DoD critical infrastructure. (2) Authorities seams: domestic critical infrastructure defense is led by CISA and the FBI. C2 constructs must show where USCYBERCOM and Service cyber forces support (DSCA, DIB and mission-assurance roles) rather than assume DoD maneuver space. (3) Mission assurance: link DCO-IDM and Mission Defense Team priorities to the specific civilian dependencies identified in JIPOE, especially Guam. (4) Indications and warning: tie Volt Typhoon indicator changes, such as a surge in credential re-harvesting or OT access testing, to crisis I&W and decision points in the operational plan. (5) Reporting latency: the detection advice relies on long-retention logs such as ESENT and RDP session logs 21/22/23. JCC2 reporting requirements should specify retention and collection at partner sites [S3]."
+  },
+  "extraAttack": [
+    {"id": "T1003.001", "name": "OS Credential Dumping: LSASS Memory", "source": "CISA AA24-038A"},
+    {"id": "T1003.003", "name": "OS Credential Dumping: NTDS", "source": "CISA AA24-038A"},
+    {"id": "T1021.001", "name": "Remote Services: Remote Desktop Protocol", "source": "CISA AA24-038A"},
+    {"id": "T1027.002", "name": "Obfuscated Files or Information: Software Packing", "source": "CISA AA24-038A"},
+    {"id": "T1036.005", "name": "Masquerading: Match Legitimate Name or Location", "source": "CISA AA24-038A"},
+    {"id": "T1048", "name": "Exfiltration Over Alternative Protocol", "source": "CISA AA24-038A"},
+    {"id": "T1059.001", "name": "Command and Scripting Interpreter: PowerShell", "source": "CISA AA24-038A"},
+    {"id": "T1070.001", "name": "Indicator Removal: Clear Windows Event Logs", "source": "CISA AA24-038A"},
+    {"id": "T1090.001", "name": "Proxy: Internal Proxy", "source": "CISA AA24-038A"},
+    {"id": "T1090.003", "name": "Proxy: Multi-hop Proxy", "source": "CISA AA24-038A"},
+    {"id": "T1110.002", "name": "Brute Force: Password Cracking", "source": "CISA AA24-038A"},
+    {"id": "T1560.001", "name": "Archive Collected Data: Archive via Utility", "source": "CISA AA24-038A"},
+    {"id": "T1563", "name": "Remote Service Session Hijacking", "source": "CISA AA24-038A"},
+    {"id": "T1573", "name": "Encrypted Channel", "source": "CISA AA24-038A"},
+    {"id": "T1583.003", "name": "Acquire Infrastructure: Virtual Private Server", "source": "CISA AA24-038A"},
+    {"id": "T1584.004", "name": "Compromise Infrastructure: Server", "source": "CISA AA24-038A"},
+    {"id": "T1584.005", "name": "Compromise Infrastructure: Botnet", "source": "CISA AA24-038A"},
+    {"id": "T1587.004", "name": "Develop Capabilities: Exploits", "source": "CISA AA24-038A"},
+    {"id": "T1588.005", "name": "Obtain Capabilities: Exploits", "source": "CISA AA24-038A"},
+    {"id": "T1589.002", "name": "Gather Victim Identity Information: Email Addresses", "source": "CISA AA24-038A"}
+  ],
+  "sources": [
+    {"ref": "S1", "title": "AA23-144A: People's Republic of China State-Sponsored Cyber Actor Living off the Land to Evade Detection", "publisher": "CISA, NSA, FBI and Five Eyes partners", "date": "2023-05-24", "url": "https://www.cisa.gov/news-events/cybersecurity-advisories/aa23-144a"},
+    {"ref": "S2", "title": "Volt Typhoon targets US critical infrastructure with living-off-the-land techniques", "publisher": "Microsoft Threat Intelligence", "date": "2023-05-24", "url": "https://www.microsoft.com/en-us/security/blog/2023/05/24/volt-typhoon-targets-us-critical-infrastructure-with-living-off-the-land-techniques/"},
+    {"ref": "S3", "title": "AA24-038A: PRC State-Sponsored Actors Compromise and Maintain Persistent Access to U.S. Critical Infrastructure", "publisher": "CISA, NSA, FBI, DOE, EPA, TSA, ASD's ACSC, CCCS, NCSC-UK, NCSC-NZ", "date": "2024-02-07", "url": "https://www.cisa.gov/news-events/cybersecurity-advisories/aa24-038a"},
+    {"ref": "S4", "title": "U.S. Government Disrupts Botnet People's Republic of China Used to Conceal Hacking of Critical Infrastructure", "publisher": "U.S. Department of Justice", "date": "2024-01-31", "url": "https://www.justice.gov/opa/pr/us-government-disrupts-botnet-peoples-republic-china-used-conceal-hacking-critical-infrastructure"},
+    {"ref": "S5", "title": "Taking the Crossroads: The Versa Director Zero-Day Exploitation", "publisher": "Lumen Black Lotus Labs", "date": "2024-08-27", "url": "https://blog.lumen.com/taking-the-crossroads-the-versa-director-zero-day-exploitation/"},
+    {"ref": "S6", "title": "Routers Roasting on an Open Firewall: the KV-botnet Investigation", "publisher": "Lumen Black Lotus Labs", "date": "2023-12-13", "url": "https://blog.lumen.com/routers-roasting-on-an-open-firewall-the-kv-botnet-investigation/"},
+    {"ref": "S7", "title": "OT/ICS Cybersecurity Report: Year in Review 2026 (press release; details via secondary coverage)", "publisher": "Dragos", "date": "2026-02-17", "url": "https://www.dragos.com/resources/press-release/dragos-2026-year-in-review-new-ot-threats-ransomware"},
+    {"ref": "S8", "title": "Volt Typhoon, G1017 (techniques and software as imported)", "publisher": "MITRE ATT&CK", "date": "2026-07-14 (accessed via import)", "url": "https://attack.mitre.org/groups/G1017/"},
+    {"ref": "S9", "title": "Identifying and Mitigating Living Off the Land Techniques", "publisher": "CISA, NSA, FBI and partners", "date": "2024-02-07", "url": "https://www.cisa.gov/resources-tools/resources/identifying-and-mitigating-living-land-techniques"},
+    {"ref": "S10", "title": "China Accuses U.S. of Fabricating Volt Typhoon to Hide Its Own Hacking Campaigns", "publisher": "The Hacker News (reporting on CVERC 'Volt Typhoon III')", "date": "2024-10", "url": "https://thehackernews.com/2024/10/china-accuses-us-of-fabricating-volt.html"}
+  ]
+}

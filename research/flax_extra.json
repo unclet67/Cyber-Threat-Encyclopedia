@@ -1,0 +1,88 @@
+{
+  "aliasesAdd": [],
+  "identification": {
+    "summary": "China-based, PRC-linked actor that gains and holds long-term access to networks with minimal malware, relying on built-in OS tools and legitimate software such as a SoftEther VPN bridge. Microsoft first exposed it for targeting Taiwanese organizations [S1]. US agencies later tied it to Integrity Technology Group, a Beijing company that ran a botnet of over 260,000 compromised SOHO, IoT and network devices [S2][S3].",
+    "firstObserved": "Active since mid-2021 per Microsoft [S1]. The associated Raptor Train botnet dates to May 2020 per Lumen [S4]. The FBI-attributed botnet has operated since mid-2021 [S2].",
+    "notes": "Microsoft name: Flax Typhoon. Microsoft maps Storm-0919 and ETHEREAL PANDA to it [S6]. Lumen also lists RedJuliett (Recorded Future) as overlapping [S4]; this encyclopedia holds a separate RedJuliett record from your import. Flax Typhoon has no MITRE ATT&CK group page as of the 2026-09-23 data [S7]."
+  },
+  "attribution": {
+    "sponsor": "People's Republic of China. Integrity Technology Group (Yongxin Zhicheng), a publicly traded Beijing company, controlled the botnet infrastructure [S2]. OFAC sanctioned it for supporting Flax Typhoon computer network exploitation, citing use of Integrity Tech-linked infrastructure against multiple victims from summer 2022 to fall 2023 [S3].",
+    "confidence": "Formal US government attribution through the FBI/CNMF/NSA joint advisory (Sep 2024) [S2] and OFAC designation (Jan 2025) [S3]. Microsoft attributes the 2023 Taiwan campaign to Flax Typhoon and describes the actor as China-based [S1].",
+    "basis": "Microsoft telemetry [S1]; FBI court-authorized operation and analysis of botnet management infrastructure [S2]; Lumen Black Lotus Labs infrastructure analysis, including Tier 3 management activity during Chinese working hours [S4]; Treasury findings [S3]."
+  },
+  "objectives": "Espionage through long-term, low-noise access. Microsoft assesses that observed behavior suggests intent to perform espionage and maintain access across sectors, though it had not observed the actor act on final objectives in the 2023 campaign [S1]. The botnet gave the actor a proxy layer to hide its operations and a DDoS capability [S2].",
+  "targeting": {
+    "sectors": [
+      "Government agencies",
+      "Education",
+      "Critical manufacturing",
+      "Information technology",
+      "Military, defense industrial base and telecommunications (botnet-enabled targeting per FBI)"
+    ],
+    "regions": [
+      "Taiwan (primary)",
+      "Southeast Asia, North America and Africa (smaller numbers of victims, per Microsoft)",
+      "United States (botnet-enabled targeting; thousands of US devices in the botnet)"
+    ],
+    "notes": "Sector and region data from Microsoft [S1]; US and military/DIB targeting from FBI statements and the joint advisory as reported [S2][S5]. Botnet devices were spread across North America, South America, Europe, Africa, Southeast Asia and Australia [S2]."
+  },
+  "capabilities": {
+    "summary": "Exploitation of known vulnerabilities in public-facing servers, then web shells such as China Chopper [S1]. Privilege escalation with Juicy Potato; credential theft with Mimikatz [S1]. Persistence by enabling RDP and replacing the Sticky Keys accessibility binary to launch Task Manager with SYSTEM privileges, plus a SoftEther VPN bridge renamed to mimic Windows components and installed as a service [S1]. Infrastructure: Raptor Train, a tiered botnet built on the Mirai-variant 'Nosedive' implant across SOHO routers, IP cameras, NAS and IoT devices [S2][S4]."
+  },
+  "attack": [
+    {"id": "T1190", "name": "Exploit Public-Facing Application", "source": "Microsoft (2023-08-24)"},
+    {"id": "T1505.003", "name": "Server Software Component: Web Shell", "source": "Microsoft (2023-08-24)"},
+    {"id": "T1068", "name": "Exploitation for Privilege Escalation", "source": "Microsoft (2023-08-24)"},
+    {"id": "T1003", "name": "OS Credential Dumping", "source": "Microsoft (2023-08-24)"},
+    {"id": "T1546.008", "name": "Event Triggered Execution: Accessibility Features", "source": "Microsoft (2023-08-24)"},
+    {"id": "T1021.001", "name": "Remote Services: Remote Desktop Protocol", "source": "Microsoft (2023-08-24)"},
+    {"id": "T1572", "name": "Protocol Tunneling", "source": "Microsoft (2023-08-24)"},
+    {"id": "T1543.003", "name": "Create or Modify System Process: Windows Service", "source": "Microsoft (2023-08-24)"},
+    {"id": "T1036.005", "name": "Masquerading: Match Legitimate Name or Location", "source": "Microsoft (2023-08-24)"},
+    {"id": "T1584.005", "name": "Compromise Infrastructure: Botnet", "source": "FBI/CNMF/NSA (2024-09-18)"},
+    {"id": "T1090", "name": "Proxy", "source": "FBI/CNMF/NSA (2024-09-18)"},
+    {"id": "T1498", "name": "Network Denial of Service", "source": "FBI/CNMF/NSA (2024-09-18)"}
+  ],
+  "software": [
+    {"id": "S0020", "name": "China Chopper", "type": "malware"},
+    {"id": "S0002", "name": "Mimikatz", "type": "tool"},
+    {"id": "", "name": "SoftEther VPN", "type": "tool"},
+    {"id": "", "name": "Juicy Potato", "type": "tool"},
+    {"id": "", "name": "Nosedive (Mirai variant; Raptor Train)", "type": "malware"}
+  ],
+  "campaigns": [
+    {"date": "2020-05", "name": "Raptor Train botnet begins", "summary": "Lumen Black Lotus Labs dates the botnet to May 2020. It peaked at about 60,000 active devices in June 2023, with over 200,000 devices infected over its lifetime.", "sources": ["S4"]},
+    {"date": "2021 (mid)", "name": "Taiwan-focused intrusions begin", "summary": "Microsoft reports Flax Typhoon active since mid-2021 against government, education, critical manufacturing and IT organizations in Taiwan.", "sources": ["S1"]},
+    {"date": "2023-08-24", "name": "Microsoft disclosure", "summary": "Microsoft details web-shell access, Sticky Keys persistence and SoftEther VPN tunneling, and notes no observed action on final objectives.", "sources": ["S1"]},
+    {"date": "2024-09-18", "name": "Botnet advisory and FBI disruption", "summary": "FBI, CNMF and NSA attribute a 260,000+ device botnet to Integrity Technology Group. The FBI conducts a court-authorized operation against it, and Lumen publishes the Raptor Train analysis.", "sources": ["S2", "S4", "S5"]},
+    {"date": "2025-01-03", "name": "OFAC sanctions on Integrity Tech", "summary": "Treasury designates Integrity Technology Group for its role in Flax Typhoon activity against US victims.", "sources": ["S3"]}
+  ],
+  "diamond": {
+    "adversary": "PRC-linked operators using Integrity Technology Group, a Beijing company, as the infrastructure and operations provider [S2][S3].",
+    "capability": "Public-facing server exploitation; China Chopper web shells; Juicy Potato; Mimikatz; Sticky Keys hijack; SoftEther VPN bridge; Nosedive/Mirai botnet implant [S1][S4].",
+    "infrastructure": "Raptor Train: tiered botnet (Tier 1 compromised devices, Tier 2 C2, Tier 3 management), 260,000+ devices worldwide as of June 2024 [S2][S4]. SoftEther VPN servers for persistent tunnels into victims [S1].",
+    "victim": "Taiwanese government, education, manufacturing and IT organizations; US military, government, higher education, telecommunications, DIB and IT entities targeted through the botnet [S1][S5].",
+    "socioPolitical": "Taiwan-centric espionage aligned with PRC cross-Strait priorities; botnet scale offers proxy cover and DDoS options [S1][S2].",
+    "technology": "Uses legitimate software and OS features (VPN, RDP, accessibility binaries) to avoid malware-based detection; relies on unpatched consumer and SOHO devices for infrastructure [S1][S2]."
+  },
+  "gaps": [
+    "Which PRC government customer tasks Integrity Technology Group is not publicly stated in the sources gathered here.",
+    "Botnet reconstitution after the September 2024 disruption and January 2025 sanctions needs current reporting.",
+    "Relationship to the RedJuliett record in this encyclopedia: Lumen treats them as overlapping, but Microsoft's mapping does not list RedJuliett. Decide whether to merge.",
+    "No MITRE ATT&CK group page exists. The technique list here is analyst-mapped from Microsoft and FBI reporting and should be peer-reviewed.",
+    "Primary text of the 2024-09-18 joint advisory and the OFAC release could not be fetched from this environment. Details come from search-verified coverage; verify specific numbers against the PDFs."
+  ],
+  "implications": {
+    "jipoe": "Analyst assessment derived from cited sources; validate before use. STEP 1: In a Taiwan contingency, the cyberspace OE includes Taiwanese government and industrial networks and the global pool of compromised consumer and SOHO devices used as proxy terrain. STEP 2: A botnet of this scale lets adversary traffic appear to come from domestic residential and small-business addresses, which degrades geolocation-based attribution and blocklisting. STEP 3: The template is web shell, then privilege escalation, then RDP plus Sticky Keys, then a SoftEther VPN tunnel, then quiet access with no observed final action. STEP 4: MLCOA is persistent espionage access in Taiwanese and allied networks. MDCOA is using the botnet for DDoS against Taiwanese or US targets during a crisis while maintaining espionage footholds. Candidate indicators: new outbound SoftEther or VPN services masquerading as Windows binaries, changes to accessibility executables, and spikes in SOHO-sourced authentication attempts against DIB portals [S1][S2].",
+    "jcc2": "Analyst assessment derived from cited sources; validate before use. (1) Shared situational awareness should include botnet infrastructure intelligence, such as FBI and partner-shared C2 and node lists, so that defensive cyber forces can recognize proxy-sourced traffic. (2) Coordinate with allied partners, Taiwan especially, through established channels. Flax Typhoon victims are predominantly non-US, so DoD visibility depends on partner sharing. (3) Disruption precedents: the 2024 court-authorized FBI operation shows that domestic botnet takedown is a law-enforcement lead. DoD options against foreign-hosted tiers fall under separate authorities and require deconfliction. (4) DDoS readiness: JCC2 planning should include upstream mitigation coordination for public-facing DoD and DIB services."
+  },
+  "sources": [
+    {"ref": "S1", "title": "Flax Typhoon using legitimate software to quietly access Taiwanese organizations", "publisher": "Microsoft Threat Intelligence", "date": "2023-08-24", "url": "https://www.microsoft.com/en-us/security/blog/2023/08/24/flax-typhoon-using-legitimate-software-to-quietly-access-taiwanese-organizations/"},
+    {"ref": "S2", "title": "People's Republic of China-Linked Actors Compromise Routers and IoT Devices for Botnet Operations", "publisher": "FBI, CNMF, NSA and international partners", "date": "2024-09-18", "url": "https://www.ic3.gov/CSA/2024/240918.pdf"},
+    {"ref": "S3", "title": "Treasury sanctions Integrity Technology Group for Flax Typhoon activity (as reported)", "publisher": "U.S. Department of the Treasury (OFAC), via Security Affairs", "date": "2025-01-03", "url": "https://securityaffairs.com/172665/intelligence/us-sanctioned-chinese-cybersecurity-firm-linked-flax-typhoon.html"},
+    {"ref": "S4", "title": "Raptor Train botnet analysis (as reported)", "publisher": "Lumen Black Lotus Labs, via Security Affairs", "date": "2024-09-18", "url": "https://securityaffairs.com/168563/malware/raptor-train-botnet-iot.html"},
+    {"ref": "S5", "title": "FBI forced Flax Typhoon to abandon its botnet", "publisher": "Help Net Security (reporting FBI statements)", "date": "2024-09-19", "url": "https://www.helpnetsecurity.com/2024/09/19/flax-typhoon-botnet-disrupted/"},
+    {"ref": "S6", "title": "Microsoft threat actor naming mapping (MicrosoftMapping.json)", "publisher": "Microsoft Threat Intelligence", "date": "2026-10-14 (retrieved)", "url": "https://github.com/microsoft/mstic/blob/master/PublicFeeds/ThreatActorNaming/MicrosoftMapping.json"},
+    {"ref": "S7", "title": "MITRE ATT&CK Enterprise STIX data (no Flax Typhoon group object)", "publisher": "MITRE", "date": "2026-10-14 (retrieved)", "url": "https://github.com/mitre/cti"}
+  ]
+}

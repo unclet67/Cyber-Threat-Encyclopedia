@@ -1,0 +1,81 @@
+{
+  "title": "Exercise PACIFIC SALT",
+  "order": 1,
+  "banner": "EXERCISE // FICTIONAL SCENARIO. Events, victims and timings are invented for training. Actor TTPs come from the cited public reporting in each profile.",
+  "summary": "A PRC-related crisis builds over 30 days. Defenders at commercial and DoD-supporting networks in Guam and CONUS report activity that could belong to several PRC clusters. Students use the compare view to separate actors by discriminating evidence, write confidence-qualified assessments, and turn Research Required gaps into collection requirements.",
+  "audience": "COPC planners (JIPOE, COA development) and 616 OC operators (detection, triage, reporting)",
+  "doctrine": [
+    "JP 3-12, Joint Cyberspace Operations (19 Dec 2022)",
+    "JP 2-0, Joint Intelligence (26 May 2022): JIPOE",
+    "JP 3-04, Information in Joint Operations (14 Sep 2022)",
+    "ICD 203, Analytic Standards (2 Jan 2015)"
+  ],
+  "injects": [
+    {
+      "n": 1, "time": "D-30", "title": "Router changes at a Guam carrier", "audience": "616 OC lead · COPC supporting",
+      "compare": ["volt-typhoon", "salt-typhoon"],
+      "situation": "A commercial carrier that provides leased circuits to installations on Guam reports, through DISA and CISA channels, unexplained ACL edits on two provider-edge routers, a new loopback interface used as a source for management traffic, SSH listening on a non-standard high port, and TACACS+ traffic mirrored to an unknown internal host. No Windows endpoint alerts.",
+      "tasks": [
+        "Open the comparison. Which profile's documented TTPs best fit these observables? Cite the section and source reference (e.g. Salt S3).",
+        "Name two observables that discriminate between the actors, and one that does not discriminate even though both profiles list it.",
+        "Draft the first EEI you would send to the carrier."
+      ],
+      "notes": "Expected: Salt Typhoon fits the observables (router configuration tampering, AAA protocol capture, non-standard SSH and loopback changes per Talos 2025-02-20 and AA25-239A). Volt Typhoon's documented pattern is Windows LOTL, NTDS.dit theft and OT-adjacent discovery (AA24-038A). Both list T1078 Valid Accounts, which is not a discriminator. Good EEI: router config history and AAA server logs for the past 12+ months, given multi-year dwell. Socratic push: 'If you only had NetFlow, what could you still say?'"
+    },
+    {
+      "n": 2, "time": "D-21", "title": "ESENT 216 at a water utility", "audience": "616 OC lead",
+      "compare": ["volt-typhoon", "flax-typhoon"],
+      "situation": "A Guam water utility's domain controller logs ESENT event IDs 216, 325 and 327 within ten minutes, preceded by vssadmin and a WMIC call to ntdsutil. Two weeks earlier, an administrator account queried saved PuTTY sessions on a vCenter host adjacent to the SCADA network. No new services were created.",
+      "tasks": [
+        "Which profile documents this sequence? Quote the profile's detection guidance.",
+        "What Flax Typhoon artifact, if found, would change your assessment? Use its Capabilities section.",
+        "Rate your confidence using ICD 203 language and state what would raise it."
+      ],
+      "notes": "Expected: Volt Typhoon (AA24-038A: ESENT 216/325/326/327; NTDS.dit via VSS and ntdsutil; PuTTY session enumeration on vCenter adjacent to OT). Flax discriminators: replaced Sticky Keys binary (sethc.exe) and a SoftEther VPN bridge installed as a masquerading service (Microsoft 2023-08-24). 'No new services' argues against Flax's typical persistence. Confidence: moderate at best from host artifacts alone. Infrastructure and timing data would raise it."
+    },
+    {
+      "n": 3, "time": "D-14", "title": "Residential IPs at the DIB portal", "audience": "COPC lead · 616 OC supporting",
+      "compare": ["volt-typhoon", "flax-typhoon", "storm-0940"],
+      "situation": "A defense industrial base contractor's SSL VPN sees low-and-slow password spraying from thousands of US residential and small-business IP addresses. Passive DNS on a sample shows IP cameras, NAS devices and consumer routers. The contractor's SOC wants to geoblock non-US traffic and asks whether that will help.",
+      "tasks": [
+        "Explain why geoblocking and IP reputation will underperform here. Use the Infrastructure vertex of each Diamond Model.",
+        "Which profiles describe botnet or proxy networks, and how do their device populations differ?",
+        "Storm-0940 is Research Required. What does that mean for your assessment, and what three research questions would you assign?"
+      ],
+      "notes": "Expected: Volt used the KV botnet of end-of-life Cisco and NETGEAR SOHO routers (AA24-038A, DOJ 2024-01-31). Flax used Raptor Train, 260,000+ IoT, camera, NAS and SOHO devices (FBI/CNMF/NSA 2024-09-18). Storm-0940's imported record lacks the analysis, so students must not import outside knowledge as fact. Microsoft has reported a password-spray proxy network it calls CovertNetwork-1658 used by Storm-0940. Have students mark that as unverified in this database and write it up as a research tasking. Point: domestic proxy terrain defeats geolocation-based defense."
+    },
+    {
+      "n": 4, "time": "D-7", "title": "The commander wants a name", "audience": "COPC lead",
+      "compare": ["volt-typhoon", "salt-typhoon", "flax-typhoon"],
+      "situation": "The JFACC (Joint Force Air Component Commander) asks for a one-line answer for tonight's update brief: 'Is all of this Volt Typhoon?' Staff have injects 1–3 and two hours.",
+      "tasks": [
+        "Use the comparison to count shared techniques. What does a high overlap tell you, and what does it not tell you?",
+        "Write a BLUF (bottom line up front) that separates activity attribution from actor attribution and uses calibrated confidence language.",
+        "Identify the decision this answer actually supports. Does the commander need a name or a threat picture?"
+      ],
+      "notes": "Expected: overlap concentrates in LOTL and valid-account techniques common across PRC clusters, so it is weak evidence of a single actor. A good BLUF assigns each inject to the best-fitting cluster with separate confidence levels and states the operational implication: multiple PRC clusters are active against the same mission dependencies. Socratic: 'What would you do differently if the answer were Salt rather than Volt?' If nothing, the name matters less than the planner thinks."
+    },
+    {
+      "n": 5, "time": "D-3", "title": "False-flag narrative", "audience": "COPC lead",
+      "compare": ["volt-typhoon"],
+      "situation": "PRC state media amplifies a report claiming 'Volt Typhoon' is a US fabrication and that the Guam incidents are US false-flag operations. An allied liaison officer asks what evidence the US can share to rebut it.",
+      "tasks": [
+        "Use Volt Typhoon's Attribution and Sources sections. Which sources are TLP:CLEAR and immediately releasable?",
+        "Weigh the intelligence gain and loss of releasing more detail.",
+        "How does this narrative interact with the operational picture you briefed in inject 4?"
+      ],
+      "notes": "Expected: releasable foundation is AA23-144A, AA24-038A, the DOJ KV botnet release and vendor reports. Volt's profile notes the CVERC 'Volt Typhoon III' series (Oct 2024) and coverage stating it offered no new evidence. Discuss JP 3-04 integration of information with operations, and the risk of overreacting to a narrative whose purpose may be to slow allied coordination."
+    },
+    {
+      "n": 6, "time": "D+1", "title": "Gaps become collection", "audience": "COPC and 616 OC",
+      "compare": ["forest-blizzard", "seashell-blizzard"],
+      "situation": "A European ally reports opportunistic activity against coalition logistics partners that it tentatively links to Russian actors. Your encyclopedia's Russian profiles are imported records with most sections marked Research Required.",
+      "tasks": [
+        "Open the comparison and list every Research Required section for both actors.",
+        "Convert three of those gaps into PIR/EEI pairs and one RFI to the ally.",
+        "Which gaps matter for this mission and which can wait? Justify the priority."
+      ],
+      "notes": "Expected: students translate missing Objectives, Targeting and Diamond Model vertices into collection requirements tied to the coalition logistics mission, not generic actor research. Reinforce that 'Research Required' is an honest state of knowledge and a starting point for the intelligence cycle, not a defect to paper over with assumptions."
+    }
+  ]
+}

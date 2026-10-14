@@ -1,0 +1,663 @@
+<title>Cyber Threat Actor Encyclopedia</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Narrow:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: classification banner, masthead with search, filter rail + record list; profile reads as a numbered 10-part dossier. */
+:root{
+  --bg:#eef1f0; --surface:#fbfcfb; --sunk:#e3e8e6; --ink:#17201e; --muted:#5a6663; --line:#cdd5d2;
+  --accent:#1d5a86; --accent-ink:#ffffff; --accent-soft:#dbe7f0;
+  --banner:#007a33; --banner-ink:#ffffff;
+  --cn:#a8382c; --ru:#34559c; --ir:#2c7149; --kp:#6f4a99;
+  --ok:#2c7149; --warn:#9a6200; --warn-soft:#f6ead2; --bad:#a8382c; --bad-soft:#f5dfdb;
+  --display:"Archivo Narrow","Arial Narrow",Arial,sans-serif;
+  --body:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
+  --r:6px;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#121816; --surface:#19211f; --sunk:#0e1312; --ink:#e3eae7; --muted:#97a5a1; --line:#2c3835;
+  --accent:#7db4dc; --accent-ink:#0d1a24; --accent-soft:#1d3142;
+  --banner:#0f7a3c; --banner-ink:#ffffff;
+  --cn:#e47d70; --ru:#8ea9e6; --ir:#79c497; --kp:#b99be0;
+  --ok:#79c497; --warn:#e2b056; --warn-soft:#3a2f17; --bad:#e47d70; --bad-soft:#3b211d; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#121816; --surface:#19211f; --sunk:#0e1312; --ink:#e3eae7; --muted:#97a5a1; --line:#2c3835;
+  --accent:#7db4dc; --accent-ink:#0d1a24; --accent-soft:#1d3142;
+  --banner:#0f7a3c; --banner-ink:#ffffff;
+  --cn:#e47d70; --ru:#8ea9e6; --ir:#79c497; --kp:#b99be0;
+  --ok:#79c497; --warn:#e2b056; --warn-soft:#3a2f17; --bad:#e47d70; --bad-soft:#3b211d; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font:15px/1.55 var(--body);}
+a{color:var(--accent)}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.gut{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.banner{background:var(--banner);color:var(--banner-ink);text-align:center;font:600 12px/1 var(--mono);letter-spacing:.14em;padding-block:6px;position:sticky;top:env(safe-area-inset-top,0px);z-index:20}
+header.mast{border-bottom:1px solid var(--line);background:var(--surface);padding-block:18px 16px}
+.mast-in{max-width:1240px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:12px 24px;align-items:end}
+.eyebrow{font:500 11px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+h1{font:700 clamp(28px,4.4vw,44px)/1 var(--display);letter-spacing:-.01em;margin:6px 0 0;text-wrap:balance}
+.mast-tools{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+.search{grid-column:1/-1;display:flex;gap:8px;align-items:center}
+.search input{flex:1;min-width:0;padding:11px 14px;border:1px solid var(--line);border-radius:var(--r);background:var(--bg);font-size:16px}
+.btn{border:1px solid var(--line);background:var(--surface);border-radius:var(--r);padding:8px 13px;cursor:pointer;font-weight:500;white-space:nowrap}
+.btn:hover{border-color:var(--accent)}
+.btn.primary{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.btn.danger{color:var(--bad);border-color:var(--bad)}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+.btn .n{font-family:var(--mono);font-size:12px;margin-left:4px}
+main{max-width:1240px;margin:0 auto;padding-block:20px 60px}
+.layout{display:grid;grid-template-columns:230px minmax(0,1fr);gap:24px;align-items:start}
+.rail{position:sticky;top:calc(env(safe-area-inset-top,0px) + 40px);display:grid;gap:18px}
+.rail h3{font:600 11px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:0 0 8px}
+.facet{display:grid;gap:4px}
+.facet button{display:flex;justify-content:space-between;align-items:center;gap:8px;text-align:left;border:1px solid transparent;background:none;border-radius:var(--r);padding:7px 10px;cursor:pointer}
+.facet button:hover{background:var(--sunk)}
+.facet button[aria-pressed="true"]{background:var(--surface);border-color:var(--line);font-weight:600}
+.facet .ct{font:400 12px var(--mono);color:var(--muted);font-variant-numeric:tabular-nums}
+.dot{display:inline-block;width:9px;height:9px;border-radius:2px;margin-right:8px;vertical-align:0}
+.c-CN{--cc:var(--cn)} .c-RU{--cc:var(--ru)} .c-IR{--cc:var(--ir)} .c-KP{--cc:var(--kp)} .c-ALL{--cc:var(--muted)}
+.dot{background:var(--cc)}
+.note{font-size:12.5px;color:var(--muted);line-height:1.5}
+.feature{border:1px solid var(--line);background:var(--surface);border-radius:var(--r);padding:16px 18px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px 16px;align-items:center;margin-bottom:16px;border-left:4px solid var(--cn)}
+.feature h2{font:700 24px/1.1 var(--display);margin:2px 0 0}
+.feature p{margin:4px 0 0;color:var(--muted);font-size:14px;max-width:70ch}
+.listhead{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:8px}
+.listhead .count{font:500 13px var(--mono);color:var(--muted)}
+.rows{border:1px solid var(--line);border-radius:var(--r);background:var(--surface);overflow:hidden}
+.row{display:grid;grid-template-columns:28px minmax(0,1fr) 120px 92px;gap:12px;align-items:center;padding:11px 14px;border-top:1px solid var(--line);cursor:pointer}
+.row:first-child{border-top:0}
+.row:hover{background:var(--sunk)}
+.row .nm{font:600 17px/1.2 var(--display);letter-spacing:.005em}
+.row .al{font-size:12.5px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.row .hit{font-size:12px;color:var(--accent);margin-top:2px}
+.chip{display:inline-flex;align-items:center;gap:6px;font:500 11.5px/1 var(--mono);letter-spacing:.04em;padding:4px 7px;border-radius:4px;border:1px solid var(--line);background:var(--bg);white-space:nowrap}
+.chip.cty{border-color:color-mix(in srgb,var(--cc) 45%,var(--line));color:var(--cc)}
+.chip.rr{background:var(--warn-soft);color:var(--warn);border-color:transparent}
+.chip.ok{color:var(--ok)}
+.chip.flag{background:var(--bad-soft);color:var(--bad);border-color:transparent}
+.meter{display:grid;grid-template-columns:repeat(10,1fr);gap:2px;width:92px}
+.meter i{height:8px;border-radius:1px;background:var(--line)}
+.meter i.p{background:var(--warn)} .meter i.c{background:var(--ok)}
+.cbx{width:18px;height:18px;accent-color:var(--accent)}
+.empty{padding:40px 20px;text-align:center;color:var(--muted)}
+.more{display:flex;justify-content:center;padding:12px}
+/* Profile */
+.crumbs{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:14px}
+.dossier{display:grid;grid-template-columns:minmax(0,1fr) 260px;gap:28px;align-items:start}
+.p-head{border-bottom:2px solid var(--ink);padding-bottom:14px;margin-bottom:6px}
+.p-head h2{font:700 clamp(32px,5vw,52px)/1 var(--display);margin:8px 0 10px;text-wrap:balance}
+.p-meta{display:flex;flex-wrap:wrap;gap:6px}
+.sec{border-bottom:1px solid var(--line);padding-block:18px;display:grid;grid-template-columns:44px minmax(0,1fr);gap:4px 12px}
+.sec .no{font:500 13px/1.9 var(--mono);color:var(--muted)}
+.sec h3{font:700 20px/1.2 var(--display);margin:0 0 6px;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.sec .body{grid-column:2;min-width:0}
+.sec p{margin:0 0 10px;max-width:72ch}
+.kv{display:grid;grid-template-columns:150px minmax(0,1fr);gap:6px 14px;margin:0}
+.kv dt{font:500 12px/1.7 var(--mono);text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+.kv dd{margin:0;max-width:72ch}
+.rr-box{border:1px dashed var(--warn);background:var(--warn-soft);color:var(--warn);border-radius:var(--r);padding:10px 12px;font:500 13px var(--mono);letter-spacing:.03em}
+ul.tight{margin:0;padding-left:18px} ul.tight li{margin:3px 0;max-width:72ch}
+.tbl-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:var(--r)}
+table{border-collapse:collapse;width:100%;font-size:13.5px}
+th,td{text-align:left;padding:7px 10px;border-top:1px solid var(--line);vertical-align:top}
+thead th{border-top:0;background:var(--sunk);font:600 11px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+td.mono,.mono{font-family:var(--mono);font-size:12.5px;white-space:nowrap;font-variant-numeric:tabular-nums}
+.tl{display:grid;gap:0;border-left:2px solid var(--line);margin-left:6px}
+.tl .ev{position:relative;padding:0 0 14px 18px}
+.tl .ev::before{content:"";position:absolute;left:-6px;top:6px;width:10px;height:10px;border-radius:50%;background:var(--surface);border:2px solid var(--accent)}
+.tl .d{font:500 12.5px var(--mono);color:var(--accent)}
+.tl .t{font-weight:600}
+.diamond{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.diamond .v{border:1px solid var(--line);border-radius:var(--r);padding:10px 12px;background:var(--surface)}
+.diamond .v h4{margin:0 0 4px;font:600 11px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.diamond .v p{margin:0;font-size:14px}
+.diamond .meta{grid-column:1/-1;font-size:13.5px;color:var(--muted)}
+.assess{border-left:3px solid var(--accent);background:var(--accent-soft);padding:6px 12px;font-size:12.5px;margin-bottom:10px;border-radius:0 var(--r) var(--r) 0}
+.src{font-size:13.5px}
+.src .ref{font:600 12px var(--mono);color:var(--accent);margin-right:6px}
+.aside{position:sticky;top:calc(env(safe-area-inset-top,0px) + 40px);display:grid;gap:14px}
+.card{border:1px solid var(--line);border-radius:var(--r);background:var(--surface);padding:14px}
+.card h4{margin:0 0 8px;font:600 11px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.toc{display:grid;gap:2px;margin:0;padding:0;list-style:none}
+.toc a{display:flex;justify-content:space-between;gap:8px;text-decoration:none;color:var(--ink);padding:4px 6px;border-radius:4px;font-size:13.5px}
+.toc a:hover{background:var(--sunk)}
+.st{font:500 10.5px var(--mono);letter-spacing:.04em}
+.st.c{color:var(--ok)} .st.p{color:var(--warn)} .st.m{color:var(--bad)}
+.aliases{display:flex;flex-wrap:wrap;gap:6px}
+.alias{font-size:13px;border:1px solid var(--line);border-radius:4px;padding:3px 7px;background:var(--bg)}
+.alias small{display:block;font:400 10.5px var(--mono);color:var(--muted)}
+/* Compare */
+.cmp td,.cmp th{min-width:180px}
+.cmp th:first-child,.cmp td:first-child{min-width:130px;position:sticky;left:0;background:var(--surface);z-index:1}
+.cmp thead th:first-child{background:var(--sunk)}
+.shared{background:var(--accent-soft);font-weight:600}
+/* Admin */
+.form{display:grid;gap:18px}
+.fs{border:1px solid var(--line);border-radius:var(--r);padding:14px 16px;background:var(--surface);display:grid;gap:12px}
+.fs legend{font:700 17px var(--display);padding:0 6px}
+.f{display:grid;gap:4px}
+.f label{font:600 12px var(--mono);letter-spacing:.05em;text-transform:uppercase;color:var(--muted)}
+.f small{color:var(--muted);font-size:12px}
+.f input,.f select,.f textarea{border:1px solid var(--line);border-radius:var(--r);padding:8px 10px;background:var(--bg);width:100%;font-size:15px}
+.f textarea{min-height:90px;resize:vertical;font-size:14px}
+.f textarea.code{font-family:var(--mono);font-size:12.5px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.bar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;position:sticky;bottom:0;background:var(--bg);padding-block:12px;border-top:1px solid var(--line)}
+.msg{font-size:13.5px}
+.msg.err{color:var(--bad)} .msg.ok{color:var(--ok)}
+.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(16px + env(safe-area-inset-bottom,0px));background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:var(--r);font-size:14px;z-index:30}
+.cmpbar{position:fixed;left:0;right:0;bottom:0;background:var(--surface);border-top:1px solid var(--line);padding-block:10px calc(10px + env(safe-area-inset-bottom,0px));z-index:15}
+.cmpbar .in{max-width:1240px;margin:0 auto;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.features{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin-bottom:16px}
+.features .feature{margin:0;grid-template-columns:minmax(0,1fr)}
+.feature.c-RU{border-left-color:var(--ru)} .feature.c-IR{border-left-color:var(--ir)} .feature.c-KP{border-left-color:var(--kp)}
+.related{display:grid;gap:4px;margin-top:8px}
+.related div{font-size:13px} .related b{font-weight:600}
+.exbanner{background:var(--warn-soft);color:var(--warn);font:600 12px/1.5 var(--mono);letter-spacing:.04em;padding:8px 12px;border-radius:var(--r);margin-bottom:14px}
+.inject{border:1px solid var(--line);border-radius:var(--r);background:var(--surface);padding:16px 18px;display:grid;gap:10px}
+.inject .ih{display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}
+.inject .t{font:700 20px/1.2 var(--display)}
+.inject .time{font:600 13px var(--mono);color:var(--accent)}
+.inject ol{margin:0;padding-left:20px} .inject li{margin:4px 0;max-width:75ch}
+.inject details{border-top:1px dashed var(--line);padding-top:8px}
+.inject summary{cursor:pointer;font:600 12px var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.inject details p{margin:8px 0 0;max-width:75ch;font-size:14px}
+.injects{display:grid;gap:14px}
+.ctx{border:1px solid var(--accent);background:var(--accent-soft);border-radius:var(--r);padding:10px 14px;margin-bottom:14px;display:grid;gap:6px}
+.tac{font:500 11px var(--mono);color:var(--muted);white-space:nowrap}
+footer{max-width:1240px;margin:0 auto;padding-block:0 80px;color:var(--muted);font-size:12.5px}
+@media (max-width:900px){
+  .layout,.dossier{grid-template-columns:minmax(0,1fr)}
+  .rail,.aside{position:static}
+  .rail{grid-template-columns:1fr 1fr}
+  .aside{order:-1}
+}
+@media (max-width:560px){
+  .mast-in{grid-template-columns:minmax(0,1fr)}
+  .mast-tools{justify-content:flex-start}
+  .row{grid-template-columns:24px minmax(0,1fr) 80px;}
+  .row .meter{display:none}
+  .sec{grid-template-columns:minmax(0,1fr)} .sec .no{display:none} .sec .body{grid-column:1}
+  .kv{grid-template-columns:minmax(0,1fr)} .diamond,.grid2{grid-template-columns:minmax(0,1fr)}
+  .rail{grid-template-columns:minmax(0,1fr)}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+
+<div class="banner gut">UNCLASSIFIED // OPEN-SOURCE RESEARCH</div>
+<header class="mast gut">
+  <div class="mast-in">
+    <div>
+      <div class="eyebrow">Nation-state cyber actors · China · Russia · Iran · North Korea</div>
+      <h1>Cyber Threat Actor Encyclopedia</h1>
+    </div>
+    <div class="mast-tools">
+      <button class="btn" id="btn-home" type="button">All actors</button>
+      <button class="btn" id="btn-scen" type="button">Scenarios</button>
+      <button class="btn" id="btn-compare" type="button">Compare<span class="n" id="cmp-n">0</span></button>
+      <button class="btn primary" id="btn-new" type="button" hidden>Add profile</button>
+    </div>
+    <div class="search">
+      <input id="q" type="search" placeholder="Search names, aliases, TTP IDs, sectors, campaigns, sources…" autocomplete="off" aria-label="Full-text search">
+    </div>
+  </div>
+</header>
+
+<main class="gut" id="app"><div class="empty" id="boot">Loading the encyclopedia…</div></main>
+<footer class="gut" id="foot"></footer>
+<div class="cmpbar gut" id="cmpbar" hidden><div class="in"><strong id="cmpbar-t"></strong><span class="note" id="cmpbar-names"></span><span style="flex:1"></span><button class="btn" id="cmp-clear" type="button">Clear</button><button class="btn primary" id="cmp-go" type="button">Compare selected</button></div></div>
+<div class="toast" id="toast" hidden></div>
+
+<script>
+(() => {
+"use strict";
+const COUNTRIES = {CN:"China", RU:"Russia", IR:"Iran", KP:"North Korea"};
+const SECTIONS = [
+  ["identification","Identification"],["attribution","Attribution"],["objectives","Strategic objectives"],
+  ["targeting","Targeting"],["capabilities","Capabilities"],["attack","MITRE ATT&CK mappings"],
+  ["campaigns","Campaign history"],["diamond","Diamond Model analysis"],["gaps","Intelligence gaps"],
+  ["implications","Operational implications (JIPOE / JCC2)"],["sources","Dated authoritative sources"]
+];
+// The profile schema carries 10 required analytic sections plus sources; sources count toward completeness.
+const S = {actors:new Map(), loaded:false, dbErr:null, country:"ALL", status:"ALL", q:"", view:"list", id:null, cmp:[], limit:60, admin:false, uid:null, editing:null, scenarios:[], inject:null};
+const TACTICS = ["reconnaissance","resource-development","initial-access","execution","persistence","privilege-escalation","defense-evasion","credential-access","discovery","lateral-movement","collection","command-and-control","exfiltration","impact"];
+const tacLabel = t => t.split("-").map(w=>w==="and"?"and":w[0].toUpperCase()+w.slice(1)).join(" ");
+const tacRank = x => { const r=arr(x.tactics).map(t=>TACTICS.indexOf(t)).filter(i=>i>=0); return r.length?Math.min(...r):99; };
+let db = null, user = null;
+const $ = s => document.querySelector(s);
+const app = $("#app");
+
+function h(tag, attrs, ...kids){
+  const el = document.createElement(tag);
+  if (attrs) for (const [k,v] of Object.entries(attrs)){
+    if (v == null || v === false) continue;
+    if (k === "class") el.className = v;
+    else if (k.startsWith("on")) el.addEventListener(k.slice(2), v);
+    else if (k === "text") el.textContent = v;
+    else el.setAttribute(k, v === true ? "" : v);
+  }
+  for (const k of kids.flat()){ if (k == null || k === false) continue; el.append(k.nodeType ? k : document.createTextNode(String(k))); }
+  return el;
+}
+const safeUrl = u => /^https?:\/\//i.test(u||"") ? u : null;
+const s = v => (typeof v === "string" ? v.trim() : "");
+const arr = v => Array.isArray(v) ? v : [];
+function toast(t){ const el=$("#toast"); el.textContent=t; el.hidden=false; clearTimeout(toast.t); toast.t=setTimeout(()=>el.hidden=true,2600); }
+
+/* ---------- completeness ---------- */
+function secState(a, key){
+  switch(key){
+    case "identification": return s(a.identification?.summary) ? (s(a.identification?.firstObserved) ? "c" : "p") : "m";
+    case "attribution": { const t=a.attribution||{}; const n=[t.sponsor,t.confidence,t.basis].filter(s).length; return n===3?"c":n?"p":"m"; }
+    case "objectives": return s(a.objectives) ? "c" : "m";
+    case "targeting": { const t=a.targeting||{}; return arr(t.sectors).length && arr(t.regions).length ? "c" : (arr(t.sectors).length||arr(t.regions).length||s(t.notes)) ? "p" : "m"; }
+    case "capabilities": return s(a.capabilities?.summary) ? "c" : arr(a.capabilities?.software).length ? "p" : "m";
+    case "attack": return arr(a.attack).length ? "c" : "m";
+    case "campaigns": return arr(a.campaigns).length ? "c" : "m";
+    case "diamond": { const d=a.diamond||{}; const n=["adversary","capability","infrastructure","victim"].filter(k=>s(d[k])).length; return n===4?"c":n?"p":"m"; }
+    case "gaps": return arr(a.gaps).length ? "c" : "m";
+    case "implications": { const i=a.implications||{}; return s(i.jipoe)&&s(i.jcc2)?"c":(s(i.jipoe)||s(i.jcc2))?"p":"m"; }
+    case "sources": { const src=arr(a.sources); if(!src.length) return "m"; return src.every(x=>s(x.date)) ? "c" : "p"; }
+  }
+  return "m";
+}
+const states = a => SECTIONS.map(([k]) => secState(a,k));
+const isComplete = a => states(a).every(x => x==="c");
+const STL = {c:"Complete", p:"Partial", m:"Research Required"};
+
+/* ---------- search ---------- */
+function flatText(a){
+  const parts=[a.primaryName,a.country,COUNTRIES[a.country],a.mitreGroupId,a.msName];
+  arr(a.aliases).forEach(x=>parts.push(x.name,x.vendor));
+  const walk=v=>{ if(typeof v==="string") parts.push(v); else if(Array.isArray(v)) v.forEach(walk); else if(v&&typeof v==="object") Object.values(v).forEach(walk); };
+  ["identification","attribution","objectives","targeting","capabilities","attack","campaigns","diamond","gaps","implications","sources"].forEach(k=>walk(a[k]));
+  return parts.filter(Boolean).join(" • ").toLowerCase();
+}
+const idxCache = new WeakMap();
+function idx(a){ let v=idxCache.get(a); if(!v){ v=flatText(a); idxCache.set(a,v);} return v; }
+function matchSections(a, terms){
+  const hits=[];
+  for (const [k,label] of SECTIONS){ const v=a[k]; const t=JSON.stringify(v||"").toLowerCase(); if (terms.some(q=>t.includes(q))) hits.push(label); }
+  const names=[a.primaryName,...arr(a.aliases).map(x=>x.name)].join(" ").toLowerCase();
+  if (terms.some(q=>names.includes(q))) hits.unshift("Name / alias");
+  return hits;
+}
+function filtered(){
+  const terms = S.q.toLowerCase().split(/\s+/).filter(Boolean);
+  let list=[...S.actors.values()];
+  if (S.country!=="ALL") list=list.filter(a=>a.country===S.country);
+  if (S.status==="C") list=list.filter(isComplete); else if (S.status==="RR") list=list.filter(a=>!isComplete(a)); else if (S.status==="FLAG") list=list.filter(a=>arr(a.importFlags).length);
+  if (terms.length) list=list.filter(a=>{ const t=idx(a); return terms.every(q=>t.includes(q)); });
+  const score=a=>{ if(!terms.length) return 0; const n=[a.primaryName,...arr(a.aliases).map(x=>x.name)].join(" ").toLowerCase(); return terms.every(q=>n.includes(q)) ? -1 : 0; };
+  list.sort((x,y)=> (y.featured?1:0)-(x.featured?1:0) || score(x)-score(y) || states(y).filter(v=>v==="c").length-states(x).filter(v=>v==="c").length || x.primaryName.localeCompare(y.primaryName));
+  return {list, terms};
+}
+
+/* ---------- small renderers ---------- */
+const ctyChip = c => h("span",{class:`chip cty c-${c}`}, h("span",{class:"dot"}), COUNTRIES[c]||c);
+function meter(a){ const m=h("div",{class:"meter",title:states(a).map((x,i)=>`${SECTIONS[i][1]}: ${STL[x]}`).join("\n")}); states(a).forEach(x=>m.append(h("i",{class:x==="m"?"":x}))); return m; }
+const statusChip = a => isComplete(a) ? h("span",{class:"chip ok"},"Complete") : h("span",{class:"chip rr"},"Research Required");
+const RR = (what) => h("div",{class:"rr-box"}, "RESEARCH REQUIRED", what ? " · " + what : "");
+
+/* ---------- views ---------- */
+function render(){
+  $("#cmp-n").textContent = S.cmp.length;
+  $("#btn-new").hidden = !S.admin;
+  const bar=$("#cmpbar"); bar.hidden = !(S.cmp.length && S.view!=="compare");
+  if (!bar.hidden){ $("#cmpbar-t").textContent=`${S.cmp.length} selected`; $("#cmpbar-names").textContent=S.cmp.map(id=>S.actors.get(id)?.primaryName).filter(Boolean).join(" · "); }
+  app.replaceChildren();
+  if (S.view==="edit") return renderEdit();
+  if (!S.loaded) { app.append(h("div",{class:"empty"}, S.dbErr || "Loading the encyclopedia…")); return; }
+  if (!S.actors.size){ app.append(h("div",{class:"empty"}, h("p",{}, "No actor profiles are stored yet."), S.admin ? h("p",{},"Use Add profile to create the first record.") : h("p",{},"An editor needs to add or import the first profile."))); return; }
+  if (S.view==="profile" && S.actors.has(S.id)) return renderProfile(S.actors.get(S.id));
+  if (S.view==="compare") return renderCompare();
+  if (S.view==="scenarios") return renderScenarios();
+  renderList();
+}
+
+function facet(title, items, cur, set){
+  const box=h("div",{}, h("h3",{},title));
+  const f=h("div",{class:"facet",role:"group","aria-label":title});
+  items.forEach(([v,label,count,cls])=>f.append(h("button",{type:"button","aria-pressed":String(cur===v),class:cls||"",onclick:()=>{set(v);S.limit=60;render();}}, h("span",{}, cls?h("span",{class:"dot"}):null, label), h("span",{class:"ct"},count))));
+  box.append(f); return box;
+}
+
+function renderList(){
+  const all=[...S.actors.values()];
+  const byC=c=>all.filter(a=>c==="ALL"||a.country===c).length;
+  const inC=all.filter(a=>S.country==="ALL"||a.country===S.country);
+  const rail=h("aside",{class:"rail"},
+    facet("Country",[["ALL","All four",byC("ALL"),"c-ALL"],...Object.entries(COUNTRIES).map(([c,n])=>[c,n,byC(c),`c-${c}`])],S.country,v=>S.country=v),
+    facet("Record status",[["ALL","Any status",inC.length],["C","Complete",inC.filter(isComplete).length],["RR","Research Required",inC.filter(a=>!isComplete(a)).length],["FLAG","Import flags",inC.filter(a=>arr(a.importFlags).length).length]],S.status,v=>S.status=v),
+    h("div",{class:"note"}, "Primary names follow Microsoft's weather-family taxonomy (Typhoon = China, Blizzard = Russia, Sandstorm = Iran, Sleet = North Korea). Where a source record has no single Microsoft name, the source name is kept and the record is flagged.")
+  );
+  const col=h("section",{});
+  const done=all.filter(a=>a.provenance?.origin==="import+research" || isComplete(a)).filter(a=>S.country==="ALL"||a.country===S.country);
+  if (done.length && !S.q && S.status!=="FLAG"){
+    const fw=h("div",{class:"features"});
+    done.sort((x,y)=>(y.featured?1:0)-(x.featured?1:0)||x.primaryName.localeCompare(y.primaryName)).forEach(a=>{
+      const blurb=s(a.objectives).split(/(?<=\.)\s/)[0]||"";
+      fw.append(h("div",{class:`feature c-${a.country}`},
+        h("div",{}, h("div",{class:"eyebrow"}, `Researched profile · ${states(a).filter(x=>x==="c").length}/11 complete`), h("h2",{},a.primaryName), h("p",{}, blurb.length>180?blurb.slice(0,177)+"…":blurb)),
+        h("div",{style:"display:flex;gap:8px;flex-wrap:wrap"}, h("button",{class:"btn primary",type:"button",onclick:()=>openProfile(a.id)},"Open profile"))));
+    });
+    col.append(fw);
+  }
+  const {list,terms}=filtered();
+  col.append(h("div",{class:"listhead"}, h("div",{class:"count"}, `${list.length} of ${all.length} actors`), h("div",{class:"note"}, "Tick up to 4 actors to compare.")));
+  const rows=h("div",{class:"rows"});
+  if (!list.length) rows.append(h("div",{class:"empty"}, "No actors match. Try an alias (e.g. APT40), a technique ID (T1190), or a sector."));
+  list.slice(0,S.limit).forEach(a=>{
+    const checked=S.cmp.includes(a.id);
+    const cb=h("input",{type:"checkbox",class:"cbx","aria-label":`Compare ${a.primaryName}`,checked:checked,onclick:e=>{e.stopPropagation();toggleCmp(a.id);}});
+    const al=arr(a.aliases).slice(0,6).map(x=>x.name).join(", ") + (arr(a.aliases).length>6?` +${arr(a.aliases).length-6}`:"");
+    const hits=terms.length?matchSections(a,terms):[];
+    rows.append(h("div",{class:"row",role:"link",tabindex:"0",onclick:()=>openProfile(a.id),onkeydown:e=>{if(e.key==="Enter")openProfile(a.id);}},
+      cb,
+      h("div",{style:"min-width:0"}, h("div",{class:"nm"},a.primaryName, arr(a.importFlags).length?h("span",{class:"chip flag",style:"margin-left:8px",title:a.importFlags.join("\n")},"flag"):null), h("div",{class:"al"}, al||"No aliases in source"), hits.length?h("div",{class:"hit"},"Matched in: "+hits.join(", ")):null),
+      h("div",{}, ctyChip(a.country)),
+      meter(a)));
+  });
+  col.append(rows);
+  if (list.length>S.limit) col.append(h("div",{class:"more"}, h("button",{class:"btn",type:"button",onclick:()=>{S.limit+=120;render();}},`Show more (${list.length-S.limit} remaining)`)));
+  app.append(h("div",{class:"layout"}, rail, col));
+}
+
+function textOr(v, what){ return s(v) ? h("p",{},v) : RR(what); }
+function listOr(items, what){ return arr(items).length ? h("ul",{class:"tight"}, arr(items).map(x=>h("li",{},x))) : RR(what); }
+function section(n, key, label, a, body){
+  const st=secState(a,key);
+  return h("section",{class:"sec",id:"sec-"+key},
+    h("div",{class:"no"}, String(n).padStart(2,"0")),
+    h("div",{}, h("h3",{}, label, h("span",{class:"st "+st}, STL[st].toUpperCase()))),
+    h("div",{class:"body"}, body));
+}
+
+function renderProfile(a){
+  const crumbs=h("div",{class:"crumbs"},
+    h("button",{class:"btn",type:"button",onclick:()=>go("list")},"← All actors"),
+    h("button",{class:"btn",type:"button",onclick:()=>toggleCmp(a.id)}, S.cmp.includes(a.id)?"Remove from compare":"Add to compare"),
+    S.admin ? h("button",{class:"btn primary",type:"button",onclick:()=>openEdit(a.id)},"Edit profile") : null);
+  const head=h("div",{class:"p-head"},
+    h("div",{class:"eyebrow"}, `${COUNTRIES[a.country]||a.country} · ${a.msName ? "Microsoft designation" : "Source designation (no single Microsoft name)"}${a.mitreGroupId?" · ATT&CK "+a.mitreGroupId:""}`),
+    h("h2",{},a.primaryName),
+    h("div",{class:"p-meta"}, ctyChip(a.country), statusChip(a), h("span",{class:"chip"}, `${states(a).filter(x=>x==="c").length}/11 sections complete`), arr(a.attack).length?h("span",{class:"chip"},`${a.attack.length} ATT&CK techniques`):null));
+  const flags = arr(a.importFlags).length ? h("div",{class:"rr-box",style:"margin-top:12px;border-color:var(--bad);background:var(--bad-soft);color:var(--bad)"}, "IMPORT FLAGS · ", a.importFlags.join(" ")) : null;
+
+  const id=a.identification||{};
+  const sec1=h("div",{},
+    s(id.summary)?h("p",{},id.summary):RR("no descriptive summary"),
+    h("dl",{class:"kv"},
+      h("dt",{},"Microsoft name"), h("dd",{}, a.msName || (arr(a.msCandidates).length>1 ? "Conflict in source: "+a.msCandidates.join(", ") : "None in source")),
+      h("dt",{},"First observed"), h("dd",{}, s(id.firstObserved) || "Research Required"),
+      s(id.notes)?h("dt",{},"Naming notes"):null, s(id.notes)?h("dd",{},id.notes):null),
+    h("h4",{class:"eyebrow",style:"margin:14px 0 8px"},`Aliases (${arr(a.aliases).length}) · vendor inferred from naming convention`),
+    arr(a.aliases).length ? h("div",{class:"aliases"}, a.aliases.map(x=>h("span",{class:"alias"}, x.name, h("small",{},x.vendor||"")))) : RR("no aliases in source"),
+    arr(a.relatedMs).length ? h("div",{}, h("h4",{class:"eyebrow",style:"margin:14px 0 4px"},"Related Microsoft clusters · not aliases"), h("div",{class:"related"}, a.relatedMs.map(r=>h("div",{}, h("b",{},r.name), " · ", r.note||"")))) : null);
+
+  const at=a.attribution||{};
+  const sec2=(s(at.sponsor)||s(at.confidence)||s(at.basis)) ? h("dl",{class:"kv"},
+    h("dt",{},"Sponsor"),h("dd",{},s(at.sponsor)||"Research Required"),
+    h("dt",{},"Confidence"),h("dd",{},s(at.confidence)||"Research Required"),
+    h("dt",{},"Basis"),h("dd",{},s(at.basis)||"Research Required")) :
+    h("div",{}, h("p",{class:"note"},`Source database records origin as ${COUNTRIES[a.country]}. Sponsor, confidence and basis are not recorded.`), RR("sponsor, confidence, basis"));
+
+  const tg=a.targeting||{};
+  const sec4=(arr(tg.sectors).length||arr(tg.regions).length||s(tg.notes)) ? h("div",{},
+    h("dl",{class:"kv"}, h("dt",{},"Sectors"), h("dd",{}, arr(tg.sectors).length?h("ul",{class:"tight"},tg.sectors.map(x=>h("li",{},x))):"Research Required"),
+      h("dt",{},"Regions"), h("dd",{}, arr(tg.regions).length?h("ul",{class:"tight"},tg.regions.map(x=>h("li",{},x))):"Research Required")),
+    s(tg.notes)?h("p",{class:"note",style:"margin-top:10px"},tg.notes):null) : RR("sectors and regions");
+
+  const cap=a.capabilities||{};
+  const sw=arr(cap.software);
+  const sec5=h("div",{}, s(cap.summary)?h("p",{},cap.summary):RR("capability assessment"),
+    sw.length ? h("div",{class:"tbl-wrap",style:"margin-top:10px"}, h("table",{}, h("thead",{},h("tr",{},h("th",{},"ID"),h("th",{},"Software"),h("th",{},"Type"))), h("tbody",{}, sw.map(x=>h("tr",{},h("td",{class:"mono"},x.id||""),h("td",{},x.name||""),h("td",{},x.type||"")))))) : null);
+
+  const tt=[...arr(a.attack)].sort((x,y)=>tacRank(x)-tacRank(y)||String(x.id).localeCompare(String(y.id)));
+  const sec6=tt.length ? h("div",{class:"tbl-wrap"}, h("table",{}, h("thead",{},h("tr",{},h("th",{},"Tactic"),h("th",{},"Technique"),h("th",{},"Name"),h("th",{},"Source"))),
+    h("tbody",{}, tt.map(x=>{ const u=`https://attack.mitre.org/techniques/${String(x.id||"").replace(".","/")}/`; return h("tr",{}, h("td",{class:"tac"}, arr(x.tactics).map(tacLabel).join(" · ")||"—"), h("td",{class:"mono"}, /^T\d{4}(\.\d{3})?$/.test(x.id)?h("a",{href:u,target:"_blank",rel:"noopener"},x.id):x.id), h("td",{},x.name||""), h("td",{class:"note"},x.source||"")); })))) : RR("no technique mappings");
+
+  const cps=arr(a.campaigns);
+  const sec7=cps.length ? h("div",{class:"tl"}, cps.map(c=>h("div",{class:"ev"}, h("div",{class:"d"},c.date||"Undated"), h("div",{class:"t"},c.name||""), h("div",{},c.summary||""), arr(c.sources).length?h("div",{class:"note"},"Sources: "+c.sources.join(", ")):null))) : RR("no campaigns recorded");
+
+  const d=a.diamond||{};
+  const v=(k,l)=>h("div",{class:"v"},h("h4",{},l),h("p",{},s(d[k])||"Research Required"));
+  const sec8=["adversary","capability","infrastructure","victim"].some(k=>s(d[k])) ? h("div",{class:"diamond"}, v("adversary","Adversary"), v("capability","Capability"), v("infrastructure","Infrastructure"), v("victim","Victim"),
+    (s(d.socioPolitical)||s(d.technology)) ? h("div",{class:"meta"}, s(d.socioPolitical)?h("p",{},h("strong",{},"Socio-political axis: "),d.socioPolitical):null, s(d.technology)?h("p",{},h("strong",{},"Technology axis: "),d.technology):null) : null) : RR("all four vertices");
+
+  const im=a.implications||{};
+  const sec10=(s(im.jipoe)||s(im.jcc2)) ? h("div",{},
+    h("div",{class:"assess"},"Analytic assessment, not reporting. Derived from the cited sources. Validate against current classified holdings before planning use."),
+    h("h4",{class:"eyebrow",style:"margin:6px 0"},"JIPOE"), textOr(im.jipoe,"JIPOE implications"),
+    h("h4",{class:"eyebrow",style:"margin:12px 0 6px"},"JCC2"), textOr(im.jcc2,"JCC2 implications")) : RR("JIPOE and JCC2 implications");
+
+  const src=arr(a.sources);
+  const sec11=src.length ? h("ol",{class:"tight src",style:"list-style:none;padding:0"}, src.map((x,i)=>{ const u=safeUrl(x.url); return h("li",{style:"margin:6px 0"}, h("span",{class:"ref"}, x.ref||`[${i+1}]`), s(x.date)?h("span",{class:"mono"},x.date+" · "):h("span",{class:"chip rr",style:"margin-right:6px"},"UNDATED"), s(x.publisher)?x.publisher+". ":"", s(x.title)?h("em",{},x.title+". "):"", u?h("a",{href:u,target:"_blank",rel:"noopener"}, s(x.title)?"Link":u):(x.url||"")); })) : RR("no sources");
+
+  const body=h("article",{}, head, flags,
+    section(1,"identification","Identification",a,sec1),
+    section(2,"attribution","Attribution",a,sec2),
+    section(3,"objectives","Strategic objectives",a,textOr(a.objectives,"strategic objectives")),
+    section(4,"targeting","Targeting",a,sec4),
+    section(5,"capabilities","Capabilities",a,sec5),
+    section(6,"attack","MITRE ATT&CK mappings",a,sec6),
+    section(7,"campaigns","Campaign history",a,sec7),
+    section(8,"diamond","Diamond Model analysis",a,sec8),
+    section(9,"gaps","Intelligence gaps",a,listOr(a.gaps,"no gaps recorded")),
+    section(10,"implications","Operational implications for JIPOE / JCC2",a,sec10),
+    section(11,"sources","Dated authoritative sources",a,sec11));
+  const toc=h("ul",{class:"toc"}, SECTIONS.map(([k,l],i)=>{const st=secState(a,k); return h("li",{}, h("a",{href:"#sec-"+k,onclick:e=>{e.preventDefault();document.getElementById("sec-"+k)?.scrollIntoView({behavior:"smooth",block:"start"});}}, h("span",{},`${i+1}. ${l}`), h("span",{class:"st "+st}, st==="c"?"✓":st==="p"?"PART":"RR")));}));
+  const pv=a.provenance||{};
+  const aside=h("aside",{class:"aside"},
+    h("div",{class:"card"}, h("h4",{},"Profile sections"), toc),
+    h("div",{class:"card note"}, h("h4",{},"Provenance"),
+      h("div",{}, pv.origin==="import"?"Imported from ":pv.origin==="import+research"?"Imported, then researched. Base record from ":"Created in admin. ", pv.file?h("span",{class:"mono"},pv.file):null, pv.generated?` (generated ${pv.generated.slice(0,10)})`:""),
+      arr(pv.upstream).length?h("div",{},"Upstream: "+pv.upstream.join(", ")):null,
+      h("div",{style:"margin-top:6px"},"Last updated "+(s(a.updatedAt)?a.updatedAt.slice(0,10):"unknown"))));
+  app.append(crumbs, h("div",{class:"dossier"}, body, aside));
+}
+
+function renderCompare(){
+  const picks=S.cmp.map(id=>S.actors.get(id)).filter(Boolean);
+  const inj=S.inject;
+  app.append(h("div",{class:"crumbs"}, inj?h("button",{class:"btn",type:"button",onclick:()=>{go("scenarios");}},"← Back to scenario"):null, h("button",{class:"btn",type:"button",onclick:()=>go("list")},"← All actors"), picks.length?h("button",{class:"btn",type:"button",onclick:()=>{S.cmp=[];S.inject=null;render();}},"Clear selection"):null));
+  if (inj) app.append(h("div",{class:"ctx"}, h("div",{class:"eyebrow"},`Inject ${inj.n} · ${inj.time} · ${inj.title}`), h("div",{},inj.situation), h("ol",{style:"margin:0;padding-left:20px"}, arr(inj.tasks).map(t=>h("li",{},t)))));
+  if (picks.length<2){ app.append(h("div",{class:"empty"}, "Select at least two actors from the list to compare. Tick the box beside each name.")); return; }
+  const count=new Map(); picks.forEach(a=>new Set(arr(a.attack).map(t=>t.id)).forEach(id=>count.set(id,(count.get(id)||0)+1)));
+  const swCount=new Map(); picks.forEach(a=>new Set(arr(a.capabilities?.software).map(t=>t.name)).forEach(n=>swCount.set(n,(swCount.get(n)||0)+1)));
+  const sharedAll=[...count].filter(([,n])=>n===picks.length).map(([id])=>id).sort();
+  const sharedSw=[...swCount].filter(([,n])=>n>1).map(([n])=>n).sort();
+  const cell=(v)=>s(v)?v:h("span",{class:"chip rr"},"Research Required");
+  const rowsDef=[
+    ["Country",a=>ctyChip(a.country)],
+    ["Status",a=>h("div",{},statusChip(a)," ",meter(a))],
+    ["Microsoft name",a=>a.msName||"None / conflict"],
+    ["Aliases",a=>arr(a.aliases).map(x=>x.name).join(", ")||"—"],
+    ["Attribution",a=>cell(a.attribution?.sponsor)],
+    ["Confidence",a=>cell(a.attribution?.confidence)],
+    ["Objectives",a=>cell(a.objectives)],
+    ["Sectors",a=>arr(a.targeting?.sectors).length?h("ul",{class:"tight"},a.targeting.sectors.map(x=>h("li",{},x))):cell("")],
+    ["Regions",a=>arr(a.targeting?.regions).length?h("ul",{class:"tight"},a.targeting.regions.map(x=>h("li",{},x))):cell("")],
+    ["Software",a=>arr(a.capabilities?.software).length?h("div",{}, a.capabilities.software.map((x,i)=>h("span",{class:swCount.get(x.name)>1?"shared":""}, (i?", ":"")+x.name))):cell("")],
+    ["ATT&CK count",a=>h("span",{class:"mono"},`${arr(a.attack).length} techniques · ${arr(a.attack).filter(t=>count.get(t.id)>1).length} shared`)],
+    ["Tactic coverage",a=>{ const c=new Map(); arr(a.attack).forEach(t=>arr(t.tactics).forEach(x=>c.set(x,(c.get(x)||0)+1))); return c.size?h("div",{class:"tac",style:"white-space:normal"}, TACTICS.filter(x=>c.has(x)).map(x=>`${tacLabel(x)} ${c.get(x)}`).join(" · ")):cell(""); }],
+    ["Campaigns",a=>arr(a.campaigns).length?h("ul",{class:"tight"},a.campaigns.map(c=>h("li",{},(c.date?c.date+" · ":"")+(c.name||"")))):cell("")],
+    ["Adversary (Diamond)",a=>cell(a.diamond?.adversary)],
+    ["Infrastructure (Diamond)",a=>cell(a.diamond?.infrastructure)],
+    ["Victim (Diamond)",a=>cell(a.diamond?.victim)],
+    ["Intel gaps",a=>arr(a.gaps).length?`${a.gaps.length} recorded`:cell("")],
+    ["Sources",a=>arr(a.sources).length?`${a.sources.length} (${a.sources.filter(x=>s(x.date)).length} dated)`:cell("")],
+  ];
+  app.append(h("h2",{style:"font:700 28px var(--display);margin:0 0 4px"},"Actor comparison"),
+    h("p",{class:"note",style:"margin:0 0 12px"}, `${sharedAll.length} ATT&CK techniques common to all ${picks.length} actors. Shared software is highlighted. Overlap in commodity tools and LOTL techniques is weak evidence of a relationship between actors.`));
+  const tbl=h("table",{class:"cmp"}, h("thead",{}, h("tr",{}, h("th",{},"Dimension"), picks.map(a=>h("th",{}, h("a",{href:"#"+a.id,onclick:e=>{e.preventDefault();openProfile(a.id);}},a.primaryName))))),
+    h("tbody",{}, rowsDef.map(([l,f])=>h("tr",{}, h("th",{scope:"row"},l), picks.map(a=>h("td",{},f(a)))))));
+  app.append(h("div",{class:"tbl-wrap"},tbl));
+  if (sharedAll.length) app.append(h("h3",{style:"font:700 20px var(--display);margin:22px 0 8px"},"Techniques common to all selected actors"),
+    h("div",{class:"aliases"}, sharedAll.map(id=>h("span",{class:"alias mono"},id))));
+  if (sharedSw.length) app.append(h("h3",{style:"font:700 20px var(--display);margin:22px 0 8px"},"Software shared by two or more"), h("div",{class:"aliases"}, sharedSw.map(n=>h("span",{class:"alias"},n))));
+}
+
+/* ---------- scenarios ---------- */
+function renderScenarios(){
+  app.append(h("div",{class:"crumbs"}, h("button",{class:"btn",type:"button",onclick:()=>go("list")},"← All actors")));
+  if (!S.scenarios.length){ app.append(h("div",{class:"empty"},"No scenarios are stored yet. Editors can add scenario documents to the encyclopedia's database.")); return; }
+  S.scenarios.forEach(sc=>{
+    app.append(h("div",{class:"exbanner"}, sc.banner||"EXERCISE // FICTIONAL SCENARIO"),
+      h("div",{class:"eyebrow"},"Training scenario · uses the compare view"),
+      h("h2",{style:"font:700 clamp(28px,4vw,40px)/1.05 var(--display);margin:6px 0 8px"}, sc.title||"Scenario"),
+      h("p",{style:"max-width:75ch;margin:0 0 8px"}, sc.summary||""),
+      h("dl",{class:"kv",style:"margin-bottom:16px"}, h("dt",{},"Audience"),h("dd",{},sc.audience||""), h("dt",{},"Doctrine"),h("dd",{}, h("ul",{class:"tight"}, arr(sc.doctrine).map(d=>h("li",{},d))))));
+    const list=h("div",{class:"injects"});
+    arr(sc.injects).forEach(inj=>{
+      const ok=arr(inj.compare).filter(id=>S.actors.has(id));
+      const missing=arr(inj.compare).filter(id=>!S.actors.has(id));
+      list.append(h("article",{class:"inject",id:`inject-${inj.n}`},
+        h("div",{class:"ih"}, h("span",{class:"time"},`INJECT ${inj.n} · ${inj.time}`), h("span",{class:"t"},inj.title), h("span",{class:"chip"},inj.audience||"")),
+        h("p",{style:"margin:0;max-width:75ch"}, inj.situation),
+        h("ol",{}, arr(inj.tasks).map(t=>h("li",{},t))),
+        h("div",{style:"display:flex;gap:8px;flex-wrap:wrap;align-items:center"},
+          h("button",{class:"btn primary",type:"button",disabled:ok.length<1,onclick:()=>openInject(inj)}, ok.length>1?`Compare ${ok.map(id=>S.actors.get(id).primaryName).join(" · ")}`:`Open ${ok[0]?S.actors.get(ok[0]).primaryName:"profile"}`),
+          missing.length?h("span",{class:"note"},"Missing from database: "+missing.join(", ")):null),
+        h("details",{}, h("summary",{},"Instructor notes"), h("p",{}, inj.notes||""))));
+    });
+    app.append(list);
+  });
+}
+function openInject(inj){
+  const ok=arr(inj.compare).filter(id=>S.actors.has(id));
+  S.inject=inj;
+  if (ok.length===1){ openProfile(ok[0]); return; }
+  S.cmp=ok.slice(0,4); S.view="compare"; history.replaceState(null,"","#cmp~"+S.cmp.join("~")); render(); window.scrollTo(0,0);
+}
+
+/* ---------- admin ---------- */
+const lines = v => String(v||"").split("\n").map(x=>x.trim()).filter(Boolean);
+const pipes = (v, keys) => lines(v).map(l=>{ const p=l.split("|").map(x=>x.trim()); const o={}; keys.forEach((k,i)=>o[k]=p[i]||""); return o; });
+const unpipes = (list, keys) => arr(list).map(o=>keys.map(k=>Array.isArray(o[k])?o[k].join(", "):(o[k]||"")).join(" | ")).join("\n");
+const slug = t => t.toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"").slice(0,80);
+
+function openEdit(id){ if(!S.admin) return; S.editing = id ? structuredClone(S.actors.get(id)) : null; S.view="edit"; S.id=id||null; render(); window.scrollTo(0,0); }
+
+function renderEdit(){
+  if (!S.admin){ app.append(h("div",{class:"empty"},"Research administration is limited to editors of this encyclopedia.")); return; }
+  const a=S.editing||{};
+  const isNew=!S.editing;
+  const F=(id,label,val,opts={})=>h("div",{class:"f"}, h("label",{for:id},label), opts.area?h("textarea",{id,class:opts.code?"code":"",rows:opts.rows||4},val||""):opts.select?h("select",{id},opts.select.map(([v,l])=>h("option",{value:v,selected:v===val},l))):h("input",{id,type:"text",value:val||""}), opts.hint?h("small",{},opts.hint):null);
+  const fs=(title,...kids)=>h("fieldset",{class:"fs"},h("legend",{},title),...kids);
+  const msg=h("div",{class:"msg",role:"status"});
+  const form=h("form",{class:"form",onsubmit:e=>{e.preventDefault();save(msg);}},
+    h("div",{}, h("div",{class:"eyebrow"},"Research administration"), h("h2",{style:"font:700 32px var(--display);margin:4px 0 0"}, isNew?"New actor profile":`Edit ${a.primaryName}`),
+      h("p",{class:"note"},"Leave anything you cannot source blank. Empty sections display as Research Required. Pipe-delimited fields take one entry per line.")),
+    fs("1 · Identification",
+      h("div",{class:"grid2"}, F("f-name","Primary name (Microsoft)",a.primaryName,{hint:"Use the Microsoft weather-family name when one exists."}), F("f-country","Country",a.country||"CN",{select:Object.entries(COUNTRIES)})),
+      h("div",{class:"grid2"}, F("f-ms","Microsoft name",a.msName), F("f-gid","MITRE group ID",a.mitreGroupId,{hint:"e.g. G1017"})),
+      F("f-aliases","Aliases · name | vendor",unpipes(a.aliases,["name","vendor"]),{area:true,code:true}),
+      F("f-summary","Summary",a.identification?.summary,{area:true,rows:5}),
+      h("div",{class:"grid2"}, F("f-first","First observed",a.identification?.firstObserved), F("f-idnotes","Naming notes",a.identification?.notes))),
+    fs("2 · Attribution", F("f-sponsor","Sponsor",a.attribution?.sponsor,{area:true,rows:2}), F("f-conf","Confidence (with assessing body)",a.attribution?.confidence,{area:true,rows:2}), F("f-basis","Basis",a.attribution?.basis,{area:true,rows:3})),
+    fs("3 · Strategic objectives", F("f-obj","Objectives",a.objectives,{area:true,rows:4})),
+    fs("4 · Targeting", h("div",{class:"grid2"}, F("f-sectors","Sectors · one per line",lines(arr(a.targeting?.sectors).join("\n")).join("\n"),{area:true}), F("f-regions","Regions · one per line",arr(a.targeting?.regions).join("\n"),{area:true})), F("f-tnotes","Targeting notes",a.targeting?.notes,{area:true,rows:2})),
+    fs("5 · Capabilities", F("f-capsum","Capability assessment",a.capabilities?.summary,{area:true,rows:4}), F("f-sw","Software · id | name | type",unpipes(a.capabilities?.software,["id","name","type"]),{area:true,code:true})),
+    fs("6 · MITRE ATT&CK", F("f-attack","Techniques · T-id | name | source",unpipes(a.attack,["id","name","source"]),{area:true,code:true,rows:8})),
+    fs("7 · Campaign history", F("f-camp","Campaigns · date | name | summary | source refs (comma-separated)",unpipes(a.campaigns,["date","name","summary","sources"]),{area:true,code:true,rows:6})),
+    fs("8 · Diamond Model", h("div",{class:"grid2"}, F("f-dadv","Adversary",a.diamond?.adversary,{area:true,rows:3}), F("f-dcap","Capability",a.diamond?.capability,{area:true,rows:3}), F("f-dinf","Infrastructure",a.diamond?.infrastructure,{area:true,rows:3}), F("f-dvic","Victim",a.diamond?.victim,{area:true,rows:3})), h("div",{class:"grid2"}, F("f-dsp","Socio-political axis",a.diamond?.socioPolitical,{area:true,rows:2}), F("f-dtech","Technology axis",a.diamond?.technology,{area:true,rows:2}))),
+    fs("9 · Intelligence gaps", F("f-gaps","Gaps · one per line",arr(a.gaps).join("\n"),{area:true,rows:5})),
+    fs("10 · Operational implications", F("f-jipoe","JIPOE",a.implications?.jipoe,{area:true,rows:5}), F("f-jcc2","JCC2",a.implications?.jcc2,{area:true,rows:5})),
+    fs("11 · Dated sources", F("f-src","Sources · ref | date (YYYY-MM-DD) | publisher | title | url",unpipes(a.sources,["ref","date","publisher","title","url"]),{area:true,code:true,rows:6,hint:"A source without a date keeps this section at Partial."})),
+    h("div",{class:"bar"}, h("button",{class:"btn primary",type:"submit"}, isNew?"Create profile":"Save changes"), h("button",{class:"btn",type:"button",onclick:()=>{ S.view = isNew?"list":"profile"; render(); }},"Cancel"),
+      !isNew ? h("button",{class:"btn danger",type:"button",id:"del",onclick:e=>confirmDelete(e.currentTarget,a.id,msg)},"Delete profile") : null, msg));
+  app.append(form);
+}
+
+function val(id){ return document.getElementById(id)?.value ?? ""; }
+async function save(msg){
+  const name=val("f-name").trim();
+  if (!name){ msg.className="msg err"; msg.textContent="Add a primary name before saving."; return; }
+  const prev=S.editing;
+  const id=prev?.id || slug(name);
+  if (!prev && S.actors.has(id)){ msg.className="msg err"; msg.textContent=`A profile with the id "${id}" already exists. Open and edit it instead.`; return; }
+  const camp=pipes(val("f-camp"),["date","name","summary","sources"]).map(c=>({...c, sources:c.sources?c.sources.split(",").map(x=>x.trim()).filter(Boolean):[]}));
+  const doc={
+    ...(prev||{}), id, primaryName:name, msName:val("f-ms").trim(), country:val("f-country"), mitreGroupId:val("f-gid").trim(),
+    aliases:pipes(val("f-aliases"),["name","vendor"]).filter(x=>x.name),
+    identification:{summary:val("f-summary").trim(), firstObserved:val("f-first").trim(), notes:val("f-idnotes").trim()},
+    attribution:{sponsor:val("f-sponsor").trim(), confidence:val("f-conf").trim(), basis:val("f-basis").trim()},
+    objectives:val("f-obj").trim(),
+    targeting:{sectors:lines(val("f-sectors")), regions:lines(val("f-regions")), notes:val("f-tnotes").trim()},
+    capabilities:{summary:val("f-capsum").trim(), software:pipes(val("f-sw"),["id","name","type"]).filter(x=>x.name||x.id)},
+    attack:pipes(val("f-attack"),["id","name","source"]).filter(x=>x.id),
+    campaigns:camp,
+    diamond:{adversary:val("f-dadv").trim(), capability:val("f-dcap").trim(), infrastructure:val("f-dinf").trim(), victim:val("f-dvic").trim(), socioPolitical:val("f-dsp").trim(), technology:val("f-dtech").trim()},
+    gaps:lines(val("f-gaps")),
+    implications:{jipoe:val("f-jipoe").trim(), jcc2:val("f-jcc2").trim()},
+    sources:pipes(val("f-src"),["ref","date","publisher","title","url"]).filter(x=>x.url||x.title),
+    updatedAt:new Date().toISOString(), updatedBy:S.uid||"",
+    provenance: prev?.provenance || {origin:"admin"},
+  };
+  if (!prev) { doc.importFlags=[]; doc.msCandidates=[]; }
+  msg.className="msg"; msg.textContent="Saving…";
+  try{
+    await db.doc("actors/"+id).set(JSON.parse(JSON.stringify(doc)));
+    try{ await db.collection("audit").add({actorId:id, action:prev?"edit":"create", at:doc.updatedAt, by:S.uid||""}); }catch(_){}
+    S.actors.set(id, doc); S.editing=null; S.view="profile"; S.id=id; history.replaceState(null,"","#"+id); render(); toast(prev?"Profile saved":"Profile created");
+  }catch(e){ msg.className="msg err"; msg.textContent = e?.code==="invalid_argument" ? "Save refused. Only editors of this encyclopedia can change profiles." : e?.code==="quota_exceeded" ? "Storage is full. Delete unused profiles, then save again." : "Save failed. Check your connection and try again."; }
+}
+function confirmDelete(btn,id,msg){
+  if (btn.dataset.armed!=="1"){ btn.dataset.armed="1"; btn.textContent="Confirm delete"; msg.className="msg err"; msg.textContent="This permanently removes the profile for every viewer."; return; }
+  db.doc("actors/"+id).delete().then(async()=>{ try{ await db.collection("audit").add({actorId:id,action:"delete",at:new Date().toISOString(),by:S.uid||""}); }catch(_){} S.actors.delete(id); S.cmp=S.cmp.filter(x=>x!==id); go("list"); toast("Profile deleted"); })
+    .catch(()=>{ msg.textContent="Delete failed. Only editors can delete profiles."; });
+}
+
+/* ---------- navigation ---------- */
+function go(view){
+  S.view=view;
+  if (view==="list"){ S.id=null; S.inject=null; history.replaceState(null,"",location.pathname+location.search); }
+  else if (view==="scenarios") history.replaceState(null,"","#scenarios");
+  else if (view==="compare" && S.cmp.length) history.replaceState(null,"","#cmp~"+S.cmp.join("~"));
+  render(); window.scrollTo(0,0);
+}
+function applyHash(){
+  const hv=decodeURIComponent(location.hash.slice(1));
+  if (!hv) return false;
+  if (hv==="scenarios"){ S.view="scenarios"; return true; }
+  if (hv.startsWith("cmp~")){ S.cmp=hv.split("~").slice(1).filter(id=>S.actors.has(id)).slice(0,4); S.view="compare"; return true; }
+  if (S.actors.has(hv)){ S.view="profile"; S.id=hv; return true; }
+  return false;
+}
+function openProfile(id){ S.view="profile"; S.id=id; history.replaceState(null,"","#"+id); render(); window.scrollTo(0,0); }
+function toggleCmp(id){ S.inject=null; const i=S.cmp.indexOf(id); if(i>=0) S.cmp.splice(i,1); else { if(S.cmp.length>=4){ toast("Compare holds up to 4 actors"); return; } S.cmp.push(id); } render(); }
+$("#btn-home").onclick=()=>go("list");
+$("#btn-compare").onclick=()=>{ S.inject=null; go("compare"); };
+$("#btn-scen").onclick=()=>go("scenarios");
+$("#cmp-go").onclick=()=>go("compare");
+$("#cmp-clear").onclick=()=>{S.cmp=[];render();};
+$("#btn-new").onclick=()=>openEdit(null);
+let qT; $("#q").addEventListener("input",e=>{ clearTimeout(qT); qT=setTimeout(()=>{ S.q=e.target.value.trim(); S.limit=60; if(S.view!=="list") S.view="list"; render(); },120); });
+window.addEventListener("hashchange",()=>{ if (S.view!=="edit" && applyHash()){ render(); window.scrollTo(0,0); } });
+
+$("#foot").append(h("p",{}, "UNCLASSIFIED. Open-source research aid only. For classified TTPs and current reporting, consult JWICS / SIPR holdings. Base records were imported from actors.json (MISP Galaxy, MITRE ATT&CK, Microsoft Threat Intelligence, Google TI / Mandiant). Nothing absent from that file was added to imported records except Microsoft names confirmed against Microsoft's published mapping (MicrosoftMapping.json, retrieved 2026-10-14) and ATT&CK tactic labels from MITRE's published data. Missing sections are marked Research Required."));
+
+/* ---------- boot ---------- */
+render();
+(async () => {
+  if (!window.claude?.use){ S.dbErr="Storage is unavailable here. Open this encyclopedia on claude.ai to load profiles."; S.loaded=false; render(); return; }
+  [db, user] = await Promise.all([window.claude.use("db"), window.claude.use("user")]);
+  if (user){ try{ S.admin = !!(await user.canEdit()); S.uid = await user.id(); }catch(_){} }
+  if (!db){ S.dbErr="Sign in to claude.ai with access to this encyclopedia to load profiles."; render(); return; }
+  db.collection("actors").limit(1000).onSnapshot(snap=>{
+    const m=new Map(); snap.docs.forEach(d=>{ const v=d.data(); if(v && v.primaryName) m.set(d.id,{...v,id:d.id}); });
+    const first=!S.loaded;
+    S.actors=m; S.loaded=true;
+    if (first) applyHash();
+    if (S.view!=="edit") render(); else { $("#cmp-n").textContent=S.cmp.length; }
+  }, err=>{ S.dbErr = err?.code==="revoked" ? "Access to this encyclopedia changed. Reload the page." : "Profiles could not be loaded. Reload the page to try again."; S.loaded=false; render(); });
+  db.collection("scenarios").limit(50).onSnapshot(snap=>{
+    S.scenarios=snap.docs.map(d=>({...d.data(), id:d.id})).filter(x=>x.title).sort((a,b)=>(a.order||0)-(b.order||0));
+    if (S.view==="scenarios") render();
+  }, ()=>{});
+})();
+})();
+</script>
