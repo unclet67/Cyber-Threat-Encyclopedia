@@ -395,7 +395,7 @@ function renderProfile(a){
       s(id.notes)?h("dt",{},"Naming notes"):null, s(id.notes)?h("dd",{},id.notes):null),
     h("h4",{class:"eyebrow",style:"margin:14px 0 8px"},`Aliases (${arr(a.aliases).length}) · vendor inferred from naming convention`),
     arr(a.aliases).length ? h("div",{class:"aliases"}, a.aliases.map(x=>h("span",{class:"alias"}, x.name, h("small",{},x.vendor||"")))) : RR("no aliases in source"),
-    arr(a.relatedMs).length ? h("div",{}, h("h4",{class:"eyebrow",style:"margin:14px 0 4px"},"Related Microsoft clusters · not aliases"), h("div",{class:"related"}, a.relatedMs.map(r=>h("div",{}, h("b",{},r.name), " · ", r.note||"")))) : null);
+    arr(a.relatedMs).length ? h("div",{}, h("h4",{class:"eyebrow",style:"margin:14px 0 4px"},"Related Microsoft clusters · not aliases"), h("div",{class:"related"}, a.relatedMs.map(r=>{ const tgt=[...S.actors.values()].find(x=>x.primaryName===r.name); return h("div",{}, tgt?h("a",{href:"#"+tgt.id,onclick:e=>{e.preventDefault();openProfile(tgt.id);}},h("b",{},r.name)):h("b",{},r.name), " · ", r.note||""); }))) : null);
 
   const at=a.attribution||{};
   const sec2=(s(at.sponsor)||s(at.confidence)||s(at.basis)) ? h("dl",{class:"kv"},
