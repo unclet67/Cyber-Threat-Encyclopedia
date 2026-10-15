@@ -1,47 +1,10 @@
 {
  "note": "Research queue for the automatic wave runner. Waves take items from the front; finished ids move to 'done'. Scope limited to CN/RU/IR/KP on 2026-10-15 at the user's request; non-state actors moved to 'deferred'.",
- "verify": [],
+ "verify": [
+  "ruby-sleet",
+  "ruza-flood"
+ ],
  "research": [
-  {
-   "id": "obsidian-sandstorm",
-   "tier": "T2"
-  },
-  {
-   "id": "oka-flood",
-   "tier": "T2"
-  },
-  {
-   "id": "opal-sleet",
-   "tier": "T2"
-  },
-  {
-   "id": "pearl-sleet",
-   "tier": "T2"
-  },
-  {
-   "id": "pepper-typhoon",
-   "tier": "T2"
-  },
-  {
-   "id": "pumpkin-sandstorm",
-   "tier": "T2"
-  },
-  {
-   "id": "putter-panda",
-   "tier": "T2"
-  },
-  {
-   "id": "rancor",
-   "tier": "T2"
-  },
-  {
-   "id": "ruby-sleet",
-   "tier": "T2"
-  },
-  {
-   "id": "ruza-flood",
-   "tier": "T2"
-  },
   {
    "id": "salmon-typhoon",
    "tier": "T2"
@@ -1187,11 +1150,19 @@
   "neva-flood",
   "nomadic-octopus",
   "nylon-typhoon",
+  "obsidian-sandstorm",
+  "oka-flood",
   "onyx-sleet",
+  "opal-sleet",
   "peach-sandstorm",
+  "pearl-sleet",
+  "pepper-typhoon",
   "periwinkle-tempest",
   "pink-sandstorm",
+  "pumpkin-sandstorm",
   "purple-typhoon",
+  "putter-panda",
+  "rancor",
   "raspberry-typhoon",
   "red-sandstorm",
   "salt-typhoon",
@@ -1216,7 +1187,10 @@
   "berry-sandstorm",
   "crescent-typhoon",
   "lilac-typhoon",
-  "mofang"
+  "mofang",
+  "obsidian-sandstorm",
+  "pearl-sleet",
+  "pumpkin-sandstorm"
  ],
  "halts": [],
  "deferred": [
@@ -1288,19 +1262,5 @@
   "wheat-tempest",
   "wisteria-tsunami",
   "zigzag-hail"
- ],
- "drafts_verified_unmerged": [
-  "obsidian-sandstorm",
-  "oka-flood",
-  "opal-sleet",
-  "pearl-sleet",
-  "pepper-typhoon",
-  "pumpkin-sandstorm",
-  "putter-panda",
-  "rancor"
- ],
- "drafts_unverified": [
-  "ruby-sleet",
-  "ruza-flood"
  ]
 }
