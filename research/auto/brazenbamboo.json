@@ -1,0 +1,165 @@
+{
+  "identification": {
+    "summary": "BrazenBamboo is the name Volexity uses for a suspected Chinese state-affiliated threat actor that Volexity credits with developing the DEEPDATA, DEEPPOST and LIGHTSPY malware families [S1][S2]. Volexity describes the group as the developer of the tools, not necessarily the operator of every deployment [S1]. While analyzing a DEEPDATA sample, Volexity found a zero-day credential-disclosure flaw in Fortinet's FortiClient for Windows (v7.4.0) that a DEEPDATA plugin used to pull VPN credentials from process memory [S1][S3]. Volexity also documented a previously unreported Windows variant of LIGHTSPY [S1][S4].",
+    "firstObserved": "Volexity identified zero-day exploitation of the FortiClient flaw in July 2024 and published on 2024-11-15 [S1][S2]. LIGHTSPY itself was first reported in 2020 (iOS watering-hole campaign) [S6]. The first date BrazenBamboo's own activity began is not established in the sources gathered.",
+    "notes": "Microsoft has no mapped name in this record. Vendor overlap: BlackBerry attributes the same DeepData/LightSpy Windows tooling to APT41 [S5]; ThreatFabric linked LightSpy Android code to DragonEgg, which Lookout attributed to APT41 [S6]. Volexity's BrazenBamboo is a separate vendor cluster name; do not merge facts across these without the primary reports. The Volexity primary page could not be opened in this session (host unreachable); Volexity details are from search-result summaries of that page and secondary coverage [S1][S2]."
+  },
+  "attribution": {
+    "sponsor": "Volexity describes BrazenBamboo as suspected Chinese state-affiliated [S2][S3]. No government attribution was found in the sources gathered.",
+    "confidence": "Volexity characterizes the actor as a suspected China-linked, state-affiliated developer [S2]. BlackBerry states it believes with high confidence that the LightSpy actor is associated with APT41 [S5]. These are vendor assessments only.",
+    "basis": "Volexity: malware development lineage across DEEPDATA, DEEPPOST and LIGHTSPY, and C2/operator-panel analysis [S1][S8]. ThreatFabric: location plugin recalculating coordinates with a China-specific system [S6]. BlackBerry: DeepData framework layout matching LightSpy and APT41 association [S5]."
+  },
+  "objectives": "Surveillance and data theft: DEEPDATA harvests credentials and sensitive data from Windows hosts, and LIGHTSPY collects messaging, location, audio and other data from devices [S3][S5][S6]. Specific tasking or end customer is not established. One database summary of the Volexity report says the operator panel references domestic law enforcement and supports multiple users, which would suggest tools built for government clients; this is unverified here [S8].",
+  "targeting": {
+    "sectors": [],
+    "regions": [
+      "Southern Asia / Asia-Pacific (BlackBerry reporting on DeepData victims) [S5]"
+    ],
+    "notes": "BlackBerry describes DeepData campaign victims in Southern Asia. Volexity's own victim sectors could not be confirmed from accessible sources. Earlier LightSpy activity targeted Hong Kong iPhone users via watering holes [S6]."
+  },
+  "capabilities": {
+    "summary": "DEEPDATA is a modular Windows post-exploitation framework: a DLL loader decrypts and launches 12 plugins through an orchestrator module (frame.dll) [S2]. One plugin exploits the FortiClient 7.4.0 flaw to read usernames, passwords, gateways and ports from process memory [S3]. Other plugins target messaging apps (WhatsApp, Telegram, Signal, WeChat), browsers, password managers and system/network data, and can record audio [S5]. DEEPPOST exfiltrates files to a remote endpoint [S2]. Volexity reported the flaw to Fortinet on 2024-07-18 and Fortinet acknowledged it on 2024-07-24; Volexity's update says Fortinet publicly acknowledged the flaw on 2024-12-18; no CVE or patch was confirmed [S1][S3]. The Windows LIGHTSPY variant runs shellcode in memory, uses WebSocket and HTTPS for C2, and has an orchestrator-plus-plugins design [S4]. ThreatFabric's iOS LightSpy analysis (core 7.9.0) found 28 plugins including seven with destructive boot-interference functions, Safari-based initial access and jailbreak privilege escalation [S6]. Hunt.io (Feb 2025) reported LightSpy command support for over 100 functions across Android, iOS, Windows, macOS, routers and Linux, and Facebook/Instagram database targeting on Android [S10]."
+  },
+  "campaigns": [
+    {
+      "date": "2020",
+      "name": "LightSpy iOS watering-hole campaign",
+      "summary": "LightSpy was first documented in a watering-hole campaign against iPhone users in Hong Kong.",
+      "sources": [
+        "S6"
+      ]
+    },
+    {
+      "date": "2024-04",
+      "name": "DeepData / LightSpy Windows activity",
+      "summary": "BlackBerry reports identifying the DeepData framework activity in April 2024, tied to a Southern Asia espionage campaign.",
+      "sources": [
+        "S5"
+      ]
+    },
+    {
+      "date": "2024-07",
+      "name": "FortiClient zero-day exploitation by DEEPDATA",
+      "summary": "Volexity identified zero-day exploitation of a FortiClient for Windows credential-disclosure flaw; reported to Fortinet 2024-07-18, acknowledged 2024-07-24.",
+      "sources": [
+        "S1",
+        "S3"
+      ]
+    },
+    {
+      "date": "2024-10",
+      "name": "ThreatFabric LightSpy iOS analysis",
+      "summary": "ThreatFabric analyzed LightSpy iOS core 7.9.0 with 28 plugins, destructive functions and five active C2 servers shared with macOS campaigns.",
+      "sources": [
+        "S6"
+      ]
+    },
+    {
+      "date": "2024-11",
+      "name": "Volexity and BlackBerry public disclosures",
+      "summary": "Volexity published BrazenBamboo research on 2024-11-15, naming DEEPDATA, DEEPPOST and LIGHTSPY and a Windows LIGHTSPY variant; BlackBerry published its APT41/DeepData analysis the same month.",
+      "sources": [
+        "S1",
+        "S2",
+        "S4",
+        "S5"
+      ]
+    },
+    {
+      "date": "2024-12",
+      "name": "Fortinet public acknowledgement",
+      "summary": "Per an update on Volexity's post, Fortinet issued a public acknowledgement on 2024-12-18; no patch or CVE was confirmed in sources gathered.",
+      "sources": [
+        "S1"
+      ]
+    },
+    {
+      "date": "2025-02",
+      "name": "Hunt.io LightSpy infrastructure and command expansion",
+      "summary": "Hunt.io reported 100+ commands, social media app targeting and eight active IPs, some tied to earlier BlackBerry and Volexity DeepData research.",
+      "sources": [
+        "S10"
+      ]
+    }
+  ],
+  "diamond": {
+    "adversary": "Suspected Chinese state-affiliated developer of DEEPDATA, DEEPPOST and LIGHTSPY (Volexity); BlackBerry ties the LightSpy actor to APT41 [S2][S5].",
+    "capability": "FortiClient 7.4.0 credential-disclosure zero-day; modular DEEPDATA with 12 plugins; DEEPPOST exfiltration; multi-platform LIGHTSPY including a Windows variant [S2][S3][S4].",
+    "infrastructure": "Multi-user C2/operator panel (per a secondary summary of Volexity) [S8]; ThreatFabric found five active iOS-related C2 servers shared with macOS campaigns, one hosting an admin panel, with servers across mainland China, Hong Kong, Taiwan, Singapore and Russia [S6]; Hunt.io tracked eight active IPs in Feb 2025 [S10].",
+    "victim": "Windows users with FortiClient VPN (credential theft) and mobile/desktop users of messaging apps; BlackBerry reports Southern Asia victims [S3][S5].",
+    "socioPolitical": "Surveillance tooling consistent with state interests in monitoring individuals; exact tasking is not established [S5].",
+    "technology": "Exposure of Windows VPN client credentials in process memory, internet-facing VPN access, encrypted messaging apps on endpoints, and iOS/macOS Safari-delivered implants [S3][S5][S6]."
+  },
+  "gaps": [
+    "Volexity primary report, BlackBerry blog and ThreatFabric blog could not be opened in this session (host unreachable); details rely on search-result summaries and secondary coverage.",
+    "Volexity's victim sectors and geography for BrazenBamboo are not confirmed; the existing record's claim of a focus on domestic targets and custom analyst software is unverified here, and one secondary summary of the C2 panel referencing domestic law enforcement is unconfirmed [S8].",
+    "Relationship between BrazenBamboo and APT41 is a vendor-level overlap (BlackBerry, ThreatFabric via DragonEgg), not a Volexity statement; unresolved.",
+    "No CVE identifier for the FortiClient flaw was confirmed in sources gathered; early reports said none was assigned.",
+    "No Microsoft actor name, MITRE group ID or government attribution found.",
+    "No BrazenBamboo-specific reporting after Feb 2025 found; the Hunt.io LightSpy findings may not be BrazenBamboo-operated.",
+    "Initial access vector for DEEPDATA deployments is not established."
+  ],
+  "implications": {
+    "jipoe": "Analyst assessment derived from cited sources; validate before use. STEP 1: Key terrain is the VPN client and its stored credentials on Windows endpoints, plus personal messaging apps on mobile devices used by personnel [S3][S5]. STEP 2: The actor has a developer-grade toolset with a zero-day, so defenders should assume patches lag exploitation (July 2024 exploitation, December 2024 public acknowledgement) [S1]. STEP 3: Template is an unknown initial foothold, DEEPDATA plugin execution, credential theft from FortiClient memory, exfiltration via DEEPPOST, then possible VPN reuse [S2][S3]. STEP 4: MLCOA is continued credential and messaging-data theft against regional targets in Asia [S5]. MDCOA is use of stolen VPN credentials for access into defense or partner networks, or destructive mobile functions as seen in LightSpy iOS [S6]. Candidate indicators: unexpected frame.dll orchestrator loading, access to FortiClient process memory, outbound transfers to unfamiliar endpoints, and FortiClient 7.4.0 installs without vendor mitigations [S1][S2][S3].",
+    "jcc2": "Analyst assessment derived from cited sources; validate before use. (1) Situational awareness: track endpoint FortiClient versions and apply any Fortinet guidance; include vendor reporting on DEEPDATA and LightSpy in hunt planning [S1]. (2) Authorities: remediation of personally owned mobile devices running LightSpy-targeted messaging apps needs policy coverage beyond managed networks [S5][S6]. (3) Mission assurance: rotate VPN credentials after any suspected compromise since credentials were read from memory [S3]. (4) Coordination: attribution is vendor-only and overlaps with APT41 reporting, so share indicators through established channels without asserting a single actor name [S5]."
+  },
+  "sources": [
+    {
+      "ref": "S1",
+      "title": "BrazenBamboo Weaponizes FortiClient Vulnerability to Steal VPN Credentials via DEEPDATA (page not opened; details via search summaries)",
+      "publisher": "Volexity",
+      "date": "2024-11-15",
+      "url": "https://www.volexity.com/blog/2024/11/15/brazenbamboo-weaponizes-forticlient-vulnerability-to-steal-vpn-credentials-via-deepdata/"
+    },
+    {
+      "ref": "S2",
+      "title": "Warning: DeepData Malware Exploiting Unpatched Fortinet Flaw (reporting Volexity)",
+      "publisher": "The Hacker News",
+      "date": "2024-11-16",
+      "url": "https://thehackernews.com/2024/11/warning-deepdata-malware-exploiting.html"
+    },
+    {
+      "ref": "S3",
+      "title": "Chinese hackers exploit Fortinet VPN zero-day to steal credentials (reporting Volexity)",
+      "publisher": "BleepingComputer",
+      "date": "2024-11",
+      "url": "https://www.bleepingcomputer.com/news/security/chinese-hackers-exploit-fortinet-vpn-zero-day-to-steal-credentials/"
+    },
+    {
+      "ref": "S4",
+      "title": "Fortinet VPN Zero-Day Exploited in Malware Attacks Remains Unpatched (reporting Volexity)",
+      "publisher": "SecurityWeek",
+      "date": "2024-11",
+      "url": "https://www.securityweek.com/fortinet-vpn-zero-day-exploited-in-malware-attacks-remains-unpatched-report/"
+    },
+    {
+      "ref": "S5",
+      "title": "LightSpy: APT41 Deploys Advanced DeepData Framework In Targeted Southern Asia Espionage Campaign",
+      "publisher": "BlackBerry (page not opened; via search summaries and Arctic Wolf republication)",
+      "date": "2024-11",
+      "url": "https://blogs.blackberry.com/en/2024/11/lightspy-apt41-deploys-advanced-deepdata-framework-in-targeted-southern-asia-espionage-campaign"
+    },
+    {
+      "ref": "S6",
+      "title": "LightSpy: Implant for iOS (via search summary)",
+      "publisher": "ThreatFabric",
+      "date": "2024-10-29",
+      "url": "https://www.threatfabric.com/blogs/lightspy-implant-for-ios"
+    },
+    {
+      "ref": "S8",
+      "title": "BrazenBamboo Weaponizes FortiClient Vulnerability to Steal Credentials (threat database summary)",
+      "publisher": "Wiz Threat Center",
+      "date": "2024-11",
+      "url": "https://threats.wiz.io/all-incidents/brazenbamboo-weaponizes-forticlient-vulnerability-to-steal-credentials"
+    },
+    {
+      "ref": "S10",
+      "title": "LightSpy Expands Command List to Include Social Media Platforms",
+      "publisher": "Hunt.io",
+      "date": "2025-02-20",
+      "url": "https://hunt.io/blog/lightspy-malware-targets-facebook-instagram"
+    }
+  ],
+  "aliasesAdd": []
+}

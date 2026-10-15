@@ -1,0 +1,84 @@
+{
+ "identification": {
+  "summary": "BRONZE VAPOR is the Secureworks Counter Threat Unit (CTU) name for a targeted threat group assessed with moderate confidence to be of Chinese origin and to have operated since at least 2017 [S2]. The group conducts espionage against semiconductor, aviation and telecommunications organizations [S2].",
+  "firstObserved": "2017 (at least)",
+  "notes": "The Malpedia entry reproduces the Secureworks CTU wording; the original CTU profile was not located in search results, so the claims here rest on that mirror [S2]. A CyCraft report on 'Chimera' describes semiconductor-sector intrusions in Taiwan in 2018-2019 attributed on suspicion to a China-based group [S3]. No cited source links Chimera to BRONZE VAPOR, so the clusters are not merged here."
+ },
+ "attribution": {
+  "sponsor": "",
+  "confidence": "Secureworks CTU assesses with moderate confidence that the group is of Chinese origin [S2].",
+  "basis": "The only stated basis is artefacts from tools associated with the group and open source reporting on related incidents [S2]. No government attribution was found."
+ },
+ "objectives": "CTU researchers assess the group's intent to be information theft, focused on intellectual property (semiconductors) and personally identifiable information such as traveller records (aviation) [S2].",
+ "targeting": {
+  "sectors": [
+   "Semiconductors",
+   "Aviation / airlines",
+   "Telecommunications"
+  ],
+  "regions": [
+   "East Asia (particularly Taiwan) before 2019",
+   "Europe (airline sector in 2019; at least one semiconductor company, with activity reportedly dating to 2017)"
+  ],
+  "notes": "Before 2019 operations, with some exceptions, centered on East Asia, particularly Taiwan [S2]. In 2019 the group attacked one or more entities in the European airlines sector, and in 2021 open source detailed attacks on at least one European semiconductor company believed to date to 2017 [S2]."
+ },
+ "capabilities": {
+  "summary": "Initial access is via credential-based attacks on existing remote access (Citrix, VPN) or B2B network access, and may include spearphishing with 'Letter of Appointment' lures [S2]. Cobalt Strike is deployed with living-off-the-land techniques, and AceHash is used for credential harvesting [S2]. Tools named in the profile are WATERCYCLE (data exfiltration) and STOCKPIPE (proxying information through Microsoft Exchange servers over email) [S2]."
+ },
+ "campaigns": [
+  {
+   "date": "2017",
+   "name": "Earliest assessed activity / European semiconductor company",
+   "summary": "Artefacts and open source reporting indicate operation since at least 2017, and open source in 2021 detailed attacks on at least one European semiconductor company believed to date to 2017 [S2].",
+   "sources": [
+    "S2"
+   ]
+  },
+  {
+   "date": "2019",
+   "name": "European airline sector intrusions",
+   "summary": "BRONZE VAPOR attacked one or more entities in the European airlines sector, consistent with a traveller-records collection interest [S2].",
+   "sources": [
+    "S2"
+   ]
+  }
+ ],
+ "diamond": {
+  "adversary": "Secureworks CTU-tracked group, assessed as Chinese origin with moderate confidence; sponsor not stated [S2].",
+  "capability": "Cobalt Strike, AceHash, WATERCYCLE, STOCKPIPE, living off the land [S2].",
+  "infrastructure": "",
+  "victim": "Semiconductor, aviation and telecommunications organizations in East Asia (Taiwan) and Europe [S2].",
+  "socioPolitical": "",
+  "technology": "Exploits existing remote access (Citrix, VPN), B2B access and Microsoft Exchange servers (as a proxy path) [S2]."
+ },
+ "gaps": [
+  "Original Secureworks CTU profile URL was not seen in search results and was removed; content rests on the Malpedia mirror.",
+  "The Secureworks profile and Malpedia entry carry no visible publication date; source dates are unknown.",
+  "Sponsor and government attribution unknown; no MITRE group ID.",
+  "Whether BRONZE VAPOR overlaps vendor clusters such as Chimera (CyCraft) or APT41 is unverified; no cited source states it.",
+  "No named victims, exact campaign dates, IOCs, or the 2021 open-source report on the European semiconductor company were located.",
+  "Telecommunications victims and regions are not detailed.",
+  "C2 infrastructure, SharpHound/WinRAR use and cloud exfiltration destinations were unverified and removed."
+ ],
+ "implications": {
+  "jipoe": "",
+  "jcc2": ""
+ },
+ "sources": [
+  {
+   "ref": "S2",
+   "title": "BRONZE VAPOR (Threat Actor) entry",
+   "publisher": "Malpedia (Fraunhofer FKIE)",
+   "date": "",
+   "url": "https://malpedia.caad.fkie.fraunhofer.de/actor/bronze_vapor"
+  },
+  {
+   "ref": "S3",
+   "title": "Taiwan High-Tech Ecosystem Targeted by Foreign APT Group (Chimera; context only, not linked to BRONZE VAPOR)",
+   "publisher": "CyCraft",
+   "date": "2020-04",
+   "url": "https://www.cycraft.com/en/post/apt-group20200416"
+  }
+ ],
+ "aliasesAdd": []
+}

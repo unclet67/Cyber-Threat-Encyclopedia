@@ -1,0 +1,156 @@
+{
+  "identification": {
+    "summary": "Blue Termite is Kaspersky's name for a cyberespionage campaign/actor that focuses on Japanese organizations; Kaspersky says it has been active since at least November 2013 and that most of its command-and-control servers are located in Japan [S1][S2]. Symantec tracks the same campaign as CloudyOmega, per JPCERT/CC [S4]. The malware family associated with it is Emdivi [S1][S4].",
+    "firstObserved": "Kaspersky: active since at least November 2013, with the oldest sample seen dating to that month [S1][S2].",
+    "notes": "JPCERT/CC states the Japan-focused campaign is known as CloudyOmega (Symantec) and Blue Termite (Kaspersky) [S4]. A Japanese-language report cited in search results distinguishes Emdivi as the malware and Blue Termite as the campaign name; this was not verified against the original. No Microsoft Threat Intelligence name or MITRE ATT&CK group ID was identified in the sources gathered."
+  },
+  "attribution": {
+    "sponsor": "",
+    "confidence": "Kaspersky assessed that the attackers are likely Chinese speakers, per secondary coverage; no government attribution or state sponsor was found in the sources gathered [S2].",
+    "basis": "Linguistic assessment by Kaspersky as relayed in secondary reporting [S2]. The underlying Kaspersky evidence for this was not retrieved."
+  },
+  "objectives": "",
+  "targeting": {
+    "sectors": [
+      "Government agencies",
+      "Universities and education",
+      "Banks and finance",
+      "Manufacturing",
+      "Chemical",
+      "Satellite",
+      "Media",
+      "Medical and healthcare",
+      "Food",
+      "Utilities"
+    ],
+    "regions": [
+      "Japan [S1][S2][S5]"
+    ],
+    "notes": "Kaspersky reports hundreds of targeted organizations over roughly two years, spanning many industries [S1][S5]. Kaspersky's own commentary describes targeting of nearly every kind of Japanese organization, with C2 infrastructure also in Japan [S5]. Kaspersky believes the group is linked to the Japan Pension Service breach, which exposed personal data of 1.25 million people; this is a belief, not a confirmed attribution [S1][S2][S3]. Some watering-hole attacks were narrowly targeted, including a site belonging to a prominent Japanese government member [S1]."
+  },
+  "capabilities": {
+    "summary": "Initial access was mainly spear-phishing emails; after the July 2015 Hacking Team leak the group used the Flash Player exploit CVE-2015-5119, first in spear-phishing and then planted on compromised Japanese websites for drive-by downloads [S1][S2][S6]. The group uses customized malware of the Emdivi family, with each victim reportedly given a unique sample; Kaspersky notes emdivi t17 and t20 are from the same family, with t20 more sophisticated [S2]. JPCERT/CC describes Emdivi as notoriously used in Japanese targeted attacks and as having victimized several government and private organizations beyond the Japan Pension Service [S4]."
+  },
+  "campaigns": [
+    {
+      "date": "2013-11",
+      "name": "Earliest observed activity",
+      "summary": "Kaspersky reports the oldest Blue Termite sample dates to November 2013 [S1][S2].",
+      "sources": [
+        "S1",
+        "S2"
+      ]
+    },
+    {
+      "date": "2015-05",
+      "name": "Japan Pension Service breach",
+      "summary": "Personal data of about 1.25 million people was exposed after an intrusion that officials said began with an email attachment; the Emdivi link comes from secondary sources, and Kaspersky believes Blue Termite was responsible. The incident was reported to police on May 19, 2015 and the Emdivi link was not confirmed by the agency [S3][S4].",
+      "sources": [
+        "S3",
+        "S4"
+      ]
+    },
+    {
+      "date": "2015-07",
+      "name": "Switch to Hacking Team Flash exploit CVE-2015-5119",
+      "summary": "After the Hacking Team leak, the group used the Flash exploit in spear-phishing and then on compromised Japanese websites for drive-by downloads, including some narrowly targeted watering holes. Trend Micro separately reported limited use of the exploit against South Korea and Japan [S1][S2][S6].",
+      "sources": [
+        "S1",
+        "S2",
+        "S6"
+      ]
+    },
+    {
+      "date": "2015-08",
+      "name": "Kaspersky public disclosure",
+      "summary": "Kaspersky publicly described Blue Termite as a persistent campaign against hundreds of Japanese organizations that was still active [S1][S5].",
+      "sources": [
+        "S1",
+        "S5"
+      ]
+    },
+    {
+      "date": "2015-11",
+      "name": "JPCERT/CC analysis of Emdivi",
+      "summary": "JPCERT/CC published analysis tying Emdivi to targeted attacks in Japan and noting the CloudyOmega/Blue Termite naming [S4].",
+      "sources": [
+        "S4"
+      ]
+    }
+  ],
+  "diamond": {
+    "adversary": "Suspected Chinese-speaking operators per Kaspersky; no state sponsor identified in sources gathered [S2].",
+    "capability": "Spear-phishing, CVE-2015-5119 Flash exploit, drive-by and watering-hole delivery, customized Emdivi backdoor with per-victim samples [S1][S2].",
+    "infrastructure": "Compromised Japanese websites used for drive-by delivery; most C2 servers located in Japan [S1][S2][S5].",
+    "victim": "Hundreds of Japanese government, education, finance, manufacturing, chemical, satellite, media, medical, food and utility organizations [S1][S5].",
+    "socioPolitical": "",
+    "technology": "Unpatched Adobe Flash Player and email-borne attachments; trust in frequently visited Japanese websites [S1][S6]."
+  },
+  "gaps": [
+    "Could not open the primary Kaspersky Securelist reports (including the 'new activity' post already in this record), JPCERT/CC, SecurityWeek or Kaspersky blog pages directly; fetch failed. Facts rest on search-result summaries of those documents and should be verified against the originals.",
+    "Original Securelist post dates and exact figures (victim counts, share of Japan-based C2) were not retrieved.",
+    "Symantec's CloudyOmega reporting was not opened. Search summaries suggest it cites Ichitaro (CVE-2014-7247) exploitation, Korplug and ZXshell backdoors, activity since 2011 and links to Hidden Lynx, and an Impress Watch correction about timing. These are unverified here and may reflect a broader Symantec cluster, so they are not merged into the profile.",
+    "No state sponsor, government attribution, or MITRE/Microsoft mapping found. 'Likely Chinese speakers' is a Kaspersky assessment relayed secondhand.",
+    "Whether the Japan Pension Service breach was conducted by this actor is unconfirmed; the agency did not disclose the malware.",
+    "Activity after 2015 and the group's current status were not established.",
+    "Strategic objectives are not stated in the sources gathered."
+  ],
+  "implications": {
+    "jipoe": "Analyst assessment derived from cited sources; validate before use. STEP 1: Japanese government, finance, manufacturing, satellite and utility organizations, plus websites their staff visit, are relevant terrain for coalition planning in Japan [S1][S5]. STEP 2: The actor reacted within weeks to a leaked exploit (Hacking Team, July 2015), showing fast adoption of public exploits [S1][S2]. STEP 3: Template is spear-phishing or a drive-by on a compromised Japanese site, then a per-victim customized Emdivi backdoor with Japan-hosted C2 [S1][S2]. STEP 4: MLCOA is continued espionage and data theft against Japanese public and private organizations. MDCOA is use of a newly leaked exploit against Japan-based partner or defense-industrial organizations during a crisis. Candidate indicators: Emdivi detections, Flash exploit traffic from compromised Japanese sites, and email-attachment compromises at Japanese partners [S1][S4].",
+    "jcc2": "Analyst assessment derived from cited sources; validate before use. (1) Situational awareness: track Japanese CERT (JPCERT/CC) and vendor reporting on Emdivi and public exploit leaks. (2) Authorities and coordination: incidents at Japanese partner organizations require host-nation and JPCERT/CC coordination rather than unilateral action. (3) Mission assurance: patching of browser plug-ins and email filtering at partner-connected networks reduce exposure. (4) Because per-victim samples and Japan-hosted C2 limit signature reuse, prioritize behavioral hunting [S2][S4]."
+  },
+  "sources": [
+    {
+      "ref": "S1",
+      "title": "Blue Termite APT group focuses on Japanese organizations (secondary coverage of Kaspersky report)",
+      "publisher": "Security Affairs",
+      "date": "2015-08",
+      "url": "https://securityaffairs.com/39472/cyber-crime/blue-termite-apt.html"
+    },
+    {
+      "ref": "S2",
+      "title": "Blue Termite APT Targets Japanese Organizations (secondary coverage of Kaspersky report)",
+      "publisher": "SecurityWeek",
+      "date": "2015-08",
+      "url": "https://www.securityweek.com/blue-termite-apt-targets-japanese-organizations/"
+    },
+    {
+      "ref": "S3",
+      "title": "Japan Pension System Gets Hacked, Exposes 1.25M Records",
+      "publisher": "Trend Micro",
+      "date": "2015-06",
+      "url": "https://www.trendmicro.com/vinfo/mx/security/news/cyber-attacks/japan-pension-system-hacked-exposes-125m-records"
+    },
+    {
+      "ref": "S4",
+      "title": "Emdivi and the Rise of Targeted Attacks in Japan",
+      "publisher": "JPCERT/CC",
+      "date": "2015-11",
+      "url": "https://blogs.jpcert.or.jp/en/2015/11/emdivi-and-the-rise-of-targeted-attacks-in-japan.html"
+    },
+    {
+      "ref": "S5",
+      "title": "Why BlueTermite should draw a lot of attention",
+      "publisher": "Kaspersky",
+      "date": "2015-08",
+      "url": "https://kaspersky.com/blog/bluetermite-attention/15093"
+    },
+    {
+      "ref": "S6",
+      "title": "Hacking Team Flash Zero-Day Linked to Cyber Attacks on South Korea and Japan",
+      "publisher": "The Hacker News",
+      "date": "2015-07",
+      "url": "https://thehackernews.com/2015/07/Hacking-Team-Flash-Zero-Day.html?hl=ru"
+    }
+  ],
+  "aliasesAdd": [
+    {
+      "name": "CloudyOmega",
+      "vendor": "Symantec"
+    },
+    {
+      "name": "Blue Termite",
+      "vendor": "Kaspersky"
+    }
+  ]
+}

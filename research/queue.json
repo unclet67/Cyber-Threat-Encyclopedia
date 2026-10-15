@@ -3,46 +3,6 @@
  "verify": [],
  "research": [
   {
-   "id": "bladedfeline",
-   "tier": "T3"
-  },
-  {
-   "id": "blue-termite",
-   "tier": "T3"
-  },
-  {
-   "id": "boulder-bear",
-   "tier": "T3"
-  },
-  {
-   "id": "brazenbamboo",
-   "tier": "T3"
-  },
-  {
-   "id": "bronze-edgewood",
-   "tier": "T3"
-  },
-  {
-   "id": "bronze-spiral",
-   "tier": "T3"
-  },
-  {
-   "id": "bronze-spring",
-   "tier": "T3"
-  },
-  {
-   "id": "bronze-vapor",
-   "tier": "T3"
-  },
-  {
-   "id": "budminer",
-   "tier": "T3"
-  },
-  {
-   "id": "buhtrap",
-   "tier": "T3"
-  },
-  {
    "id": "calypso",
    "tier": "T3"
   },
@@ -922,8 +882,16 @@
   "berry-sandstorm",
   "blackgear",
   "blackwood",
+  "bladedfeline",
+  "blue-termite",
   "brass-typhoon",
+  "brazenbamboo",
   "brocade-typhoon",
+  "bronze-edgewood",
+  "bronze-spiral",
+  "bronze-spring",
+  "budminer",
+  "buhtrap",
   "burgundy-sandstorm",
   "cadet-blizzard",
   "canary-typhoon",
@@ -1053,6 +1021,12 @@
   "avivore",
   "berry-sandstorm",
   "blackwood",
+  "blue-termite",
+  "brazenbamboo",
+  "bronze-edgewood",
+  "bronze-spiral",
+  "bronze-spring",
+  "budminer",
   "crescent-typhoon",
   "lilac-typhoon",
   "mofang",
@@ -1145,6 +1119,8 @@
  ],
  "no_public_reporting": [
   "big-panda",
+  "boulder-bear",
+  "bronze-vapor",
   "storm-2470"
  ]
 }

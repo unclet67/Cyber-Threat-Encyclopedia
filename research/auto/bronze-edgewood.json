@@ -1,0 +1,128 @@
+{
+  "identification": {
+    "summary": "BRONZE EDGEWOOD is the Secureworks Counter Threat Unit (CTU) name for a suspected China-based espionage group active since at least 2018 that targets government and private enterprises across Southeast Asia [S1]. In early 2021 CTU observed it exploiting Microsoft Exchange Server at a Southeast Asian organization, deploying a China Chopper webshell and a Nishang PowerShell script to reach C2 [S1]. It is publicly linked to the Chinoxy, PCShare and FunnyDream malware families and also uses Cobalt Strike [S1]. Bitdefender's November 2020 report on the Chinoxy/PCShare/FunnyDream chain, which Recorded Future associates with its own cluster TAG-16, reports more than 200 systems affected over roughly two years [S3][S5].",
+    "firstObserved": "Active since at least 2018 per Secureworks CTU [S1]. Bitdefender dates the FunnyDream actor to about 2018 [S3].",
+    "notes": "Secureworks name; no Microsoft name is mapped in this record. Red Hariasa is the PwC name given as an alias [S1][S5]. Recorded Future's TAG-16 is a separate vendor cluster that reporting associates with the same Chinoxy/FunnyDream tooling; whether BRONZE EDGEWOOD, Red Hariasa and TAG-16 are identical is not established by the sources gathered, so facts from Bitdefender and Recorded Future are attributed to those vendors and not asserted as CTU findings [S3][S5]."
+  },
+  "attribution": {
+    "sponsor": "Secureworks CTU assesses the group operates on behalf of the Chinese government [S1].",
+    "confidence": "Secureworks CTU: moderate confidence [S1]. Recorded Future judged TAG-16 highly likely to be a state actor, with targeting consistent with Chinese political and economic goals [S5]. Bitdefender said evidence points to a Chinese-speaking group but cautioned that attribution is difficult [S3]. No government attribution was found.",
+    "basis": "CTU states a remit covering political espionage based on its observed targeting [S1]. Recorded Future cites targeting alignment with South China Sea and Belt and Road interests and shared custom capabilities with RedFoxtrot [S5]. Bitdefender cites the tooling and infrastructure largely in Hong Kong, with some in mainland China and Vietnam [S3]."
+  },
+  "objectives": "Political espionage against Southeast Asian governments and enterprises [S1]. Bitdefender describes the FunnyDream activity as long-term persistence with collection and exfiltration of sensitive documents [S3]. Recorded Future links TAG-16 targeting to regional territorial disputes and Belt and Road objectives [S5].",
+  "targeting": {
+    "sectors": [
+      "Government",
+      "Private enterprise",
+      "Military and defense (TAG-16 reporting) [S5]"
+    ],
+    "regions": [
+      "Southeast Asia [S1]",
+      "Vietnam (most victims per Kaspersky as relayed by Security Affairs) [S3]",
+      "Malaysia, Taiwan, Philippines [S3]",
+      "Malaysia, Indonesia, Vietnam as top three in Recorded Future data [S5]"
+    ],
+    "notes": "CTU gives only the general government and private enterprise focus in Southeast Asia [S1]. Country and ministry detail comes from Bitdefender, Kaspersky and Recorded Future reporting on the associated tooling and may describe a wider or different cluster [S3][S5]."
+  },
+  "capabilities": {
+    "summary": "Exploitation of Microsoft Exchange Server, China Chopper webshell, Nishang Invoke-PowerShellTcp.ps1 and Cobalt Strike [S1]. Custom and shared backdoors Chinoxy, PCShare (open-source RAT) and FunnyDream [S1][S3]. Bitdefender reports Chinoxy provides persistence, PCShare is used to explore hosts, and FunnyDream is the most feature-rich for data gathering and exfiltration; the Chinoxy dropper side-loads a DLL via a signed Logitech Bluetooth binary [S3]."
+  },
+  "campaigns": [
+    {
+      "date": "2018",
+      "name": "Earliest observed activity",
+      "summary": "Secureworks CTU states the group has been active since at least 2018.",
+      "sources": [
+        "S1"
+      ]
+    },
+    {
+      "date": "2020-11",
+      "name": "FunnyDream campaign reporting (Bitdefender)",
+      "summary": "Bitdefender reports a Chinese-speaking actor using Chinoxy, PCShare and FunnyDream against Southeast Asian government institutions, with over 200 systems showing the tools, and likely state-sponsored espionage. Association with BRONZE EDGEWOOD is by tooling named in the CTU description.",
+      "sources": [
+        "S3",
+        "S4"
+      ]
+    },
+    {
+      "date": "2021",
+      "name": "2021 TAG-16 activity (Recorded Future)",
+      "summary": "Insikt Group reports TAG-16, using custom malware such as FunnyDream and Chinoxy, compromised government and military organizations in Southeast Asia over roughly nine months. Cluster equivalence with BRONZE EDGEWOOD is unverified.",
+      "sources": [
+        "S5"
+      ]
+    },
+    {
+      "date": "2021-01",
+      "name": "Exchange Server intrusion in Southeast Asia (early 2021)",
+      "summary": "CTU observed BRONZE EDGEWOOD exploiting Exchange Server at a Southeast Asian organization, deploying China Chopper and Nishang, and using Cobalt Strike. The source gives only 'early 2021'; month is approximate.",
+      "sources": [
+        "S1"
+      ]
+    }
+  ],
+  "diamond": {
+    "adversary": "Suspected PRC state-aligned espionage group assessed by Secureworks with moderate confidence [S1].",
+    "capability": "Exchange exploitation, China Chopper, Nishang, Cobalt Strike, Chinoxy, PCShare, FunnyDream [S1][S3].",
+    "infrastructure": "Bitdefender reports infrastructure mainly in Hong Kong with some in mainland China and Vietnam for the FunnyDream activity [S3].",
+    "victim": "Southeast Asian government and private enterprise [S1]; military and ministry targets in TAG-16 reporting [S5].",
+    "socioPolitical": "Political espionage tied by Recorded Future to South China Sea disputes and Belt and Road interests [S1][S5].",
+    "technology": "Internet-exposed Microsoft Exchange servers [S1]; Windows hosts susceptible to DLL side-loading through signed binaries [S3]."
+  },
+  "gaps": [
+    "Primary Secureworks CTU page for BRONZE EDGEWOOD was not found or opened; its text was seen only via Malpedia and a MISP Galaxy mirror, and the publication date is unknown [S1].",
+    "Whether BRONZE EDGEWOOD, PwC's Red Hariasa and Recorded Future's TAG-16 are the same cluster is not confirmed; Chinoxy is also linked by others to other clusters.",
+    "Bitdefender and MITRE primary pages could not be fetched (network errors); details come from search snippets and secondary coverage.",
+    "Exchange vulnerabilities (CVEs) exploited in the early 2021 intrusion were not identified; Malpedia reports no tied CVEs.",
+    "The two PwC reports listed in the imported record were not opened; their content is unverified.",
+    "No government attribution or sponsoring agency is identified; no post-2022 activity found."
+  ],
+  "implications": {
+    "jipoe": "Analyst assessment derived from cited sources; validate before use. STEP 1: Key terrain is internet-facing Exchange servers and government or partner-nation networks in Southeast Asia, relevant to coalition partners and US presence in the region [S1][S5]. STEP 2: The actor persists for long periods and uses signed-binary DLL side-loading and a mix of public tools (China Chopper, Nishang, Cobalt Strike, PCShare), which complicates attribution [S1][S3]. STEP 3: Template is Exchange exploitation or phishing, then webshell or Chinoxy for persistence, then PCShare/FunnyDream for collection and exfiltration [S1][S3]. STEP 4: MLCOA is continued political and military espionage against regional governments and partners. MDCOA is use of a partner-nation foothold to reach coalition communications or planning data during a South China Sea crisis. Candidate indicators: new ASPX webshells on Exchange, PowerShell reverse shells, a signed Logitech binary loading an unexpected DLL, and registry Run key persistence [S1][S2][S3].",
+    "jcc2": "Analyst assessment derived from cited sources; validate before use. (1) Situational awareness: track Exchange patching and webshell hunts across mission-partner and DIB-hosted mail systems. (2) Authorities: activity on partner-nation networks needs coordination through the owning nation and established information-sharing channels, not unilateral action. (3) Mission assurance: prioritize protecting coalition messaging and planning data sets in the region. (4) Coordination: share vendor indicators with DC3 and partner CERTs, noting cluster uncertainty between vendor names [S1][S5]."
+  },
+  "sources": [
+    {
+      "ref": "S1",
+      "title": "BRONZE EDGEWOOD (text of Secureworks CTU profile, as reproduced by Malpedia)",
+      "publisher": "Malpedia (Fraunhofer FKIE), reproducing Secureworks CTU",
+      "date": "2021",
+      "url": "https://malpedia.caad.fkie.fraunhofer.de/actor/bronze_edgewood"
+    },
+    {
+      "ref": "S2",
+      "title": "C0007 FunnyDream (MITRE ATT&CK, seen via search snippet)",
+      "publisher": "MITRE ATT&CK",
+      "date": "2023",
+      "url": "https://attack.mitre.org/campaigns/C0007"
+    },
+    {
+      "ref": "S3",
+      "title": "Chinese APT FunnyDream targets a South East Asian government (reporting Bitdefender, with Kaspersky mention)",
+      "publisher": "Security Affairs",
+      "date": "2020-11",
+      "url": "https://securityaffairs.com/111071/apt/chinese-apt-funnydream.html"
+    },
+    {
+      "ref": "S4",
+      "title": "A Detailed Timeline of a Chinese APT Espionage Attack Targeting South Eastern Asian Government Institutions (seen via search, not opened)",
+      "publisher": "Bitdefender Labs",
+      "date": "2020-11",
+      "url": "https://bitdefender.in/a-detailed-timeline-of-a-chinese-apt-espionage-attack-targeting-south-eastern-asian-government-institutions/"
+    },
+    {
+      "ref": "S5",
+      "title": "Report: Chinese hackers targeted Southeast Asian nations (AP, summarizing Recorded Future Insikt report of 2021-12-08)",
+      "publisher": "Associated Press via NY1",
+      "date": "2021-12",
+      "url": "https://ny1.com/nyc/all-boroughs/ap-online/2021/12/08/report-chinese-hackers-targeted-southeast-asian-nations"
+    }
+  ],
+  "aliasesAdd": [
+    {
+      "name": "TAG-16 (associated cluster, not confirmed identical)",
+      "vendor": "Recorded Future"
+    }
+  ]
+}

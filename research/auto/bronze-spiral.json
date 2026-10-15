@@ -1,0 +1,120 @@
+{
+ "identification": {
+  "summary": "BRONZE SPIRAL is the Secureworks Counter Threat Unit name for the actor Secureworks earlier called SPIRAL, which Secureworks linked to deployment of the SUPERNOVA web shell on an internet-facing SolarWinds Orion server in late 2020[S2]. Secureworks assessed the group appears to be based in China, and reporting did not say whether it is state-affiliated or criminal[S2]. Secureworks said the SUPERNOVA intrusion is unrelated to the broader SolarWinds supply-chain compromise[S2], and CISA likewise assessed the SUPERNOVA actor in its own incident as separate from the supply-chain APT [S5].",
+  "firstObserved": "2020 (earliest Secureworks-linked intrusion; reported as August 2020 by secondary coverage) [S6]",
+  "notes": "Name mapping: the SPIRAL (2021 Secureworks blog) and BRONZE SPIRAL naming is taken from the Secureworks title and search summaries; the Sophos threat-profile page for BRONZE SPIRAL could not be fetched, so its content is not cited here. Do not merge with the CISA-described Pulse Secure/Orion intrusion: CISA did not name an actor, and no source here states it is the same cluster as SPIRAL [S5]. Do not merge with the unrelated 2026 'Spirals' ransomware family or with 2021 ManageEngine ADSelfService Plus campaigns, which these sources do not tie to SPIRAL."
+ },
+ "attribution": {
+  "sponsor": "",
+  "confidence": "Secureworks said characteristics of the intrusions suggest the group is based in China; the sources do not state a sponsor or government affiliation[S6]. No government attribution found.",
+  "basis": "Secureworks CTU tied a second intrusion at the same client, using SUPERNOVA in late 2020, to earlier 2020 activity by the same actor, and cited characteristics that suggest a China base[S6]."
+ },
+ "objectives": "",
+ "targeting": {
+  "sectors": [],
+  "regions": [],
+  "notes": "Secureworks described intrusions at one client network involving a ManageEngine ServiceDesk server (reconnaissance and credential theft) and an internet-facing SolarWinds server; the client's sector and country are not given in the available coverage [S6]."
+ },
+ "capabilities": {
+  "summary": "The SUPERNOVA web shell is a .NET implant hidden in a modified Orion module, app_web_logoimagehandler.ashx.b6031896.dll, that receives remote code and runs it in memory without writing artifacts to disk [S3]. The DLL was unsigned, unlike the SUNBURST DLL of the supply-chain operation [S3]. Secureworks said the exploited flaw was CVE-2020-10148, an Orion API authentication bypass, used before the 23 Dec 2020 SolarWinds patch[S2]. CISA's separate incident analysis described SUPERNOVA as a webshell that lets an operator inject C# code, placed directly on Orion hosts rather than delivered by a trojanized update [S5]."
+ },
+ "campaigns": [
+  {
+   "date": "2020-08",
+   "name": "ManageEngine ServiceDesk intrusion",
+   "summary": "Secureworks linked an earlier 2020 intrusion at the same client, involving a ManageEngine ServiceDesk server, reconnaissance and credential theft, to the SPIRAL actor [S6].",
+   "sources": [
+    "S6"
+   ]
+  },
+  {
+   "date": "2020-11",
+   "name": "SUPERNOVA deployment on SolarWinds Orion",
+   "summary": "Secureworks CTU observed the actor exploit an internet-facing SolarWinds server to deploy the SUPERNOVA web shell in late 2020[S2][S6]. Dark Reading coverage reports the actor then moved to a domain controller for credentials and to a server with sensitive data [S8].",
+   "sources": [
+    "S2",
+    "S6",
+    "S8"
+   ]
+  },
+  {
+   "date": "2020-12",
+   "name": "Public disclosure of SUPERNOVA",
+   "summary": "Unit 42 and GuidePoint analyzed the trojanized Orion DLL; Unit 42 questioned association with the SolarStorm (SUNBURST) actors because the DLL was unsigned [S3].",
+   "sources": [
+    "S3"
+   ]
+  },
+  {
+   "date": "2021-03",
+   "name": "Secureworks links SUPERNOVA to SPIRAL",
+   "summary": "Secureworks published 'SUPERNOVA Web Shell Deployment Linked to SPIRAL Threat Group', assessing the activity as likely China-based and unrelated to the supply-chain compromise[S2].",
+   "sources": [
+    "S2"
+   ]
+  }
+ ],
+ "diamond": {
+  "adversary": "SPIRAL / BRONZE SPIRAL, assessed by Secureworks as likely China-based; affiliation unknown[S6].",
+  "capability": "SUPERNOVA in-memory .NET web shell and exploitation of CVE-2020-10148[S3].",
+  "infrastructure": "",
+  "victim": "One client network with ManageEngine ServiceDesk and SolarWinds Orion servers; identity not stated in available coverage [S6].",
+  "socioPolitical": "",
+  "technology": "Internet-facing SolarWinds Orion and ManageEngine ServiceDesk servers[S6]."
+ },
+ "gaps": [
+  "Secureworks primary blog and Sophos BRONZE SPIRAL profile could not be verified (URL not seen in search results); content is from secondary coverage, and neither is cited.",
+  "Sponsor, state or criminal nature, objectives, sectors and regions are not established in the sources found.",
+  "Whether the CISA-described Pulse Secure/Orion intrusion (Mar 2020 to Feb 2021) is the same actor as SPIRAL is not stated [S5].",
+  "Infrastructure, victim count, and activity after March 2021 not found.",
+  "Exact source publication dates are month-level from search results; CISA AR21-112A and AR21-027A primary documents not opened.",
+  "Existing record claims of ManageEngine targeting, long-term credential harvesting and IP theft come from an uncited import and were not independently verified."
+ ],
+ "implications": {
+  "jipoe": "",
+  "jcc2": ""
+ },
+ "sources": [
+  {
+   "ref": "S2",
+   "title": "Attacks on SolarWinds servers also linked to Chinese threat actor",
+   "publisher": "The Record",
+   "date": "2021-03",
+   "url": "https://therecord.media/attacks-on-solarwinds-servers-also-linked-to-chinese-threat-actor/"
+  },
+  {
+   "ref": "S3",
+   "title": "SolarStorm SUPERNOVA analysis",
+   "publisher": "Palo Alto Networks Unit 42",
+   "date": "2020-12",
+   "url": "https://unit42.paloaltonetworks.com/solarstorm-supernova/"
+  },
+  {
+   "ref": "S5",
+   "title": "CISA Ties SUPERNOVA Malware to Pulse Secure, SolarWinds Exploits (reporting CISA analysis report)",
+   "publisher": "HealthITSecurity",
+   "date": "2021-04",
+   "url": "https://healthitsecurity.com/news/cisa-ties-supernova-malware-to-pulse-secure-solarwinds-exploits"
+  },
+  {
+   "ref": "S6",
+   "title": "Researchers describe second separate SolarWinds attack (reporting Secureworks)",
+   "publisher": "GovInfoSecurity",
+   "date": "2021-03",
+   "url": "https://www.govinfosecurity.com/researchers-describe-second-separate-solarwinds-attack-a-16150"
+  },
+  {
+   "ref": "S8",
+   "title": "What We Know (and Don't Know) So Far About the 'Supernova' SolarWinds Attack",
+   "publisher": "Dark Reading",
+   "date": "2021-03",
+   "url": "https://www.darkreading.com/cyberattacks-data-breaches/what-we-know-and-don-t-know-so-far-about-the-supernova-solarwinds-attack"
+  }
+ ],
+ "aliasesAdd": [
+  {
+   "name": "SPIRAL",
+   "vendor": "Secureworks"
+  }
+ ]
+}

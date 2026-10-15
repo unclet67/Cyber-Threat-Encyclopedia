@@ -1,0 +1,24 @@
+{
+  "identification": {
+    "summary": "Malpedia lists Boulder Bear as a threat actor entry with first observed activity in December 2013, with no associated malware families and no references; the data is drawn from the MISP Project [S1].",
+    "firstObserved": "December 2013, per the Malpedia/MISP listing [S1].",
+    "notes": "Name appears only as a bare catalogue entry in open sources searched. Not confirmed as a CrowdStrike, Microsoft or other vendor designation; no cluster mapping found."
+  },
+  "attribution": {"sponsor": "", "confidence": "", "basis": ""},
+  "objectives": "",
+  "targeting": {"sectors": [], "regions": [], "notes": ""},
+  "capabilities": {"summary": ""},
+  "campaigns": [],
+  "diamond": {"adversary": "", "capability": "", "infrastructure": "", "victim": "", "socioPolitical": "", "technology": ""},
+  "gaps": [
+    "No open-source reporting found describing Boulder Bear activity, targets, tooling, or sponsor across four searches.",
+    "The Malpedia page could not be opened directly (host unreachable); content is known only from search-result summary [S1].",
+    "The origin of the name (vendor, report, MISP galaxy cluster) and any parent group it aliases are unverified.",
+    "The Russia country tag in the encyclopedia record is an imported label and is not supported by any source gathered."
+  ],
+  "implications": {"jipoe": "", "jcc2": ""},
+  "sources": [
+    {"ref": "S1", "title": "Boulder Bear (Malpedia actor entry; seen via search-result summary, page not fetched)", "publisher": "Malpedia, Fraunhofer FKIE", "date": "2026-10-15 (retrieved)", "url": "https://malpedia.caad.fkie.fraunhofer.de/actor/boulder_bear"}
+  ],
+  "aliasesAdd": []
+}

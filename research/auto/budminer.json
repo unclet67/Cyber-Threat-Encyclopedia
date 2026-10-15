@@ -1,0 +1,157 @@
+{
+  "identification": {
+    "summary": "Budminer is Symantec's name for a cyberespionage group that Symantec said used the Taidoor backdoor until 2014 and, in March 2016, linked to a new custom backdoor, Backdoor.Dripion, mainly because the Blugger downloader that delivered Dripion had been used only by Budminer [S1][S2]. Symantec said it had not seen new Taidoor campaigns since 2014 and believed the group changed tactics to avoid detection after public exposure [S1][S2].",
+    "firstObserved": "Trend Micro's data shows the earliest Taidoor campaign-related activity in October 2010 [S4]. US agencies describe the Taidoor malware family as first discovered in 2008 [S5]. Trade coverage of Symantec's reporting says Budminer has been active since 2009 [S2].",
+    "notes": "Trend Micro's 'Taidoor' is a campaign and malware name, and the 2020 US agency report describes the Taidoor malware, not a group named Budminer [S4][S5]. Whether vendor clusters fully overlap is not established in the sources gathered."
+  },
+  "attribution": {
+    "sponsor": "",
+    "confidence": "No source gathered names a government sponsor for Budminer. Symantec linked Dripion to Budminer on the strength of the shared Blugger downloader and a shared root domain in earlier Taidoor-related activity, and noted there are no code similarities between Dripion and Taidoor [S1][S2]. Separately, CISA, FBI and DoD stated that the Taidoor malware is used by Chinese government cyber actors, and the FBI stated high confidence that such actors use malware variants with proxy servers to maintain presence on victim networks [S5]. That statement concerns the Taidoor malware and is not a government attribution of Budminer by name.",
+    "basis": "Symantec infrastructure and tool overlap (Blugger downloader, shared root domain) [S1][S2]. US agency malware analysis report on Taidoor (AR20-216A), seen here only through search-result text and press coverage [S5][S6]."
+  },
+  "objectives": "Collection of information from targets with an interest in Taiwan and US-Taiwan affairs: Symantec said Taidoor-era targets were mainly private industry and influential international think tanks involved in US and Taiwanese affairs, and Dripion was built to steal files [S2][S3]. Trend Micro found Taidoor victims it identified were in Taiwan and mostly government organizations [S4].",
+  "targeting": {
+    "sectors": [
+      "Government (Taiwan) [S4]",
+      "Private industry [S3]",
+      "Think tanks involved in US and Taiwan affairs [S3]",
+      "Unspecified organizations infected with Dripion [S1]"
+    ],
+    "regions": [
+      "Taiwan (primary for both Taidoor and Dripion) [S1][S4]",
+      "Brazil and United States (Dripion infections) [S1]",
+      "Japan and South Korea (reported in later trade coverage of Dripion) [S2]"
+    ],
+    "notes": "Trend Micro's victim set (Taiwan government) and Symantec's target description (private industry and think tanks) come from different datasets and time periods and should not be merged [S3][S4]."
+  },
+  "capabilities": {
+    "summary": "Taidoor-era delivery relied on emails with attachments that exploited known document vulnerabilities, including CVE-2012-0158; Symantec said PDF was the most common exploited document type, followed closely by Word, and that the exploited flaws were generally already patched [S3][S4]. Trend Micro tracks the malware as BKDR_SIMBOT variants with remote-access-trojan features [S4]. After 2014, Symantec linked a custom backdoor, Backdoor.Dripion, installed by the Blugger downloader, which pulled it from English-language blogs that may have been compromised or attacker-created [S1][S2]. Dripion could steal files and upload and run new files, and its C&C used domain names disguised as antivirus vendor sites [S2]. Blugger encrypts its communications [S2]. The US agency report describes Taidoor as a service DLL with a loader that decrypts a second file run in memory as the main RAT [S5]."
+  },
+  "campaigns": [
+    {
+      "date": "2010-10",
+      "name": "Earliest Taidoor campaign activity (Trend Micro)",
+      "summary": "Trend Micro's Smart Protection Network data shows the earliest Taidoor campaign-related activity. Victims it identified were in Taiwan, mostly government organizations [S4].",
+      "sources": [
+        "S4"
+      ]
+    },
+    {
+      "date": "2011-05",
+      "name": "Increase in Taidoor activity (Symantec)",
+      "summary": "Symantec reported a substantial rise in Taidoor-related activity from May 2011, aimed mainly at private industry and international think tanks involved in US and Taiwan affairs, via exploit-laden PDF and Word attachments [S3].",
+      "sources": [
+        "S3"
+      ]
+    },
+    {
+      "date": "2013-11",
+      "name": "Dripion activity begins (per trade press)",
+      "summary": "Trade coverage said Dripion had flown under the radar since as early as November 2013 [S2].",
+      "sources": [
+        "S2"
+      ]
+    },
+    {
+      "date": "2014",
+      "name": "Last observed Taidoor campaigns (Symantec)",
+      "summary": "Symantec said it had not seen new campaigns using Taidoor since 2014 [S1][S2].",
+      "sources": [
+        "S1",
+        "S2"
+      ]
+    },
+    {
+      "date": "2015-08",
+      "name": "Backdoor.Dripion identified",
+      "summary": "In late August 2015 Symantec identified Backdoor.Dripion infecting organizations mainly in Taiwan, plus Brazil and the United States [S1][S2].",
+      "sources": [
+        "S1",
+        "S2"
+      ]
+    },
+    {
+      "date": "2016-03",
+      "name": "Symantec publishes Dripion-Budminer link",
+      "summary": "Symantec attributed Dripion activity to Budminer based on the Blugger downloader and a shared root domain, while noting no code similarity with Taidoor [S1][S2].",
+      "sources": [
+        "S1",
+        "S2"
+      ]
+    },
+    {
+      "date": "2020-08",
+      "name": "US agency Taidoor malware analysis report",
+      "summary": "CISA, FBI and DoD released AR20-216A on the Taidoor RAT, stating it is used by Chinese government cyber actors. CyberScoop noted that of four samples shared on VirusTotal, only two were detected by any engine [S5][S6].",
+      "sources": [
+        "S5",
+        "S6"
+      ]
+    }
+  ],
+  "diamond": {
+    "adversary": "Budminer, a Symantec-named cyberespionage group; no sponsor named in Symantec material gathered [S1]. US agencies attribute Taidoor malware use to Chinese government cyber actors [S5].",
+    "capability": "Taidoor RAT delivered by document exploits; later Blugger downloader and Dripion backdoor [S1][S3][S4].",
+    "infrastructure": "English-language blogs hosting Dripion payloads, C&C domains imitating antivirus vendors, and a root domain shared with earlier Taidoor activity [S1][S2]. The US report ties Taidoor use to proxy servers [S5].",
+    "victim": "Taiwan government bodies, private industry and think tanks tied to US-Taiwan affairs, with Dripion infections in Taiwan, Brazil and the US [S1][S3][S4].",
+    "socioPolitical": "Targeting centers on Taiwan and US-Taiwan policy; no further motive is stated in the sources gathered [S3][S4].",
+    "technology": "Unpatched document readers (PDF, Word) exploited through known CVEs such as CVE-2012-0158, and email as the delivery path [S3][S4]."
+  },
+  "gaps": [
+    "No page could be opened with WebFetch in this session (DNS failures), so all content is taken from search-result text. The Symantec blog, Trend Micro paper, CISA AR20-216A, SecurityWeek and PCWorld pages were not read in full.",
+    "Exact publication dates for S3 (SecurityWeek, month inferred from the search snippet) and S4 (Trend Micro, year only) were not seen and should be verified.",
+    "No sponsor, unit or contractor is named for Budminer; the US statement on Taidoor malware is not an attribution of Budminer by name [S5].",
+    "Symantec's Dripion link rests on a shared downloader and one shared domain with no code similarity, so it is circumstantial [S1][S2].",
+    "Activity since 2016 is not covered by the sources gathered; whether Budminer remains active is unknown.",
+    "Overlap between Symantec's Budminer, Trend Micro's Taidoor/Earth Aughisky and any MITRE or Microsoft naming was not verified; no Microsoft name or MITRE group ID was found.",
+    "The 'active since 2009' claim comes from trade coverage and was not confirmed in the Symantec original [S2]."
+  ],
+  "implications": {
+    "jipoe": "Analyst assessment derived from cited sources; validate before use. STEP 1: Email gateways, document readers and the Taiwan and US-Taiwan policy community (think tanks, industry, government) are the relevant terrain [S3][S4]. STEP 2: The actor relied on already-patched document vulnerabilities, so slow patching widens exposure [S3]. STEP 3: Template is spear-phishing with exploit-laden PDF or Word attachments, then a RAT; later, a downloader fetching a backdoor from blogs, with C&C on domains imitating AV vendors [S1][S2][S3]. STEP 4: MLCOA is continued low-volume collection against Taiwan-focused organizations with changed tooling to evade detection [S1]. MDCOA, an assessment not stated in sources, is reuse of the same infrastructure patterns against US defense-adjacent policy contacts. Candidate indicators: downloads from unfamiliar English-language blogs by non-browser processes, DNS lookups to look-alike AV vendor domains, and service-DLL persistence with in-memory second stage [S2][S5].",
+    "jcc2": "Analyst assessment derived from cited sources; validate before use. (1) Situational awareness: track Taiwan-related phishing against partners and contractors; detection coverage for Taidoor samples was weak in 2020 [S6]. (2) Authorities: reporting of PRC-linked intrusions on contractor or partner networks should go through DC3 and FBI channels, as the US report asks recipients to report to CISA or FBI [S5]. (3) Mission assurance: enforce patching and attachment handling on staff who engage with Taiwan policy. (4) Coordination: share Symantec and US agency indicators with partners; treat vendor cluster names as separate until overlap is confirmed [S1][S5]."
+  },
+  "sources": [
+    {
+      "ref": "S1",
+      "title": "Taiwan targeted with new cyberespionage back door Trojan",
+      "publisher": "Symantec",
+      "date": "2016-03",
+      "url": "https://www.symantec.com/connect/blogs/taiwan-targeted-new-cyberespionage-back-door-trojan"
+    },
+    {
+      "ref": "S2",
+      "title": "Custom developed Dripion backdoor used in highly targeted attacks in Asia, US",
+      "publisher": "PCWorld (Lucian Constantin, reporting Symantec)",
+      "date": "2016-03",
+      "url": "https://www.pcworld.com/article/420316/custom-developed-dripion-backdoor-used-in-highly-targeted-attacks-in-asia-us.html"
+    },
+    {
+      "ref": "S3",
+      "title": "Attackers using Taidoor trojan target think tanks and US-Taiwan interests (reporting Symantec)",
+      "publisher": "SecurityWeek",
+      "date": "2012-03",
+      "url": "https://www.securityweek.com/attackers-using-taidoor-trojan-target-think-tanks-and-us-taiwan-interests/"
+    },
+    {
+      "ref": "S4",
+      "title": "Taidoor Campaign Targets Government Agencies in Taiwan",
+      "publisher": "Trend Micro",
+      "date": "2012",
+      "url": "https://www.trendmicro.com/vinfo/mx/security/news/cyber-attacks/taidoor-campaign-targets-government-agencies-in-taiwan"
+    },
+    {
+      "ref": "S5",
+      "title": "MAR-10292089-1.v2 Chinese Remote Access Trojan: TAIDOOR (AR20-216A) (seen via search result text)",
+      "publisher": "CISA / FBI / DoD",
+      "date": "2020-08",
+      "url": "https://us-cert.cisa.gov/ncas/analysis-reports/ar20-216a"
+    },
+    {
+      "ref": "S6",
+      "title": "Taidoor malware report: China, CISA, DoD, FBI",
+      "publisher": "CyberScoop",
+      "date": "2020-08",
+      "url": "https://cyberscoop.com/taidoor-malware-report-china-cisa-dod-fbi/"
+    }
+  ]
+}
