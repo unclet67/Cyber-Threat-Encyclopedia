@@ -3,46 +3,6 @@
  "verify": [],
  "research": [
   {
-   "id": "apt-3102",
-   "tier": "T3"
-  },
-  {
-   "id": "apt14",
-   "tier": "T3"
-  },
-  {
-   "id": "apt20",
-   "tier": "T3"
-  },
-  {
-   "id": "apt21",
-   "tier": "T3"
-  },
-  {
-   "id": "apt9",
-   "tier": "T3"
-  },
-  {
-   "id": "aptiran",
-   "tier": "T3"
-  },
-  {
-   "id": "avivore",
-   "tier": "T3"
-  },
-  {
-   "id": "big-panda",
-   "tier": "T3"
-  },
-  {
-   "id": "blackgear",
-   "tier": "T3"
-  },
-  {
-   "id": "blackwood",
-   "tier": "T3"
-  },
-  {
    "id": "bladedfeline",
    "tier": "T3"
   },
@@ -946,13 +906,22 @@
   "antlion",
   "aoqin-dragon",
   "appmilad",
+  "apt-3102",
   "apt1",
+  "apt14",
   "apt16",
+  "apt20",
+  "apt21",
   "apt37",
   "apt42",
+  "apt9",
+  "aptiran",
   "aqua-blizzard",
+  "avivore",
   "axiom",
   "berry-sandstorm",
+  "blackgear",
+  "blackwood",
   "brass-typhoon",
   "brocade-typhoon",
   "burgundy-sandstorm",
@@ -1076,8 +1045,14 @@
   "1937cn",
   "ababil-of-minab",
   "appmilad",
+  "apt-3102",
+  "apt14",
   "apt16",
+  "apt9",
+  "aptiran",
+  "avivore",
   "berry-sandstorm",
+  "blackwood",
   "crescent-typhoon",
   "lilac-typhoon",
   "mofang",
@@ -1169,6 +1144,7 @@
   "zigzag-hail"
  ],
  "no_public_reporting": [
+  "big-panda",
   "storm-2470"
  ]
 }

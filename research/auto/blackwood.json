@@ -1,0 +1,126 @@
+{
+  "identification": {
+    "summary": "Blackwood is a China-aligned APT group named by ESET, which says it has operated since at least 2018 and conducts cyberespionage against individuals and companies in China, Japan and the United Kingdom [S1][S2]. ESET documented the group's multistage NSPX30 implant, delivered through adversary-in-the-middle (AitM) hijacking of unencrypted HTTP software update requests [S1][S3]. ESET traces NSPX30 back to a 2005 backdoor it calls Project Wood [S1][S3].",
+    "firstObserved": "ESET: operating since at least 2018; earliest known NSPX30 sample dated 2018; implant lineage traced to Project Wood (2005) [S1][S3][S4]. First publicized 2024-01-24 [S1].",
+    "notes": "The name Blackwood comes from a recurring theme in a mutex name [S1]. This is an ESET-coined name; no Microsoft name or MITRE ATT&CK group entry was found in the searches run. ESET observed one victim also hit by toolkits tied to Evasive Panda, LuoYu and LittleBear and suggests Blackwood may share access with other Chinese APT groups; it does not name these as aliases [S4]. SonicWall separately reports a Blackwood DLL loader sample; whether it is an NSPX30 component was not confirmed [S5]."
+  },
+  "attribution": {
+    "sponsor": "",
+    "confidence": "ESET describes Blackwood as China-aligned and believes its activities align with Chinese state interests [S1][S4]. No government attribution to a specific PRC agency was found in the sources reviewed.",
+    "basis": "ESET research and telemetry on NSPX30 and its victims [S1][S3]. This is a vendor assessment only."
+  },
+  "objectives": "Cyberespionage against individuals and companies; ESET describes the activity as espionage and the backdoor and plugins as supporting communications monitoring and data collection [S1][S5]. Specific collection requirements are not stated in the sources reviewed.",
+  "targeting": {
+    "sectors": [
+      "Manufacturing and trading (a Chinese company)",
+      "Engineering (China office of a Japanese company)",
+      "Academia (individual tied to a UK public research university network)"
+    ],
+    "regions": [
+      "China",
+      "Japan",
+      "United Kingdom"
+    ],
+    "notes": "Victims include unidentified individuals in China and Japan, a Chinese manufacturing and trading company, the China office of a Japanese engineering company, and a Chinese-speaking individual tied to a UK public research university's network [S2][S4]. SonicWall reports the DLL loader targeting companies and individuals in Japan and China [S5]."
+  },
+  "capabilities": {
+    "summary": "NSPX30 is a multistage implant with a dropper, installer, loaders, an orchestrator and a backdoor; the orchestrator and backdoor each load plugins [S1][S3]. It is delivered when software such as Tencent QQ, WPS Office and Sogou Pinyin fetches updates over unencrypted HTTP and the request is intercepted AitM [S1][S4]. ESET speculates a network implant on vulnerable appliances such as routers or gateways may perform the interception, but this is unconfirmed, and it saw no DNS-based redirection [S4]. Interception of traffic also helps hide the location of command-and-control servers [S1][S2]. Operators attempt to re-compromise systems if access is lost [S2]. SonicWall describes a Blackwood DLL loader that attempts privilege escalation via the CMSTPLUA interface, includes anti-analysis and locale checks, and tries to install a backdoor for communications monitoring and diversion [S5]."
+  },
+  "campaigns": [
+    {
+      "date": "2005",
+      "name": "Project Wood origin",
+      "summary": "ESET traces NSPX30 to a small backdoor it names Project Wood, whose oldest sample it found was compiled in 2005; it believes NSPX30 evolved from DCM, a Project Wood descendant (2008) [S1][S3][S4].",
+      "sources": [
+        "S1",
+        "S3",
+        "S4"
+      ]
+    },
+    {
+      "date": "2018",
+      "name": "Earliest NSPX30 activity",
+      "summary": "ESET dates the earliest known NSPX30 sample and the group's operation to at least 2018 [S1][S3].",
+      "sources": [
+        "S1",
+        "S3"
+      ]
+    },
+    {
+      "date": "2024-01-24",
+      "name": "ESET publishes Blackwood and NSPX30 research",
+      "summary": "ESET publicly named Blackwood and described AitM delivery of NSPX30 via Tencent QQ, WPS Office and Sogou Pinyin updates against targets in China, Japan and the UK [S1][S2][S3].",
+      "sources": [
+        "S1",
+        "S2",
+        "S3"
+      ]
+    },
+    {
+      "date": "2024-01",
+      "name": "SonicWall reports new DLL loader",
+      "summary": "SonicWall Capture Labs analyzed a Blackwood DLL loader sample targeting companies and individuals in Japan and China and released a MalAgent.Blackwood signature [S5].",
+      "sources": [
+        "S5"
+      ]
+    }
+  ],
+  "diamond": {
+    "adversary": "Blackwood, a China-aligned cluster named by ESET; sponsor not publicly established [S1][S4].",
+    "capability": "NSPX30 multistage implant with plugin architecture, AitM update hijacking, and a DLL loader reported by SonicWall [S1][S3][S5].",
+    "infrastructure": "Command-and-control location is concealed by traffic interception; the AitM position is unconfirmed, with possible network implants on routers or gateways speculated by ESET [S1][S2][S4].",
+    "victim": "Individuals and companies in China, Japan and the UK, including a manufacturer/trader, a Japanese engineering firm's China office and a UK university-linked individual [S2][S4].",
+    "socioPolitical": "ESET assesses alignment with Chinese state interests; the sources reviewed give no more detailed political context [S4].",
+    "technology": "Windows endpoints using Tencent QQ, WPS Office and Sogou Pinyin that fetch updates over unencrypted HTTP [S1][S4]."
+  },
+  "gaps": [
+    "Could not open the ESET WeLiveSecurity report, SonicWall blog, BleepingComputer or The Hacker News pages (fetch failed with DNS errors); findings rely on search-result summaries of them, so technical details, IOCs and plugin capabilities are not captured.",
+    "Actual AitM mechanism (router, gateway or other on-path device) is unknown; ESET's router hypothesis is unconfirmed [S4].",
+    "No government attribution or named sponsoring organization found.",
+    "No MITRE ATT&CK group ID or Microsoft naming identified; overlaps with Evasive Panda, LuoYu and LittleBear are shared-access indications only and should not be merged.",
+    "Relationship between the SonicWall DLL loader and NSPX30 components is not confirmed [S5].",
+    "No activity reporting after January 2024 was found in the searches run."
+  ],
+  "implications": {
+    "jipoe": "Analyst assessment derived from cited sources; validate before use. Step 1-2: the operational environment is endpoint and network paths used by individuals and firms in China, Japan and the UK; relevant terrain includes software update channels for Tencent QQ, WPS Office and Sogou Pinyin over unencrypted HTTP, and possibly edge network devices [S1][S4]. Step 3-4: MLCOA is continued espionage-oriented AitM delivery of NSPX30 to China/Japan/UK-linked users and organizations [S1][S2]; MDCOA is adoption of additional update channels or edge-device compromise to reach other targets, which the sources do not show. Candidate indicators: software updates fetched over HTTP followed by unexpected DLL loading, CMSTPLUA privilege escalation behavior, and use of the MalAgent.Blackwood signature [S5].",
+    "jcc2": "Analyst assessment derived from cited sources; validate before use. Situational awareness: track vendor reporting on Blackwood and NSPX30 and share indicators through established channels, noting that evidence is vendor-sourced [S1]. Authorities: monitoring of partner or personal devices and networks requires the appropriate legal authority; this is a planning consideration, not a finding. Mission assurance: personnel or partners using the affected Chinese software, or operating in China and Japan, face exposure through update hijacking; enforce encrypted, verified update channels and remove unneeded software [S1][S4]. Coordination: coordinate with allied and commercial threat-intelligence partners given Japan and UK victimology [S2]."
+  },
+  "sources": [
+    {
+      "ref": "S1",
+      "title": "NSPX30: A sophisticated AitM-enabled implant evolving since 2005 (ESET Research; accessed via search summary)",
+      "publisher": "ESET / WeLiveSecurity",
+      "date": "2024-01-24",
+      "url": "https://www.welivesecurity.com/en/eset-research/nspx30-sophisticated-aitm-enabled-implant-evolving-since-2005/"
+    },
+    {
+      "ref": "S2",
+      "title": "ESET Research discovers new China-aligned APT group Blackwood that uses advanced implant to attack within China, Japan, and the UK",
+      "publisher": "ESET",
+      "date": "2024-01-24",
+      "url": "https://www.eset.com/us/about/newsroom/research/eset-research-discovers-new-china-aligned-apt-group-blackwood-that-uses-advanced-implant-to-attack-within-china-japan-and-the-uk/"
+    },
+    {
+      "ref": "S3",
+      "title": "China-backed Hackers Hijack Software Updates to Implant \"NSPX30\" Spyware",
+      "publisher": "The Hacker News",
+      "date": "2024-01",
+      "url": "https://thehackernews.com/2024/01/china-backed-hackers-hijack-software.html"
+    },
+    {
+      "ref": "S4",
+      "title": "China-Aligned APT Group Blackwood Unleashes NSPX30 Implant",
+      "publisher": "Infosecurity Magazine",
+      "date": "2024-01",
+      "url": "https://www.infosecurity-magazine.com/news/china-apt-blackwood-nspx30-implant/"
+    },
+    {
+      "ref": "S5",
+      "title": "Blackwood APT Group Has a New DLL Loader",
+      "publisher": "SonicWall",
+      "date": "2024-01",
+      "url": "https://blog.sonicwall.com/en-us/2024/01/blackwood-apt-group-has-a-new-dll-loader/"
+    }
+  ],
+  "aliasesAdd": []
+}

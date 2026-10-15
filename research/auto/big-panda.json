@@ -1,0 +1,18 @@
+{
+  "identification": {"summary": "", "firstObserved": "", "notes": "BIG PANDA is the name in the imported MISP Galaxy record (country CN). Searches found no open-source vendor report, MITRE entry or Microsoft mapping describing a group by this name, so no facts are asserted here."},
+  "attribution": {"sponsor": "", "confidence": "", "basis": ""},
+  "objectives": "",
+  "targeting": {"sectors": [], "regions": [], "notes": ""},
+  "capabilities": {"summary": ""},
+  "campaigns": [],
+  "diamond": {"adversary": "", "capability": "", "infrastructure": "", "victim": "", "socioPolitical": "", "technology": ""},
+  "gaps": [
+    "No open-source report describing an actor named BIG PANDA was found in 5 searches; vendor naming (CrowdStrike 'Panda' convention) suggests a CrowdStrike-style name, but this is not confirmed by any source seen.",
+    "The only lead, a Dark Reading article on CrowdStrike Falcon ('CrowdStrike Falcon traces attacks back to hackers', darkreading.com, id 1110402), could not be opened (host unresolvable from this environment); its date and content are unverified.",
+    "Possible name error or alias of another CrowdStrike 'Panda' group (for example Deep Panda, Putter Panda, Comment Panda) cannot be assessed; do not merge facts without a primary source.",
+    "No Microsoft name, MITRE group ID, aliases, TTPs, targets, campaigns or attribution basis established."
+  ],
+  "implications": {"jipoe": "", "jcc2": ""},
+  "sources": [],
+  "aliasesAdd": []
+}

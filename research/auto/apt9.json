@@ -1,0 +1,124 @@
+{
+  "identification": {
+    "summary": "Mandiant describes APT9 as a cyber espionage actor whose goal is data theft, usually focused on the data and projects that make an organization competitive in its field, and historically very active in pharmaceuticals and biotechnology [S1]. Mandiant has observed spearphishing, valid accounts and remote services for initial access, and a wide range of backdoors, including public ones and ones believed custom but shared by multiple APT groups [S1]. Aliases listed by Malpedia are Group 27, NIGHTSHADE PANDA and Red Pegasus [S1].",
+    "firstObserved": "",
+    "notes": "Not mapped to a Microsoft name in this record. Alias boundaries are unstable: Cisco Talos used the name Group 27 for the cluster behind the Trochilus/Seven Pointed Dagger toolset, which Arbor ASERT attributed to that group [S2][S4]; one aggregator also lists FlowerLady and FlowerShow as synonyms [S6]; another profile in search results lists Red Pegasus under APT19/Deep Panda, so that alias is disputed [S6]. Do not confuse APT9/Group 27 with APT27 (Emissary Panda/Threat Group-3390), a separate group. Whether Mandiant's APT9 and the Talos/Arbor Group 27 are the same cluster is asserted by alias lists only, not by a primary report seen."
+  },
+  "attribution": {
+    "sponsor": "",
+    "confidence": "",
+    "basis": "No source gathered attributes APT9 to a government. Coverage of the Trochilus campaign said it was unclear who was behind it and that either China or North Korea could feasibly be responsible [S2]. The imported record lists country as CN (MISP Galaxy tags the group as China-based per aggregator) [S6]; this is a third-party tag, not a sourced vendor attribution statement."
+  },
+  "objectives": "Data theft focused on competitively valuable data and projects, historically in pharmaceuticals and biotechnology [S1]. For the Group 27 cluster, ASERT said capabilities could be used against other entities including non-government organizations [S2].",
+  "targeting": {
+    "sectors": [
+      "Pharmaceuticals and biotechnology (historical, Mandiant) [S1]",
+      "Government websites and election-related sites in Myanmar (Group 27 / Seven Pointed Dagger) [S2][S3]",
+      "Thai utility organizations (Trochilus/MoonWind campaign; actor not named in the Unit 42 text seen) [S5]"
+    ],
+    "regions": [
+      "Myanmar (2015) [S2][S3]",
+      "Thailand (Sept-Nov 2016) [S5]"
+    ],
+    "notes": "Mandiant observed APT9 at two biotechnology companies and suspects initial access to one may have come via a trusted relationship between them [S6]. The Asia-focused activity comes from Group 27 reporting and cannot be firmly tied to Mandiant's APT9 [S2][S3]."
+  },
+  "capabilities": {
+    "summary": "Mandiant: spearphishing, valid accounts and remote services for initial access; a wide range of backdoors, both public and believed custom but used by multiple APT groups [S1]. Group 27 toolset 'Seven Pointed Dagger' comprised seven malware items including PlugX, EvilGrab, a 3102 variant of the 9002 RAT and the newly described Trochilus RAT, which had minimal antimalware detection and offered file manager, download/execute and upload/execute functions [S2][S3][S4]. Malpedia links APT9 to the win.9002 family [S6]. Unit 42 reported Trochilus and a new RAT, MoonWind, hosted on compromised legitimate Thai websites, separate C2 per family, and Mimikatz found alongside [S5]."
+  },
+  "campaigns": [
+    {
+      "date": "2015",
+      "name": "Seven Pointed Dagger / Trochilus (Group 27)",
+      "summary": "Watering-hole compromise of Myanmar government and election-related sites, including the Union Election Commission site, delivering PlugX, EvilGrab and 9002 variants; Arbor ASERT attributed the cluster to Cisco Talos's Group 27; January 2016 reporting.",
+      "sources": [
+        "S2",
+        "S3",
+        "S4"
+      ]
+    },
+    {
+      "date": "2016-09",
+      "name": "Trochilus and MoonWind against Thai organizations",
+      "summary": "From September to late November 2016 an unnamed actor used Trochilus and the new MoonWind RAT against a Thai utility organization, hosting malware on two compromised Thai websites. Unit 42 published 2017-03-30; it did not name Group 27 in the text surfaced.",
+      "sources": [
+        "S5"
+      ]
+    }
+  ],
+  "diamond": {
+    "adversary": "Unattributed cluster; PRC origin is a third-party tag only [S6]. Group 27 label from Talos via ASERT reporting [S2].",
+    "capability": "Spearphishing, valid accounts, remote services, public and shared backdoors [S1]; PlugX, EvilGrab, 9002 variant, Trochilus [S2][S4].",
+    "infrastructure": "Compromised legitimate websites used as watering holes and malware hosts [S2][S5]; separate C2 per malware family in the Thai campaign [S5].",
+    "victim": "Pharmaceutical and biotechnology firms [S1]; Myanmar government and election sites [S2][S3].",
+    "socioPolitical": "",
+    "technology": "Trusted relationships between partner firms [S6]; public-facing government websites trusted by visitors [S2]."
+  },
+  "gaps": [
+    "Mandiant's primary APT9 page (cloud.google.com/security/resources/insights/apt-groups) could not be fetched; its text was seen only through Malpedia [S1].",
+    "Search tooling returned no dated Mandiant, CrowdStrike or Talos primary report on APT9/NIGHTSHADE PANDA/Group 27; first/last activity dates and the date of the Mandiant profile are unknown.",
+    "No sourced government attribution or sponsor; confidence unassessed.",
+    "Whether APT9 (Mandiant), Group 27 (Talos) and NIGHTSHADE PANDA (CrowdStrike) are one cluster is unverified; Red Pegasus mapping is disputed [S6].",
+    "Unit 42's Thai-utility report does not name Group 27 in the text seen; linkage unverified [S5].",
+    "Original Unit 42, Arbor ASERT and Talos pages could not be opened (host resolution failures); reporting by secondary outlets used.",
+    "Recent activity (post-2017) not found; the biotechnology victims and timeframe are unspecified.",
+    "Removed unverified claims: EvilGrab watering hole on the Myanmar president's site (May 2015) and Trochilus first appearing in October 2015; neither was confirmed in search results."
+  ],
+  "implications": {
+    "jipoe": "Analyst assessment derived from cited sources; validate before use. STEP 1: Biotechnology and pharmaceutical R&D networks, partner-company trust links and government-affiliated public websites are the relevant terrain [S1][S2][S6]. STEP 2: Data-theft focus on competitive projects points to commercial and research collection rather than disruption [S1]. STEP 3: Observed pattern is spearphishing, valid accounts or remote services, or a watering hole, followed by public or shared RATs such as PlugX or Trochilus, with credential theft tools [S1][S2][S5]. STEP 4: MLCOA is continued quiet collection against biotech/pharma and Southeast Asian government targets. MDCOA is use of a trusted partner relationship to reach a defense-health supplier. Candidate indicators: new PlugX/9002-family implants, visitors' traffic to compromised government sites, Mimikatz use, and remote-service logons with valid credentials [S1][S4][S5]. Confidence is low because the cluster mapping is unresolved.",
+    "jcc2": "Analyst assessment derived from cited sources; validate before use. (1) Situational awareness: treat reporting as low-confidence and cluster boundaries as unsettled; track by tooling and TTP rather than alias. (2) Authorities: DIB/defense-health contractors and partner networks fall to DC3/DIB CS coordination. (3) Mission assurance: valid-account and remote-service abuse argues for monitoring of third-party and partner access. (4) Coordination: share indicators for PlugX/9002-family and Trochilus with allied partners in Southeast Asia."
+  },
+  "sources": [
+    {
+      "ref": "S1",
+      "title": "APT9 actor profile (reproducing Mandiant APT9 text)",
+      "publisher": "Malpedia, Fraunhofer FKIE",
+      "date": "2026-10 (retrieved via search)",
+      "url": "https://malpedia.caad.fkie.fraunhofer.de/actor/apt9"
+    },
+    {
+      "ref": "S2",
+      "title": "New RAT Trochilus skilled at espionage, evading detection (reporting Arbor ASERT)",
+      "publisher": "Threatpost",
+      "date": "2016-01",
+      "url": "https://threatpost.com/new-rat-trochilus-skilled-at-espionage-evading-detection/115857"
+    },
+    {
+      "ref": "S3",
+      "title": "Trochilus RAT Discovered in Multi-Pronged Government Attack (reporting Arbor ASERT)",
+      "publisher": "Infosecurity Magazine",
+      "date": "2016-01",
+      "url": "https://www.infosecurity-magazine.com/news/trochilus-rat-multipronged/"
+    },
+    {
+      "ref": "S4",
+      "title": "New remote access trojan Trochilus uncovered in Seven Pointed Dagger attack (reporting Arbor ASERT)",
+      "publisher": "Graham Cluley",
+      "date": "2016-01",
+      "url": "https://grahamcluley.com/new-remote-access-trojan-trochilus-uncovered-seven-pointed-dagger-attack/"
+    },
+    {
+      "ref": "S5",
+      "title": "Trochilus and New MoonWind RATs Used In Attack Against Thai Organizations",
+      "publisher": "Palo Alto Networks Unit 42",
+      "date": "2017-03-30",
+      "url": "https://unit42.paloaltonetworks.com/unit42-trochilus-rat-new-moonwind-rat-used-attack-thai-utility-organizations/"
+    },
+    {
+      "ref": "S6",
+      "title": "Nightshade Panda, APT 9, Group 27 threat actor profile (aggregator)",
+      "publisher": "Strobes",
+      "date": "2026-10 (retrieved via search)",
+      "url": "https://strobes.co/vi/threat-actors/Nightshade%20Panda%2C%20APT%209%2C%20Group%2027/"
+    }
+  ],
+  "aliasesAdd": [
+    {
+      "name": "FlowerLady",
+      "vendor": "Other / unspecified"
+    },
+    {
+      "name": "FlowerShow",
+      "vendor": "Other / unspecified"
+    }
+  ]
+}
