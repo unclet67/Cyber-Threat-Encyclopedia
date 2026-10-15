@@ -1,0 +1,84 @@
+{
+  "mitre": "G1034",
+  "identification": {
+    "summary": "Daggerfly is Symantec's name for a China-linked espionage group, also tracked as Evasive Panda and BRONZE HIGHLAND [S1][S5]. The group's signature tool is the modular MgBot framework, which Kaspersky says Evasive Panda has used for cyber espionage since at least 2012 [S9]. It has repeatedly delivered malware through hijacked or trojanized software updates, watering holes and supply-chain compromises [S3][S4][S7][S9]. Symantec judges the group 'capable of responding to exposure by quickly updating its toolset to continue its espionage activities with minimal disruption' [S5][S6].",
+    "firstObserved": "Kaspersky: MgBot in use by Evasive Panda since at least 2012 [S9]. Malwarebytes linked 2020 activity to earlier attacks in 2014 and 2018 that used MgBot variants [S2].",
+    "notes": "Vendor names: Daggerfly (Symantec), Evasive Panda (ESET, Kaspersky; also listed for CrowdStrike in the imported record), BRONZE HIGHLAND (Secureworks), StormBamboo (Volexity) [S3][S4][S5][S8]. MITRE lists Evasive Panda and BRONZE HIGHLAND as associated groups under Daggerfly G1034 [S10]. A check of Microsoft's public naming-mapping file (2026-10-15) found no Microsoft name for this actor, so none is assigned here. Volexity's StormBamboo reporting is treated as an overlapping vendor cluster [S8]."
+  },
+  "attribution": {
+    "sponsor": "China-linked per vendor reporting; no government attribution found in the sources gathered [S1][S4][S5].",
+    "confidence": "ESET attributed its 2023-2024 Tibetan watering-hole and supply-chain campaign to Evasive Panda with high confidence [S4]. Malwarebytes attributed its 2020 India and Hong Kong campaign to a Chinese APT group with moderate confidence [S2]. The imported Secureworks profile assesses with moderate confidence that BRONZE HIGHLAND operates on behalf of China. That assessment comes from the encyclopedia's existing record and was not re-verified here.",
+    "basis": "Symantec links its 2023 Africa telecom campaign to Daggerfly partly through a renamed Rundll32.exe and the loader DLL pMsrvd.dll, both seen in a 2020 Evasive Panda campaign [S1]. Symantec tied the macOS backdoor Macma to Daggerfly through code overlaps with MgBot and a shared C2 server [S5][S6]. ESET linked IPs in its Tencent QQ campaign to the earlier LuoYu APT campaign [S3]."
+  },
+  "objectives": "Espionage, including what Symantec calls internal espionage. Its 2024 targets included a US NGO operating in China [S5][S6]. The group has watched the Tibetan diaspora and Buddhist community [S4] and pro-democracy-linked Hong Kong website visitors [S6]. It has also collected intelligence on regional governments and telecoms around China's periphery and in Africa [S1][S2].",
+  "targeting": {
+    "sectors": [
+      "Telecommunications [S1]",
+      "Government agencies (India, Hong Kong) [S2]",
+      "International NGOs operating in mainland China [S3][S5]",
+      "Tibetan religious and diaspora communities [S4]",
+      "Academic networks (Georgia Tech network named among ESET targets) [S4]",
+      "Users of Chinese consumer software (Tencent QQ, iQIYI, SohuVA) [S3][S9]",
+      "ISP customers (via ISP-level DNS poisoning) [S8]"
+    ],
+    "regions": [
+      "Mainland China (Gansu, Guangdong, Jiangsu) [S3][S9]",
+      "Taiwan [S5]",
+      "Hong Kong [S2][S4]",
+      "India [S2][S4][S9]",
+      "Africa (telecom operator) [S1]",
+      "Türkiye [S9]",
+      "Australia and United States (watering-hole target networks) [S4]"
+    ],
+    "notes": "Targeting combines regional government and telecom espionage with surveillance of groups the PRC treats as domestic security concerns: NGOs in China, Tibetans and Hong Kong activists [S1][S2][S3][S4][S5]. The DNS-poisoning delivery Kaspersky reported was selective and aimed at specific victims [S9]."
+  },
+  "capabilities": {
+    "summary": "MgBot is the core of the toolkit. It is a modular Windows framework with plugins for keylogging, file theft, credential theft and command execution. Symantec documented previously unseen MgBot plugins in 2023 [S1][S9]. The group runs a cross-platform arsenal. Symantec says MgBot, Macma and other Daggerfly tools share code from one library used to build Windows, macOS, Linux and Android threats. Symantec also reports evidence that the group can trojanize Android APKs, intercept SMS and DNS requests, and target Solaris [S5][S6][S7]. Nightdoor (also tracked as Suzafk/NetMM) is a newer Windows backdoor that uses the Google Drive API for C2 [S4][S6]. Delivery methods: spear-phishing with template-injection documents carrying Cobalt Strike and MgBot [S2]; trojanized software updates [S3][S9]; watering holes on compromised sites; and trojanized installers from a compromised Indian software vendor [S4]. Volexity reports DNS poisoning at a compromised ISP that redirected insecure HTTP update requests to MACMA and POCOSTICK (MgBot) payloads [S8]. Kaspersky reports DNS poisoning that served encrypted payload parts, a new loader, and hybrid encryption that makes implants unique per victim [S9]. After intrusion, the group has used BITSAdmin and PowerShell to fetch AnyDesk. It has run GetCredManCreds to dump Windows Credential Manager, created local accounts for persistence, and used a PlugX loader [S1]. It also exploited an Apache HTTP server vulnerability for initial access [S5][S6]. Malwarebytes reported Android apps that collect call logs, contacts and SMS and record audio and the screen [S2]."
+  },
+  "campaigns": [
+    {"date": "2020-07", "name": "India and Hong Kong spear-phishing (MgBot/Cobalt Strike)", "summary": "Malwarebytes reported spear-phishing against Indian and Hong Kong government targets from 2 July 2020. Lures included a fake gov.in security check. Payloads were Cobalt Strike and MgBot, alongside malicious Android apps. Timing coincided with Hong Kong's new security law and India's app ban [S2].", "sources": ["S2"]},
+    {"date": "2020-2021", "name": "Tencent QQ malicious updates against an NGO in China", "summary": "ESET found MgBot delivered through Tencent QQ automatic updates to individuals in Gansu, Guangdong and Jiangsu, mostly members of an international NGO. ESET could not decide between supply-chain compromise and adversary-in-the-middle; reported in April 2023 [S3].", "sources": ["S3"]},
+    {"date": "2022-11", "name": "African telecom operator intrusion", "summary": "Symantec tracked activity against an African telecom from November 2022 using new MgBot plugins, a PlugX loader, AnyDesk and GetCredManCreds; reported April 2023 [S1][S7].", "sources": ["S1", "S7"]},
+    {"date": "2022-11 to 2024-11", "name": "Fake-update / DNS-poisoning MgBot campaign", "summary": "Kaspersky reported lures posing as updates for SohuVA, iQIYI Video, IObit Smart Defrag and Tencent QQ, delivered with DNS poisoning, against systems in Türkiye, China and India; reported December 2025 [S9].", "sources": ["S9"]},
+    {"date": "2023 (mid)", "name": "ISP DNS poisoning of software updates (StormBamboo)", "summary": "Volexity traced infections back to DNS poisoning at a compromised ISP. Update traffic for several software vendors was redirected to install MACMA and POCOSTICK (MgBot); reported August 2024 [S8].", "sources": ["S8"]},
+    {"date": "2023-09", "name": "Monlam festival watering hole and Tibetan software supply chain", "summary": "ESET found the Kagyu International Monlam Trust website compromised for watering-hole attacks. The actor also trojanized Tibetan-language software from an Indian developer, delivering MgBot and Nightdoor to networks in India, Taiwan, Hong Kong, Australia and the US; reported March 2024 [S4].", "sources": ["S4"]},
+    {"date": "2024-07", "name": "Major toolset update (Taiwan and US NGO in China)", "summary": "Symantec reported a new MgBot-based malware family, a new Macma version and Nightdoor. They were used against Taiwanese organizations and a US NGO in China, with an Apache HTTP server exploit used for access [S5][S6].", "sources": ["S5", "S6"]}
+  ],
+  "diamond": {
+    "adversary": "China-linked espionage group named by several vendors (Daggerfly, Evasive Panda, BRONZE HIGHLAND, StormBamboo). It has been active since at least 2012 and changes its tools quickly after exposure [S5][S8][S9].",
+    "capability": "MgBot modular framework, Nightdoor, Macma (macOS) and Android implants; PlugX and Cobalt Strike; trojanized installers and updates; DNS poisoning; credential theft with GetCredManCreds [S1][S2][S4][S5][S8][S9].",
+    "infrastructure": "Compromised legitimate websites used as watering holes; a compromised software vendor's distribution site [S4]; DNS poisoning at a compromised ISP [S8]; Google Drive API C2 for Nightdoor [S6]; multiple redundant MgBot C2 servers [S9]; and C2 shared between MgBot and Macma [S6].",
+    "victim": "Tibetan communities, NGOs in China, Hong Kong and Indian government targets, Taiwanese organizations, an African telecom, and users in Türkiye, China and India [S1][S2][S3][S4][S5][S9].",
+    "socioPolitical": "Surveillance of groups Beijing treats as internal security concerns (Tibetans, Hong Kong pro-democracy circles, foreign NGOs in China), plus regional and strategic intelligence collection [S2][S3][S4][S5][S6].",
+    "technology": "Exploits insecure HTTP update mechanisms that do not verify installer signatures [S8], trust in software vendors' update channels [S3][S4][S9], and internet-facing Apache servers [S5]."
+  },
+  "gaps": [
+    "Primary vendor reports (Symantec 2023 and 2024, Kaspersky Securelist 2025, Volexity 2024) could not be fetched (DNS failure); details come from search-result summaries and secondary coverage.",
+    "Microsoft has no public name for this actor in its naming-mapping file as of 2026-10-15.",
+    "No US or allied government attribution or indictment specific to Daggerfly/Evasive Panda was found.",
+    "Cluster boundaries are not settled. Volexity's StormBamboo is equated with Evasive Panda in press coverage [S8]. ESET noted IP overlap with LuoYu [S3]. Third-party alias lists (TAG-112, Digging Taurus, Storm Cloud) were not confirmed by primary vendors and were excluded.",
+    "Whether Tencent QQ updates were compromised at the vendor or in transit (AiTM) remains unresolved [S3]. Kaspersky's DNS-poisoning findings and Volexity's ISP finding may describe the same mechanism, but this is unconfirmed [S8][S9].",
+    "The role of KsRemote (Android RAT, from the imported Secureworks summary) was not confirmed in the sources gathered.",
+    "Symantec's Solaris and Linux capability claims come from secondhand coverage, without analyzed samples in the sources seen [S7].",
+    "The imported Secureworks moderate-confidence assessment was not re-verified against a live Secureworks page."
+  ],
+  "implications": {
+    "jipoe": "Analyst assessment derived from cited sources; validate before use. STEP 1 (operational environment): Software update channels, upstream ISP DNS resolution, and websites trusted by target communities are key cyber terrain. Theater networks in the Indo-Pacific, India, Taiwan and Africa that rely on regional ISPs and consumer software count as relevant terrain [S4][S8][S9]. STEP 2 (effects): Any application that updates over unauthenticated HTTP can be turned into a delivery vector, and the group retools quickly after public exposure, so signature-based defenses lose value fast [S5][S8]. STEP 3 (threat model): Typical chain is a hijacked update, watering hole or spear-phish; then the MgBot or Nightdoor loader; then plugin-based keylogging, file and credential theft; with C2 over actor servers or the Google Drive API [S1][S2][S4][S6][S9]. STEP 4 (COAs): MLCOA is continued selective surveillance of NGOs, diaspora and activist communities and regional government and telecom networks using poisoned updates and watering holes [S1][S3][S4][S9]. MDCOA is ISP-level DNS poisoning that pushes malicious updates to Windows and macOS hosts of personnel or partners in the region during a Taiwan-related crisis [S5][S8]. Candidate indicators: update binaries fetched over HTTP whose hashes do not match the vendor's; DNS answers for update domains that point to unexpected IPs; renamed Rundll32.exe or a pMsrvd.dll loader; GetCredManCreds; unexpected AnyDesk installs via BITSAdmin/PowerShell; new local accounts; Google Drive API traffic from non-browser processes [S1][S6][S8].",
+    "jcc2": "Analyst assessment derived from cited sources; validate before use. (1) Situational awareness: track software inventories with insecure update channels and DNS integrity alerts for forward-deployed and partner networks that rely on host-nation ISPs [S8]. (2) Authorities: the ISP and third-party software vendors sit outside DoD control, so remediation needs coordination with host-nation, vendor and interagency partners rather than unilateral action [S3][S8]. (3) Mission assurance: enforce signed-update verification and DNS over trusted resolvers for mission systems and mobile devices, given Macma and Android capabilities [S5][S6]. (4) Coordination: share indicators with DC3, CISA and allied CERTs, especially those of Taiwan and India, and keep in mind that vendors track overlapping clusters (StormBamboo, Evasive Panda, Daggerfly) under different names [S4][S5][S8]."
+  },
+  "sources": [
+    {"ref": "S1", "title": "Daggerfly: APT Actor Targets Telecoms Company in Africa", "publisher": "Symantec Threat Hunter Team (Broadcom)", "date": "2023-04", "url": "https://symantec-enterprise-blogs.security.com/threat-intelligence/apt-attacks-telecoms-africa-mgbot"},
+    {"ref": "S2", "title": "Chinese Hackers Target Hong Kong and India (reporting Malwarebytes research)", "publisher": "The Hacker News", "date": "2020-07", "url": "https://thehackernews.com/2020/07/chinese-hackers-hong-kong-india.html"},
+    {"ref": "S3", "title": "Evasive Panda APT group delivers malware via updates for popular Chinese software", "publisher": "ESET (WeLiveSecurity)", "date": "2023-04-26", "url": "https://www.welivesecurity.com/2023/04/26/evasive-panda-apt-group-malware-updates-popular-chinese-software/"},
+    {"ref": "S4", "title": "Evasive Panda leverages Monlam Festival to target Tibetans", "publisher": "ESET (WeLiveSecurity)", "date": "2024-03-07", "url": "https://welivesecurity.com/en/eset-research/evasive-panda-leverages-monlam-festival-target-tibetans"},
+    {"ref": "S5", "title": "Daggerfly: Espionage Group Makes Major Update to Toolset", "publisher": "Symantec Threat Hunter Team (Broadcom)", "date": "2024-07-23", "url": "https://www.security.com/threat-intelligence/daggerfly-espionage-updated-toolset"},
+    {"ref": "S6", "title": "Chinese Hackers Target Taiwan and US NGO with MgBot and MACMA Malware (reporting Symantec research)", "publisher": "The Hacker News", "date": "2024-07", "url": "https://thehackernews.com/2024/07/chinese-hackers-target-taiwan-and-us.html"},
+    {"ref": "S7", "title": "China-linked Daggerfly revamps toolset (reporting Symantec research)", "publisher": "The Record (Recorded Future News)", "date": "2024-07", "url": "https://therecord.media/china-linked-daggerfly-revamps-toolset"},
+    {"ref": "S8", "title": "Chinese hackers compromised an ISP to deliver malicious software updates (reporting Volexity StormBamboo research)", "publisher": "Help Net Security", "date": "2024-08-05", "url": "https://www.helpnetsecurity.com/2024/08/05/compromised-isp-dns-malware/"},
+    {"ref": "S9", "title": "Kaspersky uncovers new targeted attacks by Evasive Panda aimed at Türkiye, China and India", "publisher": "Kaspersky", "date": "2025-12-24", "url": "https://www.kaspersky.com/about/press-releases/kaspersky-uncovers-new-targeted-attacks-by-evasive-panda-aimed-at-turkiye-china-and-india"},
+    {"ref": "S10", "title": "Daggerfly, G1034", "publisher": "MITRE ATT&CK", "date": "2026-07-31 (object modified, per imported record)", "url": "https://attack.mitre.org/groups/G1034/"}
+  ],
+  "aliasesAdd": [
+    {"name": "StormBamboo", "vendor": "Volexity"}
+  ]
+}

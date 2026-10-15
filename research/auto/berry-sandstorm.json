@@ -1,0 +1,49 @@
+{
+  "identification": {
+    "summary": "Berry Sandstorm is a Microsoft threat actor name. Microsoft's public naming mapping lists its origin as Iran and its other name as Storm-0852 [S1]. In Microsoft's taxonomy, 'Sandstorm' is the family name for Iran-attributed actors, and 'Storm-' plus four digits marks a cluster still in development before it gets a full name [S2]. No public Microsoft or third-party report describing Berry Sandstorm's operations was found.",
+    "firstObserved": "",
+    "notes": "Microsoft name: Berry Sandstorm (in-development designation Storm-0852) [S1]. No MITRE ATT&CK group and no third-party vendor cluster mapping was found. Do not confuse it with Storm-0842 (Void Manticore/Red Sandstorm) or Storm-0558; search engines tend to return those for this query. One search-engine summary claimed Storm-0852 was an alternate name for 'Blue Tsunami'. Microsoft's mapping file contradicts this: it lists Blue Tsunami as an Israel-based private-sector offensive actor with no other names, and maps Storm-0852 to Berry Sandstorm [S1]."
+  },
+  "attribution": {
+    "sponsor": "",
+    "confidence": "Microsoft classifies Berry Sandstorm with origin 'Iran' [S1]. Microsoft gives no public confidence statement, sponsoring organization (for example MOIS or IRGC) or rationale for this actor.",
+    "basis": "Microsoft's threat actor naming mapping only [S1], read through Microsoft's naming-taxonomy rules [S2]. No government attribution was found."
+  },
+  "objectives": "",
+  "targeting": {
+    "sectors": [],
+    "regions": [],
+    "notes": "No public targeting information was found for Berry Sandstorm or Storm-0852."
+  },
+  "capabilities": {
+    "summary": ""
+  },
+  "campaigns": [],
+  "diamond": {
+    "adversary": "Iran-origin actor tracked by Microsoft as Berry Sandstorm, previously the in-development cluster Storm-0852 [S1][S2].",
+    "capability": "",
+    "infrastructure": "",
+    "victim": "",
+    "socioPolitical": "",
+    "technology": ""
+  },
+  "gaps": [
+    "No public Microsoft blog post, Security Insider profile or Digital Defense Report passage describing Berry Sandstorm or Storm-0852 was found in 9 searches across microsoft.com and the open web.",
+    "Microsoft's 'How Microsoft names threat actors' page on learn.microsoft.com, the record's original reference, could not be fetched (DNS/proxy block). Its Berry Sandstorm row was checked against the equivalent Microsoft MSTIC GitHub mapping file instead [S1].",
+    "Microsoft's February 2024 report on Iranian cyber-enabled influence operations supporting Hamas was checked and does not mention Berry Sandstorm or Storm-0852.",
+    "Sponsoring organization, first-observed date, objectives, targeting, tooling, infrastructure and campaigns are all unknown from open sources.",
+    "Whether Berry Sandstorm overlaps with any other vendor's cluster (Mandiant UNC/APT, CrowdStrike Kitten, Check Point Manticore, etc.) is unknown. No cited source states any overlap.",
+    "When Microsoft promoted Storm-0852 to a full name, and on what basis, is not publicly documented. Microsoft says it promotes a Storm cluster to a named actor once it reaches high confidence [S2], but gives no criteria specific to this actor."
+  ],
+  "implications": {
+    "jipoe": "",
+    "jcc2": ""
+  },
+  "sources": [
+    {"ref": "S1", "title": "Microsoft threat actor naming mapping (MicrosoftMapping.json): entry 'Berry Sandstorm', origin Iran, other names Storm-0852", "publisher": "Microsoft Threat Intelligence (MSTIC GitHub)", "date": "2026-10-15", "url": "https://github.com/microsoft/mstic/blob/master/PublicFeeds/ThreatActorNaming/MicrosoftMapping.json"},
+    {"ref": "S2", "title": "Microsoft shifts to a new threat actor naming taxonomy", "publisher": "Microsoft Threat Intelligence", "date": "2023-04-18", "url": "https://www.microsoft.com/en-us/security/blog/2023/04/18/microsoft-shifts-to-a-new-threat-actor-naming-taxonomy/"}
+  ],
+  "aliasesAdd": [
+    {"name": "Storm-0852", "vendor": "Microsoft"}
+  ]
+}

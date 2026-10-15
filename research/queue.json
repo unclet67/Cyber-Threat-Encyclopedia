@@ -1,58 +1,10 @@
 {
  "note": "Research queue for the automatic wave runner. Waves take items from the front; finished ids move to 'done'.",
  "verify": [
-  "apt16",
-  "apt37"
+  "elderwood",
+  "ferocious-kitten"
  ],
  "research": [
-  {
-   "id": "apt42",
-   "tier": "T2"
-  },
-  {
-   "id": "axiom",
-   "tier": "T2"
-  },
-  {
-   "id": "berry-sandstorm",
-   "tier": "T2"
-  },
-  {
-   "id": "circle-typhoon",
-   "tier": "T2"
-  },
-  {
-   "id": "clay-typhoon",
-   "tier": "T2"
-  },
-  {
-   "id": "copykittens",
-   "tier": "T2"
-  },
-  {
-   "id": "cotton-sandstorm",
-   "tier": "T2"
-  },
-  {
-   "id": "crescent-typhoon",
-   "tier": "T2"
-  },
-  {
-   "id": "cuboid-sandstorm",
-   "tier": "T2"
-  },
-  {
-   "id": "daggerfly",
-   "tier": "T2"
-  },
-  {
-   "id": "elderwood",
-   "tier": "T2"
-  },
-  {
-   "id": "ferocious-kitten",
-   "tier": "T2"
-  },
   {
    "id": "fin13",
    "tier": "T2"
@@ -1504,7 +1456,12 @@
   "antique-typhoon",
   "aoqin-dragon",
   "apt1",
+  "apt16",
+  "apt37",
+  "apt42",
   "aqua-blizzard",
+  "axiom",
+  "berry-sandstorm",
   "brass-typhoon",
   "brocade-typhoon",
   "burgundy-sandstorm",
@@ -1513,10 +1470,17 @@
   "charcoal-typhoon",
   "checkered-typhoon",
   "cinnamon-tempest",
+  "circle-typhoon",
   "citrine-sleet",
+  "clay-typhoon",
   "copper-typhoon",
+  "copykittens",
   "coral-sleet",
+  "cotton-sandstorm",
+  "crescent-typhoon",
   "crimson-sandstorm",
+  "cuboid-sandstorm",
+  "daggerfly",
   "diamond-sleet",
   "emerald-sleet",
   "flax-typhoon",
@@ -1562,6 +1526,10 @@
   "violet-typhoon",
   "volt-typhoon"
  ],
- "thin": [],
+ "thin": [
+  "apt16",
+  "berry-sandstorm",
+  "crescent-typhoon"
+ ],
  "halts": []
 }

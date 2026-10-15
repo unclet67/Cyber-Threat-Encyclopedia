@@ -1,88 +1,69 @@
 {
   "mitre": "G0023",
   "identification": {
-    "summary": "China-based espionage group that MITRE ATT&CK describes as launching spearphishing campaigns against Japanese and Taiwanese organizations [S2]. In late November and early December 2015, FireEye observed known and suspected China-based APT groups send malicious Word attachments to Japanese and Taiwanese organizations in financial services, high-tech, media and government. The attachments exploited a silently patched Microsoft Office EPS vulnerability plus Windows privilege escalation CVE-2015-1701 and delivered the IRONHALO downloader or the ELMER backdoor [S1][S3]. Press coverage of the FireEye reporting says APT16 sent phishing to Taiwanese news organizations and targeted the Democratic Progressive Party (DPP) ahead of Taiwan's January 2016 presidential election [S4].",
-    "firstObserved": "Publicly reported activity begins about 2015-11-26, when FireEye recorded a spearphishing wave starting around 10:00 AM Japan time [S1]. No earlier activity is established in the sources gathered.",
-    "notes": "Microsoft name: none found. The Microsoft mapping was not checked in this pass, and the actor record has no msName. MITRE ATT&CK tracks the group as APT16 (G0023) [S2]. Malpedia lists SVCMONDR and G0023 as synonyms [S3]. SecurityWeek, reporting Kaspersky research, describes SVCMONDR as a Kaspersky-named actor that targeted Taiwanese organizations in December 2015, and mentions it separately from APT16 [S5]. Treat the SVCMONDR = APT16 equivalence as a Malpedia mapping, not a Kaspersky statement. Part one of FireEye's 'EPS Awakens' blog, the only primary document opened, does not name APT16. MITRE cites 'EPS Awakens Part 2' for the APT16 attribution [S1][S2]."
+    "summary": "APT16 is a China-based threat group that has run spear-phishing campaigns against Japanese and Taiwanese organizations [S2]. FireEye reported that between 26 November and 1 December 2015 known and suspected China-based APT groups, including APT16, sent spear-phishing emails to Japanese and Taiwanese organizations in the high-tech, government services, media and financial services sectors [S1][S4]. The lure documents exploited an Encapsulated PostScript (EPS) dict copy use-after-free flaw together with the Windows privilege escalation flaw CVE-2015-1701, and delivered either the IRONHALO downloader or the ELMER backdoor [S1][S4]. Press coverage of FireEye's research said Taiwanese news organizations and the opposition Democratic Progressive Party (DPP) were targeted ahead of Taiwan's January 2016 elections [S6][S7].",
+    "firstObserved": "FireEye's public reporting covers activity from 26 November to 1 December 2015 [S1][S4]. Earlier start dates that appear on secondary sites are not supported by the sources gathered.",
+    "notes": "Microsoft name: none found. APT16 and SVCMONDR do not appear in Microsoft's public threat-actor naming map (checked 2026-10-15) [S8]. Malpedia lists the aliases G0023 and SVCMONDR [S4]. APT16 is FireEye/Mandiant's designation, and MITRE tracks it as G0023 [S2]. Malpedia's Danti entry also lists ELMER as an associated malware family, so the tooling is not unique to this cluster [S4]."
   },
   "attribution": {
-    "sponsor": "People's Republic of China (suspected). MITRE describes APT16 as China-based [S2]. SCMP reports that FireEye identified APT16 as a China-based, state-backed group [S4]. CFR's Cyber Operations Tracker lists China as the suspected state sponsor [S8].",
-    "confidence": "Vendor and tracker assessments only. FireEye/Mandiant made the attribution [S1][S4], and MITRE and CFR repeat it [S2][S8]. No government attribution, indictment or sanction of APT16 was found in the sources gathered. No specific PRC organization (MSS, PLA unit or contractor) is named.",
-    "basis": "FireEye's technical analysis of the November-December 2015 EPS exploit campaigns and their payloads [S1]; FireEye statements to press about Taiwan media and DPP targeting [S4]; MITRE ATT&CK group entry [S2]."
+    "sponsor": "China, a suspected state sponsor according to the CFR Cyber Operations Tracker [S5].",
+    "confidence": "MITRE describes APT16 as 'China-based' [S2]. CFR lists China as the 'suspected state sponsor' [S5]. Press coverage reports that FireEye attributed the Taiwan activity to Chinese hackers [S6][S7]. No government attribution or indictment specific to APT16 was found.",
+    "basis": "FireEye's December 2015 technical reporting on the EPS/CVE-2015-1701 spear-phishing campaigns [S1], which MITRE, Malpedia and CFR reuse [S2][S4][S5]."
   },
-  "objectives": "Political and economic espionage focused on Japan and Taiwan [S2][S8]. In Taiwan, FireEye analyst Bryce Boland said the attackers were seeking information about the upcoming election and the DPP in particular. FireEye also warned that access to news organizations could expose journalists' informants and protected sources [S4]. Boland's comment is FireEye's assessment of intent.",
+  "objectives": "Espionage, classified as such by CFR [S5]. In the Taiwan campaign the reported aim was to obtain information on opposition (DPP) policies and speeches ahead of the January 2016 presidential and legislative elections [S6][S7].",
   "targeting": {
     "sectors": [
-      "Media / news organizations [S1][S4]",
-      "Government [S1][S5][S8]",
-      "Political parties (Taiwan DPP) [S4]",
-      "Financial services [S1][S8]",
-      "High-technology [S1][S8]"
+      "Government services [S1][S4]",
+      "Financial services [S1][S4][S5]",
+      "Media / news organizations [S1][S4][S6]",
+      "High technology [S1][S4][S5]",
+      "Political parties (Taiwan's DPP) [S6][S7]"
     ],
     "regions": [
-      "Taiwan [S1][S4][S5]",
-      "Japan [S1][S2]"
+      "Japan [S2][S5]",
+      "Taiwan [S2][S5][S6]"
     ],
-    "notes": "FireEye's activity summary covers several China-based groups and gives the sector list for Japan and Taiwan 'respectively', without splitting sectors by group [S1]. CFR and Malpedia apply that combined sector list to APT16 [S3][S8]. The Taiwan media and DPP targeting is tied to APT16 specifically in press reporting of FireEye [S4][S5]."
+    "notes": "CFR files the target category as private sector [S5]. The 2015 reporting describes several China-based groups in the same window, so not every targeted sector necessarily belongs to APT16 alone [S1][S4]."
   },
   "capabilities": {
-    "summary": "Spearphishing with malicious Word documents. In 2015 these exploited a Microsoft Office EPS 'dict copy' use-after-free that had been silently patched on 2015-11-10, so the campaign hit unpatched systems within about two weeks of the fix [S1]. The documents chained a user-mode Office exploit with CVE-2015-1701 for SYSTEM-level privilege escalation [S1]. Payloads were the IRONHALO downloader or the ELMER backdoor (FireEye detection Backdoor.APT.Suroot) [S1]. ELMER is a non-persistent, proxy-aware HTTP backdoor written in Delphi; it can list processes and directories [S9]. APT16 compromised otherwise legitimate websites to stage second-stage payloads [S2]. Social engineering used political lures such as the subject line \"DPP's Contact Information Update\" [S4]. SecurityWeek reports, citing Kaspersky, that APT16 also used an exploit for the patched EPS flaw CVE-2015-2545 against Taiwanese media and government agencies [S5]."
+    "summary": "Spear-phishing with malicious Microsoft Word documents that chain an EPS use-after-free exploit with CVE-2015-1701 for local privilege escalation [S1][S4]. The documents dropped IRONHALO, a downloader, or ELMER, a backdoor [S1][S4]. MITRE describes ELMER as a non-persistent, proxy-aware HTTP backdoor written in Delphi that can list directories and running processes [S3]. APT16 has compromised otherwise legitimate sites and used them as staging servers for second-stage payloads [S2]. In the Taiwan activity, emails reportedly used the lure subject 'DPP's Contact Information Update' [S6][S7]."
   },
   "campaigns": [
-    {
-      "date": "2015-11-26 to 2015-12 (early)",
-      "name": "EPS exploit spearphishing against Japan and Taiwan",
-      "summary": "Known and suspected China-based APT groups sent Word attachments to Japanese and Taiwanese organizations in finance, high-tech, media and government. The attachments chained a silently patched EPS use-after-free with CVE-2015-1701 and dropped IRONHALO or ELMER [S1]. MITRE and Malpedia attribute this activity to APT16, citing FireEye [S2][S3].",
-      "sources": ["S1", "S2", "S3"]
-    },
-    {
-      "date": "2015-12",
-      "name": "Taiwan media and DPP targeting ahead of the 2016 presidential election",
-      "summary": "FireEye reported APT16 phishing Taiwanese news organizations with the lure subject \"DPP's Contact Information Update\". FireEye assessed the attackers were seeking election- and DPP-related information [S4]. SCMP also reported that DPP staff email accounts were broken into, but this does not show that APT16 did it [S4].",
-      "sources": ["S4"]
-    },
-    {
-      "date": "2015-12",
-      "name": "SVCMONDR activity against Taiwan (Kaspersky naming)",
-      "summary": "Kaspersky, as reported by SecurityWeek, observed actors exploiting CVE-2015-2545, including APT16 against Taiwanese media and government agencies, and a threat actor it named SVCMONDR against Taiwanese organizations in December 2015 [S5][S6]. Malpedia treats SVCMONDR as an APT16 alias [S3].",
-      "sources": ["S5", "S6", "S3"]
-    }
+    {"date": "2015-11", "name": "EPS / CVE-2015-1701 spear-phishing against Japan and Taiwan", "summary": "From 26 November to 1 December 2015, spear-phishing emails carrying Word documents with the EPS exploit and CVE-2015-1701 hit Japanese and Taiwanese high-tech, government-services, media and financial organizations, delivering IRONHALO or ELMER.", "sources": ["S1", "S4"]},
+    {"date": "2015-12", "name": "Targeting of Taiwanese media and the DPP before the 2016 election", "summary": "Coverage of FireEye's research reports phishing of Taiwanese news organizations with a 'DPP's Contact Information Update' lure, seeking information on opposition policies and speeches before the January 2016 elections.", "sources": ["S6", "S7"]}
   ],
   "diamond": {
-    "adversary": "APT16, a China-based group that FireEye describes as state-backed. No named organization or individuals [S2][S4].",
-    "capability": "Office EPS exploit chained with CVE-2015-1701 for privilege escalation; IRONHALO downloader; ELMER Delphi HTTP backdoor [S1][S9].",
-    "infrastructure": "Compromised legitimate websites used as staging servers for second-stage payloads [S2]; HTTP command and control for ELMER [S9]. Specific domains and IPs were not captured in the sources gathered.",
-    "victim": "Japanese and Taiwanese organizations in media, government, finance and high-tech; Taiwan news outlets and the DPP [S1][S4].",
-    "socioPolitical": "Collection on Taiwan's opposition party and the media around the January 2016 presidential election, a period of high PRC interest in Taiwan's political direction [S4].",
-    "technology": "Microsoft Office's EPS filter and Windows privilege escalation on hosts that had not applied the November 2015 updates [S1]."
+    "adversary": "China-based group; China is the suspected state sponsor (CFR) [S2][S5].",
+    "capability": "Weaponized Word documents (an EPS use-after-free exploit plus CVE-2015-1701), the IRONHALO downloader and the ELMER Delphi HTTP backdoor [S1][S3][S4].",
+    "infrastructure": "Compromised legitimate websites used as staging servers for second-stage payloads; HTTP command and control for ELMER [S2][S3].",
+    "victim": "Japanese and Taiwanese government-services, financial, media and high-tech organizations; Taiwan's DPP and news outlets [S1][S5][S6].",
+    "socioPolitical": "Intelligence collection on Taiwanese domestic politics ahead of the January 2016 presidential and legislative elections [S6][S7].",
+    "technology": "Unpatched Microsoft Office EPS handling and Windows privilege escalation (CVE-2015-1701) on victim endpoints [S1][S4]."
   },
   "gaps": [
-    "Could not open FireEye 'The EPS Awakens - Part 2', the document that names APT16 and gives operational detail. Its URL was not found, and the guessed Google Cloud paths returned 404. Part one, which was opened, does not name APT16 [S1].",
-    "MITRE ATT&CK, Malpedia, CFR, SecurityWeek, SCMP, Securelist and CNN pages could not be fetched (DNS or proxy blocks). Their content here comes from search-result summaries.",
-    "The SVCMONDR alias conflicts between sources: Malpedia lists it as an APT16 synonym [S3], while SecurityWeek's coverage of Kaspersky names SVCMONDR alongside APT16 as an apparently separate actor [S5].",
-    "The claim that APT16 sent phishing from a compromised Taiwanese government email account could not be verified in the sources gathered and is excluded.",
-    "Third-party blogs claim activity since 2012, an 'OpTaiwan' alias and a June 2015 DOORJAMB lure. None of these is corroborated by primary sources, so all are excluded.",
-    "In June 2016, CNN reported a compromise of the DPP website. The coverage says FireEye did not link it to APT16 [S7].",
-    "No public reporting on APT16 after 2016 was found. It is unknown whether the group was retired, renamed or merged into another cluster.",
-    "No Microsoft (Typhoon) name or government attribution was found.",
-    "No IOCs (domains, hashes) were captured. IRONHALO's functionality beyond 'downloader' is undocumented in the sources gathered."
+    "FireEye's primary report 'The EPS Awakens' (2015-12-16) could not be opened (host unreachable). Details come from search excerpts and from Malpedia/MITRE quotations of it. 'The EPS Awakens Part 2', which MITRE also cites, was not reviewed.",
+    "The MITRE ATT&CK, Malpedia, CFR, SCMP and Security Affairs pages could not be fetched directly. Their content and dates come from search-result excerpts. The CFR entry date (2016-12) and the press dates (2015-12) need checking.",
+    "No Microsoft designation exists for APT16 in Microsoft's public naming map, so it may be untracked or merged without public disclosure.",
+    "The FireEye 2015 reporting covers several China-based groups in the same window. Which victims and sectors belong specifically to APT16 rather than other groups is not clear from the sources gathered.",
+    "A reported compromise of DPP staff email accounts appears only in secondary press excerpts. Whether it was APT16 activity is unverified.",
+    "Kaspersky's 2016 'CVE-2015-2545: overview of current threats' is an existing record reference that may mention SVCMONDR. It could not be retrieved or checked.",
+    "No public reporting on APT16 activity after 2015 was found, so its current status is unknown.",
+    "Malpedia associates ELMER with the Danti actor as well. Shared tooling between these clusters has not been resolved.",
+    "Secondary blogs claiming activity since 2012, an 'OpTaiwan' link, or DOORJAMB use were not corroborated and were excluded."
   ],
   "implications": {
-    "jipoe": "Analyst assessment derived from cited sources; validate before use. STEP 1 (operational environment): Taiwan and Japan political, media and government networks around elections and policy events. Where US forces work with Japanese and Taiwanese partners, those networks are relevant terrain [S1][S4]. STEP 2 (effects): Weaponizing an Office flaw about two weeks after a silent patch shows that patch lag on partner and media networks creates exploitable windows [S1]. STEP 3 (threat model): The sequence is a political-themed spearphish, then a Word EPS exploit, then CVE-2015-1701 privilege escalation, then IRONHALO or ELMER, with second stages staged on compromised legitimate sites [S1][S2][S4]. STEP 4 (COAs): MLCOA is espionage against Taiwanese and Japanese political, media and government targets timed to elections or crises. MDCOA is use of media access to identify sources and shape or pre-empt reporting during a Taiwan Strait crisis [S4]. Candidate indicators: Word attachments with embedded EPS content; Office processes spawning executables followed by privilege escalation; HTTP beacons from Delphi binaries through proxies; downloads of second-stage payloads from otherwise reputable websites [S1][S2][S9].",
-    "jcc2": "Analyst assessment derived from cited sources; validate before use. (1) Situational awareness: The group has no public reporting after 2016, so treat APT16 as a historical TTP baseline for PRC election-period targeting of Taiwan and Japan, not as a current tracked threat [S1][S4]. (2) Authorities: Victims were partner-nation media, political parties and government entities. Any response runs through partner and interagency channels, not DoD network authorities [S4]. (3) Mission assurance: Confirm Office and Windows patch currency on systems shared with partners, since this actor used a vulnerability silently patched two weeks earlier [S1]. (4) Coordination: Reconcile vendor naming (APT16, SVCMONDR, G0023) before sharing indicators with partners to avoid double-counting [S3][S5]."
+    "jipoe": "Analyst assessment derived from cited sources; validate before use. STEP 1 (operational environment): The relevant environment is the Taiwan and Japan government, media, financial and high-tech information space, plus the political-party networks around Taiwanese elections [S1][S6]. STEP 2 (effects): Office documents arriving by email and unpatched Windows endpoints are the main avenue of approach. Compromised legitimate websites hide second-stage delivery [S2][S4]. STEP 3 (adversary model): Political or contact-update themed spear-phish, then Word EPS exploit plus CVE-2015-1701, then IRONHALO download or ELMER HTTP backdoor, then directory and process discovery [S1][S3][S6]. STEP 4 (COAs): MLCOA is spear-phishing for espionage against Taiwanese and Japanese political, media and government organizations around significant political events such as elections [S6][S7]. MDCOA is use of the resulting access to US, allied or partner organizations in the region for sustained collection on regional policy during a crisis; this is not observed in sources. Candidate indicators: Word documents carrying embedded EPS content, privilege escalation via CVE-2015-1701 on endpoints, Delphi-compiled HTTP beacons that honor proxy settings, and second-stage downloads from legitimate but compromised websites [S2][S3][S4].",
+    "jcc2": "Analyst assessment derived from cited sources; validate before use. (1) Situational awareness: Track regional political events, such as Taiwanese elections, as triggers for heightened spear-phishing against partner and media organizations [S6]. (2) Authorities: Partner-nation victims (Taiwanese and Japanese organizations) fall outside DoD networks, so information sharing goes through appropriate partner and interagency channels. (3) Mission assurance: Exploitation relied on known Office and Windows vulnerabilities, so patch compliance for document-handling components is a key mitigation [S1][S4]. (4) Coordination: Reporting is old (2015) and vendor-specific. Coordinate with intelligence partners for current activity before assigning APT16 as a named threat in planning."
   },
   "sources": [
-    {"ref": "S1", "title": "The EPS Awakens (Part 1)", "publisher": "FireEye / Mandiant (Google Cloud Blog)", "date": "2015-12-16", "url": "https://cloud.google.com/blog/topics/threat-intelligence/the-eps-awakens/"},
-    {"ref": "S2", "title": "APT16, G0023 (search-result summary; page not opened)", "publisher": "MITRE ATT&CK", "date": "2026-07-31", "url": "https://attack.mitre.org/groups/G0023/"},
-    {"ref": "S3", "title": "APT16 actor entry (search-result summary; page not opened)", "publisher": "Malpedia (Fraunhofer FKIE)", "date": "2026-10-14", "url": "https://malpedia.caad.fkie.fraunhofer.de/actor/apt16"},
-    {"ref": "S4", "title": "Chinese hackers increase attacks on Taiwan opposition before January's presidential election: US security firm (reporting FireEye)", "publisher": "South China Morning Post", "date": "2015-12", "url": "https://scmp.com/news/china/diplomacy-defence/article/1893663/chinese-hackers-increase-attacks-taiwan-opposition"},
-    {"ref": "S5", "title": "Microsoft Office Flaw Exploited by Several APT Actors (reporting Kaspersky research)", "publisher": "SecurityWeek", "date": "2016-05", "url": "https://www.securityweek.com/microsoft-office-flaw-exploited-several-apt-actors/"},
-    {"ref": "S6", "title": "Danti and co: cyberespionage groups use a single vulnerability to target organizations around the world", "publisher": "Kaspersky Lab (press release)", "date": "2016-05", "url": "https://www.kaspersky.com.cn/about/press-releases/danti-and-co-cyberespionage-groups-use-a-single-vulnerability-to-target-organizations-around-the-world"},
-    {"ref": "S7", "title": "Taiwan DPP Chinese hackers (DPP website compromise; FireEye did not link it to APT16)", "publisher": "CNN", "date": "2016-06-01", "url": "https://amp.cnn.com/cnn/2016/06/01/asia/taiwan-dpp-chinese-hackers"},
-    {"ref": "S8", "title": "APT 16 (Cyber Operations Tracker entry; date reflects the 2015 activity, page date not verified)", "publisher": "Council on Foreign Relations", "date": "2015-12", "url": "https://www.cfr.org/cyber-operations/apt-16"},
-    {"ref": "S9", "title": "S0064 ELMER (third-party mirror of MITRE ATT&CK software entry)", "publisher": "redteam.y-security.de (MITRE ATT&CK mirror)", "date": "2026-10-14", "url": "https://redteam.y-security.de/MITRE/software/S0064/"}
+    {"ref": "S1", "title": "The EPS Awakens (content via search excerpts and Malpedia/MITRE quotations; primary not opened)", "publisher": "FireEye", "date": "2015-12-16", "url": "https://www.fireeye.com/blog/threat-research/2015/12/the_eps_awakens.html"},
+    {"ref": "S2", "title": "APT16, G0023 (via search excerpts)", "publisher": "MITRE ATT&CK", "date": "2026-07-31 (object modified, per imported record)", "url": "https://attack.mitre.org/groups/G0023/"},
+    {"ref": "S3", "title": "ELMER, S0064 (via search excerpts)", "publisher": "MITRE ATT&CK", "date": "2026-10 (retrieved)", "url": "https://attack.mitre.org/software/S0064/"},
+    {"ref": "S4", "title": "APT16 actor profile (via search excerpts)", "publisher": "Malpedia (Fraunhofer FKIE)", "date": "2026-10 (retrieved)", "url": "https://malpedia.caad.fkie.fraunhofer.de/actor/apt16"},
+    {"ref": "S5", "title": "APT 16, Cyber Operations Tracker (via search excerpts)", "publisher": "Council on Foreign Relations", "date": "2016-12", "url": "https://www.cfr.org/cyber-operations/apt-16"},
+    {"ref": "S6", "title": "Chinese hackers increase attacks on Taiwan opposition before January's presidential election: US security firm (reporting FireEye research)", "publisher": "South China Morning Post", "date": "2015-12", "url": "https://scmp.com/news/china/diplomacy-defence/article/1893663/chinese-hackers-increase-attacks-taiwan-opposition"},
+    {"ref": "S7", "title": "Chinese hackers target Taiwanese Opposition Party and media (reporting FireEye research)", "publisher": "Security Affairs", "date": "2015-12", "url": "https://securityaffairs.com/42953/intelligence/chinese-hackers-target-taiwan.html"},
+    {"ref": "S8", "title": "Microsoft threat actor naming mapping (MicrosoftMapping.json); no APT16 entry", "publisher": "Microsoft Threat Intelligence", "date": "2026-10-15 (retrieved)", "url": "https://github.com/microsoft/mstic/blob/master/PublicFeeds/ThreatActorNaming/MicrosoftMapping.json"}
   ],
-  "aliasesAdd": [
-    {"name": "G0023", "vendor": "MITRE ATT&CK"}
-  ]
+  "aliasesAdd": []
 }

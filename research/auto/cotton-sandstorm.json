@@ -1,0 +1,97 @@
+{
+  "identification": {
+    "summary": "Iranian state actor that Microsoft tracks as Cotton Sandstorm (formerly NEPTUNIUM), also known as Emennet Pasargad, which Microsoft says is run by the IRGC and calls Iran's most prolific influence actor [S1][S3]. It specializes in cyber-enabled influence operations, meaning intrusions paired with hack-and-leak, intimidation and amplification through false personas [S2][S3][S7]. US authorities sanctioned and indicted members over the 2020 US presidential election influence operation [S5][S6]. A 2024 joint FBI, Treasury and Israel National Cyber Directorate advisory says the group has operated since mid-2024 under the front company Aria Sepehr Ayandehsazan (ASA) [S8][S9][S12].",
+    "firstObserved": "Kaspersky reports ViceLeaker Android spyware activity against Israeli users since at least May 2018 [S11]; Microsoft maps Vice Leaker to Cotton Sandstorm [S1]. The FBI says Emennet targeted mainly Israeli entities since at least 2020 [S7].",
+    "notes": "Microsoft name: Cotton Sandstorm (formerly NEPTUNIUM); Microsoft maps NEPTUNIUM, HAYWIRE KITTEN (CrowdStrike) and Vice Leaker to it [S1]. Coverage of the 2024 joint advisory lists Cotton Sandstorm, Marnanbridge and Haywire Kitten as private-sector names for Emennet Pasargad / ASA [S9]. 'Holy Souls' is a persona Microsoft attributes to NEPTUNIUM, not a separate group [S2]. Earlier corporate names: Treasury coverage says Emennet's former name Net Peygard Samavat was sanctioned in 2019 for supporting the IRGC cyber unit [S5]. Personas reported by the FBI include Savior Pro (2020-2022) and Deus (2021) [S7]; Microsoft reports Al-Toufan, For Humanity and For Palestinians [S3]."
+  },
+  "attribution": {
+    "sponsor": "Islamic Republic of Iran, Islamic Revolutionary Guard Corps (IRGC). Microsoft says the group is run by the IRGC [S3][S4]. Treasury tied Emennet's predecessor company to support for the IRGC cyber unit [S5].",
+    "confidence": "Microsoft's DTAC attributed the Charlie Hebdo operation to Iran/NEPTUNIUM using its attribution framework and intelligence it says it cannot fully disclose [S2]. US Government: OFAC designations and an SDNY indictment (November 2021) against the company and two employees [S5][S6]; coverage notes the indictment did not tie the two men directly to the Iranian government but said the company had done government work [S6]. FBI, Treasury and Israel's INCD jointly published the October 2024 advisory [S8][S9][S12].",
+    "basis": "Microsoft telemetry and influence-operations analysis [S2][S3][S4]; US sanctions and indictment [S5][S6]; FBI Private Industry Notification [S7]; joint FBI/Treasury/INCD advisory (via coverage) [S8][S9]; Kaspersky malware research on ViceLeaker [S11]."
+  },
+  "objectives": "Advance Iranian government aims through cyber-enabled influence: embarrass and intimidate adversaries, undermine confidence in democratic processes, and punish perceived insults to Iran's leadership or Islam [S2][S3][S6][S7]. Microsoft assessed the Charlie Hebdo leak as a government response to cartoons ridiculing Khamenei [S2]. After 7 October 2023 it ran operations against Israel and its supporters, including the UAE and Bahrain [S3]. Mobile espionage (ViceLeaker) collected data from Israeli users [S11].",
+  "targeting": {
+    "sectors": [
+      "Elections and election-related websites [S4][S6]",
+      "News media and media content management systems [S4][S5]",
+      "Publishers (Charlie Hebdo) [S2]",
+      "Streaming / IPTV services [S3]",
+      "Government and financial organizations (Bahrain) [S3]",
+      "Commercial digital display providers [S9]",
+      "Internet-connected IP cameras [S9]",
+      "SMS service providers [S10]",
+      "Individual citizens via bulk SMS and email [S3][S6]",
+      "Android mobile users [S11]"
+    ],
+    "regions": [
+      "Israel [S3][S7][S11]",
+      "United States [S4][S6][S7]",
+      "France [S2][S9]",
+      "Sweden [S10][S12]",
+      "United Arab Emirates, Canada, United Kingdom (streaming hijack) [S3]",
+      "Bahrain [S3]"
+    ],
+    "notes": "Microsoft reported 2024 reconnaissance and limited probing of election-related websites in unnamed US battleground states and a May 2024 scan of a US news outlet [S4]. Sweden's Säpo attributed a 2023 SMS-provider breach to a group called Anzu acting for the IRGC; the cited coverage does not name Emennet, though coverage of the October 2024 advisory lists Sweden among the group's targets [S10][S12]."
+  },
+  "capabilities": {
+    "summary": "Hack-and-leak operations with false-flag hacktivist and cybercriminal personas, data theft, social-media amplification and sometimes destructive encryption malware [S7]. Bulk SMS and email intimidation in at least six operations from August 2023, at least once from a compromised account [S3]. Website and digital-display defacement [S2][S3]. Hijacking of streaming TV services to air a broadcast with an apparently AI-generated news anchor, and AI-generated images [S3]. Sockpuppet networks and impersonation of authority figures [S2][S3]. 2020 operations obtained voter information, sent threatening emails posing as the Proud Boys, attempted to hack state voting-related websites and produced a fake video [S5][S6]. FBI reported that it disrupted the group's attempt to use unauthorized access to US media content management accounts [S6]. 2024 advisory coverage describes compromise of a French dynamic display provider and attempts to harvest content from IP cameras [S9]. Mobile spyware (ViceLeaker) trojanized Android apps, delivered through Telegram and WhatsApp, collecting calls, texts, photos and location [S11]."
+  },
+  "campaigns": [
+    {"date": "2018-05", "name": "ViceLeaker Android spyware", "summary": "Kaspersky reports trojanized Android apps used against dozens of Israeli users; Microsoft maps Vice Leaker to Cotton Sandstorm.", "sources": ["S11", "S1"]},
+    {"date": "2020-10", "name": "2020 US election influence operation ('Proud Boys' emails)", "summary": "Obtained voter data, sent threatening emails posing as the Proud Boys, spread disinformation and tried to hack state voting websites; led to the November 2021 sanctions and indictment.", "sources": ["S4", "S5", "S6"]},
+    {"date": "2020-2022", "name": "Savior Pro and Deus personas", "summary": "FBI reports hack-and-leak and false-flag operations, mostly against Israeli entities, plus a destructive attack on a US organization.", "sources": ["S7"]},
+    {"date": "2021-11-18", "name": "OFAC sanctions and SDNY indictment", "summary": "Treasury designated Emennet Pasargad and six individuals; DOJ unsealed charges against Kazemi and Kashian; State Department offered a reward.", "sources": ["S5", "S6"]},
+    {"date": "2023-01", "name": "Charlie Hebdo hack-and-leak ('Holy Souls')", "summary": "Persona claimed data on more than 200,000 Charlie Hebdo customers, offered it for 20 BTC and amplified the leak with French-language sockpuppets; Microsoft attributed it to NEPTUNIUM.", "sources": ["S2"]},
+    {"date": "2023-07", "name": "Swedish SMS provider breach (Anzu)", "summary": "Sweden says an IRGC-linked group breached an SMS provider and sent about 15,000 texts calling for revenge over Quran burnings; Emennet link rests on coverage of the 2024 advisory.", "sources": ["S10", "S12"]},
+    {"date": "2023-10-21", "name": "Israel-Hamas war operations ('Cyber Flood', Al-Toufan)", "summary": "Three operations in one day, bulk texts and emails to Israelis, and targeting of Bahraini government and financial organizations by November.", "sources": ["S3"]},
+    {"date": "2023-12", "name": "Streaming TV hijack ('For Humanity')", "summary": "Hijacked streaming services to air a fake news broadcast with an apparently AI-generated anchor, with disruptions reported in the UAE, Canada and the UK.", "sources": ["S3"]},
+    {"date": "2024-07", "name": "Paris Olympics display compromise", "summary": "Compromised a French dynamic display provider to show montages denouncing Israeli athletes, alongside a fake news article.", "sources": ["S9", "S8"]},
+    {"date": "2024-10", "name": "2024 US election reconnaissance", "summary": "Microsoft reported reconnaissance of election-related websites in battleground states and scanning of a US news outlet.", "sources": ["S4"]},
+    {"date": "2024-10-30", "name": "Joint FBI/Treasury/INCD advisory on ASA", "summary": "Advisory describes new tradecraft under the front company Aria Sepehr Ayandehsazan.", "sources": ["S12", "S8", "S9"]}
+  ],
+  "diamond": {
+    "adversary": "IRGC-run Iranian operators working through Emennet Pasargad and the front company Aria Sepehr Ayandehsazan; two charged employees (Kazemi, Kashian) [S3][S6][S9].",
+    "capability": "Hack-and-leak, false-flag personas, bulk SMS/email intimidation, defacement, streaming and display hijacking, AI-generated media, and Android spyware [S2][S3][S7][S11].",
+    "infrastructure": "Compromised SMS and email services, at least one compromised account, sockpuppet social-media accounts, Telegram and hacker-forum leak channels, and compromised display and streaming providers [S2][S3][S9][S10].",
+    "victim": "Israeli citizens and organizations, US voters, election websites and media, Charlie Hebdo subscribers, Gulf states normalizing with Israel, and Paris Olympics audiences [S2][S3][S4][S6][S9].",
+    "socioPolitical": "Retaliation and coercion supporting Iranian regime narratives: the Israel-Hamas war, insults to the Supreme Leader, Quran burnings, and US elections [S2][S3][S10].",
+    "technology": "Weakly secured media CMS, streaming, digital-display, SMS gateway and IoT camera platforms that give one intrusion a large public audience [S3][S6][S9][S10]."
+  },
+  "gaps": [
+    "Primary documents not opened: the October 30, 2024 FBI/Treasury/INCD advisory (ic3.gov) [S12], the Treasury press release, the DOJ indictment and the FBI PIN; details come from secondary coverage [S5][S6][S7][S8][S9].",
+    "Microsoft's October 2024 MTAC election report was not opened; details come from Iran International coverage [S4].",
+    "The date of the Duo Decipher article [S7] is inferred from Microsoft's reference to an October 2022 FBI PIN [S2] and was not confirmed on the page.",
+    "The cited Swedish coverage does not name Emennet or Cotton Sandstorm; the Anzu-to-Emennet link depends on the unopened 2024 advisory [S10][S12].",
+    "ViceLeaker's link to Cotton Sandstorm comes from Microsoft's alias mapping [S1]; the Kaspersky report itself (securelist.com) could not be opened, and the cited coverage does not attribute ViceLeaker to Iran.",
+    "No MITRE ATT&CK group ID was found for this actor in the record.",
+    "Malware, infrastructure IOCs and initial-access vectors for the 2023-2024 operations are not public in the sources gathered.",
+    "Activity after October 2024, including any during the June 2025 Israel-Iran conflict, was not covered by the sources gathered."
+  ],
+  "implications": {
+    "jipoe": "Analyst assessment derived from cited sources; validate before use. STEP 1: Relevant terrain includes public-facing information platforms (news CMS, streaming/IPTV, digital displays, SMS gateways and IoT cameras) and personal data on servicemembers and citizens, because the actor turns access to these into influence effects [S3][S6][S9][S10]. STEP 2: The actor's goal is psychological and reputational effect, not long-term espionage; a modest intrusion paired with a persona claim and sockpuppet amplification creates outsized perceived impact [S2][S3][S7]. STEP 3: The pattern runs intrusion or data theft, then a persona claim (Holy Souls, Al-Toufan, Savior Pro), then a leak on Telegram or forums, bulk SMS/email intimidation and AI-enhanced media, then amplification [S2][S3][S7]. STEP 4: MLCOA is opportunistic hack-and-leak and intimidation messaging against Israel-aligned and Western audiences, timed to geopolitical triggers such as elections, insults to Iranian leadership or major events [S2][S3][S4][S9]. MDCOA is a compromise of media, display or SMS infrastructure used to deliver threatening messages to US personnel or families during a US-Iran crisis, possibly combined with destructive encryption malware as reported against a US organization [S3][S7]. Candidate indicators: new hacktivist personas claiming breaches of US or allied entities; bulk SMS or email threats referencing recipients' personal data; unauthorized content on displays or streams; and reconnaissance scans of election or media websites [S3][S4][S7].",
+    "jcc2": "Analyst assessment derived from cited sources; validate before use. (1) Situational awareness: fuse cyber intrusion reporting with information-environment monitoring, because this actor's effects appear first as persona claims and leaks [S2][S3]. (2) Authorities: activity mixes cyber intrusion with influence operations against civilians and elections, so response may cross DoD, FBI, CISA and DHS lanes; FBI has already acted against the group's media-CMS access [S6]. (3) Mission assurance: protect installation and family-facing communications channels (mass notification, base media, displays) against hijacking and spoofed threats [S3][S9]. (4) Coordination: partner with allies already engaged against the actor, including Israel's INCD (co-author of the 2024 advisory) and France and Sweden as victims, and with platform companies that suspend persona accounts [S2][S8][S10]."
+  },
+  "sources": [
+    {"ref": "S1", "title": "Microsoft threat actor naming mapping (MicrosoftMapping.json), Cotton Sandstorm entry", "publisher": "Microsoft Threat Intelligence", "date": "2026-10-15", "url": "https://github.com/microsoft/mstic/blob/master/PublicFeeds/ThreatActorNaming/MicrosoftMapping.json"},
+    {"ref": "S2", "title": "Iran responsible for Charlie Hebdo attacks", "publisher": "Microsoft Threat Intelligence (Security Insider)", "date": "2023-02-02", "url": "https://www.microsoft.com/en-us/security/business/security-insider/threat-briefs/iran-response-for-charlie-hebdo-attacks/"},
+    {"ref": "S3", "title": "Iran surges cyber-enabled influence operations in support of Hamas", "publisher": "Microsoft Threat Intelligence (Security Insider)", "date": "2024-02", "url": "https://www.microsoft.com/en-us/security/security-insider/intelligence-reports/iran-surges-cyber-enabled-influence-operations-in-support-of-hamas"},
+    {"ref": "S4", "title": "Microsoft says Iranian hackers 'gearing up' close to US elections (reporting Microsoft MTAC report)", "publisher": "Iran International", "date": "2024-10-24", "url": "https://iranintl.com/en/202410248433"},
+    {"ref": "S5", "title": "Treasury Sanctions Iran Cyber Actors for Attempting to Influence the 2020 U.S. Presidential Election (reprint of Treasury press release)", "publisher": "Iran Watch (Wisconsin Project)", "date": "2021-11-18", "url": "https://www.iranwatch.org/library/governments/united-states/executive-branch/department-treasury/treasury-sanctions-iran-cyber-actors-attempting-influence-2020-us-presidential"},
+    {"ref": "S6", "title": "US Indicts Iranians for Election Meddling (reporting DOJ indictment)", "publisher": "SecurityWeek", "date": "2021-11", "url": "https://www.securityweek.com/us-indicts-iranians-election-meddling"},
+    {"ref": "S7", "title": "FBI Warns of Attacks From Iranian Threat Group Emennet Pasargad (reporting FBI PIN)", "publisher": "Duo Decipher", "date": "2022-10", "url": "https://duo.com/decipher/fbi-warns-of-attacks-from-iranian-threat-group-emennet-pasargad"},
+    {"ref": "S8", "title": "U.S. and Israel Expose Iran's Tenacious Malign Influence (reporting FBI/Treasury/INCD advisory)", "publisher": "Foundation for Defense of Democracies", "date": "2024-11-08", "url": "https://www.fdd.org/analysis/policy-briefs/2024/11/08/u-s-and-israel-expose-irans-tenacious-malign-influence/"},
+    {"ref": "S9", "title": "Inside Iran's cyber playbook: AI, fake hosting and psychological warfare (reporting FBI/Treasury/INCD advisory)", "publisher": "The Hacker News", "date": "2024-11", "url": "https://thehackernews.com/2024/11/inside-irans-cyber-playbook-ai-fake.html"},
+    {"ref": "S10", "title": "Sweden says Iran behind hacker attack that urged revenge for Quran burning", "publisher": "The Local Sweden", "date": "2024-09-24", "url": "https://www.thelocal.se/20240924/sweden-says-iran-behind-hacker-attack-that-urged-revenge-for-quran-burning"},
+    {"ref": "S11", "title": "ViceLeaker Android malware campaign (reporting Kaspersky research)", "publisher": "The Hacker News", "date": "2019-06", "url": "https://thehackernews.com/2019/06/android-malware-hacking.html"},
+    {"ref": "S12", "title": "New Tradecraft of Iranian Cyber Group Aria Sepehr Ayandehsazan aka Emennet Pasargad (JCSA-20241030-001; not opened, known through search coverage)", "publisher": "FBI, US Treasury, Israel National Cyber Directorate", "date": "2024-10-30", "url": "https://www.ic3.gov/CSA/2024/241030.pdf"}
+  ],
+  "aliasesAdd": [
+    {"name": "NEPTUNIUM", "vendor": "Microsoft (former name)"},
+    {"name": "HAYWIRE KITTEN", "vendor": "CrowdStrike"},
+    {"name": "Vice Leaker", "vendor": "Kaspersky (mapped by Microsoft)"},
+    {"name": "Emennet Pasargad", "vendor": "US Government"},
+    {"name": "Aria Sepehr Ayandehsazan (ASA)", "vendor": "US Government (front company)"},
+    {"name": "Marnanbridge", "vendor": "Other / unspecified"},
+    {"name": "Holy Souls", "vendor": "Persona (Microsoft attribution)"}
+  ]
+}

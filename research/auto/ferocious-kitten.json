@@ -1,0 +1,167 @@
+{
+  "mitre": "G0137",
+  "identification": {
+    "summary": "Iran-based espionage actor that Kaspersky named Ferocious Kitten in June 2021. Kaspersky says it has run covert surveillance of Persian-speaking individuals in Iran since at least 2015 [S1][S2]. Its main implant is MarkiRAT, a custom Windows remote access trojan. MarkiRAT logs keystrokes and clipboard content, uploads and downloads files, and runs arbitrary commands. Some variants hijack the Telegram and Chrome applications for persistence [S1][S2][S3]. The group stayed largely unreported until a lure document was uploaded to VirusTotal in March 2021 and flagged on Twitter, which led Kaspersky to investigate [S1][S2]. In July 2026 Recorded Future reported new MarkiRAT distribution by an Iran-nexus cluster it calls TAG-182. It noted overlaps with Ferocious Kitten but did not confirm an organizational link [S7][S8].",
+    "firstObserved": "Kaspersky: active since at least 2015, based on MarkiRAT variants traced back to that year [S1][S3]. Public disclosure came in June 2021 [S2].",
+    "notes": "Microsoft name: none found. 'Ferocious Kitten' does not appear in Microsoft's public threat actor naming mapping (retrieved 2026-10-15) [S9]. MITRE ATT&CK tracks the group as Ferocious Kitten (G0137) and MarkiRAT as S0652 [S6]. Recorded Future tracks recent MarkiRAT activity as TAG-182, a separate cluster. Keep TAG-182 apart from Ferocious Kitten unless a source confirms they are the same [S7][S8]. Kaspersky notes TTP and victimology overlaps with Domestic Kitten and Rampant Kitten, but tracks them as separate groups [S1][S2]."
+  },
+  "attribution": {
+    "sponsor": "Iran (assessed). Kaspersky describes the group as apparently based in Iran and conducting domestic surveillance [S1][S3]. Neither Kaspersky nor any other cited source names a specific Iranian government agency [S1][S7].",
+    "confidence": "Vendor assessment only, with no government attribution found. Kaspersky places the group in a wider ecosystem of Iranian surveillance campaigns [S2]. For the related TAG-182 cluster, Recorded Future assesses it is almost certainly part of Iran's state surveillance apparatus. That judgment covers TAG-182 and should not be transferred to Ferocious Kitten [S7].",
+    "basis": "Kaspersky's analysis of victims (Persian speakers in Iran), lure content (anti-regime protest and resistance-camp imagery), and payloads tailored to Iranian users of Telegram and Psiphon [S1][S2][S4][S5]. Shared tradecraft with other Iranian surveillance groups: C2 domains reused for years, as seen with Domestic Kitten, and Telegram execution hijacking, as seen with Rampant Kitten [S1]."
+  },
+  "objectives": "Domestic surveillance and intelligence collection against Iranians, especially potential supporters of the opposition and people involved in resistance to the regime. Collection covers keystrokes, clipboard content, and files from victim systems [S1][S2][S5]. Recorded Future reports that the overlapping TAG-182 MarkiRAT activity targets Iranians inside and outside Iran, including people tied to anti-government or dissident groups [S7][S8].",
+  "targeting": {
+    "sectors": [
+      "Individuals: Persian-speaking civilians in Iran [S1][S2]",
+      "Political dissidents and potential opposition or resistance supporters [S2][S5]",
+      "Users of censorship-circumvention tools (Psiphon VPN) and of Telegram [S4][S5]"
+    ],
+    "regions": [
+      "Iran [S1][S2]",
+      "Iranian diaspora (reported for the TAG-182 MarkiRAT cluster, not confirmed for Ferocious Kitten) [S7]"
+    ],
+    "notes": "Kaspersky also saw signs that Android implants were used against mobile users in Iran. The details of those implants were not available in the sources gathered [S3]."
+  },
+  "capabilities": {
+    "summary": "Initial access uses spearphishing decoy Office documents with malicious macros. The documents are disguised as images or videos of protests or resistance camps and urge the target to enable content, which drops executables [S2][S3]. Files are disguised with Right-to-Left Override filename tricks [S6]. The custom MarkiRAT implant provides keylogging, clipboard capture, file upload and download, and arbitrary command execution [S1][S2]. MITRE says MarkiRAT is a Visual Studio-compiled RAT that uses BITS to communicate with its C2 server; the actor also uses the BITSAdmin tool [S6]. Some variants hijack Telegram and Chrome launches for persistence, and one sample was a backdoored build of the open-source Psiphon VPN [S1][S3][S4]. Kaspersky says the group reused the same C2 domains across implants for years [S1]. The 2026 TAG-182 MarkiRAT activity used fake VPN and media-player apps ('Pis2ray VPN', 'YESHICA'), spread mainly through social media, and added screenshot capture [S7][S8]."
+  },
+  "campaigns": [
+    {
+      "date": "2015",
+      "name": "Earliest MarkiRAT activity",
+      "summary": "Kaspersky traces MarkiRAT, including variants that hijack Telegram and Chrome, back to at least 2015.",
+      "sources": [
+        "S1",
+        "S3"
+      ]
+    },
+    {
+      "date": "2021-03",
+      "name": "Lure document surfaces on VirusTotal",
+      "summary": "A suspicious lure document was uploaded to VirusTotal and flagged on Twitter, which prompted Kaspersky's investigation. A Chinese threat intelligence firm had analyzed one of the group's implants earlier.",
+      "sources": [
+        "S1",
+        "S2"
+      ]
+    },
+    {
+      "date": "2021-06",
+      "name": "Kaspersky discloses Ferocious Kitten (six-year surveillance campaign)",
+      "summary": "Kaspersky publishes its analysis of MarkiRAT, decoy documents with anti-regime themes, Telegram and Psiphon-tailored payloads, and overlaps with Domestic Kitten and Rampant Kitten.",
+      "sources": [
+        "S1",
+        "S2",
+        "S3",
+        "S4",
+        "S5"
+      ]
+    },
+    {
+      "date": "2026-03",
+      "name": "TAG-182 lure rebrand (MarkiRAT, overlapping cluster)",
+      "summary": "Recorded Future reports that TAG-182 renamed its 'YESHICA' media-player lure to 'YESHICA YEPlayer' after public exposure.",
+      "sources": [
+        "S7",
+        "S8"
+      ]
+    },
+    {
+      "date": "2026-07",
+      "name": "Recorded Future reports TAG-182 MarkiRAT distribution",
+      "summary": "Insikt Group reports fake VPN and media-player apps delivering MarkiRAT to Iranians inside and outside Iran. It cites overlaps with Ferocious Kitten (BITS job strings, file naming, C2 configuration) but says more evidence is needed to confirm an organizational link.",
+      "sources": [
+        "S7",
+        "S8"
+      ]
+    }
+  ],
+  "diamond": {
+    "adversary": "Iran-based operators that Kaspersky tracks as Ferocious Kitten, active since at least 2015 and conducting domestic surveillance [S1][S3]. No named agency or individuals have been identified [S1].",
+    "capability": "Macro-laden decoy documents, RTLO filename masquerading, the MarkiRAT RAT (keylogger, clipboard capture, file transfer, command execution), BITS/BITSAdmin transfers, Telegram and Chrome execution hijacking, and a backdoored Psiphon build [S1][S2][S4][S6].",
+    "infrastructure": "Actor-registered C2 domains reused across implants for years [S1][S6]. The 2026 TAG-182 cluster used domains on AS47447 and AS199959 that imitate Google, Microsoft, and Facebook names, mostly with Let's Encrypt certificates [S7].",
+    "victim": "Persian-speaking individuals in Iran, particularly potential opposition supporters, and users of Telegram and Psiphon [S2][S4][S5].",
+    "socioPolitical": "Regime surveillance of domestic dissent. Lures depict protests and resistance-camp footage against the Iranian government [S2][S5]. Recorded Future links the 2026 TAG-182 activity to a shift toward cyber surveillance after the 2026 kinetic conflict with the US and Israel subsided [S7].",
+    "technology": "Windows endpoints running Microsoft Office macros, Telegram Desktop, Chrome, and the Psiphon VPN that Iranians use to bypass censorship. Kaspersky also saw signs of Android targeting [S1][S3][S4]."
+  },
+  "gaps": [
+    "The full Kaspersky Securelist report (S1) could not be opened (host blocked). Its C2 domains, IoCs, Android implant details, and exact publication day were not verified; the facts here come from search-result excerpts and secondary coverage.",
+    "The identity of the Chinese threat intelligence firm that first analyzed a Ferocious Kitten implant is not stated in the sources gathered.",
+    "No Microsoft name for Ferocious Kitten was found in Microsoft's public naming mapping [S9]. Mapping to other vendor clusters (e.g., Mandiant, CrowdStrike) is unknown.",
+    "The relationship between TAG-182 (Recorded Future) and Ferocious Kitten is unconfirmed. Recorded Future cites code, string, and C2-configuration overlaps but says more evidence is needed. The Recorded Future report and PDF could not be opened directly, so they are cited through search excerpts and TechRadar coverage [S7][S8].",
+    "No government attribution, indictment, or sanctions naming Ferocious Kitten was found. The sponsoring Iranian organization is unknown.",
+    "No confirmed Ferocious Kitten-attributed activity between mid-2021 and 2026 was found in open sources.",
+    "Victim counts and campaign scale are not reported in the sources gathered.",
+    "A third-party ATT&CK mirror describes BITSAdmin use for tool download; this exact wording was not verified on the live MITRE page (S6 host blocked for direct fetch)."
+  ],
+  "implications": {
+    "jipoe": "Analyst assessment derived from cited sources; validate before use. STEP 1: Ferocious Kitten operates mainly in Iran's domestic information environment against dissidents. Its relevance to US forces is indirect: it signals Iranian intelligence priorities and gives early warning of internal-security tightening around crises [S2][S7]. STEP 2: Censorship-circumvention tools (Psiphon, VPNs) and Telegram are contested terrain. Trojanized or fake versions of these tools are an established delivery vector [S4][S7]. STEP 3: Threat model: a socially engineered lure (macro document with an RTLO filename, or a fake VPN or media app shared on social media) installs MarkiRAT, which persists through Telegram or Chrome hijacking, communicates over BITS, and collects keystrokes, clipboard data, files, and screenshots [S1][S2][S6][S7]. STEP 4: MLCOA: continued surveillance of Iranian dissidents and diaspora using fake privacy apps, increasing during periods of unrest or after conflict [S7]. MDCOA: the same tooling is turned against Persian-speaking partners, linguists, local nationals, or information-operations audiences connected to US or coalition activity, exposing sources and contacts (analyst extrapolation; not reported in sources). Candidate indicators: unexpected BITS jobs to unfamiliar domains, RTLO characters in attachment names, modified Telegram or Chrome shortcuts or launch paths, unofficial Psiphon or 'Pis2ray VPN' binaries, and lookalike Google, Microsoft, or Facebook domains on AS47447 or AS199959 [S1][S6][S7].",
+    "jcc2": "Analyst assessment derived from cited sources; validate before use. (1) Situational awareness: track Recorded Future and Kaspersky reporting on MarkiRAT and TAG-182 as an indicator of Iranian internal-security cyber activity during crises [S2][S7]. (2) Authorities: targeting focuses on Iranian civilians and diaspora, so protecting US-person or partner-national contacts may require coordination with law enforcement and interagency partners rather than DoD-only action. (3) Mission assurance: personnel and partners who communicate with Iranian audiences should use vetted Telegram and VPN builds only; block BITS transfers to uncategorized domains on mission networks [S4][S6]. (4) Coordination: share IoCs from the TAG-182 report appendices with intelligence and information-operations partners supporting Iran-focused influence or human-network efforts, after verifying them against the primary report [S7]."
+  },
+  "sources": [
+    {
+      "ref": "S1",
+      "title": "Ferocious Kitten: 6 years of covert surveillance in Iran (cited via search excerpts; page not directly opened)",
+      "publisher": "Kaspersky (Securelist)",
+      "date": "2021-06",
+      "url": "https://securelist.com/ferocious-kitten-6-years-of-covert-surveillance-in-iran/102806/"
+    },
+    {
+      "ref": "S2",
+      "title": "A 6-year cyberespionage campaign uncovered in the Middle East (press release)",
+      "publisher": "Kaspersky",
+      "date": "2021-06",
+      "url": "https://www.kaspersky.com/about/press-releases/2021_a-6-year-cyberespionage-campaign-uncovered-in-the-middle-east"
+    },
+    {
+      "ref": "S3",
+      "title": "Kaspersky Details Iranian Domestic Cyber Surveillance Operation (reporting Kaspersky research)",
+      "publisher": "SecurityWeek",
+      "date": "2021-06",
+      "url": "https://securityweek.com/kaspersky-details-iranian-domestic-cyber-surveillance-operation"
+    },
+    {
+      "ref": "S4",
+      "title": "A New Spyware is Targeting Telegram and Psiphon VPN Users in Iran (reporting Kaspersky research)",
+      "publisher": "The Hacker News",
+      "date": "2021-06-17",
+      "url": "https://thehackernews.com/2021/06/a-new-spyware-is-targeting-telegram-and.html"
+    },
+    {
+      "ref": "S5",
+      "title": "Ferocious Kitten APT targets Telegram and Psiphon VPN users in Iran (reporting Kaspersky research)",
+      "publisher": "Security Affairs",
+      "date": "2021-06-17",
+      "url": "https://securityaffairs.com/119073/apt/ferocious-kitten-apt-campaign.html"
+    },
+    {
+      "ref": "S6",
+      "title": "Ferocious Kitten, G0137 and MarkiRAT, S0652",
+      "publisher": "MITRE ATT&CK",
+      "date": "2026-07-31 (object data as imported)",
+      "url": "https://attack.mitre.org/software/S0652/"
+    },
+    {
+      "ref": "S7",
+      "title": "Iran-Nexus TAG-182 Disseminates MarkiRAT Surveillance Tool (cited via search excerpts; page not directly opened)",
+      "publisher": "Recorded Future Insikt Group",
+      "date": "2026-07-01",
+      "url": "https://www.recordedfuture.com/research/nexus-tag182-disseminates-markirat"
+    },
+    {
+      "ref": "S8",
+      "title": "Iran-linked group caught hiding surveillance tools in fake apps (reporting Recorded Future research)",
+      "publisher": "TechRadar",
+      "date": "2026-07",
+      "url": "https://techradar.com/vpn/vpn-privacy-security/iran-linked-group-caught-hiding-surveillance-tools-in-fake-apps"
+    },
+    {
+      "ref": "S9",
+      "title": "Microsoft threat actor naming mapping (MicrosoftMapping.json)",
+      "publisher": "Microsoft Threat Intelligence",
+      "date": "2026-10-15 (retrieved)",
+      "url": "https://github.com/microsoft/mstic/blob/master/PublicFeeds/ThreatActorNaming/MicrosoftMapping.json"
+    }
+  ],
+  "aliasesAdd": []
+}

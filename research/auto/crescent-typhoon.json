@@ -1,0 +1,57 @@
+{
+  "identification": {
+    "summary": "Crescent Typhoon is a Microsoft threat actor name for a China-origin actor; Microsoft's threat actor naming table lists its former name as CESIUM [S1].",
+    "firstObserved": "",
+    "notes": "Microsoft name: Crescent Typhoon (former Microsoft element-scheme name CESIUM) [S1]. No other-vendor names or MITRE ATT&CK group ID were found. No public Microsoft blog, Security Insider profile or Digital Defense Report text describing Crescent Typhoon or CESIUM activity turned up in searches."
+  },
+  "attribution": {
+    "sponsor": "",
+    "confidence": "",
+    "basis": "Microsoft's naming table classifies Crescent Typhoon's origin as China [S1]. Microsoft's public sources found here state no sponsoring organization or confidence level. No government attribution was found."
+  },
+  "objectives": "",
+  "targeting": {
+    "sectors": [],
+    "regions": [],
+    "notes": "Public sources found here describe no targeting for Crescent Typhoon or CESIUM."
+  },
+  "capabilities": {
+    "summary": ""
+  },
+  "campaigns": [],
+  "diamond": {
+    "adversary": "China-origin actor that Microsoft tracks as Crescent Typhoon (formerly CESIUM) [S1]; no public detail on the operators.",
+    "capability": "",
+    "infrastructure": "",
+    "victim": "",
+    "socioPolitical": "",
+    "technology": ""
+  },
+  "gaps": [
+    "No public reporting was found on Crescent Typhoon's activity, tooling, infrastructure, victims or campaigns. Microsoft's naming table lists only the name, origin (China) and the legacy name CESIUM.",
+    "First-observed date, sponsoring organization (MSS, PLA or contractor) and Microsoft's confidence level are not public in the sources found.",
+    "No other-vendor alias mapping (Mandiant, CrowdStrike, Secureworks, etc.) and no MITRE ATT&CK group entry were found. Do not merge Crescent Typhoon with other China clusters without a Microsoft statement linking them.",
+    "No public Microsoft blog post or Digital Defense Report text was found that names CESIUM in operational reporting. Element-era Microsoft reporting (pre-April 2023) may exist but was not located.",
+    "Primary-document access limits: the Microsoft naming page is cited from search-result content; S1's date is an access date. Microsoft's MSTIC GitHub mapping feed and the MISP Microsoft activity-group galaxy were not confirmed to contain this entry in fact-check searches and are not cited.",
+    "The imported record cites only Microsoft's naming page. Searches returned no news, vendor or government coverage of this actor."
+  ],
+  "implications": {
+    "jipoe": "",
+    "jcc2": ""
+  },
+  "sources": [
+    {
+      "ref": "S1",
+      "title": "How Microsoft names threat actors (naming table; accessed 2026-10-15)",
+      "publisher": "Microsoft Learn",
+      "date": "2026-10",
+      "url": "https://learn.microsoft.com/microsoft-365/security/intelligence/microsoft-threat-actor-naming"
+    }
+  ],
+  "aliasesAdd": [
+    {
+      "name": "CESIUM",
+      "vendor": "Microsoft (former name)"
+    }
+  ]
+}

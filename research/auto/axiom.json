@@ -1,0 +1,78 @@
+{
+  "mitre": "G0001",
+  "identification": {
+    "summary": "Axiom is the name Novetta gave to a China-linked cyberespionage group in its October 2014 'Operation SMN' report, produced by an industry coalition that cleaned Axiom tooling from about 43,000 installations, including 180 top-tier Hikit implants [S2][S3][S6]. Novetta described Axiom as a 'well resourced, disciplined, and sophisticated subgroup of a larger cyberespionage group' [S1]. Cisco Talos tracks the same activity as Group 72 and called it well funded and sophisticated, with a defined software development process [S5]. MITRE ATT&CK lists Axiom as G0001, a suspected Chinese state-linked espionage group active since at least 2008 against aerospace, defense, government, manufacturing and media targets [S11].",
+    "firstObserved": "MITRE: active since at least 2008 [S11]. Press coverage of the Novetta report describes activity spanning more than six years before October 2014 [S3].",
+    "notes": "Microsoft has no single name for Axiom. Microsoft tracks Brass Typhoon (APT41), Heart Typhoon (APT17, Hidden Lynx, DeputyDog) and Leopard Typhoon (Winnti Group) as separate actors that overlap with this umbrella record [S12]. MITRE says Axiom and Winnti Group both use Winnti for Windows but treats them as distinct because their reported TTPs and targeting differ [S11]. Talos observed the same email address in Group 72 activity and in two other actor groups, which may indicate shared staff or infrastructure [S5]."
+  },
+  "attribution": {
+    "sponsor": "People's Republic of China (vendor assessment). Novetta assessed with 'moderate to high confidence' that the organization tasking Axiom is part of the Chinese intelligence apparatus [S1][S2].",
+    "confidence": "Moderate to high (Novetta's assessment, not a government attribution) [S2]. Novetta cited an FBI flash to InfraGard, which said the actors are affiliated with the Chinese government, as partial support [S2]. MITRE describes the group as suspected Chinese state-linked [S11].",
+    "basis": "Shared tooling (Hikit, Derusbi, Hydraq, ZxShell and others) and infrastructure found by the Novetta-led coalition [S3][S4][S6]; targeting of groups the Chinese state could see as a threat to its stability [S2]; Talos analysis of Group 72 [S5]; and the FBI flash Novetta cited [S2]."
+  },
+  "objectives": "Long-term espionage. Victims include organizations of strategic economic interest, groups that influence environmental and energy policy, and developers of cutting-edge information technology [S2]. Axiom also targeted pro-democracy NGOs and other groups and individuals that the Chinese state could see as a threat to its stability [S2]. Novetta treated the presence of Hikit as a sign that attackers had held long-term access to a network [S1].",
+  "targeting": {
+    "sectors": [
+      "Government agencies (Asian and Western) [S1]",
+      "NGOs focused on human rights, pro-democracy, international politics and environmental policy [S1][S2]",
+      "Energy, pharmaceutical and telecommunications firms [S1]",
+      "Software, electronics and network-equipment manufacturers [S1]",
+      "Academic institutions [S1]",
+      "Aerospace, defense, manufacturing and media (MITRE) [S11]"
+    ],
+    "regions": [
+      "Hikit infections were found mostly in the United States, South Korea, Taiwan, Japan and the European Union [S1]",
+      "Worldwide deployment of Hikit on targeted organizations' machines [S1]"
+    ],
+    "notes": "Novetta reported that attacks on NGOs covering international politics, environmental policy, pro-democracy or human rights tend to be multistaged [S2]. Sector lists come from press coverage of the Novetta report and from MITRE. The primary report was not retrieved."
+  },
+  "capabilities": {
+    "summary": "Axiom used a tiered toolset. Commodity or shared RATs (PlugX, Gh0st RAT, Poison Ivy) sat at the lower tiers, and the custom Hikit backdoor was kept for high-value long-term persistence and data theft [S1][S3]. The coalition found Derusbi, DeputyDog, Hydraq, ZxShell, Fexel and DarkMoon tooling as well, and Microsoft's October 2014 MSRT update and coalition products targeted those families [S4][S6][S7]. Axiom used these tools to get into environments and re-infect them [S4]. Axiom set up separate command-and-control infrastructure for almost every Hikit target [S3]. Hikit samples were signed with a code-signing certificate stolen from Bit9 in 2012, and Novetta believes Axiom carried out that breach [S3]. Talos noted a mature software development process [S5]."
+  },
+  "campaigns": [
+    {"date": "2009/2010", "name": "Operation Aurora (overlap only)", "summary": "Coverage of the Novetta report says Axiom's tools and infrastructure overlap with Operation Aurora, which hit Google, and with other campaigns. This is an overlap finding, not direct attribution.", "sources": ["S3", "S4"]},
+    {"date": "2012", "name": "Bit9 code-signing certificate theft", "summary": "A certificate stolen from Bit9 was used to sign Hikit. Novetta believes Axiom was behind the breach. Symantec separately attributed the Bit9 compromise to Hidden Lynx.", "sources": ["S3", "S9"]},
+    {"date": "2013-08", "name": "Operation DeputyDog", "summary": "FireEye reported that watering holes on Japanese media sites delivered an IE zero-day (CVE-2013-3893) to Japanese organizations from as early as 19 August 2013, and tied the C2 to the Bit9 attackers. Novetta later listed DeputyDog among Axiom's tools.", "sources": ["S8", "S4"]},
+    {"date": "2014-10", "name": "Operation SMN coalition disruption", "summary": "A Novetta-led coalition (Cisco, Microsoft, FireEye, F-Secure, iSIGHT, Symantec, Tenable, ThreatConnect, ThreatTrack, Volexity and others) removed about 43,000 Axiom tool installations, including 180 Hikit implants, through Microsoft's MSRT and vendor products. Novetta then published its Axiom report.", "sources": ["S2", "S5", "S6", "S7"]},
+    {"date": "2015-02", "name": "Anthem breach (possible link)", "summary": "Coverage of ThreatConnect research tied infrastructure behind the Anthem intrusion to a Chinese group that press called Deep Panda, Axiom, Group 72 or Shell_Crew. The link was described as possible, not confirmed.", "sources": ["S10"]}
+  ],
+  "diamond": {
+    "adversary": "A disciplined, well-resourced subgroup of a larger PRC cyberespionage group. Novetta assessed with moderate to high confidence that its tasking organization is part of the Chinese intelligence apparatus [S1][S2].",
+    "capability": "Tiered malware: PlugX, Gh0st RAT and Poison Ivy, then Hikit for long-term persistence. Also Derusbi, Hydraq, ZxShell and DeputyDog tooling, plus malware signed with a stolen Bit9 certificate [S1][S3][S4][S7].",
+    "infrastructure": "Command-and-control infrastructure built for almost every Hikit target [S3]. In the related DeputyDog activity, watering holes on legitimate Japanese media sites and staging and C2 hosts in Hong Kong and South Korea [S8].",
+    "victim": "Asian and Western government agencies, human-rights and environmental NGOs, energy, pharmaceutical, telecommunications and IT or electronics firms, and academia. Concentrated in the US, South Korea, Taiwan, Japan and the EU [S1].",
+    "socioPolitical": "Collection on organizations of strategic economic interest and on groups seen as threats to the stability of the Chinese state [S2].",
+    "technology": "Windows enterprise endpoints. Trust in code-signing certificates and application allow-listing, which the stolen Bit9 certificate undermined. Browser exploitation through watering holes [S3][S8]."
+  },
+  "gaps": [
+    "Novetta's primary 'Operation SMN: Axiom Threat Actor Group Report' (47 pages, October 2014) was not retrieved. Figures and quotes come from press coverage [S1][S2][S3][S4].",
+    "Web fetching failed for every host tried (MITRE, Help Net Security, Dark Reading, Lawfare, Infosecurity Magazine), so all content comes from search-result summaries. Exact wording should be checked against the originals.",
+    "Cluster boundaries are disputed. Microsoft splits the activity across Brass Typhoon, Heart Typhoon and Leopard Typhoon [S12], and MITRE separates Axiom from Winnti Group [S11]. Hidden Lynx and DeputyDog map to Heart Typhoon (APT17) under Microsoft, so the Bit9 and DeputyDog campaigns may belong to that cluster rather than to Axiom as Novetta defined it [S3][S8][S9][S12].",
+    "Press coverage of the Anthem breach treats Deep Panda, Axiom, Group 72 and Shell_Crew as one group [S10]. CrowdStrike tracks Deep Panda separately, and that equivalence is not established here.",
+    "Accounts of the activity window differ (MITRE's 'since at least 2008' versus 'more than six years' before 2014), as do accounts of the Aurora linkage (overlap versus attribution) [S3][S4][S11].",
+    "No sourced activity under the Axiom name after 2015 was found. Whether the cluster still operates, or now exists only under successor names, is unknown.",
+    "The FBI flash to InfraGard that Novetta cited is not public and was not reviewed [S2].",
+    "Many imported aliases (for example Earth Baku, TA415, Wicked Spider, BRONZE ATLAS/EXPORT, Grayfly, Red Kelpie) look like APT41 or Winnti-family names from umbrella mappings. No source gathered here equates them with Axiom as Novetta defined it."
+  ],
+  "implications": {
+    "jipoe": "Analyst assessment derived from cited sources; validate before use. STEP 1 (operational environment): Key terrain is Windows enterprise endpoints, code-signing and allow-listing trust chains, and frequently visited third-party websites that can be turned into watering holes [S3][S8]. STEP 2 (effects): Signed malware can defeat allow-listing. Tiered implants mean that removing commodity RATs does not end access while Hikit-class implants stay in place [S1][S3][S4]. STEP 3 (threat model): The template is initial access through watering holes or exploits, then commodity RATs, then a custom backdoor with per-victim C2 for long-term collection [S1][S3][S8]. STEP 4 (COAs): MLCOA is persistent, low-noise espionage against government, defense-industrial, technology and policy NGO networks [S1][S11]. MDCOA is a supply-chain or certificate compromise of a security vendor that lets signed implants run widely inside DoD or DIB enclaves [S3][S9]. Candidate indicators: binaries signed with unexpected or revoked vendor certificates; Hikit, Derusbi, ZxShell, PlugX or Gh0st detections [S7]; and unique per-host C2 domains [S3].",
+    "jcc2": "Analyst assessment derived from cited sources; validate before use. (1) Situational awareness: Operation SMN shows how coordinated industry and vendor action (MSRT, AV signatures) can remove a toolset at scale. JCC2 should track vendor and Microsoft disruption actions as events that can trigger re-infection attempts [S4][S6][S7]. (2) Authorities: The 2014 action was led by private industry, independent of law enforcement [S3]. Coordinating with similar private disruptions needs clear legal and policy lanes. (3) Mission assurance: Trust in code signing and allow-listing tools is a single point of failure, so certificate revocation monitoring belongs in mission-assurance checks [S3]. (4) Coordination: Overlapping vendor names (Axiom, Group 72, APT17, Winnti, APT41) make cross-organization reporting harder. Exchange IOCs and behaviors, not names alone [S5][S11][S12]."
+  },
+  "sources": [
+    {"ref": "S1", "title": "Coalition sheds more light on Hikit threat, Axiom spy group (reporting Novetta Operation SMN report)", "publisher": "SC Media", "date": "2014-10", "url": "https://www.scmagazine.com/news/coalition-sheds-more-light-on-hikit-threat-axiom-spy-group"},
+    {"ref": "S2", "title": "Cyber security coalition reports on Chinese state-sponsored espionage (reporting Novetta Axiom report)", "publisher": "Help Net Security", "date": "2014-10-28", "url": "https://www.helpnetsecurity.com/2014/10/28/cyber-security-coalition-reports-on-chinese-state-sponsored-espionage/"},
+    {"ref": "S3", "title": "Security vendor coalition cleans 43,000 malware infections used for cyberespionage", "publisher": "CSO Online (Lucian Constantin)", "date": "2014-10", "url": "https://www.csoonline.com/article/2839524/security-vendor-coalition-cleans-43000-malware-infections-used-for-cyberespionage.html"},
+    {"ref": "S4", "title": "Security Companies Team Up, Take Down Chinese Hacking Group", "publisher": "Dark Reading", "date": "2014-10", "url": "https://www.darkreading.com/attacks-breaches/security-companies-team-up-take-down-chinese-hacking-group"},
+    {"ref": "S5", "title": "Threat Spotlight: Group 72", "publisher": "Cisco Talos", "date": "2014-10-14", "url": "https://blogs.cisco.com/security/talos/threat-spotlight-group-72"},
+    {"ref": "S6", "title": "43,000 malicious tools removed in vendor collective disruption", "publisher": "IT Security Guru", "date": "2014-10-30", "url": "https://www.itsecurityguru.org/2014/10/30/43000-malicious-tools-removed-vendor-collective-disruption/"},
+    {"ref": "S7", "title": "Microsoft MSRT October Update", "publisher": "SANS Internet Storm Center", "date": "2014-10-19", "url": "https://isc.sans.edu/diary/18853"},
+    {"ref": "S8", "title": "Internet Explorer zero-day exploit used in watering hole attacks to target Japanese users (reporting FireEye Operation DeputyDog)", "publisher": "The Hacker News", "date": "2013-09", "url": "https://thehackernews.com/2013/09/internet-explorer-zero-day-exploit-used.html"},
+    {"ref": "S9", "title": "'Hidden Lynx' Group Hacks for Highest Bidder: Symantec Report", "publisher": "eWeek", "date": "2013-09", "url": "https://www.eweek.com/security/hidden-lynx-group-hacks-for-highest-bidder-symantec-report/"},
+    {"ref": "S10", "title": "Anthem Breach May Have Started in April 2014 (reporting ThreatConnect research)", "publisher": "Krebs on Security", "date": "2015-02-09", "url": "https://krebsonsecurity.com/2015/02/anthem-breach-may-have-started-in-april-2014/"},
+    {"ref": "S11", "title": "Axiom, G0001", "publisher": "MITRE ATT&CK", "date": "2026-07-31 (object modified)", "url": "https://attack.mitre.org/groups/G0001"},
+    {"ref": "S12", "title": "Microsoft threat actor naming mapping (MicrosoftMapping.json)", "publisher": "Microsoft Threat Intelligence", "date": "2026-10-14 (retrieved)", "url": "https://github.com/microsoft/mstic/blob/master/PublicFeeds/ThreatActorNaming/MicrosoftMapping.json"}
+  ],
+  "aliasesAdd": [
+    {"name": "Group 72", "vendor": "Cisco Talos"}
+  ]
+}

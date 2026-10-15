@@ -1,0 +1,95 @@
+{
+  "identification": {
+    "summary": "Iranian state-sponsored cyber espionage group that Mandiant publicly named in September 2022. Mandiant reported more than 30 confirmed targeted operations since early 2015 and said the true total is likely much higher [S1]. The group relies mainly on trust-building social engineering and credential harvesting against personal and corporate email and cloud accounts. It also uses Android surveillance malware and lightweight Windows backdoors (NICECURL, TAMECAT) [S1][S2]. Google TAG reported in August 2024 that the US and Israel made up about 60% of APT42's known geographic targeting over the prior six months [S3].",
+    "firstObserved": "At least 2015 per Mandiant; Android-malware C2 infrastructure in use since at least late 2015 [S1].",
+    "notes": "Mandiant formerly tracked the activity as UNC788 [S1]. Google TAG tracks it as CALANQUE [S2]. Mandiant says the following public names partially coincide with APT42: TA453 (Proofpoint), Yellow Garuda (PwC), ITG18 (IBM X-Force), Phosphorus/Mint Sandstorm (Microsoft) and Charming Kitten (ClearSky, CERTFA) [S1][S2]. Volexity documented the NICECURL infection chain as CharmingCypress [S2]. Check Point tracks related activity as Educated Manticore [S4][S5]. Mandiant notes historical connections with APT35 [S1]. Microsoft's name: none confirmed. Mandiant lists Mint Sandstorm as a partial overlap, but this encyclopedia keeps Mint Sandstorm as a separate record because Microsoft's own mapping does not place APT42 under it."
+  },
+  "attribution": {
+    "sponsor": "Islamic Republic of Iran; assessed by Mandiant to operate on behalf of the Islamic Revolutionary Guard Corps Intelligence Organization (IRGC-IO) [S1][S2]. Google TAG describes APT42 as IRGC-linked [S3]. Check Point and Israel's National Digital Agency also associate it with the IRGC [S4][S5].",
+    "confidence": "Mandiant: moderate confidence that APT42 operates on behalf of the IRGC-IO (2022) [S1]. These are vendor and foreign-government assessments. No US government attribution naming 'APT42' was found in the sources gathered.",
+    "basis": "Targeting patterns that align with IRGC-IO mandates and priorities [S1][S2]. For the cloud intrusions, Mandiant cited overlapping credential-harvesting domains and the Iran-focused nature of the stolen data [S2]."
+  },
+  "objectives": "Strategic intelligence collection and surveillance for the Iranian state. Targets include foreign policy officials, think tanks, journalists and academics working on Iran, plus monitoring of dissidents, activists and the Iranian diaspora [S1][S2]. Since 2024 the group has also targeted US political campaign affiliates and Israeli defense, government and academic figures [S3][S4][S5]. Mandiant notes that, unlike other IRGC-affiliated groups, APT42 does not focus mainly on the defense industrial base or on large-scale PII collection [S1].",
+  "targeting": {
+    "sectors": [
+      "Think tanks and policy research [S1][S2][S3]",
+      "Media and journalists [S1][S2][S4]",
+      "Academia, including Israeli computer science and nuclear physics faculty [S2][S4]",
+      "NGOs, human rights and women's rights activists [S2]",
+      "Government officials, diplomats and military personnel [S1][S3][S5]",
+      "Defense and foreign affairs personnel [S2][S5]",
+      "Legal services (Microsoft 365 intrusions) [S2]",
+      "Political campaigns (2024 US presidential election) [S3]",
+      "Pharmaceutical sector (March 2020) [S1]",
+      "Iranian dissidents, opposition and diaspora [S1][S2]",
+      "Cybersecurity researchers (2025) [S4]"
+    ],
+    "regions": [
+      "Middle East [S1][S2]",
+      "United States [S1][S2][S3]",
+      "Israel [S1][S2][S3][S4][S5]",
+      "United Kingdom [S1][S2]",
+      "UAE and Azerbaijan [S2]",
+      "Europe [S2]",
+      "Australia (one NICECURL decoy) [S2]"
+    ],
+    "notes": "APT42 has used stolen credentials to reach the employers, colleagues and relatives of an initial victim [S1]. Israel's National Digital Agency reported targeting of family members of defense and government officials to widen the attack surface and pressure primary targets [S5]."
+  },
+  "capabilities": {
+    "summary": "Primary tradecraft is long-running social engineering. Operators pose as journalists, event organizers, NGOs or researchers, build trust over days or weeks, then deliver credential-harvesting links [S1][S2][S5]. Lures use typosquatted news and think-tank domains (for example Washington Post, Aspen Institute), fake Google Meet, Drive and Gmail pages, Microsoft 365 look-alikes, URL shorteners and Google Sites [S2][S3]. MFA bypass includes fraudulent push prompts, SMS-token phishing, cloned DUO pages and real-time relay of 2FA codes [S2][S4]. In 2022-2023 Microsoft 365 intrusions, APT42 abused Keep-Me-Signed-In, created app passwords and used Thunderbird, Citrix and RDP. It ran reconnaissance with native commands and PowerShell, staged data in password-protected 7-Zip archives, cleared browser history and exfiltrated to a OneDrive account. It hid behind ExpressVPN, Cloudflare-hosted domains and short-lived VPSs [S2]. Malware: NICECURL, a VBScript backdoor delivered by LNK and PDF decoys that downloads modules such as a datamining module [S2]; TAMECAT, a PowerShell toehold that runs arbitrary PowerShell or C# and checks for antivirus via WMI [S2]. In 2025 TAMECAT was used for reconnaissance, file theft, Chrome and Edge browser data theft, Outlook mailbox theft and continuous screenshots [S5]. APT42 has run Android surveillance malware for location tracking and communications monitoring since at least late 2015 [S1]. It contacts targets over WhatsApp as well as email [S4][S5]. Google reported that APT42 accounted for over 30% of Iranian threat-actor use of Gemini, mainly for crafting phishing content including lures aimed at US defense organizations [S6]. Google later reported it attempted to build an AI 'data processing agent' to query personal data, such as linking phone numbers to owners and tracking travel [S7]."
+  },
+  "campaigns": [
+    {"date": "2015", "name": "Earliest observed operations and Android surveillance", "summary": "Mandiant traces confirmed APT42 operations to early 2015. Android-malware C2 infrastructure for surveilling activists and dissidents was in use from at least late 2015.", "sources": ["S1"]},
+    {"date": "2020-03", "name": "COVID-19 pharmaceutical targeting", "summary": "APT42 targeted the pharmaceutical sector at the onset of the pandemic.", "sources": ["S1"]},
+    {"date": "2021", "name": "Cluster A: news-outlet and NGO impersonation (2021-present)", "summary": "Typosquatted media domains such as washinqtonpost[.]press lead journalists and researchers to fake Google login pages.", "sources": ["S2"]},
+    {"date": "2022-09", "name": "Mandiant public disclosure of APT42", "summary": "Mandiant reports more than 30 operations since 2015 and assesses with moderate confidence that APT42 operates for the IRGC-IO.", "sources": ["S1"]},
+    {"date": "2022", "name": "Microsoft 365 intrusions at US/UK legal and NGO organizations (2022-2023)", "summary": "Credential theft with MFA push fatigue and KMSI abuse. Iran-relevant files were exfiltrated to OneDrive using built-in features and open-source tools.", "sources": ["S2"]},
+    {"date": "2023-11", "name": "Cluster C: phishing of an Israeli nuclear physics professor", "summary": "Microsoft 365-themed phishing against US and Israeli defense, foreign-affairs and academic personnel; this example dates to November 2023.", "sources": ["S2"]},
+    {"date": "2024-05", "name": "Mandiant NICECURL / TAMECAT reporting", "summary": "Mandiant details three credential-harvesting clusters and two backdoors used against NGOs, media, academia, legal and activist targets.", "sources": ["S2"]},
+    {"date": "2024-05", "name": "Phishing of 2024 US presidential campaign affiliates (May-June 2024)", "summary": "Google TAG observed APT42 targeting about a dozen people affiliated with the Biden and Trump campaigns. It blocked numerous login attempts and confirmed one political consultant's Gmail account was accessed; Google reported this to the FBI in July 2024.", "sources": ["S3"]},
+    {"date": "2025-01", "name": "Gemini misuse reported by Google", "summary": "Google reports APT42 was the heaviest Iranian user of Gemini, using it for phishing content, reconnaissance and research.", "sources": ["S6"]},
+    {"date": "2025-06", "name": "Israeli academics, journalists and cyber experts (Educated Manticore)", "summary": "During the Iran-Israel escalation, operators posing as cybersecurity staff used email and WhatsApp to steer targets to fake Gmail and Google Meet pages that captured passwords and 2FA codes.", "sources": ["S4"]},
+    {"date": "2025-09", "name": "SpearSpecter (Israel National Digital Agency)", "summary": "Ongoing campaign detected in early September 2025 against senior defense and government officials and their families. It used conference and meeting lures, WhatsApp impersonation, malicious LNK files and the TAMECAT backdoor.", "sources": ["S5"]},
+    {"date": "2025-11", "name": "AI 'data processing agent' attempt", "summary": "Google reports APT42 tried to use Gemini to build an agent turning natural-language requests into SQL queries over personal data. Google disabled the accounts.", "sources": ["S7"]}
+  ],
+  "diamond": {
+    "adversary": "APT42, assessed by Mandiant with moderate confidence to act for the IRGC-IO [S1][S2].",
+    "capability": "Trust-building spear-phishing and credential harvesting with MFA bypass; cloud (M365) living-off-the-land; NICECURL and TAMECAT backdoors; Android surveillance malware; AI-assisted lure crafting [S1][S2][S5][S6].",
+    "infrastructure": "Typosquatted media, think-tank and NGO domains; fake Google and Microsoft login pages; URL shorteners; Google Sites; glitch[.]me and drive-file-share[.]site hosting; ExpressVPN, Cloudflare-fronted domains and short-lived VPSs; WhatsApp contact [S2][S3][S4][S5].",
+    "victim": "Think tanks, journalists, academics, NGOs and activists, legal firms, government and defense officials and their relatives, and US political campaign affiliates, chiefly in the US, Israel, UK and Middle East [S1][S2][S3][S5].",
+    "socioPolitical": "Collection on Iran's foreign-policy adversaries and monitoring of regime opponents. Activity rises around elections and the Israel-Hamas and Iran-Israel conflicts [S1][S2][S3][S4].",
+    "technology": "Personal webmail and Microsoft 365/Google cloud accounts protected by push or SMS MFA; Windows endpoints via LNK/VBScript/PowerShell; Android phones; messaging apps [S1][S2][S4][S5]."
+  },
+  "gaps": [
+    "Microsoft naming: Mandiant lists Mint Sandstorm/Phosphorus as a partial overlap, but Microsoft's mapping does not list APT42 under Mint Sandstorm. Microsoft attributed the June 2024 spear-phishing of a presidential campaign official to Mint Sandstorm [S8], while Google attributed 2024 campaign targeting to APT42 [S3]. These may describe overlapping but not identical activity; they are not merged here.",
+    "The September 2024 DOJ indictment of three IRGC employees (Jalili, Aghamiri, Balaghi) for hacking the Trump campaign was reviewed only through press coverage [S9]. The indictment text was not opened, and no source found states it names APT42.",
+    "Primary documents not opened: Google TAG's August 2024 blog (summarized via search result) [S3], Check Point Research's June 2025 report (host unreachable) [S4], Israel National Digital Agency SpearSpecter report (reported via The Hacker News) [S5], Google GTIG 'Adversarial Misuse of Generative AI' (reported via TechTarget) [S6], Volexity's CharmingCypress reporting.",
+    "Press coverage says SpearSpecter and the June 2025 Check Point activity were run by different APT42 sub-groups [S5]; the internal structure of APT42 is not documented in sources gathered.",
+    "Mandiant did not observe technical overlap between APT42 and the ransomware-linked UNC2448 (Najee Technology/Afkar System) [S1]; any APT42 role in disruptive operations is unverified.",
+    "Android malware family names, current mobile tooling and the full victim count are not detailed in sources gathered.",
+    "Activity after November 2025 was not researched."
+  ],
+  "implications": {
+    "jipoe": "Analyst assessment derived from cited sources; validate before use. STEP 1 (operational environment): the key terrain is people and their accounts more than networks. That includes personal webmail, Microsoft 365 and Google cloud tenants, messaging apps and the families of senior officials [S2][S3][S5]. STEP 2 (effects): MFA based on push or SMS approval and trust in impersonated media, think-tank and conference brands weaken defenses. Credential theft can grant cloud access without malware on any DoD endpoint [S2][S4]. STEP 3 (threat model): weeks-long rapport building by a fake journalist, researcher or security staffer leads to a fake Google/Microsoft login page or LNK/macro lure. MFA relay or push approval follows, then mailbox and cloud data collection via built-in features, with TAMECAT or NICECURL as a fallback [S2][S4][S5]. STEP 4 (COAs): MLCOA is continued credential phishing of officials, staff, advisors and academics on Iran, Israel and Middle East policy, rising during regional crises [S3][S4]. MDCOA is compromise of senior officers' or relatives' personal accounts and phones, giving location, travel and communications data for targeting or coercion; reporting on family targeting and AI-assisted analysis of travel data points this way [S5][S7]. Candidate indicators: unsolicited interview or conference invitations that move to WhatsApp; typosquatted news or think-tank domains; unexpected MFA push prompts; new app passwords or KMSI sessions; mail-client access from VPN or VPS IPs; LNK files spawning VBScript/PowerShell; and OneDrive exfiltration to look-alike outlook.com accounts [S2][S5].",
+    "jcc2": "Analyst assessment derived from cited sources; validate before use. (1) Situational awareness: identity telemetry (sign-in logs, MFA prompts, app-password creation) and personal-account reporting are the main sensors, because much APT42 activity sits outside DODIN endpoints [S2][S3]. (2) Authorities: personal and family accounts, plus contractor and think-tank accounts, fall outside DoD network authorities. Response depends on user reporting, provider takedowns (Google and Microsoft) and FBI coordination; Google referred a 2024 compromise to the FBI [S3]. (3) Mission assurance: enforce phishing-resistant MFA and protect senior leaders and their families during Middle East contingencies, when APT42 tempo rises [S4][S5]. (4) Coordination: reconcile vendor names (APT42, CALANQUE, Educated Manticore, Mint Sandstorm) in intelligence sharing with coalition partners, especially Israel, to avoid duplicate or mismatched tracking [S2][S4][S5][S8]."
+  },
+  "sources": [
+    {"ref": "S1", "title": "APT42: Crooked Charms, Cons, and Compromises", "publisher": "Mandiant (Google Cloud)", "date": "2022-09-07", "url": "https://cloud.google.com/blog/topics/threat-intelligence/apt42-charms-cons-compromises"},
+    {"ref": "S2", "title": "Uncharmed: Untangling Iran's APT42 Operations", "publisher": "Mandiant (Google Cloud)", "date": "2024-05-01", "url": "https://cloud.google.com/blog/topics/threat-intelligence/untangling-iran-apt42-operations"},
+    {"ref": "S3", "title": "Iranian-backed group steps up phishing campaigns against Israel, U.S. (content via search summary and secondary coverage)", "publisher": "Google Threat Analysis Group", "date": "2024-08-14", "url": "https://blog.google/threat-analysis-group/iranian-backed-group-steps-up-phishing-campaigns-against-israel-us/"},
+    {"ref": "S4", "title": "Iranian Educated Manticore Targets Leading Tech Academics (content via search summary and secondary coverage)", "publisher": "Check Point Research", "date": "2025-06-25", "url": "https://research.checkpoint.com/2025/iranian-educated-manticore-targets-leading-tech-academics/"},
+    {"ref": "S5", "title": "Iranian Hackers Launch 'SpearSpecter' Spy Operation on Defense and Government Targets (reporting Israel National Digital Agency)", "publisher": "The Hacker News", "date": "2025-11", "url": "https://thehackernews.com/2025/11/iranian-hackers-launch-spearspecter-spy.html"},
+    {"ref": "S6", "title": "Google details adversarial AI activity on Gemini (reporting Google GTIG 'Adversarial Misuse of Generative AI')", "publisher": "TechTarget", "date": "2025-01", "url": "https://www.techtarget.com/cybersecurity/news/366618357/Google-details-adversarial-AI-activity-on-Gemini"},
+    {"ref": "S7", "title": "Attackers abuse Gemini AI to develop 'Thinking Robot' malware and data processing agent for spying purposes (reporting Google GTIG)", "publisher": "The Register", "date": "2025-11-05", "url": "https://www.theregister.com/2025/11/05/attackers_experiment_with_gemini_ai/"},
+    {"ref": "S8", "title": "Iranian hackers target U.S. presidential campaign official, Microsoft says (reporting Microsoft Threat Analysis Center)", "publisher": "Axios", "date": "2024-08-09", "url": "https://www.axios.com/2024/08/09/iran-presidential-campaign-2024-hacking"},
+    {"ref": "S9", "title": "US charges 3 Iranians over hack of Trump campaign emails (reporting DOJ indictment)", "publisher": "ABC7 News (AP)", "date": "2024-09-27", "url": "https://abc7news.com/us-charges-3-iranians-over-hack-of-trump-campaign-emails/15362462/"}
+  ],
+  "aliasesAdd": [
+    {"name": "CALANQUE", "vendor": "Google TAG"},
+    {"name": "Educated Manticore", "vendor": "Check Point (overlap)"},
+    {"name": "CharmingCypress", "vendor": "Volexity (overlap)"},
+    {"name": "TA453", "vendor": "Proofpoint (partial overlap)"},
+    {"name": "Yellow Garuda", "vendor": "PwC (partial overlap)"},
+    {"name": "ITG18", "vendor": "IBM X-Force (partial overlap)"}
+  ]
+}
