@@ -1,0 +1,183 @@
+{
+  "identification": {
+    "summary": "Houndstooth Typhoon is Microsoft's name for a China-origin threat actor. Microsoft's public naming map links it to HASSIUM (its former Microsoft name), CrowdStrike's DRAGNET PANDA, and the labels 'isoon' and 'deepclif' [S1][S2]. The 'isoon' label points to the Chengdu-registered PRC security contractor i-Soon (Anxun Information Technology / Sichuan Anxun). Reporting describes i-Soon as an APT-for-hire contractor serving the Ministry of Public Security (MPS) [S3][S5]. A February 2024 leak exposed i-Soon's internal documents, tools and target lists [S3][S4][S5]. In March 2025 US prosecutors charged i-Soon executives and employees, together with two MPS officers [S6][S7][S10].",
+    "firstObserved": "CrowdStrike reports that DRAGNET PANDA has been active since at least 2015 [S9]. The 2025 US indictment covers i-Soon intrusion activity from about 2016 through 2023 [S6][S10].",
+    "notes": "Microsoft publishes the naming but, in the sources found, no narrative profile of Houndstooth Typhoon. Its activity therefore has to be read through what other vendors report on DRAGNET PANDA and on i-Soon. Do not assume those clusters are identical [S1][S2][S9]. Keep the cluster boundary in mind: ESET assesses that its FishMonger cluster (Earth Lusca / Aquatic Panda) is operated by I-SOON [S8], but Microsoft maps AQUATIC PANDA to Charcoal Typhoon, not to Houndstooth Typhoon [S1]. SentinelOne notes that the leak suggests i-Soon was behind activity previously attributed to several different named threat actors [S3]."
+  },
+  "attribution": {
+    "sponsor": "People's Republic of China. According to coverage of the March 2025 indictment, i-Soon carried out intrusions at the direction of, or for sale to, the MPS and the Ministry of State Security (MSS) [S6][S10]. In some cases it hacked first and then tried to sell the stolen data [S10].",
+    "confidence": "Microsoft assigns China as the origin of Houndstooth Typhoon but publishes no confidence statement in the naming map [S1]. US prosecutors made charging allegations (not convictions) against i-Soon personnel and two MPS officers [S6][S7]. ESET assesses with high confidence that FishMonger conducted Operation FishMedley and states that it independently determined FishMonger is operated by I-SOON. That is a vendor assessment about the FishMonger cluster [S8].",
+    "basis": "Microsoft's naming map [S1]; the February 2024 i-Soon document leak, whose authenticity and source were not independently confirmed although it matched prior reporting [S3][S4][S5]; press coverage of the March 2025 DOJ indictment [S6][S7][S10]; ESET research [S8]; CrowdStrike's DRAGNET PANDA profile [S9]."
+  },
+  "objectives": "Intelligence collection for PRC security services. Targets include dissidents, critics, religious minorities and media, alongside foreign-government espionage [S6][S9][S10]. SentinelOne describes i-Soon as a company that competes for low-value hacking contracts from many government agencies [S3]. Press coverage of the indictment says i-Soon charged MSS and MPS customers roughly $10,000 to $75,000 per compromised email inbox and worked with at least 43 MSS or MPS bureaus [S10].",
+  "targeting": {
+    "sectors": [
+      "Foreign government ministries, including foreign affairs ministries [S6][S10]",
+      "US federal and state government agencies [S10]",
+      "Defense / intelligence (the Defense Intelligence Agency is cited as a target) [S6]",
+      "News media and journalists [S6][S10]",
+      "Religious organizations and religious minorities [S6][S9][S10]",
+      "Dissidents and critics of the PRC; Tibetan groups [S6][S9]",
+      "NGOs [S9]",
+      "Research universities [S6]",
+      "NATO [S3][S5]"
+    ],
+    "regions": [
+      "United States [S6][S10]",
+      "Asia: multiple governments [S10]; India, Thailand, Vietnam and South Korea per the leaked data [S5]",
+      "South and Southeast Asia (DRAGNET PANDA) [S9]"
+    ],
+    "notes": "Victim lists come from three different evidence bases: the leak [S3][S5], the indictment [S6][S10] and the CrowdStrike DRAGNET PANDA profile [S9]. None of them is attributed by Microsoft to Houndstooth Typhoon specifically. The FishMedley victims ESET reported in 2022 (governments, NGOs, Catholic charities and think tanks in Taiwan, Thailand, Hungary, Turkey, France and the US) belong to ESET's FishMonger cluster and are kept separate here [S8]."
+  },
+  "capabilities": {
+    "summary": "According to the leaked i-Soon documents, the company offered: remote access trojans for Windows x64/x86 with keylogging, remote shell, registry and service management, and system reconnaissance; a Twitter/X account tool that can obtain the account email and phone number, read private messages and post as the victim; and malware with command-and-control infrastructure [S4][S5]. Some leaked records show custom hardware devices built for stealing data from victim networks [S4]. Indictment coverage stresses email-inbox compromise sold to MSS and MPS customers [S10]. ESET reports that the FishMonger cluster, which it ties to I-SOON, used ShadowPad, SodaMaster and Spyder implants [S8]."
+  },
+  "campaigns": [
+    {
+      "date": "2015",
+      "name": "DRAGNET PANDA activity begins",
+      "summary": "CrowdStrike reports that DRAGNET PANDA has been active since at least 2015, likely collecting intelligence on Tibetan dissident groups, NGOs and religious minorities in South and Southeast Asia.",
+      "sources": [
+        "S9"
+      ]
+    },
+    {
+      "date": "2016/2023",
+      "name": "i-Soon contract intrusions (indictment period)",
+      "summary": "Per coverage of the US indictment, i-Soon hacked dissidents, a New York-based newspaper critical of the CCP, a large US religious organization, Asian foreign ministries, and US federal and state agencies. Some of this work was tasked by MPS officers.",
+      "sources": [
+        "S6",
+        "S7",
+        "S10"
+      ]
+    },
+    {
+      "date": "2022-01/2022-10",
+      "name": "Operation FishMedley (ESET FishMonger cluster)",
+      "summary": "ESET reports that FishMonger, which it says is operated by I-SOON, compromised seven organizations in Taiwan, Thailand, Hungary, Turkey, France and the US using ShadowPad, SodaMaster and Spyder. Microsoft maps the related Aquatic Panda name to Charcoal Typhoon.",
+      "sources": [
+        "S8",
+        "S1"
+      ]
+    },
+    {
+      "date": "2024-02-16",
+      "name": "i-Soon document leak",
+      "summary": "Internal i-Soon documents were posted to GitHub, exposing tools, hardware and target lists; the leaked material names governments including India, Thailand, Vietnam and South Korea, and NATO.",
+      "sources": [
+        "S3",
+        "S4",
+        "S5"
+      ]
+    },
+    {
+      "date": "2025-03-05",
+      "name": "US indictment of i-Soon personnel and MPS officers",
+      "summary": "Charges were unsealed against eight i-Soon employees, including CEO Wu Haibo and COO Chen Cheng, and against MPS officers Wang Liyu and Sheng Jing, for conspiracy to commit computer intrusions and wire fraud.",
+      "sources": [
+        "S6",
+        "S7",
+        "S10"
+      ]
+    }
+  ],
+  "diamond": {
+    "adversary": "i-Soon (Anxun), a Chengdu-registered PRC contractor serving the MPS and MSS; named executives Wu Haibo (CEO) and Chen Cheng (COO); MPS officers Wang Liyu and Sheng Jing named as tasking officials [S3][S6][S10]. Microsoft tracks it as Houndstooth Typhoon [S1].",
+    "capability": "Windows RATs, a social-media account takeover tool, custom hardware for data theft, and email-inbox compromise for hire [S4][S5][S10]. ShadowPad, SodaMaster and Spyder in the ESET FishMonger cluster [S8].",
+    "infrastructure": "Malware command-and-control infrastructure described in the leaked documents [S4]. Specific infrastructure indicators were not obtained for this record.",
+    "victim": "Dissidents, religious organizations, media, Asian foreign ministries, US federal and state agencies, and NATO and several Asian governments named in the leaked data [S3][S5][S6][S10].",
+    "socioPolitical": "PRC domestic-security priorities (dissidents, Tibetan groups, religious minorities, critical media) combined with foreign-government intelligence. Delivered through a commercial contracting market that sells stolen access and data to many security-service bureaus [S3][S9][S10].",
+    "technology": "Email accounts, Windows endpoints and social-media accounts are the main technical surfaces described [S4][S5][S10]."
+  },
+  "gaps": [
+    "Microsoft has not published a narrative Houndstooth Typhoon profile in the sources found. The only Microsoft evidence is the naming map entry (HASSIUM, DRAGNET PANDA, isoon, deepclif) [S1].",
+    "Cluster boundary is unresolved. Microsoft maps 'isoon' to Houndstooth Typhoon but AQUATIC PANDA to Charcoal Typhoon, while ESET and the FBI tie FishMonger / Aquatic Panda to I-SOON [S1][S8]. Which i-Soon operations Microsoft counts as Houndstooth Typhoon is unknown.",
+    "No public source was found that explicitly links CrowdStrike's DRAGNET PANDA to i-Soon. The linkage rests on Microsoft's mapping [S1][S9].",
+    "The meaning and origin of the 'deepclif' label is unknown.",
+    "Primary documents were not opened: the DOJ indictment and press release, the FBI wanted notices, and the full SentinelOne, ESET and CrowdStrike pages (fetch blocked). Indictment details rely on press coverage.",
+    "The authenticity of the 2024 leak and the identity of the leaker are not confirmed [S3].",
+    "No Houndstooth Typhoon infrastructure indicators, CVEs or recent (2025-2026) activity were found."
+  ],
+  "implications": {
+    "jipoe": "Analyst assessment derived from cited sources; validate before use. STEP 1: Key terrain is email accounts, Windows endpoints and social-media accounts of government, defense-intelligence, media and diaspora-adjacent personnel, including foreign ministries of Asian partners and NATO [S3][S5][S6][S10]. STEP 2: A contractor model with many customer bureaus produces broad, opportunistic, volume-driven targeting. Sellable inbox access is the payoff [S3][S10]. STEP 3: The doctrinal template is account or endpoint compromise, then a RAT with keylogging and remote shell, then mailbox and message collection, then sale or delivery of the data to MPS or MSS customers [S5][S10]. STEP 4: MLCOA is continued mailbox compromise of partner-nation foreign ministries and US agencies for resale to security services. MDCOA is harvesting of partner or NATO communications that exposes coalition planning or personnel. Candidate indicators: anomalous mailbox access or forwarding rules on official accounts, unauthorized sign-ins to social-media accounts, and RAT behaviour (keylogging, new services or registry changes) on Windows hosts [S5][S10].",
+    "jcc2": "Analyst assessment derived from cited sources; validate before use. (1) Situational awareness: track partner-nation and NATO reporting, because the leak shows coalition partners were targeted [S3][S5]. (2) Authorities: the actor is a commercial contractor indicted by DOJ [S6], so coordinate with law-enforcement and intelligence partners before any response actions. (3) Mission assurance: prioritize identity and email hardening for personnel in intelligence-linked roles, given the reported DIA targeting [S6]. (4) Coordination: overlapping vendor names (Houndstooth Typhoon, Charcoal Typhoon, FishMonger, Aquatic Panda) can split reporting. Correlate across names in JCC2 rather than merging them [S1][S8]."
+  },
+  "sources": [
+    {
+      "ref": "S1",
+      "title": "Microsoft threat actor naming mapping (MicrosoftMapping.json), accessed",
+      "publisher": "Microsoft Threat Intelligence (GitHub)",
+      "date": "2026-10",
+      "url": "https://raw.githubusercontent.com/microsoft/mstic/master/PublicFeeds/ThreatActorNaming/MicrosoftMapping.json"
+    },
+    {
+      "ref": "S2",
+      "title": "Houndstooth Typhoon actor entry (aggregating Microsoft naming), accessed",
+      "publisher": "Malpedia (Fraunhofer FKIE)",
+      "date": "2026-10",
+      "url": "https://malpedia.caad.fkie.fraunhofer.de/actor/houndstooth_typhoon"
+    },
+    {
+      "ref": "S3",
+      "title": "Unmasking I-Soon | The Leak That Revealed China's Cyber Operations",
+      "publisher": "SentinelOne",
+      "date": "2024-02",
+      "url": "https://sentinelone.com/?p=91854"
+    },
+    {
+      "ref": "S4",
+      "title": "Data leak reveals inner workings of Chinese state-linked hacking group",
+      "publisher": "SiliconANGLE",
+      "date": "2024-02-22",
+      "url": "https://siliconangle.com/2024/02/22/data-leak-reveals-inner-workings-chinese-state-linked-hacking-group/"
+    },
+    {
+      "ref": "S5",
+      "title": "A first analysis of the i-Soon data leak",
+      "publisher": "Malwarebytes",
+      "date": "2024-02",
+      "url": "https://www.malwarebytes.com/blog/news/2024/02/a-first-analysis-of-the-i-soon-data-leak"
+    },
+    {
+      "ref": "S6",
+      "title": "US Prosecutors Indict iSoon Chinese Hacking Contractors (reporting DOJ indictment)",
+      "publisher": "BankInfoSecurity (ISMG)",
+      "date": "2025-03",
+      "url": "https://www.bankinfosecurity.net/us-prosecutors-indict-isoon-chinese-hacking-contractors-a-27650"
+    },
+    {
+      "ref": "S7",
+      "title": "US indicts 10 professional hackers (reporting DOJ indictment)",
+      "publisher": "Bitdefender HOTforSecurity",
+      "date": "2025-03",
+      "url": "https://www.bitdefender.com/en-us/blog/hotforsecurity/us-indicts-10-professional-hackers-chinese-prc"
+    },
+    {
+      "ref": "S8",
+      "title": "Operation FishMedley",
+      "publisher": "ESET (WeLiveSecurity)",
+      "date": "2025-03",
+      "url": "https://www.welivesecurity.com/en/eset-research/operation-fishmedley/"
+    },
+    {
+      "ref": "S9",
+      "title": "DRAGNET PANDA adversary profile, accessed",
+      "publisher": "CrowdStrike",
+      "date": "2026-10",
+      "url": "https://crowdstrike.com/adversaries/dragnet-panda"
+    },
+    {
+      "ref": "S10",
+      "title": "Chinese hackers, government officials charged in US cyberespionage (AP, reporting DOJ indictment)",
+      "publisher": "Washington Times / Associated Press",
+      "date": "2025-03-05",
+      "url": "https://www.washingtontimes.com/news/2025/mar/5/chinese-hackers-government-officials-charged-us-cyberespionage/"
+    }
+  ],
+  "aliasesAdd": [
+    {
+      "name": "i-Soon (Anxun Information Technology)",
+      "vendor": "US DOJ / open reporting"
+    }
+  ]
+}

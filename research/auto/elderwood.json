@@ -1,73 +1,154 @@
 {
   "identification": {
-    "summary": "Suspected Chinese cyber-espionage group that MITRE says was reportedly responsible for the 2009 Google intrusion known as Operation Aurora [S10]. Symantec named it 'Elderwood' after a source-code variable used by the attackers and reported in September 2012 that it had used at least eight zero-day vulnerabilities against defense contractors, defense-sector suppliers, human rights organizations and other companies [S2][S3]. Symantec says the group re-uses a packaged exploit infrastructure it calls the 'Elderwood platform' and favored compromising websites frequented by targets ('watering hole' attacks) [S3][S4]. In 2014 Symantec assessed that several separate attack groups were drawing on the same platform [S8][S9].",
-    "firstObserved": "Operation Aurora intrusion detected by Google in mid-December 2009 and disclosed 2010-01-12 [S12]; Symantec reported in 2012 that it had monitored the group for about three years [S1][S3].",
-    "notes": "No Microsoft (Typhoon) name for Elderwood was found in the sources gathered. Christian Science Monitor (2012) reports that Sneaky Panda, Elderwood Gang and Beijing Group are code names US experts gave to one cyberespionage organization [S6]; Malpedia lists Beijing Group with aliases Elderwood, Elderwood Gang, SIG22 and Sneaky Panda [S11]. MITRE tracks Elderwood (G0066) separately from APT17 (G0025) even though some third-party sources merge the names [S10]. In 2014 Symantec described Hidden Lynx and other groups as distinct users of the Elderwood platform, so 'Elderwood' can refer to an exploit platform as well as an actor [S8][S9]."
+    "summary": "Elderwood is the name Symantec gave in September 2012 to a systematic espionage group that reused components of an infrastructure it called the 'Elderwood platform' and that Symantec tracked back to the 2009 Operation Aurora attacks on Google and other companies [S1][S2]. Symantec reported the group had exploited at least eight zero-day vulnerabilities since late 2010, all in Internet Explorer or Adobe Flash Player, and that it was moving from spear-phishing toward watering-hole attacks against defense supply chain targets [S2][S6]. Symantec tied a December 2012 Internet Explorer zero-day (CVE-2012-4792) served from the Council on Foreign Relations website to the same group [S6][S7]. MITRE ATT&CK tracks it as G0066, a suspected Chinese cyber espionage group reportedly responsible for Operation Aurora [S8].",
+    "firstObserved": "2009: Symantec tracks the group back to the 2009 Operation Aurora attacks [S2].",
+    "notes": "Symantec says the name comes from a source-code variable used by the attackers [S2]. Malpedia lists Elderwood, Elderwood Gang, G0066, SIG22 and SNEAKY PANDA; MITRE lists Elderwood Gang, Beijing Group and Sneaky Panda [S8]. No Microsoft Typhoon/Storm name was found for this cluster in the sources gathered. Symantec separately named 'Hidden Lynx' in 2013 and linked it to Aurora through shared malware; CrowdStrike tracked that group as 'Aurora Panda'. These are distinct vendor clusters from Elderwood/Sneaky Panda and should not be merged without primary evidence [S9]."
   },
   "attribution": {
-    "sponsor": "People's Republic of China (suspected). MITRE describes Elderwood as a 'suspected Chinese' espionage group [S10]; Google said in 2010 that the Aurora intrusion originated in China [S12].",
-    "confidence": "MITRE uses 'suspected' [S10]. Press coverage describes the China origin as an appearance rather than a confirmed Symantec finding [S3]. RSA researchers who tracked the same attacks were not convinced that Elderwood and the Aurora attackers were linked, despite shared infrastructure and scripts [S5]. No government attribution of Elderwood by name was found.",
-    "basis": "Symantec reporting on shared exploits, infrastructure and code across campaigns (2012-2014) [S1][S4][S8]; Google's 2010 disclosure of the China-origin Aurora intrusion [S12]; MITRE ATT&CK group entry [S10]; press reporting of expert naming [S6]."
+    "sponsor": "Suspected People's Republic of China. Google stated the Aurora attacks originated in China [S2]; MITRE describes Elderwood as a suspected Chinese cyber espionage group [S8].",
+    "confidence": "Symantec's 2012 report did not name China or a geographic origin and said only that the group's sophistication probably indicated support from organized crime or a nation state [S2]. MITRE's characterization is 'suspected' [S8]. No US government attribution of the Elderwood cluster by name was found in the sources gathered; 2013 press reporting citing unnamed US officials described the Google breach as by Chinese hackers [S5].",
+    "basis": "Symantec analysis of shared infrastructure, packer license and code artifacts (for example a misspelled 'HeapSpary' function) linking successive zero-day campaigns [S2][S6]; MITRE ATT&CK group entry [S8]."
   },
-  "objectives": "Theft of intellectual property and sensitive data from defense contractors, their supply chains and other companies, plus surveillance of human rights organizations and activists [S2][S3][S12]. Google said a primary goal of the Aurora intrusion appeared to be access to Gmail accounts of Chinese human rights activists, and that intellectual property was stolen [S12].",
+  "objectives": "Strategic espionage. Google initially pointed to Gmail accounts of Chinese human rights activists and intellectual property [S5]; US officials later told the Washington Post the Google intrusion reached a database of law-enforcement and FISA surveillance orders, apparently to identify Chinese intelligence operatives under US surveillance [S5]. Symantec reported that the group's primary targets were usually members of the defense supply chain [S2].",
   "targeting": {
     "sectors": [
-      "Defense industry and defense supply-chain manufacturers [S3][S10]",
-      "Human rights organizations and NGOs [S3][S10]",
-      "IT service providers [S10]",
-      "Internet, finance and media companies (Aurora, 2009) [S12]"
+      "Defense industrial base and defense supply chain manufacturers [S2]",
+      "Human rights organizations and NGOs [S8]",
+      "IT service providers [S8]",
+      "Think tanks / foreign policy organizations (Council on Foreign Relations website) [S6][S7]"
     ],
     "regions": [
-      "United States and Canada (Symantec: 678 attacks against 216 US organizations and 86 attacks against 35 Canadian organizations, per coverage) [S1]",
-      "Global (Aurora targets across 20+ large companies) [S12]"
+      "United States (Council on Foreign Relations watering hole) [S7]"
     ],
-    "notes": "Symantec reported the group also targeted manufacturers that supply the primary target, not only the target itself [S3]. US/Canada statistics come from search-result summaries of the Symantec report, which could not be opened directly [S1]. Hidden Lynx, a separate Elderwood-platform user, targeted the defense industry and Japanese users per 2014 coverage [S8][S9]."
+    "notes": ""
   },
   "capabilities": {
-    "summary": "Sustained access to zero-day exploits: eight zero-days by 2012 (two Internet Explorer, one Microsoft XML Core Services, five Adobe Flash Player) [S3]. Known exploits include CVE-2012-1875 (IE, served from a compromised Amnesty International Hong Kong site) and CVE-2012-4969 (IE, September 2012) [S4]; a site serving CVE-2012-4792 had earlier served CVE-2012-4969 [S7]. In early 2014 the Elderwood platform was used to exploit CVE-2014-0502 (Flash), CVE-2014-0322 and CVE-2014-0324 (IE), with the latter two sharing shellcode [S8][S9]. Symantec describes the platform as a set of exploits packaged in a 'consumer-friendly' way that lets less technical attackers use zero-days [S8]. Delivery used spear-phishing and watering-hole compromises [S3][S8]. Aurora used the Hydraq Trojan via an IE zero-day [S3]."
+    "summary": "Repeated use of zero-day exploits in Internet Explorer and Adobe Flash Player, at least eight from 2010 to fall 2012 and a ninth (CVE-2012-4792) in December 2012 [S2][S6]. Aurora used an Internet Explorer zero-day (CVE-2010-0249) delivered via spear-phishing links in email and instant messages to drop the Hydraq remote access trojan [S1][S2]. From 2012 the group increasingly used watering-hole (strategic web compromise) attacks, [S2][S7]. Symantec described shared tooling ('Elderwood platform'), a common commercial packer license, and reuse of exploit components across campaigns [S2][S6]. MITRE lists associated software including PoisonIvy, Hydraq, Briba, Naid, Wiarp, Vasport, Pasam, Nerex and Linfo [S8]."
   },
   "campaigns": [
-    {"date": "2009-12", "name": "Operation Aurora (Google intrusion)", "summary": "Google detected a targeted attack originating in China that stole intellectual property and sought Gmail accounts of Chinese human rights activists; at least 20 other large companies were targeted. Disclosed 2010-01-12. MITRE says Elderwood was reportedly responsible; RSA researchers doubted the link.", "sources": ["S12", "S10", "S5"]},
-    {"date": "2012-05", "name": "Amnesty International Hong Kong watering hole (CVE-2012-1875)", "summary": "Compromised Amnesty International Hong Kong website served a malicious SWF exploiting IE flaw CVE-2012-1875.", "sources": ["S4"]},
-    {"date": "2012-09", "name": "CVE-2012-4969 IE zero-day", "summary": "Symantec tied a new IE zero-day to the same Elderwood group.", "sources": ["S4"]},
-    {"date": "2012-09", "name": "Symantec 'Elderwood Project' report", "summary": "Symantec publishes findings on a group that used at least eight zero-days against the defense sector, its suppliers, human rights groups and others, and links it to the Hydraq/Aurora attackers.", "sources": ["S1", "S2", "S3"]},
-    {"date": "2013-01", "name": "CVE-2012-4792 IE zero-day", "summary": "The Hacker News reports the latest IE zero-day was linked to the Elderwood Project; a site hosting it had served CVE-2012-4969 in September.", "sources": ["S7"]},
-    {"date": "2014-01", "name": "Elderwood platform 2014 zero-days", "summary": "Within about a month, the platform was used to exploit CVE-2014-0502, CVE-2014-0322 and CVE-2014-0324; Symantec assessed several separate groups, including Hidden Lynx, used it.", "sources": ["S8", "S9"]}
+    {
+      "date": "2009",
+      "name": "Operation Aurora",
+      "summary": "Intrusions against Google and other companies using the IE zero-day CVE-2010-0249 to install a remote access trojan, described by McAfee in January 2010; Symantec later tied the Elderwood group to these attacks.",
+      "sources": [
+        "S1",
+        "S2"
+      ]
+    },
+    {
+      "date": "2013-05",
+      "name": "Aurora surveillance-database disclosure",
+      "summary": "Washington Post reporting, citing unnamed US officials, said the Google intruders accessed a database of surveillance orders including FISA orders.",
+      "sources": [
+        "S5"
+      ]
+    },
+    {
+      "date": "2010-2012",
+      "name": "Elderwood zero-day series",
+      "summary": "Symantec counted at least eight zero-days in IE and Flash Player exploited since late 2010, four in about 16 weeks in spring and summer 2012, mainly against defense supply chain targets.",
+      "sources": [
+        "S2",
+        "S6"
+      ]
+    },
+    {
+      "date": "2012-06",
+      "name": "CVE-2012-1889 watering hole",
+      "summary": "Symantec linked a June 2012 site serving CVE-2012-1889 with a movie.swf file to the Elderwood Project.",
+      "sources": [
+        "S6"
+      ]
+    },
+    {
+      "date": "2012-09",
+      "name": "Symantec 'The Elderwood Project' report",
+      "summary": "Symantec published its report describing the Elderwood platform, the shift to watering-hole attacks, and the defense supply chain focus.",
+      "sources": [
+        "S2"
+      ]
+    },
+    {
+      "date": "2012-12",
+      "name": "Council on Foreign Relations watering hole (CVE-2012-4792)",
+      "summary": "The CFR website was compromised to serve an IE 6-8 zero-day; Symantec assessed it as a continuation of the Elderwood Project; Microsoft later issued out-of-band fix MS13-008.",
+      "sources": [
+        "S6",
+        "S7"
+      ]
+    }
   ],
   "diamond": {
-    "adversary": "Suspected PRC-based espionage operators [S10]; Symantec (2014) assessed either one exploit distributor or one large organization supplying in-house teams [S8].",
-    "capability": "Repeated zero-day exploits for Internet Explorer, Flash and XML Core Services packaged as the Elderwood platform; Hydraq Trojan [S3][S4][S8].",
-    "infrastructure": "Compromised legitimate websites used as watering holes (for example Amnesty International Hong Kong) [S4]; shared exploit-hosting servers used by several groups in 2014 [S8][S9].",
-    "victim": "Defense contractors and suppliers, human rights NGOs, IT service providers; Google and 20+ large companies in Aurora [S3][S10][S12].",
-    "socioPolitical": "Intellectual-property collection from Western defense industry and monitoring of Chinese human rights activists [S3][S12].",
-    "technology": "Unpatched browser and plug-in software (IE, Adobe Flash) on endpoints browsing trusted websites [S3][S8]."
+    "adversary": "Suspected PRC espionage group (Symantec: likely nation-state or organized-crime backed; MITRE: suspected Chinese) [S2][S8].",
+    "capability": "Serial IE and Flash zero-days, Hydraq and related backdoors, commercial packer, shared 'Elderwood platform' exploit components [S1][S2][S6][S8].",
+    "infrastructure": "Compromised legitimate websites used as watering holes (e.g., CFR), spear-phishing links via email and instant message [S1][S7].",
+    "victim": "Defense supply chain manufacturers, technology and internet firms (Google), human rights activists and NGOs, think tanks [S2][S5][S7][S8].",
+    "socioPolitical": "Collection on PRC dissidents, US technology and defense IP, and US counterintelligence activity (surveillance orders) [S5].",
+    "technology": "Unpatched Internet Explorer 6-8 and Adobe Flash Player on Windows endpoints; trust in frequently visited policy and industry websites [S1][S6][S7]."
   },
   "gaps": [
-    "The Symantec 'Elderwood Project' report (2012) and the 2014 Symantec blog could not be opened; details come from search-result summaries and press coverage [S1][S8].",
-    "The MITRE G0066 and CFR 'Sneaky Panda' pages could not be fetched; MITRE wording comes from search-result summaries and the CFR text is unverified.",
-    "Exact publication dates of the two SecurityWeek articles were not confirmed; '2012-09' is inferred from their subject matter [S4][S5].",
-    "Elderwood-to-Aurora link is disputed (RSA) [S5]; overlap with APT17/DeputyDog is asserted by some third parties but MITRE keeps the groups separate [S10].",
-    "No Microsoft actor name or Microsoft mapping for Elderwood was found.",
-    "Christian Science Monitor coverage reportedly links Chinese cyber 'gangs' to RSA and Lockheed Martin attacks; which group was linked was not verified [S6].",
-    "No public reporting after 2014 tying new activity to Elderwood by name was found; current status unknown."
+    "Original Symantec 'The Elderwood Project' PDF and Symantec Connect blog could not be opened; details come from search summaries and press coverage of them [S2][S6].",
+    "The Washington Post article was not opened directly; reliance is on secondary coverage [S5].",
+    "MITRE ATT&CK G0066 page and CFR Cyber Operations Tracker 'Sneaky Panda' entry could not be fetched; alias and description data are from search-result summaries.",
+    "No Microsoft threat actor name identified for Elderwood; Microsoft mapping not checked.",
+    "Relationship between Elderwood/Sneaky Panda and Symantec's Hidden Lynx / CrowdStrike's Aurora Panda is unresolved; shared Aurora malware does not establish identity [S9].",
+    "No public activity explicitly attributed to Elderwood after early 2013 was found; current status is unknown.",
+    "No US government attribution naming Elderwood or a specific PRC organization was found."
   ],
   "implications": {
-    "jipoe": "Analyst assessment derived from cited sources; validate before use. STEP 1: Key terrain includes defense-industrial-base networks, their component suppliers, and the third-party websites those workforces routinely visit (watering-hole candidates) [S3][S4]. STEP 2: An actor or supplier with steady zero-day access compresses patch-based defense; browser and plug-in exposure on user endpoints is the decisive vulnerability [S3][S8]. STEP 3: Doctrinal template is watering hole or spear-phish, zero-day browser/plug-in exploit, then RAT (e.g., Hydraq) and data theft [S3][S8]. STEP 4: MLCOA is quiet IP theft from DIB primes and lower-tier suppliers. MDCOA is a shared exploit supplier arming several groups at once against DoD-adjacent targets with new zero-days, as seen in early 2014 [S8][S9]. Candidate indicators: unexpected SWF or script content injected into industry-hub or NGO websites, IE/Flash exploit shellcode matching known Elderwood-platform traits, and new outbound connections from user endpoints after visits to trusted sites [S4][S8].",
-    "jcc2": "Analyst assessment derived from cited sources; validate before use. (1) Situational awareness: track zero-day disclosures in client software and map them to Elderwood-platform reporting, since several groups may exploit the same flaw at once [S8]. (2) Authorities: watering-hole sites are often third-party or NGO-owned [S4], so remediation requires coordination with owners rather than direct action. (3) Mission assurance: supplier compromise [S3] means DIB lower-tier networks are part of the mission's attack surface. (4) Coordination: share indicators with DC3/DIB partners quickly; attribution to a single actor may be unreliable when an exploit platform is shared [S8][S5]."
+    "jipoe": "Analyst assessment derived from cited sources; validate before use. STEP 1: Key terrain includes user endpoints running browsers and plug-ins, and the third-party websites (policy, industry, supplier) that DoD and DIB personnel routinely visit [S7]. STEP 2: Historic reliance on browser and Flash zero-days means patch status alone does not bound the threat; defense supply chain firms are an indirect path to defense programs [S2][S6]. STEP 3: Doctrinal template is strategic web compromise or spear-phishing link, browser exploit, RAT such as Hydraq, then collection of IP and sensitive databases [S1][S2][S5]. STEP 4: MLCOA is persistent IP theft from DIB suppliers via watering holes. MDCOA is access to counterintelligence or sensitive legal-process data, as reported for the Google surveillance-order database [S5]. Candidate indicators: unexpected script injection on frequently visited partner sites, heap-spray exploit pages targeting legacy browsers, and Hydraq-family beacons [S1][S6].",
+    "jcc2": "Analyst assessment derived from cited sources; validate before use. (1) Situational awareness should track compromise of external websites frequented by the force, not only DoDIN assets [S7]. (2) Zero-day use means mitigation (browser isolation, plug-in removal) must be pre-authorized rather than waiting on vendor patches [S6]. (3) Mission assurance depends on DIB supplier hygiene; coordinate with DC3 and the DIB CS program when supplier compromise is suspected [S2]. (4) Coordinate with law enforcement and counterintelligence, since the reported Aurora objective included surveillance-order data [S5]."
   },
   "sources": [
-    {"ref": "S1", "title": "The Elderwood Project (Symantec report, academic mirror; not opened, summarized via search results)", "publisher": "Symantec", "date": "2012-09", "url": "https://users.umiacs.umd.edu/~tdumitra/courses/ENEE759D/Fall13/papers/the-elderwood-project.pdf"},
-    {"ref": "S2", "title": "Are you a defense contractor? Beware the Elderwood Project (reporting Symantec report)", "publisher": "BetaNews", "date": "2012-09-11", "url": "https://betanews.com/2012/09/11/are-you-a-defense-contractor-beware-the-elderwood-project/"},
-    {"ref": "S3", "title": "Stealthy Group Steals Data Using Zero-Day, 'Watering Hole' Attack (reporting Symantec report)", "publisher": "eWeek", "date": "2012-09", "url": "https://www.eweek.com/security/stealthy-group-steals-data-using-zero-day-watering-hole-attack/"},
-    {"ref": "S4", "title": "Recent IE Zero-Day Tied to Notorious Elderwood Gang, Symantec Says", "publisher": "SecurityWeek", "date": "2012-09", "url": "https://www.securityweek.com/recent-ie-zero-day-tied-notorious-elderwood-gang-symantec-says/"},
-    {"ref": "S5", "title": "RSA: Not Enough Proof That China Is Behind the Elderwood Gang", "publisher": "SecurityWeek", "date": "2012-09", "url": "https://www.securityweek.com/rsa-not-enough-proof-china-behind-elderwood-gang/"},
-    {"ref": "S6", "title": "Stealing US business secrets: Experts ID two huge cyber 'gangs' in China", "publisher": "Christian Science Monitor", "date": "2012-09-14", "url": "https://ezorigin.csmonitor.com/USA/2012/0914/Stealing-US-business-secrets-Experts-ID-two-huge-cyber-gangs-in-China"},
-    {"ref": "S7", "title": "Latest Internet Explorer zero-day linked to Elderwood Project", "publisher": "The Hacker News", "date": "2013-01", "url": "https://thehackernews.com/2013/01/latest-internet-explorer-zero-day.html"},
-    {"ref": "S8", "title": "How Elderwood Platform is Fueling 2014's Zero-Day Attacks (not opened, summarized via search results)", "publisher": "Symantec", "date": "2014-05", "url": "https://www-secure.symantec.com/connect/blogs/how-elderwood-platform-fueling-2014-s-zero-day-attacks"},
-    {"ref": "S9", "title": "Researchers: Recent Zero-Day Attacks Linked Via Common Exploit Package (reporting Symantec)", "publisher": "Dark Reading", "date": "2014-05-19", "url": "https://www.darkreading.com/attacks-breaches/researchers-recent-zero-day-attacks-linked-via-common-exploit-package"},
-    {"ref": "S10", "title": "Elderwood, G0066", "publisher": "MITRE ATT&CK", "date": "2024-11-17 (last modified)", "url": "https://attack.mitre.org/groups/G0066/"},
-    {"ref": "S11", "title": "Beijing Group (actor entry)", "publisher": "Malpedia (Fraunhofer FKIE)", "date": "2026-10-15 (retrieved)", "url": "https://malpedia.caad.fkie.fraunhofer.de/actor/beijing_group"},
-    {"ref": "S12", "title": "A new approach to China (Google blog post, mailing-list copy)", "publisher": "Google, via Infowarrior list archive", "date": "2010-01-12", "url": "https://attrition.org/pipermail/infowarrior/2010-January/005003.html"}
+    {
+      "ref": "S1",
+      "title": "More Details on \"Operation Aurora\"",
+      "publisher": "McAfee Labs",
+      "date": "2010-01",
+      "url": "https://www.mcafee.com/blogs/other-blogs/mcafee-labs/more-details-on-operation-aurora/"
+    },
+    {
+      "ref": "S2",
+      "title": "Elderwood project, who is behind Op. Aurora and ongoing attacks? (reporting Symantec report)",
+      "publisher": "Security Affairs",
+      "date": "2012-09",
+      "url": "https://securityaffairs.com/8528/hacking/elderwood-project-who-is-behind-op-aurora-and-ongoing-attacks.html"
+    },
+    {
+      "ref": "S5",
+      "title": "Chinese hackers who breached Google gained access to sensitive data, U.S. officials say (reporting Washington Post)",
+      "publisher": "OODA Loop",
+      "date": "2013-05-20",
+      "url": "https://www.oodaloop.com/cyber/2013/05/20/chinese-hackers-who-breached-google-gained-access-to-sensitive-data-u-s-officials-say/"
+    },
+    {
+      "ref": "S6",
+      "title": "Elite hacker gang pulls out another IE zero-day from bottomless pocket (reporting Symantec blog)",
+      "publisher": "Computerworld",
+      "date": "2013-01",
+      "url": "https://www.computerworld.com/article/2494444/elite-hacker-gang-pulls-out-another-ie-zero-day-from-bottomless-pocket.html"
+    },
+    {
+      "ref": "S7",
+      "title": "Recent IE zero-day tied to notorious Elderwood gang, Symantec says",
+      "publisher": "SecurityWeek",
+      "date": "2013-01",
+      "url": "https://www.securityweek.com/recent-ie-zero-day-tied-notorious-elderwood-gang-symantec-says/"
+    },
+    {
+      "ref": "S8",
+      "title": "Elderwood, G0066 (as summarized with Malpedia actor entry)",
+      "publisher": "MITRE ATT&CK / Malpedia",
+      "date": "2026-07-31 (MITRE object modified per local record)",
+      "url": "https://attack.mitre.org/groups/G0066"
+    },
+    {
+      "ref": "S9",
+      "title": "Chinese 'Hidden Lynx' hackers launch widespread APT attacks",
+      "publisher": "Dark Reading",
+      "date": "2013-09",
+      "url": "https://www.darkreading.com/cyberattacks-data-breaches/chinese-hidden-lynx-hackers-launch-widespread-apt-attacks"
+    }
   ],
   "aliasesAdd": []
 }

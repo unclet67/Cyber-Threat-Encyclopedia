@@ -1,0 +1,74 @@
+{
+  "mitre": "G1016",
+  "identification": {
+    "summary": "FIN13 is a financially motivated threat actor that Mandiant has tracked since 2017. Mandiant describes it conducting long-term intrusions against organizations in Mexico to gather information and carry out fraudulent money transfers, rather than smash-and-grab ransomware [S1]. Mandiant reports that the group relies heavily on custom passive backdoors, web shells and tunnelers rather than frameworks such as Cobalt Strike, with a median dwell time of about 2.5 years [S1]. Sygnia separately tracks an overlapping cluster as Elephant Beetle (TG2003), which it says steals millions of dollars from finance and commerce organizations, mainly in Latin America [S2][S3].",
+    "firstObserved": "Mandiant: tracked since 2017, with activity going back as early as 2016 [S1]. Sygnia: had tracked Elephant Beetle for about two years when it published in January 2022 [S2][S3].",
+    "notes": "Mandiant name: FIN13 [S1]. Sygnia name: Elephant Beetle, also tracked as TG2003 [S2][S3]. Secondary reporting on Sygnia's research states that Sygnia noted similarities or overlaps with Mandiant's FIN13 [S3]; MITRE ATT&CK tracks the group as FIN13 (G1016) and the imported record lists Elephant Beetle and TG2003 as associated names [S7]. No Microsoft name for this actor was found in the sources gathered."
+  },
+  "attribution": {
+    "sponsor": "None. Mandiant and Sygnia describe a financially motivated criminal actor; neither source makes a nation-state attribution [S1][S2].",
+    "confidence": "Mandiant makes no nation-state or geographic attribution; it notes Spanish-language strings in the SHELLSWEEP web shell, the GASCAN fraud tool and targeted database artifacts [S1]. The FIN13 to Elephant Beetle linkage is stated by Sygnia as an overlap, not as an identity [S3].",
+    "basis": "Mandiant incident-response data covering more than five years of intrusions [S1]; Sygnia incident-response engagements [S2][S3]."
+  },
+  "objectives": "Financial theft: long, quiet reconnaissance of victim finance systems followed by fraudulent transactions, including point-of-sale and ATM-related fraud [S1]. Sygnia reports the group hides many small fraudulent transactions among legitimate activity to avoid detection [S2][S3].",
+  "targeting": {
+    "sectors": [
+      "Financial services [S1][S2]",
+      "Retail [S1]",
+      "Hospitality [S1]",
+      "Commerce [S2][S3]"
+    ],
+    "regions": [
+      "Mexico (Mandiant observed FIN13 operating exclusively against Mexico-based organizations over five years of data) [S1]",
+      "Latin America (Sygnia's Elephant Beetle focus) [S2][S3]",
+      "United States (secondary reporting says US-based firms were also affected) [S3]"
+    ],
+    "notes": "Mandiant says victims were large organizations, several with annual revenue in the millions to billions of USD, and that targeting a single country is rare: only 2.6% of financially motivated actors it tracks do so [S1]. Mandiant data is Mexico-only, while Sygnia's Elephant Beetle reporting extends to wider Latin America and some US firms; these cluster boundaries are not identical [S1][S3]."
+  },
+  "capabilities": {
+    "summary": "Initial access is primarily through exploitation of internet-facing servers. Mandiant saw indications of WebLogic and Apache Tomcat exploitation, though it could not confirm the specific vulnerabilities [S1]. Secondary reporting on Sygnia's research lists four exploited flaws: CVE-2017-1000486 (PrimeFaces), CVE-2015-7450 (WebSphere), CVE-2010-5326 and EDB-ID-24963 (both SAP NetWeaver). It also describes a focus on legacy Java applications on Linux, especially WebSphere and WebLogic, and obfuscated WAR archives [S4]. Mandiant documents a large custom toolset: BLUEAGAVE (a PowerShell/Perl passive backdoor), SIXPACK (ASPX tunneler), SWEARJAR (Java backdoor using DNS TXT), MAILSLOT (email-based C2), HOTLANE, BUSTEDPIPE, PORTHOLE, CLOSEWATCH, SPINOFF, DRAWSTRING, NIGHTJAR, LATCHKEY and a trojanized KeePass. Its fraud tool GASCAN sends ISO 8583 payment messages [S1]. The group also uses public tools such as Mimikatz, ProcDump, Invoke-WMIExec/SMBExec, NMAP and GOBOT2, and operates on both Windows and Linux [S1]. Sygnia reports more than 80 unique tools and scripts [S2][S3]. At publication, Mandiant had not seen FIN13 deploy ransomware [S1]."
+  },
+  "campaigns": [
+    {"date": "2016", "name": "Earliest observed FIN13 activity", "summary": "Mandiant traces FIN13 activity back as early as 2016 and began tracking it in 2017.", "sources": ["S1"]},
+    {"date": "2017-2021", "name": "Long-term intrusions against Mexican financial, retail and hospitality firms", "summary": "Mandiant observed long-dwell intrusions leading to theft of POS, ATM and treasury data. In one case GASCAN-driven ISO 8583 fraud produced more than 1,000 fraudulent transactions worth millions of pesos.", "sources": ["S1"]},
+    {"date": "2021-12-07", "name": "Mandiant public disclosure of FIN13", "summary": "Mandiant publishes its FIN13 profile with malware families and hashes.", "sources": ["S1"]},
+    {"date": "2022-01-05", "name": "Sygnia disclosure of Elephant Beetle (TG2003)", "summary": "Sygnia reports a financial-theft operation exploiting legacy Java applications against finance and commerce firms, mainly in Latin America, and notes an overlap with FIN13.", "sources": ["S2", "S3", "S4"]},
+    {"date": "2024-01", "name": "AllaKore RAT campaign against large Mexican companies (tentative link)", "summary": "BlackBerry reported an AllaKore RAT campaign using IMSS-themed lures against Mexican firms with revenue over $100M. SC Media says the activity is believed linked to FIN13, while other coverage calls the actor an unknown Latin America-based group.", "sources": ["S5", "S6", "S8"]}
+  ],
+  "diamond": {
+    "adversary": "Financially motivated criminal operators with no nation-state attribution; Spanish-language artifacts appear in their tooling [S1]. Tracked as FIN13 (Mandiant) and Elephant Beetle/TG2003 (Sygnia) [S1][S2].",
+    "capability": "Exploits for internet-facing Java and web servers, including PrimeFaces, WebSphere and SAP NetWeaver flaws [S4]; custom passive backdoors, web shells and tunnelers; ISO 8583 fraud tool GASCAN; credential theft with Mimikatz and a trojanized KeePass [S1].",
+    "infrastructure": "Compromised external-facing victim servers used as footholds; passive backdoors listening on high ports; C2 over unencrypted HTTP POST, email (MAILSLOT) and DNS TXT (SWEARJAR) [S1].",
+    "victim": "Large financial, retail and hospitality organizations in Mexico [S1]; finance and commerce firms in Latin America and some US firms [S3]; POS, ATM, treasury and withdrawal-code databases [S1].",
+    "socioPolitical": "Profit-driven fraud concentrated in the Mexican and wider Latin American market [S1][S2].",
+    "technology": "Legacy, unpatched Java application servers (WebLogic, WebSphere, Tomcat) on Linux and Windows; payment-switch and POS systems using ISO 8583 [S1][S4]."
+  },
+  "gaps": [
+    "Sygnia primary report and blog (blog.sygnia.co and the January 2022 PDF) could not be opened; Elephant Beetle details rely on press release listing and secondary coverage [S2][S3][S4].",
+    "Imported record lists country 'RU'; no cited source supports a Russian origin. Mandiant makes no geographic attribution and notes Spanish-language artifacts [S1]. Treat the origin as unknown.",
+    "Exact nature and strength of the FIN13 to Elephant Beetle overlap (shared tools, infrastructure or victims) is not documented in the sources gathered.",
+    "Some secondary coverage describes FIN13 as linked to ransomware, which conflicts with Mandiant's statement that it had not observed ransomware deployment [S1]; unverified.",
+    "The 2024 AllaKore RAT campaign link to FIN13 is tentative and contested in coverage; BlackBerry's original report was not opened [S5][S6][S8]. Later vendor reporting reportedly assigned this activity to a different named group; not verified here.",
+    "No public reporting found on FIN13 activity after 2022 attributed with confidence by Mandiant or Google Threat Intelligence.",
+    "NetWitness FIN13/Elephant Beetle paper and the MITRE ATT&CK G1016 page could not be fetched directly; MITRE data comes from the imported dataset [S7].",
+    "No Microsoft threat-actor name located for FIN13."
+  ],
+  "implications": {
+    "jipoe": "Analyst assessment derived from cited sources; validate before use. STEP 1 (environment): Key terrain is internet-facing legacy Java application servers (WebLogic, WebSphere, Tomcat, SAP NetWeaver) and the internal finance systems behind them: payment switches, POS, ATM and treasury applications [S1][S4]. STEP 2 (effects): Unpatched, years-old CVEs remain viable entry points, and multi-year dwell (median about 2.5 years) means compromise may predate current baselines [S1][S4]. STEP 3 (threat model): Exploit a public-facing server, drop a web shell or passive backdoor, tunnel inward, steal credentials, run reconnaissance on finance applications, then inject fraudulent transactions hidden among legitimate ones [S1][S2]. STEP 4 (COAs): MLCOA is continued quiet financial fraud against large Latin American organizations, including their US-linked subsidiaries [S1][S3]. MDCOA is long-term access to a financial institution or payment processor that serves DoD personnel or partner-nation forces in the region, enabling large-scale fraud or data theft. Candidate indicators: new JSP, ASPX or PHP files on Java or IIS servers; processes listening on high ephemeral ports (for example 65510-65512); unencrypted HTTP POST beacons to paths like /cpl/api.php; DNS TXT C2; anomalous ISO 8583 traffic or bursts of small transactions [S1].",
+    "jcc2": "Analyst assessment derived from cited sources; validate before use. (1) Situational awareness: FIN13 targets commercial and financial entities rather than DoD networks, so relevance is mainly to mission partners, contractors and financial services supporting operations in the USSOUTHCOM and USNORTHCOM areas; track legacy Java-server exposure on DODIN-adjacent systems [S1][S4]. (2) Authorities: this is criminal activity, so response falls primarily to law enforcement and partner-nation authorities, not military cyber forces; DoD's role is defensive hardening and information sharing. (3) Mission assurance: multi-year dwell argues for compromise-assessment hunts on legacy application servers, not just patching [S1]. (4) Coordination: share indicators with DC3, the DIB CS program and partner-nation CERTs in Mexico and Latin America."
+  },
+  "sources": [
+    {"ref": "S1", "title": "FIN13: A Cybercriminal Threat Actor Focused on Mexico", "publisher": "Mandiant (Google Cloud Threat Intelligence blog)", "date": "2021-12-07", "url": "https://cloud.google.com/blog/topics/threat-intelligence/fin13-cybercriminal-mexico/"},
+    {"ref": "S2", "title": "Sygnia Uncovers 'Elephant Beetle', an Organized Significant Financial Theft Operation Threatening Global Enterprises (press release; search-result summary only)", "publisher": "Sygnia via Business Wire", "date": "2022-01-05", "url": "https://www.businesswire.com/news/home/20220105005203/en/Sygnia-Uncovers-%E2%80%9CElephant-Beetle%E2%80%9D-an-Organized-Significant-Financial-Theft-Operation-Threatening-Global-Enterprises"},
+    {"ref": "S3", "title": "Researchers uncover hacker group behind organized financial-theft operation (reporting Sygnia research)", "publisher": "The Hacker News", "date": "2022-01", "url": "https://thehackernews.com/2022/01/researchers-uncover-hacker-group-behind.html"},
+    {"ref": "S4", "title": "Elephant Beetle threat-watch write-up listing exploited CVEs (reporting Sygnia research)", "publisher": "Binary Defense", "date": "2022-01", "url": "https://www.binarydefense.com/?p=8817"},
+    {"ref": "S5", "title": "Large Mexican companies targeted by financially motivated hacking campaign (reporting BlackBerry research)", "publisher": "The Record (Recorded Future News)", "date": "2024-01", "url": "https://therecord.media/mexican-companies-targeted-by-financially-motivated-hackers"},
+    {"ref": "S6", "title": "AllaKore RAT Malware Targeting Mexican Firms with Financial Fraud Tricks (reporting BlackBerry research)", "publisher": "The Hacker News", "date": "2024-01", "url": "https://thehackernews.com/2024/01/allakore-rat-malware-targeting-mexican.html"},
+    {"ref": "S7", "title": "FIN13, G1016 (techniques, software and associated groups; imported dataset)", "publisher": "MITRE ATT&CK", "date": "2026-07-31", "url": "https://attack.mitre.org/groups/G1016/"},
+    {"ref": "S8", "title": "Mexican enterprises subjected to AllaKore RAT attacks (reporting BlackBerry research)", "publisher": "SC Media", "date": "2024-01", "url": "https://www.scworld.com/brief/mexican-enterprises-subjected-to-allakore-rat-attacks"}
+  ],
+  "aliasesAdd": [
+    {"name": "Elephant Beetle", "vendor": "Sygnia"},
+    {"name": "TG2003", "vendor": "Sygnia"}
+  ]
+}

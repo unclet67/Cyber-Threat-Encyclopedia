@@ -1,0 +1,139 @@
+{
+  "identification": {
+    "summary": "Frontier Blizzard is Microsoft's name for a Russia-origin actor. Microsoft maps it to Google/Mandiant's UNC5792 [S1]. Google Threat Intelligence Group (GTIG) describes UNC5792 as a suspected Russian espionage cluster. It hijacks Signal accounts by altering legitimate Signal group-invite pages so that a victim who scans the code links their account to a device the actor controls [S2][S3]. In 2026, US government reporting linked UNC5792 to a broader campaign against Signal and WhatsApp accounts of officials. Press accounts say the campaign has compromised thousands of messaging accounts [S5][S6][S7].",
+    "firstObserved": "Publicly reported by GTIG on 2025-02-19, which describes activity in the preceding 'recent months' without giving specific start dates [S2].",
+    "notes": "Microsoft name: Frontier Blizzard (origin Russia); the only other name Microsoft lists is UNC5792 [S1]. GTIG says UNC5792 partially overlaps with CERT-UA's UAC-0195 [S2][S4]. A partial overlap is not the same as identity, so do not merge UAC-0195 reporting wholesale. UNC4221 (CERT-UA UAC-0185) is a separate Russia-linked cluster. GTIG reported it together with UNC5792, and the 2026 US announcements also named it alongside UNC5792 [S2][S5][S6]; this profile does not merge its facts into Frontier Blizzard. No Microsoft narrative profile or blog post naming Frontier Blizzard was found."
+  },
+  "attribution": {
+    "sponsor": "Russian Federation. Press coverage of the June 2026 US announcements says UNC5792 is associated with officers of the Russian Federal Security Service (FSB) Border Guards [S5][S6][S7].",
+    "confidence": "GTIG (February 2025) called UNC5792 a 'suspected' Russian espionage cluster and gave no further confidence level [S2]. In June 2026 the FBI (in a public service announcement) and the State Department Rewards for Justice program tied UNC5792 to FSB Border Guards officers. This summary comes from press coverage; the primary US documents were not opened [S5][S6][S7]. Microsoft lists Frontier Blizzard's origin as Russia without public sponsor detail [S1].",
+    "basis": "GTIG technical reporting on altered Signal invite pages and actor infrastructure [S2]. FBI PSA I-062626-PSA (2026-06-26), as reported by the press [S7]. State Department Rewards for Justice offer of up to $10 million, as reported by the press [S5][S6]. Microsoft naming mapping [S1]."
+  },
+  "objectives": "Espionage collection from secure messaging. Device linking gives the actor real-time copies of a victim's Signal messages [S2]. GTIG frames the wider Russian Signal campaign around wartime demand for Ukrainian military and government communications [S2][S3]. 2026 reporting describes collection against US and NATO government, diplomatic, defense and media targets [S5][S6].",
+  "targeting": {
+    "sectors": [
+      "Military personnel (Ukraine) [S2][S3]",
+      "Government officials, including US officials [S5][S6]",
+      "Diplomatic and foreign-affairs personnel [S5][S6]",
+      "Defense and national security personnel [S5][S6]",
+      "Journalists [S5][S6]"
+    ],
+    "regions": [
+      "Ukraine [S2][S3]",
+      "United States [S5][S6]",
+      "NATO member states [S5][S6]"
+    ],
+    "notes": "The 2025 reporting focuses on Ukrainian military users of Signal [S2][S3]. GTIG did not list UNC5792 victims individually. It described the general target pool for these Russian Signal operations as military personnel, politicians, journalists, activists and other at-risk groups, and assessed that the tactics would likely spread beyond Ukraine [S2][S3]. The 2026 target list (US officials, diplomats, NATO member-state officials, defense staff and journalists) comes from US government announcements as reported by the press [S5][S6]."
+  },
+  "capabilities": {
+    "summary": "UNC5792 does not exploit flaws in Signal's encryption. It abuses Signal's legitimate linked-devices feature: phishing delivers altered Signal group-invite pages, and the page's JavaScript redirect is replaced with an sgnl://linkdevice URI. A victim who scans the code links an actor-controlled device, which then receives the victim's messages in real time [S2][S3]. GTIG notes that device linking is a low-signature form of access: few detections exist for newly linked devices, so access can persist unnoticed [S2]. The actor's lookalike domains imitate Signal group and security pages (for example signal-group[.]site and signal-security[.]online) [S2]. In 2026 the FBI reported a tactic shift, as reported by the press. Operators now persuade targets to reveal their Signal Backup Recovery Key, which lets them restore a backup and read the full message history, in addition to verification codes and 2FA credentials [S7]."
+  },
+  "campaigns": [
+    {
+      "date": "2025-02",
+      "name": "Signal device-linking via altered group invites",
+      "summary": "GTIG reports that UNC5792 altered Signal group-invite pages to link victims' accounts to actor devices, chiefly targeting Ukrainian military users. Signal added device-linking warnings in response.",
+      "sources": [
+        "S2",
+        "S3",
+        "S4"
+      ]
+    },
+    {
+      "date": "2026-03",
+      "name": "FBI/CISA warning on messaging-app account takeover",
+      "summary": "A joint FBI/CISA announcement warns that Russian intelligence is phishing Signal and other messaging users for verification codes. It reports that thousands of accounts were accessed. The announcement did not name UNC5792 at this stage.",
+      "sources": [
+        "S7"
+      ]
+    },
+    {
+      "date": "2026-06",
+      "name": "Signal Backup Recovery Key phishing; Rewards for Justice offer",
+      "summary": "An FBI/CISA PSA (I-062626-PSA) updates the March 2026 warning: operators now solicit Signal Backup Recovery Keys, and the PSA names UNC5792 and UNC4221. The State Department offers up to $10 million for information on UNC5792, which it links to FSB Border Guards officers.",
+      "sources": [
+        "S5",
+        "S6",
+        "S7"
+      ]
+    }
+  ],
+  "diamond": {
+    "adversary": "Russian operators that the US government ties to the FSB Border Guards, per press reporting [S5][S6][S7]. Google GTIG calls the cluster a suspected Russian espionage actor [S2].",
+    "capability": "Social engineering that abuses Signal device linking through altered group invites and QR codes. Since 2026 it also includes phishing for Signal Backup Recovery Keys and verification codes [S2][S7].",
+    "infrastructure": "Lookalike Signal domains, for example add-signal-group[.]com, signal-groups[.]tech and signal-security[.]site, hosting modified invite pages [S2].",
+    "victim": "Ukrainian military Signal users (2025). US, NATO, diplomatic, defense and media personnel on Signal and WhatsApp (2026) [S2][S5][S6].",
+    "socioPolitical": "Collection of private communications in support of Russia's war in Ukraine and against Ukraine's Western backers [S2][S5].",
+    "technology": "Consumer end-to-end encrypted messaging apps (Signal, WhatsApp), specifically their device-linking and backup-recovery account features [S2][S7]."
+  },
+  "gaps": [
+    "No Microsoft blog post or profile naming Frontier Blizzard was found. The name-to-UNC5792 mapping rests only on Microsoft's naming feed [S1], so Microsoft's own observations, scope and confidence are unknown.",
+    "The primary documents (FBI PSA I-062626-PSA, the March 2026 FBI/CISA PSA, and the State Department Rewards for Justice notice) could not be opened. Their attribution wording and details here come from press coverage [S5][S6][S7].",
+    "The press says the 2026 US announcements tie UNC5792 to FSB Border Guards and UNC4221 to actors working for Russian military services. Which specific techniques (backup-key phishing, WhatsApp targeting) belong to UNC5792 rather than UNC4221 is not clear from the coverage.",
+    "The UAC-0195 overlap is described only as 'partial' by GTIG [S2]. The CERT-UA primary reporting on UAC-0195 was not reviewed.",
+    "The press reports 'thousands' of compromised accounts [S6], but the share attributable to UNC5792 is unknown.",
+    "There is no MITRE ATT&CK group entry for UNC5792/Frontier Blizzard.",
+    "Activity before 2025 and the actor's start date are not established."
+  ],
+  "implications": {
+    "jipoe": "Analyst assessment derived from cited sources; validate before use. STEP 1 (operational environment): Key terrain is personal and official use of consumer encrypted messaging (Signal, WhatsApp) by commanders, staffs, liaison officers and NATO partners. Account-level features such as linked devices and backup recovery are the attack surface, not the crypto [S2][S7]. STEP 2 (effects): A single successful lure gives persistent, low-signature, real-time message access, and backup-key theft can expose full message history. The compromise sits outside DoD network sensors [S2][S7]. STEP 3 (threat model): The actor delivers a lure (a group invite, a security alert or a support message), the victim scans a QR code or hands over a code or key, and the actor links a device or restores a backup to collect messages [S2][S7]. STEP 4 (COAs): MLCOA is continued social-engineering collection against US and NATO officials, diplomats and defense personnel on Signal and WhatsApp, adapting as platforms add protections [S5][S6][S7]. MDCOA is undetected long-term access to accounts used to coordinate operations or partner support, enabling compromise of plans, personnel identities and locations, or follow-on impersonation of trusted contacts [S2][S5]. Candidate indicators: unexpected linked devices in Signal settings; messages that ask for verification codes or Backup Recovery Keys; Signal group invites hosted on lookalike domains such as signal-group[.]site or signal-security[.]online [S2][S7].",
+    "jcc2": "Analyst assessment derived from cited sources; validate before use. Situational awareness: Because the activity targets personal and commercial messaging accounts [S2][S5], it is largely invisible to DODIN sensors. Awareness depends on user reporting, OPSEC reviews of linked devices, and FBI/CISA and vendor reporting [S2][S7]. Authorities: The victims' accounts are commercial services. Response relies on user remediation (removing linked devices, regenerating backup keys), FBI/IC3 reporting, and coordination with the platforms rather than DoD cyber authorities [S7]. Mission assurance: Commanders should treat any operationally relevant content on consumer messaging apps as potentially exposed, and direct periodic linked-device audits and backup-key rotation [S2][S7]. Coordination: Share indicators and lure examples with FBI, CISA, NATO partners and Ukraine-facing liaison elements, since the reported targets span US, NATO and Ukrainian personnel [S2][S5][S6]."
+  },
+  "sources": [
+    {
+      "ref": "S1",
+      "title": "Microsoft threat actor naming mapping (MicrosoftMapping.json): Frontier Blizzard, Russia, other names UNC5792",
+      "publisher": "Microsoft Threat Intelligence (GitHub mstic)",
+      "date": "2026-10-15",
+      "url": "https://github.com/microsoft/mstic/blob/master/PublicFeeds/ThreatActorNaming/MicrosoftMapping.json"
+    },
+    {
+      "ref": "S2",
+      "title": "Signals of Trouble: Multiple Russia-Aligned Threat Actors Actively Targeting Signal Messenger",
+      "publisher": "Google Threat Intelligence Group (Dan Black)",
+      "date": "2025-02-19",
+      "url": "https://cloud.google.com/blog/topics/threat-intelligence/russia-targeting-signal-messenger"
+    },
+    {
+      "ref": "S3",
+      "title": "Google exposes new Russian phishing scheme targeting Ukrainian troops in Signal messaging app (reporting GTIG)",
+      "publisher": "Ukrainska Pravda",
+      "date": "2025-02-19",
+      "url": "https://pravda.com.ua/eng/news/2025/02/19/7499128"
+    },
+    {
+      "ref": "S4",
+      "title": "Google report warns Russian threat groups targeting Signal messenger (reporting GTIG)",
+      "publisher": "SiliconANGLE",
+      "date": "2025-02-19",
+      "url": "https://siliconangle.com/2025/02/19/google-report-warns-russian-threat-groups-targeting-signal-messenger/"
+    },
+    {
+      "ref": "S5",
+      "title": "U.S. Targets Russian Cyber Spies With $10M Bounty Over Messaging App Attacks (reporting State Dept Rewards for Justice)",
+      "publisher": "Security Affairs",
+      "date": "2026-06-29",
+      "url": "https://securityaffairs.com/194441/security/u-s-offers-10-million-reward-for-russian-hackers-behind-signal-and-whatsapp-phishing.html"
+    },
+    {
+      "ref": "S6",
+      "title": "$10 Million Reward for Russian Hackers Targeting Messaging App Users (reporting State Dept Rewards for Justice)",
+      "publisher": "eSecurity Planet",
+      "date": "2026-06-30",
+      "url": "https://www.esecurityplanet.com/threats/10-million-reward-for-russian-hackers-targeting-messaging-app-users/"
+    },
+    {
+      "ref": "S7",
+      "title": "FBI: Russian hackers phish Signal Backup Recovery Keys, UNC5792 (reporting FBI PSA I-062626-PSA)",
+      "publisher": "The Next Web",
+      "date": "2026-06-27",
+      "url": "https://thenextweb.com/news/fbi-russian-hackers-signal-backup-recovery-key-unc5792"
+    }
+  ],
+  "aliasesAdd": [
+    {
+      "name": "UAC-0195 (partial overlap)",
+      "vendor": "CERT-UA (per Google GTIG)"
+    }
+  ]
+}

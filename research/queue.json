@@ -1,34 +1,10 @@
 {
  "note": "Research queue for the automatic wave runner. Waves take items from the front; finished ids move to 'done'.",
  "verify": [
-  "elderwood",
-  "ferocious-kitten"
+  "inception",
+  "indigozebra"
  ],
  "research": [
-  {
-   "id": "fin13",
-   "tier": "T2"
-  },
-  {
-   "id": "frontier-blizzard",
-   "tier": "T2"
-  },
-  {
-   "id": "gray-sandstorm",
-   "tier": "T2"
-  },
-  {
-   "id": "houndstooth-typhoon",
-   "tier": "T2"
-  },
-  {
-   "id": "inception",
-   "tier": "T2"
-  },
-  {
-   "id": "indigozebra",
-   "tier": "T2"
-  },
   {
    "id": "jade-sleet",
    "tier": "T2"
@@ -1482,15 +1458,21 @@
   "cuboid-sandstorm",
   "daggerfly",
   "diamond-sleet",
+  "elderwood",
   "emerald-sleet",
+  "ferocious-kitten",
+  "fin13",
   "flax-typhoon",
   "forest-blizzard",
+  "frontier-blizzard",
   "ghost-blizzard",
   "gingham-typhoon",
   "granite-typhoon",
+  "gray-sandstorm",
   "hazel-sandstorm",
   "heart-typhoon",
   "hexagon-typhoon",
+  "houndstooth-typhoon",
   "lemon-sandstorm",
   "leopard-typhoon",
   "linen-typhoon",

@@ -1,0 +1,68 @@
+{
+  "mitre": "G0136",
+  "identification": {
+    "summary": "IndigoZebra is a suspected Chinese-speaking cyber-espionage group that targets Central Asian governments [S1][S7]. Kaspersky first reported it in its Q2 2017 APT Trends report, describing operations against former Soviet republics that used Meterpreter, Poison Ivy, xDown and a previously unknown backdoor called xCaon [S3][S4]. In July 2021 Check Point Research tied an April 2021 spear-phishing operation against Afghanistan's National Security Council (NSC) to the group, which used a Dropbox-controlled xCaon variant it named BoxCaon [S1][S2][S5].",
+    "firstObserved": "Check Point: activity since at least 2014, the date of its earliest samples [S1][S2]. First public reporting: Kaspersky, Q2 2017 APT Trends (August 2017) [S3][S4].",
+    "notes": "No Microsoft name for IndigoZebra was found in open sources. Searches did not surface a Microsoft Threat Intelligence designation, so the vendor name is used [S1]. MITRE ATT&CK tracks the group as IndigoZebra (G0136) and describes it as a suspected Chinese cyber-espionage group targeting Central Asian governments since at least 2014 [S7]. Kaspersky said the group shared ties with other Chinese-speaking actors but made no definitive attribution [S3]."
+  },
+  "attribution": {
+    "sponsor": "Suspected China-linked. Check Point calls IndigoZebra a Chinese-speaking group [S2]. It said it does not know whether the Chinese government directs or sponsors the group [S5][S6]. The CFR Cyber Operations Tracker lists China as the suspected state sponsor of the 2021 Afghan NSC targeting [S8].",
+    "confidence": "Vendor assessment, low to moderate. Check Point says the group is Chinese-speaking but makes no state-sponsorship claim [S2][S5]. Kaspersky (2017) noted ties to other Chinese-speaking actors without definitive attribution [S3]. MITRE labels the group 'suspected Chinese' [S7]. No government attribution or indictment was found.",
+    "basis": "Tool lineage (xCaon to BoxCaon) and continuity of targeting reported by Check Point [S1][S5]; Kaspersky's 2017 overlaps with Chinese-speaking actors [S3]. The imported record's 'state-sponsored' description is stronger than these primary vendor statements."
+  },
+  "objectives": "Political espionage against Central Asian and Afghan government bodies. Check Point's telemetry showed the HTTP xCaon variants mainly targeting political entities in Kyrgyzstan and Uzbekistan, while BoxCaon targeted Afghan government officials [S1][S4]. Check Point's head of threat intelligence said the activity targeted 'the highest levels of sovereignty' [S5].",
+  "targeting": {
+    "sectors": [
+      "National government / national security councils [S1][S5]",
+      "Political entities [S1][S4]",
+      "Presidential administration offices (impersonated as senders) [S5]"
+    ],
+    "regions": [
+      "Afghanistan [S1][S2]",
+      "Kyrgyzstan [S1][S2]",
+      "Uzbekistan [S1][S2]",
+      "Former Soviet republics (Kaspersky 2017) [S3][S4]"
+    ],
+    "notes": "VOA reported it remained unclear whether anyone on the Afghan NSC was compromised, and an NSC spokesman was unaware of the attempted breach [S5]. No public reporting of new IndigoZebra activity after 2021 was found [S7]."
+  },
+  "capabilities": {
+    "summary": "Spear-phishing from government-to-government email that impersonated a senior official in the Administrative Office of the President of Afghanistan. Check Point described this as 'ministry-to-ministry' deception [S2][S5]. The lure asked the recipient to review changes to a document about an upcoming NSC press conference, delivered as the password-protected RAR 'NSC Press conference.rar' [S2][S4]. The xCaon backdoor family has HTTP variants and the BoxCaon variant, which uses an attacker-controlled Dropbox account for commands and exfiltration so its traffic blends with normal Dropbox use [S1][S5][S6]. Earlier toolsets included Meterpreter, Poison Ivy and xDown [S3][S4]."
+  },
+  "campaigns": [
+    {"date": "2014", "name": "Early xCaon operations in Central Asia", "summary": "Check Point dates the earliest xCaon samples to 2014. Its HTTP variants mainly targeted political entities in Kyrgyzstan and Uzbekistan [S1][S2][S4].", "sources": ["S1", "S2", "S4"]},
+    {"date": "2017-08", "name": "Kaspersky disclosure: former Soviet republics", "summary": "Kaspersky's Q2 2017 APT Trends report described IndigoZebra targeting former Soviet republics with Meterpreter, Poison Ivy, xDown and the new xCaon backdoor [S3][S4].", "sources": ["S3", "S4"]},
+    {"date": "2021-04", "name": "Afghan National Security Council spear-phishing (BoxCaon)", "summary": "Emails impersonating the Afghan President's administrative office sent NSC officials a password-protected 'NSC Press conference.rar' that installed BoxCaon, which used Dropbox for C2 [S2][S4][S5]. Check Point published its findings on 2021-07-01 [S1][S5][S6]. Whether the attempt succeeded was not determined [S5].", "sources": ["S1", "S2", "S4", "S5", "S6", "S8"]}
+  ],
+  "diamond": {
+    "adversary": "Suspected Chinese-speaking espionage group. Its state ties are unknown according to Check Point [S2][S5][S7].",
+    "capability": "xCaon backdoor family (HTTP variants and the Dropbox-based BoxCaon) plus Meterpreter, Poison Ivy and xDown. Delivered by password-protected RAR attachments in spear-phishing emails [S1][S3][S4].",
+    "infrastructure": "Attacker-controlled Dropbox account used as the command channel for BoxCaon [S5][S6]. Government email identities were impersonated or used to send lures [S2][S5].",
+    "victim": "Afghan National Security Council officials, and political and government entities in Kyrgyzstan and Uzbekistan [S1][S2].",
+    "socioPolitical": "Intelligence on Central Asian and Afghan governments, a region bordering China. The Afghan NSC operation came in April 2021, during the period before the August 2021 collapse of the Afghan government [S5][S8].",
+    "technology": "Trust between government offices over email, and the routine allowance of cloud-storage (Dropbox) traffic on government networks [S2][S5]."
+  },
+  "gaps": [
+    "The full Check Point Research technical report and the Kaspersky Securelist Q2 2017 report could not be fetched (host unreachable). Details here come from search-result excerpts and secondary coverage [S1][S3].",
+    "Check Point does not say whether the Afghan lure came from a compromised legitimate mailbox or a spoofed one; coverage alternates between 'impersonated' and 'sent from an employee'.",
+    "No Microsoft Threat Intelligence name for IndigoZebra was found. Mapping to Microsoft taxonomy is unverified.",
+    "State sponsorship and the responsible PRC organization (MSS, PLA or contractor) are unknown. No government attribution was found.",
+    "Outcome of the Afghan NSC intrusion attempt and any data loss are unknown [S5].",
+    "No reporting of IndigoZebra activity after 2021 was found. Current status, tooling evolution and possible renaming or merging into other clusters are unknown.",
+    "No vendor-stated aliases were found. Overlaps with other Chinese-speaking clusters noted by Kaspersky in 2017 were not named in available excerpts [S3]."
+  ],
+  "implications": {
+    "jipoe": "Analyst assessment derived from cited sources; validate before use. STEP 1 (operational environment): Key terrain includes government email systems, the trust between senior government offices, and sanctioned cloud-storage services that can carry C2 [S2][S5]. STEP 2 (effects): Allowing Dropbox traffic outbound means BoxCaon C2 blends with normal HTTPS. Network-boundary defenses alone are unlikely to separate it [S5][S6]. STEP 3 (threat model): The template is a government-themed spear-phish impersonating a higher office, then a password-protected RAR, then the xCaon/BoxCaon backdoor, then tasking and exfiltration through a cloud-storage account [S1][S2][S4]. STEP 4 (COAs): MLCOA is continued low-volume espionage against Central Asian security councils, foreign ministries and presidential staff, using lures tied to current political events [S1][S5]. MDCOA is the same tradecraft aimed at partner-nation or coalition liaison staff in the region, collecting coordination and planning information [S1][S5]. Candidate indicators: password-protected RAR attachments in official-looking emails from senior offices; Dropbox API calls from non-standard processes or hosts with no business use; new executables following archive extraction [S2][S4][S5].",
+    "jcc2": "Analyst assessment derived from cited sources; validate before use. (1) Situational awareness: Track partner-nation government targeting in Central Asia. This actor's victims are the political leadership that coalition engagement depends on [S1][S5]. (2) Authorities: Because the actor abuses a commercial cloud provider for C2 [S5], disruption probably needs coordination with the provider through appropriate legal and interagency channels, not unilateral action. (3) Mission assurance: Monitor or restrict cloud-storage API use on mission networks, and flag password-protected archives from high-trust senders [S2][S5]. (4) Coordination: Share indicators with partner CERTs in Kyrgyzstan, Uzbekistan and the region through established security-cooperation channels. Treat attribution as a vendor 'Chinese-speaking' assessment, not government attribution [S2][S7]."
+  },
+  "sources": [
+    {"ref": "S1", "title": "IndigoZebra APT continues to attack Central Asia with evolving tools", "publisher": "Check Point Research", "date": "2021-07-01", "url": "https://research.checkpoint.com/2021/indigozebra-apt-continues-to-attack-central-asia-with-evolving-tools/"},
+    {"ref": "S2", "title": "Cyber Espionage on Afghanistan, Kyrgyzstan and Uzbekistan by Chinese-speaking Hacker Group", "publisher": "Check Point Software (blog)", "date": "2021-07-01", "url": "https://blog.checkpoint.com/security/cyber-espionage-on-afghanistan-kyrgyzstan-and-uzbekistan-by-chinese-speaking-hacker-group/"},
+    {"ref": "S3", "title": "APT Trends report Q2 2017 (known via search excerpts; page not fetched)", "publisher": "Kaspersky (Securelist)", "date": "2017-08", "url": "https://securelist.com/apt-trends-report-q2-2017/79332/"},
+    {"ref": "S4", "title": "IndigoZebra APT Hacking Campaign Targets the Afghan Government (reporting Check Point research)", "publisher": "The Hacker News", "date": "2021-07", "url": "https://thehackernews.com/2021/07/indigozebra-apt-hacking-campaign.html"},
+    {"ref": "S5", "title": "Chinese Hackers Attacked Afghan Council Network, Cybersecurity Firm Says (VOA, reporting Check Point research; GlobalSecurity repost)", "publisher": "Voice of America via GlobalSecurity.org", "date": "2021-07-01", "url": "https://www.globalsecurity.org/security/library/news/2021/07/sec-210701-voa02.htm"},
+    {"ref": "S6", "title": "Hackers breach Afghan government in China-related operation (reporting Check Point research)", "publisher": "The Washington Times", "date": "2021-07-01", "url": "https://www.washingtontimes.com/news/2021/jul/1/hackers-breach-afghan-government-in-china-related-/"},
+    {"ref": "S7", "title": "IndigoZebra, G0136 (known via search excerpts)", "publisher": "MITRE ATT&CK", "date": "2025-04 (last modified)", "url": "https://attack.mitre.org/groups/G0136/"},
+    {"ref": "S8", "title": "Targeting of the Afghan National Security Council", "publisher": "Council on Foreign Relations, Cyber Operations Tracker", "date": "2021-07", "url": "https://www.cfr.org/cyber-operations/targeting-of-the-afghan-national-security-council"}
+  ],
+  "aliasesAdd": []
+}
