@@ -1,0 +1,80 @@
+{
+  "identification": {
+    "summary": "Pumpkin Sandstorm is a Microsoft threat actor name whose origin/threat category is listed as Iran, with DEV-0146 listed as another name in Microsoft's published mapping [S1]. In Microsoft's 2023 weather-based taxonomy, the 'Sandstorm' family denotes Iranian actors and DEV-#### designations are temporary names for emerging or developing clusters [S3]. No Microsoft blog, report, or vendor write-up describing Pumpkin Sandstorm's activity was found in open sources during this research.",
+    "firstObserved": "",
+    "notes": "Microsoft's MSTIC mapping file lists 'DEV-0146' as another name [S1]. The MISP Galaxy 'Microsoft Activity Group' cluster lists 'DEV-0146' and 'ZeroCleare' as synonyms for Pumpkin Sandstorm, citing Microsoft's naming page and the MSTIC mapping file as references [S2]. ZeroCleare is a wiper malware family, not an actor name: IBM X-Force linked it to ITG13 (APT34/OilRig) plus a second Iran-based group [S5], and Microsoft described it as shared among a small number of affiliated Iranian actors, including actors with links to MOIS [S4]. Do not merge ZeroCleare, APT34, or Albania-attack actors (DEV-0842, DEV-0861, DEV-0166, Europium) into this record without a Microsoft statement linking them [S4]."
+  },
+  "attribution": {
+    "sponsor": "Iran (country-level origin/threat category assigned by Microsoft; no specific sponsoring organization named) [S1].",
+    "confidence": "Microsoft assigns the Iran origin/threat category through its naming taxonomy [S1][S3]; Microsoft has published no confidence statement or sponsoring-entity assessment for Pumpkin Sandstorm found in open sources.",
+    "basis": "Microsoft threat actor naming mapping [S1]; Microsoft naming convention in which the Sandstorm family indicates Iran [S3]."
+  },
+  "objectives": "",
+  "targeting": {
+    "sectors": [],
+    "regions": [],
+    "notes": "No open-source reporting on Pumpkin Sandstorm targeting was found. For the ZeroCleare association listed by MISP [S2], the relevant historical ZeroCleare victimology is Middle East energy and industrial organizations (2019) [S5]; this is not attributed to Pumpkin Sandstorm by Microsoft."
+  },
+  "capabilities": {
+    "summary": ""
+  },
+  "campaigns": [],
+  "diamond": {
+    "adversary": "Iran-origin actor tracked by Microsoft as Pumpkin Sandstorm, formerly DEV-0146 [S1][S3].",
+    "capability": "",
+    "infrastructure": "",
+    "victim": "",
+    "socioPolitical": "",
+    "technology": ""
+  },
+  "gaps": [
+    "No Microsoft blog, Digital Defense Report section, or Defender threat-analytics profile describing Pumpkin Sandstorm/DEV-0146 activity was found; several searches for 'DEV-0146' returned no relevant results.",
+    "Microsoft's official threat actor naming page (learn.microsoft.com) could not be fetched; the mapping was verified only via Microsoft's MSTIC GitHub mapping file [S1].",
+    "ZeroCleare is a malware family with separate IBM X-Force (APT34/ITG13-linked) [S5] and Microsoft (MOIS-linked actors, Albania 2022 context) [S4] reporting; the nature of its relationship to Pumpkin Sandstorm (alias label vs. confirmed tool use) is not described in available Microsoft reporting.",
+    "First-observed date, sponsoring organization (MOIS vs IRGC), objectives, targeted sectors/regions, tooling, infrastructure, and any named campaigns are unknown.",
+    "No MITRE ATT&CK group entry is mapped to Pumpkin Sandstorm; attack.mitre.org could not be fetched to check ZeroCleare (S1151) group associations.",
+    "Exact publication dates of the MSTIC mapping file and MISP cluster entries could not be confirmed (GitHub commit history not accessible); access dates are used."
+  ],
+  "implications": {
+    "jipoe": "",
+    "jcc2": ""
+  },
+  "sources": [
+    {
+      "ref": "S1",
+      "title": "MicrosoftMapping.json - Microsoft threat actor naming mapping (MSTIC public feed; accessed 2026-10-15)",
+      "publisher": "Microsoft Threat Intelligence (GitHub)",
+      "date": "2026-10",
+      "url": "https://raw.githubusercontent.com/microsoft/mstic/master/PublicFeeds/ThreatActorNaming/MicrosoftMapping.json"
+    },
+    {
+      "ref": "S2",
+      "title": "MISP Galaxy: Microsoft Activity Group cluster - Pumpkin Sandstorm entry (accessed 2026-10-15)",
+      "publisher": "MISP Project",
+      "date": "2026-10",
+      "url": "https://misp-galaxy.org/microsoft-activity-group/"
+    },
+    {
+      "ref": "S3",
+      "title": "Microsoft's new naming convention for threat groups sound like an order at a cocktail bar (reporting Microsoft weather-based taxonomy)",
+      "publisher": "gHacks Tech News",
+      "date": "2023-04-19",
+      "url": "https://www.ghacks.net/2023/04/19/microsofts-new-naming-convention-for-threat-groups-sound-like-an-order-at-a-cocktail-bar/"
+    },
+    {
+      "ref": "S4",
+      "title": "Microsoft investigates Iranian attacks against the Albanian government",
+      "publisher": "Microsoft Security Blog",
+      "date": "2022-09-08",
+      "url": "https://www.microsoft.com/en-us/security/blog/2022/09/08/microsoft-investigates-iranian-attacks-against-the-albanian-government/"
+    },
+    {
+      "ref": "S5",
+      "title": "Iran-Linked APT groups target energy, industrial sectors with ZeroCleare Wiper (reporting IBM X-Force IRIS)",
+      "publisher": "Security Affairs",
+      "date": "2019-12-05",
+      "url": "https://securityaffairs.com/94724/malware/iran-zerocleare-wiper-attacks.html"
+    }
+  ],
+  "aliasesAdd": []
+}

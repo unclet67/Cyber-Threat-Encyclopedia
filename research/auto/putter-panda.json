@@ -1,0 +1,154 @@
+{
+  "mitre": "G0024",
+  "identification": {
+    "summary": "China-based cyber-espionage group that CrowdStrike publicly attributed in June 2014 to People's Liberation Army (PLA) Unit 61486, part of the 12th Bureau of the PLA Third General Staff Department (3PLA), based in Shanghai [S1][S2]. CrowdStrike reported the group has operated since at least 2007 and focused on US defense and European satellite and aerospace targets [S1]. Coverage of the 62-page report describes targeting of the US space, aerospace and communications sectors through targeted email carrying exploits for productivity software and custom malware [S2][S3]. MITRE ATT&CK tracks the group as Putter Panda (G0024) with associated names APT2 and MSUpdater [S6].",
+    "firstObserved": "CrowdStrike: activity since at least 2007 [S1][S2]. Public disclosure: 2014-06-09 [S1][S3].",
+    "notes": "No Microsoft weather-taxonomy name was found: the group does not appear in Microsoft's published threat actor naming mapping as retrieved on 2026-10-15 [S7]. The CrowdStrike name 'Putter' reflects phishing aimed at golf-playing victims [S8]. MITRE lists APT2 and MSUpdater as associated names [S6]. Other aliases in this record (4HCrew, SearchFire, SULPHUR, TG-6952) came from imported galaxy data and were not confirmed in the sources gathered. Putter Panda (Unit 61486) is a separate cluster from Comment Panda/APT1 (Unit 61398), although CrowdStrike reported infrastructure overlap between the two [S4][S9]."
+  },
+  "attribution": {
+    "sponsor": "People's Republic of China, PLA Unit 61486 (3PLA 12th Bureau, Shanghai), per CrowdStrike [S1][S2]. MITRE ATT&CK repeats this attribution [S6].",
+    "confidence": "This is a vendor attribution by CrowdStrike, not a US government attribution, and no indictment of Unit 61486 personnel appears in the sources gathered [S1][S2]. Some security experts questioned the findings and whether they would help defenders [S5]. China has denied similar accusations and asked for evidence [S2].",
+    "basis": "CrowdStrike tied the actor handle 'cpyy', reported as Chen Ping, to Unit 61486. The links were registration of command-and-control domains and background details in personal photos that placed him at a Shanghai facility associated with the 3PLA 12th Bureau, a method CrowdStrike called 'hat-tribution' [S1][S4]. CrowdStrike also reported infrastructure overlap with Comment Panda (PLA Unit 61398 / APT1) and interaction between actors tied to both groups [S4][S9]. CrowdStrike said its intelligence partners had had the information for months before release [S2]."
+  },
+  "objectives": "Theft of trade and military secrets for the PRC. Collection focused on space, satellite, aerospace and communications technology from Western government agencies and defense contractors [S1][S2][S8].",
+  "targeting": {
+    "sectors": [
+      "Space and satellite industry [S1][S8]",
+      "Aerospace [S1][S3]",
+      "Communications [S3]",
+      "Defense contractors and government agencies [S2]"
+    ],
+    "regions": [
+      "United States [S1][S3]",
+      "Europe [S1]"
+    ],
+    "notes": "CrowdStrike described US defense and European satellite and aerospace targets [S1]. Reuters coverage describes Western government agencies and defense contractors as targets since 2007 [S2]. Named victims were not disclosed in the sources gathered."
+  },
+  "capabilities": {
+    "summary": "Spear-phishing, including golf-themed lures, delivering exploits for Adobe Reader and Microsoft Office, followed by custom malware [S3][S8]. MITRE attributes four software families to the group: 4H RAT, 3PARA RAT, pngdowner and httpclient [S6]. MITRE also describes droppers that hide payloads with RC4 or a 16-byte XOR key, persist through a Run-key value named 'McUpdate', inject DLLs into network-facing processes such as Outlook and Firefox, and try to terminate Sophos antivirus components [S6]. Command-and-control domains were procured by an individual CrowdStrike tied to the unit [S4]."
+  },
+  "campaigns": [
+    {
+      "date": "2007",
+      "name": "Start of reported Putter Panda operations",
+      "summary": "CrowdStrike says the group has been active since at least 2007 against defense, satellite and aerospace targets.",
+      "sources": [
+        "S1",
+        "S2"
+      ]
+    },
+    {
+      "date": "2014-05",
+      "name": "US indictment of five Unit 61398 (APT1) officers",
+      "summary": "This is context rather than a Putter Panda operation: the Justice Department unsealed charges against five members of a different PLA unit less than three weeks before the Putter Panda report.",
+      "sources": [
+        "S2"
+      ]
+    },
+    {
+      "date": "2014-06-09",
+      "name": "CrowdStrike Putter Panda report and 'hat-tribution'",
+      "summary": "CrowdStrike published a 62-page report attributing the campaign to PLA Unit 61486 and naming Chen Ping ('cpyy'). The report covered US space, aerospace and communications targeting and infrastructure overlap with Comment Panda/APT1.",
+      "sources": [
+        "S1",
+        "S3",
+        "S4"
+      ]
+    },
+    {
+      "date": "2014-06",
+      "name": "Public skepticism of the attribution",
+      "summary": "Some security experts questioned the findings and whether they helped defenders.",
+      "sources": [
+        "S5"
+      ]
+    }
+  ],
+  "diamond": {
+    "adversary": "PLA Unit 61486 (3PLA 12th Bureau, Shanghai) per CrowdStrike. CrowdStrike tied Chen Ping ('cpyy') to domain procurement [S1][S4].",
+    "capability": "Spear-phishing with Adobe Reader and Microsoft Office exploits; 4H RAT, 3PARA RAT, pngdowner and httpclient; RC4/XOR-obfuscated droppers; Run-key persistence; DLL injection; antivirus termination [S6][S8].",
+    "infrastructure": "Actor-registered command-and-control domains, procured by an individual CrowdStrike tied to the unit. Infrastructure overlapped with Comment Panda/APT1 [S4][S9].",
+    "victim": "Space, satellite, aerospace and communications organizations, defense contractors and government agencies in the United States and Europe [S1][S2][S3].",
+    "socioPolitical": "Collection of military and trade secrets on space and satellite technology. The report was published weeks after the May 2014 US indictment of Unit 61398 officers, and CrowdStrike framed the release as keeping up pressure on China [S2][S4].",
+    "technology": "Windows endpoints running vulnerable Adobe Reader and Microsoft Office; email as the initial vector; network-facing applications such as Outlook and Firefox used as injection hosts [S6][S8]."
+  },
+  "gaps": [
+    "The primary CrowdStrike PDF report (imported reference URL on vox-cdn) and the CrowdStrike blog could not be opened. Details here come from search-result coverage, so technical claims should be checked against the original report.",
+    "No public reporting after 2014 attributed to Putter Panda or Unit 61486 was found. Current status after the 2015 PLA reorganization (Strategic Support Force, later Cyberspace Force) is unknown.",
+    "Microsoft has no published name for this group in its naming mapping (retrieved 2026-10-15). The 'SULPHUR' alias in imported data is unconfirmed and should not be read as a Microsoft attribution.",
+    "Aliases 4HCrew, SearchFire, TG-6952 and the APT2 equivalence come from imported galaxy data or MITRE; the original Mandiant and Secureworks documents asserting them were not reviewed.",
+    "Some third-party profiles mention targeting of Japan and research organizations; these claims were not confirmed in a dated primary source.",
+    "MITRE ATT&CK pages, Wikipedia, Threatpost and Infosecurity Magazine could not be fetched directly. MITRE details rely on search snippets of the G0024 entry (version 1.2, modified 2024-11).",
+    "The yoga-themed lures sometimes associated with this group could not be confirmed in the sources found."
+  ],
+  "implications": {
+    "jipoe": "Analyst assessment derived from cited sources; validate before use. STEP 1: Space, satellite, aerospace and communications program data held by government agencies and defense contractors is the relevant key terrain. This includes contractor email systems and the Windows endpoints of engineers and program staff [S1][S2][S3]. STEP 2: Initial access depended on users opening documents that exploit Adobe Reader and Microsoft Office. Patch currency for document readers and email filtering therefore shapes the threat's freedom of action [S8]. STEP 3: The doctrinal template is a tailored phishing email, sometimes keyed to personal interests such as golf, then a document exploit, a dropper with obfuscated payload, Run-key persistence ('McUpdate'), DLL injection into Outlook or Firefox, and RAT command and control over HTTP to actor-registered domains [S6][S8]. STEP 4: MLCOA is quiet, long-duration theft of space and satellite technical data from the defense industrial base. MDCOA is persistent access to satellite and communications program networks being used to support counterspace or targeting decisions during a crisis. That MDCOA is an extrapolation, not reported activity. Candidate indicators: Run-key values named McUpdate, unexpected termination of antivirus processes, injected DLLs in Outlook or Firefox, and connectivity checks to legitimate sites followed by outbound HTTP to unfamiliar domains [S6].",
+    "jcc2": "Analyst assessment derived from cited sources; validate before use. (1) Situational awareness: the cluster's last public reporting dates to 2014, so JCC2 tracking should treat it as a historical PLA space- and aerospace-espionage template rather than a current named threat until new reporting appears [S1][S6]. (2) Authorities: the attribution is a vendor (CrowdStrike) assessment, contested by some experts and not backed by a US indictment of this unit in the sources gathered. Products should label it as vendor attribution [S1][S5]. (3) Mission assurance: space and satellite programs depend on contractor networks, so defense-industrial-base email and endpoint hygiene is a mission-assurance concern [S2][S3]. (4) Coordination: overlap with APT1 infrastructure argues for joint analysis with teams tracking other 3PLA-linked clusters, without merging the clusters [S4][S9]."
+  },
+  "sources": [
+    {
+      "ref": "S1",
+      "title": "Hat-tribution to PLA Unit 61486",
+      "publisher": "CrowdStrike",
+      "date": "2014-06-09",
+      "url": "https://www.crowdstrike.com/en-us/blog/hat-tribution-pla-unit-61486/"
+    },
+    {
+      "ref": "S2",
+      "title": "Private U.S. report accuses another Chinese military unit of hacking (Reuters, reporting CrowdStrike report)",
+      "publisher": "Business Insurance / Reuters",
+      "date": "2014-06",
+      "url": "https://www.businessinsurance.com/private-us-report-accuses-another-chinese-military-unit-of-hacking/"
+    },
+    {
+      "ref": "S3",
+      "title": "Cyber conflict escalates: Second Chinese PLA hacking group accused (reporting CrowdStrike report)",
+      "publisher": "Defense One / Defense Systems",
+      "date": "2014-06",
+      "url": "https://defenseone.com/defense-systems/2014/06/cyber-conflict-escalates-second-chinese-pla-hacking-group-accused/193841"
+    },
+    {
+      "ref": "S4",
+      "title": "Second Chinese PLA Hacking Unit Unmasked in 'Putter Panda' Report",
+      "publisher": "Infosecurity Magazine",
+      "date": "2014-06",
+      "url": "https://www.infosecurity-magazine.com/news/second-chinese-pla-hacking-unit-unmasked-in"
+    },
+    {
+      "ref": "S5",
+      "title": "China Hacking Report Questioned",
+      "publisher": "GovInfoSecurity (ISMG)",
+      "date": "2014-06",
+      "url": "https://www.govinfosecurity.com/china-hacking-report-questioned-a-6936"
+    },
+    {
+      "ref": "S6",
+      "title": "Putter Panda, G0024 (techniques and software)",
+      "publisher": "MITRE ATT&CK",
+      "date": "2024-11 (last modified, v1.2)",
+      "url": "https://attack.mitre.org/groups/G0024/"
+    },
+    {
+      "ref": "S7",
+      "title": "Microsoft threat actor naming mapping (MicrosoftMapping.json); no Putter Panda/APT2 entry",
+      "publisher": "Microsoft Threat Intelligence",
+      "date": "2026-10-15 (retrieved)",
+      "url": "https://github.com/microsoft/mstic/blob/master/PublicFeeds/ThreatActorNaming/MicrosoftMapping.json"
+    },
+    {
+      "ref": "S8",
+      "title": "Attacks Against Space, Satellite Companies Linked to Second Chinese PLA Unit",
+      "publisher": "Threatpost",
+      "date": "2014-06",
+      "url": "https://threatpost.com/attacks-against-space-satellite-companies-linked-to-second-chinese-pla-unit/106563"
+    },
+    {
+      "ref": "S9",
+      "title": "Report details China-based cyber spying on U.S. aerospace sector",
+      "publisher": "SC Media",
+      "date": "2014-06",
+      "url": "https://www.scworld.com/news/report-details-china-based-cyber-spying-on-u-s-aerospace-sector"
+    }
+  ],
+  "aliasesAdd": []
+}

@@ -1,0 +1,95 @@
+{
+  "identification": {
+    "summary": "Pearl Sleet is Microsoft's name for a North Korea-based threat actor [S3][S4][S6]. Community catalogs describe it as a nation-state espionage group, active since at least 2012, that mainly targets North Korean defectors and media organizations [S4][S6].",
+    "firstObserved": "Community catalogs: active since at least 2012 [S4][S6]. Earliest dated Microsoft public reference found: December 2023 [S5].",
+    "notes": "Microsoft name: Pearl Sleet. Microsoft's public naming feed lists LAWRENCIUM as its other name [S3]. MISP Galaxy and Malpedia also list DEV-0215 [S4][S6]. Microsoft's mapping file does not include DEV-0215 [S3]. No source gathered maps Pearl Sleet to another vendor's cluster (for example APT37/ScarCruft or Kimsuky). Do not merge it with those groups."
+  },
+  "attribution": {
+    "sponsor": "North Korea (DPRK). Microsoft lists Pearl Sleet's origin/threat as North Korea [S3]. No public source gathered names a specific DPRK organization (for example RGB or MSS) behind it.",
+    "confidence": "Microsoft lists Pearl Sleet as a North Korea-based actor [S3]; community catalogs derived from Microsoft reporting describe it as a North Korean nation-state espionage group [S4][S6]. This is a vendor assessment. No US or ROK government attribution of Pearl Sleet by name was found.",
+    "basis": "Microsoft public naming feed [S3]; community catalogs derived from Microsoft reporting [S4][S6]."
+  },
+  "objectives": "Cyber espionage, per community catalogs [S4][S6]. Reported targets point to an interest in the North Korean defector community and media, consistent with regime-security priorities. That last inference is analyst judgment drawn from [S4][S6].",
+  "targeting": {
+    "sectors": [
+      "North Korean defectors (individuals) [S4][S6]",
+      "Media organizations [S4][S6]"
+    ],
+    "regions": [],
+    "notes": "The defector and media focus comes from community catalogs [S4][S6]. No target region was confirmed in this check."
+  },
+  "capabilities": {
+    "summary": ""
+  },
+  "campaigns": [
+    {
+      "date": "2023-12",
+      "name": "Public naming by Microsoft",
+      "summary": "A Microsoft Defender XDR monthly news post (December 2023) is cited by community catalogs as the reference introducing the Pearl Sleet profile.",
+      "sources": [
+        "S5",
+        "S4"
+      ]
+    }
+  ],
+  "diamond": {
+    "adversary": "North Korea-based actor tracked by Microsoft as Pearl Sleet (formerly LAWRENCIUM) [S3].",
+    "capability": "",
+    "infrastructure": "",
+    "victim": "North Korean defectors and media organizations [S4][S6].",
+    "socioPolitical": "",
+    "technology": ""
+  },
+  "gaps": [
+    "No public source gathered describes Pearl Sleet's malware, initial-access methods, infrastructure or ATT&CK techniques. Capabilities remain Research Required.",
+    "Could not open Microsoft's December 2023 Defender XDR monthly news post (techcommunity.microsoft.com, DNS failure) [S5]. The 'active since 2012' and 'defectors and media' description in community catalogs appears to derive from it but was not verified against the original.",
+    "Could not open Microsoft's threat actor naming page (learn.microsoft.com) or the full PDF of the April 2024 East Asia report (go.microsoft.com). Pearl Sleet details beyond the landing page are unverified.",
+    "DEV-0215 appears as an alias in MISP Galaxy and Malpedia [S4][S6] but not in Microsoft's public mapping JSON [S3]. Treat it as unconfirmed by Microsoft.",
+    "No mapping to other vendor clusters (APT37/ScarCruft/Ruby Sleet, Kimsuky/Emerald Sleet, Konni) was found. Overlap with other DPRK groups targeting defectors is unknown. Do not merge it with those groups.",
+    "No MITRE ATT&CK group entry, government advisory, indictment or sanction naming Pearl Sleet was found.",
+    "No dated Pearl Sleet-specific activity was confirmed.",
+    "Microsoft's April 2024 East Asia report [S1] covers North Korean activity from June 2023, but a fact-check could not confirm from search results that it names Pearl Sleet. Earlier claims citing it (June 2023 targeting of South Korean defector-support and human-rights entities; intelligence-collection motive) were removed pending direct verification."
+  ],
+  "implications": {
+    "jipoe": "",
+    "jcc2": ""
+  },
+  "sources": [
+    {
+      "ref": "S1",
+      "title": "Same targets, new playbooks: East Asia threat actors employ unique methods",
+      "publisher": "Microsoft Threat Intelligence (Security Insider)",
+      "date": "2024-04",
+      "url": "https://www.microsoft.com/en-us/security/business/security-insider/reports/east-asia-threat-actors-employ-unique-methods/"
+    },
+    {
+      "ref": "S3",
+      "title": "MicrosoftMapping.json - Microsoft threat actor naming public feed (accessed 2026-10-15)",
+      "publisher": "Microsoft MSTIC (GitHub)",
+      "date": "2026-10",
+      "url": "https://raw.githubusercontent.com/microsoft/mstic/master/PublicFeeds/ThreatActorNaming/MicrosoftMapping.json"
+    },
+    {
+      "ref": "S4",
+      "title": "MISP Galaxy threat-actor cluster: Pearl Sleet (accessed 2026-10-15)",
+      "publisher": "MISP Project",
+      "date": "2026-10",
+      "url": "https://raw.githubusercontent.com/MISP/misp-galaxy/main/clusters/threat-actor.json"
+    },
+    {
+      "ref": "S5",
+      "title": "Monthly news - December 2023 (not opened; cited via MISP Galaxy and Malpedia)",
+      "publisher": "Microsoft Defender XDR Blog (Tech Community)",
+      "date": "2023-12",
+      "url": "https://techcommunity.microsoft.com/t5/microsoft-defender-xdr-blog/monthly-news-december-2023/ba-p/3998431"
+    },
+    {
+      "ref": "S6",
+      "title": "Pearl Sleet actor entry (from search-result summary; accessed 2026-10-15)",
+      "publisher": "Malpedia (Fraunhofer FKIE)",
+      "date": "2026-10",
+      "url": "https://malpedia.caad.fkie.fraunhofer.de/actor/pearl_sleet"
+    }
+  ],
+  "aliasesAdd": []
+}

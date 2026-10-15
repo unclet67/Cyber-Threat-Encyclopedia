@@ -1,0 +1,149 @@
+{
+  "identification": {
+    "summary": "North Korea-linked espionage actor that Microsoft calls Opal Sleet (formerly OSMIUM) and that other vendors track as Konni and TA406 [S1][S4]. Microsoft reported that in March 2023 an attacker account attributed to Opal Sleet sent phishing emails to Russian diplomatic government entities [S2]. Proofpoint reported that from February 2025 the group, which it calls TA406, phished Ukrainian government entities with both credential-harvesting and malware lures [S4]. Later Konni reporting describes abuse of Google Find Hub to wipe South Korean victims' Android phones (activity from September 2025, reported November 2025) and an AI-assisted PowerShell backdoor aimed at blockchain developers (January 2026) [S11][S9].",
+    "firstObserved": "",
+    "notes": "Microsoft name: Opal Sleet. Microsoft's mapping lists OSMIUM, VELVET CHOLLIMA, Planedown, Konni and APT43 as other names [S1]. Proofpoint says TA406 activity overlaps with what third parties track as Opal Sleet and Konni [S4]. Press coverage also gives Vedalia as an alias [S10]. Coverage of Genians' reporting describes KONNI as sharing targets and infrastructure with Kimsuky and APT37 [S11]. These are vendor cluster overlaps, not proof that the groups are identical."
+  },
+  "attribution": {
+    "sponsor": "Democratic People's Republic of Korea (North Korea), per vendor assessments [S2][S4].",
+    "confidence": "Microsoft attributes the March 2023 phishing of Russian diplomatic entities to Opal Sleet by name [S2]. Proofpoint calls TA406 a North Korean state-sponsored actor, but says it could not confirm with full certainty that every observed operation was TA406's. Its attribution rests on technical overlaps and the choice of targets [S4]. No government attribution of Opal Sleet or Konni was found in the sources gathered.",
+    "basis": "Microsoft telemetry and threat-intelligence reporting [S2]; Proofpoint technical overlaps and targeting [S4]; Genians and Check Point reporting on Konni malware and infrastructure, via secondary coverage [S9][S10][S11]."
+  },
+  "objectives": "Strategic and political intelligence collection. Microsoft assessed that North Korean groups targeting Russia in 2023 were likely gathering intelligence [S2]. Proofpoint assessed that the 2025 Ukraine campaigns aimed to gather intelligence on how the Russian invasion was progressing, possibly to help North Korean leadership judge the risk to its own forces in the theater [S4]. The January 2026 targeting of blockchain and cryptocurrency developers suggests interest in that sector as well [S9].",
+  "targeting": {
+    "sectors": [
+      "Government and diplomatic entities [S2][S4]",
+      "Think tanks and policy experts, impersonated as lure personas [S4]",
+      "Individuals reached via KakaoTalk, including North Korea human-rights contexts [S11][S10]",
+      "Blockchain/cryptocurrency software developers and engineering teams [S9]"
+    ],
+    "regions": [
+      "Russia (2023 diplomatic phishing) [S2]",
+      "Ukraine (2025 government phishing) [S4]",
+      "South Korea [S11][S10]",
+      "Asia-Pacific: Japan, Australia, India (2026 developer campaign) [S9]"
+    ],
+    "notes": "Coverage of Check Point's reporting says Konni historically focused on South Korean government and academic targets [S9]. Proofpoint describes the move to Ukraine as a change from the group's earlier focus on Russia [S4]."
+  },
+  "capabilities": {
+    "summary": "Spear-phishing is the core access method. Lures include fictitious think-tank personas sending links to password-protected archives on external file hosts. Those archives hold HTML and CHM files with embedded PowerShell that profiles the host. The group also sends spoofed Microsoft security alerts to harvest credentials [S4]. Konni operators used KakaoTalk lures and stolen Google credentials to locate victims' Android devices and factory-reset them through Google Find Hub. They then used the victim's still-active KakaoTalk PC session to send malware to the victim's contacts [S11]. In January 2026 Check Point reported a heavily obfuscated, in-memory PowerShell backdoor that it assessed as AI-assisted. It persisted through a scheduled task disguised as OneDrive and dropped the legitimate SimpleHelp remote-management tool [S9][S10]. Genians' 'Operation Poseidon' reporting describes Google and Naver ad-redirect URLs that delivered LNK files, an AutoIt loader and EndRAT, with payloads and C2 hosted on compromised WordPress sites [S10]."
+  },
+  "diamond": {
+    "adversary": "North Korea-linked operators that Microsoft tracks as Opal Sleet and Proofpoint as TA406, also called Konni [S1][S2][S4].",
+    "capability": "Spear-phishing with HTML/CHM/LNK payloads and embedded PowerShell; credential-harvesting pages; RATs including EndRAT; an AI-assisted PowerShell backdoor; abuse of the SimpleHelp RMM tool [S4][S11][S9][S10].",
+    "infrastructure": "Freemail and Proton Mail sender accounts; external file-hosting services; compromised WordPress sites for payloads and C2; ad-redirect URLs; hijacked Google and KakaoTalk accounts [S4][S11][S10].",
+    "victim": "Russian diplomatic entities; Ukrainian government entities; South Korean individuals and organizations; APAC blockchain developers [S2][S4][S11][S9].",
+    "socioPolitical": "Collection on the Russia-Ukraine war and on Korean Peninsula issues in support of North Korean leadership [S2][S4].",
+    "technology": "Windows endpoints running PowerShell and CHM; Google accounts linked to Android devices; KakaoTalk desktop sessions; developer workstations [S4][S11][S9]."
+  },
+  "gaps": [
+    "Microsoft has published no stand-alone Opal Sleet profile in the sources gathered. The only Microsoft-sourced campaign found is the March 2023 Russia phishing, known from press coverage of Microsoft's 2023 East Asia report; the report itself was not retrieved [S2].",
+    "Proofpoint's original blog could not be fetched. Its details come from search excerpts and secondary coverage, and the exact publication day (around 2025-05-13/14) is unconfirmed [S4].",
+    "The BleepingComputer article's exact date (late August or early September 2023) is unconfirmed.",
+    "Cluster boundaries: Microsoft's mapping lists VELVET CHOLLIMA and APT43 under Opal Sleet [S1], while other vendors commonly associate those names with Kimsuky. Coverage of Genians' reporting says KONNI overlaps with Kimsuky and APT37 [S11]. It is unresolved whether the 2025-2026 Konni campaigns from Genians and Check Point fall inside Microsoft's Opal Sleet boundary.",
+    "First-observed date is unverified. Secondary sources give different start years for Konni (2014 vs. about 2016), and no primary source was found.",
+    "No MITRE ATT&CK group ID is confirmed for Opal Sleet/Konni.",
+    "No US government attribution or advisory naming Opal Sleet, Konni or TA406 was found.",
+    "Which North Korean organization (for example, an RGB element) sponsors the group is not established in the cited sources."
+  ],
+  "implications": {
+    "jipoe": "Analyst assessment derived from cited sources; validate before use. STEP 1 (operational environment): The relevant cyberspace includes diplomatic and government email, personal cloud identities (Google/Naver) tied to mobile devices, messaging apps such as KakaoTalk, and developer workstations [S4][S11][S9]. STEP 2 (effects): The actor relies on social engineering rather than exploits of perimeter devices, so the decisive terrain is user identity and email/messaging trust [S4][S11]. STEP 3 (threat model): Think-tank or official persona -> link to archive or file host -> HTML/CHM/LNK running PowerShell -> reconnaissance and RAT or backdoor -> credential theft, sometimes followed by device wipe and contact-chain spread [S4][S11][S9][S10]. STEP 4 (COAs): MLCOA is continued credential and intelligence collection against government, diplomatic and policy targets on the Russia-Ukraine war and Korean issues [S2][S4]. MDCOA is the use of stolen cloud credentials to wipe devices and blind victims during operations, as seen in the Find Hub campaign [S11]. Candidate indicators: unsolicited think-tank 'senior fellow' outreach; password-protected archives holding CHM/HTML files; scheduled tasks posing as OneDrive; unexpected SimpleHelp installs; Google/Naver ad-redirect links leading to LNK downloads; unexpected Find Hub remote-reset events [S4][S9][S10][S11].",
+    "jcc2": "Analyst assessment derived from cited sources; validate before use. Situational awareness: Fuse vendor reporting under all aliases (Opal Sleet, Konni, TA406, OSMIUM) while keeping cluster caveats visible [S1][S4][S11]. Authorities: The reported activity is espionage against government and diplomatic targets, so defensive responses fall mainly under DODIN/DCO and partner information-sharing channels, and the cited sources contain no government attribution [S2][S4]. Mission assurance: Personnel who deal with the Korean Peninsula, Ukraine or Russia policy face phishing aimed at personal and official accounts. Protecting cloud identities and device-management features such as Find Hub reduces the risk of losing data and devices [S4][S11]. Coordination: Coordinate with allied and partner CERTs (for example Ukraine and South Korea) and with commercial vendors whose telemetry covers the actor's lures [S4][S11][S9]."
+  },
+  "aliasesAdd": [
+    {
+      "name": "TA406",
+      "vendor": "Proofpoint"
+    },
+    {
+      "name": "Vedalia",
+      "vendor": "Other / unspecified (per The Hacker News)"
+    }
+  ],
+  "campaigns": [
+    {
+      "date": "2023-03",
+      "name": "Phishing of Russian diplomatic entities",
+      "summary": "Microsoft reported that an attacker account attributed to Opal Sleet sent phishing emails to Russian diplomatic government entities. Microsoft did not name the victims.",
+      "sources": [
+        "S2"
+      ]
+    },
+    {
+      "date": "2025-02",
+      "name": "TA406 targeting of Ukrainian government",
+      "summary": "Proofpoint reported credential-harvesting and malware phishing against Ukrainian government entities, using think-tank personas and HTML/CHM payloads. It assessed the aim as intelligence on the progress of Russia's invasion.",
+      "sources": [
+        "S4"
+      ]
+    },
+    {
+      "date": "2025-09",
+      "name": "Google Find Hub remote-wipe campaign",
+      "summary": "Genians (reported November 2025) described KONNI using stolen Google credentials to locate and factory-reset South Korean victims' Android devices, then spreading malware through their KakaoTalk PC sessions.",
+      "sources": [
+        "S11"
+      ]
+    },
+    {
+      "date": "2026-01",
+      "name": "AI-assisted PowerShell backdoor against blockchain developers",
+      "summary": "Check Point reported phishing with fake project documentation that delivered an obfuscated PowerShell backdoor and SimpleHelp. Samples were linked to Japan, Australia and India.",
+      "sources": [
+        "S9"
+      ]
+    },
+    {
+      "date": "2026-01",
+      "name": "Operation Poseidon (ad-redirect spear-phishing)",
+      "summary": "Genians-attributed Konni spear-phishing impersonated North Korean human-rights groups and South Korean financial institutions. It used Google and Naver ad-redirect URLs to deliver EndRAT.",
+      "sources": [
+        "S10"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "ref": "S1",
+      "title": "Microsoft threat actor naming mapping (MicrosoftMapping.json)",
+      "publisher": "Microsoft Threat Intelligence",
+      "date": "2026-10-14",
+      "url": "https://github.com/microsoft/mstic/blob/master/PublicFeeds/ThreatActorNaming/MicrosoftMapping.json"
+    },
+    {
+      "ref": "S2",
+      "title": "Microsoft: North Korean hackers target Russian govt, defense orgs (reporting Microsoft East Asia threat report)",
+      "publisher": "BleepingComputer",
+      "date": "2023-09",
+      "url": "https://www.bleepingcomputer.com/news/security/microsoft-north-korean-hackers-target-russian-govt-defense-orgs/"
+    },
+    {
+      "ref": "S4",
+      "title": "TA406 Pivots to the Front (not opened; via search excerpts)",
+      "publisher": "Proofpoint",
+      "date": "2025-05",
+      "url": "https://www.proofpoint.com/us/blog/threat-insight/ta406-pivots-front"
+    },
+    {
+      "ref": "S9",
+      "title": "North Korea-linked KONNI uses AI to build stealthy malware tooling (reporting Check Point)",
+      "publisher": "Security Affairs",
+      "date": "2026-01-26",
+      "url": "https://securityaffairs.com/187317/apt/north-korea-linked-konni-uses-ai-to-build-stealthy-malware-tooling"
+    },
+    {
+      "ref": "S10",
+      "title": "Konni hackers deploy AI-generated PowerShell backdoor (reporting Check Point and Genians Operation Poseidon)",
+      "publisher": "The Hacker News",
+      "date": "2026-01",
+      "url": "https://thehackernews.com/2026/01/konni-hackers-deploy-ai-generated.html"
+    },
+    {
+      "ref": "S11",
+      "title": "North Korea-linked Konni APT used Google Find Hub to erase data and spy on defectors (reporting Genians)",
+      "publisher": "Security Affairs",
+      "date": "2025-11",
+      "url": "https://securityaffairs.com/184474/intelligence/north-korea-konni-apt-used-google-find-hub-to-erase-data-and-spy-on-defectors.html"
+    }
+  ]
+}

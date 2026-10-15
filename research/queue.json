@@ -1288,5 +1288,19 @@
   "wheat-tempest",
   "wisteria-tsunami",
   "zigzag-hail"
+ ],
+ "drafts_verified_unmerged": [
+  "obsidian-sandstorm",
+  "oka-flood",
+  "opal-sleet",
+  "pearl-sleet",
+  "pepper-typhoon",
+  "pumpkin-sandstorm",
+  "putter-panda",
+  "rancor"
+ ],
+ "drafts_unverified": [
+  "ruby-sleet",
+  "ruza-flood"
  ]
 }
