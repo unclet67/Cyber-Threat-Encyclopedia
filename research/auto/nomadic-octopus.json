@@ -1,0 +1,161 @@
+{
+  "mitre": "G0133",
+  "identification": {
+    "summary": "Russian-speaking cyber-espionage group that MITRE ATT&CK says has mainly targeted Central Asia, including local governments, diplomatic missions and individuals, since at least 2014, using Android and Windows malware written largely in Delphi [S1]. ESET named it Nomadic Octopus and presented it at Virus Bulletin 2018 as a previously undocumented group focused on diplomatic missions in the region [S4][S5]. Kaspersky tracks the same actor as DustSquad and documented its Delphi 'Octopus' Windows Trojan disguised as a Russian-interface Telegram client [S2][S3]. In April 2023 PRODAFT reported 'Paperbug', a surveillance campaign against high-ranking Tajik officials, telecom services and public service infrastructure, ongoing since 2020 [S8][S9].",
+    "firstObserved": "Kaspersky: campaign dating back to 2014 [S2][S6]. ESET: active since at least 2015 [S4][S6]. MITRE ATT&CK: since at least 2014 [S1].",
+    "notes": "Vendor names: Nomadic Octopus (ESET) and DustSquad (Kaspersky) [S1][S6]. Kaspersky says the name 'Octopus' was coined by ESET in 2017 after the 0ct0pus3.php script found on the actor's old C2 servers [S2]. MITRE tracks the group as G0133 and its Windows backdoor as Octopus (S0340) [S1]. No Microsoft (weather-taxonomy) name was found in the sources gathered. Scope differs between vendors: in 2018 ESET reported only one malware family, while Kaspersky reported Windows and Android malware [S6]."
+  },
+  "attribution": {
+    "sponsor": "",
+    "confidence": "No government attribution found. Vendors describe the operators as Russian-speaking [S1][S2]. ESET's Anton Cherepanov told SecurityWeek the Russian-language inference rests on spear-phishing emails and Russian malware filenames [S6]. Kaspersky linked the Octopus Trojan to DustSquad with its similarity-based Attribution Engine and found no strong similarities tying Octopus to Zebrocy/Sofacy, even though some victims were infected with both [S2]. For Paperbug, coverage reports PRODAFT said the observed TTPs align with patterns associated with Russia-linked actors such as Sofacy, while also stating the ultimate motive is unknown [S8][S9].",
+    "basis": "Language artifacts in lures and filenames [S6]; code-similarity analysis by Kaspersky [S2]; PRODAFT victim data and access to a C2 backend panel during the Paperbug investigation [S8]."
+  },
+  "objectives": "Political and diplomatic intelligence collection in Central Asia: ESET describes cyber espionage against diplomatic missions as the main goal and noted a campaign against a local political blogger, suggesting surveillance beyond high-value targets [S4][S5]. In Paperbug, operators periodically stole emails, documents and chat histories and took real-time screenshots of victims writing emails and contracts [S8][S9]. PRODAFT reportedly left the ultimate sponsor open, citing domestic opposition forces or intelligence gathering by Russia or China as possibilities [S9].",
+  "targeting": {
+    "sectors": [
+      "Government (local governments, high-ranking officials) [S1][S5][S8]",
+      "Diplomatic missions [S1][S2][S4]",
+      "Telecommunications [S8][S9]",
+      "Public service infrastructure, including OT such as gas station systems [S8]",
+      "Political opposition and bloggers [S2][S5]"
+    ],
+    "regions": [
+      "Central Asia [S1][S2]",
+      "Kazakhstan (opposition-party lure, Kazakh political blogger) [S2][S5]",
+      "Afghanistan [S2]",
+      "Tajikistan (Paperbug, 2020 onward) [S8]"
+    ],
+    "notes": "In Paperbug, initial access to victims came through the compromised network of a Tajikistan-based telecom company; further access came from stolen documents, client contracts and credentials, weak network configurations and unpatched software [S8]."
+  },
+  "capabilities": {
+    "summary": "Custom Delphi malware: the Octopus Windows Trojan, delivered as a fake Russian-interface Telegram client in a ZIP lure, gives remote access, command execution, file upload and download, screenshots and searches for RAR archives, using third-party Delphi libraries for JSON-based C2 traffic and compression [S2][S3]. ESET's slides describe a documents collector and about 280 exfiltrated archives, mostly documents [S5]. Kaspersky also found Android malware [S6]. In Paperbug the group used an updated Octopus variant plus mostly public offensive tools, disguised tools as 'Google Update' and 'Java Update', sometimes deployed tools carelessly during victims' active hours, and ran several C2 servers [S8][S9]. MITRE lists the group's techniques separately [S1]."
+  },
+  "campaigns": [
+    {
+      "date": "2014",
+      "name": "Earliest known DustSquad campaign",
+      "summary": "Kaspersky identified a campaign dating back to 2014 against Central Asian targets.",
+      "sources": [
+        "S2",
+        "S6"
+      ]
+    },
+    {
+      "date": "2018-02",
+      "name": "Fake Telegram / Kazakh opposition lure",
+      "summary": "Octopus Trojan packed in a ZIP with a February-March 2018 timestamp, posing as Telegram and as communication software for a Kazakh opposition party amid talk of a regional Telegram ban; Kaspersky found the sample in April 2018.",
+      "sources": [
+        "S2",
+        "S3"
+      ]
+    },
+    {
+      "date": "2018-10",
+      "name": "ESET disclosure at Virus Bulletin 2018",
+      "summary": "ESET's Anton Cherepanov presents Nomadic Octopus: espionage against Central Asian diplomatic missions, local governments and a Kazakh political blogger, with about 280 exfiltrated archives.",
+      "sources": [
+        "S4",
+        "S5"
+      ]
+    },
+    {
+      "date": "2020",
+      "name": "Paperbug (Tajikistan)",
+      "summary": "Surveillance of high-ranking Tajik officials, telecom services and public service infrastructure via a compromised Tajik telecom; government networks, individual computers and OT devices such as gas station systems compromised. PRODAFT published in April 2023.",
+      "sources": [
+        "S8",
+        "S9"
+      ]
+    }
+  ],
+  "diamond": {
+    "adversary": "Russian-speaking espionage operators tracked as Nomadic Octopus (ESET) and DustSquad (Kaspersky); no government attribution [S1][S2][S6].",
+    "capability": "Delphi Octopus Trojan (Windows) and Android malware; document collector; screenshot capture, command execution and file transfer; public offensive tools disguised as software updaters [S2][S5][S8].",
+    "infrastructure": "Actor-run C2 servers (earlier ones hosted the 0ct0pus3.php script); multiple C2 servers in Paperbug, one of whose backend panels PRODAFT accessed; a compromised Tajik telecom network used as a pivot [S2][S8].",
+    "victim": "Central Asian diplomatic missions, local governments, opposition figures and bloggers; Tajik senior officials, telecom and public-service infrastructure including OT devices [S1][S5][S8].",
+    "socioPolitical": "Political surveillance in Central Asia, using regional events such as a possible Telegram ban and Kazakh opposition politics as lures [S2][S3]; sponsor left open by PRODAFT [S9].",
+    "technology": "Popular messaging apps as a lure; Windows endpoints and Android devices; telecom carrier networks; operational technology such as gas station systems [S2][S6][S8]."
+  },
+  "gaps": [
+    "No primary document could be opened directly: Securelist, PRODAFT, Virus Bulletin, SecurityWeek, Security Affairs, The Hacker News and Malpedia all failed to fetch (DNS errors). Facts come from search-result excerpts of these pages and should be checked against the originals.",
+    "The Paperbug report PDF (prodaft.com/m/reports/PAPERBUG_TLPWHITE-1.pdf, in the actor record) was not reviewed. Its IOCs, victim counts and C2 details are unverified.",
+    "A secondary search summary claimed Nomadic Octopus compromised 499 systems since January 2022. The source of this figure could not be identified, so it is excluded.",
+    "Sponsor is unknown. 'Russian-speaking' is a linguistic assessment. PRODAFT's comparison to Sofacy-like TTPs conflicts with Kaspersky's finding of no strong Octopus-Zebrocy/Sofacy ties; neither is government attribution.",
+    "No Microsoft name for this actor was found.",
+    "Some aggregator pages show an alias 'Golden Falcon' alongside DustSquad; no cited vendor source confirms it, so it was not added.",
+    "No public reporting after the April 2023 Paperbug disclosure was found; current activity status is unknown.",
+    "Exact publication dates for several 2018 and 2023 articles are given to month precision only."
+  ],
+  "implications": {
+    "jipoe": "Analyst assessment derived from cited sources; validate before use. STEP 1: The operational environment is Central Asian government, diplomatic and telecom networks, including the networks of partner nations and of US and coalition diplomatic or liaison elements in the region [S1][S8]. Regional telecom carriers are key terrain because Paperbug used one as an access point to downstream victims [S8]. STEP 2: Local mobile carriers and weak network configurations can expose traffic and endpoints of personnel who rely on host-nation services [S8]. STEP 3: The doctrinal template is a socially engineered lure (fake messaging app, political-themed ZIP) or carrier-network pivot, then a Delphi backdoor or public tooling disguised as updaters, then document and screenshot collection [S2][S8]. STEP 4: MLCOA is quiet, long-running political surveillance of officials and diplomats, with collection of email, documents and chats [S8][S9]. MDCOA is use of telecom access to monitor coalition or partner communications, or misuse of the OT access shown in Paperbug (gas station systems) [S8]. Candidate indicators: unsigned Telegram-lookalike installers; processes named Google Update or Java Update in non-standard paths; periodic screenshot capture; outbound JSON-over-HTTP beacons from Delphi binaries; staging of RAR archives [S2][S8].",
+    "jcc2": "Analyst assessment derived from cited sources; validate before use. (1) Situational awareness: tag Central Asian partner-nation telecom and government networks as possible compromised transit, and treat host-nation carrier paths as untrusted [S8]. (2) Authorities: the actor targets foreign government and partner networks rather than the DODIN directly, so response options rely on information sharing with partners and the State Department rather than DoD defensive action on those networks. (3) Mission assurance: personnel deployed or traveling in Central Asia should use enterprise-managed messaging and avoid sideloaded apps, given the fake-Telegram lure [S2][S3]. (4) Coordination: report suspected indicators through CTI channels, and ask vendors (ESET, Kaspersky, PRODAFT) for updated reporting, since public data ends in 2023."
+  },
+  "sources": [
+    {
+      "ref": "S1",
+      "title": "Nomadic Octopus, Group G0133",
+      "publisher": "MITRE ATT&CK",
+      "date": "2025-04",
+      "url": "https://attack.mitre.org/groups/G0133/"
+    },
+    {
+      "ref": "S2",
+      "title": "Octopus-infested seas of Central Asia",
+      "publisher": "Kaspersky (Securelist)",
+      "date": "2018-10",
+      "url": "https://securelist.com/octopus-infested-seas-of-central-asia/88200/"
+    },
+    {
+      "ref": "S3",
+      "title": "Cyberespionage group uses popular messenger's brand for targeted attacks on Central Asian diplomatic entities",
+      "publisher": "Kaspersky (press release)",
+      "date": "2018-10",
+      "url": "https://www.kaspersky.com/about/press-releases/cyberespionage-group-uses-popular-messengers-brand-for-targeted-attacks-on-central-asian-diplomatic-entities"
+    },
+    {
+      "ref": "S4",
+      "title": "Nomadic Octopus: cyber espionage in Central Asia (VB2018 abstract, ESET)",
+      "publisher": "Virus Bulletin",
+      "date": "2018-10-04",
+      "url": "https://www.virusbulletin.com/conference/vb2018/abstracts/nomadic-octopus-cyber-espionage-central-asia/"
+    },
+    {
+      "ref": "S5",
+      "title": "Nomadic Octopus (VB2018 conference slides, Anton Cherepanov, ESET)",
+      "publisher": "Virus Bulletin / ESET",
+      "date": "2018-10-04",
+      "url": "https://www.virusbtn.com/uploads/pdf/conference_slides/2018/Cherepanov-VB2018-Octopus.pdf"
+    },
+    {
+      "ref": "S6",
+      "title": "Russia-Linked Hackers Target Diplomatic Entities in Central Asia (reporting ESET and Kaspersky research)",
+      "publisher": "SecurityWeek",
+      "date": "2018-10",
+      "url": "https://www.securityweek.com/russia-linked-hackers-target-diplomatic-entities-central-asia"
+    },
+    {
+      "ref": "S8",
+      "title": "Russian APT Hacked Tajikistani Carrier to Spy on Government, Public Services (reporting PRODAFT Paperbug report)",
+      "publisher": "SecurityWeek",
+      "date": "2023-04",
+      "url": "https://www.securityweek.com/russian-apt-hacked-tajikistani-carrier-to-spy-on-government-public-services/"
+    },
+    {
+      "ref": "S9",
+      "title": "Paperbug Attack: New Politically-Motivated Surveillance Campaign in Tajikistan (reporting PRODAFT Paperbug report)",
+      "publisher": "The Hacker News",
+      "date": "2023-04",
+      "url": "https://thehackernews.com/2023/04/paperbug-attack-new-politically.html"
+    }
+  ],
+  "aliasesAdd": [
+    {
+      "name": "DustSquad",
+      "vendor": "Kaspersky"
+    },
+    {
+      "name": "Nomadic Octopus",
+      "vendor": "ESET"
+    }
+  ]
+}

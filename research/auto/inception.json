@@ -1,81 +1,197 @@
 {
   "identification": {
-    "summary": "Long-running cyber-espionage actor tracked as Inception Framework (Blue Coat, Symantec, Palo Alto Unit 42) and Cloud Atlas (Kaspersky, Check Point). It is known for spear-phishing with weaponized Office documents, layered script-based malware and cloud-service command and control [S1][S5][S10]. In its 2014 reporting Kaspersky called the campaign almost certainly an update of the Red October malware platform [S5]. Since Russia's 2022 invasion of Ukraine, reporting shows its targeting has narrowed to Russia, Belarus and contested areas of Ukraine and Moldova [S2]. Kaspersky reported continued activity against Russian and Belarusian government and diplomatic entities into early 2026 [S9].",
-    "firstObserved": "Active since at least May 2014 according to Symantec, as reported by Security Affairs [S6]. Unit 42 also says the group has been active since at least 2014 [S1]. Kaspersky links it to the Red October operation, which Kaspersky discovered earlier [S5].",
-    "notes": "Microsoft has no published name for this actor: the MSTIC naming map retrieved for this research has no entry for Cloud Atlas, Inception or its other aliases. Alias set per Brandefense: Inception Framework, Blue Odin, Cloud Atlas, Clean Ursa, ATK116, G0100, OXYGEN [S10]. The MITRE group is G0100 [S11]. The Red October link is Kaspersky's assessment and does not establish a shared operator by itself [S5]. Sources disagree on who coined 'Inception Framework' (Blue Coat or Symantec) [S10]."
+    "summary": "Long-running cyber-espionage actor tracked as Inception / Inception Framework (Blue Coat, Symantec, Palo Alto Networks Unit 42) and Cloud Atlas (Kaspersky, Check Point, F.A.C.C.T., Positive Technologies) [S1][S2][S4][S5]. It relies on spear-phishing with weaponized Office documents, layered script-based implants and command and control over legitimate cloud services [S1][S3][S5]. In December 2014 Kaspersky assessed that Cloud Atlas represents a rebirth of the RedOctober operation that it exposed in 2013 [S4]. Check Point reported that after February 2022 its targeting narrowed to Russia, Belarus and conflict-affected parts of Ukraine and Moldova [S2], and Kaspersky reported that more than 80% of 2024 VBCloud targets were in Russia [S3].",
+    "firstObserved": "Active since at least 2014 per Unit 42 [S1] and Symantec, as reported by Security Affairs (since at least May 2014) [S6]. Kaspersky saw the first Cloud Atlas attacks in August 2014 and links the actor to RedOctober, which it exposed in 2013 [S4].",
+    "notes": "No Microsoft name was identified for this actor in the sources gathered. Brandefense lists the aliases Inception Framework, Blue Odin, Cloud Atlas, Clean Ursa, ATK116, G0100 and OXYGEN [S9]. MITRE tracks it as Inception (G0100) [S10]. Kaspersky's RedOctober link rests on a shared compression method, compiler setup and overlapping targets in Russia, Kazakhstan and Belarus. It is a vendor assessment, not proof of the same operator [S4]. Palo Alto Networks noted in 2014 that both the Inception and Cloud Atlas campaigns used CloudMe for command and control [S5]. Sources disagree on whether Blue Coat or Symantec coined the name 'Inception Framework' [S9]."
   },
   "attribution": {
     "sponsor": "",
-    "confidence": "Unattributed in the open sources gathered. Coverage of F.A.C.C.T.'s December 2023 reporting states that it is not clear which country sponsors the group [S7]. No government attribution was found.",
-    "basis": "The vendor reporting describes tradecraft and targeting but does not name a sponsoring state [S1][S2][S7]. Targeting has focused heavily on Russia and Belarus: more than 80% of 2024 VBCloud targets were in Russia [S3] [S2]."
+    "confidence": "No sponsor was identified in the open sources gathered. The Record's coverage of F.A.C.C.T.'s December 2023 reporting describes the group as state-backed but names no sponsoring country [S7]. Security Affairs, reporting on Symantec and Akamai research, describes Inception as nation-state-backed without naming the state [S6]. No government attribution was found.",
+    "basis": "Vendor reporting covers tradecraft and targeting but names no sponsoring state [S1][S2][S7]. Since 2022 the targeting has centred on Russia and Belarus [S2][S3]. Kaspersky's RedOctober lineage assessment rests on code and target overlap [S4]."
   },
-  "objectives": "Strategic espionage against government, diplomatic and strategic-industry targets. Its focus has shifted to Russia, Belarus and Russia-controlled or contested territories since 2022 [S2][S5][S9]. Its tooling is built for reconnaissance, file theft and long-term persistence [S1][S3][S9].",
+  "objectives": "Strategic intelligence collection against government, diplomatic and strategic-industry targets [S4][S5][S9]. The tooling is built for reconnaissance, system profiling and document theft [S1][S3]. Brandefense characterizes the goal as collection of diplomatic communications, government documents and related research [S9].",
   "targeting": {
     "sectors": [
-      "Government and diplomatic entities (embassies) [S5][S9]",
-      "Oil/energy organizations [S5]",
-      "Financial services [S5]",
-      "Agro-industrial and state-owned research organizations [S7]",
-      "Government organizations in Europe, Russia and Central Asia (2017-2018) [S1]"
+      "Diplomatic entities and embassies [S4][S9]",
+      "Government organizations [S1][S8]",
+      "Executives in oil, finance and engineering; military officers; government officials [S5][S9]",
+      "Agro-industrial enterprises and state-owned research organizations [S7]",
+      "Defense sector (Russia, 2025, per Positive Technologies coverage) [S8]",
+      "Energy, defense, aerospace, research and media organizations [S9]"
     ],
     "regions": [
-      "Russia [S2][S3][S9]",
-      "Belarus [S2][S3][S9]",
-      "Russia-annexed areas of Ukraine (Crimea, Luhansk, Donetsk) and Transnistria (Moldova) [S2]",
-      "Europe and Central Asia [S1]",
-      "Paraguay, Romania, Turkey (2014) [S5]",
-      "Smaller 2024 victim sets in Canada, Moldova, Israel, Kyrgyzstan, Turkey and Vietnam [S3]"
+      "Russia [S2][S3][S4][S7][S8]",
+      "Belarus [S2][S3][S4]",
+      "Kazakhstan (2014) [S4]",
+      "Russia-controlled or contested areas of Ukraine and Moldova (2022) [S2]",
+      "Europe and Central Asia (2017-2018) [S1]",
+      "Smaller 2024 VBCloud victim sets in Belarus, Canada, Moldova, Israel, Kyrgyzstan, Turkey and Vietnam [S3]",
+      "Africa, Europe and the Middle East (Brandefense profile) [S9]"
     ],
-    "notes": "In 2014 Blue Coat observed targeting of a Russian financial firm and of oil and diplomatic organizations in Paraguay, Romania and Turkey [S5]. After February 2022 its targeting narrowed to Russia, Belarus and conflict areas in Ukraine and Moldova [S2]. In 2023 its lures referred to postcards for Russian soldiers and to changes in military reserve law [S7]."
+    "notes": "The 2014 lures referenced diplomatic car sales [S4]. Unit 42 saw the group in 2017 against government targets in Europe, Russia and Central Asia [S1]. Check Point says the post-2022 shift narrowed its scope but did not change its tactics [S2]. The 2023 lures appealed for support to Russian soldiers in the 'special military operation' [S7]. The cross-regional sector list comes from secondary profiles and is not tied to dated campaigns [S9]."
   },
   "capabilities": {
-    "summary": "Initial access is spear-phishing with Office documents that use remote-template injection and exploit Equation Editor flaws CVE-2017-11882 and CVE-2018-0802 [S1][S2][S3][S4][S7]. In 2014 it ran a multi-platform framework covering Windows plus Android, iOS, BlackBerry and Windows Phone. It used CloudMe WebDAV storage for command and control, and its mobile malware was disguised as a fake WhatsApp update [S5]. In 2018 Unit 42 documented the POWERSHOWER PowerShell reconnaissance/validator backdoor [S1]. In 2019 Kaspersky described a polymorphic HTA and VBS implant (VBShower) placed ahead of PowerShower and an unchanged second-stage backdoor [S4]. In 2024 Kaspersky documented the VBCloud file stealer, delivered with VBShower and PowerShower [S3]. Kaspersky's 2025-2026 reporting covers updated VBShower, VBCloud, PowerShower and CloudAtlas backdoors [S8]. It also covers a new PowerCloud tool that sends data to Google Sheets, LNK-in-ZIP delivery, and ReverseSocks, SSH and Tor for persistence (per secondary summaries) [S9]. To hide its origin, the group chained hijacked UPnP-exposed home routers as proxies; Symantec first observed this and Akamai later named it UPnProxy [S6]."
+    "summary": "Initial access is spear-phishing with Word documents. Kaspersky saw a CVE-2012-0158 variant in 2014 [S4]. Later campaigns used remote-template retrieval with Equation Editor exploits CVE-2017-11882 and CVE-2018-0802 [S1][S3][S7]. In 2014 the documents dropped a Visual Basic script that installed the loader and payload rather than writing a PE backdoor to disk [S4]. Command and control ran over CloudMe WebDAV storage [S5]. In 2018 Symantec reported that the group hid its origin behind chains of hijacked UPnP home routers, which needed no custom malware on the routers [S6]. In 2018 Unit 42 named POWERSHOWER, a PowerShell reconnaissance backdoor that cleans up after itself [S1]. Check Point reported a DLL in 2022 that proxies connections through victim machines [S2]. Kaspersky's 2024 reporting describes an HTA-to-VBShower chain that deploys PowerShower (network probing and payload download) and VBCloud (system information and file theft) [S3]. In 2025 Positive Technologies observed several new TLS certificates issued in a single day for fresh infrastructure [S8]."
   },
   "campaigns": [
-    {"date": "2014-12", "name": "Inception Framework / Cloud Atlas disclosure", "summary": "Blue Coat and Kaspersky disclosed a multi-platform espionage framework that used CloudMe WebDAV command and control against diplomatic, oil and financial targets. Kaspersky linked it to Red October.", "sources": ["S5"]},
-    {"date": "2018-03", "name": "UPnP router proxy chaining", "summary": "Symantec reported that the group hid behind chains of hijacked UPnP routers. Akamai's April 2018 UPnProxy research expanded on the technique.", "sources": ["S6"]},
-    {"date": "2018-10", "name": "POWERSHOWER campaign against Europe", "summary": "Unit 42 observed CVE-2017-11882 documents dropping the new POWERSHOWER backdoor, with reconnaissance and payload delivery in a single document.", "sources": ["S1"]},
-    {"date": "2019-08", "name": "Polymorphic infection chain (VBShower)", "summary": "Kaspersky reported a new chain using a polymorphic HTA and VBS implant ahead of PowerShower.", "sources": ["S4"]},
-    {"date": "2022-12", "name": "Wartime targeting of Russia and Belarus", "summary": "Check Point reported template-injection phishing against Russia, Belarus, annexed Ukrainian territories and Transnistria.", "sources": ["S2"]},
-    {"date": "2023-12", "name": "Military-themed lures against Russian organizations", "summary": "F.A.C.C.T. reported averted attacks on a Russian agro-industrial enterprise and a state-owned research company. The lures exploited CVE-2017-11882.", "sources": ["S7"]},
-    {"date": "2024-12", "name": "VBCloud campaign", "summary": "Kaspersky documented the VBCloud stealer used against several dozen users in 2024, more than 80% of them in Russia.", "sources": ["S3"]},
-    {"date": "2025-12", "name": "H1 2025 tooling updates", "summary": "Kaspersky described updated VBShower, VBCloud, PowerShower and CloudAtlas backdoors.", "sources": ["S8"]},
-    {"date": "2026-05", "name": "H2 2025 to early 2026 activity (PowerCloud)", "summary": "Kaspersky reported continued targeting of government and diplomatic entities in Russia and Belarus, including a new PowerCloud tool.", "sources": ["S9"]}
+    {
+      "date": "2013",
+      "name": "RedOctober (precursor per Kaspersky)",
+      "summary": "Kaspersky exposed RedOctober, an espionage operation against embassies, after which its C2 network was dismantled. Kaspersky later assessed Cloud Atlas to be its rebirth.",
+      "sources": [
+        "S4"
+      ]
+    },
+    {
+      "date": "2014-08 to 2014-12",
+      "name": "Cloud Atlas / Inception Framework disclosure",
+      "summary": "Kaspersky saw CVE-2012-0158 lures on diplomatic car-sale themes against Russia, Kazakhstan and Belarus. Blue Coat disclosed the layered Inception Framework using CloudMe WebDAV for C2.",
+      "sources": [
+        "S4",
+        "S5"
+      ]
+    },
+    {
+      "date": "2018-03 to 2018-04",
+      "name": "UPnP router proxy chaining",
+      "summary": "Symantec reported the group routing traffic through chains of hijacked UPnP routers. Akamai's UPnProxy research described a related 65,000-router proxy botnet.",
+      "sources": [
+        "S6"
+      ]
+    },
+    {
+      "date": "2018-10",
+      "name": "POWERSHOWER campaign against Europe",
+      "summary": "Unit 42 observed remote-template Word documents exploiting CVE-2017-11882 (and CVE-2012-1856) that delivered the new POWERSHOWER backdoor.",
+      "sources": [
+        "S1"
+      ]
+    },
+    {
+      "date": "2022-12",
+      "name": "Wartime targeting of Russia and Belarus",
+      "summary": "Check Point reported focused targeting of Russia, Belarus and conflict-affected areas of Ukraine and Moldova, plus a new DLL that proxies traffic through victims.",
+      "sources": [
+        "S2"
+      ]
+    },
+    {
+      "date": "2023-12",
+      "name": "War-themed lures against Russian organizations",
+      "summary": "F.A.C.C.T. reported blocked attacks on a Russian agro-industrial enterprise and a state-owned research company using lures about supporting soldiers.",
+      "sources": [
+        "S7"
+      ]
+    },
+    {
+      "date": "2024-12",
+      "name": "VBCloud campaign",
+      "summary": "Kaspersky documented VBCloud used against several dozen users in 2024, more than 80% of them in Russia, alongside VBShower and PowerShower.",
+      "sources": [
+        "S3"
+      ]
+    },
+    {
+      "date": "2025-02 to 2025-04",
+      "name": "Defense-sector activity and new infrastructure",
+      "summary": "Positive Technologies reported Cloud Atlas activity against the Russian defense sector and several new TLS certificates issued in one day in February 2025.",
+      "sources": [
+        "S8"
+      ]
+    }
   ],
   "diamond": {
-    "adversary": "Unattributed espionage operator; the sponsoring state is unclear [S7]. Kaspersky assesses continuity with Red October [S5].",
-    "capability": "Office exploits (CVE-2017-11882, CVE-2018-0802), template injection, and the PowerShower, VBShower, VBCloud, PowerCloud and CloudAtlas backdoors. Mobile implants were used in 2014 [S1][S3][S4][S5][S8][S9].",
-    "infrastructure": "Cloud storage and web services for command and control: CloudMe WebDAV in 2014 [S5] and Google Sheets for PowerCloud [S9]. Hijacked UPnP home routers served as proxy chains [S6].",
-    "victim": "Government, diplomatic, energy, financial, agro-industrial and research organizations, now concentrated in Russia and Belarus [S2][S3][S5][S7][S9].",
-    "socioPolitical": "After 2022 the group focuses on Russia, its ally Belarus, and Russia-controlled territories, which is consistent with intelligence interest in the war in Ukraine [S2].",
-    "technology": "Unpatched Microsoft Office Equation Editor, trusted cloud SaaS platforms used to blend command-and-control traffic, and consumer routers exposing UPnP [S1][S5][S6][S9]."
+    "adversary": "Unattributed espionage actor tracked as Inception / Cloud Atlas since 2014. Kaspersky assesses lineage from RedOctober [S1][S4][S7].",
+    "capability": "Weaponized Office documents using remote templates and Equation Editor exploits; VBS/HTA loaders; the VBShower, PowerShower/POWERSHOWER and VBCloud implants; a victim-side proxy DLL [S1][S2][S3][S4].",
+    "infrastructure": "Cloud storage used for C2 (CloudMe WebDAV) [S5]; chains of hijacked UPnP home routers used as proxies [S6]; regularly refreshed domains and TLS certificates [S8].",
+    "victim": "Diplomatic, government, defense, research and agro-industrial organizations, now mainly in Russia and Belarus [S2][S3][S4][S7][S8].",
+    "socioPolitical": "Targeting narrowed to Russia, Belarus and contested areas of Ukraine and Moldova after Russia's 2022 invasion of Ukraine, which suggests intelligence requirements tied to that conflict [S2]. No sponsoring state is named [S7].",
+    "technology": "Windows endpoints running Microsoft Office with unpatched Equation Editor; consumer routers exposing UPnP; legitimate cloud storage services [S1][S3][S5][S6]."
   },
   "gaps": [
-    "No sponsoring state is identified in open sources [S7]. The actor record's country field (RU) is unsupported by the cited sources and conflicts with the actor's heavy targeting of Russia; it needs review.",
-    "Microsoft has no published name or mapping for this actor.",
-    "Primary documents could not be opened: Securelist (Kaspersky), Check Point Research, The Record and Symantec pages failed to load. Details come from search excerpts and secondary coverage.",
-    "Publication dates for the two Kaspersky 2025-2026 Securelist reports (S8, S9) come from secondary timeline entries and are approximate.",
-    "Positive Technologies' 'Cloud Atlas: Sheet Happens' report on a campaign against Russian and Belarusian government employees (from late October 2024, using Yandex Disk) was seen only in search snippets and could not be dated; it is not cited.",
-    "Scale of the router hijacking is unresolved: Akamai's count is about 65,000 devices, while other coverage gives figures in the hundreds of thousands.",
-    "The relationship to the Red October operators is Kaspersky's assessment; no independent confirmation was found.",
-    "Who coined the name 'Inception Framework' (Blue Coat or Symantec) is disputed [S10]."
+    "No sponsoring state is named in open sources. Neither a government attribution nor a Microsoft name was found.",
+    "The primary Kaspersky Securelist reports could not be opened: securelist.com was blocked by the session proxy. Details of the VBCloud report and of the 2025 to early-2026 reports (including the PowerCloud tool) rest on search summaries and secondary coverage.",
+    "The original Blue Coat (2014), Symantec (2018) and F.A.C.C.T. (2023) reports were not opened. They are cited through secondary coverage.",
+    "Positive Technologies research (2024-2025) on Google Sheets C2 and Yandex.Disk-hosted modules was seen only in Russian-language summaries and has no confirmed date. It is not included as a campaign.",
+    "The Akamai 65,000-router UPnProxy botnet is only 'related' to Inception per coverage. Do not attribute the whole botnet to this actor.",
+    "Kaspersky's Cloud Atlas-RedOctober linkage and the merging of the Inception and Cloud Atlas vendor clusters are vendor assessments.",
+    "Brandefense's sector and region list (Africa, Middle East, aerospace, media) is not tied to dated primary campaign reporting."
   ],
   "implications": {
-    "jipoe": "Analyst assessment derived from cited sources; validate before use. STEP 1 (environment): The relevant terrain is diplomatic and government networks of Russia, Belarus and contested Eastern European territories, plus third-country embassies and energy firms. The cloud SaaS platforms (WebDAV storage, Google Sheets) and consumer routers the actor uses as infrastructure are also part of it [S2][S5][S6][S9]. STEP 2 (effects): Reliance on legitimate cloud services and residential router proxies weakens IP-reputation blocking and complicates attribution of its traffic [S5][S6]. STEP 3 (threat model): Spear-phish with a template-injection or Equation Editor exploit, then a polymorphic HTA/VBS validator (VBShower), PowerShower reconnaissance, a second-stage backdoor or stealer (VBCloud, CloudAtlas), and exfiltration to cloud storage [S1][S3][S4]. STEP 4: MLCOA is continued selective collection against Russian and Belarusian government and diplomatic targets using updated script implants [S9]. MDCOA, which is speculative, is renewed targeting of Western or partner embassies and energy organizations, as in 2014 [S5], using the same chain. Candidate indicators: Office documents fetching remote RTF templates; EQNEDT32.EXE spawning processes; mshta or regsvr32 running scripts from user directories; unexpected WebDAV or Google Sheets API traffic from endpoints; PowerShell reconnaissance scripts that delete themselves [S1][S3][S5][S9].",
-    "jcc2": "Analyst assessment derived from cited sources; validate before use. (1) Situational awareness: the group mostly targets Russia and Belarus, so its tooling updates are a useful collection signal on intelligence competition in the region. They are also an early warning if targeting widens back to partner diplomatic or energy entities [S2][S5][S9]. (2) Authorities: the sponsor is unknown, so treat the actor as a third-party espionage threat and attribute effects cautiously; routers used as proxies belong to uninvolved residential users [S6][S7]. (3) Mission assurance: patching or disabling Equation Editor and blocking remote template retrieval cuts off the group's long-running initial access vector [S1][S3]. (4) Coordination: cloud-provider takedowns (such as CloudMe's 2014 account removals) and ISP/router remediation require coordination with commercial partners [S5][S6]."
+    "jipoe": "Analyst assessment derived from cited sources; validate before use. STEP 1: The operational environment includes diplomatic, government and defense networks and the cloud-storage and consumer-router infrastructure that the actor abuses for C2 and anonymization [S1][S5][S6]. STEP 2: Legacy Office Equation Editor flaws (CVE-2017-11882, CVE-2018-0802) remain usable years after patching. This shows that unpatched Office clients are the decisive terrain [S1][S3]. STEP 3: The doctrinal template runs from a themed spear-phish to a remote template or Equation Editor exploit, then an HTA/VBS loader (VBShower), then PowerShell reconnaissance (PowerShower), then file theft (VBCloud) over cloud or proxied C2 [S1][S3][S6]. STEP 4: MLCOA is continued espionage against Russian and Belarusian government, defense and research targets; US and allied equities face spillover risk through the smaller victim sets in other countries [S2][S3][S8]. MDCOA is retasking against diplomatic or coalition entities with geopolitical lures, using residential-router proxy chains to frustrate attribution and blocking [S4][S6]. Candidate indicators: Word documents that fetch remote templates over HTTP; EQNEDT32 spawning mshta or wscript; VBS files with randomized names in user profile directories; outbound WebDAV to cloud storage; PowerShell reconnaissance followed by self-cleanup [S1][S3][S5].",
+    "jcc2": "Analyst assessment derived from cited sources; validate before use. (1) Situational awareness: the current focus is on Russia and Belarus [S2][S3], so this actor is lower priority for DoDIN defense. Track it for retargeting signs, such as lures themed on coalition or diplomatic issues [S4]. (2) Authorities: no sponsoring state is named [S7], so any response beyond network defense needs careful attribution coordination; do not treat vendor lineage claims as government attribution [S4]. (3) Mission assurance: verify that Equation Editor is removed or disabled and that remote-template loading is restricted on mission systems, since the actor reuses years-old exploits [S1][S3]. (4) Coordination: its anonymization relies on consumer UPnP routers and legitimate cloud storage [S5][S6], so takedown or blocking requires coordination with cloud providers and partners rather than simple IP blocking."
   },
   "sources": [
-    {"ref": "S1", "title": "Inception Attackers Target Europe with Year-old Office Vulnerability", "publisher": "Palo Alto Networks Unit 42", "date": "2018-11", "url": "https://unit42.paloaltonetworks.com/unit42-inception-attackers-target-europe-year-old-office-vulnerability/"},
-    {"ref": "S2", "title": "Cloud Atlas targets entities in Russia and Belarus amid the ongoing war in Ukraine", "publisher": "Check Point Research", "date": "2022-12-09", "url": "https://research.checkpoint.com/2022/cloud-atlas-targets-entities-in-russia-and-belarus-amid-the-ongoing-war-in-ukraine/"},
-    {"ref": "S3", "title": "Cloud Atlas Deploys VBCloud Malware: Over 80% of Targets Found in Russia (reporting Kaspersky research)", "publisher": "The Hacker News", "date": "2024-12-27", "url": "https://thehackernews.com/2024/12/cloud-atlas-deploys-vbcloud-malware.html"},
-    {"ref": "S4", "title": "Recent Cloud Atlas activity", "publisher": "Kaspersky (Securelist)", "date": "2019-08", "url": "https://securelist.com/recent-cloud-atlas-activity/92016/"},
-    {"ref": "S5", "title": "CIRCL press note on Inception / Cloud Atlas (reporting Blue Coat and Kaspersky research)", "publisher": "CIRCL", "date": "2014-12-11", "url": "https://new.circl.lu/pub/press/20141211/"},
-    {"ref": "S6", "title": "Experts uncovered a proxy botnet composed of over 65,000 routers exposed via UPnP protocol (reporting Akamai and Symantec research)", "publisher": "Security Affairs", "date": "2018-04", "url": "https://securityaffairs.com/71338/hacking/proxy-botnet-upnp.html"},
-    {"ref": "S7", "title": "Cloud Atlas targets Russian organizations with war-themed phishing (reporting F.A.C.C.T. research)", "publisher": "The Record", "date": "2023-12", "url": "https://therecord.media/cloud-atlas-targets-russian-orgs-war-phishing"},
-    {"ref": "S8", "title": "Cloud Atlas activity in the first half of 2025: what changed (date from secondary timeline)", "publisher": "Kaspersky (Securelist)", "date": "2025-12", "url": "https://securelist.com/?id=4094"},
-    {"ref": "S9", "title": "Cloud Atlas activity in the second half of 2025 and early 2026: new tools and a new payload (date from secondary timeline)", "publisher": "Kaspersky (Securelist)", "date": "2026-05", "url": "https://securelist.com/?id=51693"},
-    {"ref": "S10", "title": "Inside the Operations of Inception Framework: A Decade of Stealth, Espionage, and Global Targeting", "publisher": "Brandefense", "date": "2026-02", "url": "https://brandefense.io/blog/inception-framework-apt/"},
-    {"ref": "S11", "title": "Inception, G0100 (techniques and software)", "publisher": "MITRE ATT&CK", "date": "2026-07-31 (object modified)", "url": "https://attack.mitre.org/groups/G0100/"}
+    {
+      "ref": "S1",
+      "title": "Inception Attackers Target Europe with Year-old Office Vulnerability",
+      "publisher": "Palo Alto Networks Unit 42",
+      "date": "2018-11",
+      "url": "https://unit42.paloaltonetworks.com/unit42-inception-attackers-target-europe-year-old-office-vulnerability/"
+    },
+    {
+      "ref": "S2",
+      "title": "Cloud Atlas targets entities in Russia and Belarus amid the ongoing war in Ukraine",
+      "publisher": "Check Point Research",
+      "date": "2022-12-09",
+      "url": "https://research.checkpoint.com/2022/cloud-atlas-targets-entities-in-russia-and-belarus-amid-the-ongoing-war-in-ukraine/"
+    },
+    {
+      "ref": "S3",
+      "title": "Cloud Atlas attacks with new backdoor VBCloud (content via search summaries and The Hacker News coverage; page not opened)",
+      "publisher": "Kaspersky (Securelist)",
+      "date": "2024-12",
+      "url": "https://securelist.com/cloud-atlas-attacks-with-new-backdoor-vbcloud/115103"
+    },
+    {
+      "ref": "S4",
+      "title": "Cloud Atlas: RedOctober APT is back in style",
+      "publisher": "Kaspersky (Securelist)",
+      "date": "2014-12",
+      "url": "https://securelist.com/cloud-atlas-redoctober-apt-is-back-in-style/68083/"
+    },
+    {
+      "ref": "S5",
+      "title": "Proactive Prevention Revisited: 'Cloud Atlas' and 'Inception Framework' Campaigns (reporting Blue Coat and Kaspersky research)",
+      "publisher": "Palo Alto Networks",
+      "date": "2014-12",
+      "url": "https://www.paloaltonetworks.com/blog/2014/12/proactive-prevention-revisited-cloud-atlas-inception-framework-campaigns"
+    },
+    {
+      "ref": "S6",
+      "title": "Experts uncovered a proxy botnet composed of over 65,000 routers exposed via UPnP protocol (reporting Akamai and Symantec research)",
+      "publisher": "Security Affairs",
+      "date": "2018-04",
+      "url": "https://securityaffairs.com/71338/hacking/proxy-botnet-upnp.html"
+    },
+    {
+      "ref": "S7",
+      "title": "Cloud Atlas targets Russian organizations with war-themed phishing (reporting F.A.C.C.T. research)",
+      "publisher": "The Record (Recorded Future News)",
+      "date": "2023-12",
+      "url": "https://therecord.media/cloud-atlas-targets-russian-orgs-war-phishing"
+    },
+    {
+      "ref": "S8",
+      "title": "Cloud Atlas атакует российский оборонный сектор [Cloud Atlas attacks the Russian defense sector] (reporting Positive Technologies research)",
+      "publisher": "Anti-Malware.ru",
+      "date": "2025-04-16",
+      "url": "https://www.anti-malware.ru/news/2025-04-16-121598/45810"
+    },
+    {
+      "ref": "S9",
+      "title": "Inside the Operations of Inception Framework: A Decade of Stealth, Espionage, and Global Targeting",
+      "publisher": "Brandefense",
+      "date": "2026-02",
+      "url": "https://brandefense.io/blog/inception-framework-apt/"
+    },
+    {
+      "ref": "S10",
+      "title": "Inception, G0100",
+      "publisher": "MITRE ATT&CK",
+      "date": "2026-07",
+      "url": "https://attack.mitre.org/groups/G0100/"
+    }
   ],
   "aliasesAdd": []
 }

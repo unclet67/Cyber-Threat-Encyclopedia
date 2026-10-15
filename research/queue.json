@@ -1,42 +1,7 @@
 {
  "note": "Research queue for the automatic wave runner. Waves take items from the front; finished ids move to 'done'. Scope limited to CN/RU/IR/KP on 2026-10-15 at the user's request; non-state actors moved to 'deferred'.",
- "verify": [
-  "inception",
-  "indigozebra"
- ],
+ "verify": [],
  "research": [
-  {
-   "id": "jade-sleet",
-   "tier": "T2"
-  },
-  {
-   "id": "jasper-sleet",
-   "tier": "T2"
-  },
-  {
-   "id": "lilac-typhoon",
-   "tier": "T2"
-  },
-  {
-   "id": "mirrorface",
-   "tier": "T2"
-  },
-  {
-   "id": "moafee",
-   "tier": "T2"
-  },
-  {
-   "id": "mofang",
-   "tier": "T2"
-  },
-  {
-   "id": "neva-flood",
-   "tier": "T2"
-  },
-  {
-   "id": "nomadic-octopus",
-   "tier": "T2"
-  },
   {
    "id": "obsidian-sandstorm",
    "tier": "T2"
@@ -1201,16 +1166,26 @@
   "heart-typhoon",
   "hexagon-typhoon",
   "houndstooth-typhoon",
+  "inception",
+  "indigozebra",
+  "jade-sleet",
+  "jasper-sleet",
   "lemon-sandstorm",
   "leopard-typhoon",
+  "lilac-typhoon",
   "linen-typhoon",
   "manatee-tempest",
   "mango-sandstorm",
   "marigold-sandstorm",
   "midnight-blizzard",
   "mint-sandstorm",
+  "mirrorface",
+  "moafee",
+  "mofang",
   "moonstone-sleet",
   "mulberry-typhoon",
+  "neva-flood",
+  "nomadic-octopus",
   "nylon-typhoon",
   "onyx-sleet",
   "peach-sandstorm",
@@ -1239,7 +1214,9 @@
  "thin": [
   "apt16",
   "berry-sandstorm",
-  "crescent-typhoon"
+  "crescent-typhoon",
+  "lilac-typhoon",
+  "mofang"
  ],
  "halts": [],
  "deferred": [
