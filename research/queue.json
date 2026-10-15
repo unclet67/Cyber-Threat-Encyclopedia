@@ -3,38 +3,6 @@
  "verify": [],
  "research": [
   {
-   "id": "winter-vivern",
-   "tier": "T2"
-  },
-  {
-   "id": "yulong-flood",
-   "tier": "T2"
-  },
-  {
-   "id": "1937cn",
-   "tier": "T3"
-  },
-  {
-   "id": "ababil-of-minab",
-   "tier": "T3"
-  },
-  {
-   "id": "amaranth-dragon",
-   "tier": "T3"
-  },
-  {
-   "id": "angry-likho",
-   "tier": "T3"
-  },
-  {
-   "id": "antlion",
-   "tier": "T3"
-  },
-  {
-   "id": "appmilad",
-   "tier": "T3"
-  },
-  {
    "id": "apt-3102",
    "tier": "T3"
   },
@@ -968,10 +936,16 @@
   }
  ],
  "done": [
+  "1937cn",
+  "ababil-of-minab",
   "admin-338",
   "ajax-security-team",
+  "amaranth-dragon",
+  "angry-likho",
   "antique-typhoon",
+  "antlion",
   "aoqin-dragon",
+  "appmilad",
   "apt1",
   "apt16",
   "apt37",
@@ -1094,9 +1068,14 @@
   "violet-typhoon",
   "void-blizzard",
   "volga-flood",
-  "volt-typhoon"
+  "volt-typhoon",
+  "winter-vivern",
+  "yulong-flood"
  ],
  "thin": [
+  "1937cn",
+  "ababil-of-minab",
+  "appmilad",
   "apt16",
   "berry-sandstorm",
   "crescent-typhoon",
@@ -1115,7 +1094,8 @@
   "ta459",
   "taffeta-typhoon",
   "tumbleweed-typhoon",
-  "volga-flood"
+  "volga-flood",
+  "yulong-flood"
  ],
  "halts": [],
  "deferred": [

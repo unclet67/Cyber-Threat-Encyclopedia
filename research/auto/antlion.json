@@ -1,0 +1,113 @@
+{
+  "identification": {
+    "summary": "Antlion is the Symantec Threat Hunter Team name for a China-linked, state-backed espionage group that ran a persistent campaign against Taiwanese financial institutions and a manufacturer over at least 18 months in 2020-2021, using a custom backdoor Symantec named xPack [S1][S2][S4].",
+    "firstObserved": "SecurityWeek reports the group is believed active since at least 2011 [S3]. The campaign Symantec described ran about 2020-2021 and was published in February 2022 [S1][S4].",
+    "notes": "No Microsoft Typhoon name is recorded in this encyclopedia for Antlion, and no source gathered links Antlion to a Microsoft name. Dark Reading says Antlion is also tracked as Pirate Panda and Tropic Trooper [S5]; those are separate vendor clusters, so the overlap is flagged in gaps rather than merged. MITRE group ID is not recorded."
+  },
+  "attribution": {
+    "sponsor": "People's Republic of China (assessed by Symantec as state-backed) [S1][S2].",
+    "confidence": "Symantec describes Antlion as a Chinese state-backed APT group and assesses the aim as espionage based on observed data theft [S1][S2]. SecurityWeek words it as 'likely backed by the Chinese government' [S3]. No government attribution was found.",
+    "basis": "Vendor assessment from Symantec's analysis of tooling, targeting of Taiwanese organizations and data exfiltration [S1][S2]; secondary coverage repeats it [S3][S4]."
+  },
+  "objectives": "Espionage: Symantec assessed the goal as intelligence collection because the attackers exfiltrated data from victim networks [S1][S2].",
+  "targeting": {
+    "sectors": [
+      "Financial services",
+      "Manufacturing"
+    ],
+    "regions": [
+      "Taiwan"
+    ],
+    "notes": "Symantec reports at least three Taiwanese organizations compromised: two financial entities and a manufacturing company [S1][S2]. Dark Reading's summary of the report cites at least six Taiwanese financial institutions [S5]; the discrepancy is unresolved. Dark Reading also says earlier espionage by the tracked group focused on South China Sea neighbors such as India, Vietnam and the Philippines [S5]."
+  },
+  "capabilities": {
+    "summary": "Custom backdoor xPack: a .NET loader that decrypts AES-encrypted payloads, passed a Base64-encoded password on the command line, and can run standalone or as a service [S2]. It lets operators run WMI commands remotely, use SMB-mounted shares to move data to C2, and act as a web proxy to mask attacker IPs; EternalBlue exploitation was also observed [S1][S2][S4]. The actor relied heavily on living-off-the-land tools such as WMIC, PowerShell, ProcDump (LSASS dumping) and PsExec [S4]. Initial access was not confirmed; use of MSSQL to run system commands suggests exploitation of a web application or service, and spear-phishing has been associated with the group before [S2][S4]."
+  },
+  "campaigns": [
+    {
+      "date": "2020 to 2021",
+      "name": "Taiwan financial-sector espionage campaign",
+      "summary": "Symantec reports a persistent campaign of at least 18 months against Taiwanese financial institutions and a manufacturer using xPack and living-off-the-land tools; one financial victim network was occupied about 250 days and the manufacturer about 175 days [S1][S4].",
+      "sources": [
+        "S1",
+        "S4",
+        "S6"
+      ]
+    },
+    {
+      "date": "2022-02-03",
+      "name": "Symantec public disclosure",
+      "summary": "Symantec publishes 'Antlion: Chinese APT Uses Custom Backdoor to Target Financial Institutions in Taiwan'; BleepingComputer, The Hacker News, SecurityWeek and Dark Reading follow within days [S1][S2][S3][S4][S5].",
+      "sources": [
+        "S1",
+        "S4",
+        "S5"
+      ]
+    }
+  ],
+  "diamond": {
+    "adversary": "China-linked, assessed state-backed espionage group tracked by Symantec as Antlion [S1][S2].",
+    "capability": "xPack .NET loader/backdoor with WMI execution, SMB file transfer and proxying; EternalBlue; living-off-the-land tools (WMIC, PowerShell, ProcDump, PsExec) [S1][S4].",
+    "infrastructure": "Attacker C2 servers received data via SMB-mounted shares and xPack proxying [S4]; specific infrastructure was not captured in the sources gathered.",
+    "victim": "Taiwanese financial institutions and a manufacturing company [S1][S2].",
+    "socioPolitical": "Collection against Taiwan's financial sector consistent with PRC state espionage interests, as assessed by Symantec [S1][S2].",
+    "technology": "Windows enterprise networks, MSSQL and other exposed services as probable entry points, and SMB (EternalBlue) for lateral movement [S2][S4]."
+  },
+  "gaps": [
+    "Primary Symantec blog could not be opened directly in this session (host unreachable); details rely on search-result summaries and secondary coverage [S1][S4].",
+    "Victim count conflict: Symantec-based coverage says three organizations; Dark Reading says at least six financial institutions [S2][S5]. Dwell times also differ (250/175 days vs. roughly eight/six months).",
+    "Name overlap: Dark Reading states Antlion is also Pirate Panda and Tropic Trooper [S5]; these are tracked by other vendors as separate clusters and were not merged. Verify against Symantec and Trend Micro primary reports.",
+    "Initial access vector unconfirmed.",
+    "No Microsoft actor name, MITRE ATT&CK group ID or government attribution found.",
+    "No activity reporting after February 2022 was found."
+  ],
+  "implications": {
+    "jipoe": "Analyst assessment derived from cited sources; validate before use. STEP 1: Key terrain is Taiwanese financial and manufacturing networks, especially internet-facing MSSQL and web services and internal SMB. STEP 2: Long dwell times (about 175-250 days) with living-off-the-land tools mean intrusions can persist undetected [S1][S4]. STEP 3: Likely template is an exposed-service foothold, then xPack, credential dumping via ProcDump, WMI/PsExec lateral movement, SMB-staged exfiltration [S4]. STEP 4: MLCOA is continued quiet espionage against Taiwan's financial and industrial base. MDCOA is leveraging the same footholds for financial-system disruption in a Taiwan crisis (assessment, not sourced). Candidate indicators: xPack-style .NET loaders with encrypted .bin payloads, MSSQL spawning command shells, remote WMI execution, LSASS dumps, unexpected SMB share mounts to external hosts [S2][S4].",
+    "jcc2": "Analyst assessment derived from cited sources; validate before use. (1) Situational awareness: track Taiwan financial-sector and supply-chain compromise reporting as a warning indicator for regional cyber posture. (2) Authorities: partner-nation networks fall under host-nation authorities; share indicators via established intelligence-sharing channels. (3) Mission assurance: DoD-adjacent suppliers or partners with Taiwan manufacturing exposure should be hunted for the listed behaviors and kept patched against EternalBlue. (4) Coordination: align with DC3/DIB CS and combatant command J2/J6 for sharing living-off-the-land detection logic, since signature-based detection missed the actor for months [S1][S4]."
+  },
+  "sources": [
+    {
+      "ref": "S1",
+      "title": "Antlion: Chinese APT Uses Custom Backdoor to Target Financial Institutions in Taiwan",
+      "publisher": "Symantec Threat Hunter Team",
+      "date": "2022-02-03",
+      "url": "https://symantec-enterprise-blogs.security.com/threat-intelligence/china-apt-antlion-taiwan-financial-attacks"
+    },
+    {
+      "ref": "S2",
+      "title": "Antlion APT group used a custom backdoor that allowed them to fly under the radar for months",
+      "publisher": "Security Affairs",
+      "date": "2022-02",
+      "url": "https://securityaffairs.com/127592/breaking-news/antlion-backdoor-undetected-for-months.html"
+    },
+    {
+      "ref": "S3",
+      "title": "Chinese Hackers Target Financial Institutions in Taiwan With Custom Backdoor",
+      "publisher": "SecurityWeek",
+      "date": "2022-02",
+      "url": "https://www.securityweek.com/chinese-hackers-target-financial-institutions-taiwan-custom-backdoor"
+    },
+    {
+      "ref": "S4",
+      "title": "State hackers' new malware helped them stay undetected for 250 days (reporting Symantec)",
+      "publisher": "BleepingComputer",
+      "date": "2022-02-03",
+      "url": "https://www.bleepingcomputer.com/news/security/state-hackers-new-malware-helped-them-stay-undetected-for-250-days/amp/"
+    },
+    {
+      "ref": "S5",
+      "title": "China-Linked Group Attacked Taiwanese Financial Firms for 18 Months",
+      "publisher": "Dark Reading",
+      "date": "2022-02-04",
+      "url": "https://www.darkreading.com/threat-intelligence/china-linked-group-attacked-taiwanese-financial-firms-for-18-months"
+    },
+    {
+      "ref": "S6",
+      "title": "Chinese Hackers Target Taiwanese Financial Institutions",
+      "publisher": "The Hacker News",
+      "date": "2022-02",
+      "url": "https://thehackernews.com/2022/02/chinese-hackers-target-taiwanese.html"
+    }
+  ],
+  "aliasesAdd": []
+}
