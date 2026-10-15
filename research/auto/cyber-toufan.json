@@ -1,0 +1,133 @@
+{
+  "identification": {
+    "summary": "Cyber Toufan (also written Cyber Toufan Al-Aqsa) is a hacktivist-branded group that emerged in November 2023 and has primarily targeted Israeli organizations with hack-and-leak and destructive (wiping) operations [S1][S4]. Press reporting says it claimed more than 100 victims [S1][S4]. Check Point researchers, quoted in press, called it an Iranian threat actor, while the group presents itself as independent [S1][S4].",
+    "firstObserved": "2023-11 (Dark Reading reports the Signature-IT hosting compromise on 16 November 2023) [S1][S4].",
+    "notes": "No Microsoft name is known to this research pass; none is asserted. Do not merge with Handala or CyberAv3ngers: Check Point is quoted as listing CyberAv3ngers and Cyber Toufan as separate Iran-affiliated groups [S1]. The source dates below are approximate (see gaps)."
+  },
+  "attribution": {
+    "sponsor": "",
+    "confidence": "Disputed and unconfirmed. Check Point is quoted by Dark Reading as calling the group an Iranian threat actor [S1]. A threat-intelligence executive quoted by SAN said its patterns, timing and focus mirror Iranian state-aligned activity, while SAN notes the evidence does not conclusively establish state ties [S4]. Other firms were more hedged and the group has not stated its origin [S1][S3].",
+    "basis": "Vendor and expert assessments of targeting, timing and operational patterns as quoted in press [S1][S4]. No government attribution was found in the sources gathered."
+  },
+  "objectives": "Disruption, data exposure and psychological pressure against Israeli public and private organizations, aligned with the Gaza conflict; the group's 2025 defense-sector leaks were stated to follow Israeli actions in Gaza [S1][S4].",
+  "targeting": {
+    "sectors": [
+      "Government",
+      "Hosting and IT service providers",
+      "Cybersecurity vendors",
+      "Retail and consumer",
+      "Academia",
+      "Defense contractors"
+    ],
+    "regions": [
+      "Israel",
+      "International firms doing business in Israel [S1]"
+    ],
+    "notes": "In late 2025 the group leaked data attributed to defense contractor Maya Engineering and said it targeted 17 defense-linked companies [S4][S5]. These are largely the group's own claims and early reporting [S4]."
+  },
+  "capabilities": {
+    "summary": "The group compromised Signature-IT, an Israeli hosting company, on 16 November 2023, which gave access to dozens of Israeli companies and government bodies and to international firms doing business there [S1]. It wiped servers, leaked data on Telegram, and later ran follow-on email attacks against victims' employees and customers [S1][S4]. Kevin Beaumont called the group well organized and disruptive [S1]. The group claimed destruction of over 1,000 servers, which is unverified [S1]. In the Maya Engineering case it claimed 1.5 years of network access, enabling access to other contractors; this is a claim [S5]. No malware families or exploit details were found in the sources gathered."
+  },
+  "campaigns": [
+    {
+      "date": "2023-11-16",
+      "name": "Signature-IT hosting compromise",
+      "summary": "Compromise of Israeli hosting firm Signature-IT gave access to dozens of Israeli companies and government organizations plus international firms. The group denied that all leaks stemmed from it, contrary to Check Point's view [S1].",
+      "sources": [
+        "S1",
+        "S3"
+      ]
+    },
+    {
+      "date": "2023-11/2023-12",
+      "name": "Mass hack-and-leak against Israeli organizations",
+      "summary": "More than 100 organizations were hit in about a month, with data leaks and wiping; victims included government bodies and technology vendors. Check Point noted leaks paused during a cease-fire [S1][S6].",
+      "sources": [
+        "S1",
+        "S6"
+      ]
+    },
+    {
+      "date": "2023-12",
+      "name": "Follow-on email attacks",
+      "summary": "As leaks slowed the group sent follow-on emails to victims' employees and customers [S1].",
+      "sources": [
+        "S1"
+      ]
+    },
+    {
+      "date": "2025-10",
+      "name": "Maya Engineering defense-contractor leak",
+      "summary": "The group leaked CCTV footage and technical documents attributed to Maya Engineering, claiming 17 defense-linked targets and 1.5 years of access. Reported dates vary (late October 2025 per SOCRadar and BreachSense listings via search results); claims are unverified [S4][S5].",
+      "sources": [
+        "S4",
+        "S5"
+      ]
+    }
+  ],
+  "diamond": {
+    "adversary": "Hacktivist persona assessed by some vendors as Iran-linked; unconfirmed [S1][S4].",
+    "capability": "Supply-chain compromise of a hosting provider, data exfiltration and leaking, destructive wiping, follow-on phishing emails [S1].",
+    "infrastructure": "Telegram channel used to publish leaks [S4]. Other infrastructure not found in sources.",
+    "victim": "Israeli government, technology, retail, academic and defense organizations, and foreign firms using Israeli hosting [S1][S4].",
+    "socioPolitical": "Gaza conflict and Israel-Iran tension; leaks timed to events and paused during a cease-fire [S1][S4].",
+    "technology": "Reliance on a single hosting/MSP provider created a single point of compromise for many tenants [S1]."
+  },
+  "gaps": [
+    "WebFetch could not reach any publisher host in this run, so all content comes from search-result summaries, not full articles; verify each source before use.",
+    "Publication dates for S1-S6 were not visible in results and are approximate, inferred from event timing; confirm them.",
+    "The Check Point primary report (listed in the existing record as research.checkpoint.com 2023 11th December threat intelligence report) and Kevin Beaumont's original post were not opened.",
+    "Initial access method, malware, wiper names and infrastructure are not stated in the sources gathered.",
+    "Iranian state sponsorship is not established; no government attribution was found.",
+    "Relationship to Handala and other Iran-aligned personas is not established.",
+    "Date of the Maya Engineering leak differs across listings (about 30-31 October 2025); the 2025 campaign and victim claims are unverified.",
+    "SecurityWeek source S2 removed: its URL was not seen in verification searches; the named 2023 victim list and 'one-third unrecovered' detail were dropped."
+  ],
+  "implications": {
+    "jipoe": "Analyst assessment derived from cited sources; validate before use. STEP 1: Third-party hosting and managed IT providers serving Israeli and allied organizations are key cyber terrain; defense contractors are secondary terrain [S1][S5]. STEP 2: A single provider compromise exposed dozens of tenants, and wiping degraded recovery [S1]. STEP 3: Template: provider compromise, data theft, Telegram leak, wiping, then follow-on phishing [S1][S4]. STEP 4: MLCOA: continued hack-and-leak and wiping against Israeli entities timed to conflict events. MDCOA: leaks of allied defense-contractor data or supply-chain compromise of a provider serving US or coalition partners. Candidate indicators: new Telegram leak posts naming defense firms, sudden mass wiping at tenants of one hosting provider, and employee-targeted phishing after a leak [S1][S4][S5].",
+    "jcc2": "Analyst assessment derived from cited sources; validate before use. (1) Situational awareness: track hacktivist leak channels and third-party provider incidents affecting partner and DIB organizations [S1][S4]. (2) Authorities: attribution is unconfirmed, so avoid treating it as state action in planning documents [S4]. (3) Mission assurance: verify offline backups and provider-dependency mapping for contractors, since wiping left victims struggling to recover [S1]. (4) Coordination: share leaked-data exposure with affected contractors via DC3 and the DIB program, and with partner nation CERTs [S5]."
+  },
+  "sources": [
+    {
+      "ref": "S1",
+      "title": "'Cyber Toufan' Hacktivists Leaked 100-Plus Israeli Orgs in One Month",
+      "publisher": "Dark Reading",
+      "date": "2023-12",
+      "url": "https://www.darkreading.com/cyberattacks-data-breaches/-cyber-toufan-hacktivists-leaked-100-plus-israeli-orgs-in-one-month"
+    },
+    {
+      "ref": "S3",
+      "title": "Cyber Toufan Al-Aqsa Signature-IT Attack",
+      "publisher": "Cyberint",
+      "date": "2023-11",
+      "url": "https://cyberint.com/blog/dark-web/cyber-toufan-al-aqsa-signature-it-attack"
+    },
+    {
+      "ref": "S4",
+      "title": "Iran-linked hackers leak CCTV footage from inside Israeli defense contractor",
+      "publisher": "Straight Arrow News",
+      "date": "2025-11",
+      "url": "https://san.com/cc/iran-linked-hackers-leak-cctv-footage-from-inside-israeli-defense-contractor/"
+    },
+    {
+      "ref": "S5",
+      "title": "Israeli defense contractor allegedly breached by Iranian hackers",
+      "publisher": "SC World",
+      "date": "2025-11",
+      "url": "https://www.scworld.com/brief/israeli-defense-contractor-allegedly-breached-by-iranian-hackers"
+    },
+    {
+      "ref": "S6",
+      "title": "Israeli orgs subjected to suspected Iranian hacking attacks",
+      "publisher": "SC Media",
+      "date": "2023-12",
+      "url": "https://scmagazine.com/brief/israeli-orgs-subjected-to-suspected-iranian-hacking-attacks"
+    }
+  ],
+  "aliasesAdd": [
+    {
+      "name": "Cyber Toufan Al-Aqsa",
+      "vendor": "Cyberint"
+    }
+  ]
+}

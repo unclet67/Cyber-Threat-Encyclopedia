@@ -1,0 +1,55 @@
+{
+  "identification": {
+    "summary": "Curious Gorge is Google Threat Analysis Group's (TAG) name for a China-linked cyber espionage group that TAG attributes to the PLA Strategic Support Force (SSF) [S2]. TAG reported campaigns against government and military organizations in Ukraine, Russia, Kazakhstan and Mongolia [S3][S2].",
+    "firstObserved": "March 2022: TAG described campaigns observed in the preceding two weeks [S3]. Earlier activity is not established in the sources gathered.",
+    "notes": "Google TAG name. The encyclopedia record lists UNC3742 (Mandiant / Google TI) as an alias, via an imported community (MISP Galaxy) mapping; no cited source read in this pass states it directly. Microsoft has no mapped name in this record. No malware families are associated with the actor in Malpedia [S5]."
+  },
+  "attribution": {
+    "sponsor": "People's Republic of China, specifically the PLA Strategic Support Force, per Google TAG as reported by Security Affairs [S2].",
+    "confidence": "Confidence level not stated in the secondary coverage gathered [S2]. This is a vendor (Google TAG) attribution only; no government attribution was found.",
+    "basis": "Google TAG assessment; the evidentiary basis is not described in the secondary coverage read [S2][S3]."
+  },
+  "objectives": "Espionage against government, military, logistics and manufacturing organizations in Ukraine, Russia and Central Asia, inferred from the victim set TAG reported [S2]. Specific collection requirements are not stated in the sources.",
+  "targeting": {
+    "sectors": ["Government", "Military", "Defense contractors and manufacturers (Russia)", "Logistics", "Manufacturing"],
+    "regions": ["Russia", "Ukraine", "Kazakhstan", "Mongolia", "Central Asia"],
+    "notes": "March 2022: government and military organizations in Ukraine, Russia, Kazakhstan and Mongolia [S3][S2]. Later TAG update: long-running campaigns against multiple Russian government organizations including the Ministry of Foreign Affairs, plus compromises of multiple Russian defense contractors and manufacturers and a Russian logistics company [S2]. TAG said the activity does not greatly affect Google products but it notified victims [S3]."
+  },
+  "capabilities": {
+    "summary": "Initial access vectors, tooling and exploits are not described in the sources I could read; TAG's March 2022 post reportedly listed IP addresses used in campaigns [S1]. Malpedia lists no associated malware families [S5]."
+  },
+  "campaigns": [
+    {"date": "2022-03", "name": "Campaigns against Ukraine, Russia, Kazakhstan, Mongolia", "summary": "TAG reported malicious campaigns against military and government organizations in Russia, Ukraine, Mongolia and Kazakhstan over the prior two weeks, in an update that also covered COLDRIVER and Ghostwriter [S3][S1].", "sources": ["S1", "S3"]},
+    {"date": "2022-05", "name": "Continued activity against Russian government and industry", "summary": "TAG update: long-running campaigns against multiple Russian government organizations, including the Ministry of Foreign Affairs, continued; over the prior week TAG identified compromises of multiple Russian defense contractors and manufacturers and a Russian logistics company [S2].", "sources": ["S2"]},
+    {"date": "2023-02", "name": "Google 'Fog of War' report", "summary": "Google published a report on how the Ukraine conflict changed the cyber threat landscape; the report's own treatment of Curious Gorge was not read [S4].", "sources": ["S4"]}
+  ],
+  "diamond": {
+    "adversary": "China-linked group attributed by Google TAG to the PLA SSF [S2].",
+    "capability": "",
+    "infrastructure": "TAG published IP addresses for the March 2022 campaigns [S1]; details not retrieved.",
+    "victim": "Government, military, defense industrial, logistics and manufacturing organizations in Russia, Ukraine, Kazakhstan and Mongolia [S2][S3].",
+    "socioPolitical": "PRC collection on Russia, Ukraine and Central Asian neighbors during the Russia-Ukraine war, including against a nominal partner (Russia) [S2]. Motivations beyond that are not stated in sources.",
+    "technology": ""
+  },
+  "gaps": [
+    "Google TAG primary posts and the Fog of War PDF could not be fetched (blog.google unreachable from this environment); all facts rely on secondary coverage and search summaries. Primary posts were not opened.",
+    "The exact TAG post dates (March and May 2022) are given at month precision only.",
+    "TTPs, malware, exploits, phishing lures and infrastructure are not documented in the sources read.",
+    "UNC3742 equivalence is from an imported community mapping and not verified against a Google/Mandiant statement.",
+    "Attribution confidence and evidence behind the PLA SSF assessment are unknown; note the SSF was reorganized in 2024 so unit naming may be outdated.",
+    "No activity after 2023 was found; current status is unknown.",
+    "Overlap with other tracked PRC clusters targeting Russia (other vendors) was not assessed."
+  ],
+  "implications": {
+    "jipoe": "Analyst assessment derived from cited sources; validate before use. STEP 1: Government, defense-industrial, logistics and manufacturing networks in Russia, Ukraine and Central Asia are the observed terrain [S2][S3]. STEP 2: The actor operates against a nominal partner state, showing PRC collection is not limited to adversaries [S2]. STEP 3: Tradecraft is not documented in the sources; templating is not possible. STEP 4: MLCOA is continued espionage against regional government, military and logistics targets [S2]. MDCOA (speculative) is extension of the same access to logistics and manufacturing networks supporting regional military supply chains. Candidate indicators: the IP addresses in TAG's March 2022 post [S1] (not retrieved here).",
+    "jcc2": "Analyst assessment derived from cited sources; validate before use. (1) Situational awareness: track vendor reporting on PRC activity in Eurasia as indicator of PRC regional collection priorities. (2) Authorities and mission assurance: no US-targeted activity is evidenced in the sources, so treat as a regional intelligence-gap item rather than a defended-network threat. (3) Coordination: retrieve the primary TAG posts and IOC lists through intelligence channels before use."
+  },
+  "sources": [
+    {"ref": "S1", "title": "Tracking cyber activity in Eastern Europe", "publisher": "Google Threat Analysis Group", "date": "2022-03", "url": "https://blog.google/threat-analysis-group/tracking-cyber-activity-eastern-europe/"},
+    {"ref": "S2", "title": "China-linked APT Curious Gorge targeted Russian govt agencies (reporting Google TAG update)", "publisher": "Security Affairs", "date": "2022-05", "url": "https://securityaffairs.com/?p=130873"},
+    {"ref": "S3", "title": "Google TAG details cyber activity with regard to the invasion of Ukraine (reporting Google TAG)", "publisher": "Security Affairs", "date": "2022-03-31", "url": "https://securityaffairs.com/129661/apt/phishing-malware-attacks-invasion-ukraine.html"},
+    {"ref": "S4", "title": "Fog of war: how the Ukraine conflict transformed the cyber threat landscape", "publisher": "Google Threat Analysis Group", "date": "2023-02", "url": "https://blog.google/threat-analysis-group/fog-of-war-how-the-ukraine-conflict-transformed-the-cyber-threat-landscape/"},
+    {"ref": "S5", "title": "CURIOUS GORGE actor entry", "publisher": "Malpedia (Fraunhofer FKIE)", "date": "2023-02", "url": "https://malpedia.caad.fkie.fraunhofer.de/actor/curious_gorge"}
+  ],
+  "aliasesAdd": []
+}

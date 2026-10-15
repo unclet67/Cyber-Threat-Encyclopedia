@@ -1,0 +1,62 @@
+{
+  "identification": {
+    "summary": "Self-styled hacktivist persona (Izz ad-Din al-Qassam Cyber Fighters, QCF) that claimed Operation Ababil, a 2012-2013 campaign of distributed denial-of-service (DDoS) attacks against US financial institutions, presenting it as protest against the film 'Innocence of Muslims' [S1][S4]. The group announced its plans on Pastebin on 18 September 2012 [S5].",
+    "firstObserved": "2012-09-18 (Pastebin announcement) [S5]. The 2016 US indictment describes the related DDoS campaign as beginning in approximately December 2011 [S2].",
+    "notes": "Malpedia lists Fraternal Jackal as an alternate name and gives the aliases Qassam Cyber Fighters and QCF [S6]. Do not confuse with other Palestine-linked 'Jackal' clusters or with the Izz ad-Din al-Qassam Brigades (Hamas military wing); this record covers only the Operation Ababil persona. Dates of the campaign differ between reports (see gaps) [S2]."
+  },
+  "attribution": {
+    "sponsor": "Disputed. The US Justice Department 2016 indictment, as reported by Help Net Security, charged seven Iranians employed by ITSecTeam and Mersad Company, which it alleged were sponsored by the Islamic Revolutionary Guard Corps (IRGC), for the DDoS campaign [S2]. The persona itself denied ties to the Iranian government [S1].",
+    "confidence": "Attributed by whoever made the claim: unnamed US officials and Sen. Joe Lieberman suggested Iran and the Quds Force in 2012 [S1]; the DOJ (as reported) alleged IRGC sponsorship of the two firms in 2016 [S2]; Treasury (as reported) designated ITSec Team and Mersad-linked individuals in September 2017 [S3]. Some 2012 analysts questioned a single-actor or state explanation, and Prolexic argued multiple groups using varied tools were involved [S1]. This record does not itself assign confidence beyond those statements.",
+    "basis": "Press coverage of the DOJ indictment [S2] and of Treasury OFAC designations [S3]; 2012 news reporting of US official statements and analyst dissent [S1]. The primary DOJ and Treasury documents were not opened."
+  },
+  "objectives": "Publicly stated: force removal of the film 'Innocence of Muslims' from the internet, with attacks suspended when a copy was removed from YouTube and threatened to continue until the film was gone [S1][S4]. Alleged underlying objective, per the indictment as reported: disruption of US financial-sector websites by IRGC-sponsored firms [S2].",
+  "targeting": {
+    "sectors": ["Financial services (major US banks)", "Stock exchanges", "Dam control systems (separate charge against one defendant, not attributed to the persona)"],
+    "regions": ["United States"],
+    "notes": "Named victims included Bank of America, JPMorgan Chase, Wells Fargo, U.S. Bank, PNC, Citibank, Regions Financial, SunTrust and BB&T [S1][S4]. The indictment as reported cites 46 companies, primarily financial, and hundreds of thousands of customers cut off from online access; no customer account data was stolen [S2]. Treasury, as reported, said ITSec Team attacked at least nine large US financial institutions including stock exchanges between December 2011 and December 2012 [S3]."
+  },
+  "capabilities": {
+    "summary": "Volumetric DDoS, reported as up to 100 Gbps in 2012 and up to 140 Gbps per the indictment as reported [S1][S2]. Prolexic and Arbor Networks tied the attacks to the PHP-based 'itsoknoproblembro' (Brobot) toolkit and also to KamiKaze and AMOS botnets; the toolkit was publicly available before the campaign [S1]. One defendant allegedly helped build the botnet and another obtained and managed servers used to coordinate the attacks [S2][S3]. Some analysts (for example Akamai's Michael Smith) judged the scale inconsistent with ordinary hacktivists [S1]."
+  },
+  "campaigns": [
+    {"date": "2011-12", "name": "Alleged start of DDoS campaign (per indictment)", "summary": "The 2016 indictment, as reported, describes the DDoS campaign against US financial targets as beginning around December 2011, with sporadic attacks into September 2012 and near-weekly attacks through May 2013.", "sources": ["S2"]},
+    {"date": "2012-09-18", "name": "Operation Ababil announced", "summary": "The persona announced Operation Ababil on Pastebin as protest against the film 'Innocence of Muslims'.", "sources": ["S5"]},
+    {"date": "2012-12", "name": "Resumption of attacks after pause", "summary": "After a pause of roughly three months in the main wave per the cited report, the persona resumed attacks around 11 December 2012; officials publicly suggested Iranian involvement and the group denied it.", "sources": ["S1"]},
+    {"date": "2013-07", "name": "Phase 4 announcement", "summary": "On 23 July 2013 the persona announced a new phase described as different from earlier ones, again naming major US banks and demanding removal of the film.", "sources": ["S4"]},
+    {"date": "2016-03-24", "name": "DOJ indictment of seven Iranians", "summary": "DOJ unsealed charges against seven Iranians employed by ITSecTeam and Mersad, alleged IRGC-sponsored firms, for DDoS attacks on 46 companies; one defendant also charged over the Bowman Dam SCADA intrusion.", "sources": ["S2"]},
+    {"date": "2017-09-14", "name": "Treasury designations", "summary": "OFAC designated ITSec Team and associated individuals, and Mersad-linked individuals, in connection with the DDoS attacks, as reported.", "sources": ["S3"]}
+  ],
+  "diamond": {
+    "adversary": "Hacktivist persona 'Izz ad-Din al-Qassam Cyber Fighters'; alleged operators are seven Iranian employees of ITSecTeam and Mersad, said by the DOJ (as reported) to be IRGC-sponsored [S1][S2].",
+    "capability": "Volumetric DDoS using the itsoknoproblembro/Brobot toolkit and other botnets, in phased weekly waves [S1][S4].",
+    "infrastructure": "Servers obtained and managed to coordinate the attacks and a botnet, per the indictment as reported; Pastebin used to announce phases and targets [S2][S3][S5].",
+    "victim": "Major US banks and stock exchanges; websites knocked offline though no customer data was stolen [S2][S3].",
+    "socioPolitical": "Public framing as religious protest against 'Innocence of Muslims'; alleged state sponsorship by the IRGC per US charges [S1][S2].",
+    "technology": "Internet-facing bank web services dependent on upstream DDoS mitigation capacity [S1][S2]."
+  },
+  "gaps": [
+    "Primary DOJ indictment and Treasury OFAC press release were not opened; they are known here only through press coverage [S2][S3].",
+    "Whether the persona was a front for the indicted firms, a separate hacktivist group, or a mix is unresolved; 2012 analysts disagreed [S1].",
+    "Reports disagree on the campaign timeline (December 2011 vs December 2012 start); not reconciled here [S2].",
+    "Fraternal Jackal alias is taken from an aggregator (Malpedia); no vendor primary report was found, and its basis is unverified [S6].",
+    "No post-2017 activity by the persona was found in these searches.",
+    "Several useful sources (Recorded Future, CFR, Brookings, Dark Reading) could not be fetched or dated and are not cited.",
+    "The existing Dancho Danchev blog and Pastebin leads in the record were not opened."
+  ],
+  "implications": {
+    "jipoe": "Analyst assessment derived from cited sources; validate before use. STEP 1: Public-facing web portals and the DDoS-mitigation providers that front them are key terrain; the campaign targeted customer-facing bank sites rather than internal data [S2]. STEP 2: Adversary used announced, scheduled weekly waves, and peak volume of 100-140 Gbps exceeded typical single-hacktivist capacity [S1][S2]. STEP 3: Template is a Pastebin announcement of targets and dates, then botnet-driven volumetric DDoS in phases [S4][S5]. STEP 4: MLCOA is a recurring, grievance-triggered DDoS wave on financial-sector sites under a hacktivist persona. MDCOA is the same persona structure used as deniable cover for state-directed disruption timed to a crisis, which the indictment's IRGC sponsorship allegation makes plausible [S2]. Candidate indicators: public posts naming targets and dates, a new persona claiming a grievance, and sudden multi-gigabit floods against financial sites.",
+    "jcc2": "Analyst assessment derived from cited sources; validate before use. (1) Situational awareness: monitor public paste and social channels for announced target lists and dates, since this campaign pre-announced waves [S4][S5]. (2) Authorities: attribution shifted from persona to state-sponsored firms over four years, so response authorities should not wait on attribution [S1][S2]. (3) Mission assurance: ensure upstream DDoS scrubbing capacity for mission-critical public-facing services exceeds the 100-140 Gbps seen here [S1][S2]. (4) Coordination: share indicators with commercial mitigation providers and financial-sector partners, who held most of the visibility [S1]."
+  },
+  "sources": [
+    {"ref": "S1", "title": "Cyberattacks on US banks resume, aiming to block their websites", "publisher": "Christian Science Monitor", "date": "2012-12-14", "url": "https://csmonitor.com/USA/2012/1214/Cyberattacks-on-US-banks-resume-aiming-to-block-their-websites"},
+    {"ref": "S2", "title": "7 Iranians indicted for cyber attacks on US banks and a dam (reporting DOJ indictment)", "publisher": "Help Net Security", "date": "2016-03-24", "url": "https://www.helpnetsecurity.com/2016/03/24/7indicted-cyber-attacks-us-banks-dam/"},
+    {"ref": "S3", "title": "OFAC imposes additional Iranian sanctions; list includes entities involved in DDoS attacks against US financial institutions (reporting Treasury designations)", "publisher": "Orrick", "date": "2017-09-19", "url": "https://infobytes.orrick.com/2017-09-19/ofac-imposes-additional-iranian-sanctions-list-includes-entities-involved-ddos-attacks-against-us-financial-institutions/"},
+    {"ref": "S4", "title": "#OpAbabil Phase 4", "publisher": "Radware", "date": "2013-07", "url": "https://www.radware.com/security/ddos-threats-attacks/threat-advisories-attack-reports/opababil-phase4/"},
+    {"ref": "S5", "title": "Operation Ababil (page undated; cites 18 September 2012 Pastebin announcement)", "publisher": "Wikipedia", "date": "2012-09", "url": "https://en.wikipedia.org/wiki/Operation_Ababil"},
+    {"ref": "S6", "title": "Cyber fighters of Izz Ad-Din Al Qassam (actor entry, alias Fraternal Jackal)", "publisher": "Malpedia (Fraunhofer FKIE)", "date": "2026-10 (retrieved)", "url": "https://malpedia.caad.fkie.fraunhofer.de/actor/cyber_fighters_of_izz_ad-din_al_qassam"}
+  ],
+  "aliasesAdd": [
+    {"name": "Qassam Cyber Fighters", "vendor": "Malpedia"},
+    {"name": "QCF", "vendor": "Malpedia"}
+  ]
+}

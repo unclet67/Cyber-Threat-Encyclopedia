@@ -51,6 +51,13 @@ for f in sorted(glob.glob(f"{adir}/*.json")):
     if bad:
         report["skipped"][aid] = f"undated or URL-less sources {bad}"; continue
     refs = {s.get("ref") for s in srcs}
+    # gaps notes that record a removed source may still name it; neutralise those labels (never touches claims)
+    for gi, g in enumerate(x.get("gaps") or []):
+        if isinstance(g, str) and re.search(r"\b(removed|dropped|deleted)\b", g, re.I):
+            fixed = re.sub(r"\bS\d{1,2}\b", lambda m: m.group(0) if m.group(0) in refs else "(dropped ref)", g)
+            if fixed != g:
+                x["gaps"][gi] = fixed
+                report["warnings"].setdefault(aid, []).append("reworded removal note in gaps")
     body = " ".join(text_of(x[k]) for k in KEYS if k != "sources") + " " + " ".join(" ".join(c.get("sources", [])) for c in x.get("campaigns", []) if isinstance(c, dict))
     used = set(re.findall(r"\bS\d{1,2}\b", re.sub(r"\b(former|removed|deleted)\s+S\d+\b", "", body, flags=re.I)))  # audit notes are not citations; S#### are MITRE software IDs
     dangling = sorted(used - refs)

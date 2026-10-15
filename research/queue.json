@@ -3,46 +3,6 @@
  "verify": [],
  "research": [
   {
-   "id": "clever-kitten",
-   "tier": "T3"
-  },
-  {
-   "id": "curious-gorge",
-   "tier": "T3"
-  },
-  {
-   "id": "curly-comrades",
-   "tier": "T3"
-  },
-  {
-   "id": "cutting-kitten",
-   "tier": "T3"
-  },
-  {
-   "id": "cyber-av3ngers",
-   "tier": "T3"
-  },
-  {
-   "id": "cyber-berkut",
-   "tier": "T3"
-  },
-  {
-   "id": "cyber-fighters-of-izz-ad-din-al-qassam",
-   "tier": "T3"
-  },
-  {
-   "id": "cyber-islamic-resistance",
-   "tier": "T3"
-  },
-  {
-   "id": "cyber-serp",
-   "tier": "T3"
-  },
-  {
-   "id": "cyber-toufan",
-   "tier": "T3"
-  },
-  {
    "id": "dagger-panda",
    "tier": "T3"
   },
@@ -871,6 +831,7 @@
   "cl-sta-1087",
   "cl-unk-1068",
   "clay-typhoon",
+  "clever-kitten",
   "copper-typhoon",
   "copykittens",
   "coral-sleet",
@@ -878,6 +839,15 @@
   "crescent-typhoon",
   "crimson-sandstorm",
   "cuboid-sandstorm",
+  "curious-gorge",
+  "curly-comrades",
+  "cutting-kitten",
+  "cyber-av3ngers",
+  "cyber-berkut",
+  "cyber-fighters-of-izz-ad-din-al-qassam",
+  "cyber-islamic-resistance",
+  "cyber-serp",
+  "cyber-toufan",
   "daggerfly",
   "diamond-sleet",
   "elderwood",
@@ -1003,7 +973,12 @@
   "cl-sta-0048",
   "cl-sta-1087",
   "cl-unk-1068",
+  "clever-kitten",
   "crescent-typhoon",
+  "curious-gorge",
+  "cyber-islamic-resistance",
+  "cyber-serp",
+  "cyber-toufan",
   "lilac-typhoon",
   "mofang",
   "obsidian-sandstorm",

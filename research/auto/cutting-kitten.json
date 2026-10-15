@@ -1,0 +1,160 @@
+{
+  "identification": {
+    "summary": "CFR lists Cutting Kitten as an alias of Operation Cleaver, also known as Group 41, a suspected Iranian-sponsored group targeting governments and private-sector entities for espionage and sabotage; CFR says it is believed responsible for compromising US Navy computers on the Navy Marine Corps Intranet and energy and airline firms in several countries [S1]. Cylance's December 2014 report tracked the actor as Tarh Andishan and said it had compromised more than 50 victims since at least 2012 [S2][S3]. Dell SecureWorks' TG-2889 is reported to appear to be the same Iranian-sponsored activity Cylance documented as Operation Cleaver [S4].",
+    "firstObserved": "Cylance said victims had been targeted and compromised since at least 2012 [S3].",
+    "notes": "This record's imported text (DoS attacks on US banks in 2012-2013; three individuals indicted in 2016) describes a different CFR entry and does not match the cited coverage of the 2016-03-24 DOJ action, which reports seven defendants employed by ITSecTeam and Mersad Company [S6][S7]. The sources gathered do not state that the Cleaver/Tarh Andishan cluster and the ITSecTeam bank-DDoS defendants are the same organization. The ITsecTeam alias appears on this record from MISP/aggregator data only (not verified in a primary vendor source here). Do not merge facts across these clusters without primary documents."
+  },
+  "attribution": {
+    "sponsor": "Suspected Iran. CFR names Iran as the suspected state sponsor of Operation Cleaver / Cutting Kitten [S1]. The 2016 DOJ indictment (as reported) states the ITSecTeam and Mersad Company employees had ties to the Islamic Revolutionary Guard Corps [S6].",
+    "confidence": "Contested. Cylance linked activity to Tarh Andishan, with some operations traced to IP blocks registered to that entity in Tehran, but reporting notes that strong connections to Iranian state backing were difficult to prove and a senior Iranian official dismissed the report [S3]. SecureWorks assessed with high confidence that the fake LinkedIn network was built for social engineering; its link of TG-2889 to Cleaver is stated as an apparent match [S4].",
+    "basis": "Cylance technical reporting and IP registration [S2][S3]; SecureWorks CTU research on TG-2889 [S4]; CFR profile [S1]. DOJ attribution applies to the ITSecTeam/Mersad defendants, reported via press [S6][S7]."
+  },
+  "objectives": "Espionage and sabotage against governments and private-sector entities, per CFR [S1]. Cylance said the group exfiltrated extremely sensitive data from critical infrastructure companies but had no direct evidence of successful compromise of specific ICS/SCADA networks [S3].",
+  "targeting": {
+    "sectors": [
+      "Airlines and airports",
+      "Oil and gas",
+      "Manufacturing",
+      "Government agencies",
+      "Universities",
+      "Energy",
+      "US Navy network (NMCI)",
+      "Telecommunications, government and defense (LinkedIn social-engineering targets)"
+    ],
+    "regions": [
+      "Global; more than 50 victims, about 10 headquartered in the United States [S3]",
+      "Middle East (most real LinkedIn accounts in the TG-2889 network belonged to people in the Middle East) [S4]"
+    ],
+    "notes": "Cylance counted nine oil and gas firms among victims [S3]."
+  },
+  "capabilities": {
+    "summary": "Cylance reported initial access by SQL injection, spear phishing or watering-hole attacks, no zero-days observed, and a proprietary botnet called TinyZbot [S2][S3]. SecureWorks documented a network of at least 25 fake LinkedIn personas (17 of them supporter personas), used for social engineering [S4]."
+  },
+  "campaigns": [
+    {
+      "date": "2012",
+      "name": "Earliest reported Cleaver compromises",
+      "summary": "Cylance said it had observed compromises of more than 50 victims since at least 2012.",
+      "sources": [
+        "S3"
+      ]
+    },
+    {
+      "date": "2014-12",
+      "name": "Cylance publishes Operation Cleaver",
+      "summary": "Cylance's report attributes global critical-infrastructure and other intrusions to Tarh Andishan; Iranian officials dismissed it.",
+      "sources": [
+        "S1",
+        "S2",
+        "S3"
+      ]
+    },
+    {
+      "date": "2015-10",
+      "name": "SecureWorks TG-2889 fake LinkedIn network",
+      "summary": "SecureWorks CTU reports 25 fake personas used for social engineering, apparently tied to the Cleaver actor.",
+      "sources": [
+        "S4"
+      ]
+    },
+    {
+      "date": "2016-03-24",
+      "name": "DOJ indictment of ITSecTeam and Mersad employees (separate cluster, imported alias)",
+      "summary": "Seven Iranian nationals charged over DDoS attacks on US banks; one also charged over the 2013 Bowman Avenue Dam intrusion. Link to Cleaver is not established in these sources.",
+      "sources": [
+        "S6",
+        "S7"
+      ]
+    }
+  ],
+  "diamond": {
+    "adversary": "Suspected Iran-based operators; Cylance named Tarh Andishan [S1][S3].",
+    "capability": "SQL injection, spear phishing, watering holes, TinyZbot botnet, fake social-media personas [S3][S4].",
+    "infrastructure": "IP blocks registered to Tarh Andishan in Tehran for some operations [S3].",
+    "victim": "Airlines, airports, oil and gas, manufacturers, government and universities worldwide [S3].",
+    "socioPolitical": "Suspected Iranian state espionage and sabotage interest [S1]; specifics beyond this are not established in gathered sources.",
+    "technology": "Internet-facing web applications vulnerable to SQL injection, user trust in professional social networks and email [S3][S4]."
+  },
+  "gaps": [
+    "Primary documents not opened: Cylance Operation Cleaver report (a FOIA-released copy exists, S8), SecureWorks original report, DOJ indictment text. WebFetch could not reach any host; findings rely on search-result summaries.",
+    "Unclear whether ITsecTeam (DOJ-charged bank-DDoS defendants) and Cleaver/Cutting Kitten are the same organization; imported record merges them.",
+    "Imported summary says three individuals were indicted; press reports say seven.",
+    "Cylance's attribution to Iranian state direction is contested and not independently confirmed here.",
+    "Claimed evolution of the group into Charming Kitten / APT35 appears only in an aggregator and is unverified.",
+    "No MITRE ATT&CK group ID or Microsoft name mapping confirmed for this record.",
+    "Full victim and country list and the complete malware inventory were not verified."
+  ],
+  "implications": {
+    "jipoe": "Analyst assessment derived from cited sources; validate before use. STEP 1: Internet-facing web applications, airline and airport networks, energy and oil and gas firms, and personnel on professional social networks are key terrain [S3][S4]. STEP 2: The actor used commodity initial access with no zero-days, so basic web hygiene shifts defender advantage [S3]. STEP 3: Template is SQL injection or spear phishing or watering hole, then botnet implant and data exfiltration, supported by social-engineering personas [S3][S4]. STEP 4: MLCOA is continued espionage against energy, aviation and defense-linked targets. MDCOA is movement from data theft toward disruption of critical infrastructure, which CFR's espionage-and-sabotage description allows but Cylance did not observe [S1][S3]. Candidate indicators: SQL injection against public web apps, unsolicited recruiter contacts from new LinkedIn profiles with mutual-endorsement networks, and anomalous outbound beaconing.",
+    "jcc2": "Analyst assessment derived from cited sources; validate before use. (1) Situational awareness: track Iran-linked activity against DIB, energy and aviation partners, keeping separate the Cleaver and ITSecTeam DDoS clusters [S3][S6]. (2) Authorities: activity against non-DoD critical infrastructure routes through DHS/FBI and DC3 partnerships rather than DoD action. (3) Mission assurance: NMCI compromise reported by CFR suggests prioritizing web-facing application hardening and phishing awareness [S1]. (4) Coordination: share social-engineering persona indicators with security and counterintelligence personnel [S4]."
+  },
+  "sources": [
+    {
+      "ref": "S1",
+      "title": "Operation Cleaver (CFR Cyber Operations Tracker)",
+      "publisher": "Council on Foreign Relations",
+      "date": "2014-12",
+      "url": "https://www.cfr.org/cyber-operations/operation-cleaver"
+    },
+    {
+      "ref": "S2",
+      "title": "Cylance unveils details of Iran-based hacking in Operation Cleaver report",
+      "publisher": "CSO Online",
+      "date": "2014-12",
+      "url": "https://www.csoonline.com/article/549952/cylance-unveils-details-of-iran-based-hacking-in-operation-cleaver-report.html"
+    },
+    {
+      "ref": "S3",
+      "title": "Iranian-sponsored hackers hit critical infrastructure companies: research (reporting Cylance report)",
+      "publisher": "SecurityWeek",
+      "date": "2014-12",
+      "url": "https://www.securityweek.com/iranian-sponsored-hackers-hit-critical-infrastructure-companies-research"
+    },
+    {
+      "ref": "S4",
+      "title": "Suspected Iran-based hacker group creates network of fake LinkedIn profiles (reporting Dell SecureWorks CTU)",
+      "publisher": "Sophos",
+      "date": "2015-10",
+      "url": "https://www.sophos.com/en-us/research/suspected-iran-based-hacker-group-creates-network-of-fake-linkedin-profiles"
+    },
+    {
+      "ref": "S6",
+      "title": "Justice indicts 7 Iranian hackers for attacks on US infrastructure (reporting DOJ indictment)",
+      "publisher": "Federal Times",
+      "date": "2016-03-24",
+      "url": "https://federaltimes.com/2016/03/24/justice-indicts-7-iranian-hackers-for-attacks-on-us-infrastructure"
+    },
+    {
+      "ref": "S7",
+      "title": "US charges Iranian hackers (reporting DOJ indictment)",
+      "publisher": "The Register",
+      "date": "2016-03-24",
+      "url": "https://www.theregister.com/2016/03/24/us_charges_iranian_hackers/"
+    },
+    {
+      "ref": "S8",
+      "title": "Cylance Operation Cleaver Report (FOIA-released copy; not opened)",
+      "publisher": "ACLU",
+      "date": "2014-12",
+      "url": "https://assets.aclu.org/live/uploads/document/foia/Cylance-Operation-Cleaver-Report-1748-1833.pdf"
+    }
+  ],
+  "aliasesAdd": [
+    {
+      "name": "Operation Cleaver",
+      "vendor": "Council on Foreign Relations"
+    },
+    {
+      "name": "Group 41",
+      "vendor": "Council on Foreign Relations"
+    },
+    {
+      "name": "Tarh Andishan",
+      "vendor": "Cylance"
+    },
+    {
+      "name": "TG-2889",
+      "vendor": "Dell SecureWorks"
+    }
+  ]
+}

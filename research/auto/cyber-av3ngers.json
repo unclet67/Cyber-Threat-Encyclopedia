@@ -1,0 +1,72 @@
+{
+  "identification": {
+    "summary": "Cyber Av3ngers (CyberAv3ngers) is an Iranian persona that CISA and partner agencies describe as IRGC-affiliated and that has claimed many attacks on critical infrastructure [S1]. It is best known for compromising internet-exposed Israeli-made Unitronics Vision Series PLCs in late 2023 [S1], for the IOCONTROL IoT/OT malware reported by Claroty Team82 in December 2024 [S3], and for a 2026 campaign against Rockwell Automation PLCs described in advisory AA26-097A [S5][S6].",
+    "firstObserved": "Cyble reports that the group claims to be behind power outages in parts of Israel since 2020 (a claim, not verified) [S7]. Government-documented activity: Unitronics PLC compromises from about 22 November 2023 [S1].",
+    "notes": "Microsoft name per coverage of AA26-097A: Storm-0784 (Microsoft's own page was not retrieved). Other names listed in that coverage: Shahid Kaveh Group, Hydro Kitten, UNC5691 [S5]. Treat vendor cluster names as the vendors' own tracking until mapped; do not merge vendor facts without the primary reports."
+  },
+  "attribution": {
+    "sponsor": "Islamic Revolutionary Guard Corps (IRGC) Cyber-Electronic Command (IRGC-CEC). CISA, FBI, NSA, EPA and Israel's National Cyber Directorate called the actors IRGC-affiliated in AA23-335A [S1]. The 2026 advisory (AA26-097A) links the activity to the IRGC-CEC [S5].",
+    "confidence": "Stated by government agencies in joint advisories [S1][S5]. Treasury sanctioned six IRGC-CEC officials on 2 February 2024 over IRGC-affiliated actors' Unitronics PLC intrusions; a State Department reward offer of up to $10 million explicitly named the CyberAv3ngers group [S4]. Claroty describes the group as believed to be part of the IRGC-CEC [S3].",
+    "basis": "Joint government advisories [S1][S5]; US sanctions on IRGC-CEC officials and a later reward offer (per press coverage, not primary documents) [S4]; Claroty's attribution of the IOCONTROL sample source to the group [S3]."
+  },
+  "objectives": "Disruption and psychological/propaganda effect against Israel-linked and US critical infrastructure. In 2023 the actors said they chose Unitronics PLCs because of their Israeli manufacturer, and displayed anti-Israel messages on compromised HMIs [S2]. In 2026 reporting, operators tampered with PLC project files and manipulated HMI/SCADA displays, causing operational disruption and financial loss [S5][S6].",
+  "targeting": {
+    "sectors": [
+      "Water and wastewater",
+      "Energy",
+      "Food and beverage",
+      "Healthcare",
+      "Municipal and government services",
+      "Fuel management and distribution (IOCONTROL)"
+    ],
+    "regions": [
+      "United States [S1][S5]",
+      "Israel [S3][S7]"
+    ],
+    "notes": "2023 Unitronics targeting spanned water/wastewater, energy, food and beverage, and healthcare [S1]; the Aliquippa, Pennsylvania water authority was among the victims [S2]. IOCONTROL affected Orpak and Gasboy fuel management systems in Israel and the US [S3]. The 2026 campaign hit Rockwell/Allen-Bradley devices across US government services, water and wastewater, and energy; victims were not named [S5][S6]. Some Israeli claims (for example power outages and water stations) were not independently confirmed [S7]."
+  },
+  "capabilities": {
+    "summary": "2023: access to internet-exposed Unitronics PLCs/HMIs using default credentials, then defacement of HMI screens, in some cases rendering devices inoperable [S1][S2]. Dec 2024: IOCONTROL, a custom modular Linux-based IoT/OT malware reported to run on devices from multiple vendors (including Baicells, D-Link, Hikvision, Red Lion, Orpak, Phoenix Contact, Teltonika, Unitronics); it allows remote OS command execution and self-deletion, and the deployment method was not determined [S3]. 2026: direct connection to internet-exposed Rockwell PLCs using legitimate engineering software (Studio 5000 Logix Designer), Dropbear SSH for persistence, extraction, modification and redeployment of project files, and HMI/SCADA display manipulation, per advisory coverage [S5]. A secondary report states CVE-2021-22681 was used and sources disagree on its CVSS score [S6]. The July 2026 advisory update reportedly broadened vendor scope to include Schneider Electric and Siemens PLCs [S5]. Tradecraft is largely opportunistic use of exposed, weakly protected devices rather than demonstrated zero-days [S1][S6]."
+  },
+  "campaigns": [
+    {"date": "2023-10", "name": "Claimed attacks on Israeli power and water", "summary": "Cyble reports the group claimed compromise of Israeli electricity and water infrastructure (including Nahariyya and Yavne electricity facilities and water stations) and published video evidence; Cyble found some screenshots did not support the claims, and independent confirmation was absent.", "sources": ["S7"]},
+    {"date": "2023-11", "name": "Unitronics PLC compromises", "summary": "From about 22 November 2023 the actors compromised internet-exposed, default-password Unitronics Vision Series PLCs in multiple sectors, including the Aliquippa, Pennsylvania water authority, and defaced HMIs.", "sources": ["S1", "S2"]},
+    {"date": "2024-02", "name": "US sanctions on IRGC-CEC officials", "summary": "Treasury sanctioned six IRGC-CEC officials on 2 February 2024 over Unitronics PLC intrusions; a related State Department reward offer of up to $10 million named the CyberAv3ngers group.", "sources": ["S4"]},
+    {"date": "2024-12", "name": "IOCONTROL reported", "summary": "Claroty Team82 published analysis of IOCONTROL extracted from a fuel management system allegedly compromised by the group; a wave hit several hundred Orpak and Gasboy systems in Israel and the US.", "sources": ["S3"]},
+    {"date": "2026-04", "name": "Rockwell PLC campaign (AA26-097A)", "summary": "Joint advisory of 7 April 2026 describes IRGC-CEC-aligned activity against Rockwell Automation PLCs across US government services, water and energy, with operational disruption; updated 22 July 2026 with wider vendor scope (Schneider Electric and Siemens) and new indicators.", "sources": ["S5", "S6"]}
+  ],
+  "diamond": {
+    "adversary": "IRGC-CEC-affiliated operators using the Cyber Av3ngers persona [S1][S5].",
+    "capability": "Default-credential exploitation of exposed PLCs/HMIs, IOCONTROL, legitimate vendor engineering software, Dropbear SSH [S1][S3][S5].",
+    "infrastructure": "Per secondary reporting, leased VPS infrastructure and EtherNet/IP (port 44818) access to internet-exposed PLCs [S6]; IOCONTROL command-and-control details not captured here [S3].",
+    "victim": "Water/wastewater, energy, fuel management, healthcare, food and beverage, and municipal operators in the US and Israel [S1][S3][S5].",
+    "socioPolitical": "Anti-Israel messaging and targeting of Israeli-made equipment, with IRGC-CEC sponsorship per government advisories [S1][S2][S5].",
+    "technology": "Internet-exposed OT devices with default or weak credentials and direct remote engineering access [S1][S5]."
+  },
+  "gaps": [
+    "Primary documents (CISA AA23-335A, AA26-097A and its July 2026 update, MITRE G1027, Treasury and State releases, Microsoft and Dragos pages) could not be opened; this record relies on search-result summaries and secondary reporting [S1][S5].",
+    "Microsoft's Storm-0784 mapping and the Dragos (Bauxite) and Mandiant (UNC5691) cluster definitions were not verified from the vendors' own pages; one search summary attributed such mappings to a Tenable FAQ whose date was not captured.",
+    "Initial access method and deployment of IOCONTROL were not determined by Claroty [S3].",
+    "Credibility of many Israel-focused claims (power outages, water stations) is unconfirmed [S7].",
+    "2026 victim identities, exact CVE use (CVE-2021-22681 reported only by secondary sources) and the Siemens/Schneider scope are unverified [S6].",
+    "Exact date of the State Department reward announcement was not captured [S4]."
+  ],
+  "implications": {
+    "jipoe": "Analyst assessment derived from cited sources; validate before use. STEP 1: Internet-reachable PLCs, HMIs and fuel management systems at installations, utilities and supporting commercial infrastructure are key terrain [S1][S3][S5]. STEP 2: The environment favors the actor because exposed devices often retain default credentials and open engineering ports [S1][S6]. STEP 3: Template is scan and access exposed OT, use default credentials or legitimate engineering software, alter project files or HMI displays, and publicize the result [S1][S5]. STEP 4: MLCOA is continued opportunistic defacement and disruption of exposed US and Israeli water, energy and fuel systems, timed to regional events [S1][S5]. MDCOA is use of IOCONTROL-class malware or project-file manipulation for lasting physical disruption of supporting utilities [S3][S5]. Candidate indicators: PLC/HMI defacement, unexpected Studio 5000 or EtherNet/IP (44818) sessions from unfamiliar hosts, new Dropbear SSH services on OT devices, changed PLC project files [S5][S6].",
+    "jcc2": "Analyst assessment derived from cited sources; validate before use. (1) Situational awareness: track CISA/FBI advisory updates and OT exposure of base and contractor utilities. (2) Authorities: remediation of non-DoD utilities lies with owners and civil agencies; coordinate through established channels rather than act directly [S5]. (3) Mission assurance: identify OT dependencies (water, power, fuel) of critical missions, remove PLCs from direct internet exposure, change default passwords and add access controls [S1]. (4) Coordination: share indicators with partner agencies and sector ISACs; separate persona claims from verified effects before reporting [S7]."
+  },
+  "sources": [
+    {"ref": "S1", "title": "IRGC-Affiliated Cyber Actors Exploit PLCs in Multiple Sectors, Including U.S. Water and Wastewater Systems Facilities (AA23-335A; known only via search results, page not opened)", "publisher": "CISA", "date": "2023-12", "url": "https://cisa.gov/news-events/cybersecurity-advisories/aa23-335a"},
+    {"ref": "S2", "title": "ICS at Multiple US Water Facilities Targeted by Hackers Affiliated with Iranian Government (reporting CISA advisory; date approximate)", "publisher": "SecurityWeek", "date": "2023-12", "url": "https://www.securityweek.com/ics-at-multiple-us-water-facilities-targeted-by-hackers-affiliated-with-iranian-government/"},
+    {"ref": "S3", "title": "Researchers reveal OT-specific malware in use and in development (reporting Claroty Team82 IOCONTROL research)", "publisher": "Help Net Security", "date": "2024-12-17", "url": "https://www.helpnetsecurity.com/2024/12/17/ot-specific-malware-siemens-industrial-iot/"},
+    {"ref": "S4", "title": "Iran cyber hack Unitronics sanction Israel (reporting Treasury sanctions on IRGC-CEC officials; date approximate)", "publisher": "NBC News", "date": "2024-02", "url": "https://www.nbcnews.com/tech/security/iran-cyber-hack-unitronics-sanction-israel-rcna137012"},
+    {"ref": "S5", "title": "CISA Updates Iranian-Affiliated PLC Targeting Advisory (AA26-097A) (reporting CISA advisory, original 2026-04-07, updated 2026-07-22)", "publisher": "WaterISAC", "date": "2026-07", "url": "https://www.waterisac.org/tlpclear-cisa-updates-iranian-affiliated-plc-targeting-advisory-aa26-097a"},
+    {"ref": "S6", "title": "Threat advisory TA2026094 on Iranian Rockwell PLC targeting (secondary analysis of AA26-097A)", "publisher": "Hive Pro", "date": "2026-04", "url": "https://hivepro.com/wp-content/uploads/2026/04/TA2026094.pdf"},
+    {"ref": "S7", "title": "Israel-Palestine conflict and looming threat on critical infrastructure (date approximate)", "publisher": "Cyble", "date": "2023-10", "url": "https://cyble.com/blog/israel-palestine-conflict-and-looming-threat-on-critical-infra/"}
+  ],
+  "aliasesAdd": [
+    {"name": "Storm-0784", "vendor": "Microsoft"},
+    {"name": "Hydro Kitten", "vendor": "Other / unspecified"},
+    {"name": "UNC5691", "vendor": "Mandiant"}
+  ]
+}
