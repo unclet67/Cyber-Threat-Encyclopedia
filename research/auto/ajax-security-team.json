@@ -1,0 +1,196 @@
+{
+  "identification": {
+    "summary": "Iran-based group that MITRE says has been active since at least 2010 and moved from website defacement to malware-based cyber espionage by 2014, targeting the US defense industrial base and Iranian users of anti-censorship tools [S1]. FireEye's Operation Saffron Rose report described the group using fake conference lures, spoofed login pages and 'Stealer' malware that exfiltrated data over FTP [S4]. CrowdStrike tracks the same activity as FLYING KITTEN [S3]. MITRE also associates the Rocket Kitten / Operation Woolen-Goldfish reporting with this group as a potential relationship [S1].",
+    "firstObserved": "MITRE: active since at least 2010 (defacement era) [S1]. CrowdStrike: tracking as FLYING KITTEN since mid-January 2014 [S3]. Rocket Kitten reporting: operating since at least mid-2014 [S8].",
+    "notes": "No Microsoft threat-actor name was found for this cluster in the sources gathered. MITRE G0130 groups Ajax Security Team, Flying Kitten, Operation Saffron Rose, AjaxTM, Operation Woolen-Goldfish and Rocket Kitten, but describes the Rocket Kitten link only as a 'potential relationship' based on infrastructure, tools and modes of operation [S1]. Ajax/Saffron Rose/Flying Kitten reporting comes from FireEye and CrowdStrike (2014) [S3]; Rocket Kitten, Woolen-Goldfish and Thamar Reservoir reporting comes from Trend Micro, ClearSky and Check Point (2015) [S5][S6][S8][S9]. Facts are kept attributed to the reporting vendor."
+  },
+  "attribution": {
+    "sponsor": "Iran (suspected). FireEye assessed the Ajax Security Team was likely backed by the Iranian government but could not say whether it operated alone or within a larger coordinated effort [S4]. Press coverage of Check Point's Rocket Kitten report linked the group to the Islamic Revolutionary Guard Corps, though Check Point's own wording was more cautious [S9].",
+    "confidence": "Vendor assessments only. FireEye: suspected Iranian-government backing; press coverage is inconsistent, with some quoting the report as calling the government relationship inconclusive [S4]. Trend Micro: Woolen-Goldfish 'possibly state-sponsored' [S5]. ClearSky: evidence points to Iranian hackers [S6]. Check Point: suggested an official body may have recruited local hackers; press coverage linked the group to the IRGC [S9]. No government attribution was found in the sources gathered.",
+    "basis": "Persian-language and Iran time-zone settings on most victim machines found on one C2 server [S4]; Iranian forum origins and defacement history [S1][S4]; Persian-language references in code (Rocket Kitten, per researchers Anderson and Guarnieri) [S10]; operational-security failures exposing a developer persona 'Wool3n.H4T' [S9]."
+  },
+  "objectives": "Espionage supporting Iranian state interests: collecting information from US defense contractors and monitoring Iranian dissidents and users of anti-censorship tools [S4]. Trend Micro and ClearSky judged Rocket Kitten was not after monetary gain but was keeping tabs on individuals affiliated with foreign-policy and defense actors [S8]. ClearSky assessed Thamar Reservoir access was sought for espionage or other nation-state interests [S6].",
+  "targeting": {
+    "sectors": [
+      "Defense industrial base (US) [S3]",
+      "Aerospace / defense contractors [S3]",
+      "Iranian dissidents and political activists [S3][S10]",
+      "Users of anti-censorship tools (Psiphon, Proxifier) [S4]",
+      "Diplomacy, defense and security, journalism, human rights [S6]",
+      "Academics and Iran researchers [S6]"
+    ],
+    "regions": [
+      "United States [S3]",
+      "Iran (domestic users) [S4][S10]",
+      "Israel [S5][S6]",
+      "Europe [S5]",
+      "Middle East broadly [S6][S8]",
+      "Iranian diaspora [S7]"
+    ],
+    "notes": "FireEye identified 77 victims on one C2 server, most with Persian-language and Iran time-zone settings [S4]. ClearSky counted about 550 targets, mostly in the Middle East, in the Thamar Reservoir / Rocket Kitten activity [S6][S8]. Citizen Lab's 2015 diaspora 2FA-phishing report shares infrastructure and tactics with earlier Iranian campaigns but does not name this group [S7]."
+  },
+  "capabilities": {
+    "summary": "Low-to-moderate sophistication social engineering and credential theft. Spearphishing with fake conference (IEEE) lures and spoofed credential pages such as Outlook Web Access, followed by prompts to install a fake 'browser patch' [S3][S4]. Custom 'Stealer' malware exfiltrating data over FTP [S4]. Trojanized anti-censorship software [S4]. Rocket Kitten used GHOLE malware, a modified version of a Core Security penetration-testing tool, and later OneDrive links to files posing as PowerPoint presentations [S5]. Thamar Reservoir activity combined compromised trusted websites hosting fake pages, multi-stage malware, phone calls and social-media messages [S6]. Real-time phishing designed to defeat Gmail two-factor authentication was documented against Iranian diaspora targets (not attributed by name) [S7]. Telegram account takeover via intercepted SMS codes and abuse of Telegram's API to enumerate 15 million Iranian phone numbers was attributed to Rocket Kitten by outside researchers [S10]. ClearSky judged the operators technically unsophisticated and prone to mistakes [S6]."
+  },
+  "campaigns": [
+    {
+      "date": "2010",
+      "name": "Website defacements",
+      "summary": "MITRE says the group has been active since at least 2010, initially defacing websites before moving to espionage by 2014.",
+      "sources": [
+        "S1"
+      ]
+    },
+    {
+      "date": "2014-01",
+      "name": "FLYING KITTEN tracking begins",
+      "summary": "CrowdStrike begins tracking FLYING KITTEN, observing targeting of multiple US defense contractors and political dissidents using spoofed login pages and 'Browser Patch' stealer downloads.",
+      "sources": [
+        "S3"
+      ]
+    },
+    {
+      "date": "2014-05",
+      "name": "Operation Saffron Rose",
+      "summary": "FireEye reports Ajax Security Team espionage against the US defense industrial base and Iranian anti-censorship tool users, with Stealer malware and 77 victims on one C2 server.",
+      "sources": [
+        "S4"
+      ]
+    },
+    {
+      "date": "2015-03",
+      "name": "Operation Woolen-Goldfish / GHOLE",
+      "summary": "Trend Micro reports Rocket Kitten spearphishing of Israeli and European organizations using GHOLE malware and OneDrive-hosted lures.",
+      "sources": [
+        "S5"
+      ]
+    },
+    {
+      "date": "2015-06",
+      "name": "Thamar Reservoir",
+      "summary": "ClearSky details an Iranian campaign against about 550 Middle East targets in diplomacy, defense, journalism and human rights, named after targeted Israeli researcher Thamar E. Gindin.",
+      "sources": [
+        "S6"
+      ]
+    },
+    {
+      "date": "2015-08",
+      "name": "Two-factor authentication phishing of Iranian diaspora",
+      "summary": "Citizen Lab documents phone-call-initiated real-time phishing to bypass Gmail 2FA; shares infrastructure with earlier Iranian campaigns but is not attributed by name.",
+      "sources": [
+        "S7"
+      ]
+    },
+    {
+      "date": "2015-09",
+      "name": "Rocket Kitten 2 (The Spy Kittens Are Back)",
+      "summary": "Trend Micro and ClearSky report continued Rocket Kitten targeting of Israelis, Iranian exiles and opponents of Iran, focused on personal accounts.",
+      "sources": [
+        "S8"
+      ]
+    },
+    {
+      "date": "2015-11",
+      "name": "Rocket Kitten: A Campaign With 9 Lives",
+      "summary": "Check Point exposes main developer persona 'Wool3n.H4T' after gaining access to a misconfigured group phishing server and a C2 server.",
+      "sources": [
+        "S9"
+      ]
+    },
+    {
+      "date": "2016-08",
+      "name": "Telegram account compromises",
+      "summary": "Researchers attribute compromise of more than a dozen Telegram accounts and enumeration of 15 million Iranian phone numbers to Rocket Kitten (reporting Reuters).",
+      "sources": [
+        "S10"
+      ]
+    }
+  ],
+  "diamond": {
+    "adversary": "Iran-based operators who emerged from Iranian hacker forums and defacement activity; developer persona 'Wool3n.H4T' exposed by Check Point [S1][S4][S9].",
+    "capability": "Spearphishing, spoofed login pages, Stealer malware, GHOLE malware, trojanized anti-censorship tools, real-time 2FA phishing, SMS-code interception [S3][S4][S5][S10].",
+    "infrastructure": "Typosquat domains spoofing target organizations, FTP exfiltration servers, compromised trusted websites hosting fake pages, OneDrive-hosted lures [S3][S5][S6].",
+    "victim": "US defense contractors; Iranian dissidents, activists and anti-censorship users; Israeli and European researchers, diplomats, journalists and defense personnel [S3][S5][S6][S10].",
+    "socioPolitical": "Monitoring of regime opponents and collection on foreign-policy and defense communities of interest to Iran [S4][S8].",
+    "technology": "Webmail and OWA credential flows, SMS-based authentication, consumer messaging apps (Telegram) and personal accounts that bridge into corporate networks [S3][S8][S10]."
+  },
+  "gaps": [
+    "Cluster boundary: MITRE treats Rocket Kitten as only a potential relationship to Ajax Security Team; FireEye/CrowdStrike (Ajax/Flying Kitten) and Trend Micro/ClearSky/Check Point (Rocket Kitten) reporting may describe distinct but related clusters [S1].",
+    "No Microsoft threat-actor name, and no US government attribution or indictment, was found for this cluster.",
+    "Primary documents not opened directly: FireEye Saffron Rose PDF, Check Point 'Campaign With 9 Lives' report, Trend Micro white papers, ClearSky Thamar Reservoir PDF and the MITRE G0130 page (WebFetch failed); details rely on search-result summaries and press coverage.",
+    "The FireEye PDF is labeled 2013 while coverage dates publication to May 2014; exact publication date unverified.",
+    "Citizen Lab's 2015 2FA phishing report does not attribute the activity to a named group; inclusion here reflects shared Iranian infrastructure only [S7].",
+    "Imported aliases Group 26, Sayad, Timberworm, TEMP.Beanie and Thamar Reservoir were not confirmed by a source gathered in this pass.",
+    "No reporting on activity after 2016 was found; current status (dissolved, renamed or absorbed into other Iranian clusters) is unknown."
+  ],
+  "implications": {
+    "jipoe": "Analyst assessment derived from cited sources; validate before use. STEP 1 (operational environment): key terrain is identity rather than networks: personal webmail, OWA portals, SMS-based 2FA and messaging accounts of defense staff, analysts and dissident contacts [S3][S7][S10]. STEP 2 (effects): personal-account compromise lets the actor bridge from weakly defended home networks into corporate accounts [S8]. STEP 3 (threat evaluation): template is spoofed domain or lure (fake conference, OneDrive document), credential capture, then a stealer or GHOLE implant with FTP exfiltration [S4][S5]. STEP 4 (COAs): MLCOA is persistent credential phishing of defense-industry and policy personnel and their personal accounts for espionage [S3][S8]. MDCOA is real-time 2FA bypass or SMS interception against personnel with access to mission systems, enabling account takeover and contact-network mapping [S7][S10]. Candidate indicators: lookalike domains of the unit or contractor, unsolicited conference invitations, 'browser patch' download prompts after login, unexpected 2FA codes or calls from foreign numbers, outbound FTP from user endpoints [S3][S4][S7].",
+    "jcc2": "Analyst assessment derived from cited sources; validate before use. Situational awareness: fuse phishing reports from personal and official accounts, since this actor targets both [S8]. Authorities: personal and diaspora-contact accounts fall outside DODIN defensive authority; coordinate with counterintelligence and law enforcement. Mission assurance: phishing-resistant MFA instead of SMS codes and awareness training for staff targeted via conference and Iran-studies lures [S4][S7][S10]. Coordination: share lookalike-domain and C2 indicators with DIB partners, who were primary 2014 victims [S3]."
+  },
+  "sources": [
+    {
+      "ref": "S1",
+      "title": "Ajax Security Team, G0130 (MITRE ATT&CK group page; content via search results and mirrors)",
+      "publisher": "MITRE",
+      "date": "2026-07-31",
+      "url": "https://attack.mitre.org/groups/G0130"
+    },
+    {
+      "ref": "S3",
+      "title": "Cat Scratch Fever: CrowdStrike Tracks Newly Reported Iranian Actor as FLYING KITTEN",
+      "publisher": "CrowdStrike",
+      "date": "2014-05-13",
+      "url": "https://www.crowdstrike.com/blog/cat-scratch-fever-crowdstrike-tracks-newly-reported-iranian-actor-flying-kitten/"
+    },
+    {
+      "ref": "S4",
+      "title": "Suspected Iranian hackers target US defense industry, FireEye says (reporting FireEye Saffron Rose)",
+      "publisher": "PCWorld",
+      "date": "2014-05",
+      "url": "https://www.pcworld.com/article/439253/suspected-iranian-hackers-target-us-defense-industry-fireeye-says.html"
+    },
+    {
+      "ref": "S5",
+      "title": "Rocket Kitten Showing Its Claws: Operation Woolen-GoldFish and the GHOLE campaign",
+      "publisher": "Trend Micro",
+      "date": "2015-03",
+      "url": "https://www.trendmicro.com/vinfo/us/security/news/cyber-attacks/operation-woolen-goldfish-when-kittens-go-phishing"
+    },
+    {
+      "ref": "S6",
+      "title": "Thamar Reservoir: An Iranian cyber-attack campaign against targets in the Middle East",
+      "publisher": "ClearSky",
+      "date": "2015-06",
+      "url": "https://www.clearskysec.com/thamar-reservoir/"
+    },
+    {
+      "ref": "S7",
+      "title": "London Calling: Two-Factor Authentication Phishing From Iran",
+      "publisher": "Citizen Lab",
+      "date": "2015-08-27",
+      "url": "https://citizenlab.ca/2015/08/iran_two_factor_phishing/"
+    },
+    {
+      "ref": "S8",
+      "title": "The Spy Kittens Are Back: Rocket Kitten 2",
+      "publisher": "Trend Micro and ClearSky",
+      "date": "2015-09",
+      "url": "https://documents.trendmicro.com/assets/wp/wp-the-spy-kittens-are-back.pdf"
+    },
+    {
+      "ref": "S9",
+      "title": "Opsec Blunders Expose Rocket Kitten Masterminds (reporting Check Point 'Rocket Kitten: A Campaign With 9 Lives')",
+      "publisher": "Infosecurity Magazine",
+      "date": "2015-11",
+      "url": "https://www.infosecurity-magazine.com/news/opsec-blunders-expose-rocket/"
+    },
+    {
+      "ref": "S10",
+      "title": "Iranian hacker group knows who is on Telegram (reporting Reuters)",
+      "publisher": "PCWorld",
+      "date": "2016-08",
+      "url": "https://www.pcworld.com/article/415924/iranian-hacker-group-knows-who-is-on-telegram.html"
+    }
+  ],
+  "aliasesAdd": []
+}

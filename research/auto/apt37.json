@@ -1,0 +1,92 @@
+{
+  "mitre": "G0067",
+  "identification": {
+    "summary": "North Korean cyber espionage actor that Mandiant (then FireEye) named APT37 (Reaper) in February 2018. Mandiant describes it as focused primarily on South Korea, with targeting that also reached Japan, Vietnam and the Middle East [S1]. The group has used zero-days in Adobe Flash, Microsoft Office and Internet Explorer, and frequently exploits Hangul Word Processor (HWP) [S1][S2][S5]. Recent reporting describes RokRAT delivery through LNK lures and cloud-service C2 [S6][S7], tools for air-gapped networks [S8], and a supply-chain compromise of a gaming platform used by ethnic Koreans in China [S9].",
+    "firstObserved": "Mandiant: likely active since at least 2012 (imported MITRE/Mandiant summary) [S10]. Kaspersky's Operation Daybreak, the earliest dated campaign in these sources, appears to have begun in March 2016 [S2].",
+    "notes": "Mandiant believes APT37 aligns with activity publicly reported as ScarCruft (Kaspersky) and Group123 (Cisco Talos) [S1]. SentinelLabs treats ScarCruft, APT37 and InkySquid (Volexity) as the same group [S6]. Microsoft's public naming map (retrieved 2026-10-14) lists no Microsoft name with APT37, ScarCruft, Reaper or InkySquid as an alias, so no Microsoft name is assigned here [S11]. SentinelLabs notes that Kimsuky shares operational characteristics with ScarCruft, such as infrastructure and C2 server configurations. Kimsuky is a separate cluster and is not merged here [S6]."
+  },
+  "attribution": {
+    "sponsor": "Democratic People's Republic of Korea (North Korea). SentinelOne says the group's intelligence collection aligns with the efforts of the Ministry of State Security (MSS) [S6].",
+    "confidence": "Mandiant: high confidence that the activity is carried out on behalf of the North Korean government [S1]. Google TAG calls APT37 North Korean government-backed [S5]. SentinelLabs: high confidence that ScarCruft carried out its 2023 campaigns [S6]. Zscaler ThreatLabz attributes Ruby Jumper to APT37 with high confidence [S8]. ESET calls ScarCruft North Korea-aligned [S9]. No US government attribution was found in the sources gathered.",
+    "basis": "Malware development artifacts and targeting that aligns with North Korean state interests (Mandiant) [S1]. Also based on consistent tooling (RokRAT) and a victim set of North Korea experts, defectors and journalists in vendor reporting [S5][S6][S7][S9]."
+  },
+  "objectives": "Strategic intelligence collection supporting North Korean state interests [S1][S6]. Collection centers on South Korean government and policy circles, North Korea experts, defectors, journalists and human-rights activists [S5][S6][S7]. Monitoring of refugees or defectors transiting China is also an assessed objective [S9]. Mandiant notes the group also has access to destructive malware [S1].",
+  "targeting": {
+    "sectors": [
+      "Government and policy makers",
+      "Academia and North Korea experts",
+      "Journalists and North Korea-focused media",
+      "Human rights activists",
+      "North Korean defectors and refugees",
+      "Chemicals",
+      "Electronics",
+      "Manufacturing",
+      "Aerospace",
+      "Automotive",
+      "Healthcare",
+      "Cybersecurity and threat intelligence professionals (assessed future target)"
+    ],
+    "regions": [
+      "South Korea (primary) [S1][S5]",
+      "Japan, Vietnam and the Middle East [S1]",
+      "China: Yanbian region, ethnic Korean community [S9]"
+    ],
+    "notes": "The industry sectors and the expansion beyond the peninsula come from Mandiant's 2018 report [S1]. Individuals targeted (defectors, journalists, activists and experts) come from Google TAG, SentinelLabs, Seqrite and ESET [S5][S6][S7][S9]. SentinelLabs assessed that cybersecurity professionals may be future targets, based on a Kimsuky research report used as a decoy. This is a forecast, not an observed campaign [S6]."
+  },
+  "capabilities": {
+    "summary": "Mandiant documents zero-day access (CVE-2018-0802, and a Flash zero-day CVE-2018-4878) and frequent HWP exploitation. It also documents strategic web compromises, torrent-site distribution, and C2 over compromised servers, messaging platforms and cloud providers, plus access to destructive malware [S1]. Kaspersky tied a 2016 Adobe Flash zero-day to ScarCruft [S2] and later reported a rare Bluetooth device harvester module [S3]. In 2021 the group used Internet Explorer exploits (CVE-2020-1380, CVE-2021-26411) in a watering hole, delivering Cobalt Strike and the BLUELIGHT backdoor [S4]. In 2022 it exploited IE zero-day CVE-2022-41128 through an Office document [S5]. RokRAT is the recurring backdoor. Current chains use LNK files, fileless in-memory execution and C2 via Dropbox, pCloud and Yandex [S6][S7]. The 2025-26 Ruby Jumper toolset included RESTLEAF (Zoho WorkDrive C2), SNAKEDROPPER (Ruby runtime loader), THUMBSBD and VIRUSTASK (removable-media relay and propagation to air-gapped systems), and FOOTWINE (keylogging, audio and video capture) [S8]. An Android BirdCall variant collects contacts, SMS, call logs, files and private keys, and records audio [S9]. MITRE lists 13 software entries for G0067, including ROKRAT, BLUELIGHT and NavRAT [S10]."
+  },
+  "campaigns": [
+    {"date": "2016-03", "name": "Operation Daybreak", "summary": "Kaspersky tied a campaign that appears to have begun in March 2016 to ScarCruft. It used a previously unknown Adobe Flash Player exploit.", "sources": ["S2"]},
+    {"date": "2017", "name": "Expansion beyond the Korean peninsula", "summary": "Mandiant reports that APT37 expanded targeting to Japan, Vietnam and the Middle East and to chemicals, electronics, manufacturing, aerospace, automotive and healthcare.", "sources": ["S1"]},
+    {"date": "2018-02", "name": "Flash zero-day CVE-2018-4878 / APT37 naming", "summary": "Mandiant attributed the Flash zero-day exploitation to the actor it named APT37 (Reaper). It also noted the group's use of CVE-2018-0802.", "sources": ["S1"]},
+    {"date": "2019-05", "name": "Bluetooth harvester", "summary": "Kaspersky reported a ScarCruft module that collects information on Bluetooth devices connected to compromised machines. In the reported chain, the final payload was ROKRAT.", "sources": ["S3"]},
+    {"date": "2021-03 to 2021-06", "name": "Daily NK watering hole (InkySquid)", "summary": "Volexity reported that the group compromised the Daily NK site and exploited IE CVE-2020-1380 and CVE-2021-26411 to deliver Cobalt Strike and BLUELIGHT.", "sources": ["S4"]},
+    {"date": "2022-10", "name": "Itaewon-lure IE zero-day (CVE-2022-41128)", "summary": "Google TAG reported that APT37 used a Word document themed on the Itaewon crowd-crush disaster to exploit an IE JScript zero-day against South Korean users. Microsoft patched it in November 2022.", "sources": ["S5"]},
+    {"date": "2023-11 to 2023-12", "name": "Targeting of North Korea experts and media", "summary": "SentinelLabs reported repeated RokRAT phishing against South Korean academic experts on North Korea and a North Korea-focused news organization. It also found testing of a Kimsuky-report decoy.", "sources": ["S6"]},
+    {"date": "2025-08", "name": "Operation HanKook Phantom", "summary": "Seqrite reported LNK-based phishing against people linked to South Korea's National Intelligence Research Association, using a fake newsletter and a Kim Yo Jong statement as lures. The chain delivered RokRAT with cloud-service C2.", "sources": ["S7"]},
+    {"date": "2025-12", "name": "Ruby Jumper (air-gapped networks)", "summary": "Zscaler ThreatLabz found a campaign that used LNK lures and new tools, including RESTLEAF, SNAKEDROPPER, THUMBSBD, VIRUSTASK and FOOTWINE, to bridge removable media into air-gapped systems.", "sources": ["S8"]},
+    {"date": "2024 (late) to 2026-05", "name": "sqgame supply-chain compromise", "summary": "ESET reported trojanized Windows updates (RokRAT, then BirdCall) and Android games (Android BirdCall) on a Yanbian-themed gaming platform. ESET says the likely targets were refugees or defectors.", "sources": ["S9"]}
+  ],
+  "diamond": {
+    "adversary": "North Korean state-backed espionage operators that SentinelOne aligns with MSS intelligence efforts [S1][S6].",
+    "capability": "Zero-day and n-day exploits (Flash, Office, IE, HWP), RokRAT, BLUELIGHT, BirdCall (Windows and Android), and air-gap tooling (THUMBSBD, VIRUSTASK) [S1][S2][S4][S5][S8][S9].",
+    "infrastructure": "Compromised websites used as watering holes, and C2 on compromised servers [S1][S4]. Commercial cloud storage used for C2 includes Dropbox, pCloud, Yandex and Zoho WorkDrive [S7][S8]. A legitimate software-update channel was abused for supply-chain delivery [S9].",
+    "victim": "South Korean government, academic and media figures; defectors, journalists and human-rights activists; ethnic Koreans in Yanbian, China; and in 2017, industrial firms in Japan, Vietnam and the Middle East [S1][S5][S6][S7][S9].",
+    "socioPolitical": "Regime-security intelligence on defectors, critics and South Korean policy toward North Korea [S5][S6][S9].",
+    "technology": "Windows endpoints running Korean-market software (HWP), legacy IE components invoked through Office, removable media crossing air gaps, and Android devices [S1][S5][S8][S9]."
+  },
+  "gaps": [
+    "No Microsoft name was found for APT37/ScarCruft in Microsoft's public mapping. Some third-party alias lists may associate it with a Microsoft Sleet name; this is not verified here [S11].",
+    "No US government (CISA/FBI/DOJ) attribution document specific to APT37 was located in this research pass.",
+    "Primary reports from Kaspersky (Securelist), SentinelLabs and Volexity could not be fetched (host resolution failed). Details come from search summaries and secondary coverage. The exact publication date of the Kaspersky Bluetooth harvester report is unverified (2019-05 is approximate).",
+    "The 'active since 2012' date comes from Mandiant's summary via the MITRE import. The full Mandiant PDF was not reviewed.",
+    "Cluster boundaries: Kimsuky shares infrastructure and C2 traits with ScarCruft per SentinelLabs. The degree of shared tasking is unknown.",
+    "Victim counts and the specific identities of 2017 Middle East targets are not public in the sources gathered.",
+    "The final payload of the 2022 IE zero-day campaign was not recovered by Google TAG [S5].",
+    "Imported aliases 'Venus 121', 'APT-C-28', 'ATK4' and 'Red Eyes' were not confirmed by any cited source in this pass."
+  ],
+  "implications": {
+    "jipoe": "Analyst assessment derived from cited sources; validate before use. STEP 1 (environment): Key terrain includes personal and official email of Korea-policy staff and liaison officers, and South Korean partner networks running HWP and Office. Removable media used to move data across air gaps is also key terrain [S1][S5][S8]. STEP 2 (effects): Cloud storage services used for C2 (Dropbox, pCloud, Yandex, Zoho WorkDrive) blend with legitimate traffic and weaken perimeter-based detection [S7][S8]. STEP 3 (adversary model): The template is a topical lure (news event, think-tank newsletter, official statement), then LNK or weaponized document, then fileless RokRAT with cloud C2, then collection including audio and keystrokes [S5][S6][S7][S8]. STEP 4 (COAs): MLCOA is continued spear-phishing of South Korean and allied Korea specialists, timed to peninsula news events. MDCOA is use of removable-media tooling to reach air-gapped mission or partner networks supporting combined USFK/ROK planning, or use of a trusted update channel for supply-chain access, as shown against civilian targets [S8][S9]. Candidate indicators: LNK attachments with Korean-language decoys; Office documents fetching remote RTF templates; endpoint connections to cloud-storage APIs from non-browser processes; unexpected Ruby runtime installs; and LNK files replacing documents on USB drives [S5][S7][S8].",
+    "jcc2": "Analyst assessment derived from cited sources; validate before use. (1) Situational awareness: Track lure themes tied to Korean peninsula events and alert Korea-focused staff when major incidents occur, since APT37 weaponized the Itaewon disaster within days [S5]. (2) Authorities: Activity targets ROK government and civilian persons. Response actions affecting partner networks require coordination through USFK and ROK channels rather than unilateral DODIN actions. (3) Mission assurance: Removable-media controls on air-gapped and classified enclaves are a direct countermeasure to THUMBSBD and VIRUSTASK-style tooling [S8]. (4) Coordination: Share indicators of cloud-service C2 abuse with service providers and with DC3 and the DIB CS program, because the infrastructure is commercial [S7][S8]."
+  },
+  "sources": [
+    {"ref": "S1", "title": "APT37 (Reaper): The Overlooked North Korean Actor", "publisher": "Mandiant (FireEye), Google Cloud Threat Intelligence blog", "date": "2018-02-20", "url": "https://cloud.google.com/blog/topics/threat-intelligence/apt37-overlooked-north-korean-actor"},
+    {"ref": "S2", "title": "Operation Daybreak: A brand-new zero-day exploit in Flash", "publisher": "Kaspersky", "date": "2016-06", "url": "https://www.kaspersky.com/blog/operation-daybreak/5681/"},
+    {"ref": "S3", "title": "Korean APT Adds Rare Bluetooth Device-Harvester Tool (reporting Kaspersky Securelist)", "publisher": "Dark Reading", "date": "2019-05", "url": "https://www.darkreading.com/attacks-breaches/korean-apt-adds-rare-bluetooth-device-harvester-tool/d/d-id/1334699"},
+    {"ref": "S4", "title": "North Korean APT InkySquid Infects Victims Using Browser Exploits (details via The Hacker News and Security Affairs coverage)", "publisher": "Volexity", "date": "2021-08-17", "url": "https://www.volexity.com/blog/2021/08/17/north-korean-apt-inkysquid-infects-victims-using-browser-exploits/"},
+    {"ref": "S5", "title": "Internet Explorer 0-day exploited by North Korean actor APT37", "publisher": "Google Threat Analysis Group", "date": "2022-12-07", "url": "https://blog.google/threat-analysis-group/internet-explorer-0-day-exploited-by-north-korean-actor-apt37/"},
+    {"ref": "S6", "title": "A Glimpse Into Future ScarCruft Campaigns: Attackers Gather Strategic Intelligence and Target Cybersecurity Professionals", "publisher": "SentinelOne SentinelLabs", "date": "2024-01-22", "url": "https://www.sentinelone.com/labs/a-glimpse-into-future-scarcruft-campaigns-attackers-gather-strategic-intelligence-and-target-cybersecurity-professionals/"},
+    {"ref": "S7", "title": "ScarCruft uses RokRAT malware in Operation HanKook Phantom (reporting Seqrite Labs, 2025-08-29)", "publisher": "The Hacker News", "date": "2025-09", "url": "https://thehackernews.com/2025/09/scarcruft-uses-rokrat-malware-in.html"},
+    {"ref": "S8", "title": "APT37 Adds New Capabilities for Air-Gapped Networks (Zscaler ThreatLabz, syndicated)", "publisher": "Security Boulevard / Zscaler", "date": "2026-02-26", "url": "https://securityboulevard.com/2026/02/apt37-adds-new-capabilities-for-air-gapped-networks/"},
+    {"ref": "S9", "title": "ESET Research: North Korea-aligned APT group ScarCruft compromises gaming platform in supply-chain espionage attack", "publisher": "ESET", "date": "2026-05-05", "url": "https://www.eset.com/us/about/newsroom/research/eset-research-north-korea-apt-scarcruft-supply-chain-espionage-attack/"},
+    {"ref": "S10", "title": "APT37, G0067 (techniques and software)", "publisher": "MITRE ATT&CK", "date": "2026-07-31 (object modified)", "url": "https://attack.mitre.org/groups/G0067/"},
+    {"ref": "S11", "title": "Microsoft threat actor naming mapping (MicrosoftMapping.json)", "publisher": "Microsoft Threat Intelligence", "date": "2026-10-14 (retrieved)", "url": "https://github.com/microsoft/mstic/blob/master/PublicFeeds/ThreatActorNaming/MicrosoftMapping.json"}
+  ],
+  "aliasesAdd": [
+    {"name": "Reaper", "vendor": "Mandiant / Google TI"},
+    {"name": "ScarCruft", "vendor": "Kaspersky"},
+    {"name": "Group123", "vendor": "Cisco Talos"},
+    {"name": "InkySquid", "vendor": "Volexity"}
+  ]
+}

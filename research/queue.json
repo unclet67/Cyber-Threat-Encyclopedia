@@ -1,58 +1,10 @@
 {
  "note": "Research queue for the automatic wave runner. Waves take items from the front; finished ids move to 'done'.",
  "verify": [
-  "spandex-tempest",
-  "star-blizzard"
+  "apt16",
+  "apt37"
  ],
  "research": [
-  {
-   "id": "storm-0133",
-   "tier": "T1"
-  },
-  {
-   "id": "storm-0247",
-   "tier": "T1"
-  },
-  {
-   "id": "swirl-typhoon",
-   "tier": "T1"
-  },
-  {
-   "id": "twill-typhoon",
-   "tier": "T1"
-  },
-  {
-   "id": "violet-typhoon",
-   "tier": "T1"
-  },
-  {
-   "id": "admin-338",
-   "tier": "T2"
-  },
-  {
-   "id": "ajax-security-team",
-   "tier": "T2"
-  },
-  {
-   "id": "antique-typhoon",
-   "tier": "T2"
-  },
-  {
-   "id": "aoqin-dragon",
-   "tier": "T2"
-  },
-  {
-   "id": "apt1",
-   "tier": "T2"
-  },
-  {
-   "id": "apt16",
-   "tier": "T2"
-  },
-  {
-   "id": "apt37",
-   "tier": "T2"
-  },
   {
    "id": "apt42",
    "tier": "T2"
@@ -1547,6 +1499,11 @@
   }
  ],
  "done": [
+  "admin-338",
+  "ajax-security-team",
+  "antique-typhoon",
+  "aoqin-dragon",
+  "apt1",
   "aqua-blizzard",
   "brass-typhoon",
   "brocade-typhoon",
@@ -1596,6 +1553,13 @@
   "secret-blizzard",
   "silk-typhoon",
   "smoke-sandstorm",
+  "spandex-tempest",
+  "star-blizzard",
+  "storm-0133",
+  "storm-0247",
+  "swirl-typhoon",
+  "twill-typhoon",
+  "violet-typhoon",
   "volt-typhoon"
  ],
  "thin": [],

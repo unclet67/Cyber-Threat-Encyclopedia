@@ -1,0 +1,198 @@
+{
+  "mitre": "G1022",
+  "identification": {
+    "summary": "Storm-0247 is Microsoft's name for a China-origin threat actor that Microsoft maps to ToddyCat and Websiic [S1]. Kaspersky named ToddyCat in June 2022 and described an APT that compromised Microsoft Exchange servers to hit mainly government and military organizations in Europe and Asia, using two previously unknown tools, the Samurai backdoor and the Ninja Trojan [S2][S3]. Later Kaspersky reporting (2023-2025) describes an expanding toolkit focused on large-scale data collection and exfiltration, email theft and defense evasion [S5][S6][S7][S8].",
+    "firstObserved": "Kaspersky: first detected in December 2020, attacking Exchange servers [S2][S3].",
+    "notes": "Microsoft name: Storm-0247 (origin China; other names ToddyCat, Websiic) [S1]. ToddyCat is Kaspersky's name [S2]. Websiic is the name ESET gave in March 2021 to a newly detected actor exploiting the Exchange ProxyLogon vulnerabilities [S4]. Most detailed reporting uses the ToddyCat name, and technical details here come from Kaspersky reporting as covered by trade press. MITRE ATT&CK tracks the group as ToddyCat (G1022)."
+  },
+  "attribution": {
+    "sponsor": "Microsoft lists the actor's origin as China [S1]. Trade-press coverage describes ToddyCat as China-linked or Chinese [S3][S7]. No cited source names a specific PRC government sponsor.",
+    "confidence": "Microsoft's China origin label is a vendor assessment in its naming table and does not name a sponsoring agency [S1]. Coverage of Kaspersky's 2022 report does not clearly attribute ToddyCat to a Chinese state actor. Kaspersky's comment about a 'Chinese-speaking' group in the same period referred to a different group [S3]. No government attribution or indictment was found.",
+    "basis": "Microsoft's public threat-actor naming map [S1]. Kaspersky technical reporting from 2022 to 2025, carried in vendor press releases and trade press [S2][S3][S5][S6][S7][S8]. ESET's 2021 ProxyLogon reporting for the Websiic cluster [S4]."
+  },
+  "objectives": "Cyber espionage. The actor collects and exfiltrates sensitive data, at what Kaspersky calls 'industrial scale', from government and defense-related organizations [S2][S6]. From 2024-2025 it also stole email data and Microsoft 365 access tokens to keep reaching victim mailboxes [S8].",
+  "targeting": {
+    "sectors": [
+      "Government [S2][S6]",
+      "Military / defense-related [S2][S6]",
+      "Diplomatic entities (desktop targeting from September 2021) [S2]"
+    ],
+    "regions": [
+      "Europe [S2][S3]",
+      "Asia, including Taiwan and Vietnam in early intrusions [S2]",
+      "Asia-Pacific government bodies (2024 reporting) [S6]",
+      "Kaspersky also reports related activity against entities in Afghanistan, India, Indonesia, Iran, Kyrgyzstan, Malaysia, Pakistan, Russia, Slovakia, Thailand, the UK and Uzbekistan [S2]"
+    ],
+    "notes": "Kaspersky reports that the group first hit Exchange servers in 2020-2021 and from September 2021 shifted to desktop machines of government and diplomatic entities in Asia [S2]. The 2024 reporting emphasizes government organizations in the Asia-Pacific region, some of them defense-related [S6]."
+  },
+  "capabilities": {
+    "summary": "Initial access: exploitation of Exchange servers, first through an unknown exploit that deployed the China Chopper web shell and then through ProxyLogon from February-March 2021 [S2][S3]. Custom implants: Samurai, a modular C# passive backdoor working on ports 80/443 and built mainly to run arbitrary C# code, and Ninja, a post-exploitation toolkit that lets several operators work on one host at once [S2][S3]. Exfiltration (2023): LoFiSe finds target files and Pcexter uploads archives to OneDrive. Kaspersky also reported a Dropbox uploader and a passive UDP backdoor, plus staging with 7z [S5]. Persistence and collection (2024): several redundant tunnels (reverse SSH, SoftEther VPN, Ngrok, FRP), some binaries renamed to look legitimate, and WAExp and TomBerBil for WhatsApp Web data and browser credentials [S6]. Defense evasion (2024-2025): abuse of CVE-2024-11859, a DLL search-order hijack in ESET's command-line scanner that requires admin rights, to load TCESB. TCESB uses BYOVD with a vulnerable Dell driver (CVE-2021-36276) and runs AES-decrypted payloads in memory [S7]. Email access (2025): TCSectorCopy reads disk sectors to copy Outlook OST files that Outlook has locked; the actor also used a PowerShell TomBerBil variant run from domain controllers over SMB, and SharpTokenFinder or ProcDump on Outlook.exe to recover Microsoft 365 tokens [S8]."
+  },
+  "campaigns": [
+    {
+      "date": "2020-12",
+      "name": "Initial Exchange intrusions (Taiwan, Vietnam)",
+      "summary": "Kaspersky's first observed wave breached a small number of Exchange servers with an unknown exploit, deployed China Chopper, and then installed Samurai.",
+      "sources": [
+        "S2",
+        "S3"
+      ]
+    },
+    {
+      "date": "2021-02",
+      "name": "ProxyLogon wave",
+      "summary": "From February to March 2021 the group widened Exchange compromises across Europe and Asia using ProxyLogon. ESET separately flagged a new actor it named Websiic among the groups exploiting ProxyLogon, and Microsoft maps Websiic to Storm-0247.",
+      "sources": [
+        "S2",
+        "S4",
+        "S1"
+      ]
+    },
+    {
+      "date": "2021-09",
+      "name": "Shift to government and diplomatic desktops in Asia",
+      "summary": "Kaspersky reports the group moved its focus to desktop machines of government and diplomatic entities in Asia.",
+      "sources": [
+        "S2"
+      ]
+    },
+    {
+      "date": "2022-06",
+      "name": "Public disclosure as ToddyCat",
+      "summary": "Kaspersky publicly named ToddyCat and described the Samurai backdoor and Ninja Trojan.",
+      "sources": [
+        "S2",
+        "S3"
+      ]
+    },
+    {
+      "date": "2023-10",
+      "name": "New exfiltration toolset",
+      "summary": "Kaspersky described the LoFiSe and Pcexter exfiltration tools (OneDrive), a Dropbox uploader and a passive UDP backdoor.",
+      "sources": [
+        "S5"
+      ]
+    },
+    {
+      "date": "2024-04",
+      "name": "'Industrial scale' data theft in Asia-Pacific",
+      "summary": "Kaspersky reported large-scale data collection from Asia-Pacific government bodies, some defense-related, with redundant tunnels for persistent access.",
+      "sources": [
+        "S6"
+      ]
+    },
+    {
+      "date": "2025-04",
+      "name": "ESET scanner DLL hijack / TCESB",
+      "summary": "Kaspersky reported that ToddyCat had abused CVE-2024-11859 since early 2024 to load the BYOVD-based TCESB tool. ESET fixed the flaw in January 2025.",
+      "sources": [
+        "S7"
+      ]
+    },
+    {
+      "date": "2025-11",
+      "name": "Outlook data and Microsoft 365 token theft",
+      "summary": "Kaspersky described TCSectorCopy for copying OST files, a PowerShell TomBerBil variant seen in May-June 2024 incidents, and Microsoft 365 token harvesting.",
+      "sources": [
+        "S8",
+        "S9"
+      ]
+    }
+  ],
+  "diamond": {
+    "adversary": "Storm-0247 / ToddyCat. Microsoft labels it China-origin, and no specific state sponsor is named publicly [S1][S2].",
+    "capability": "Exchange exploitation (unknown exploit, ProxyLogon), China Chopper, Samurai, Ninja, LoFiSe, Pcexter, TomBerBil, TCESB (BYOVD), TCSectorCopy and token-harvesting tools [S2][S5][S6][S7][S8].",
+    "infrastructure": "Compromised on-premises Exchange servers [S2]. Legitimate cloud storage (OneDrive, Dropbox) used for exfiltration [S5]. Redundant tunnels through reverse SSH, SoftEther VPN, Ngrok and FRP [S6].",
+    "victim": "Government, military/defense and diplomatic organizations in Europe and Asia, and in 2024 especially Asia-Pacific governments [S2][S6].",
+    "socioPolitical": "Bulk collection of government and defense information and ongoing mailbox access are consistent with long-term state intelligence collection in Asia and Europe [S2][S6][S8].",
+    "technology": "Internet-facing on-premises Exchange; Windows domain environments (domain controllers, SMB); Outlook OST files; Microsoft 365 tokens; security software with exploitable DLL loading (ESET scanner) [S2][S7][S8]."
+  },
+  "gaps": [
+    "Primary Kaspersky Securelist reports (2022, 2023, 2024, 2025) could not be opened; their content here comes from Kaspersky press releases as summarized in search results and from trade-press coverage.",
+    "No cited source names a sponsoring PRC organization (MSS, PLA or a contractor). Microsoft's 'China' origin label gives no confidence level or basis.",
+    "Cluster boundaries: Microsoft merges ToddyCat (Kaspersky) and Websiic (ESET) under Storm-0247. The public evidence for the Websiic-ToddyCat link was not reviewed, and ESET's victim details for Websiic were not found.",
+    "MITRE ATT&CK page G1022 and ESET's March 2021 WeLiveSecurity report could not be fetched directly.",
+    "No Microsoft blog reporting specifically on Storm-0247 activity was found.",
+    "Some search results labeled ToddyCat as 'Russian' (a translation artifact of a localized page). That label is not supported and was not used.",
+    "Details of US or DoD-specific targeting are not reported in the cited sources."
+  ],
+  "implications": {
+    "jipoe": "Analyst assessment derived from cited sources; validate before use. STEP 1: Key terrain is on-premises Exchange servers, domain controllers, and endpoints that hold Outlook mail stores and browser credentials in government, defense and diplomatic networks, especially partner-nation networks in the Asia-Pacific and Europe [S2][S6][S8]. STEP 2: Several redundant tunnels and cloud-storage exfiltration mean that removing one access path may not evict the actor [S5][S6]. STEP 3: The template runs from exploitation of an edge mail server to a web shell, then Samurai/Ninja, discovery and lateral movement over SMB, file staging with 7z, and exfiltration to OneDrive/Dropbox, followed by token theft for ongoing mailbox access [S2][S5][S6][S8]. STEP 4: MLCOA is quiet, persistent bulk collection from partner government and defense networks that keeps email access through stolen Microsoft 365 tokens. MDCOA is exploitation of a newly disclosed mail or edge-server flaw during a crisis to harvest coalition planning traffic, with BYOVD tooling (TCESB) used to blind endpoint security [S7][S8]. Candidate indicators: unexpected ESET command-line scanner binaries loading DLLs from non-system paths; vulnerable Dell driver loads; raw disk-sector reads that touch OST files; ProcDump against Outlook.exe; SoftEther/Ngrok/FRP binaries renamed to look like system tools; bulk uploads to OneDrive or Dropbox from servers [S5][S6][S7][S8].",
+    "jcc2": "Analyst assessment derived from cited sources; validate before use. (1) Situational awareness: track the exposure of on-premises Exchange and mail token stores in mission-partner networks, since the actor's main victims are government and defense entities in allied regions [S2][S6]. (2) Authorities: much of the likely key terrain belongs to partner nations, so response depends on partner agreements and information-sharing channels, not DoD authorities alone. (3) Mission assurance: treat stolen Microsoft 365 tokens as continued compromise even after host cleanup; plan token revocation and credential resets alongside tunnel eradication [S6][S8]. (4) Coordination: abuse of security-vendor software (the ESET flaw) and a signed vulnerable Dell driver calls for coordination with endpoint-security owners and driver blocklisting across enclaves [S7]."
+  },
+  "sources": [
+    {
+      "ref": "S1",
+      "title": "Microsoft threat actor naming mapping (MicrosoftMapping.json): Storm-0247 entry",
+      "publisher": "Microsoft Threat Intelligence",
+      "date": "2026-10-14",
+      "url": "https://github.com/microsoft/mstic/blob/master/PublicFeeds/ThreatActorNaming/MicrosoftMapping.json"
+    },
+    {
+      "ref": "S2",
+      "title": "ToddyCat: advanced threat actor targets high-profile entities with new malware",
+      "publisher": "Kaspersky",
+      "date": "2022-06-21",
+      "url": "https://usa.kaspersky.com/about/press-releases/toddycat-advanced-threat-actor-targets-high-profile-entities-with-new-malware"
+    },
+    {
+      "ref": "S3",
+      "title": "China-Linked ToddyCat APT Pioneers Novel Spyware (reporting Kaspersky research)",
+      "publisher": "Dark Reading",
+      "date": "2022-06",
+      "url": "https://darkreading.com/attacks-breaches/china-linked-toddycat-apt-pioneers-novel-spyware"
+    },
+    {
+      "ref": "S4",
+      "title": "More hacking groups join Microsoft Exchange attack frenzy (reporting ESET research)",
+      "publisher": "BleepingComputer",
+      "date": "2021-03",
+      "url": "https://www.bleepingcomputer.com/news/security/more-hacking-groups-join-microsoft-exchange-attack-frenzy/?mid=1"
+    },
+    {
+      "ref": "S5",
+      "title": "Researchers unveil ToddyCat's new set of tools (reporting Kaspersky research)",
+      "publisher": "The Hacker News",
+      "date": "2023-10",
+      "url": "https://thehackernews.com/2023/10/researchers-unveil-toddycats-new-set-of.html"
+    },
+    {
+      "ref": "S6",
+      "title": "ToddyCat APT Is Stealing Data on 'Industrial Scale' (reporting Kaspersky research)",
+      "publisher": "Dark Reading",
+      "date": "2024-04",
+      "url": "https://www.darkreading.com/cyber-risk/-toddycat-apt-is-stealing-data-on-an-industrial-scale-"
+    },
+    {
+      "ref": "S7",
+      "title": "Chinese ToddyCat abuses ESET antivirus bug for malicious activities (reporting Kaspersky research)",
+      "publisher": "CSO Online",
+      "date": "2025-04",
+      "url": "https://www.csoonline.com/article/3957108/chinese-toddycat-abuses-eset-antivirus-bug-for-malicious-activities.html"
+    },
+    {
+      "ref": "S8",
+      "title": "ToddyCat's new hacking tools steal Outlook data and Microsoft 365 tokens (reporting Kaspersky research)",
+      "publisher": "The Hacker News",
+      "date": "2025-11",
+      "url": "https://thehackernews.com/2025/11/toddycats-new-hacking-tools-steal.html"
+    },
+    {
+      "ref": "S9",
+      "title": "ToddyCat APT steals email data from Outlook",
+      "publisher": "Kaspersky Securelist",
+      "date": "2025-11",
+      "url": "https://securelist.com/toddycat-apt-steals-email-data-from-outlook/118044/"
+    }
+  ],
+  "aliasesAdd": [
+    {
+      "name": "ToddyCat",
+      "vendor": "Kaspersky"
+    },
+    {
+      "name": "Websiic",
+      "vendor": "ESET"
+    }
+  ]
+}

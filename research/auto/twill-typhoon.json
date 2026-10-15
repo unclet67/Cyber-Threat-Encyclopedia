@@ -1,0 +1,81 @@
+{
+  "identification": {
+    "summary": "China-linked cyber-espionage actor that Microsoft tracks as Twill Typhoon and other vendors call Mustang Panda, BRONZE PRESIDENT, TA416, RedDelta, Stately Taurus and Earth Preta [S2][S5][S8]. US court documents unsealed in January 2025 describe the group as PRC-sponsored. They say the PRC government paid it to develop a USB-worming PlugX variant, which the FBI deleted from about 4,200 US computers [S3][S4]. The group focuses on government and diplomatic targets in Southeast Asia, Mongolia, Taiwan and Europe, and adjusts its lures to current geopolitical events [S5][S7][S8].",
+    "firstObserved": "Unit 42 assesses the group has operated since at least 2012 [S5]. Proofpoint reports continuous targeting of European diplomats since August 2020 [S8].",
+    "notes": "Microsoft name: Twill Typhoon. Microsoft's naming map lists TANTALUM, MUSTANG PANDA, BRONZE PRESIDENT and LuminousMoth as other names [S2]. Unit 42 lists Mustang Panda, Bronze President, Red Delta, Luminous Moth, Earth Preta and Camaro Dragon as aliases of Stately Taurus [S5]. GTIG tracks UNC6384 as a separate cluster it believes is associated with TEMP.Hex (Mustang Panda), so UNC6384 activity is kept distinct here [S1]. MITRE ATT&CK group: G0129."
+  },
+  "attribution": {
+    "sponsor": "People's Republic of China. Court documents behind the January 2025 DOJ/FBI operation describe the group as PRC-sponsored and state that the PRC government paid it to develop the PlugX variant (as reported by press) [S3].",
+    "confidence": "US government: court filings attribute PRC sponsorship (reported in press coverage; primary DOJ documents not opened) [S3]. Recorded Future calls RedDelta Chinese state-sponsored [S7]. Unit 42 attributes the June-August 2025 USB/PUBLOAD cluster to Stately Taurus with high confidence [S9]. GTIG says UNC6384 is 'believed to be associated with' TEMP.Hex and assesses the activity was likely in support of PRC-aligned espionage [S1].",
+    "basis": "DOJ/FBI court-authorized operation and affidavits (via press) [S3][S4]; tooling, TTP, targeting and C2 overlaps reported by GTIG [S1]; long-running vendor tracking by Unit 42, Trend Micro, Recorded Future and Proofpoint [S5][S6][S7][S8]."
+  },
+  "objectives": "Political and diplomatic intelligence collection aligned with PRC strategic priorities. Recorded Future says targeting focuses on governments and diplomatic organizations in Southeast Asia, Mongolia and Europe [S7]. Targeting shifts with geopolitical events, such as South China Sea tensions with the Philippines [S5] and Ukrainian refugee movements after Russia's 2022 invasion [S8].",
+  "targeting": {
+    "sectors": [
+      "Government and ministries, including defense [S5][S7]",
+      "Diplomatic entities and diplomats [S1][S8]",
+      "Political party organizations (Communist Party of Vietnam) [S7]",
+      "Telecommunications [S6]",
+      "Nonprofits [S5]"
+    ],
+    "regions": [
+      "Southeast Asia: Philippines, Myanmar, Vietnam, Cambodia [S5][S7]",
+      "Mongolia and Taiwan [S7]",
+      "Europe, including NATO-country officials [S8]",
+      "Asia-Pacific (broad) [S6]",
+      "North America (historical, per Unit 42) [S5]",
+      "United States: about 4,200 computers infected by the PlugX worm [S3][S4]"
+    ],
+    "notes": "Many US worm infections were probably collateral spread by USB rather than deliberate targeting. The sources describe the worm's spread mechanism but do not state the US victims' sectors [S3][S4]."
+  },
+  "capabilities": {
+    "summary": "The group's core implant is the PlugX backdoor (SOGU.SEC in GTIG's naming). It is usually loaded by DLL side-loading through legitimate signed software, such as Solid PDF Creator and SmadavProtect, and its C2 traffic has been configured to imitate legitimate Microsoft traffic [S1][S5]. A PRC-funded PlugX variant spread itself via USB drives [S3]. A separate USB tool, HIUPAN (USBFect), was used in 2025 to deliver the PUBLOAD backdoor through the CLAIMLOADER DLL [S9]. Trend Micro documents the TONEDROP, TONEINS and TONESHELL toolset and fake Google Drive download pages [S6]. Delivery has included spear-phishing with geopolitical decoy documents and web bugs used to profile targets [S8][S7]. GTIG attributes to the associated cluster UNC6384 an adversary-in-the-middle captive-portal hijack, the code-signed STATICPLUGIN downloader and the CANONSTAGER launcher, all leading to in-memory SOGU.SEC [S1]."
+  },
+  "campaigns": [
+    {"date": "2020-08", "name": "European diplomatic phishing (TA416)", "summary": "Proofpoint reports sustained phishing of European diplomatic entities since August 2020. Lures were refreshed around the Russian invasion of Ukraine, and a compromised diplomat account was reportedly used against NATO-country officials on 28 February 2022.", "sources": ["S8"]},
+    {"date": "2023-04", "name": "Earth Preta TONESHELL delivery", "summary": "Trend Micro observed sites distributing QMAGENT and TONEDROP in April 2023 and TONESHELL in May 2023, aimed mostly at people in or working with government and telecom organizations.", "sources": ["S6"]},
+    {"date": "2023-08", "name": "Philippines/South Pacific campaigns (Stately Taurus)", "summary": "Unit 42 observed three campaigns against South Pacific organizations, including the Philippine government. They used DLL side-loading through legitimate software and C2 traffic disguised as Microsoft traffic.", "sources": ["S5"]},
+    {"date": "2023-07", "name": "RedDelta PlugX campaigns (to 2024-12)", "summary": "Recorded Future reports targeting of Mongolia, Taiwan, Myanmar, Vietnam and Cambodia. It assesses a likely compromise of the Mongolian Ministry of Defense (August 2024) and the Communist Party of Vietnam (November 2024).", "sources": ["S7"]},
+    {"date": "2024-08", "name": "DOJ/FBI and French-led PlugX worm disinfection", "summary": "The first of nine US warrants was obtained in August 2024, and the operation was announced on 14 January 2025. It deleted PlugX from about 4,200 US computers, using commands identified by Sekoia, alongside a French-led international disinfection effort.", "sources": ["S3", "S4"]},
+    {"date": "2025-03", "name": "UNC6384 captive-portal hijack of diplomats (associated cluster)", "summary": "GTIG identified a campaign against Southeast Asian diplomats. It used AitM captive-portal redirection, the signed STATICPLUGIN downloader and CANONSTAGER to deploy SOGU.SEC. GTIG attributes it to UNC6384, which it believes is associated with Mustang Panda.", "sources": ["S1"]},
+    {"date": "2025-06", "name": "USB-borne PUBLOAD against SE Asian government", "summary": "Unit 42 attributed, with high confidence, activity from June 1 to Aug. 15, 2025 using HIUPAN/USBFect and CLAIMLOADER to deliver PUBLOAD against a Southeast Asian government organization.", "sources": ["S9"]}
+  ],
+  "diamond": {
+    "adversary": "PRC-sponsored espionage group tracked by Microsoft as Twill Typhoon. US court filings say the PRC government paid it to develop PlugX tooling [S2][S3].",
+    "capability": "PlugX/SOGU.SEC with a USB worm function; PUBLOAD, HIUPAN and CLAIMLOADER; TONESHELL family; DLL side-loading; signed downloaders in the associated UNC6384 cluster [S1][S3][S6][S9].",
+    "infrastructure": "C2 disguised as Microsoft traffic [S5]; fake Google Drive download pages [S6]; UNC6384 used Let's Encrypt-secured lure domains and likely compromised edge devices for AitM [S1].",
+    "victim": "Government, defense and diplomatic organizations in Southeast Asia, Mongolia, Taiwan and Europe; telecom-linked individuals; USB-spread infections worldwide [S3][S5][S6][S7][S8].",
+    "socioPolitical": "Collection aligned with PRC strategic priorities, timed to events such as South China Sea tensions, Taiwanese elections and the war in Ukraine [S5][S7][S8].",
+    "technology": "Windows endpoints, removable media and trust in signed software; browser captive-portal checks and network edge devices [S1][S3][S5]."
+  },
+  "gaps": [
+    "Primary DOJ press release and unsealed affidavits (justice.gov) were not opened; PRC-funding and victim-count details come from press coverage [S3][S4].",
+    "No Microsoft blog post describing Twill Typhoon activity was found; the Microsoft name is confirmed only through Microsoft's naming map [S2].",
+    "DEV-0022, listed as an alias in this record, does not appear in Microsoft's current naming map; its Microsoft linkage is unverified [S2].",
+    "UNC6384 is a separate GTIG cluster that GTIG only 'believes' is associated with TEMP.Hex/Mustang Panda; treat its campaigns as associated, not confirmed Twill Typhoon activity [S1].",
+    "Unit 42's 2025 Southeast Asia report was cited via The Hacker News coverage; the original Unit 42 page could not be fetched [S9].",
+    "Recorded Future, Proofpoint and Unit 42 pages could not be fetched directly; details rely on search summaries of those pages.",
+    "Mapping of the group to a specific PRC agency (MSS, PLA or other) is not stated in the sources gathered.",
+    "Vendor cluster boundaries (RedDelta, Earth Preta, Stately Taurus, TA416, Camaro Dragon, LuminousMoth) vary by vendor and may not match exactly."
+  ],
+  "implications": {
+    "jipoe": "Analyst assessment derived from cited sources; validate before use. STEP 1 (operational environment): Key terrain includes diplomatic and ministry networks of partner nations in Southeast Asia and Europe, removable media crossing network boundaries, and network edge devices on partner and host-nation networks [S1][S3][S5]. STEP 2 (effects): USB-borne worms can cross air gaps and spread far beyond intended targets; one variant reached about 4,200 US computers [S3][S9]. Signed loaders and Microsoft-mimicking C2 weaken trust-based and signature-based defenses [S1][S5]. STEP 3 (threat model): The usual chain is a geopolitical lure or infected USB device, then DLL side-loading of a legitimate signed binary, then in-memory PlugX, PUBLOAD or TONESHELL, then document collection [S1][S6][S8][S9]. STEP 4 (COAs): MLCOA is continued spear-phishing and USB-borne intrusion against partner-nation ministries and diplomats, timed to regional events such as ASEAN meetings and South China Sea incidents [S5][S7][S9]. MDCOA is AitM via compromised edge devices, delivering signed malware to deployed or coalition personnel on shared or hotel networks, with USB spread into mission networks [S1][S3]. Candidate indicators: unexpected side-loaded DLLs beside legitimate signed applications; captive-portal redirects to non-portal domains; new Run keys (e.g. CanonPrinter); hidden-folder creation on USB drives [S1][S9].",
+    "jcc2": "Analyst assessment derived from cited sources; validate before use. Situational awareness: track partner-nation government and diplomatic compromises as early warning, since this actor routinely targets coalition partners in the Indo-Pacific and Europe [S5][S7][S8]. Authorities: the 2024-2025 operation shows that domestic court-authorized remote deletion, coordinated with foreign partners and a private firm (Sekoia), is a viable response model; DoD roles in such actions need authority review [S3][S4]. Mission assurance: enforce removable-media controls and treat signed binaries loading unsigned DLLs as suspicious on mission systems [S3][S5][S9]. Coordination: share indicators with FBI, CISA and partner CERTs, and with vendors tracking overlapping clusters (GTIG, Unit 42, Recorded Future), while keeping cluster boundaries clear [S1][S4][S7][S9]."
+  },
+  "sources": [
+    {"ref": "S1", "title": "Deception in Depth: PRC-Nexus Espionage Campaign Hijacks Web Traffic to Target Diplomats (UNC6384)", "publisher": "Google Threat Intelligence Group", "date": "2025-08-25", "url": "https://cloud.google.com/blog/topics/threat-intelligence/prc-nexus-espionage-targets-diplomats"},
+    {"ref": "S2", "title": "Microsoft threat actor naming mapping (MicrosoftMapping.json)", "publisher": "Microsoft Threat Intelligence", "date": "2026-10", "url": "https://github.com/microsoft/mstic/blob/master/PublicFeeds/ThreatActorNaming/MicrosoftMapping.json"},
+    {"ref": "S3", "title": "FBI deleted China-linked PlugX malware from over 4,200 US computers (reporting DOJ announcement and court documents)", "publisher": "Security Affairs", "date": "2025-01", "url": "https://securityaffairs.com/173073/malware/fbi-deleted-china-linked-plugx-malware-from-over-4200-us-computers.html"},
+    {"ref": "S4", "title": "FBI Deletes PlugX Malware from 4,250 Hacked Computers in Multi-Month Operation (reporting DOJ and Sekoia)", "publisher": "The Hacker News", "date": "2025-01", "url": "https://thehackernews.com/2025/01/fbi-deletes-plugx-malware-from-4250.html"},
+    {"ref": "S5", "title": "Stately Taurus Targets the Philippines As Tensions Flare in the South Pacific", "publisher": "Palo Alto Networks Unit 42", "date": "2023-11-17", "url": "https://unit42.paloaltonetworks.com/stately-taurus-targets-philippines-government-cyberespionage/"},
+    {"ref": "S6", "title": "Behind the Scenes: Unveiling the Hidden Workings of Earth Preta", "publisher": "Trend Micro", "date": "2023-06", "url": "https://www.trendmicro.com/en_us/research/23/f/behind-the-scenes-unveiling-the-hidden-workings-of-earth-preta.html"},
+    {"ref": "S7", "title": "RedDelta: Chinese State-Sponsored Group Targets Mongolia, Taiwan, and Southeast Asia", "publisher": "Recorded Future Insikt Group", "date": "2025-01-09", "url": "https://recordedfuture.com/research/reddelta-chinese-state-sponsored-group-targets-mongolia-taiwan-southeast-asia"},
+    {"ref": "S8", "title": "Chinese phishing actors consistently targeting EU diplomats (TA416)", "publisher": "Proofpoint", "date": "2022-03", "url": "https://www.proofpoint.com/us/newsroom/news/chinese-phishing-actors-consistently-targeting-eu-diplomats"},
+    {"ref": "S9", "title": "Three China-linked clusters target Southeast Asian government (reporting Unit 42 research)", "publisher": "The Hacker News", "date": "2026-03", "url": "https://thehackernews.com/2026/03/three-china-linked-clusters-target.html"}
+  ],
+  "aliasesAdd": [
+    {"name": "TANTALUM", "vendor": "Microsoft"},
+    {"name": "LuminousMoth", "vendor": "Microsoft"},
+    {"name": "Camaro Dragon", "vendor": "Palo Alto Unit 42 (alias list)"}
+  ]
+}

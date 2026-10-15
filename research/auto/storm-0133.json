@@ -1,0 +1,198 @@
+{
+  "identification": {
+    "summary": "Storm-0133 is Microsoft's name for the cluster that other vendors track as HEXANE, Lyceum, Siamesekitten and Spirlin. Microsoft lists its origin as Iran [S1]. Secureworks CTU disclosed the group as LYCEUM in August 2019. CTU said it had been active since about April 2018 against organizations of strategic national importance, including oil and gas and possibly telecommunications [S2][S3]. Dragos separately disclosed it as HEXANE at Black Hat 2019 [S4]. Later public reporting covers telecom and ISP intrusions in the Middle East and Africa in 2021 [S5][S6], Israeli IT-sector targeting via fake job lures in 2021 [S7], and a custom DNS backdoor used against Middle Eastern energy and telecom targets in 2022 [S8][S9].",
+    "firstObserved": "2018 (Secureworks: active since about April 2018; earliest campaign mid-2018 against South African targets) [S2]; Dragos also says active since 2018 [S4].",
+    "notes": "Microsoft's mapping equates Storm-0133 with HEXANE, Lyceum, Siamesekitten and Spirlin [S1]. The imported summary says the group has been 'active since at least 2014' and is 'linked to APT34'. Neither claim is supported by the sources gathered here, so both are excluded (see gaps). Storm-#### is Microsoft's designation for an emerging or developing cluster [S1]."
+  },
+  "attribution": {
+    "sponsor": "Iran (Microsoft lists Iran as origin) [S1]. No specific Iranian government organization is named in the sources gathered.",
+    "confidence": "Microsoft lists the cluster's origin as Iran [S1]. At disclosure in 2019, Secureworks CTU saw tradecraft resembling the Iranian groups COBALT GYPSY and COBALT TRINITY. CTU found no direct malware or infrastructure links and said technical evidence was insufficient for an attribution assessment [S2]. ClearSky described Siamesekitten/Lyceum as Iranian [S6][S7]. Zscaler ThreatLabz reporting describes the group as Iran-linked [S8].",
+    "basis": "Vendor tradecraft comparison (Secureworks) [S2]; ClearSky campaign analysis [S7]; Zscaler analysis of an Iranian-military-themed lure [S8]; Microsoft naming taxonomy [S1]. No government attribution was found in the sources gathered."
+  },
+  "objectives": "Espionage and access against strategically important energy and telecommunications organizations [S2][S5][S6]. Dragos assessed that telecom access could serve as a stepping stone to network-focused man-in-the-middle attacks [S4]. ClearSky assessed that 2021 targeting of Israeli IT and communications firms was most likely meant to enable supply-chain attacks [S7].",
+  "targeting": {
+    "sectors": [
+      "Oil and gas / energy [S2][S4][S8]",
+      "Telecommunications operators and ISPs [S4][S6][S8]",
+      "IT and communications service providers (supply chain) [S7]",
+      "Aviation [S5]",
+      "Government (an African ministry of foreign affairs) [S6]"
+    ],
+    "regions": [
+      "Middle East [S2][S8]",
+      "South Africa (mid-2018 campaign) [S2]",
+      "Central Asia and Africa [S4]",
+      "Israel, Morocco, Tunisia, Saudi Arabia [S6]",
+      "Tunisia [S5]"
+    ],
+    "notes": "Targeting staff in the 2019 Secureworks reporting were executives, HR staff and IT personnel [S2]. Victim names in the 2021 ISP and telecom intrusions were not disclosed [S6]."
+  },
+  "capabilities": {
+    "summary": "Initial access through credential harvesting by password spraying or brute force, followed by spearphishing with malicious Excel attachments that install the .NET RAT DanBot [S2]. Earlier tooling included PowerShell scripts alongside DanBot [S5]. In 2021 Kaspersky reported a shift from PowerShell scripts and DanBot to new C++ malware it named James and Kevin [S5]. In 2021 ClearSky reported a chain of fake-recruiter social engineering and impersonation of real Israeli firms on LinkedIn, with Excel lures dropping the Milan backdoor (which fetched DanBot), later replaced by the .NET backdoor Shark [S7]. Zscaler reported a custom .NET DNS backdoor in 2022 (DnsSystem, modified from open-source DIG.net). It was delivered by a macro-laden Word document posing as Iranian military news, persisted via the Startup folder, and used DNS hijacking with TXT-record command retrieval and A-record exfiltration [S8][S9]."
+  },
+  "campaigns": [
+    {
+      "date": "2018",
+      "name": "South Africa campaign",
+      "summary": "Secureworks says the earliest observed LYCEUM campaign, in mid-2018, focused on South African targets.",
+      "sources": [
+        "S2"
+      ]
+    },
+    {
+      "date": "2019-05",
+      "name": "Middle East oil and gas campaign",
+      "summary": "After heavy toolkit testing on a public multi-vendor scanning service in February 2019, the group used password spraying and DanBot-laden Excel spearphishing against Middle Eastern oil and gas organizations.",
+      "sources": [
+        "S2",
+        "S3"
+      ]
+    },
+    {
+      "date": "2019-08",
+      "name": "Public disclosure (LYCEUM / HEXANE)",
+      "summary": "Secureworks CTU disclosed LYCEUM. Dragos disclosed HEXANE at Black Hat 2019 as targeting oil and gas plus telecoms in the Middle East, Central Asia and Africa.",
+      "sources": [
+        "S2",
+        "S4"
+      ]
+    },
+    {
+      "date": "2021-05",
+      "name": "Siamesekitten Israeli IT supply-chain targeting",
+      "summary": "ClearSky reports May-June 2021 fake job offers impersonating Israeli firms to deliver Milan and DanBot, with Shark replacing Milan in July 2021.",
+      "sources": [
+        "S7"
+      ]
+    },
+    {
+      "date": "2021-07",
+      "name": "ISP and telecom intrusions (Accenture / Prevailion)",
+      "summary": "Intrusions between July and October 2021 against ISPs and telecom operators in Israel, Morocco, Tunisia and Saudi Arabia and an African MFA.",
+      "sources": [
+        "S6"
+      ]
+    },
+    {
+      "date": "2021",
+      "name": "Tunisia activity (Kaspersky, VB2021)",
+      "summary": "Kaspersky reports a new Lyceum cluster against two Tunisian entities, including telecom and aviation, using new C++ malware James and Kevin.",
+      "sources": [
+        "S5"
+      ]
+    },
+    {
+      "date": "2022-06",
+      "name": "DnsSystem DNS-hijacking backdoor",
+      "summary": "Zscaler reports a .NET DNS backdoor delivered by Iranian-military-themed Word lures against Middle Eastern energy and telecom organizations.",
+      "sources": [
+        "S8",
+        "S9"
+      ]
+    }
+  ],
+  "diamond": {
+    "adversary": "Iran-origin cluster per Microsoft (Storm-0133). Tracked as HEXANE, Lyceum, Siamesekitten and Spirlin [S1]. The sponsoring organization is not publicly identified in the gathered sources [S2].",
+    "capability": "Password spraying and brute force; Excel and Word macro lures; DanBot, Milan, Shark, James/Kevin and DnsSystem backdoors with DNS-based C2 [S2][S5][S7][S8].",
+    "infrastructure": "Actor-controlled DNS servers used for DNS tunneling and hijacking C2 [S8]. Phishing sites mimicking Israeli IT companies and fake LinkedIn profiles [S7]. A HivePro advisory lists IOCs such as the cyberclub[.]one domain [S9].",
+    "victim": "Energy (oil and gas), telecom operators and ISPs, IT service providers, aviation, and a foreign ministry. Victims are located in the Middle East, North Africa, South Africa and Israel [S2][S4][S5][S6][S7].",
+    "socioPolitical": "Collection against regional energy and communications infrastructure. Possible use of telecom access for man-in-the-middle operations (Dragos assessment) [S4]. Supply-chain access to Israeli organizations (ClearSky assessment) [S7].",
+    "technology": "Reliance on DNS protocol C2 that blends with normal traffic [S8]. Exposure of single-factor enterprise accounts to password spraying [S2]. Trust in recruiters and HR channels [S7]."
+  },
+  "gaps": [
+    "Primary documents not opened: Secureworks/Sophos blog (fetch blocked), Kaspersky VB2021 paper, ClearSky Siamesekitten report, Accenture CIFR/Prevailion PACT report, Zscaler ThreatLabz blog, Dragos HEXANE profile, Google 'Tool of First Resort' PDF (fetch failed). Facts rely on search-result summaries of secondary coverage.",
+    "Several source dates are approximate. The Kaspersky/Dark Reading item (S5) and the Heimdal/ClearSky item (S7) are dated by event timing, not a verified publication date.",
+    "No sponsoring Iranian organization (e.g., MOIS or IRGC) is named in any gathered source. Secureworks said evidence was insufficient for attribution in 2019. Do not upgrade vendor assessments to government attribution.",
+    "Imported summary claims 'active since at least 2014' and a link to APT34. Neither is supported by the gathered sources and both were excluded pending verification.",
+    "Aliases Chrono Kitten (CrowdStrike), MYSTICDOME and UNC1530 (Mandiant) come from the imported record. They were not confirmed in sources read here. The Google 'Tool of First Resort' report on Israel-Hamas war cyber activity may cover UNC1530 but could not be opened.",
+    "No public reporting from 2023 onward was found in this research pass. Current activity status is unknown.",
+    "ATT&CK G1001 page could not be fetched (DNS failure); technique and software lists come from the imported MITRE data, not this research."
+  ],
+  "implications": {
+    "jipoe": "Analyst assessment derived from cited sources; validate before use. STEP 1 (operational environment): Key terrain is regional telecom operators, ISPs, energy companies and IT service providers in the Middle East and North Africa. Partner-nation and host-nation networks supporting deployed forces likely transit these providers [S4][S6]. STEP 2 (effects): Compromised ISPs and telecoms could expose communications that transit them to interception or man-in-the-middle activity (Dragos assessment) [S4]. Compromised IT suppliers could provide downstream access (ClearSky assessment) [S7]. STEP 3 (threat model): Password spraying or recruitment-themed social engineering, then macro-laden Office lures, then a .NET or C++ backdoor with DNS-based C2 [S2][S7][S8]. STEP 4 (COAs): MLCOA is persistent espionage access inside regional telecom and energy organizations for collection [S2][S6]. MDCOA is use of telecom or ISP access to intercept or manipulate traffic of partner or US-associated networks during a regional crisis [S4]. Candidate indicators: bursts of failed logons consistent with password spraying [S2]; Office documents with AutoClose macros writing to Startup folders [S8]; anomalous DNS TXT-record query volume to rare domains [S8]; recruiter outreach impersonating legitimate firms [S7].",
+    "jcc2": "Analyst assessment derived from cited sources; validate before use. (1) Situational awareness: Track the security posture of partner-nation telecom and ISP carriers in the AOR, because this actor focused on that layer [S4][S6]. (2) Mission assurance: Assume transit over regional carriers may be observed. Rely on end-to-end encryption and avoid dependence on carrier-provided DNS [S4][S8]. (3) Detection: Prioritize DNS analytics and password-spray detection on DoD-adjacent and partner enclaves [S2][S8]. (4) Coordination and authorities: Activity against partner-nation infrastructure falls under host-nation and private-sector authorities. Coordinate through combatant command, partner CERTs and vendor reporting channels rather than acting unilaterally."
+  },
+  "sources": [
+    {
+      "ref": "S1",
+      "title": "Microsoft threat actor naming mapping (MicrosoftMapping.json), Storm-0133 entry",
+      "publisher": "Microsoft Threat Intelligence",
+      "date": "2026-10-14 (retrieved)",
+      "url": "https://github.com/microsoft/mstic/blob/master/PublicFeeds/ThreatActorNaming/MicrosoftMapping.json"
+    },
+    {
+      "ref": "S2",
+      "title": "LYCEUM Takes Center Stage in Middle East Campaign (Secureworks CTU, now hosted by Sophos; content via search summary)",
+      "publisher": "Secureworks / Sophos",
+      "date": "2019-08",
+      "url": "https://www.sophos.com/en-us/blog/lyceum-takes-center-stage-in-middle-east-campaign"
+    },
+    {
+      "ref": "S3",
+      "title": "Secureworks reveals details and tactics behind the LYCEUM threat group",
+      "publisher": "Intelligent CIO Middle East",
+      "date": "2019-09-05",
+      "url": "https://www.intelligentcio.com/me/2019/09/05/secureworks-reveals-details-and-tactics-behind-the-lyceum-threat-group/"
+    },
+    {
+      "ref": "S4",
+      "title": "ICS security threats rising, targeting oil and gas facilities (reporting Dragos HEXANE disclosure at Black Hat 2019)",
+      "publisher": "TechTarget SearchSecurity",
+      "date": "2019-08",
+      "url": "https://www.techtarget.com/searchsecurity/news/252468175/ICS-security-threats-rising-targeting-oil-and-gas-facilities"
+    },
+    {
+      "ref": "S5",
+      "title": "Group With Potential Links to Iranian Threat Actor Resurfaces (reporting Kaspersky VB2021 research on Lyceum in Tunisia)",
+      "publisher": "Dark Reading",
+      "date": "2021-10",
+      "url": "https://www.darkreading.com/attacks-breaches/group-with-potential-links-to-iranian-threat-actor-resurfaces"
+    },
+    {
+      "ref": "S6",
+      "title": "Iran's Lyceum Hackers Target Telecoms (reporting Accenture CIFR and Prevailion PACT research)",
+      "publisher": "The Hacker News",
+      "date": "2021-11",
+      "url": "https://thehackernews.com/2021/11/irans-lyceum-hackers-target-telecoms.html"
+    },
+    {
+      "ref": "S7",
+      "title": "Iranian Threat Actor Siamesekitten Spies on Israeli Organizations (reporting ClearSky research)",
+      "publisher": "Heimdal Security",
+      "date": "2021-08",
+      "url": "https://heimdalsecurity.com/blog/iranian-threat-actor-siamesekitten-spies-on-israeli-organizations/"
+    },
+    {
+      "ref": "S8",
+      "title": "Iranian Hackers Spotted Using New DNS Hijacking Malware (reporting Zscaler ThreatLabz research)",
+      "publisher": "The Hacker News",
+      "date": "2022-06",
+      "url": "https://thehackernews.com/2022/06/iranian-hackers-spotted-using-new-dns.html"
+    },
+    {
+      "ref": "S9",
+      "title": "Iranian APT targets Middle East's Energy & Telecommunications industry (TA2022128 advisory)",
+      "publisher": "Hive Pro",
+      "date": "2022-06",
+      "url": "https://hivepro.com/wp-content/uploads/2022/06/Iranian-APT-targets-Middle-Easts-Energy-Telecommunications-industry_TA2022128.pdf"
+    }
+  ],
+  "aliasesAdd": [
+    {
+      "name": "HEXANE",
+      "vendor": "Dragos"
+    },
+    {
+      "name": "LYCEUM",
+      "vendor": "Secureworks CTU"
+    },
+    {
+      "name": "Siamesekitten",
+      "vendor": "ClearSky"
+    },
+    {
+      "name": "Spirlin",
+      "vendor": "Microsoft mapping (other name)"
+    }
+  ]
+}
