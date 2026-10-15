@@ -1,0 +1,112 @@
+{
+  "identification": {
+    "summary": "CL-UNK-1068 is a cluster name used by Palo Alto Networks Unit 42 for previously undocumented intrusion activity against Asian critical-infrastructure and high-value organizations dating to at least 2020 [S1][S2]. Unit 42 assesses with moderate-to-high confidence that the primary objective is cyberespionage [S2]. Initial access is often through web servers and web shells such as GodZilla and a variant of AntSword, followed by DLL side-loading, credential theft and data exfiltration [S2][S4].",
+    "firstObserved": "At least 2020, per Unit 42 as relayed by secondary coverage; a custom .NET reconnaissance tool called SuperDump was used as far back as 2020 [S2].",
+    "notes": "Per CyCraft, 'CL' means cluster and 'UNK' means unknown motivation in Unit 42 naming [S4]. CyCraft states the group has not been attributed to a specifically numbered threat actor [S4]. No Microsoft name or MITRE group ID is known from the sources gathered. Details here come mostly from secondary coverage of the Unit 42 report, which could not be opened."
+  },
+  "attribution": {
+    "sponsor": "",
+    "confidence": "Unit 42 states it assesses with high confidence that the actor is Chinese, and with moderate-to-high confidence that the primary objective is cyberespionage; this is a vendor assessment, not a government attribution [S2]. Some reporting notes purely cybercriminal intent cannot be fully ruled out [S2]. CyCraft says current intelligence indicates the operators are native Chinese speakers [S4].",
+    "basis": "Unit 42 cites the origin of the actor's tools, linguistic artifacts in configuration files, and consistent long-term targeting of critical infrastructure in Asia [S2]. No state sponsor or organization (for example a specific ministry or contractor) is named in the sources gathered."
+  },
+  "objectives": "Unit 42 assesses cyberespionage as the primary objective with moderate-to-high confidence [S2]. Collected data includes web application configuration files, credentials, browser data, spreadsheets/CSV files, SQL-related information and MSSQL backup files [S4].",
+  "targeting": {
+    "sectors": [
+      "Aviation",
+      "Energy",
+      "Government",
+      "Law enforcement",
+      "Pharmaceuticals",
+      "Technology",
+      "Telecommunications"
+    ],
+    "regions": [
+      "South Asia [S2]",
+      "Southeast Asia [S2]",
+      "East Asia [S2]"
+    ],
+    "notes": "Sector and region lists are from secondary coverage of Unit 42 [S2]. The actor moves toward SQL servers and takes database backups [S4]. Names of victim organizations and countries are not given in the sources gathered."
+  },
+  "capabilities": {
+    "summary": "Web-server exploitation and deployment of GodZilla and AntSword-variant web shells for initial access [S2][S4]. DLL side-loading via legitimate Python executables [S4]. Credential theft with Mimikatz and LsaRecorder, and password-hash extraction from memory with DumpIt and the Volatility framework [S2][S4]. Exfiltration by archiving with WinRAR, Base64-encoding archives with certutil -encode and printing them through the web shell [S2]. A custom Go-based scanner, ScanPortPlus, exists in Linux and Windows versions [S4]. SuperDump, a custom .NET reconnaissance tool, dates to 2020 [S2]. Fast Reverse Proxy use and the Xnote Linux backdoor appear in aggregator summaries and the existing record but were not confirmed from a dated primary source in this pass [S1]."
+  },
+  "campaigns": [
+    {
+      "date": "2020",
+      "name": "Earliest observed activity",
+      "summary": "Unit 42 traces the cluster to at least 2020, including use of the custom .NET reconnaissance tool SuperDump, against Asian critical-infrastructure targets [S2].",
+      "sources": [
+        "S2"
+      ]
+    },
+    {
+      "date": "2020 to 2026",
+      "name": "Long-running undetected operations in Asia",
+      "summary": "Multi-year espionage-focused intrusions across aviation, energy, government, law enforcement, pharmaceutical, technology and telecommunications organizations in South, Southeast and East Asia [S2].",
+      "sources": [
+        "S2"
+      ]
+    },
+    {
+      "date": "2026-03",
+      "name": "Unit 42 public disclosure",
+      "summary": "Unit 42 publishes 'An Investigation Into Years of Undetected Operations Targeting High-Value Sectors' naming CL-UNK-1068; trade press covers it the same month [S1][S2].",
+      "sources": [
+        "S1",
+        "S2"
+      ]
+    },
+    {
+      "date": "2026-05",
+      "name": "CyCraft follow-on summary",
+      "summary": "CyCraft publishes a monthly intelligence note describing persistent espionage against Asian critical infrastructure and noting native Chinese-speaking operators [S4].",
+      "sources": [
+        "S4"
+      ]
+    }
+  ],
+  "diamond": {
+    "adversary": "Chinese-speaking threat actor, not tied to a named numbered group or state organization in the sources gathered [S2][S4].",
+    "capability": "GodZilla and AntSword-variant web shells, DLL side-loading, Mimikatz, LsaRecorder, DumpIt, Volatility, ScanPortPlus, SuperDump [S2][S4].",
+    "infrastructure": "Compromised internet-facing web servers used as footholds and as an exfiltration channel via web shell output [S2][S4]. Command-and-control details are not given in the sources gathered.",
+    "victim": "Aviation, energy, government, law enforcement, pharmaceutical, technology and telecommunications organizations in South, Southeast and East Asia [S2].",
+    "socioPolitical": "Long-term espionage against Asian critical-infrastructure and government sectors, consistent with Unit 42's cyberespionage assessment [S2]. Specific policy drivers are not stated in the sources gathered.",
+    "technology": "Exposed web servers, SQL Server databases and backups, and Windows hosts where legitimate Python executables can be abused for DLL side-loading [S2][S4]."
+  },
+  "gaps": [
+    "The primary Unit 42 report (unit42.paloaltonetworks.com) could not be opened; all details rely on search snippets and secondary coverage [S1].",
+    "Xnote Linux backdoor, Fast Reverse Proxy, and the exact exploited web-server vulnerabilities were not verified against a dated primary source.",
+    "Sponsor, specific organization, and any overlap with named clusters (for example Microsoft Typhoon names or numbered APT groups) are unknown; CyCraft says no numbered actor attribution exists [S4].",
+    "Victim countries and organizations, and infrastructure indicators, are not public in the sources gathered.",
+    "Cybercriminal motive is not fully excluded by Unit 42 [S2].",
+    "Source publication dates for trade coverage are month-level approximations."
+  ],
+  "implications": {
+    "jipoe": "Analyst assessment derived from cited sources; validate before use. STEP 1: Internet-facing web servers and SQL Server hosts with database backups are key terrain for this actor, and regional aviation, energy, telecommunications and government networks in Asia are the operational environment [S2][S4]. STEP 2: The actor has persisted undetected for years using web shells and DLL side-loading through legitimate Python executables, which favors defenders with host and web-log telemetry [S2][S4]. STEP 3: Template is web-server exploit, web shell, credential dumping from memory, SQL server access, then archive, encode and exfiltrate through the shell [S2][S4]. STEP 4: MLCOA is continued espionage collection against Asian government and critical-infrastructure targets. MDCOA is use of established web-shell and credential access in energy or telecommunications networks as a pre-positioned foothold for disruption; no source here shows disruptive intent, so this is speculative. Candidate indicators: new ASPX or script files on web servers, python executables loading unexpected DLLs (for example python20.dll), certutil -encode usage, DumpIt or Volatility on servers, and unusual SQL backup access [S2][S4].",
+    "jcc2": "Analyst assessment derived from cited sources; validate before use. (1) Situational awareness: track Asian partner and host-nation critical infrastructure used by US forces (airfields, energy, telecom) as exposed to this cluster [S2]. (2) Authorities: partner-network hunting and sharing needs host-nation consent and coordination through appropriate channels. (3) Mission assurance: prioritize web-server hardening, web-shell hunting and protection of SQL backups on mission-relevant systems [S4]. (4) Coordination: share vendor indicators with partners and the DIB through existing cyber-defense channels; confirm any DoD relevance since no US victims are named in the sources gathered."
+  },
+  "sources": [
+    {
+      "ref": "S1",
+      "title": "An Investigation Into Years of Undetected Operations Targeting High-Value Sectors (Unit 42 report; not opened, date per Malpedia reference listing)",
+      "publisher": "Palo Alto Networks Unit 42",
+      "date": "2026-03-06",
+      "url": "https://unit42.paloaltonetworks.com/cl-unk-1068-targets-critical-sectors/"
+    },
+    {
+      "ref": "S2",
+      "title": "Web Server Exploits and Mimikatz Used in Attacks Targeting Asian Critical Infrastructure (reporting Unit 42)",
+      "publisher": "The Hacker News",
+      "date": "2026-03",
+      "url": "https://thehackernews.com/2026/03/web-server-exploits-and-mimikatz-used.html"
+    },
+    {
+      "ref": "S4",
+      "title": "CL-UNK-1068: Persistent Cyber Espionage Targeting Asian Critical Infrastructure",
+      "publisher": "CyCraft",
+      "date": "2026-05-22",
+      "url": "https://www.cycraft.com/en/post/cl-unk-1068-en-20260522"
+    }
+  ],
+  "aliasesAdd": []
+}

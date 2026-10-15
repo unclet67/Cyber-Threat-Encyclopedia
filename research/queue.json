@@ -3,46 +3,6 @@
  "verify": [],
  "research": [
   {
-   "id": "calypso",
-   "tier": "T3"
-  },
-  {
-   "id": "cardinallizard",
-   "tier": "T3"
-  },
-  {
-   "id": "ceranakeeper",
-   "tier": "T3"
-  },
-  {
-   "id": "chaya-004",
-   "tier": "T3"
-  },
-  {
-   "id": "chernovite",
-   "tier": "T3"
-  },
-  {
-   "id": "circus-spider",
-   "tier": "T3"
-  },
-  {
-   "id": "cl-sta-0043",
-   "tier": "T3"
-  },
-  {
-   "id": "cl-sta-0048",
-   "tier": "T3"
-  },
-  {
-   "id": "cl-sta-1087",
-   "tier": "T3"
-  },
-  {
-   "id": "cl-unk-1068",
-   "tier": "T3"
-  },
-  {
    "id": "clever-kitten",
    "tier": "T3"
   },
@@ -894,12 +854,22 @@
   "buhtrap",
   "burgundy-sandstorm",
   "cadet-blizzard",
+  "calypso",
   "canary-typhoon",
+  "cardinallizard",
+  "ceranakeeper",
   "charcoal-typhoon",
+  "chaya-004",
   "checkered-typhoon",
+  "chernovite",
   "cinnamon-tempest",
   "circle-typhoon",
+  "circus-spider",
   "citrine-sleet",
+  "cl-sta-0043",
+  "cl-sta-0048",
+  "cl-sta-1087",
+  "cl-unk-1068",
   "clay-typhoon",
   "copper-typhoon",
   "copykittens",
@@ -1027,6 +997,12 @@
   "bronze-spiral",
   "bronze-spring",
   "budminer",
+  "cardinallizard",
+  "ceranakeeper",
+  "chaya-004",
+  "cl-sta-0048",
+  "cl-sta-1087",
+  "cl-unk-1068",
   "crescent-typhoon",
   "lilac-typhoon",
   "mofang",

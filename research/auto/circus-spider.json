@@ -1,0 +1,133 @@
+{
+ "identification": {
+  "summary": "CrowdStrike tracks CIRCUS SPIDER as the Russian-speaking criminal actor that develops and maintains the NetWalker ransomware (also called Mailto) [S1][S2]. NetWalker was first discovered in September 2019 with a compilation timestamp of 28 August 2019, and was used in big game hunting style operations and spam distribution [S1]. Unit 42 dates the move to a ransomware-as-a-service (RaaS) model to March 2020, with the CIRCUS SPIDER group recruiting affiliates [S2].",
+  "firstObserved": "Malware first discovered September 2019; compilation timestamp 28 August 2019 [S1].",
+  "notes": "CIRCUS SPIDER is CrowdStrike's actor name; NetWalker/Mailto is the malware family. Some third-party coverage describes it as part of a larger syndicate (Comparitech, naming MUMMY SPIDER); this was seen only in a search summary and is not adopted here. No Microsoft actor name was identified in the sources gathered. Names of malware (Mailto, Kazakavkovkiz per a search summary of ACSC) are not added as actor aliases."
+ },
+ "attribution": {
+  "sponsor": "Financially motivated Russian-speaking criminal group; no state sponsor is stated in the sources gathered [S1][S2].",
+  "confidence": "CrowdStrike's attribution of NetWalker development to CIRCUS SPIDER is a vendor assessment [S1]. Law enforcement action in 2021 targeted infrastructure and one affiliate, not the core developers [S4][S6].",
+  "basis": "CrowdStrike technical analysis of NetWalker (CSIT-20081, June 2020) [S1]; Unit 42 ransomware threat assessment describing the RaaS recruitment and requirements (Russian-language ability) [S2]; affiliate recruitment posts reported by Advanced Intelligence via Threatpost [S3]."
+ },
+ "objectives": "Financial gain through ransomware extortion, scaled by recruiting affiliates for a share of ransom payments [S2][S3].",
+ "targeting": {
+  "sectors": [
+   "Healthcare",
+   "Education",
+   "Local government",
+   "Private companies (big game hunting)"
+  ],
+  "regions": [
+   "Not quantified in verified sources"
+  ],
+  "notes": "Unit 42 reports victims included hospitals, educational institutions and local governments, and COVID-19 themed phishing was used against hospitals [S2]. DOJ stated attacks specifically targeted healthcare during the COVID-19 pandemic [S4][S6]. Affiliates were asked to go after larger, higher-paying targets [S2]."
+ },
+ "capabilities": {
+  "summary": "NetWalker ransomware with a closed affiliate program: CIRCUS SPIDER vets applicants, requiring proof of prior ransomware revenue, experience and intended industry [S1]. Unit 42 lists affiliate requirements including Russian-language ability, red team experience and proof of prior experience [S2]. Reported revenue split was 20 percent to operators and 80 percent to affiliates per Advanced Intelligence [S3]. Distribution included spam and COVID-19 lures as well as big game hunting intrusions [S1][S2]. DOJ described a dark web resource used by affiliates to give victims payment instructions [S4]."
+ },
+ "campaigns": [
+  {
+   "date": "2019-09",
+   "name": "NetWalker (Mailto) first observed",
+   "summary": "NetWalker discovered, compile timestamp 28 August 2019; used in big game hunting and spam distribution [S1].",
+   "sources": [
+    "S1"
+   ]
+  },
+  {
+   "date": "2020-03",
+   "name": "Shift to RaaS and affiliate recruitment",
+   "summary": "CIRCUS SPIDER moves NetWalker to a RaaS model and recruits experienced affiliates; reported 80/20 affiliate split [S2][S3].",
+   "sources": [
+    "S2",
+    "S3"
+   ]
+  },
+  {
+   "date": "2020",
+   "name": "COVID-19 themed healthcare targeting",
+   "summary": "COVID-19 themed phishing used against hospitals and a medical research university by groups using NetWalker [S2]. CrowdStrike noted COVID-19 lures and healthcare targeting suggested pandemic exploitation [S1].",
+   "sources": [
+    "S1",
+    "S2"
+   ]
+  },
+  {
+   "date": "2021-01-27",
+   "name": "US-Bulgarian disruption and affiliate charged",
+   "summary": "DOJ announced action with Bulgarian authorities: a dark web resource used by affiliates was seized, about $454,530 in cryptocurrency seized, and Canadian affiliate Sebastien Vachon-Desjardins charged; he was arrested in Canada [S4][S6].",
+   "sources": [
+    "S4",
+    "S6"
+   ]
+  },
+  {
+   "date": "2022-10-04",
+   "name": "Affiliate sentenced",
+   "summary": "Vachon-Desjardins sentenced to 20 years in Tampa federal court after guilty pleas and ordered to forfeit 21.5 million USD [S6].",
+   "sources": [
+    "S6"
+   ]
+  }
+ ],
+ "diamond": {
+  "adversary": "Russian-speaking criminal developer group (CIRCUS SPIDER) plus vetted affiliates, at least one of whom was a Canadian national [S1][S2][S6].",
+  "capability": "NetWalker ransomware, spam and COVID-19 phishing delivery, big game hunting intrusions by affiliates [S1][S2].",
+  "infrastructure": "Dark web victim payment resource, seized by Bulgarian authorities in January 2021 [S4]; cryptocurrency payments [S4].",
+  "victim": "Hospitals, schools, local governments and private firms [S2].",
+  "socioPolitical": "Criminal profit motive exploiting the COVID-19 pandemic; no state tasking evidenced [S1][S4].",
+  "technology": "Windows enterprise environments; phishing-exposed users and healthcare networks [S2]."
+ },
+ "gaps": [
+  "Primary documents were not opened: the CrowdStrike report (CSIT-20081), DOJ press releases and Unit 42 page could not be fetched (host resolution failed), so facts rely on search result summaries [S1][S2][S4][S6].",
+  "Source dates for S2 (Unit 42) and S3 (Threatpost) are approximate from search results.",
+  "Identity and location of core CIRCUS SPIDER developers are not public in the sources gathered; arrests concerned affiliates only.",
+  "Intrusion techniques (initial access, tooling, lateral movement) used by affiliates were not verified from primary technical reporting; Microsoft and Trend Micro write-ups were only seen second hand and are not cited.",
+  "Relation to other tracked names (MUMMY SPIDER syndicate claim, other vendor names) is unverified.",
+  "Status after the January 2021 disruption, and whether the developers resumed under other names, is unknown from these sources.",
+  "Reported sentence figures differ across outlets in some search results; the DOJ-reported 20 years is used [S6].",
+  "Two further secondary sources were dropped during fact-checking because their URLs could not be confirmed in search results; the victim, country and US-victim counts that rested only on one of them were removed."
+ ],
+ "implications": {
+  "jipoe": "Analyst assessment derived from cited sources; validate before use. STEP 1: Healthcare, education and local-government networks, including DoD-affiliated medical and university partners, are the terrain this actor class has hit [S2][S4]. STEP 2: Affiliates were vetted for experience and told to pursue larger, higher-paying victims, so intrusion quality may vary by affiliate while the payload is common [S1][S2]. STEP 3: Phishing and lures tied to current events, then enterprise-wide encryption and data leak extortion via Tor [S1][S2]. STEP 4: MLCOA is financially motivated ransomware against civilian health and public-sector entities supporting installations. MDCOA is an affiliate hitting a defense-related medical or contractor network during a crisis to disrupt services and leak data. Candidate indicators: crisis-themed phishing with document lures, mass file encryption notes pointing to Tor portals, and Tor-bound traffic from internal hosts [S2].",
+  "jcc2": "Analyst assessment derived from cited sources; validate before use. (1) Situational awareness: track ransomware advisories for health and public-sector partners and watch for event-themed phishing surges [S2]. (2) Authorities: this is criminal activity, so response runs through law enforcement and DC3-type channels rather than cyber operations authorities; the 2021 action was a DOJ-led effort with Bulgarian partners [S4]. (3) Mission assurance: maintain offline backups and continuity plans for medical and installation support systems since victims were hospitals [S2][S4]. (4) Coordination: share indicators with civil partners."
+ },
+ "sources": [
+  {
+   "ref": "S1",
+   "title": "Get an in-depth report of the operations behind CIRCUS SPIDER's NetWalker ransomware attacks (technical analysis CSIT-20081, seen via search summary)",
+   "publisher": "CrowdStrike",
+   "date": "2020-06",
+   "url": "https://crowdstrike.com/resources/reports/netwalker-ransomware-technical-analysis"
+  },
+  {
+   "ref": "S2",
+   "title": "Threat Assessment: NetWalker Ransomware (seen via search summary)",
+   "publisher": "Palo Alto Networks Unit 42",
+   "date": "2021-03-17",
+   "url": "https://unit42.paloaltonetworks.com/ransomware-threat-assessments/2/"
+  },
+  {
+   "ref": "S3",
+   "title": "NetWalker Ransomware Gang Hunts for Top-Notch Affiliates",
+   "publisher": "Threatpost",
+   "date": "2020-05",
+   "url": "https://threatpost.com/netwalker-ransomware-gang-top-notch-affiliates/155946"
+  },
+  {
+   "ref": "S4",
+   "title": "Department of Justice Launches Global Action Against NetWalker Ransomware (primary, seen via search summary)",
+   "publisher": "US Department of Justice",
+   "date": "2021-01-27",
+   "url": "https://www.justice.gov/opa/pr/department-justice-launches-global-action-against-netwalker-ransomware"
+  },
+  {
+   "ref": "S6",
+   "title": "Canadian National Sentenced in Connection with Ransomware Attacks Resulting in Payment of Tens of Millions (seen via search summary)",
+   "publisher": "US Department of Justice",
+   "date": "2022-10-04",
+   "url": "https://www.justice.gov/usao-mdfl/pr/canadian-national-sentenced-connection-ransomware-attacks-resulting-payment-tens"
+  }
+ ],
+ "aliasesAdd": []
+}
