@@ -1,42 +1,7 @@
 {
  "note": "Research queue for the automatic wave runner. Waves take items from the front; finished ids move to 'done'. Scope limited to CN/RU/IR/KP on 2026-10-15 at the user's request; non-state actors moved to 'deferred'.",
- "verify": [
-  "ruby-sleet",
-  "ruza-flood"
- ],
+ "verify": [],
  "research": [
-  {
-   "id": "salmon-typhoon",
-   "tier": "T2"
-  },
-  {
-   "id": "scarlet-mimic",
-   "tier": "T2"
-  },
-  {
-   "id": "sefid-flood",
-   "tier": "T2"
-  },
-  {
-   "id": "shadow-typhoon",
-   "tier": "T2"
-  },
-  {
-   "id": "silent-librarian",
-   "tier": "T2"
-  },
-  {
-   "id": "storm-0216",
-   "tier": "T2"
-  },
-  {
-   "id": "storm-0593",
-   "tier": "T2"
-  },
-  {
-   "id": "storm-0940",
-   "tier": "T2"
-  },
   {
    "id": "storm-0978",
    "tier": "T2"
@@ -1165,18 +1130,28 @@
   "rancor",
   "raspberry-typhoon",
   "red-sandstorm",
+  "ruby-sleet",
+  "ruza-flood",
+  "salmon-typhoon",
   "salt-typhoon",
   "sangria-tempest",
   "sapphire-sleet",
   "satin-typhoon",
+  "scarlet-mimic",
   "seashell-blizzard",
   "secret-blizzard",
+  "sefid-flood",
+  "shadow-typhoon",
+  "silent-librarian",
   "silk-typhoon",
   "smoke-sandstorm",
   "spandex-tempest",
   "star-blizzard",
   "storm-0133",
+  "storm-0216",
   "storm-0247",
+  "storm-0593",
+  "storm-0940",
   "swirl-typhoon",
   "twill-typhoon",
   "violet-typhoon",
@@ -1190,7 +1165,11 @@
   "mofang",
   "obsidian-sandstorm",
   "pearl-sleet",
-  "pumpkin-sandstorm"
+  "pumpkin-sandstorm",
+  "ruza-flood",
+  "sefid-flood",
+  "shadow-typhoon",
+  "storm-0940"
  ],
  "halts": [],
  "deferred": [

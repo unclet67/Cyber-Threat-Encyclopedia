@@ -1,0 +1,76 @@
+{
+  "identification": {
+    "summary": "Salmon Typhoon is Microsoft's name for what it calls a sophisticated Chinese state-affiliated threat actor with a long operational history, which has historically targeted US defense contractors, government agencies and organizations in the cryptographic technology sector [S1]. Microsoft says its operations span more than a decade with intermittent periods of dormancy and resurgence, and that it has recently shown renewed activity [S1]. Microsoft states that other researchers track the same group as APT4 and Maverick Panda [S1]. CrowdStrike describes Maverick Panda as a China-nexus targeted intrusion adversary associated with the Sykipot (aka Wkysol) implant [S2].",
+    "firstObserved": "CrowdStrike states Maverick Panda was active from at least 2007 until November 2015 [S2]. Microsoft says only that operations span more than a decade [S1]. A CFR page says the actor has targeted US defense and aerospace firms since at least 2006 [S7]. Vendor start and end dates differ.",
+    "notes": "Microsoft name: Salmon Typhoon (formerly SODIUM) [S1][S2]. Names listed by CrowdStrike for the same adversary: APT4, Getkys, Sykipot Group, Wkysol [S2]. A threat-actor encyclopedia card (ETDA) lists APT 4 as the FireEye/Mandiant name, Wisp Team as Symantec's and TG-0623 as SecureWorks', but the card could not be opened directly and is known only through search-result summaries [S8]. Not to be confused with Salt Typhoon (separate Microsoft-named telecom-focused cluster). Malpedia attributes the Sykipot family to Samurai Panda rather than Maverick Panda, which is a vendor-boundary discrepancy to resolve [S8]."
+  },
+  "attribution": {
+    "sponsor": "Microsoft describes the actor as Chinese state-affiliated [S1]. CrowdStrike describes it as China-nexus [S2]. No specific PRC agency (MSS, PLA, MPS or contractor) is named in the sources gathered.",
+    "confidence": "Confidence level is not stated in the sources gathered. These are vendor assessments (Microsoft, CrowdStrike); no government attribution was found and none should be inferred.",
+    "basis": "Microsoft telemetry and its joint investigation with OpenAI of the actor's AI-service accounts [S1][S3]. For the earlier Sykipot activity, AlienVault cited Chinese characters in malware code and China-based command-and-control servers [S4]. Those code and C2 indicators are vendor-reported and not independently confirmed in the sources gathered."
+  },
+  "objectives": "Microsoft's description of targets (defense contractors, government agencies, cryptographic technology) is consistent with intelligence collection [S1]. CrowdStrike lists intellectual property theft and intelligence gathering as the adversary's objectives [S2]. Microsoft assessed the actor's 2023 LLM use as exploratory research on sensitive topics, prominent individuals, regional politics, US influence and internal affairs [S1].",
+  "targeting": {
+    "sectors": [
+      "Defense contractors (US)",
+      "Government agencies (US)",
+      "Cryptographic technology sector",
+      "Aerospace (US)"
+    ],
+    "regions": [
+      "United States [S1][S2]"
+    ],
+    "notes": "Defense contractors, government agencies and cryptographic technology are from Microsoft [S1]. CrowdStrike says the adversary was most active against the US aerospace sector [S2]. In January 2012 AlienVault reported a Sykipot variant aimed at stealing DoD smart-card credentials [S4][S6], and in July 2012 PCWorld reported Sykipot email attacks including aerospace-industry targets [S5]. Linking this earlier Sykipot activity to the Salmon Typhoon cluster relies on CrowdStrike's Sykipot/Wkysol association [S2]; Microsoft itself names Wkysol [S1]."
+  },
+  "capabilities": {
+    "summary": "Microsoft names Win32/Wkysol as malware this actor used to maintain remote access to compromised systems [S1]. CrowdStrike associates the cluster with the Sykipot implant (aka Wkysol) [S2]. Sykipot has been used in spearphishing campaigns since about 2007 against primarily US victims, and one variant hijacks smart cards [S2]. AlienVault's January 2012 variant logged keystrokes to capture smart-card PINs and could act as the authenticated user when a card was inserted in an infected reader (a smart-card proxy attack) [S4]. In 2023 the actor used LLMs for public-domain reconnaissance on intelligence agencies, individuals, cybersecurity topics and threat actors, for finding and fixing code errors, for researching file types and methods to conceal activity in operating systems, and for translating technical papers; Microsoft says the model declined requests for apparently malicious code [S1]. OpenAI's account is similar [S3]. Microsoft saw no uniquely novel LLM-enabled techniques [S1][S3]."
+  },
+  "campaigns": [
+    {"date": "2011-03", "name": "Sykipot smart-card proxy variant (approximate start)", "summary": "AlienVault reported that code in a new Sykipot variant contained a March 2011 date, suggesting use since then, and that it targeted DoD smart-card credentials by keylogging PINs (ActivClient involvement was reported by some outlets and disputed by ActivIdentity). It was reported in mid-January 2012. Attribution of Sykipot to the Salmon Typhoon cluster rests on CrowdStrike's mapping [S2][S4][S6].", "sources": ["S2", "S4", "S6"]},
+    {"date": "2012-07", "name": "Sykipot email campaigns against aerospace", "summary": "PCWorld reported AlienVault findings of email-based attacks distributing new Sykipot variants, some aimed at the aerospace industry, including one using the 2013 IEEE Aerospace Conference as a lure [S5].", "sources": ["S5"]},
+    {"date": "2015-11", "name": "End of CrowdStrike-tracked activity window", "summary": "CrowdStrike states Maverick Panda was active from at least 2007 until November 2015, mostly against the US aerospace sector. Microsoft later described intermittent dormancy and resurgence [S1][S2].", "sources": ["S1", "S2"]},
+    {"date": "2023", "name": "Exploratory LLM use", "summary": "Throughout 2023 Salmon Typhoon interacted with LLMs for reconnaissance, scripting help, concealment research and technical translation. Microsoft assessed this as exploratory [S1].", "sources": ["S1"]},
+    {"date": "2024-02", "name": "Joint Microsoft and OpenAI disruption", "summary": "Microsoft and OpenAI reported disabling accounts and assets associated with Salmon Typhoon, one of five state-affiliated actors named [S1][S3].", "sources": ["S1", "S3"]}
+  ],
+  "diamond": {
+    "adversary": "Chinese state-affiliated actor per Microsoft; China-nexus per CrowdStrike; the sponsoring organization is not named in the sources gathered [S1][S2].",
+    "capability": "Win32/Wkysol (Sykipot) remote-access malware, spearphishing, a DoD smart-card proxy variant, and exploratory LLM use for reconnaissance, scripting and translation [S1][S2][S4].",
+    "infrastructure": "Earlier Sykipot strains used command-and-control servers in China per AlienVault [S4]. Current infrastructure is not described in the sources gathered. Actor-held AI-service accounts were disabled in 2024 [S1][S3].",
+    "victim": "US defense contractors, government agencies, cryptographic technology firms and aerospace organizations [S1][S2]; DoD smart-card users in the 2011-2012 Sykipot reporting [S4].",
+    "socioPolitical": "Microsoft's wording on LLM queries (US influence, internal affairs, regional politics, intelligence agencies) indicates interest in understanding foreign intelligence and policy landscapes [S1]. No explicit PRC tasking is documented in the sources gathered.",
+    "technology": "Smart-card and PKI-based authentication (CAC-style deployments) was the target of the 2011-2012 Sykipot variant [S4]. Email-borne delivery into defense and aerospace environments [S5]. Cloud AI services were used as a research aid [S1]."
+  },
+  "gaps": [
+    "No Microsoft-published detail on recent (2023 onward) intrusions by Salmon Typhoon was found beyond the LLM activity and the statement of renewed activity [S1].",
+    "Specific PRC sponsor (agency or contractor) is not named in any source gathered.",
+    "Names of victims and campaign dates between 2015 and 2023 are not documented in the sources gathered; the dormancy and resurgence pattern is Microsoft's claim only [S1].",
+    "Vendor boundary issues: CrowdStrike maps Sykipot/Wkysol to Maverick Panda [S2], while Malpedia attributes the Sykipot family to Samurai Panda per a search summary [S8]. Date ranges differ (CrowdStrike 2007-2015, CFR since 2006, ETDA 2007-2018 per search summary) [S2][S7][S8].",
+    "The CrowdStrike profile and the ETDA card could not be opened by WebFetch; their content is taken from search-result summaries of the pages [S2][S8].",
+    "The primary OpenAI post could not be located in search results; OpenAI's account is known through secondary coverage [S3].",
+    "No Mandiant/Google primary APT4 report was found; Mandiant naming is known only via the ETDA card summary [S8].",
+    "MITRE ATT&CK group id is not confirmed in this research; the existing record has none.",
+    "Microsoft Digital Defense Report content on Salmon Typhoon was not verified."
+  ],
+  "implications": {
+    "jipoe": "Analyst assessment derived from cited sources; validate before use. STEP 1: Defense contractor networks, government agencies, cryptographic technology firms and aerospace organizations form the relevant environment [S1][S2]. DoD smart-card authentication infrastructure was a stated target in 2011-2012 [S4]. STEP 2: The actor shows intermittent dormancy and resurgence, so absence of reporting is not evidence of absence [S1]. STEP 3: Known elements are spearphishing delivery of Sykipot/Wkysol, a keylogger and smart-card proxy capability, and 2023 LLM-assisted research and scripting [S1][S4][S5]. STEP 4: MLCOA is continued low-visibility collection against US defense contractors and cryptography-related firms, with LLM and public-source research supporting target selection and tradecraft. MDCOA is resurgence of Sykipot-style credential and smart-card abuse against DoD-connected users to gain authenticated access. Candidate indicators: Wkysol/Sykipot detections, spearphishing using aerospace or conference lures, anomalous smart-card authentications from workstations with PIN-capture malware, and use of consumer AI services for reconnaissance [S1][S4][S5].",
+    "jcc2": "Analyst assessment derived from cited sources; validate before use. (1) Situational awareness: track Microsoft and vendor updates on Salmon Typhoon; Microsoft's public record is thin and recent activity is unspecified, so treat reporting as incomplete [S1]. (2) Authorities and coordination: contractor-hosted incidents should be coordinated with DC3 and the DIB cybersecurity program, and defensive cooperation with service providers (Microsoft and OpenAI disabled the actor's accounts in 2024) is a precedent for provider-led disruption [S1][S3]. (3) Mission assurance: smart-card and PIN-entry endpoints are sensitive terrain given the 2012 smart-card proxy variant; prioritize endpoint monitoring for keylogging on workstations used with card readers [S4]. (4) Do not merge this cluster with Salt Typhoon or Samurai Panda reporting without further evidence [S8]."
+  },
+  "sources": [
+    {"ref": "S1", "title": "Staying ahead of threat actors in the age of AI", "publisher": "Microsoft Threat Intelligence", "date": "2024-02-14", "url": "https://www.microsoft.com/en-us/security/blog/2024/02/14/staying-ahead-of-threat-actors-in-the-age-of-ai/"},
+    {"ref": "S2", "title": "Maverick Panda Adversary Profile (content via search summary; page undated)", "publisher": "CrowdStrike", "date": "2026-10 (retrieved)", "url": "https://www.crowdstrike.com/en-us/adversaries/maverick-panda/"},
+    {"ref": "S3", "title": "OpenAI says it thwarted malicious state actors out of China, Russia, and North Korea, and one of them's called Salmon Typhoon (reporting OpenAI's Feb 2024 disruption post)", "publisher": "Yahoo", "date": "2024-02", "url": "https://www.yahoo.com/entertainment/openai-says-thwarted-malicious-state-055601905.html"},
+    {"ref": "S4", "title": "New version of Sykipot malware targets DoD smart cards (reporting AlienVault research)", "publisher": "Infosecurity Magazine", "date": "2012-01", "url": "https://www.infosecurity-magazine.com/news/new-version-of-sykipot-malware-targets-dod-smart/"},
+    {"ref": "S5", "title": "Targeted Attacks Against Aerospace Industry Use Sykipot Malware (reporting AlienVault research)", "publisher": "PCWorld", "date": "2012-07", "url": "https://www.pcworld.com/article/465809/targeted_attacks_against_aerospace_industry_use_sykipot_malware.html"},
+    {"ref": "S6", "title": "US military access cards cracked by Chinese hackers (reporting AlienVault research)", "publisher": "The Register", "date": "2012-01-13", "url": "https://www.theregister.com/2012/01/13/sykipot_trojan_dod_smart_card_attack/"},
+    {"ref": "S7", "title": "Connect the Dots on State-Sponsored Cyber Incidents - Sykipot (content via search summary; page undated)", "publisher": "Council on Foreign Relations", "date": "2026-10 (retrieved)", "url": "https://www.cfr.org/cyber-operations/sykipot"},
+    {"ref": "S8", "title": "APT 4, Maverick Panda, Wisp Team - Threat Group Cards (content via search summary only; Malpedia sykipot entry also via search summary)", "publisher": "ETDA Threat Group Cards", "date": "2026-10 (retrieved)", "url": "https://apt.etda.or.th/cgi-bin/showcard.cgi?g=APT+4%2C+Maverick+Panda%2C+Wisp+Team&n=1"},
+    {"ref": "S9", "title": "Microsoft threat actor naming mapping (MicrosoftMapping.json)", "publisher": "Microsoft Threat Intelligence", "date": "2026-10-14 (retrieved)", "url": "https://github.com/microsoft/mstic/blob/master/PublicFeeds/ThreatActorNaming/MicrosoftMapping.json"}
+  ],
+  "aliasesAdd": [
+    {"name": "Sykipot Group", "vendor": "CrowdStrike (per CrowdStrike profile)"},
+    {"name": "Getkys", "vendor": "CrowdStrike (per CrowdStrike profile)"},
+    {"name": "Wkysol", "vendor": "CrowdStrike (per CrowdStrike profile)"},
+    {"name": "Wisp Team", "vendor": "Symantec (per ETDA card)"},
+    {"name": "TG-0623", "vendor": "SecureWorks (per ETDA card)"}
+  ]
+}
