@@ -1,0 +1,48 @@
+{
+  "identification": {
+    "summary": "",
+    "firstObserved": "",
+    "notes": "Microsoft uses the Storm-#### format as a temporary designation for emerging or unresolved clusters of activity (confirmed on Microsoft Learn). No public report describing Storm-2470 was found in web searches."
+  },
+  "attribution": {
+    "sponsor": "",
+    "confidence": "",
+    "basis": ""
+  },
+  "objectives": "",
+  "targeting": {
+    "sectors": [],
+    "regions": [],
+    "notes": ""
+  },
+  "capabilities": {
+    "summary": ""
+  },
+  "campaigns": [],
+  "diamond": {
+    "adversary": "",
+    "capability": "",
+    "infrastructure": "",
+    "victim": "",
+    "socioPolitical": "",
+    "technology": ""
+  },
+  "gaps": [
+    "No public report describing Storm-2470 activity, tooling, targets or timeline was found in web searches (2026-10-15); search results returned only other Storm clusters (Storm-2570, Storm-2460, Storm-2603, Storm-0558) and unrelated uses of the word Storm.",
+    "The China origin shown on the encyclopedia record's imported Microsoft naming mapping could not be corroborated by any source seen in search results and is not asserted here."
+  ],
+  "implications": {
+    "jipoe": "",
+    "jcc2": ""
+  },
+  "sources": [
+    {
+      "ref": "S2",
+      "title": "How Microsoft names threat actors",
+      "publisher": "Microsoft Learn",
+      "date": "2026-10-14",
+      "url": "https://learn.microsoft.com/en-us/unified-secops/microsoft-threat-actor-naming"
+    }
+  ],
+  "aliasesAdd": []
+}

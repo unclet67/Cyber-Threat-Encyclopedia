@@ -3,46 +3,6 @@
  "verify": [],
  "research": [
   {
-   "id": "storm-0978",
-   "tier": "T2"
-  },
-  {
-   "id": "storm-1175",
-   "tier": "T2"
-  },
-  {
-   "id": "storm-1982",
-   "tier": "T2"
-  },
-  {
-   "id": "storm-2035",
-   "tier": "T2"
-  },
-  {
-   "id": "storm-2077",
-   "tier": "T2"
-  },
-  {
-   "id": "storm-2372",
-   "tier": "T2"
-  },
-  {
-   "id": "storm-2470",
-   "tier": "T2"
-  },
-  {
-   "id": "storm-2603",
-   "tier": "T2"
-  },
-  {
-   "id": "suckfly",
-   "tier": "T2"
-  },
-  {
-   "id": "sunglow-blizzard",
-   "tier": "T2"
-  },
-  {
    "id": "ta459",
    "tier": "T2"
   },
@@ -1152,6 +1112,15 @@
   "storm-0247",
   "storm-0593",
   "storm-0940",
+  "storm-0978",
+  "storm-1175",
+  "storm-1982",
+  "storm-2035",
+  "storm-2077",
+  "storm-2372",
+  "storm-2603",
+  "suckfly",
+  "sunglow-blizzard",
   "swirl-typhoon",
   "twill-typhoon",
   "violet-typhoon",
@@ -1169,7 +1138,10 @@
   "ruza-flood",
   "sefid-flood",
   "shadow-typhoon",
-  "storm-0940"
+  "storm-0940",
+  "storm-2035",
+  "suckfly",
+  "sunglow-blizzard"
  ],
  "halts": [],
  "deferred": [
@@ -1241,5 +1213,8 @@
   "wheat-tempest",
   "wisteria-tsunami",
   "zigzag-hail"
+ ],
+ "no_public_reporting": [
+  "storm-2470"
  ]
 }
