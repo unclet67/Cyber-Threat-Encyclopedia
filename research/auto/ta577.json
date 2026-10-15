@@ -1,0 +1,158 @@
+{
+  "identification": {
+    "summary": "TA577 is a financially motivated cybercrime actor that Proofpoint has tracked since mid-2020. It conducts broad email campaigns and has delivered Qbot, IcedID, SystemBC, SmokeLoader, Ursnif and Cobalt Strike [S3]. MITRE describes it as an initial access broker that distributed QakBot and Pikabot and was among the first groups distributing Latrodectus [S11]. It was one of the major Qbot affiliates before the Qbot disruption announced in August 2023 [S1][S2].",
+    "firstObserved": "Proofpoint: tracked since mid-2020 [S3].",
+    "notes": "Hive0118 is the IBM X-Force name carried in the existing record [S11 lists no vendor mapping; the name comes from the imported record]. A search summary of Trend Micro reporting describes Water Curupira, tied to Pikabot spam and Black Basta, as an overlapping cluster; cluster boundaries are not confirmed here [S4][S5]. TA578 (Latrodectus, contact-form lures) and TA570 (Qbot affiliate) are separate Proofpoint clusters and must not be merged with TA577 [S6][S7][S3]."
+  },
+  "attribution": {
+    "sponsor": "",
+    "confidence": "No confidence statement or state sponsor is supported by the sources gathered; the encyclopedia record lists country RU from import data, unverified here.",
+    "basis": "Proofpoint campaign telemetry and incident linkage [S1][S3]. Black Basta association is reported by secondary sources and a Kudelski analysis of leaked Black Basta chats, which rates TA577 links as moderate confidence [S8][S5]."
+  },
+  "objectives": "Financial gain: mass-distribution of loaders that provide initial access to ransomware operators [S3][S11]. In February 2024 Proofpoint assessed the goal of one campaign as capturing NTLMv2 challenge/response pairs for password cracking or pass-the-hash [S1].",
+  "targeting": {
+    "sectors": [],
+    "regions": [],
+    "notes": "Proofpoint describes broad targeting across industries and geographies, with the February 2024 campaigns reaching hundreds of organizations globally in tens of thousands of messages [S1][S3]. No specific sector or country focus is stated in the sources gathered."
+  },
+  "capabilities": {
+    "summary": "Primary delivery is email, notably thread hijacking where messages appear as replies to existing conversations, carrying ZIP or IMG attachments or malicious links [S4][S1]. Payload history: Qbot, IcedID, SystemBC, SmokeLoader, Ursnif and Cobalt Strike (2020-2021) [S3]; after the Qbot disruption, DarkGate in September 2023 and then Pikabot as its preferred payload [S2][S5]; Latrodectus in at least three November 2023 campaigns before reverting to Pikabot [S6][S7]. In February 2024, zipped HTML attachments forced an SMB connection to harvest NTLM hashes, with Impacket artifacts found on the SMB servers [S1][S2]. Pikabot reportedly halts if the system language is Russian or Ukrainian [S5]."
+  },
+  "campaigns": [
+    {
+      "date": "2023-Q1",
+      "name": "Pikabot spam campaigns (Water Curupira)",
+      "summary": "Trend Micro reports Pikabot spam by the cluster it tracks as Water Curupira in Q1 2023, followed by a pause from late June to early September 2023. Overlap with TA577 is not confirmed in the sources gathered.",
+      "sources": [
+        "S4"
+      ]
+    },
+    {
+      "date": "2023-09",
+      "name": "Return after Qbot disruption: DarkGate and Pikabot",
+      "summary": "After the Qbot disruption announced in August 2023, Proofpoint says TA577 was inactive slightly longer than its usual summer break, returned at the end of September with DarkGate and Pikabot campaigns, then settled on Pikabot.",
+      "sources": [
+        "S2"
+      ]
+    },
+    {
+      "date": "2023-11",
+      "name": "Latrodectus campaigns",
+      "summary": "TA577 used Latrodectus in at least three campaigns in November 2023 before reverting to Pikabot; from mid-January 2024 Latrodectus was used almost exclusively by TA578.",
+      "sources": [
+        "S6",
+        "S7"
+      ]
+    },
+    {
+      "date": "2024-02",
+      "name": "NTLM hash theft via thread-hijacked HTML attachments",
+      "summary": "Campaigns on 26 and 27 February 2024 sent tens of thousands of messages to hundreds of organizations with zipped HTML files that triggered an SMB connection to capture NTLMv2 hashes. No malware delivery was observed from these URLs. Proofpoint recommends blocking outbound SMB and notes Outlook clients patched since July 2023 resist the direct file-URI variant.",
+      "sources": [
+        "S1",
+        "S2"
+      ]
+    }
+  ],
+  "diamond": {
+    "adversary": "Financially motivated cybercrime actor and initial access broker tracked by Proofpoint as TA577 since mid-2020; no individuals identified in the sources gathered [S3][S11].",
+    "capability": "Thread-hijacked phishing with ZIP, IMG or HTML attachments and links; rotating loaders (Qbot, IcedID, DarkGate, Pikabot, Latrodectus); Cobalt Strike; NTLM hash capture via SMB; Impacket on attacker servers [S1][S3][S2][S4].",
+    "infrastructure": "Attacker-run SMB servers for hash capture in February 2024 [S1]; payload and C2 infrastructure not enumerated in the sources gathered.",
+    "victim": "Broad, opportunistic organizational targets across industries and geographies; hundreds of organizations in the February 2024 waves [S1][S3].",
+    "socioPolitical": "Criminal ecosystem: loader operators supply access to ransomware affiliates; reported Black Basta links come from secondary reporting [S8].",
+    "technology": "Windows endpoints with Outlook/email clients and SMB egress allowed; credential material exposed through NTLM authentication to external hosts [S1]."
+  },
+  "gaps": [
+    "No 2025 or 2026 TA577 campaign reporting was found in the searches run; current status and tooling are unknown.",
+    "I could not open the primary Proofpoint, Trend Micro or MITRE pages in this session (fetch unavailable); statements rely on search-result summaries of those documents.",
+    "Whether Water Curupira (Trend Micro) is the same cluster as TA577 is not established by the sources gathered; treat as an overlap to verify.",
+    "Microsoft name: the existing record has none. A secondary site lists Storm-0464 but this was not verified against Microsoft material.",
+    "Black Basta relationship rests on secondary coverage and a Kudelski analysis of leaked chats (moderate confidence); no Proofpoint primary statement found.",
+    "Botconf 2024 TA577 talk (Marquardt) appeared in results but its content and date were not reviewed.",
+    "Country of origin (RU in imported record) and any personal attribution are unsupported by the sources gathered.",
+    "Sectoral and regional targeting breakdown is not published in the sources gathered.",
+    "A claimed Proofpoint high-confidence link between TA577 and a March 2021 Sodinokibi infection could not be verified and was removed."
+  ],
+  "implications": {
+    "jipoe": "Analyst assessment derived from cited sources; validate before use. STEP 1: Email gateways, user mailboxes and outbound SMB (TCP 445) paths are the relevant terrain; the actor targets broad commercial and government-adjacent email populations without a stated sector focus [S1][S3]. STEP 2: The actor frequently rotates loaders and pauses (summer 2023), so malware-family signatures alone age quickly [S2][S4]. STEP 3: Template is thread-hijacked email, ZIP/IMG/HTML attachment or link, loader (Pikabot, Latrodectus and predecessors), Cobalt Strike, then handoff to ransomware operators [S3][S4][S6]. STEP 4: MLCOA is continued high-volume loader campaigns feeding criminal ransomware access, possibly including NTLM-capture waves [S1]. MDCOA is use of captured NTLM hashes for pass-the-hash against contractor or DoD-adjacent networks that permit outbound SMB, leading to ransomware on mission systems [S1]. Candidate indicators: inbound replies to existing threads with zipped HTML attachments, outbound SMB to external IPs, Impacket-style authentication, new loader beacons.",
+    "jcc2": "Analyst assessment derived from cited sources; validate before use. (1) Situational awareness: track vendor reporting for loader changes and feed outbound-SMB and thread-hijack indicators to network defenders. (2) Authorities: blocking outbound SMB at boundary devices and Outlook patching are configuration actions that need the owning network authority's approval; coordinate through the DODIN operating chain. (3) Mission assurance: criminal ransomware access can degrade mission systems on unclassified networks, so prioritize segmentation and backup of mission-critical enclaves. (4) Coordination: share indicators with DC3 and the DIB community; treat attribution to a named criminal cluster as vendor-assessed, not government-confirmed [S1][S3]."
+  },
+  "sources": [
+    {
+      "ref": "S1",
+      "title": "TA577's unusual attack chain leads to NTLM data theft",
+      "publisher": "Proofpoint",
+      "date": "2024-03",
+      "url": "https://www.proofpoint.com/us/blog/threat-insight/ta577s-unusual-attack-chain-leads-ntlm-data-theft"
+    },
+    {
+      "ref": "S2",
+      "title": "Warning: Thread hijacking attack targets NTLM hashes (reporting Proofpoint research)",
+      "publisher": "The Hacker News",
+      "date": "2024-03",
+      "url": "https://thehackernews.com/2024/03/warning-thread-hijacking-attack-targets.html"
+    },
+    {
+      "ref": "S3",
+      "title": "The First Step: Initial Access Leads to Ransomware",
+      "publisher": "Proofpoint",
+      "date": "2021-06",
+      "url": "https://www.proofpoint.com/us/blog/threat-insight/first-step-initial-access-leads-ransomware"
+    },
+    {
+      "ref": "S4",
+      "title": "A Look into Pikabot Spam Wave Campaign",
+      "publisher": "Trend Micro",
+      "date": "2024-01",
+      "url": "https://trendmicro.com/de_de/research/24/a/a-look-into-pikabot-spam-wave-campaign.html"
+    },
+    {
+      "ref": "S5",
+      "title": "Alert: Water Curupira hackers actively spreading PikaBot loader malware (reporting Trend Micro)",
+      "publisher": "The Hacker News",
+      "date": "2024-01",
+      "url": "https://thehackernews.com/2024/01/alert-water-curupira-hackers-actively.html"
+    },
+    {
+      "ref": "S6",
+      "title": "New Latrodectus malware replaces IcedID in network breaches",
+      "publisher": "BleepingComputer",
+      "date": "2024-04",
+      "url": "https://www.bleepingcomputer.com/news/security/new-latrodectus-malware-replaces-icedid-in-network-breaches/"
+    },
+    {
+      "ref": "S7",
+      "title": "Cracking ice: Latrodectus, spider bytes ice (Proofpoint blog, as returned by search)",
+      "publisher": "Proofpoint",
+      "date": "2024-04",
+      "url": "https://www.proofpoint.com/us/blog/threat-insight/latrodectus-spider-bytes-ice"
+    },
+    {
+      "ref": "S8",
+      "title": "Unmasking BlackBasta: inside the ransomware syndicate's leaked operations",
+      "publisher": "Kudelski Security",
+      "date": "2025",
+      "url": "https://kudelskisecurity.com/research/unmasking-blackbasta-inside-the-ransomware-syndicates-leaked-operations"
+    },
+    {
+      "ref": "S9",
+      "title": "TA577 (Hive0118): The Evolving Phishing Specialist Behind Modern Malware Campaigns",
+      "publisher": "Brandefense",
+      "date": "2026-01",
+      "url": "https://brandefense.io/blog/ta577-hive0118-the-evolving-phishing-specialist-behind-modern-malware-campaigns/"
+    },
+    {
+      "ref": "S11",
+      "title": "TA577, G1037 (as summarized in search results)",
+      "publisher": "MITRE ATT&CK",
+      "date": "2026-07-31",
+      "url": "https://attack.mitre.org/groups/G1037/"
+    }
+  ],
+  "aliasesAdd": [
+    {
+      "name": "Water Curupira",
+      "vendor": "Trend Micro (overlapping cluster, unconfirmed)"
+    }
+  ]
+}

@@ -3,46 +3,6 @@
  "verify": [],
  "research": [
   {
-   "id": "ta459",
-   "tier": "T2"
-  },
-  {
-   "id": "ta577",
-   "tier": "T2"
-  },
-  {
-   "id": "taffeta-typhoon",
-   "tier": "T2"
-  },
-  {
-   "id": "taizi-flood",
-   "tier": "T2"
-  },
-  {
-   "id": "tropic-trooper",
-   "tier": "T2"
-  },
-  {
-   "id": "tumbleweed-typhoon",
-   "tier": "T2"
-  },
-  {
-   "id": "unc3886",
-   "tier": "T2"
-  },
-  {
-   "id": "vanilla-tempest",
-   "tier": "T2"
-  },
-  {
-   "id": "void-blizzard",
-   "tier": "T2"
-  },
-  {
-   "id": "volga-flood",
-   "tier": "T2"
-  },
-  {
    "id": "winter-vivern",
    "tier": "T2"
   },
@@ -1122,8 +1082,18 @@
   "suckfly",
   "sunglow-blizzard",
   "swirl-typhoon",
+  "ta459",
+  "ta577",
+  "taffeta-typhoon",
+  "taizi-flood",
+  "tropic-trooper",
+  "tumbleweed-typhoon",
   "twill-typhoon",
+  "unc3886",
+  "vanilla-tempest",
   "violet-typhoon",
+  "void-blizzard",
+  "volga-flood",
   "volt-typhoon"
  ],
  "thin": [
@@ -1141,7 +1111,11 @@
   "storm-0940",
   "storm-2035",
   "suckfly",
-  "sunglow-blizzard"
+  "sunglow-blizzard",
+  "ta459",
+  "taffeta-typhoon",
+  "tumbleweed-typhoon",
+  "volga-flood"
  ],
  "halts": [],
  "deferred": [

@@ -1,0 +1,63 @@
+{
+"identification":{
+"summary":"Tumbleweed Typhoon is a Microsoft threat actor name; Microsoft's naming page lists its origin as China and its other names as THORIUM and Karst [S1]. Palo Alto Networks Unit 42 lists Tumbleweed Typhoon and THORIUM as aliases of its China-attributed group Nuclear Taurus, alongside Bronze Vapor, Chimera, G0114 and Red Charon [S2]. The ETDA encyclopedia attributes the Chimera name to CyCraft, Bronze Vapor to SecureWorks, Red Charon to PwC, THORIUM and Tumbleweed Typhoon to Microsoft, Nuclear Taurus to Palo Alto Networks and G0114 to MITRE [S3]. The Chimera behavioural record below therefore comes from other vendors' reporting on a cluster that those aggregators map to Microsoft's name; Microsoft's own reporting on the cluster was not obtained [S2][S3].",
+"firstObserved":"2018 (Chimera activity against Taiwan semiconductor vendors, per CyCraft/NCC Group-Fox-IT reporting on the mapped cluster) [S4][S6]",
+"notes":"CyCraft separates Chimera (Taiwan semiconductor focus only) from the broader cluster tracked by Fox-IT/NCC Group, which also covered EU semiconductors and aviation; the vendors' boundaries differ and should not be merged without caution [S5][S7]. The Karst alias is stated only by Microsoft's naming page and a MISP galaxy listing [S1]. Microsoft renamed element-style (THORIUM) names to weather-based names from April 2023, with Typhoon denoting China [S8]."
+},
+"attribution":{
+"sponsor":"China (Microsoft's origin category for the Typhoon family) [S1][S8]",
+"confidence":"Microsoft's page states origin as China but gives no confidence level or named sponsoring organization [S1]. CyCraft describes Chimera as China-linked on its own assessment, and NCC Group/Fox-IT assessed with moderate confidence that a single group operating in Chinese interests carried out the intrusions they observed [S5][S7]. No government attribution was found.",
+"basis":"Vendor assessments only: Microsoft taxonomy origin label [S1]; CyCraft analysis of the Skeleton Key / Cobalt Strike / Winnti-linked toolset and targeting [S4][S5]; NCC Group/Fox-IT incident-response engagements October 2019 to April 2020 [S7]."
+},
+"objectives":"Espionage and intellectual property theft. CyCraft reported the goal against Taiwan semiconductor vendors was stealing documents, source code and SDKs of chip-related projects [S4]. NCC Group/Fox-IT reported interest in semiconductor intellectual property and, for airlines, passenger name record data [S7][S6]. These objectives belong to the Chimera/Fox-IT cluster mapped to Microsoft's name by third parties [S2][S3].",
+"targeting":{
+"sectors":["Semiconductors [S4][S7]","Airlines / aviation (passenger data) [S7][S6]"],
+"regions":["Taiwan [S4][S6]","European Union (semiconductor and aviation, per Fox-IT/NCC Group) [S5][S7]"],
+"notes":"Targets included vendors' subsidiaries and competitors [S4]. CyCraft noted Chimera focused solely on Taiwan's semiconductor industry whereas the Fox-IT group showed a wider set of interests [S5]."
+},
+"capabilities":{
+"summary":"Cobalt Strike was the main implant in the Chimera operation against Taiwan semiconductor vendors, with a mutated beacon replacing a Google Update binary and injecting payloads into other processes; CyCraft also reported Winnti backdoors and a Skeleton Key malware containing code from Dumpert and Mimikatz [S4][S5]. C2 servers were hosted on legitimate cloud services to complicate attribution [S4]. NCC Group/Fox-IT reported credential stuffing or password spraying with leaked credentials, access to Citrix and VPN systems, abuse of Google and Microsoft cloud services, Cobalt Strike for lateral movement, and dwell times up to three years [S7][S6]."
+},
+"campaigns":[
+{"date":"2018-2019","name":"Operation Skeleton Key (Taiwan semiconductors)","summary":"CyCraft investigated attacks using Skeleton Key from late 2018 to late 2019 against at least seven Taiwan semiconductor vendors, with the goal of stealing chip-related documents, source code and SDKs [S4][S5].","sources":["S4","S5"]},
+{"date":"2019-10 to 2020-04","name":"Fox-IT/NCC Group incident response engagements","summary":"NCC Group and Fox-IT observed intrusions across semiconductor and airline victims during this period, using cloud-service abuse and Cobalt Strike [S7].","sources":["S7"]},
+{"date":"2021-01","name":"Public reporting of cloud-abusing activity against semiconductors and airlines","summary":"Fox-IT/NCC Group published 'Abusing Cloud Services to Fly Under the Radar' in January 2021 and CyCraft published attribution analysis the same month [S5][S6][S7].","sources":["S5","S6","S7"]}
+],
+"diamond":{
+"adversary":"China-origin actor per Microsoft taxonomy; sponsor organization not named in obtained sources [S1].",
+"capability":"Cobalt Strike, Winnti backdoors, Skeleton Key malware, credential attacks [S4][S5][S7].",
+"infrastructure":"C2 hosted on legitimate Google and Microsoft cloud services [S4][S7].",
+"victim":"Semiconductor vendors in Taiwan and elsewhere; airlines [S4][S7].",
+"socioPolitical":"Intellectual property theft in semiconductors and passenger data collection consistent with state-interest espionage; CyCraft and NCC Group/Fox-IT characterize it as operating in Chinese interests [S4][S7]. No further sourced detail.",
+"technology":"Internet-facing remote access (Citrix, VPN), enterprise credentials, Active Directory (via Skeleton Key), and cloud services [S4][S7]."
+},
+"gaps":[
+"Microsoft's own reporting on Tumbleweed Typhoon/THORIUM was not found; the Microsoft Learn page and Unit 42 page could not be fetched (host unreachable), so alias statements rest on search-result summaries of them [S1][S2].",
+"Whether Microsoft's THORIUM cluster equals CyCraft's Chimera (Taiwan only) or the broader Fox-IT cluster is asserted by Unit 42 and ETDA, not confirmed by Microsoft [S2][S3][S5].",
+"Karst alias is cited only by Microsoft's naming page and MISP galaxy; no vendor context found [S1].",
+"No sponsor organization, government attribution, named individuals or recent (2024-2026) activity located.",
+"Primary documents not opened: Microsoft Learn naming page, Unit 42 actor list, Fox-IT/NCC Group report, CyCraft posts, MITRE G0114 page.",
+"Infrastructure indicators and any CVE exploitation not established."
+],
+"implications":{
+"jipoe":"Analyst assessment derived from cited sources; validate before use. Step 1-2: relevant environment is semiconductor and aviation enterprise networks and the cloud services they use [S4][S7]. Step 3: adversary tradecraft is credential abuse against remote-access services, Cobalt Strike, cloud-hosted C2 and long dwell [S7]. MLCOA: continued espionage against high-technology supply chains using valid credentials and cloud C2. MDCOA: broader aviation or defense-industrial collection (inference; not sourced). Candidate indicators: password-spray patterns against VPN/Citrix, beacon masquerading as Google Update, anomalous Google/Microsoft cloud traffic from servers [S4][S7].",
+"jcc2":"Analyst assessment derived from cited sources; validate before use. Situational awareness: track vendor naming overlaps (Tumbleweed Typhoon/THORIUM/Chimera/Nuclear Taurus) so reporting is deconflicted [S2][S3]. Authorities and coordination: reporting is vendor-sourced only; coordinate with defense industrial base and transportation partners through established channels before acting. Mission assurance: prioritize credential hygiene and monitoring of remote access and cloud egress on supply-chain-relevant networks [S7]."
+},
+"sources":[
+{"ref":"S1","title":"How Microsoft names threat actors (Tumbleweed Typhoon: China; other names THORIUM, Karst)","publisher":"Microsoft Learn","date":"2026-10","url":"https://learn.microsoft.com/en-us/unified-secops/microsoft-threat-actor-naming"},
+{"ref":"S2","title":"Threat Actor Groups Tracked by Palo Alto Networks Unit 42 (Nuclear Taurus entry)","publisher":"Palo Alto Networks Unit 42","date":"2025-08-01","url":"https://unit42.paloaltonetworks.com/threat-actor-groups-tracked-by-palo-alto-networks-unit-42/"},
+{"ref":"S3","title":"Chimera - Threat Group Cards: A Threat Actor Encyclopedia","publisher":"ETDA (Thailand)","date":"2025-08","url":"https://apt.etda.or.th/cgi-bin/showcard.cgi?g=Chimera&n=1"},
+{"ref":"S4","title":"Taiwan High-Tech Ecosystem Targeted by Foreign APT Group","publisher":"CyCraft","date":"2020-04-16","url":"https://www.cycraft.com/en/post/apt-group20200416"},
+{"ref":"S5","title":"Threat Attribution - Chimera 'Under the Radar'","publisher":"CyCraft","date":"2021-01-26","url":"https://www.cycraft.com/en/post/threat-attribution20210126"},
+{"ref":"S6","title":"Chinese hacking group 'Chimera' targets Taiwanese chip and airline companies (reporting NCC Group/Fox-IT)","publisher":"SiliconANGLE","date":"2021-01-21","url":"https://siliconangle.com/2021/01/21/chinese-hacking-group-chimera-targets-taiwanese-semiconductor-airline-companies/"},
+{"ref":"S7","title":"Threat group abuses cloud services, targets semiconductor companies, airline industry (reporting NCC Group/Fox-IT 'Abusing Cloud Services to Fly Under the Radar')","publisher":"Security Magazine","date":"2021-01","url":"https://www.securitymagazine.com/articles/94449-threat-group-abuses-cloud-services-targets-semiconductor-companies-airline-industry"},
+{"ref":"S8","title":"Microsoft shifts to a new threat actor naming taxonomy","publisher":"Microsoft Security Blog","date":"2023-04-18","url":"https://www.microsoft.com/en-us/security/blog/2023/04/18/microsoft-shifts-to-a-new-threat-actor-naming-taxonomy/"}
+],
+"aliasesAdd":[
+{"name":"Chimera","vendor":"CyCraft (mapped by Unit 42 / ETDA)"},
+{"name":"Nuclear Taurus","vendor":"Palo Alto Networks Unit 42"},
+{"name":"Bronze Vapor","vendor":"Secureworks"},
+{"name":"Red Charon","vendor":"PwC"},
+{"name":"G0114","vendor":"MITRE ATT&CK"}
+]
+}

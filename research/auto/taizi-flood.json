@@ -1,0 +1,69 @@
+{
+"identification": {
+"summary": "Taizi Flood is Microsoft's name for a China-linked influence operation that other organizations track as Spamouflage (Graphika) and DRAGONBRIDGE (Google) [S1][S3][S4]. It is an influence actor, not an intrusion set; Microsoft's earlier name for the same activity was Storm-1376 [S2]. Microsoft describes the 2024 campaigns as run by a Chinese Ministry of Public Security-linked influence actor [S1].",
+"firstObserved": "2019 (first named Spamouflage Dragon by Graphika per secondary reporting) [S4]",
+"notes": "Spamouflage takes its name from mixing non-political spam content with propaganda as camouflage [S4]. Vendor cluster names (Spamouflage, DRAGONBRIDGE, Storm-1376, Taizi Flood) are treated by cited reporting as the same operation, but each vendor's boundaries and counts differ and should not be merged [S2][S4][S5]. Google reports DRAGONBRIDGE content primarily targets Chinese speakers, with some English and other languages [S5]."
+},
+"attribution": {
+"sponsor": "People's Republic of China; Ministry of Public Security (MPS) per Microsoft and Meta-linked reporting",
+"confidence": "Microsoft links Taizi Flood to the MPS [S1]. Meta confirmed that social media activity described in the April 2023 US criminal complaint is part of the Spamouflage operation it reported on [S4]. Attribution rests on vendor assessment and overlapping content; the DOJ complaint did not use the name Spamouflage [S3].",
+"basis": "April 2023: US prosecutors (EDNY) filed a criminal complaint against 34 MPS officers assigned to the '912 Special Project Working Group', alleging online harassment of dissidents; defendants are believed to reside in the PRC [S3] (reporting on the DOJ complaint). Meta and some private researchers tied that activity to Spamouflage, though the link is contested (Graphika reportedly saw only limited, low-confidence open-source connections) [S3][S4]. Microsoft's October 2024 report describes Taizi Flood as MPS-linked [S1]. China's embassy denied the allegations [S3]."
+},
+"objectives": "Promote PRC political interests and narratives, criticize the US political system and specific politicians who have denounced Chinese government policies, and harass critics [S1][S3]. Microsoft reported narratives targeting Taiwan's January 2024 election, Japan's Fukushima wastewater release, and US down-ballot Republicans in 2024 [S1][S2].",
+"targeting": {
+"sectors": ["Political / elections", "Government and elected officials", "Diaspora and dissident communities", "Social media users"],
+"regions": ["United States", "Taiwan", "Japan", "South Korea", "Latin America (via related OpenAI-reported activity, not confirmed as Taizi Flood)"],
+"notes": "In 2024 Microsoft reported campaigns from July, accelerating in September, critical of Republicans including Reps. Barry Moore and Michael McCaul and Sens. Marsha Blackburn and Marco Rubio; these lawmakers had denounced Chinese government policies [S1]. In Taiwan, Storm-1376 posted suspected AI-generated audio of Terry Gou appearing to endorse another candidate on election day [S2]. In Japan it used AI-generated memes and images against the Fukushima wastewater release, in Japanese, Korean and English [S2]. The OpenAI 'Sponsored Discontent' Latin America cluster was described as China-linked and consistent with spamouflage behavior but is not attributed to Taizi Flood in the sources reviewed [S9]."
+},
+"capabilities": {
+"summary": "High-volume, low-sophistication social media and blog content operation using large networks of inauthentic accounts. Google disrupted over 50,000 DRAGONBRIDGE instances in 2022, over 65,000 in 2023, and over 10,000 in Q1 2024 across YouTube and Blogger, with a lifetime count over 175,000 [S5][S6]. Engagement is consistently minimal: 80 percent of the 2023 YouTube channels disabled had zero subscribers and nearly 95 percent of Blogger blogs received 10 or fewer views [S5]. Meta's August 2023 takedown removed 7,704 Facebook accounts, 954 pages, 15 groups and 15 Instagram accounts, and the operation reportedly rebuilt with new accounts including AI-generated profile pictures [S4]. Microsoft assesses Storm-1376 as the most prolific East Asian actor using AI content, including AI-generated news anchors since at least February 2023, memes and audio [S2][S7]. Microsoft judged AI efforts achieved varying resonance without a consistent formula, and the 2024 US campaigns did not achieve high engagement, though some Moore-related posts drew real-user engagement [S1][S2]. Microsoft described the 2024 posts as including antisemitic messaging and posts designed to look like students in pro-Palestinian protests [S1]. OpenAI separately reported Spamouflage using its models to generate multilingual content [S9]."
+},
+"campaigns": [
+{"date":"2019","name":"Graphika identification of Spamouflage Dragon","summary":"Graphika first named the network, citing its mixing of non-political spam with propaganda [S4].","sources":["S4"]},
+{"date":"2022","name":"DRAGONBRIDGE disruption on Google platforms","summary":"Google disrupted over 50,000 instances of DRAGONBRIDGE activity in 2022 [S6].","sources":["S6"]},
+{"date":"2023-02","name":"AI-generated news anchors","summary":"Microsoft reports Storm-1376 used AI-generated news anchors since at least February 2023 [S7].","sources":["S7"]},
+{"date":"2023-04","name":"US complaint against MPS 912 Special Project Working Group","summary":"EDNY complaint charged 34 MPS officers with conspiracy to transmit interstate threats and interstate harassment; Meta later said the described activity is part of Spamouflage [S3][S4].","sources":["S3","S4"]},
+{"date":"2023-08","name":"Meta takedown; Maui wildfire and Fukushima narratives","summary":"Meta removed 7,704 Facebook accounts and related assets [S4]. Microsoft reports Storm-1376 pushed conspiratorial narratives about the Maui wildfires and AI-generated memes against Japan's Fukushima wastewater release [S2]. NewsGuard documented a pro-China campaign claiming a US 'weather weapon' started the Maui fires [S8].","sources":["S2","S4","S8"]},
+{"date":"2024-01","name":"Taiwan presidential election","summary":"Microsoft called this the first time it saw a nation-state use AI content to try to influence a foreign election; Storm-1376 posted suspected AI-generated Terry Gou audio on election day [S2].","sources":["S2"]},
+{"date":"2024-06","name":"Google Q1 2024 disruption","summary":"Google disrupted over 10,000 DRAGONBRIDGE instances in Q1 2024 [S5].","sources":["S5"]},
+{"date":"2024-07","name":"US 2024 election down-ballot campaigns","summary":"From July 2024, accelerating in September, Taizi Flood ran campaigns critical of Republican politicians and in at least one case promoted a Democratic opponent; Microsoft reported low engagement overall [S1].","sources":["S1"]}
+],
+"diamond": {
+"adversary": "PRC Ministry of Public Security-linked personnel, including the 912 Special Project Working Group per US complaint and Meta [S1][S3][S4].",
+"capability": "Mass inauthentic accounts across Facebook, Instagram, YouTube, Blogger and others; spam-plus-propaganda content; AI-generated images, audio, memes, anchors and text [S2][S4][S5][S9].",
+"infrastructure": "Social media and blog platform accounts and pages; specific domains and hosting not established in cited sources [S4][S5].",
+"victim": "US elected officials and voters, Taiwan electorate, Japan government policy, Chinese-language diaspora and dissidents [S1][S2][S3].",
+"socioPolitical": "Advances PRC narratives, discredits the US political system and critics of Beijing; PRC embassy denies interference [S1][S3].",
+"technology": "Commercial social media platforms and generative AI tools, including OpenAI models per OpenAI reporting [S2][S9]."
+},
+"gaps": [
+"Microsoft's original October 2024 MTAC report PDF text was fragmented in search; specifics rely on press summaries and Microsoft's summary page [S1].",
+"DOJ press release and complaint (justice.gov) were not opened; relied on coverage [S3].",
+"Meta's and Graphika's primary reports were not opened; relied on secondary reporting [S4].",
+"A Microsoft podcast transcript (thecyberwire.com) reportedly says Microsoft renamed Storm-1376 to 'Tides of Flood' after Taizi Flood; sequence and current Microsoft name are unverified and should be checked on Microsoft's naming page.",
+"No Microsoft report on Taizi Flood dated 2025 or later was found.",
+"Exact boundaries between Microsoft Taizi Flood/Storm-1376, Google DRAGONBRIDGE, Meta and Graphika Spamouflage clusters are not published.",
+"Whether the OpenAI 'Sponsored Discontent' cluster belongs to the same operation is unverified [S9].",
+"Infrastructure indicators (domains, hosting) not collected."
+],
+"implications": {
+"jipoe": "Analyst assessment derived from cited sources; validate before use. Step 1-2: The relevant information environment is open social media and video/blog platforms, with US elections, Indo-Pacific allies (Taiwan, Japan), and diaspora communities as the audience set; the actor is MPS-linked, not a military cyber unit [S1][S3]. Step 3: Evaluated capability is high volume, low engagement, increasingly AI-enabled [S2][S5]. Step 4 MLCOA: continued reactive narratives tied to news events (elections, disasters, military or policy actions) with minimal organic reach [S1][S2][S8]. MDCOA: AI-enhanced content, including audio impersonation, gaining real-user amplification during a crisis, as partially seen with Moore-related posts [S1][S2]. Candidate indicators: bursts of low-follower accounts posting the same narrative in multiple languages, AI-generated anchors or profile images, spikes tied to named lawmakers or incidents [S2][S4].",
+"jcc2": "Analyst assessment derived from cited sources; validate before use. Situational awareness: track platform takedown reports (Google, Meta, Microsoft, OpenAI) for narrative shifts affecting US forces, allies and Indo-Pacific partners [S2][S5]. Authorities: counter-influence action in the information environment on US platforms involves platform owners, law enforcement and State/DOJ lanes; Title 10 roles should be confirmed with legal counsel. Mission assurance: low engagement suggests limited direct operational impact, but fabricated content about US military activity (e.g., the Maui 'weather weapon' claim) can erode trust [S8]. Coordination: share indicators with platform partners and interagency counterparts; treat attribution statements as vendor assessments, not government attribution [S1][S4]."
+},
+"sources": [
+{"ref":"S1","title":"Russia, Iran, and China's Influences Pre-Election Day 2024 (Microsoft MTAC election report summary)","publisher":"Microsoft","date":"2024-10-23","url":"https://www.microsoft.com/en-us/security/security-insider/threat-landscape/russia-iran-and-china-continue-influence-campaigns-in-final-weeks-before-election-day-2024"},
+{"ref":"S2","title":"China tests US voter fault lines and ramps AI content to boost its geopolitical interests","publisher":"Microsoft On the Issues","date":"2024-04-04","url":"https://blogs.microsoft.com/on-the-issues/2024/04/04/china-ai-influence-elections-mtac-cybersecurity/"},
+{"ref":"S3","title":"DOJ charges 34 with operating Chinese gov't troll farm that harassed dissidents (reporting DOJ complaint)","publisher":"The Record","date":"2023-04-17","url":"https://therecord.media/34-charged-spreading-prc-disinformation-harassing-chinese-dissidents"},
+{"ref":"S4","title":"Chinese Ministry Outed as Author of Mass Online Influence Operation (reporting Meta takedown)","publisher":"Rolling Stone","date":"2023-08","url":"https://www.rollingstone.com/politics/politics-features/china-facebook-instagram-propaganda-campaign-1234813762/"},
+{"ref":"S5","title":"Google TAG: New efforts to disrupt DRAGONBRIDGE spam activity","publisher":"Google Threat Analysis Group","date":"2024-06","url":"https://blog.google/threat-analysis-group/google-disrupted-dragonbridge-activity-q1-2024/"},
+{"ref":"S6","title":"Over 50,000 instances of DRAGONBRIDGE activity disrupted in 2022","publisher":"Google Threat Analysis Group","date":"2023-01","url":"https://blog.google/threat-analysis-group/over-50000-instances-of-dragonbridge-activity-disrupted-in-2022/"},
+{"ref":"S7","title":"Entity: Storm-1376 (AI Incident Database, citing Microsoft)","publisher":"AI Incident Database","date":"2024-04","url":"https://incidentdatabase.ai/entities/storm-1376/"},
+{"ref":"S8","title":"Pro-China Disinformation Campaign Claims US Started Maui Fires in a 'Weather Weapons' Experiment","publisher":"NewsGuard","date":"2023-09","url":"https://www.newsguardtech.com/special-reports/pro-china-influence-operation-claims-us-military-started-maui-fires/"},
+{"ref":"S9","title":"Disrupting malicious uses of our models: an update February 2025","publisher":"OpenAI","date":"2025-02","url":"https://cdn.openai.com/threat-intelligence-reports/disrupting-malicious-uses-of-our-models-february-2025-update.pdf"}
+],
+"aliasesAdd": [
+{"name":"Storm-1376","vendor":"Microsoft"},
+{"name":"Spamouflage Dragon","vendor":"Graphika"},
+{"name":"DRAGONBRIDGE","vendor":"Google"}
+]
+}

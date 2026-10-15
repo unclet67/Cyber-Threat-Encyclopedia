@@ -1,0 +1,79 @@
+{
+  "identification": {
+    "summary": "Tropic Trooper is a China-linked espionage group, also tracked as KeyBoy, Pirate Panda, Earth Centaur and APT23, that vendors describe as active since about 2011 and historically focused on government, healthcare, transportation and high-tech organizations in Taiwan, the Philippines and Hong Kong [S4][S7]. Trend Micro's 2015 report on Operation TropicTrooper described a campaign active since 2012 against the Taiwanese government, heavy-industry companies and Philippine military agencies [S1].",
+    "firstObserved": "Trend Micro (2015): active since 2012 [S1]. Later vendor reporting (Kaspersky, Trend Micro) says since at least 2011 [S4][S6].",
+    "notes": "Microsoft has no assigned name in this record; Microsoft naming is not established from the gathered sources. Names used by the cited vendors: Pirate Panda and Earth Centaur (Zscaler), Earth Centaur (Trend Micro), KeyBoy and Pirate Panda (Kaspersky) [S3][S4][S6][S7]. The record's imported aliases also list Red Orthrus and BRONZE HOBART, which were not confirmed in the cited sources. Check Point attributed the 2022 Nim-loader cluster to the group, citing Earth Centaur, KeyBoy and Pirate Panda as its names [S5]. Cluster boundaries between KeyBoy-labelled and Tropic Trooper-labelled activity are the vendors' own and were not independently reconciled."
+  },
+  "attribution": {
+    "sponsor": "",
+    "confidence": "Zscaler ThreatLabz attributes its March 2026 activity to Tropic Trooper with high confidence, based on observed TTPs [S3]. No source gathered attributes the group to a specific PRC government organization.",
+    "basis": "Vendor tradecraft and tooling overlap: Zscaler notes a shellcode loader closely resembling the TOSHIS loader previously associated with the group, and staging infrastructure hosting Cobalt Strike Beacon and an EntryShell backdoor previously used by the group [S3]. Kaspersky links its 2024 Crowdoor sample to the SparrowDoor backdoor documented by ESET in 2021, as relayed by The Hacker News [S4]. Vendors describe the group as China-linked; Trend Micro linked USBferry to a China-based actor [S2][S7]."
+  },
+  "objectives": "Espionage against government, military and related organizations, with Trend Micro reporting attempts to reach internal documents such as flight schedules and financial plan documents at transportation targets [S6]. Trend Micro's USBferry work describes the aim as reaching military and government networks, including air-gapped networks, via less-protected intermediaries [S2].",
+  "targeting": {
+    "sectors": [
+      "Government",
+      "Military",
+      "Healthcare (including a military hospital used as a stepping stone)",
+      "Transportation",
+      "High-tech",
+      "Heavy industry",
+      "Banking (a national bank among USBferry victims)",
+      "Individuals (Chinese-speaking users, 2026)"
+    ],
+    "regions": [
+      "Taiwan [S1][S2][S3][S6]",
+      "Philippines [S1][S2]",
+      "Hong Kong [S7]",
+      "Middle East (a governmental entity, 2023-2024) [S4]",
+      "Japan and South Korea (2026) [S3]"
+    ],
+    "notes": "Targeting has broadened over time from Taiwan and the Philippines to the Middle East and, in 2026, individuals in Japan and South Korea [S1][S3][S4]. The Hacker News also reported Malaysia as affected in the 2024 Kaspersky activity; Kaspersky's own release was described as a single governmental entity, so the scope differs by source [S4]."
+  },
+  "capabilities": {
+    "summary": "Trend Micro reported USBferry, USB-borne malware used since 2014 to run commands and pull data from air-gapped military networks, with stepping-stone access via less-protected related organizations [S2]. In 2021 Trend Micro reported compromise of vulnerable Exchange or IIS servers followed by backdoors such as ChiserClient and SmileSvr, and open-source-based customized backdoors including Lilith RAT [S6][S8]. Check Point (2022) described the Nimbda loader written in Nim, a carefully modified AES cipher, and a Yahoyah variant that harvests nearby wireless SSIDs; the loader was bundled with a Chinese-language greyware tool [S5]. Kaspersky (2024) found a China Chopper web shell variant embedded as a module in Umbraco CMS and the Crowdoor backdoor launched by DLL side-loading [S4]. Zscaler (April 2026) described military-themed ZIP lures with a trojanized SumatraPDF delivering an AdaptixC2 Beacon, Visual Studio Code tunnels for remote access, and GitHub used as C2 for a custom Beacon listener [S3]. Itochu researchers presented at Black Hat Asia 2026 a supply-chain compromise involving home routers, and Dark Reading notes the group has used rogue Wi-Fi access points [S9]."
+  },
+  "campaigns": [
+    {"date": "2012", "name": "Operation TropicTrooper", "summary": "Trend Micro described a campaign active since 2012 against the Taiwanese government, heavy-industry firms and Philippine military agencies, using spear-phishing with a downloader detected as TROJ_YAHOYAH.", "sources": ["S1"]},
+    {"date": "2014-12", "name": "USBferry air-gap operations", "summary": "Trend Micro's 2020 report says USBferry attacks have been active since December 2014, hitting military, government, military hospital and national bank targets in Taiwan and the Philippines, using intermediaries to reach air-gapped networks. Trend began tracking the campaign in 2018.", "sources": ["S2"]},
+    {"date": "2020-07", "name": "Transportation and government targeting", "summary": "Trend Micro noticed a new wave of activity from July 2020 against transportation companies and government agencies, seeking flight schedules and financial plan documents, through vulnerable Exchange or IIS servers and backdoors including ChiserClient and SmileSvr.", "sources": ["S6", "S8"]},
+    {"date": "2022", "name": "Nimbda loader and SMS Bomber lure", "summary": "Check Point linked to the group a Nim-language loader (Nimbda) bundled with Chinese-language greyware, injecting into notepad.exe and delivering a Yahoyah variant that collects nearby wireless SSIDs.", "sources": ["S5"]},
+    {"date": "2023-06", "name": "Middle East governmental entity intrusion", "summary": "Kaspersky reports persistent activity beginning at least June 2023 against a Middle East governmental entity, with detection in June 2024 of a China Chopper variant embedded in Umbraco CMS and use of the Crowdoor backdoor via DLL side-loading. The Hacker News reported the effort as ultimately unsuccessful and also cited Malaysia.", "sources": ["S4"]},
+    {"date": "2026-03", "name": "AdaptixC2 campaign against Taiwan, Japan and South Korea", "summary": "Zscaler found a ZIP of military-themed lures on March 12, 2026 delivering a trojanized SumatraPDF, an AdaptixC2 Beacon, VS Code tunnels and a GitHub-based C2 listener, aimed likely at Chinese-speaking individuals in Taiwan and individuals in South Korea and Japan.", "sources": ["S3"]},
+    {"date": "2026", "name": "Home-router supply-chain compromise (Black Hat Asia)", "summary": "Itochu researchers presented a Tropic Trooper supply-chain compromise whose malware arrived with no visible origin; secondary reporting links it to home-router compromise and DNS hijacking of update requests. Details rely on secondary coverage.", "sources": ["S9"]}
+  ],
+  "diamond": {
+    "adversary": "China-linked espionage group tracked as Tropic Trooper, KeyBoy, Pirate Panda, Earth Centaur and APT23 [S3][S4][S7]. Operator identities and sponsor are not established in the gathered sources.",
+    "capability": "USBferry, ChiserClient, SmileSvr, Yahoyah, Nimbda, China Chopper, Crowdoor, AdaptixC2, Cobalt Strike, EntryShell, with DLL side-loading, trojanized legitimate software and VS Code tunnels [S2][S3][S4][S5][S6].",
+    "infrastructure": "Vulnerable Exchange/IIS and Umbraco CMS web servers as footholds [S4][S6]; GitHub used as C2 for a custom AdaptixC2 listener and a staging server hosting Cobalt Strike and EntryShell [S3]; compromised home routers with DNS hijacking per secondary reporting [S9].",
+    "victim": "Government, military, healthcare, transportation, high-tech and banking organizations in Taiwan, the Philippines and Hong Kong; a Middle East governmental entity; and individuals in Taiwan, Japan and South Korea [S1][S2][S3][S4][S7].",
+    "socioPolitical": "Targeting of Taiwanese and Philippine government and military organizations and military-themed lures are consistent with regional military and political intelligence collection; this is an analyst inference and no source states the tasking [S1][S2][S3].",
+    "technology": "Internet-facing Exchange, IIS and Umbraco CMS servers; air-gapped networks reached via USB; consumer and office Wi-Fi/home routers; trojanized PDF readers; GitHub and VS Code tunnel services abused for C2 [S2][S3][S4][S6][S9]."
+  },
+  "gaps": [
+    "No source gathered attributes the group to a named PRC government organization; sponsor left blank.",
+    "Microsoft name for this actor was not established; the imported record has none.",
+    "Trend Micro (2015 and 2021), Kaspersky (2024), Check Point (2022) and Itochu (Black Hat Asia 2026) primary documents could not be opened directly (fetch of vendor hosts failed); content relies on search-result summaries and secondary coverage.",
+    "Imported aliases Red Orthrus and BRONZE HOBART were not confirmed in the cited sources.",
+    "Exact publication dates for the Trend Micro 2015 report, the Check Point 2022 report and the Dark Reading 2026 article were not seen; year-level dates are used.",
+    "The 2026 home-router and DNS-hijack details come from secondary reporting that differs in details across outlets; the Itochu slide deck was not read.",
+    "Scope of the 2023-2024 Middle East activity differs between Kaspersky (single governmental entity) and The Hacker News (multiple, incl. Malaysia).",
+    "Trend Micro's 2018 'new strategy' report was not summarized in the gathered results; lessons from it are not included."
+  ],
+  "implications": {
+    "jipoe": "Analyst assessment derived from cited sources; validate before use. STEP 1: Key terrain includes internet-facing Exchange, IIS and CMS servers, military-linked intermediaries such as hospitals, and any air-gapped enclaves reachable by removable media [S2][S4][S6]. STEP 2: The group adapts quickly, pairing legacy tools with open-source frameworks (AdaptixC2, Cobalt Strike) and abusing trusted services (GitHub, VS Code tunnels), which degrades signature-based detection [S3][S8]. STEP 3: Observed pattern is spear-phish or web-server exploit, then loader and backdoor (DLL side-load), then document collection, with USB and stepping-stone organizations for isolated networks [S2][S4][S5]. STEP 4: MLCOA is continued collection against Taiwan, Philippine and regional government and military targets, using military-themed lures [S1][S3]. MDCOA is use of compromised home routers or stepping-stone contractors and medical providers to reach personnel and enclaves of partner militaries during a regional crisis [S2][S9]. Candidate indicators: new web shell modules on CMS servers, unexpected Visual Studio Code tunnel processes, trojanized PDF readers from ZIP lures, outbound traffic to GitHub repositories from unusual hosts, and USB-borne installers [S2][S3][S4].",
+    "jcc2": "Analyst assessment derived from cited sources; validate before use. (1) Situational awareness: track vendor reporting on this cluster and its alias names (KeyBoy, Pirate Panda, Earth Centaur, APT23) since vendors split activity differently [S3][S4]. (2) Authorities: coverage of partner-nation and contractor networks and personal home devices of personnel falls outside owned DODIN terrain, so coordination of reporting and notification authorities must be settled in advance [S9]. (3) Mission assurance: protect air-gapped and removable-media workflows and intermediary medical or banking connections to military networks [S2]. (4) Coordination: share indicators with allies in Taiwan, Philippines, Japan and South Korea theaters and with DC3 and the DIB program where contractors are exposed [S1][S3]."
+  },
+  "sources": [
+    {"ref": "S1", "title": "Operation TropicTrooper (white paper, as quoted by secondary summaries)", "publisher": "Trend Micro", "date": "2015", "url": "http://www.trendmicro.com/cloud-content/us/pdfs/security-intelligence/white-papers/wp-operation-tropic-trooper.pdf"},
+    {"ref": "S2", "title": "Tropic Trooper's Back: USBferry Attack Targets Air-gapped Environments (reporting Trend Micro)", "publisher": "Security Affairs", "date": "2020-05", "url": "https://securityaffairs.com/103292/apt/tropic-trooper-air-gapped-networks.html"},
+    {"ref": "S3", "title": "Tropic Trooper Pivots to AdaptixC2 and Custom Beacon Listener", "publisher": "Zscaler ThreatLabz", "date": "2026-04-22", "url": "https://www.zscaler.com/de/blogs/security-research/tropic-trooper-pivots-adaptixc2-and-custom-beacon-listener"},
+    {"ref": "S4", "title": "Chinese-Speaking Hacker Group Targets Human Rights Studies in Middle East (reporting Kaspersky)", "publisher": "The Hacker News", "date": "2024-09", "url": "https://thehackernews.com/2024/09/chinese-speaking-hacker-group-targets.html"},
+    {"ref": "S5", "title": "Chinese Actor Takes Aim, Armed with Nim Language and Bizarro AES", "publisher": "Check Point Research", "date": "2022", "url": "https://research.checkpoint.com/2022/chinese-actor-takes-aim-armed-with-nim-language-and-bizarro-aes/"},
+    {"ref": "S6", "title": "Collecting in the Dark: Tropic Trooper Targets Transportation and Government Organizations", "publisher": "Trend Micro", "date": "2021-12", "url": "https://www.trendmicro.com/en_us/research/21/l/collecting-in-the-dark-tropic-trooper-targets-transportation-and-government-organizations.html"},
+    {"ref": "S7", "title": "Kaspersky: Tropic Trooper APT Broadens Target Scope with New Cyberespionage Campaigns in Middle East (press release)", "publisher": "Kaspersky", "date": "2024-09", "url": "https://www.kaspersky.com/about/press-releases/tropic-trooper-apt-broadens-target-scope-with-new-cyberespionage-campaigns-in-middle-east"},
+    {"ref": "S8", "title": "Collecting in the Dark session description (CYBERSEC 2022)", "publisher": "iThome CYBERSEC", "date": "2022", "url": "https://cyber.ithome.com.tw/2022/en/session-page/777"},
+    {"ref": "S9", "title": "Tropic Trooper APT Takes Aim at Home Routers, Japanese Targets (reporting Black Hat Asia 2026 talk by Itochu)", "publisher": "Dark Reading", "date": "2026", "url": "https://www.darkreading.com/threat-intelligence/tropic-trooper-apt-takes-aim-home-routers-japanese-targets"}
+  ],
+  "aliasesAdd": []
+}
