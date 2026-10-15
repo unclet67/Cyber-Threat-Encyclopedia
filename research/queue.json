@@ -1,5 +1,5 @@
 {
- "note": "Research queue for the automatic wave runner. Waves take items from the front; finished ids move to 'done'.",
+ "note": "Research queue for the automatic wave runner. Waves take items from the front; finished ids move to 'done'. Scope limited to CN/RU/IR/KP on 2026-10-15 at the user's request; non-state actors moved to 'deferred'.",
  "verify": [
   "inception",
   "indigozebra"
@@ -1152,278 +1152,6 @@
   {
    "id": "zarya",
    "tier": "T3"
-  },
-  {
-   "id": "amethyst-rain",
-   "tier": "T4"
-  },
-  {
-   "id": "blue-tsunami",
-   "tier": "T4"
-  },
-  {
-   "id": "canvas-cyclone",
-   "tier": "T4"
-  },
-  {
-   "id": "caramel-tsunami",
-   "tier": "T4"
-  },
-  {
-   "id": "carmine-tsunami",
-   "tier": "T4"
-  },
-  {
-   "id": "covertnetwork-1658",
-   "tier": "T4"
-  },
-  {
-   "id": "daffodil-gust",
-   "tier": "T4"
-  },
-  {
-   "id": "denim-tsunami",
-   "tier": "T4"
-  },
-  {
-   "id": "fallow-squall",
-   "tier": "T4"
-  },
-  {
-   "id": "fox-tempest",
-   "tier": "T4"
-  },
-  {
-   "id": "lace-tempest",
-   "tier": "T4"
-  },
-  {
-   "id": "luna-tempest",
-   "tier": "T4"
-  },
-  {
-   "id": "magenta-dust",
-   "tier": "T4"
-  },
-  {
-   "id": "marbled-dust",
-   "tier": "T4"
-  },
-  {
-   "id": "mustard-tempest",
-   "tier": "T4"
-  },
-  {
-   "id": "night-tsunami",
-   "tier": "T4"
-  },
-  {
-   "id": "octo-tempest",
-   "tier": "T4"
-  },
-  {
-   "id": "patched-lightning",
-   "tier": "T4"
-  },
-  {
-   "id": "phlox-tempest",
-   "tier": "T4"
-  },
-  {
-   "id": "pinstripe-lightning",
-   "tier": "T4"
-  },
-  {
-   "id": "pistachio-tempest",
-   "tier": "T4"
-  },
-  {
-   "id": "plaid-rain",
-   "tier": "T4"
-  },
-  {
-   "id": "storm-0230",
-   "tier": "T4"
-  },
-  {
-   "id": "storm-0249",
-   "tier": "T4"
-  },
-  {
-   "id": "storm-0252",
-   "tier": "T4"
-  },
-  {
-   "id": "storm-0259",
-   "tier": "T4"
-  },
-  {
-   "id": "storm-0288",
-   "tier": "T4"
-  },
-  {
-   "id": "storm-0302",
-   "tier": "T4"
-  },
-  {
-   "id": "storm-0408",
-   "tier": "T4"
-  },
-  {
-   "id": "storm-0485",
-   "tier": "T4"
-  },
-  {
-   "id": "storm-0501",
-   "tier": "T4"
-  },
-  {
-   "id": "storm-0538",
-   "tier": "T4"
-  },
-  {
-   "id": "storm-0539",
-   "tier": "T4"
-  },
-  {
-   "id": "storm-0569",
-   "tier": "T4"
-  },
-  {
-   "id": "storm-0671",
-   "tier": "T4"
-  },
-  {
-   "id": "storm-1101",
-   "tier": "T4"
-  },
-  {
-   "id": "storm-1113",
-   "tier": "T4"
-  },
-  {
-   "id": "storm-1125",
-   "tier": "T4"
-  },
-  {
-   "id": "storm-1152",
-   "tier": "T4"
-  },
-  {
-   "id": "storm-1194",
-   "tier": "T4"
-  },
-  {
-   "id": "storm-1249",
-   "tier": "T4"
-  },
-  {
-   "id": "storm-1567",
-   "tier": "T4"
-  },
-  {
-   "id": "storm-1575",
-   "tier": "T4"
-  },
-  {
-   "id": "storm-1607",
-   "tier": "T4"
-  },
-  {
-   "id": "storm-1674",
-   "tier": "T4"
-  },
-  {
-   "id": "storm-1747",
-   "tier": "T4"
-  },
-  {
-   "id": "storm-1811",
-   "tier": "T4"
-  },
-  {
-   "id": "storm-1865",
-   "tier": "T4"
-  },
-  {
-   "id": "storm-2227",
-   "tier": "T4"
-  },
-  {
-   "id": "storm-2460",
-   "tier": "T4"
-  },
-  {
-   "id": "storm-2477",
-   "tier": "T4"
-  },
-  {
-   "id": "storm-2561",
-   "tier": "T4"
-  },
-  {
-   "id": "storm-2581",
-   "tier": "T4"
-  },
-  {
-   "id": "storm-2657",
-   "tier": "T4"
-  },
-  {
-   "id": "storm-2697",
-   "tier": "T4"
-  },
-  {
-   "id": "storm-2755",
-   "tier": "T4"
-  },
-  {
-   "id": "storm-2945",
-   "tier": "T4"
-  },
-  {
-   "id": "storm-2949",
-   "tier": "T4"
-  },
-  {
-   "id": "storm-2981",
-   "tier": "T4"
-  },
-  {
-   "id": "storm-2999",
-   "tier": "T4"
-  },
-  {
-   "id": "storm-3075",
-   "tier": "T4"
-  },
-  {
-   "id": "storm-3127",
-   "tier": "T4"
-  },
-  {
-   "id": "strawberry-tempest",
-   "tier": "T4"
-  },
-  {
-   "id": "velvet-tempest",
-   "tier": "T4"
-  },
-  {
-   "id": "viridian-vortex",
-   "tier": "T4"
-  },
-  {
-   "id": "wheat-tempest",
-   "tier": "T4"
-  },
-  {
-   "id": "wisteria-tsunami",
-   "tier": "T4"
-  },
-  {
-   "id": "zigzag-hail",
-   "tier": "T4"
   }
  ],
  "done": [
@@ -1513,5 +1241,75 @@
   "berry-sandstorm",
   "crescent-typhoon"
  ],
- "halts": []
+ "halts": [],
+ "deferred": [
+  "amethyst-rain",
+  "blue-tsunami",
+  "canvas-cyclone",
+  "caramel-tsunami",
+  "carmine-tsunami",
+  "covertnetwork-1658",
+  "daffodil-gust",
+  "denim-tsunami",
+  "fallow-squall",
+  "fox-tempest",
+  "lace-tempest",
+  "luna-tempest",
+  "magenta-dust",
+  "marbled-dust",
+  "mustard-tempest",
+  "night-tsunami",
+  "octo-tempest",
+  "patched-lightning",
+  "phlox-tempest",
+  "pinstripe-lightning",
+  "pistachio-tempest",
+  "plaid-rain",
+  "storm-0230",
+  "storm-0249",
+  "storm-0252",
+  "storm-0259",
+  "storm-0288",
+  "storm-0302",
+  "storm-0408",
+  "storm-0485",
+  "storm-0501",
+  "storm-0538",
+  "storm-0539",
+  "storm-0569",
+  "storm-0671",
+  "storm-1101",
+  "storm-1113",
+  "storm-1125",
+  "storm-1152",
+  "storm-1194",
+  "storm-1249",
+  "storm-1567",
+  "storm-1575",
+  "storm-1607",
+  "storm-1674",
+  "storm-1747",
+  "storm-1811",
+  "storm-1865",
+  "storm-2227",
+  "storm-2460",
+  "storm-2477",
+  "storm-2561",
+  "storm-2581",
+  "storm-2657",
+  "storm-2697",
+  "storm-2755",
+  "storm-2945",
+  "storm-2949",
+  "storm-2981",
+  "storm-2999",
+  "storm-3075",
+  "storm-3127",
+  "strawberry-tempest",
+  "velvet-tempest",
+  "viridian-vortex",
+  "wheat-tempest",
+  "wisteria-tsunami",
+  "zigzag-hail"
+ ]
 }
