@@ -1,0 +1,118 @@
+{
+ "identification": {
+  "summary": "UAT-9244 is Cisco Talos's designation for a China-nexus advanced persistent threat cluster that Talos disclosed on 2026-03-05 [S1]. Talos assesses with high confidence that it is closely associated with FamousSparrow and overlaps with Tropic Trooper [S1][S2]. Talos reports it has targeted telecommunications infrastructure in South America since 2024, across Windows and Linux endpoints and edge devices [S1][S2]. It uses three implants: TernDoor (Windows), PeerTime (Linux/embedded) and BruteEntry (edge-device scanner/relay) [S1][S2].",
+  "firstObserved": "2024 (activity start per Talos-derived reporting) [S1][S2]",
+  "notes": "Talos could not establish a firm link to Salt Typhoon despite overlapping targeting [S2][S4]. ESET documents FamousSparrow as a China-aligned group [S6]; do not merge Talos, Microsoft and ESET cluster boundaries. One report says TernDoor has been used since at least November 2024 [S4]. The Hacker News lists PeerTime under the name 'angrypeer' [S2]."
+ },
+ "attribution": {
+  "sponsor": "China-nexus (no specific state organization named in sources reviewed)",
+  "confidence": "Cisco Talos: high confidence that UAT-9244 is closely associated with FamousSparrow and overlaps with Tropic Trooper [S1][S2]",
+  "basis": "Talos cites overlapping tooling, TTPs and victimology with FamousSparrow/Tropic Trooper [S1]. TernDoor is described as a variant of the previously disclosed CrowDoor malware [S2][S4]. PeerTime debug strings are in Simplified Chinese, which Talos treats as an indicator of Chinese-speaking operators [S5]. This is a vendor assessment, not government attribution."
+ },
+ "objectives": "Reporting characterizes the activity as espionage-oriented, aimed at persistent access to telecommunications networks, with remote command execution, lateral movement and relay infrastructure; no destructive or ransomware activity was described [S2][S3].",
+ "targeting": {
+  "sectors": [
+   "Telecommunications service providers"
+  ],
+  "regions": [
+   "South America"
+  ],
+  "notes": "Targets include Windows and Linux endpoints and edge devices of telecom providers [S1][S2]. Specific victim organizations and countries were not identified in the sources I could review [S1]."
+ },
+ "capabilities": {
+  "summary": "TernDoor is a Windows backdoor derived from CrowDoor; it is delivered via DLL side-loading (benign wsprint.exe loads malicious BugSplatRc64.dll, which decrypts a data file and runs it in memory), reportedly injects into msiexec.exe, persists via scheduled task or Registry Run key, and embeds a driver able to suspend, resume and terminate processes [S4]. PeerTime is a Linux ELF backdoor that uses the BitTorrent protocol for peer-based C2 and payload retrieval, with builds for ARM, MIPS, PowerPC and AArch64, in C/C++ and Rust variants, deployed by a shell script with an 'instrumentor' binary that checks for Docker [S5]. BruteEntry is a Go-based tool that registers with C2, receives IP lists, and turns compromised edge devices into Operational Relay Boxes that brute-force SSH, Postgres and Tomcat servers [S1][S5]. Initial access vector is not known from reviewed sources; the associated lineage has previously exploited outdated Windows Server and Exchange Server to drop web shells [S4]."
+ },
+ "campaigns": [
+  {
+   "date": "2024",
+   "name": "Start of South American telecom targeting",
+   "summary": "Talos-derived reporting dates the cluster's targeting of South American telecommunications infrastructure to 2024 [S1][S2].",
+   "sources": [
+    "S1",
+    "S2"
+   ]
+  },
+  {
+   "date": "2024-11",
+   "name": "TernDoor use",
+   "summary": "One report states TernDoor has been in use since at least November 2024 [S4].",
+   "sources": [
+    "S4"
+   ]
+  },
+  {
+   "date": "2026-03-05",
+   "name": "Talos public disclosure",
+   "summary": "Cisco Talos published its report on UAT-9244 describing TernDoor, PeerTime and BruteEntry [S1][S3].",
+   "sources": [
+    "S1",
+    "S3"
+   ]
+  }
+ ],
+ "diamond": {
+  "adversary": "China-nexus cluster UAT-9244, closely associated with FamousSparrow and overlapping Tropic Trooper per Talos [S1][S2].",
+  "capability": "TernDoor, PeerTime and BruteEntry cross-platform implants, with DLL side-loading, an embedded process-control driver, BitTorrent-based C2 and ORB creation [S4][S5].",
+  "infrastructure": "Compromised edge devices used as Operational Relay Boxes and proxy nodes; BitTorrent peer network for PeerTime C2 [S1][S5]. Specific domains and certificates were not verified in sources I could open.",
+  "victim": "South American telecommunications providers [S1][S2].",
+  "socioPolitical": "",
+  "technology": "Windows hosts, Linux servers, and embedded/edge devices (ARM, MIPS, PowerPC, AArch64), with SSH, Postgres and Tomcat services as brute-force targets [S5]."
+ },
+ "gaps": [
+  "Cisco Talos primary report could not be opened (fetch failed); details come from search-result summaries and secondary coverage, so validate against the primary document [S1].",
+  "Initial access vector, victim countries/organizations and dwell times are not identified in reviewed sources.",
+  "Infrastructure indicators (e.g., domains, shared SSL certificates) were not verified.",
+  "Relationship to Salt Typhoon is unresolved: Talos could not confirm a link, the FamousSparrow-Salt Typhoon relationship was not verified [S2][S6].",
+  "The Tropic Trooper overlap is stated by Talos; independent corroboration was not found.",
+  "No MITRE ATT&CK group ID and no Microsoft name identified."
+ ],
+ "implications": {
+  "jipoe": "Analyst assessment derived from cited sources; validate before use. Step 1-2: the operational environment includes telecom provider networks, whose edge devices (routers, appliances) and Linux/Windows servers are the observed terrain [S1][S5]. Step 3-4: adversary most likely course of action is continued persistent access to telecom providers with lateral movement and use of compromised edge devices as relay boxes to scan or brute-force further targets [S1][S3]; a more dangerous course would be use of that access and ORB network against third-party networks routed through compromised carriers (inference, not stated in sources). Candidate indicators: wsprint.exe loading BugSplatRc64.dll, msiexec.exe injection, scheduled-task/Run-key persistence, unexpected BitTorrent traffic from edge devices, outbound SSH/Postgres/Tomcat brute-force from infrastructure devices, ELF binaries on ARM/MIPS devices [S4][S5].",
+  "jcc2": "Analyst assessment derived from cited sources; validate before use. Situational awareness: share Talos-reported behaviors with partners operating or relying on South American telecom links, noting that edge devices may be both victims and attack relays [S1][S5]. Authorities: monitoring of commercial/partner carrier infrastructure depends on partner agreements and host-nation authority; coordinate through established cyber threat-sharing channels. Mission assurance: identify mission dependencies on affected carriers and plan alternate paths and integrity checks on edge devices. Coordination: confirm indicators with the primary Talos report before tasking collection or defensive action."
+ },
+ "sources": [
+  {
+   "ref": "S1",
+   "title": "UAT-9244 (Cisco Talos blog; opened only via search result summary)",
+   "publisher": "Cisco Talos",
+   "date": "2026-03-05",
+   "url": "https://blog.talosintelligence.com/uat-9244/"
+  },
+  {
+   "ref": "S2",
+   "title": "China-Linked Hackers Use TernDoor, PeerTime, BruteEntry in South American Telecom Attacks (reporting Talos)",
+   "publisher": "The Hacker News",
+   "date": "2026-03",
+   "url": "https://thehackernews.com/2026/03/china-linked-hackers-use-terndoor.html"
+  },
+  {
+   "ref": "S3",
+   "title": "China-Linked Hackers Use Malware Trio for Telecom Espionage (reporting Talos)",
+   "publisher": "BankInfoSecurity",
+   "date": "2026-03",
+   "url": "https://www.bankinfosecurity.com/china-linked-hackers-use-malware-trio-for-telecom-espionage-a-30940"
+  },
+  {
+   "ref": "S4",
+   "title": "Chinese hackers target telcos in South America with new malware (reporting Talos)",
+   "publisher": "CyberInsider",
+   "date": "2026-03",
+   "url": "https://cyberinsider.com/chinese-hackers-target-telcos-in-south-america-with-new-malware/"
+  },
+  {
+   "ref": "S5",
+   "title": "Chinese state hackers target telcos with new malware toolkit (reporting Talos)",
+   "publisher": "BleepingComputer",
+   "date": "2026-03",
+   "url": "https://www.bleepingcomputer.com/news/security/chinese-state-hackers-target-telcos-with-new-malware-toolkit/"
+  },
+  {
+   "ref": "S6",
+   "title": "Cyberespionage Attacks by the China-Aligned FamousSparrow Group in the United States",
+   "publisher": "ESET",
+   "date": "2025-03",
+   "url": "https://www.eset.com/ca/about/newsroom/press-releases/cyberespionage-attacks-by-the-china-aligned-famoussparrow-group-in-the-united-states-eset-research-discovers-1/"
+  }
+ ],
+ "aliasesAdd": []
+}
