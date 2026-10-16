@@ -1,0 +1,56 @@
+{
+  "identification": {
+    "summary": "DAGGER PANDA is CrowdStrike's name for the activity Kaspersky publicly reported as Icefog; aggregators list RedFoxtrot and UAT-7290 as related or equivalent names, but those mappings rest on third-party vendor overlap statements, not on CrowdStrike text I could open [S1][S5][S6]. Kaspersky announced Icefog in September 2013 as a small group, active since 2011, focused on South Korea and Japan and on supply-chain attacks against defense contractors, shipbuilders, telecom and satellite operators and media companies [S1].",
+    "firstObserved": "Kaspersky: operation began in 2011 [S1]. Recorded Future dates RedFoxtrot activity to 2014 [S3]. Talos has tracked UAT-7290 since at least 2022 [S4].",
+    "notes": "Three vendor clusters are in play and must not be merged: Icefog (Kaspersky, 2013-2014) [S1][S2]; RedFoxtrot (Recorded Future, 2021), which Recorded Future says overlaps Temp.Trident and Nomad Panda [S3]; and UAT-7290 (Cisco Talos, 2026), which Talos says shares significant victimology, infrastructure and tooling overlap with Red Foxtrot [S4]. The Icefog-to-RedFoxtrot-to-UAT-7290 chain is therefore inferred through the encyclopedia's imported alias list and an aggregator page, not through a single primary document [S5]. Microsoft has no mapped name for this actor in this record."
+  },
+  "attribution": {
+    "sponsor": "Recorded Future ties RedFoxtrot to PLA Unit 69010 in Urumqi, Xinjiang, assessed as likely a cover designator for a Technical Reconnaissance Bureau within the PLA Strategic Support Force Network Systems Department [S3]. No source I opened attributes Icefog itself to a state.",
+    "confidence": "Recorded Future assessed with high confidence that RedFoxtrot is Chinese state-sponsored [S3]. Talos assessed with high confidence that UAT-7290 is China-nexus [S4]. Kaspersky described Icefog operators as likely based in China, South Korea and Japan and as a small mercenary-style team, an inference from behavior rather than confirmed tasking [S1][S2].",
+    "basis": "Recorded Future: operator OPSEC lapse exposing the unit's headquarters address, plus procurement and court documents, and shared custom capabilities (as summarized in search results, not the full report) [S3]. Talos: victimology, infrastructure and tooling overlap with Red Foxtrot [S4]. Kaspersky: infrastructure IP lists [S1]."
+  },
+  "objectives": "Espionage. Kaspersky said Icefog operators quickly took the information they wanted and left [S1]. Recorded Future reports RedFoxtrot collection against aerospace and defense, government, telecommunications, mining and research organizations [S3]. Talos describes UAT-7290 as espionage-motivated and also an initial-access provider building relay infrastructure other China-nexus actors can reuse [S4].",
+  "targeting": {
+    "sectors": ["Government", "Defense contractors", "Maritime and shipbuilding", "Telecommunications", "Satellite operators", "Media", "Oil and gas (Javafog, US)", "Aerospace and defense", "Mining", "Research"],
+    "regions": ["South Korea and Japan (Icefog) [S1]", "United States oil and gas companies (Javafog, Jan 2014) [S2]", "Afghanistan, India, Kazakhstan, Kyrgyzstan, Pakistan, Tajikistan, Uzbekistan (RedFoxtrot) [S3]", "South Asia and Southeastern Europe telecoms (UAT-7290) [S4]"],
+    "notes": "Targeting differs by vendor cluster: East Asia and supply chain in 2013 [S1], Central/South Asia in 2021 [S3], South Asian and European telecoms in 2026 [S4]."
+  },
+  "capabilities": {
+    "summary": "Icefog: spear-phishing with exploits for known vulnerabilities (CVE-2012-0158, CVE-2013-0422 per search coverage of the Kaspersky report), backdoors for Windows and Mac OS X, and the Java-based Javafog; Kaspersky counted more than 4,000 unique infected IPs, including a few dozen Windows and over 350 Mac OS X victims [S1][S2][S5]. RedFoxtrot: custom and publicly available malware [S3]. UAT-7290: exploitation of one-day vulnerabilities in public-facing edge devices, target-specific SSH brute-forcing, public PoC code, Linux implants RushDrop (ChronosRAT), DriveSwitch and SilentRaid (MystRodX), and Windows RedLeaves and ShadowPad [S4]."
+  },
+  "campaigns": [
+    {"date": "2011", "name": "Icefog operation begins", "summary": "Kaspersky dates the operation to 2011, focused on South Korea and Japan and supply-chain targets [S1].", "sources": ["S1"]},
+    {"date": "2013-09", "name": "Kaspersky discloses Icefog", "summary": "Kaspersky publishes the Icefog report describing hit-and-run espionage with Windows and Mac OS X backdoors [S1].", "sources": ["S1"]},
+    {"date": "2014-01", "name": "Javafog against US energy companies", "summary": "Kaspersky reports a Java backdoor variant targeting at least three US oil and gas companies [S2].", "sources": ["S2"]},
+    {"date": "2021-06", "name": "Recorded Future reports RedFoxtrot", "summary": "Insikt Group links RedFoxtrot to PLA Unit 69010 and reports targeting across Central and South Asia since 2014 [S3].", "sources": ["S3"]},
+    {"date": "2026-01", "name": "Talos reports UAT-7290", "summary": "Talos describes edge-device exploitation against South Asian and Southeastern European telecoms and notes overlap with Red Foxtrot [S4].", "sources": ["S4"]}
+  ],
+  "diamond": {
+    "adversary": "Small China-linked operator group (Icefog) [S1]; RedFoxtrot linked by Recorded Future to PLA Unit 69010 [S3]; UAT-7290 assessed China-nexus by Talos [S4].",
+    "capability": "Spear-phishing, known-vulnerability exploits, cross-platform backdoors [S1][S5]; edge-device one-day exploitation and Linux implants in the 2026 cluster [S4].",
+    "infrastructure": "Icefog C&C infrastructure with IP lists suggesting China, South Korea and Japan [S1]; UAT-7290 builds relay box infrastructure reusable by other actors [S4].",
+    "victim": "East Asian defense, maritime, telecom and media firms [S1]; US oil and gas [S2]; Central and South Asian government, defense and telecom [S3]; South Asian and European telecoms [S4].",
+    "socioPolitical": "Collection supporting PRC defense and regional interests, with RedFoxtrot focus on bordering Asian countries per Recorded Future [S3].",
+    "technology": "Windows, Mac OS X and Java hosts for Icefog [S1][S2]; internet-facing edge networking devices and Linux systems in telecom networks for UAT-7290 [S4]."
+  },
+  "gaps": [
+    "Primary documents (Kaspersky Securelist reports, Talos UAT-7290 blog, Recorded Future RedFoxtrot report, CrowdStrike DAGGER PANDA profile) could not be fetched in this session; details rely on search-result summaries and the Kaspersky press release.",
+    "No CrowdStrike source mapping DAGGER PANDA to Icefog was opened; the mapping rests on the encyclopedia's imported MISP/Malpedia data.",
+    "The Icefog to RedFoxtrot to UAT-7290 lineage is inferred from vendor overlap statements; whether one organization operates all three is unconfirmed.",
+    "Icefog activity after 2014 and any direct state attribution of the original Icefog cluster are not established in sources gathered.",
+    "No Microsoft name or MITRE group ID is mapped."
+  ],
+  "implications": {
+    "jipoe": "Analyst assessment derived from cited sources; validate before use. STEP 1: Telecom networks, edge devices and defense-industrial supply chains in Asia are key terrain [S1][S4]. STEP 2: Operators exploit known vulnerabilities rather than zero-days, so patch latency is the adversary advantage [S1][S4]. STEP 3: Template is spear-phish or one-day edge exploit, then backdoor, targeted collection, rapid exit or relay-box use [S1][S4]. STEP 4: MLCOA is continued collection against regional telecom and defense targets. MDCOA is use of compromised telecom or edge infrastructure as relays for other China-nexus actors against allied networks [S4]. Candidate indicators: unpatched edge devices showing SSH brute-force, unexpected Linux implants on network appliances, and Mac OS X backdoors on staff of defense suppliers [S1][S4].",
+    "jcc2": "Analyst assessment derived from cited sources; validate before use. (1) Situational awareness: track edge-device advisories and telecom-sector reporting for partner nations [S4]. (2) Authorities: partner and contractor networks sit outside DoDIN authorities; coordinate through DC3 and DIB cybersecurity channels. (3) Mission assurance: telecom and logistics suppliers in the Indo-Pacific are candidate dependencies to map [S1][S4]. (4) Coordination: because vendor names diverge, share indicators by technique and infrastructure rather than by group name."
+  },
+  "sources": [
+    {"ref": "S1", "title": "Kaspersky Lab Exposes Icefog: a New Cyber-espionage Campaign Focusing on Supply Chain Attacks", "publisher": "Kaspersky", "date": "2013-09", "url": "https://www.kaspersky.com/about/press-releases/kaspersky-lab-exposes-icefog-a-new-cyber-espionage-campaign-focusing-on-supply-chain-attacks"},
+    {"ref": "S2", "title": "Kaspersky discovered Icefog Hit US energy companies with Java Backdoor (reporting Kaspersky research)", "publisher": "Security Affairs", "date": "2014-01", "url": "https://securityaffairs.com/?p=21253"},
+    {"ref": "S3", "title": "RedFoxtrot: China PLA targets bordering Asian countries", "publisher": "Recorded Future Insikt Group", "date": "2021-06-16", "url": "https://recordedfuture.com/research/redfoxtrot-china-pla-targets-bordering-asian-countries"},
+    {"ref": "S4", "title": "UAT-7290 (China-nexus telecom intrusions; read via search summary)", "publisher": "Cisco Talos", "date": "2026-01", "url": "https://blog.talosintelligence.com/uat-7290/"},
+    {"ref": "S5", "title": "The Icefog APT: A Tale of Cloak and Three Daggers (read via search summary)", "publisher": "Kaspersky Securelist", "date": "2013-09", "url": "https://securelist.com/the-icefog-apt-a-tale-of-cloak-and-three-daggers/57331/"},
+    {"ref": "S6", "title": "China-Linked UAT-7290 Targets Telecoms (reporting Talos)", "publisher": "The Hacker News", "date": "2026-01", "url": "https://thehackernews.com/2026/01/china-linked-uat-7290-targets-telecoms.html"}
+  ],
+  "aliasesAdd": []
+}

@@ -1,0 +1,59 @@
+{
+  "identification": {
+    "summary": "Dalbit (also reported as m00nlight) is a threat group named by AhnLab's ASEC after the Korean word for moonlight, because it moved to a hosting server under \"*.m00nlight.top\" as C2 and download server after some Korean company servers it had abused were blocked [S1][S2]. ASEC counted more than 50 confirmed attack attempts against Korean companies since 2022, most against small and mid-size firms and some against major companies [S1][S2].",
+    "firstObserved": "ASEC reports attacks since 2022; the report was published in February 2023 [S1][S3].",
+    "notes": "Name and cluster boundary are ASEC's (AhnLab). Dalbit has no Microsoft name or MITRE group ID in the encyclopedia record. The imported record text (poorly patched Windows servers, email servers, MS-SQL servers) comes from the MISP Galaxy entry citing ASEC reports; the cited ASEC report pages beyond the Feb 2023 report could not be opened, so MS-SQL and email-server claims are not independently verified here."
+  },
+  "attribution": {
+    "sponsor": "",
+    "confidence": "ASEC assessed the group as having at least a partial connection with China, based on tooling [S1][S2]. This is a vendor inference, not government attribution, and no state sponsor is identified in the sources gathered [S1].",
+    "basis": "ASEC cited a proxy tool assumed to have been obtained from a Chinese-language community and a tool with Chinese documentation; the group relied on open-source tools and left little distinctive profiling data (no PDB information) [S1][S2]."
+  },
+  "objectives": "ASEC describes data theft (credentials and emails collected, with extortion implied) and, in some cases, drive encryption with BitLocker for impact; exact motivation is not established [S1][S2][S3].",
+  "targeting": {
+    "sectors": [
+      "Multiple industries (not itemized in sources gathered) [S4]"
+    ],
+    "regions": [
+      "South Korea [S1][S2]"
+    ],
+    "notes": "Most victims were small and mid-size companies, with some major companies; ASEC said about 30% of infected companies used a certain Korean groupware product, with no vulnerability in it confirmed [S1][S2]. The true victim count may be higher than the 50 identified [S1]."
+  },
+  "capabilities": {
+    "summary": "Initial access through web and SQL vulnerabilities (one example cited: WebLogic CVE-2017-10271), then webshells including Godzilla, ASPXSpy, AntSword and China Chopper [S1][S3]. Tools were downloaded with certutil and Bitsadmin, privilege escalation used Potato-family exploits, and FRP and LCX were used as proxy tools, including FRP registered in Task Scheduler for persistence [S1][S3]. Compromised victims were left as proxy and download servers to relay communications for later intrusions [S1][S2]. Evasion included VMProtect packing and log and firewall tampering, and BitLocker was used for encryption [S3]. The group relies largely on public and open-source tooling [S1][S2]. A US HHS analyst note on the Godzilla webshell references the ASEC Dalbit campaign [S4]."
+  },
+  "campaigns": [
+    {"date": "2022", "name": "Korean company intrusions begin", "summary": "ASEC reports attack activity against Korean companies from 2022, with server infrastructure in abused Korean company hosts, later moved to a m00nlight.top domain after blocking.", "sources": ["S1", "S2"]},
+    {"date": "2023-02", "name": "ASEC publication of Dalbit (m00nlight) campaign", "summary": "ASEC publicly named the group and reported 50+ confirmed attacks on Korean companies using webshells, FRP/LCX proxies and, in some cases, BitLocker encryption.", "sources": ["S1", "S3", "S4"]}
+  ],
+  "diamond": {
+    "adversary": "Unattributed group with an assessed partial China connection by ASEC [S1].",
+    "capability": "Public webshells (Godzilla, ASPXSpy, AntSword, China Chopper), FRP and LCX proxies, certutil/Bitsadmin download, Potato privilege escalation, BitLocker for impact [S1][S3].",
+    "infrastructure": "m00nlight.top hosting for C2 and downloads; compromised Korean company servers reused as proxy and download nodes [S1][S2].",
+    "victim": "Korean small, mid-size and some large companies, about 30% of them running a particular Korean groupware product [S1][S2].",
+    "socioPolitical": "",
+    "technology": "Internet-facing, poorly patched web, SQL and groupware servers on Windows [S1][S2]."
+  },
+  "gaps": [
+    "The primary ASEC reports (asec.ahnlab.com/en/47455, /56236, /56941) could not be opened (host unreachable from the research environment); details come from search summaries and secondary coverage. Content of /56236 and /56941 is unverified.",
+    "Sponsor, operator identity and motive are unknown; the China link is a tooling-based vendor inference.",
+    "The groupware product is not named in sources gathered and no vulnerability in it is confirmed.",
+    "A 2023-09 Sekoia report (BlueShell used against Korean and Thai targets) was tagged with Dalbit in an aggregator listing, but the report was not opened and linkage is unverified.",
+    "Claims about email-server and MS-SQL targeting come from the MISP Galaxy description only.",
+    "Activity after February 2023 is not covered by sources gathered."
+  ],
+  "implications": {
+    "jipoe": "Analyst assessment derived from cited sources; validate before use. STEP 1: Internet-facing Windows web, SQL and groupware servers are key terrain, and compromised servers double as relay nodes [S1][S2]. STEP 2: The actor uses public tools and old vulnerabilities, so patch gaps matter more than novel capability [S1][S3]. STEP 3: The template is vulnerable server, webshell, certutil/Bitsadmin tool download, Potato escalation, FRP/LCX tunnel, credential and email theft, optional BitLocker [S1][S3]. STEP 4: MLCOA is continued opportunistic intrusion of poorly managed Korean servers. MDCOA is use of relay nodes in allied networks to stage intrusions against higher-value targets. Candidate indicators: FRP scheduled tasks named debug, a new admin account named main, certutil/Bitsadmin downloads from web server processes, and m00nlight.top domains [S1][S3].",
+    "jcc2": "Analyst assessment derived from cited sources; validate before use. (1) Situational awareness: track exposed Windows web and groupware servers on partner and contractor networks in Korea. (2) Authorities: remediation on non-DoD partner systems requires host-nation or owner action. (3) Mission assurance: BitLocker misuse can cause availability loss, so maintain offline backups and recovery procedures. (4) Coordination: share indicators with ROK counterparts and the vendor community [S1][S2]."
+  },
+  "sources": [
+    {"ref": "S1", "title": "Dalbit (m00nlight): Chinese Hacker Group's APT Attack Campaign (known only via search results; page not opened)", "publisher": "AhnLab ASEC", "date": "2023-02", "url": "https://asec.ahnlab.com/en/47455/"},
+    {"ref": "S2", "title": "Dalbit Threat Actor Launches Attack Campaign Against Multiple Korean Organizations TA2023085 (reporting ASEC)", "publisher": "HivePro", "date": "2023-02", "url": "https://hivepro.com/wp-content/uploads/2023/02/Dalbit-Threat-Actor-Launches-Attack-Campaign-Against-Multiple-Korean-Organizations_TA2023085.pdf"},
+    {"ref": "S3", "title": "Dalbit (m00nlight) campaign summary (repost of ASEC blog, reporting ASEC)", "publisher": "hendryadrian.com", "date": "2023-02", "url": "https://www.hendryadrian.com/dalbit-m00nlight-chinese-hacker-groups-apt-attack-campaign-asec-blog/"},
+    {"ref": "S4", "title": "November 2024 Godzilla Webshell Analyst Note", "publisher": "US HHS", "date": "2024-11", "url": "https://www.hhs.gov/sites/default/files/november-2024–godzilla-webshell-analyst-note.pdf"}
+  ],
+  "aliasesAdd": [
+    {"name": "m00nlight", "vendor": "AhnLab ASEC"},
+    {"name": "Moonlight", "vendor": "AhnLab ASEC"}
+  ]
+}
