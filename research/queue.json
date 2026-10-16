@@ -3,38 +3,6 @@
  "verify": [],
  "research": [
   {
-   "id": "silkspecter",
-   "tier": "T3"
-  },
-  {
-   "id": "sima",
-   "tier": "T3"
-  },
-  {
-   "id": "slime29",
-   "tier": "T3"
-  },
-  {
-   "id": "slime88",
-   "tier": "T3"
-  },
-  {
-   "id": "smishing-triad",
-   "tier": "T3"
-  },
-  {
-   "id": "sneakychef",
-   "tier": "T3"
-  },
-  {
-   "id": "solntsepek",
-   "tier": "T3"
-  },
-  {
-   "id": "spacebears",
-   "tier": "T3"
-  },
-  {
    "id": "spicy-panda",
    "tier": "T3"
   },
@@ -609,7 +577,14 @@
   "sharppanda",
   "silent-librarian",
   "silk-typhoon",
+  "silkspecter",
+  "sima",
+  "slime88",
+  "smishing-triad",
   "smoke-sandstorm",
+  "sneakychef",
+  "solntsepek",
+  "spacebears",
   "spandex-tempest",
   "star-blizzard",
   "storm-0133",
@@ -741,6 +716,11 @@
   "shaggypanther",
   "shahid-hemmat",
   "shark-spider",
+  "silkspecter",
+  "sima",
+  "slime88",
+  "sneakychef",
+  "spacebears",
   "storm-0940",
   "storm-2035",
   "suckfly",
@@ -836,6 +816,7 @@
   "poisonus-panda",
   "predator-panda",
   "sabre-panda",
+  "slime29",
   "storm-2470"
  ],
  "needs_source_date": {

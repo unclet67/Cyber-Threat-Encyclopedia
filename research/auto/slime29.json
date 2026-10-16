@@ -1,0 +1,49 @@
+{
+  "identification": {
+    "summary": "SLIME29 is a threat actor name listed among actors associated with PlugX in the Malpedia PlugX entry [S2].",
+    "firstObserved": "",
+    "notes": "No Microsoft name is mapped in this record."
+  },
+  "attribution": {
+    "sponsor": "",
+    "confidence": "",
+    "basis": "No sponsor or attribution statement could be verified from the sources retained."
+  },
+  "objectives": "",
+  "targeting": {
+    "sectors": [],
+    "regions": [],
+    "notes": ""
+  },
+  "capabilities": {
+    "summary": "Malpedia lists SLIME29 as an actor associated with PlugX [S2]."
+  },
+  "campaigns": [],
+  "diamond": {
+    "adversary": "Actor name SLIME29 [S2].",
+    "capability": "PlugX association [S2].",
+    "infrastructure": "",
+    "victim": "",
+    "socioPolitical": "",
+    "technology": ""
+  },
+  "gaps": [
+    "A previously cited Black Hat Asia 2022 TeamT5 slide deck (TeamT5 cluster origin, online entertainment targeting, overlap with TianWu/SLIME34) could not be verified in independent search and its URL was not seen in results; those claims were removed.",
+    "No sponsor, confidence, objectives, targeting, infrastructure or campaigns verified.",
+    "No Microsoft mapping and no MITRE group identified."
+  ],
+  "implications": {
+    "jipoe": "",
+    "jcc2": ""
+  },
+  "sources": [
+    {
+      "ref": "S2",
+      "title": "PlugX (win.plugx) (Malpedia entry listing associated actors, via search summary)",
+      "publisher": "Malpedia (Fraunhofer FKIE)",
+      "date": "2026-10 (retrieved)",
+      "url": "https://malpedia.caad.fkie.fraunhofer.de/details/win.plugx"
+    }
+  ],
+  "aliasesAdd": []
+}
