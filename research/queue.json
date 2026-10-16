@@ -3,38 +3,6 @@
  "verify": [],
  "research": [
   {
-   "id": "uac-0194",
-   "tier": "T3"
-  },
-  {
-   "id": "uac-0245",
-   "tier": "T3"
-  },
-  {
-   "id": "uat-5394",
-   "tier": "T3"
-  },
-  {
-   "id": "uat-6382",
-   "tier": "T3"
-  },
-  {
-   "id": "uat-7237",
-   "tier": "T3"
-  },
-  {
-   "id": "uat-8099",
-   "tier": "T3"
-  },
-  {
-   "id": "uat-8302",
-   "tier": "T3"
-  },
-  {
-   "id": "uat-8837",
-   "tier": "T3"
-  },
-  {
    "id": "uat-9244",
    "tier": "T3"
   },
@@ -509,6 +477,14 @@
   "twill-typhoon",
   "uac-0020",
   "uac-0094",
+  "uac-0194",
+  "uac-0245",
+  "uat-5394",
+  "uat-6382",
+  "uat-7237",
+  "uat-8099",
+  "uat-8302",
+  "uat-8837",
   "unc3886",
   "vanilla-tempest",
   "violet-typhoon",
@@ -650,6 +626,13 @@
   "tumbleweed-typhoon",
   "tunnelsnake",
   "uac-0094",
+  "uac-0194",
+  "uac-0245",
+  "uat-5394",
+  "uat-6382",
+  "uat-7237",
+  "uat-8099",
+  "uat-8302",
   "volga-flood",
   "yulong-flood"
  ],

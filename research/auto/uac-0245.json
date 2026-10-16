@@ -1,0 +1,97 @@
+{
+  "identification": {
+    "summary": "UAC-0245 is a CERT-UA tracking identifier for a threat cluster that CERT-UA reported in late September / early October 2025 for targeted attacks in Ukraine using a C-based backdoor named CABINETRAT, delivered as malicious Excel XLL add-ins inside ZIP archives shared over Signal [S2][S3]. Press coverage describes the targets as Ukrainian government and defense organizations [S4].",
+    "firstObserved": "Activity observed September 2025 per CERT-UA as reported by secondary sources [S2][S3].",
+    "notes": "UAC-0xxx is CERT-UA's uncategorized-cluster naming scheme, not a vendor name; no Microsoft name or other vendor alias was found in the sources gathered. SOC Prime reports CERT-UA#17479 as the advisory tag [S5]. The CERT-UA primary page could not be verified, so all technical detail below comes from secondary coverage."
+  },
+  "attribution": {
+    "sponsor": "",
+    "confidence": "",
+    "basis": "None of the reviewed coverage attributes UAC-0245 to a named state or organization [S2][S3]. Reporting only notes that XLL files were previously seen in UAC-0002 (Sandworm/APT44) attacks on Ukrainian critical infrastructure, which is a tooling comparison and not an attribution [S5]. Bitdefender's headline coverage characterizes the group as Russian-linked [S4]; this is the outlet's characterization, not a government or CERT-UA attribution."
+  },
+  "objectives": "Not stated by sources. CABINETRAT functionality (system information, installed-program listing, screenshots, file operations, command execution) is consistent with reconnaissance and data collection [S2][S3].",
+  "targeting": {
+    "sectors": [
+      "Government",
+      "Defense"
+    ],
+    "regions": [
+      "Ukraine"
+    ],
+    "notes": "Sectors per Bitdefender's description of Ukrainian government and defense organizations [S4]; CERT-UA warning concerned attacks on the Defense Forces (per secondary coverage) [S2][S3]. The lure was a document about detention of persons who attempted to cross the Ukrainian border [S2][S3]."
+  },
+  "capabilities": {
+    "summary": "Delivery by ZIP archives shared over Signal containing a malicious XLL Excel add-in (one reported archive name 500.zip with dodatok.xll) [S2][S3]. The XLL drops an EXE in the Startup folder, an XLL named BasicExcelMath.xll in %APPDATA%, and a PNG named Office.png, modifies the registry for persistence, launches Excel hidden with the /e parameter, and extracts shellcode from the PNG [S2][S3]. Reports also describe randomized Run-key entries and a scheduled task running every 12 hours [S5]. CABINETRAT is a C-language backdoor that gathers system information, installed programs and screenshots, enumerates directories, deletes files, runs commands, and uploads/downloads files over a TCP connection to a remote server [S2][S3]. Loader and shellcode check for at least 2 CPU cores, 3 GB RAM and virtualization products (VMware, VirtualBox, Xen, QEMU, Parallels, Hyper-V) to evade analysis [S2][S3]."
+  },
+  "campaigns": [
+    {
+      "date": "2025-09",
+      "name": "CABINETRAT campaign against Ukrainian defense/government targets",
+      "summary": "CERT-UA observed Signal-delivered ZIP archives with XLL add-ins that deploy the CABINETRAT backdoor, using a border-detention document lure [S2][S3][S4].",
+      "sources": [
+        "S2",
+        "S3",
+        "S4"
+      ]
+    },
+    {
+      "date": "2025-10",
+      "name": "CERT-UA public warning",
+      "summary": "CERT-UA publicized the activity and the UAC-0245 identifier (advisory tag CERT-UA#17479 per SOC Prime) [S2][S5].",
+      "sources": [
+        "S2",
+        "S5"
+      ]
+    }
+  ],
+  "diamond": {
+    "adversary": "Unattributed cluster tracked by CERT-UA as UAC-0245 [S2][S3].",
+    "capability": "XLL Excel add-in loader, PNG-hidden shellcode, CABINETRAT C backdoor, anti-VM checks [S2][S3].",
+    "infrastructure": "Signal messenger used to distribute ZIP archives; backdoor communicates with a remote server over TCP [S2][S3]. Specific C2 addresses not captured.",
+    "victim": "Ukrainian government and defense organizations [S4].",
+    "socioPolitical": "",
+    "technology": "Windows with Microsoft Excel (XLL add-in loading) and Signal as a delivery channel [S2][S3]."
+  },
+  "gaps": [
+    "CERT-UA primary advisory could not be verified; all details are from secondary coverage and artifact names vary between reports.",
+    "No state or organizational attribution found; Russian link is only a media characterization [S4].",
+    "No vendor alias or MITRE group mapping found; overlap with other CERT-UA clusters (e.g. UAC-0002) is not established, only a shared XLL technique noted [S5].",
+    "IOCs (hashes, C2 addresses), victim counts and confidence statements not captured.",
+    "No later UAC-0245 activity found in searches through 2026-10."
+  ],
+  "implications": {
+    "jipoe": "Analyst assessment derived from cited sources; validate before use. STEP 1: Personal and unofficial messaging channels (Signal) and Office add-in loading are exposure points for defense personnel; endpoints running Excel are key terrain [S2][S3]. STEP 2: Adversary reaches personnel outside managed email gateways using a topical lure [S2][S3]. STEP 3: Template is Signal-delivered ZIP, XLL add-in, PNG shellcode, persistence via Startup, Run key and scheduled task, then C-based RAT with screenshot and file collection [S2][S3][S5]. STEP 4: MLCOA is continued targeted compromise of Ukrainian defense and government users for collection; MDCOA is the same XLL/Signal vector turned against coalition or partner defense personnel. Candidate indicators: XLL files within ZIPs received over messaging apps, Excel launched hidden with /e, BasicExcelMath.xll in %APPDATA%, Office.png, new Startup-folder EXEs, 12-hour scheduled tasks [S2][S3][S5].",
+    "jcc2": "Analyst assessment derived from cited sources; validate before use. (1) Situational awareness: track CERT-UA UAC-series advisories and ingest artifact names above into hunt content. (2) Authorities: policy on personal messaging apps and blocking XLL/Office add-in execution requires commander and DAA decisions. (3) Mission assurance: restrict add-in loading and block ZIPs with XLL content on managed endpoints. (4) Coordination: share indicators with partner CERTs and DC3; because attribution is open, prioritize containment over naming."
+  },
+  "sources": [
+    {
+      "ref": "S2",
+      "title": "Ukraine Warns of CABINETRAT Backdoor + XLL Add-ins Spread via Signal ZIPs (reporting CERT-UA)",
+      "publisher": "The Hacker News",
+      "date": "2025-10",
+      "url": "https://thehackernews.com/2025/10/ukraine-warns-of-cabinetrat-backdoor.html"
+    },
+    {
+      "ref": "S3",
+      "title": "CERT-UA warns UAC-0245 targets Ukraine with CABINETRAT backdoor (reporting CERT-UA)",
+      "publisher": "Security Affairs",
+      "date": "2025-10",
+      "url": "https://securityaffairs.com/182862/cyber-warfare-2/cert-ua-warns-uac-0245-targets-ukraine-with-cabinetrat-backdoor.html"
+    },
+    {
+      "ref": "S4",
+      "title": "Hackers Use XLL Add-ins and Excel to Deploy CABINETRAT Malware in Ukraine (reporting CERT-UA)",
+      "publisher": "Bitdefender HotForSecurity",
+      "date": "2025-10",
+      "url": "https://www.bitdefender.com/en-au/blog/hotforsecurity/hackers-xll-excel-cabinetrat-malware-ukraine"
+    },
+    {
+      "ref": "S5",
+      "title": "Detect UAC-0245 Attacks: CABINETRAT Backdoor (reporting CERT-UA#17479)",
+      "publisher": "SOC Prime",
+      "date": "2025-10",
+      "url": "https://socprime.com/it/blog/latest-threats/detect-uac-0245-attacks/"
+    }
+  ],
+  "aliasesAdd": []
+}

@@ -1,0 +1,90 @@
+{
+  "identification": {
+    "summary": "UAT-6382 is Cisco Talos's uncategorized-threat designation for a Chinese-speaking cluster that exploited Trimble Cityworks vulnerability CVE-2025-0994 against enterprise networks of US local governing bodies, beginning in January 2025 [S1]. After access it deployed web shells (AntSword, chinatso/Chopper) and Rust-based loaders ('TetraLoader') that install Cobalt Strike and VShell [S1].",
+    "firstObserved": "Talos reports intrusions beginning January 2025 [S1]. Talos report published about 2025-05-22 [S1].",
+    "notes": "'UAT' is a Talos designation for an uncategorized threat; no Microsoft name or MITRE group ID was found in the sources gathered. Some press prints the CVE as CVE-2025-0944, a typo; the correct identifier is CVE-2025-0994 (CVSS 8.6) [S1]. TetraLoader is built with a publicly available framework called MaLoader, whose interface is in Simplified Chinese [S1]."
+  },
+  "attribution": {
+    "sponsor": "",
+    "confidence": "Cisco Talos assesses with high confidence that the exploitation and post-compromise activity is carried out by Chinese-speaking threat actors [S1]. This is a vendor assessment of language and origin, not a government attribution.",
+    "basis": "Talos cites Chinese-language web shells and tooling, and that MaLoader, the framework behind TetraLoader, is written in Simplified Chinese [S1]. No state sponsor is named in the sources gathered."
+  },
+  "objectives": "Not stated by Talos beyond observed behavior: after initial access the actor performed reconnaissance and expressed clear interest in pivoting to systems related to utilities management [S1].",
+  "targeting": {
+    "sectors": [
+      "Local government",
+      "Utilities management (pivot interest)"
+    ],
+    "regions": [
+      "United States"
+    ],
+    "notes": "Talos found intrusions in enterprise networks of US local governing bodies [S1]."
+  },
+  "capabilities": {
+    "summary": "Exploits CVE-2025-0994, a deserialization-of-untrusted-data flaw in Trimble Cityworks that allows remote code execution on the IIS web server; affected versions are before 15.8.9 (and Cityworks with Office Companion before 23.10) [S1]. Post-exploitation: server fingerprinting, then web shells including AntSword, chinatso/Chopper and Behinder [S6]. Custom Rust-based loader TetraLoader, built with MaLoader, deploys Cobalt Strike and the Go-based VShell implant (file management, command execution, screen capture, proxying) [S1]. Secondary reporting says some payloads masqueraded as Cityworks services such as CityworksCacheLayerService.exe [S1][S6]. Talos also describes reconnaissance and exfiltration of files of interest [S1]."
+  },
+  "campaigns": [
+    {
+      "date": "2025-01",
+      "name": "Cityworks exploitation begins",
+      "summary": "Talos reports first intrusions into US local government networks via CVE-2025-0994.",
+      "sources": [
+        "S1"
+      ]
+    },
+    {
+      "date": "2025-01",
+      "name": "Trimble patch",
+      "summary": "One report states fixes were released 28 January (15.8.9) and 29 January (Office Companion 23.10) 2025.",
+      "sources": [
+        "S6"
+      ]
+    },
+    {
+      "date": "2025-05",
+      "name": "Talos publishes UAT-6382 report",
+      "summary": "Talos details web shells, TetraLoader, Cobalt Strike and VShell, and the pivot toward utility systems.",
+      "sources": [
+        "S1"
+      ]
+    }
+  ],
+  "diamond": {
+    "adversary": "Chinese-speaking cluster, high-confidence vendor assessment by Talos; sponsor unknown [S1].",
+    "capability": "CVE-2025-0994 exploit; AntSword, chinatso/Chopper and Behinder web shells; TetraLoader (MaLoader) delivering Cobalt Strike and VShell [S1][S6].",
+    "infrastructure": "Compromised IIS servers hosting Cityworks used as footholds; VShell stager connects to a hardcoded C2 server [S1]. Specific C2 infrastructure not captured in the sources gathered.",
+    "victim": "Enterprise networks of US local governing bodies, with interest in utilities-management systems [S1].",
+    "socioPolitical": "Not established; no government attribution found.",
+    "technology": "Internet-facing Trimble Cityworks on Microsoft IIS [S1]."
+  },
+  "gaps": [
+    "WebFetch could not reach any host, so the Talos blog was not opened; content is drawn from search-result summaries and should be verified against the primary Talos post [S1].",
+    "CVE identifier: some outlets print CVE-2025-0944 (typo); CVE-2025-0994 is correct.",
+    "Patch and zero-day timing is inconsistent across coverage [S6].",
+    "Some outlets describe the actor as financially motivated while citing Talos; not verified against the Talos post and not used here.",
+    "Initial access detail: the flaw is described as requiring an authenticated user; how access was obtained is not verified.",
+    "No state sponsor, MITRE group, Microsoft name or overlap with other named clusters was found. Victim count, agencies, and exfiltrated data are unknown.",
+    "Exact Talos publication date is inferred as 2025-05-22; sources S2-S5 and S7 from earlier drafts were removed because their URLs were not confirmed in search."
+  ],
+  "implications": {
+    "jipoe": "Analyst assessment derived from cited sources; validate before use. STEP 1: Municipal and installation-adjacent civil utility management platforms (GIS and work-order systems on IIS) are relevant terrain. STEP 2: The actor weaponized a flaw in niche municipal software within weeks of or before patching, so patch lag at small governments is a vulnerability window [S1]. STEP 3: Pattern is vulnerability exploit, web shell, Rust loader, Cobalt Strike or VShell, reconnaissance, then pivot toward utility systems [S1]. STEP 4: MLCOA is continued access and reconnaissance in local-government networks. MDCOA is use of a utility-management foothold to reach water or power control systems supporting installations during a crisis; this is an assessment, not a reported event. Candidate indicators: new ASPX web shells on Cityworks IIS servers, unexpected services such as CityworksCacheLayerService.exe, and outbound connections from Cityworks hosts to unknown C2 [S1][S6].",
+    "jcc2": "Analyst assessment derived from cited sources; validate before use. (1) Situational awareness: track known-exploited-vulnerability listings for civil infrastructure software that serves communities around installations. (2) Authorities: municipal networks are outside DoD authority, so coordination runs through DHS/CISA, EPA and state and local partners. (3) Mission assurance: identify installation dependence on municipal water and power and plan for degraded utilities. (4) Coordination: share Talos-derived indicators with the base civil engineering and communications squadrons and relevant ISACs [S1]."
+  },
+  "sources": [
+    {
+      "ref": "S1",
+      "title": "UAT-6382 exploits Cityworks zero-day vulnerability to deliver malware",
+      "publisher": "Cisco Talos",
+      "date": "2025-05-22",
+      "url": "https://blog.talosintelligence.com/uat-6382-exploits-cityworks-vulnerability/"
+    },
+    {
+      "ref": "S6",
+      "title": "Trimble Cityworks zero-day attacks on US local governments detailed (reporting Talos)",
+      "publisher": "SC Media",
+      "date": "2025-05",
+      "url": "https://www.scworld.com/news/trimble-cityworks-zero-day-attacks-on-us-local-governments-detailed"
+    }
+  ],
+  "aliasesAdd": []
+}

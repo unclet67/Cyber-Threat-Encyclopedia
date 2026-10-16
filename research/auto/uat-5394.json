@@ -1,0 +1,59 @@
+{
+  "identification": {
+    "summary": "Cisco Talos tracks UAT-5394 as a North Korean state-sponsored cluster that develops and operates MoonPeak, a remote access trojan (RAT) derived from the open-source XenoRAT [S1][S2]. Talos reported in August 2024 on the cluster's staging, C2 and test infrastructure, which it used to build new MoonPeak iterations [S1][S3].",
+    "firstObserved": "Hive Pro states first activity was seen in June 2024 [S4]. Talos published its report in August 2024 [S1][S2].",
+    "notes": "UAT-5394 is a Talos cluster designation. No Microsoft name or MITRE group ID is known for it. Talos sees overlaps in TTPs and infrastructure patterns with Kimsuky but says it lacks substantial technical evidence to link them [S2][S5]. Per secondary reporting, Talos considers it either a Kimsuky subgroup moving from QuasarRAT to MoonPeak, or a separate group imitating Kimsuky [S5]. Do not merge facts with Kimsuky records."
+  },
+  "attribution": {
+    "sponsor": "North Korea, as assessed by Cisco Talos (state-sponsored, likely used for espionage-oriented attacks) [S2][S3]. This is a vendor assessment, not a government attribution.",
+    "confidence": "Talos assesses the cluster is North Korean state-sponsored but says it lacks substantial technical evidence to tie it to Kimsuky [S2][S5]. Talos assesses with low confidence that QuasarRAT on one of the actor's own C2 servers was a deliberate backup means of access [S6].",
+    "basis": "Talos infrastructure analysis and malware lineage (XenoRAT to MoonPeak), plus TTP and infrastructure-pattern overlap with Kimsuky, as relayed by secondary coverage [S1][S2][S5]. The Talos original could not be fetched."
+  },
+  "objectives": "Talos assesses the activity is likely used in espionage-oriented attacks [S2]. Specific collection requirements are not stated in the sources gathered.",
+  "targeting": {
+    "sectors": [],
+    "regions": ["Hive Pro lists the targeted region as worldwide [S4]"],
+    "notes": "The secondary sources gathered name no victims or sectors for UAT-5394. The Talos report was focused on malware and infrastructure rather than victims [S3][S4]."
+  },
+  "capabilities": {
+    "summary": "MoonPeak is a modified fork of XenoRAT that the actor is actively developing, with changes aimed at evasion, better obfuscation and thwarting analysis [S2][S3]. The actor stood up new C2 servers and test infrastructure for new iterations, and reused existing servers to update payloads and collect logs [S2][S3]. Test VMs were used to check implants before delivery to potential victims [S3][S4]. One early MoonPeak C2 (95.164.86.148, port 9999) was active from at least 5 July 2024, and a server hosting pumaria.store was used to test MoonPeak v2 samples between 30 June and 8 July [S3]. Servers were reached over RDP from other servers to deploy MoonPeak C2 [S7]. After AhnLab research on XenoRAT's use of commercial cloud services, the actor moved from Google Drive, OneDrive and Dropbox to servers it controls [S6]. A MISP galaxy entry states the malware implements state machines to complicate analysis, citing Talos [S8]."
+  },
+  "campaigns": [
+    {"date": "2024-05", "name": "AhnLab XenoRAT cloud-abuse research", "summary": "AhnLab published research on a spear-phishing campaign using an early XenoRAT variant and commercial cloud services, which Talos says prompted the actor to change infrastructure [S2][S6].", "sources": ["S2", "S6"]},
+    {"date": "2024-06", "name": "Move off public cloud storage", "summary": "Per Talos as relayed by BankInfoSecurity, UAT-5394 moved from public cloud storage to servers it controls in June; Hive Pro dates first activity to June 2024 [S4][S6].", "sources": ["S4", "S6"]},
+    {"date": "2024-06-30", "name": "MoonPeak v2 testing", "summary": "A server hosting pumaria.store was used to test MoonPeak v2 samples between 30 June and 8 July 2024 [S3].", "sources": ["S3"]},
+    {"date": "2024-07-05", "name": "Early MoonPeak C2 active", "summary": "95.164.86.148 served as an early MoonPeak C2 on port 9999 from at least 5 July 2024 and was linked to a QuasarRAT C2 and RDP pivoting [S3][S7].", "sources": ["S3", "S7"]},
+    {"date": "2024-08", "name": "Talos publishes MoonPeak report", "summary": "Talos reports UAT-5394, MoonPeak and associated staging, C2 and test infrastructure [S1][S2].", "sources": ["S1", "S2"]}
+  ],
+  "diamond": {
+    "adversary": "North Korean state-sponsored cluster tracked by Talos as UAT-5394; possible Kimsuky relationship unresolved [S2][S5].",
+    "capability": "MoonPeak RAT (XenoRAT fork), QuasarRAT on C2 as backup access, RDP for infrastructure access [S2][S6][S7].",
+    "infrastructure": "Actor-controlled staging, C2 and test servers, replacing public cloud storage; examples 95.164.86.148 and a pumaria.store host [S3][S6].",
+    "victim": "Not identified in the sources gathered; region listed as worldwide by Hive Pro [S4].",
+    "socioPolitical": "Likely espionage-oriented use in service of North Korean state interests, per Talos [S2].",
+    "technology": "Windows endpoints exposed to RAT delivery, and cloud storage services abused for payload hosting before the 2024 move [S6]."
+  },
+  "gaps": [
+    "Talos original report and AhnLab original report could not be fetched (host not reachable); details come from secondary coverage [S1][S2][S3][S6].",
+    "Victims, sectors, initial access vector and delivery method for UAT-5394 are not stated in the sources gathered.",
+    "The state-machine detail is sourced only to a MISP galaxy entry citing Talos [S8].",
+    "Relationship to Kimsuky is unresolved: Talos sees overlap but lacks evidence [S5]. Trellix's 2025 Kimsuky-linked XenoRAT campaign was not tied to UAT-5394 and must not be merged.",
+    "No activity after August 2024 attributed to UAT-5394 was found.",
+    "No Microsoft name, MITRE group ID or government attribution found."
+  ],
+  "implications": {
+    "jipoe": "Analyst assessment derived from cited sources; validate before use. STEP 1: Windows endpoints and internet-facing servers reachable over RDP are relevant terrain; actor-run C2 and staging servers are adversary terrain [S3][S7]. STEP 2: The actor iterates malware quickly and adapts infrastructure to defender research, so static indicators age fast [S2][S6]. STEP 3: Template is XenoRAT-derived implant, actor-owned C2, RDP pivoting between servers, QuasarRAT as fallback [S2][S6][S7]. STEP 4: MLCOA is continued MoonPeak development and espionage-oriented use with new infrastructure. MDCOA is a shift to fresh custom RAT variants that evade existing signatures after public reporting. Candidate indicators: XenoRAT-like behavior on endpoints, outbound traffic to 95.164.86.148:9999 and the pumaria.store host, and unexpected RDP between servers [S3][S7]. Targeting is unknown, so relevance to DoD is unconfirmed.",
+    "jcc2": "Analyst assessment derived from cited sources; validate before use. (1) Situational awareness: track Talos and AhnLab updates, since the actor changes infrastructure after public reporting [S6]. (2) Authorities: sharing indicators beyond DoD networks needs coordination through standard CTI sharing channels. (3) Mission assurance: restrict inbound RDP and monitor remote-access tools on mission systems [S7]. (4) Coordination: because the Kimsuky relationship is unresolved, coordinate attribution language with the intelligence community rather than asserting a link [S5]."
+  },
+  "sources": [
+    {"ref": "S1", "title": "MoonPeak malware infrastructure North Korea (Talos blog on UAT-5394; could not be fetched, cited via search listing)", "publisher": "Cisco Talos", "date": "2024-08", "url": "https://blog.talosintelligence.com/moonpeak-malware-infrastructure-north-korea/"},
+    {"ref": "S2", "title": "New MoonPeak RAT Linked to North Korean Threat Group UAT-5394 (reporting Talos)", "publisher": "Infosecurity Magazine", "date": "2024-08", "url": "https://www.infosecurity-magazine.com/news/moonpeak-rat-north-korea/"},
+    {"ref": "S3", "title": "North Korean hackers MoonPeak malware update (reporting Talos)", "publisher": "Cyber Security News", "date": "2024-08", "url": "https://cybersecuritynews.com/north-korean-hackers-moonpeak-malware-update/amp/"},
+    {"ref": "S4", "title": "Hive Pro threat advisory TA2024326 (MoonPeak)", "publisher": "Hive Pro", "date": "2024-08", "url": "https://hivepro.com/wp-content/uploads/2024/08/TA2024326.pdf"},
+    {"ref": "S5", "title": "Cyber Security Council Alert 388 (reporting Talos)", "publisher": "UAE Cyber Security Council via ADGM", "date": "2024-08-23", "url": "https://assets.adgm.com/download/assets/20240823+Cyber+Security+Council+Alert+388.pdf/69b26d0470f711ef9fdf22986c9514d4"},
+    {"ref": "S6", "title": "North Korean Hackers Pivot Away From Public Cloud (reporting Talos)", "publisher": "BankInfoSecurity", "date": "2024-08", "url": "https://www.bankinfosecurity.com/north-korean-hackers-pivot-away-from-public-cloud-a-26122"},
+    {"ref": "S7", "title": "North Korea-linked APT used a new RAT called MoonPeak (reporting Talos)", "publisher": "Security Affairs", "date": "2024-08", "url": "https://securityaffairs.com/?p=167340"},
+    {"ref": "S8", "title": "MISP galaxy commit adding UAT-5394 (cites Talos)", "publisher": "MISP Project (CIRCL)", "date": "2024-08", "url": "https://helga.circl.lu/MISP/misp-galaxy/commit/c68dd137720c26f7fb4797b0948d9a4b141dd2f5"}
+  ],
+  "aliasesAdd": []
+}
