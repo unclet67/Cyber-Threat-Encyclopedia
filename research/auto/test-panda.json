@@ -1,0 +1,21 @@
+{
+"identification": {"summary": "Malpedia has an actor entry for TEST PANDA, a CrowdStrike-style 'PANDA' designator, with no malware families associated; its only listed reference is a 2013-10-16 CrowdStrike CrowdCasts Monthly presentation ('You Have an Adversary Problem'), under which Malpedia lists ELECTRIC PANDA and GIBBERISH PANDA alongside TEST PANDA [S1].", "firstObserved": "", "notes": "Search coverage was via a search-result summary of the Malpedia page; the page itself could not be fetched (DNS failure) and the CrowdStrike presentation was not opened. No profile of origin, targets or techniques was found. Do not conflate with other PANDA-named CrowdStrike adversaries (e.g. LIMINAL PANDA, DEEP PANDA) [S1]."},
+"attribution": {"sponsor": "", "confidence": "", "basis": ""},
+"objectives": "",
+"targeting": {"sectors": [], "regions": [], "notes": ""},
+"capabilities": {"summary": ""},
+"campaigns": [],
+"diamond": {"adversary": "", "capability": "", "infrastructure": "", "victim": "", "socioPolitical": "", "technology": ""},
+"gaps": [
+"No public reporting found describing TEST PANDA activity, targets, tooling, infrastructure or sponsor.",
+"State/country origin (CN in the encyclopedia record) is not confirmed by any source reviewed.",
+"CrowdStrike 'CrowdCasts Monthly: You Have an Adversary Problem' (2013 slide deck) was not opened; its content on TEST PANDA is unknown.",
+"Malpedia actor page could not be fetched directly; only a search-result summary was seen.",
+"It is unclear whether TEST PANDA is an operational adversary, a placeholder/naming-variant, or a retired designator; no Microsoft or MITRE mapping found."
+],
+"implications": {"jipoe": "", "jcc2": ""},
+"sources": [
+{"ref": "S1", "title": "Malpedia actor entry: TEST PANDA (seen via search result summary; page not fetched)", "publisher": "Fraunhofer FKIE Malpedia", "date": "2026-10", "url": "https://malpedia.caad.fkie.fraunhofer.de/actor/test_panda"}
+],
+"aliasesAdd": []
+}

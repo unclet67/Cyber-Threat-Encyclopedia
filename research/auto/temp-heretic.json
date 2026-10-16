@@ -1,0 +1,56 @@
+{
+  "identification": {
+    "summary": "TEMP_Heretic is the name Volexity gave to a previously undocumented actor it tracked exploiting a zero-day cross-site scripting (XSS) flaw, CVE-2022-24682, in Zimbra webmail (Zimbra Collaboration 8.8.15 before patch 30) in an operation Volexity called EmailThief [S1][S2][S3]. Reporting describes spear-phishing emails sent from multiple outlook.com addresses, with content crafted per message, aimed at exfiltrating email from government, military and media organizations [S1][S2]. Coverage describes a two-phase approach: reconnaissance emails beginning 14 December 2021 to find recipients who open mail, then lures with crafted links that worked only if the target was logged into Zimbra webmail in a browser [S2][S3].",
+    "firstObserved": "Activity dated to 14 December 2021 in secondary coverage of Volexity's report; Volexity published 2022-02-03 [S2][S3][S6].",
+    "notes": "TEMP_Heretic is Volexity's cluster name. Malpedia and MISP galaxy list no further aliases [S1]. The ESET 'mass-spreading campaign targeting Zimbra users' (2023) is a credential-phishing campaign that ESET did not attribute to any known actor; it was an imported lead on this record but is not shown to be related to TEMP_Heretic [S5]. Primary Volexity text could not be opened in this session; details are from secondary coverage."
+  },
+  "attribution": {
+    "sponsor": "",
+    "confidence": "Malwarebytes reports Volexity judged the actor to be of Chinese origin based on several observed factors [S3]. Security Affairs headlines the actor as 'alleged Chinese' and cites activity timing matching a UTC+8 working day [S2]. Other coverage describes the attribution as tentative [S3][S6]. No government attribution or named PRC organization was found.",
+    "basis": "Vendor assessment by Volexity as relayed by secondary reporting: origin indicators and working-hours timing [S2][S3]. The record country code CN comes from MISP galaxy data [S1]."
+  },
+  "objectives": "Exfiltration of email from government, military and media organizations, per Malpedia's actor entry [S1]. Coverage of the zero-day describes the exploit as allowing arbitrary JavaScript in the victim's Zimbra session, enabling mailbox access [S3][S6].",
+  "targeting": {
+    "sectors": ["Government", "Military", "Media"],
+    "regions": ["European government and media entities, per secondary coverage of the Volexity report [S6]"],
+    "notes": "Sector list is from Malpedia [S1]; the European emphasis is from one summary of the Volexity report and is not confirmed against the primary text [S6]. Victims had to be Zimbra users logged into webmail when opening the lure [S2][S3]."
+  },
+  "capabilities": {
+    "summary": "Spear-phishing from multiple outlook.com addresses with manually crafted content per email [S1]. A reconnaissance phase of tracking emails with remote images preceded exploitation [S2][S3]. The actor used a zero-day reflected XSS in Zimbra's Calendar feature, CVE-2022-24682, affecting 8.8.x before 8.8.15 patch 30, which Zimbra fixed with a hotfix; CISA added it to the Known Exploited Vulnerabilities catalog on 25 February 2022 [S3][S4]. Malpedia lists no associated malware families [S1]."
+  },
+  "campaigns": [
+    {"date": "2021-12-14", "name": "EmailThief reconnaissance phase", "summary": "Per secondary coverage of Volexity's report, emails containing only remote images were sent to identify recipients who open messages, followed by a second phase of lures with crafted links that required the target to be logged into Zimbra webmail [S2][S3].", "sources": ["S2", "S3"]},
+    {"date": "2022-02-03", "name": "Volexity publishes Operation EmailThief", "summary": "Volexity reports active exploitation of a zero-day XSS in Zimbra and names the actor TEMP_Heretic; Malpedia records the report under this date [S1][S2][S3].", "sources": ["S1", "S2", "S3"]},
+    {"date": "2022-02-25", "name": "CISA KEV listing of CVE-2022-24682", "summary": "CISA added the recently disclosed Zimbra flaw to its Known Exploited Vulnerabilities catalog, per The Hacker News [S4].", "sources": ["S4"]}
+  ],
+  "diamond": {
+    "adversary": "Volexity-tracked cluster TEMP_Heretic, assessed by Volexity as likely of Chinese origin; sponsor unknown [S2][S3].",
+    "capability": "Zimbra Calendar XSS zero-day CVE-2022-24682; crafted spear-phishing and tracking-image reconnaissance [S1][S3].",
+    "infrastructure": "Multiple outlook.com sender addresses [S1]. Exploit-hosting and C2 infrastructure details not obtained.",
+    "victim": "Government, military and media organizations using Zimbra webmail [S1][S3].",
+    "socioPolitical": "",
+    "technology": "Internet-facing Zimbra Collaboration 8.8.15 webmail where the victim's browser session executes attacker JavaScript [S3][S6]."
+  },
+  "gaps": [
+    "Volexity's primary report (the existing lead) and ESET's WeLiveSecurity article could not be fetched in this session (host unreachable); all details come from search summaries and secondary coverage.",
+    "Sponsor, state organization and the specific indicators behind Volexity's Chinese-origin judgment are not verified against the primary text [S3].",
+    "Victim names, counts and countries are unconfirmed; the European government and media emphasis comes from one summary [S6].",
+    "No activity after 2022 attributed to TEMP_Heretic was found. Winter Vivern/TA473 Zimbra exploitation (CVE-2022-27926, 2023) is a separate, Russia-linked cluster and not shown to overlap.",
+    "The ESET 2023 Zimbra credential-phishing campaign is unattributed by ESET and not linked to TEMP_Heretic [S5].",
+    "Mapping to a Microsoft actor name or MITRE group was not found."
+  ],
+  "implications": {
+    "jipoe": "Analyst assessment derived from cited sources; validate before use. STEP 1: Webmail servers (Zimbra) used by government and military users are key cyber terrain; the mailbox is the objective. STEP 2: The actor needs a victim logged into webmail who opens a crafted link, and used a zero-day, so patch status alone is not a sufficient defense [S2][S3]. STEP 3: Template is reconnaissance email with remote images, then a tailored lure sent from free outlook.com accounts, then XSS execution in the Zimbra session and mailbox exfiltration [S1][S2][S3]. STEP 4: MLCOA is continued targeted mailbox theft from government, military and media users of internet-facing webmail. MDCOA is use of a new webmail zero-day against coalition or DoD-adjacent Zimbra deployments during a crisis. Candidate indicators: inbound mail from outlook.com addresses with remote-image-only bodies, links to unfamiliar hosts in Calendar-related Zimbra URLs, and unusual mailbox access following link clicks.",
+    "jcc2": "Analyst assessment derived from cited sources; validate before use. (1) Situational awareness: inventory Zimbra and other webmail exposure and track KEV additions such as CVE-2022-24682 [S4]. (2) Authorities: confirm which owners (mission partner, DISA, local commander) can patch or take webmail offline. (3) Mission assurance: plan for degraded email and alternate coordination paths if a webmail platform must be pulled. (4) Coordination: share indicators with partner and coalition mail operators; attribution is tentative, so prioritize containment over naming [S3]."
+  },
+  "sources": [
+    {"ref": "S1", "title": "TEMP_Heretic actor entry", "publisher": "Malpedia (Fraunhofer FKIE)", "date": "2022-02-03", "url": "https://malpedia.caad.fkie.fraunhofer.de/actor/temp_heretic"},
+    {"ref": "S2", "title": "Zimbra zero-day vulnerability actively exploited by an alleged Chinese threat actor (reporting Volexity)", "publisher": "Security Affairs", "date": "2022-02", "url": "https://securityaffairs.com/127621/apt/zimbra-zero-day-actively-axploited.html"},
+    {"ref": "S3", "title": "Threat actor steals email with Zimbra zero-day (reporting Volexity)", "publisher": "Malwarebytes", "date": "2022-02", "url": "https://www.malwarebytes.com/blog/news/2022/02/threat-actor-steals-email-with-zimbra-zero-day"},
+    {"ref": "S4", "title": "CISA adds recently disclosed Zimbra bug to Exploited Vulnerabilities Catalog (reporting CISA KEV)", "publisher": "The Hacker News", "date": "2022-02", "url": "https://thehackernews.com/2022/02/cisa-adds-recently-disclosed-zimbra-bug.html?m=0"},
+    {"ref": "S5", "title": "ESET Research: Mass campaign aimed at stealing Zimbra email users' credentials under way, European countries top targets", "publisher": "ESET", "date": "2023-08", "url": "https://www.eset.com/int/about/newsroom/press-releases/research/eset-research-mass-campaign-aimed-at-stealing-zimbra-email-users-credentials-under-way-european-countries-top-targets/"},
+    {"ref": "S6", "title": "Hackers exploited 0-day vulnerability in Zimbra email platform to spy on users (reporting Volexity)", "publisher": "The Hacker News", "date": "2022-02", "url": "https://thehackernews.com/2022/02/hackers-exploited-0-day-vulnerability.html"},
+    {"ref": "S7", "title": "Operation EmailThief: Active Exploitation of Zero-day XSS Vulnerability in Zimbra (primary, not opened)", "publisher": "Volexity", "date": "2022-02-03", "url": "https://www.volexity.com/blog/2022/02/03/operation-emailthief-active-exploitation-of-zero-day-xss-vulnerability-in-zimbra/"}
+  ],
+  "aliasesAdd": []
+}

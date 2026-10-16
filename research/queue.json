@@ -3,38 +3,6 @@
  "verify": [],
  "research": [
   {
-   "id": "tag-56",
-   "tier": "T3"
-  },
-  {
-   "id": "taskmasters",
-   "tier": "T3"
-  },
-  {
-   "id": "teamspy-crew",
-   "tier": "T3"
-  },
-  {
-   "id": "teleboyi",
-   "tier": "T3"
-  },
-  {
-   "id": "temp-heretic",
-   "tier": "T3"
-  },
-  {
-   "id": "temp-hermit",
-   "tier": "T3"
-  },
-  {
-   "id": "temptick",
-   "tier": "T3"
-  },
-  {
-   "id": "test-panda",
-   "tier": "T3"
-  },
-  {
    "id": "tianwu",
    "tier": "T3"
   },
@@ -556,7 +524,14 @@
   "taffeta-typhoon",
   "tag-112",
   "tag-28",
+  "tag-56",
   "taizi-flood",
+  "taskmasters",
+  "teamspy-crew",
+  "teleboyi",
+  "temp-heretic",
+  "temp-hermit",
+  "temptick",
   "tropic-trooper",
   "tumbleweed-typhoon",
   "twill-typhoon",
@@ -690,6 +665,11 @@
   "taffeta-typhoon",
   "tag-112",
   "tag-28",
+  "tag-56",
+  "taskmasters",
+  "teamspy-crew",
+  "teleboyi",
+  "temp-heretic",
   "tumbleweed-typhoon",
   "volga-flood",
   "yulong-flood"
@@ -781,7 +761,8 @@
   "sabre-panda",
   "slime29",
   "spicy-panda",
-  "storm-2470"
+  "storm-2470",
+  "test-panda"
  ],
  "needs_source_date": {
   "operation-emmental": "draft is in research/auto; the Unit 42 Retefe post cited as S3 has no confirmed publication date",
