@@ -3,46 +3,6 @@
  "verify": [],
  "research": [
   {
-   "id": "red-nue",
-   "tier": "T3"
-  },
-  {
-   "id": "redgolf",
-   "tier": "T3"
-  },
-  {
-   "id": "redjuliett",
-   "tier": "T3"
-  },
-  {
-   "id": "ref2924",
-   "tier": "T3"
-  },
-  {
-   "id": "ref7707",
-   "tier": "T3"
-  },
-  {
-   "id": "ruskinet",
-   "tier": "T3"
-  },
-  {
-   "id": "ruthless-rabbit",
-   "tier": "T3"
-  },
-  {
-   "id": "sabre-panda",
-   "tier": "T3"
-  },
-  {
-   "id": "sandman-apt",
-   "tier": "T3"
-  },
-  {
-   "id": "sands-casino",
-   "tier": "T3"
-  },
-  {
    "id": "scarab",
    "tier": "T3"
   },
@@ -649,11 +609,20 @@
   "rancor",
   "raspberry-typhoon",
   "red-menshen",
+  "red-nue",
   "red-sandstorm",
+  "redgolf",
+  "redjuliett",
+  "ref2924",
+  "ref7707",
   "ruby-sleet",
+  "ruskinet",
+  "ruthless-rabbit",
   "ruza-flood",
   "salmon-typhoon",
   "salt-typhoon",
+  "sandman-apt",
+  "sands-casino",
   "sangria-tempest",
   "sapphire-sleet",
   "satin-typhoon",
@@ -782,7 +751,12 @@
   "purplehaze",
   "rahdit",
   "red-menshen",
+  "redjuliett",
+  "ref2924",
+  "ruskinet",
+  "ruthless-rabbit",
   "ruza-flood",
+  "sands-casino",
   "sefid-flood",
   "shadow-typhoon",
   "storm-0940",
@@ -879,6 +853,7 @@
   "pale-panda",
   "poisonus-panda",
   "predator-panda",
+  "sabre-panda",
   "storm-2470"
  ],
  "needs_source_date": {

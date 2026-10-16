@@ -79,7 +79,8 @@
     "Victim count discrepancy: 24 compromised versus about 75 targeted [S4].",
     "Activity after April 2024 is not documented in the sources gathered.",
     "No government attribution to RedJuliett as a named cluster was found.",
-    "Relationship to Flax Typhoon: sources describe overlap; the exact mapping is not confirmed here [S2][S7]."
+    "Relationship to Flax Typhoon: sources describe overlap; the exact mapping is not confirmed here [S2][S7].",
+    "Ethereal Panda (CrowdStrike) overlap was not independently confirmed in fact-check searches; treat as unverified."
   ],
   "implications": {
     "jipoe": "Analyst assessment derived from cited sources; validate before use. STEP 1: Internet-facing firewalls, VPN concentrators, load balancers and web/SQL applications are key terrain, as are university and partner networks usable as relay infrastructure [S2][S4]. STEP 2: The actor favors known (n-day) edge-device flaws, so patch latency defines exposure [S1][S2]. STEP 3: Template is edge exploitation, then SoftEther-based tunneling through leased VPS and compromised hosts, then collection of government, diplomatic and technology data [S2]. STEP 4: MLCOA is continued collection against Taiwan and regional partners, spreading to states with PRC diplomatic interest (Laos, Kenya, Rwanda, Djibouti) [S2][S4]. MDCOA is use of compromised partner or academic networks to reach US or allied government and technology targets [S4]. Candidate indicators: SoftEther VPN client or server traffic on edge devices, anomalous outbound sessions from firewalls and load balancers, and SQL injection or directory traversal attempts against public web apps [S2].",

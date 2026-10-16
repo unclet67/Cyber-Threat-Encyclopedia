@@ -1,0 +1,68 @@
+{
+  "identification": {
+    "summary": "SABRE PANDA is a CrowdStrike-style \"Panda\" designation, which by CrowdStrike convention denotes a China-nexus adversary. Malpedia lists Sabre Panda as a synonym of Pale Panda, and that page cites a CrowdStrike Global Threat Intel Report dated 2015-02-10 among its references [S4]. Public catalogues give almost no operational detail.",
+    "firstObserved": "",
+    "notes": "Malpedia lists Sabre Panda as a synonym of Pale Panda alongside Magnetic Spider, Predator Panda, Spicy Panda and Wet Panda [S4]; no separate Malpedia page for Sabre Panda was found. Other catalogue treatments (ETDA, MISP Galaxy) could not be verified and are not used here. No vendor primary text was available. No Microsoft name is known for this actor."
+  },
+  "attribution": {
+    "sponsor": "",
+    "confidence": "",
+    "basis": ""
+  },
+  "objectives": "",
+  "targeting": {
+    "sectors": [],
+    "regions": [],
+    "notes": ""
+  },
+  "capabilities": {
+    "summary": ""
+  },
+  "campaigns": [
+    {
+      "date": "2015-02",
+      "name": "CrowdStrike Global Threat Intel Report (2014 year in review) published",
+      "summary": "CrowdStrike released this report on 2015-02-10 covering 39 adversary groups [S5]. The Malpedia Pale Panda page cites a report of this date among its references [S4]. The press release did not itself name Sabre Panda, so the link between the two is unconfirmed.",
+      "sources": [
+        "S4",
+        "S5"
+      ]
+    }
+  ],
+  "diamond": {
+    "adversary": "",
+    "capability": "",
+    "infrastructure": "",
+    "victim": "",
+    "socioPolitical": "",
+    "technology": ""
+  },
+  "gaps": [
+    "No operational reporting (targets, tools, infrastructure, timeline) on SABRE PANDA was found in open sources searched.",
+    "The CrowdStrike primary report cited by Malpedia (dated 2015-02-10) could not be opened.",
+    "Pale Panda synonym mapping [S4] is from a single catalogue; no separate Sabre Panda page was found in Malpedia, and ETDA and MISP Galaxy entries could not be confirmed in search.",
+    "Sponsor, confidence, MITRE mapping and Microsoft naming equivalent are all unknown.",
+    "The Malpedia page was seen only as a search-result summary, not read in full."
+  ],
+  "implications": {
+    "jipoe": "",
+    "jcc2": ""
+  },
+  "sources": [
+    {
+      "ref": "S4",
+      "title": "Pale Panda (Threat Actor), synonym list (seen via search summary)",
+      "publisher": "Malpedia (Fraunhofer FKIE)",
+      "date": "2026-10 (retrieved)",
+      "url": "https://malpedia.caad.fkie.fraunhofer.de/actor/pale_panda"
+    },
+    {
+      "ref": "S5",
+      "title": "CrowdStrike Global Threat Intel Report Analyzes Cybercrime, Targeted Intrusion Trends of 2014 (press release)",
+      "publisher": "CrowdStrike",
+      "date": "2015-02-10",
+      "url": "https://www.crowdstrike.com/press-releases/crowdstrike-global-threat-intel-report-analyzes-cybercrime-targeted-intrusion-trends-2014"
+    }
+  ],
+  "aliasesAdd": []
+}

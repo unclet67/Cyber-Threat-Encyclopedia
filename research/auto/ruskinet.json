@@ -1,0 +1,96 @@
+{
+  "identification": {
+    "summary": "CybelAngel describes RuskiNet as a Russian-aligned hacktivist group that surfaced on X in February 2025 and has claimed DDoS attacks, website defacements and data leaks across more than sixteen industry sectors [S1].",
+    "firstObserved": "February 2025, first appearance on X per CybelAngel [S1].",
+    "notes": "No alternate names are stated in the sources gathered. The only source read is a single vendor blog (read via search-result summaries; the page itself could not be fetched), so every claim here rests on one secondary account [S1]."
+  },
+  "attribution": {
+    "sponsor": "",
+    "confidence": "CybelAngel reports the group has not been confirmed as an APT by threat analysts, and cites Group-IB's March 2026 assessment as describing it as operating ideologically rather than as a formal arm of Russian state services; CybelAngel also says it is believed to be associated with Russian cyber operations, with attacks launched from Eastern Europe [S1].",
+    "basis": "Vendor characterization only; no government attribution and no technical attribution evidence found [S1]."
+  },
+  "objectives": "Disruption and publicity in support of Russian geopolitical interests through DDoS, defacement and claimed data leaks [S1].",
+  "targeting": {
+    "sectors": [
+      "More than sixteen industry sectors claimed [S1]"
+    ],
+    "regions": [
+      "United States [S1]",
+      "Canada [S1]",
+      "Turkey [S1]",
+      "Israel [S1]",
+      "United Kingdom [S1]",
+      "India [S1]",
+      "Colombia [S1]",
+      "Australia [S1]"
+    ],
+    "notes": "These are the group's own claims as relayed by CybelAngel; none were independently verified in the sources gathered [S1]."
+  },
+  "capabilities": {
+    "summary": "Reported methods are DDoS, defacement, data-leak claims, and phishing and malware used to gain a foothold through social engineering [S1]. Group-IB's March 2026 assessment, as relayed by CybelAngel, rated the credibility of RuskiNet's data-leak claims at the low end of the analyst scale because several prominent leaks were recycled from earlier breaches or public sources [S1]."
+  },
+  "campaigns": [
+    {
+      "date": "2025-02",
+      "name": "First appearance on X",
+      "summary": "Group surfaces publicly and begins claiming DDoS, defacement and leak operations [S1].",
+      "sources": [
+        "S1"
+      ]
+    },
+    {
+      "date": "2025-08-04",
+      "name": "Claimed Mossad data breach",
+      "summary": "Group claimed a breach of Israel's Mossad with leaked picture IDs, names and email addresses; credibility disputed [S1].",
+      "sources": [
+        "S1"
+      ]
+    },
+    {
+      "date": "2026-02",
+      "name": "Claimed attack on KPMG Israel",
+      "summary": "Claim made during the surge of retaliation activity after Iran-related strikes (February-March 2026); verification not reported [S1].",
+      "sources": [
+        "S1"
+      ]
+    },
+    {
+      "date": "2026-03",
+      "name": "Group-IB credibility assessment",
+      "summary": "Group-IB reportedly rates RuskiNet's leak claims as low credibility [S1].",
+      "sources": [
+        "S1"
+      ]
+    }
+  ],
+  "diamond": {
+    "adversary": "Russian-aligned hacktivist collective, not confirmed as state-directed or as an APT [S1].",
+    "capability": "DDoS, defacement, phishing and malware, and leak claims of questionable authenticity [S1].",
+    "infrastructure": "Publicises claims via X and Telegram, with a Telegram screenshot reportedly showing an alleged attack on the Australian Department of Defence [S1].",
+    "victim": "Organizations across more than sixteen sectors in the US, Canada, Israel, UK, Australia and elsewhere [S1].",
+    "socioPolitical": "Ideological alignment with Russian geopolitical interests; activity spikes tied to events such as the 2026 Iran-related strikes [S1].",
+    "technology": "Public-facing websites and services vulnerable to DDoS and defacement; users exposed to social engineering [S1]."
+  },
+  "gaps": [
+    "The CybelAngel page could not be fetched; content was taken from search-result summaries and should be re-checked against the full article (English, German and French versions exist) [S1].",
+    "Publication date of the CybelAngel profile is inferred from its citation of a March 2026 Group-IB assessment; Group-IB's original report was not located.",
+    "A secondary repost (hendryadrian.com, Daily Dark Web) claims a breach of five Israeli organizations (Har Hevron Regional Council, Neot Hovav, Haruv Institute, ITIM, Moti); undated and unverified, so not used as a source.",
+    "Malpedia has an actor entry for RuskiNet but its content could not be opened.",
+    "No government advisory, MITRE group, Microsoft name, or independent technical reporting found; sponsorship, infrastructure and tooling are unknown.",
+    "Claims (Mossad, Colombia, KPMG Israel, Australian Defence) are unverified; recycled-leak assessment suggests claims may be exaggerated."
+  ],
+  "implications": {
+    "jipoe": "",
+    "jcc2": ""
+  },
+  "sources": [
+    {
+      "ref": "S1",
+      "title": "RuskiNet: Inside a Russian-Aligned Hacktivist Group in 2026 (also 'Is RuskiNet the Next Big Russian Hacktivist Group'; date inferred from March 2026 content)",
+      "publisher": "CybelAngel",
+      "date": "2026-03",
+      "url": "https://cybelangel.com/de/blog/ruskinet-hacktivism-apt-threats/"
+    }
+  ],
+  "aliasesAdd": []
+}

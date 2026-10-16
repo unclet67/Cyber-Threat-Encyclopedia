@@ -1,0 +1,57 @@
+{
+  "identification": {
+    "summary": "\"Sands Casino\" is an incident-based label (not a vendor-named group) for the destructive intrusion into Las Vegas Sands Corp. that began with the Sands Bethlehem, Pennsylvania property and was reported to have wiped data across the corporate network in February 2014 [S1][S3][S4]. The company said in an SEC filing that certain company data may have been destroyed [S4]. In February 2015 the US Director of National Intelligence told the Senate Armed Services Committee that Iran was behind the attack [S4][S5].",
+    "firstObserved": "February 2014 (destructive attack on Las Vegas Sands) [S4]. The attack became public in December 2014 through Bloomberg Businessweek reporting [S1][S3].",
+    "notes": "No Microsoft name, MITRE group ID or vendor-cluster name for this activity was found in the sources gathered. This record describes one incident, not a persistent group; do not merge it with other Iranian clusters without a cited source."
+  },
+  "attribution": {
+    "sponsor": "Iran. DNI James Clapper told the Senate Armed Services Committee in February 2015 that Iran was behind the attack [S4][S5].",
+    "confidence": "Clapper's statement was reported as the first time a US official publicly tied Iran to the Sands breach, and he gave no details on how Iran was identified [S4][S5]. Press accounts say some security experts excluded direct Iranian government involvement and described the actors as hacktivists [S6]; one Bloomberg-sourced account suggested the hackers were working independently [S3]. The state role is therefore contested in open reporting.",
+    "basis": "Government statement in Senate testimony as reported by trade press [S4][S5]; Bloomberg Businessweek reporting linking the attack to retaliation for remarks by Sands chairman Sheldon Adelson about Iran [S1][S6]. The underlying technical evidence for attribution was not published in the sources gathered."
+  },
+  "objectives": "Reporting characterizes the operation as destructive and retaliatory rather than financial: it is linked to Adelson's 2013 remarks about Iran's nuclear program, and the attackers reportedly did not try to steal money [S1][S6]. This motive is an inference from press reporting, not an official finding [S4].",
+  "targeting": {
+    "sectors": ["Gaming and hospitality (casino operator)"],
+    "regions": ["United States (Las Vegas, Nevada; Bethlehem, Pennsylvania)"],
+    "notes": "The victim was Las Vegas Sands Corp., whose chairman Sheldon Adelson was a vocal supporter of Israel [S1][S4]. Guests and gamblers reportedly saw little disruption while corporate IT, email and phones were affected [S6]."
+  },
+  "capabilities": {
+    "summary": "Reported intrusion path: attackers probed the perimeter, then reached the Sands Bethlehem network through a weak point in a web development server [S2]. Another account says they harvested a senior systems engineer's credentials to reach the Las Vegas corporate network [S1][S6]. A wiper payload then reportedly overwrote hard drives on servers and PCs, with Bloomberg-sourced reports citing about three quarters of the Las Vegas servers [S3]. Details come from secondhand press accounts of the Bloomberg report [S3][S6]."
+  },
+  "campaigns": [
+    {"date": "2013-10", "name": "Adelson remarks on Iran (reported motive)", "summary": "Reporting says Sheldon Adelson, speaking at Yeshiva University, suggested a nuclear strike in the Iranian desert; engineers reportedly concluded the later attack was revenge for these remarks. Sands reportedly did not realize intruders were in its networks until about a month after.", "sources": ["S1", "S6"]},
+    {"date": "2014-02", "name": "Destructive attack on Las Vegas Sands Corp.", "summary": "Intruders entered via the Bethlehem, PA property, obtained credentials, and deployed wiper malware; PCs and servers shut down, drives were wiped, and email and phones failed, with little guest-facing impact. One outlet places the start of the intrusion in January 2014.", "sources": ["S2", "S3", "S6"]},
+    {"date": "2014-12", "name": "Public disclosure by Bloomberg Businessweek", "summary": "The attack was publicized in December 2014; Las Vegas Sands declined to comment on the report. The company's SEC filing said certain company data may have been destroyed.", "sources": ["S1", "S3", "S4"]},
+    {"date": "2015-02", "name": "DNI attributes attack to Iran", "summary": "James Clapper told the Senate Armed Services Committee that Iran was behind the Sands attack, comparing it to destructive attacks such as the North Korean hack of Sony per press reports, without explaining how Iran was identified.", "sources": ["S4", "S5"]}
+  ],
+  "diamond": {
+    "adversary": "Iran-linked actors per DNI Clapper's 2015 testimony; the specific unit and the degree of state direction are not public, and some experts described hacktivists [S4][S5][S6].",
+    "capability": "Web development server compromise, credential theft, lateral movement, and a destructive wiper [S2][S3].",
+    "infrastructure": "Not published in the sources gathered.",
+    "victim": "Las Vegas Sands Corp., entered through its Bethlehem, Pennsylvania property [S1][S2][S4].",
+    "socioPolitical": "Reported retaliation for the owner's public statements about Iran's nuclear program [S1][S6].",
+    "technology": "Internet-facing development/test web server and reusable administrator credentials that bridged a regional property to the corporate network [S1][S2]."
+  },
+  "gaps": [
+    "Primary documents not opened: Clapper's Senate Armed Services testimony text and Sands' SEC filing were seen only as quoted by trade press; the original Bloomberg Businessweek article was not retrieved (only search snippets and secondary coverage). WebFetch to cfr.org and infosecurity-magazine.com failed (host not resolved).",
+    "No named wiper family, hashes, C2 infrastructure or IOCs were found in the sources gathered.",
+    "No vendor cluster name or MITRE ID could be tied to this incident from cited sources; link to any named Iranian group is unverified.",
+    "Secondary press mentions that Dell SecureWorks, hired by Sands, judged the actors likely Iran-based hacktivists; this was not verified against a primary source and is not cited as fact.",
+    "Related reporting of separate customer data theft from Sands properties exists but was not reviewed here; do not conflate with the wiper attack.",
+    "Cost and extent of damage are inconsistently reported (some outlets say unknown, others cite specific percentages or dollar figures) [S3][S4].",
+    "Whether Iran's government directed the operation versus a hacktivist or proxy group is unresolved in open sources [S5][S6]."
+  ],
+  "implications": {
+    "jipoe": "Analyst assessment derived from cited sources; validate before use. STEP 1: Key terrain is the trust path between peripheral sites (regional properties, test/dev web servers) and the corporate network, plus domain credentials held on administrator workstations [S1][S2]. STEP 2: Iranian-linked actors showed willingness to conduct destructive, retaliatory action against a private US firm over executive speech, not only espionage [S1][S4]. STEP 3: Template is dev-server compromise, credential theft, lateral movement to the corporate core, then a wiper pushed broadly [S2][S3]. STEP 4: MLCOA is destructive or disruptive action against US entities or leaders tied to anti-Iran positions, timed to political triggers. MDCOA is the same wiper tradecraft against defense-industrial or critical-infrastructure firms during a crisis, with attribution slow and contested [S4][S6]. Candidate indicators: unexpected logons to dev/test servers, credential-harvesting activity, mass file or disk overwrite events, simultaneous server outages across sites [S2][S3].",
+    "jcc2": "Analyst assessment derived from cited sources; validate before use. (1) Situational awareness: maintain offline backups and recovery plans for DoD-adjacent and contractor networks because wiper impact reportedly reached most corporate servers [S3]. (2) Authorities: this was a private-sector victim, so response runs through law enforcement, DHS and DIB reporting channels rather than DoD action; government attribution came about a year later and without technical detail [S4][S5]. (3) Mission assurance: segment peripheral and test systems from administrative credentials and reduce credential reuse across sites [S1][S2]. (4) Coordination: share indicators with DC3 and the DIB program early, since public attribution may lag and be contested [S5][S6]."
+  },
+  "sources": [
+    {"ref": "S1", "title": "Iranian Hackers Hit Sheldon Adelson's Sands Casino in Las Vegas", "publisher": "Bloomberg", "date": "2014-12-11", "url": "https://brp-prod-bcc.bloomberg.com/news/articles/2014-12-11/iranian-hackers-hit-sheldon-adelsons-sands-casino-in-las-vegas"},
+    {"ref": "S2", "title": "Sands Casino Corporate Systems Eviscerated by Iranians", "publisher": "Nextgov", "date": "2014-12", "url": "https://www.nextgov.com/cybersecurity/2014/12/software-vulnerability-network-intrusion-cyber/143547"},
+    {"ref": "S3", "title": "Las Vegas Sands' Casino Network hit by Destructive Malware (reporting Bloomberg Businessweek)", "publisher": "The Hacker News", "date": "2014-12", "url": "https://thehackernews.com/2014/12/las-vegas-casino-hacked.html"},
+    {"ref": "S4", "title": "Iran behind US casino hack (reporting DNI Senate testimony and company SEC filing)", "publisher": "The Register", "date": "2015-02-27", "url": "https://www.theregister.com/2015/02/27/iran_behind_us_casino_hack/"},
+    {"ref": "S5", "title": "Iran Blamed for Destructive Cyber Blitz on Sands Casino (reporting DNI Senate testimony)", "publisher": "Infosecurity Magazine", "date": "2015-02", "url": "https://www.infosecurity-magazine.com/news/iran-blamed-destructive-cyber/"},
+    {"ref": "S6", "title": "Report: 'Wiper' Malware Hit Casino Firm (reporting Bloomberg Businessweek)", "publisher": "BankInfoSecurity", "date": "2014-12", "url": "https://www.bankinfosecurity.com/report-wiper-malware-hit-casino-firm-a-7675"}
+  ],
+  "aliasesAdd": []
+}
