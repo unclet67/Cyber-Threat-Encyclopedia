@@ -1,39 +1,10 @@
 {
  "note": "Research queue for the automatic wave runner. Waves take items from the front; finished ids move to 'done'. Scope limited to CN/RU/IR/KP on 2026-10-15 at the user's request; non-state actors moved to 'deferred'.",
- "verify": [],
+ "verify": [
+  "tag-112",
+  "tag-28"
+ ],
  "research": [
-  {
-   "id": "ta444",
-   "tier": "T3"
-  },
-  {
-   "id": "ta455",
-   "tier": "T3"
-  },
-  {
-   "id": "ta4922",
-   "tier": "T3"
-  },
-  {
-   "id": "ta530",
-   "tier": "T3"
-  },
-  {
-   "id": "ta570",
-   "tier": "T3"
-  },
-  {
-   "id": "ta829",
-   "tier": "T3"
-  },
-  {
-   "id": "tag-112",
-   "tier": "T3"
-  },
-  {
-   "id": "tag-28",
-   "tier": "T3"
-  },
   {
    "id": "tag-56",
    "tier": "T3"
@@ -577,8 +548,14 @@
   "swirl-typhoon",
   "ta406",
   "ta428",
+  "ta444",
+  "ta455",
   "ta459",
+  "ta4922",
+  "ta530",
+  "ta570",
   "ta577",
+  "ta829",
   "taffeta-typhoon",
   "taizi-flood",
   "tropic-trooper",
@@ -706,7 +683,11 @@
   "suckfly",
   "sunglow-blizzard",
   "ta406",
+  "ta455",
   "ta459",
+  "ta530",
+  "ta570",
+  "ta829",
   "taffeta-typhoon",
   "tumbleweed-typhoon",
   "volga-flood",

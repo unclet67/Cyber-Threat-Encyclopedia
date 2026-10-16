@@ -1,0 +1,179 @@
+{
+  "identification": {
+    "summary": "TA444 is Proofpoint's designation for a North Korea-aligned, financially motivated cluster that Proofpoint says has targeted cryptocurrency since at least 2017 [S1][S2]. Proofpoint described it as having a startup-like approach, with rapid iteration and many infection methods [S2][S7]. It overlaps with the actor publicly tracked as BlueNoroff and APT38, and press coverage of Jamf's RustBucket reporting lists TA444 among BlueNoroff aliases [S1][S5].",
+    "firstObserved": "Proofpoint: targeting cryptocurrency since at least 2017 [S1][S2].",
+    "notes": "Vendor cluster boundaries: Proofpoint's TA444 is described as overlapping with APT38, BlueNoroff, BlackAlicanto, Stardust Chollima and COPERNICIUM, which are other vendors' names and are not guaranteed to be identical clusters [S1][S2]. Microsoft's Sapphire Sleet is reported (by press) as also called APT38, BlueNoroff, CageyChameleon and CryptoCore [S6]; a direct Microsoft mapping to TA444 was not confirmed in this research. Proofpoint also referred to 'related clusters' when giving its 2022 theft estimate, so figures are not TA444 alone [S2]. Some press describe BlueNoroff as a Lazarus sub-group [S5]."
+  },
+  "attribution": {
+    "sponsor": "North Korea (DPRK). Proofpoint describes TA444 as North Korea-aligned and believed to be tasked with funneling funds to North Korea or its handlers [S1][S3].",
+    "confidence": "Proofpoint rated its assessment of the December 2022 credential-harvesting activity as moderate to high confidence [S4]. Attribution here is a vendor assessment, not a government attribution.",
+    "basis": "Proofpoint overlap with infrastructure, tooling and tradecraft of the group tracked as BlueNoroff/APT38 [S1][S4]. The FBI attributed the June 2022 Harmony Horizon bridge theft ($100 million) to Lazarus and APT38 (as reported in press), which Proofpoint cites as context for the group's affiliates, not as a TA444-specific government finding [S3]."
+  },
+  "objectives": "Financial gain, specifically theft of cryptocurrency and blockchain assets; Proofpoint estimated TA444 and related clusters took more than $1 billion in crypto and blockchain assets in 2022 [S2].",
+  "targeting": {
+    "sectors": [
+      "Cryptocurrency and blockchain firms [S1][S2]",
+      "Blockchain gaming (a company valued at over $600 million was among 2022 victims) [S2]",
+      "Education, government, healthcare and finance (December 2022 credential-harvesting wave) [S3][S4]",
+      "Japanese financial entities (BlueNoroff activity reported by Kaspersky, via Jamf coverage) [S5]",
+      "Job seekers in IT, targeted with fake skills-assessment lures (Microsoft, Sapphire Sleet) [S6]"
+    ],
+    "regions": [
+      "United States and Canada (December 2022 credential-harvesting wave) [S3][S4]",
+      "Japan (BlueNoroff, via S5 coverage of Kaspersky) [S5]"
+    ],
+    "notes": "The sector and region lists for the December 2022 wave come from Proofpoint reporting as relayed by press [S3][S4]. Items sourced to Microsoft or Jamf concern BlueNoroff/Sapphire Sleet, which overlap with but may not equal TA444 [S5][S6]."
+  },
+  "capabilities": {
+    "summary": "Proofpoint says TA444 uses a wide range of infection methods, malware and backdoors, and its lures include blockchain-themed content, fake job offers at prestigious firms and salary adjustments [S1][S7]. In December 2022 it shifted to a basic credential-harvesting campaign with OneDrive-themed lures, SendGrid redirect links and a fake login page using the ClearBit logo service; Proofpoint noted this deviated from the group's usual direct malware deployment and that the campaign alone nearly doubled the TA444 email volume Proofpoint observed in 2022 [S3][S4]. Related BlueNoroff reporting describes the macOS RustBucket chain: an unsigned fake PDF viewer app that needs a Gatekeeper override, then a Rust-based trojan running on ARM and x86, plus later ObjCShellz [S5]. Microsoft reports Sapphire Sleet finding targets on LinkedIn using skills-assessment lures, then moving them to other platforms [S6]."
+  },
+  "campaigns": [
+    {
+      "date": "2022",
+      "name": "Cryptocurrency theft (approx. $1 billion estimated)",
+      "summary": "Proofpoint estimated TA444 and related clusters stole over $1 billion in crypto and blockchain assets during 2022, including from a blockchain gaming company valued above $600 million.",
+      "sources": [
+        "S2"
+      ]
+    },
+    {
+      "date": "2022-06",
+      "name": "Harmony Horizon bridge theft (context)",
+      "summary": "Press reports the FBI attributed a $100 million theft to Lazarus and APT38; cited by coverage of TA444 as context.",
+      "sources": [
+        "S3"
+      ]
+    },
+    {
+      "date": "2022-12",
+      "name": "OneDrive-themed credential harvesting",
+      "summary": "Proofpoint observed phishing against US and Canadian education, government, healthcare and finance targets using OneDrive lures, SendGrid links and a ClearBit-styled fake login page; the campaign nearly doubled the total TA444 email volume Proofpoint had observed in 2022.",
+      "sources": [
+        "S3",
+        "S4"
+      ]
+    },
+    {
+      "date": "2023-01",
+      "name": "Proofpoint publishes TA444 profile",
+      "summary": "Proofpoint describes TA444's startup-like culture and varied infection methods.",
+      "sources": [
+        "S1",
+        "S7"
+      ]
+    },
+    {
+      "date": "2023-04",
+      "name": "RustBucket macOS malware (BlueNoroff)",
+      "summary": "Jamf attributes RustBucket to BlueNoroff; coverage lists TA444 among aliases. Kaspersky's December 2022 Japan-focused reporting is cited for linkage.",
+      "sources": [
+        "S5"
+      ]
+    },
+    {
+      "date": "2023-11",
+      "name": "Fake skills-assessment lures (Sapphire Sleet)",
+      "summary": "Microsoft reports Sapphire Sleet (other vendors: APT38, BlueNoroff) using LinkedIn and skills-assessment lures against IT job seekers.",
+      "sources": [
+        "S6"
+      ]
+    }
+  ],
+  "diamond": {
+    "adversary": "North Korea-aligned financially motivated operators tracked by Proofpoint as TA444, overlapping with BlueNoroff/APT38 [S1][S2][S5].",
+    "capability": "Social-engineering lures (fake jobs, salary changes, blockchain themes), OneDrive credential phishing, and multi-stage malware including macOS RustBucket (BlueNoroff) [S3][S5].",
+    "infrastructure": "SendGrid redirect links, fake login pages using the ClearBit logo service [S3][S4]; stage-one domains impersonating venture capital firms and banks in RustBucket reporting [S5]. Full infrastructure is not documented in sources gathered.",
+    "victim": "Cryptocurrency and blockchain organizations, plus US/Canada education, government, healthcare and finance recipients in December 2022 [S2][S3][S4].",
+    "socioPolitical": "Revenue generation for North Korea or its handlers abroad, as characterized by Proofpoint [S1][S3].",
+    "technology": "Cloud file-sharing and email-marketing services abused as lure and redirect infrastructure (OneDrive-themed, SendGrid) [S3][S4]; macOS endpoints protected only by Gatekeeper override prompts [S5]; professional networking platforms as initial contact channels [S6]."
+  },
+  "gaps": [
+    "I could not open the primary Proofpoint blog (proofpoint.com), Dark Reading, Security Affairs or The Hacker News pages; WebFetch failed with DNS errors. Content here relies on search-result excerpts of those and syndicated coverage, so wording and dates (2023-01 for most) should be verified against the originals.",
+    "Exact first-observed date beyond 'since at least 2017' is not established.",
+    "Whether TA444 is equivalent to BlueNoroff/APT38 or only overlaps with it is a vendor-level judgment; Microsoft's Sapphire Sleet mapping to TA444 was not directly confirmed.",
+    "Which 2022 thefts are specifically TA444 (versus related clusters) is not given; the $1 billion figure covers TA444 and related clusters.",
+    "No activity after 2023 attributed by name to TA444 was found in the sources gathered.",
+    "MITRE ATT&CK group ID for TA444 not confirmed; technique lists not collected."
+  ],
+  "implications": {
+    "jipoe": "Analyst assessment derived from cited sources; validate before use. STEP 1: Key terrain is crypto exchanges, blockchain developers and their personnel, plus cloud email and file-sharing accounts of education, government, healthcare and finance staff. STEP 2: The actor is revenue-driven, iterates quickly and varies infection methods, so fixed signatures degrade fast [S2][S7]. STEP 3: Observed template is a themed lure (job offer, salary change, OneDrive share), then credential harvest or multi-stage malware (macOS RustBucket in related BlueNoroff reporting) [S3][S5]. STEP 4: MLCOA is continued crypto-focused phishing and social engineering for funds theft. MDCOA is the same infrastructure and credential access pointed at government or defense-adjacent users via professional-network recruiter lures [S6]. Candidate indicators: OneDrive-themed mail via SendGrid links, login pages with ClearBit logos, unsigned macOS apps requiring Gatekeeper override, and LinkedIn contacts moving to other platforms with skills-test requests [S3][S5][S6].",
+    "jcc2": "Analyst assessment derived from cited sources; validate before use. (1) Situational awareness: track vendor reporting under multiple names (TA444, BlueNoroff, APT38, Sapphire Sleet) so overlapping advisories are not treated as separate threats [S1][S6]. (2) Authorities: this is primarily a financial and credential threat to civilian entities; DoD roles are mostly protecting personnel accounts and informing partners, and any response beyond defensive measures needs proper authorization. (3) Mission assurance: harden cloud email and storage accounts and macOS endpoints of personnel, and brief users on recruiter and fake-job lures [S5][S6]. (4) Coordination: share indicators with law enforcement and DC3 channels and relevant sector partners."
+  },
+  "sources": [
+    {
+      "ref": "S1",
+      "title": "TA444: The APT Startup Aimed at Your Funds (excerpts via search results; page not opened)",
+      "publisher": "Proofpoint",
+      "date": "2023-01",
+      "url": "https://www.proofpoint.com/us/blog/threat-insight/ta444-apt-startup-aimed-at-your-funds"
+    },
+    {
+      "ref": "S2",
+      "title": "North Korea's Top APT Swindled $1B From Crypto Investors in 2022 (reporting Proofpoint research)",
+      "publisher": "Dark Reading",
+      "date": "2023-01",
+      "url": "https://www.darkreading.com/remote-workforce/north-korea-apt-swindled-1b-crypto-investors-2022"
+    },
+    {
+      "ref": "S3",
+      "title": "North Korea-linked TA444 group turns to credential harvesting activity (reporting Proofpoint)",
+      "publisher": "Security Affairs",
+      "date": "2023-01",
+      "url": "https://securityaffairs.com/141325/apt/ta444-turns-credential-harvesting-activity.html"
+    },
+    {
+      "ref": "S4",
+      "title": "North Korean Attackers TA444 Shift Tactics (reporting Proofpoint)",
+      "publisher": "Duo Decipher",
+      "date": "2023-01",
+      "url": "https://duo.com/decipher/north-korean-attackers-ta444-shift-tactics"
+    },
+    {
+      "ref": "S5",
+      "title": "RustBucket macOS Malware: Lazarus subgroup targeting Apple devices (reporting Jamf)",
+      "publisher": "The Hacker News",
+      "date": "2023-04",
+      "url": "https://thehackernews.com/2023/04/lazarus-subgroup-targeting-apple.html"
+    },
+    {
+      "ref": "S6",
+      "title": "Microsoft Warns of Fake Skills Assessment Portals Targeting IT Job Seekers (reporting Microsoft Threat Intelligence)",
+      "publisher": "The Hacker News",
+      "date": "2023-11",
+      "url": "https://thehackernews.com/2023/11/microsoft-warns-of-fake-skills.html"
+    },
+    {
+      "ref": "S7",
+      "title": "North Korean Group TA444 Shows 'Startup' Culture, Tries Numerous Infection Methods",
+      "publisher": "Infosecurity Magazine",
+      "date": "2023-01",
+      "url": "https://www.infosecurity-magazine.com/news/north-korean-group-ta444-infection"
+    }
+  ],
+  "aliasesAdd": [
+    {
+      "name": "BlueNoroff",
+      "vendor": "Jamf/press (S5)"
+    },
+    {
+      "name": "APT38",
+      "vendor": "Proofpoint overlap (S1)"
+    },
+    {
+      "name": "Stardust Chollima",
+      "vendor": "CrowdStrike (via Proofpoint overlap, S2)"
+    },
+    {
+      "name": "BlackAlicanto",
+      "vendor": "Proofpoint overlap (S2)"
+    },
+    {
+      "name": "COPERNICIUM",
+      "vendor": "Proofpoint overlap (S2)"
+    },
+    {
+      "name": "Sapphire Sleet",
+      "vendor": "Microsoft (listed in S5 coverage; overlap not directly confirmed)"
+    }
+  ]
+}

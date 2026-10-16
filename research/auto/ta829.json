@@ -1,0 +1,56 @@
+{
+  "identification": {
+    "summary": "Proofpoint tracks TA829 as a cybercriminal actor that occasionally also conducts espionage aligned with Russian state interests; Proofpoint dates the espionage activity to after the invasion of Ukraine, alongside ongoing financially motivated campaigns [S1][S2]. Its toolset is built around variants of the RomCom backdoor, including SingleCamper (espionage-focused) and DustyHammock (financially motivated), delivered by a loader family Proofpoint calls SlipScreen [S1][S2].",
+    "firstObserved": "",
+    "notes": "Proofpoint separately tracks UNK_GreenSec, a cluster using TransferLoader that shares infrastructure and delivery tactics with TA829; Proofpoint currently treats it as a separate cybercriminal cluster and says it is unclear whether the two collaborate or are one entity [S1][S2]. RomCom as a malware family and group name is also used by ESET and others; ESET described a Russia-aligned RomCom APT group exploiting Firefox and Windows zero-days in late 2024 [S3][S4]. Trend Micro tracks Void Rabisu (also reported as Storm-0978, Tropical Scorpius, UNC2596) tied to RomCom RAT [S6]. Whether these vendor clusters equal TA829 is not established in the sources opened, so they are not merged here. Pages were read through search-result summaries only; direct fetches failed."
+  },
+  "attribution": {
+    "sponsor": "No government attribution found. Proofpoint describes the espionage activity as aligned with Russian state interests, while describing the actor as primarily cybercriminal [S1][S2].",
+    "confidence": "Proofpoint frames TA829 as a hybrid cybercriminal and espionage actor and states it is unclear if TA829 and UNK_GreenSec are the same entity [S1][S2]. ESET labels the RomCom group Russia-aligned [S3]. Trend Micro, for Void Rabisu, reported no evidence of state sponsorship and suggested a criminal actor drawn into espionage by the war in Ukraine [S6].",
+    "basis": "Vendor reporting on malware overlap (RomCom variants, SlipScreen loader) and shared infrastructure [S1][S2]. Primary Proofpoint text was not opened; details come from search summaries of it and secondary coverage."
+  },
+  "objectives": "Mixed motives per Proofpoint: financially motivated cybercrime plus occasional espionage aligned with Russian state interests [S1][S2].",
+  "targeting": {
+    "sectors": [],
+    "regions": [],
+    "notes": "Lures reported by secondary coverage of Proofpoint use job-application and security-breach themes sent from freemail accounts [S1][S2]. Sector and regional victim lists for TA829 were not verified. For the RomCom group generally, ESET reported victims of the Firefox/Windows zero-day chain were located mostly in Europe and North America [S4]; coverage of the 2023 RomCom RAT reports focus on Ukraine and countries supporting it, and female political leaders attending a June 2023 summit [S6]. Those are RomCom-family findings, not confirmed TA829 findings."
+  },
+  "capabilities": {
+    "summary": "Phishing from freemail accounts with job-application or security-breach lures leading to spoofed OneDrive or Google Drive pages [S1][S2]. SlipScreen loader leads to downloaders MeltingClaw/RustyClaw, then ShadyHammock or DustyHammock backdoors; ShadyHammock launches SingleCamper (updated RomCom RAT, also tracked as SnipBot); DustyHammock can fetch payloads from IPFS [S1][S2]. Infrastructure uses REM Proxy nodes on compromised MikroTik routers, likely rented out to relay traffic; the routers commonly have port 51922 open running SSH, and how they were compromised is unknown [S1][S2]. The wider RomCom group exploited Firefox CVE-2024-9680 and Windows Task Scheduler CVE-2024-49039 as zero-days in late 2024 per ESET, and Word CVE-2023-36884 in 2023 [S3][S4][S5]."
+  },
+  "campaigns": [
+    {"date": "2023-06", "name": "RomCom family: CVE-2023-36884 exploitation", "summary": "Reporting describes the RomCom group's first known in-the-wild zero-day, a Microsoft Word flaw, in June 2023. Link to TA829 specifically is unconfirmed.", "sources": ["S4","S6"]},
+    {"date": "2023-10", "name": "RomCom family: PEAPOD / fake Women Political Leaders Summit site", "summary": "Reported October 2023 (Trend Micro via The Hacker News): a slimmed-down RomCom variant was delivered via a fake summit site and targeted female political leaders who attended the June 2023 summit. Link to TA829 specifically is unconfirmed.", "sources": ["S6"]},
+    {"date": "2024-10", "name": "RomCom family: Firefox and Windows zero-day chain", "summary": "ESET found Firefox CVE-2024-9680 on 8 October 2024, patched by Mozilla the next day; chained with Windows CVE-2024-49039, patched 12 November, to install a RomCom backdoor with no user interaction beyond visiting a page. Victims were mostly in Europe and North America. Google TAG independently found the Windows flaw.", "sources": ["S3","S4","S5"]},
+    {"date": "2025-06-30", "name": "Proofpoint publication on TA829 and UNK_GreenSec", "summary": "Proofpoint reported TA829 and UNK_GreenSec share REM Proxy nodes on MikroTik routers, delivery tactics and loader behavior, with TA829 using SlipScreen and SingleCamper/DustyHammock and UNK_GreenSec using TransferLoader.", "sources": ["S1","S2"]}
+  ],
+  "diamond": {
+    "adversary": "Hybrid cybercriminal and espionage actor with Russia-aligned espionage activity; relationship to UNK_GreenSec unresolved [S1][S2].",
+    "capability": "RomCom variants (SingleCamper, DustyHammock), SlipScreen loader, MeltingClaw/RustyClaw downloaders, ShadyHammock [S1][S2].",
+    "infrastructure": "REM Proxy nodes on compromised MikroTik routers; spoofed OneDrive and Google Drive pages; IPFS payload hosting [S1][S2].",
+    "victim": "Not verified for TA829. Phishing recipients receive job-application or security-breach lures [S1][S2].",
+    "socioPolitical": "Espionage aligned with Russian state interests alongside profit-driven operations, per Proofpoint [S1][S2].",
+    "technology": "Windows endpoints reached via phishing; internet-exposed MikroTik routers abused as relays; for the wider RomCom group, unpatched browsers (Firefox) and Windows [S1][S2][S3]."
+  },
+  "gaps": [
+    "Proofpoint's primary blog (10 Things I Hate About Attribution: RomCom vs. TransferLoader) and ESET's blog could not be fetched; facts come from search-result summaries and secondary coverage and should be checked against the originals.",
+    "First-observed date for TA829 is not established in the sources gathered.",
+    "Victim sectors, regions and campaign dates specific to TA829 are not verified.",
+    "Relationship between TA829, UNK_GreenSec, ESET's RomCom group and Trend Micro's Void Rabisu (Storm-0978) is unresolved; no source opened states they are the same cluster. Trend Micro reported no evidence of state sponsorship for Void Rabisu [S6].",
+    "How MikroTik routers were compromised is unknown [S1][S2].",
+    "No MITRE ATT&CK group ID or Microsoft name was confirmed for TA829."
+  ],
+  "implications": {
+    "jipoe": "Analyst assessment derived from cited sources; validate before use. STEP 1: Key terrain includes email and web-mail users, endpoints that can reach Google Drive and OneDrive, and internet-facing routers that may be conscripted as proxies. STEP 2: The actor mixes criminal and espionage tasking, so defenders may see ransomware-style or fraud activity from the same toolset. STEP 3: Template is freemail phishing with job or breach lures, spoofed cloud-storage page, SlipScreen, downloader, backdoor, RomCom RAT; wider RomCom group has used browser and Windows zero-days. STEP 4: MLCOA is continued phishing against organizations with a mix of criminal and espionage payoffs. MDCOA is zero-day browser exploitation (as ESET saw in 2024) against government or defense personnel. Candidate indicators: SSH on port 51922 on MikroTik devices, traffic to spoofed Drive/OneDrive pages, IPFS retrievals from endpoints [S1][S2][S3].",
+    "jcc2": "Analyst assessment derived from cited sources; validate before use. (1) Situational awareness: track vendor reporting on TA829, UNK_GreenSec and RomCom as potentially overlapping, and avoid merging cluster names. (2) Authorities: router-relay infrastructure is often civilian or foreign-owned, so blocking and takedown need coordination through appropriate cyber authorities. (3) Mission assurance: prioritize rapid browser and Windows patching and phishing-resistant mail filtering for personnel mailboxes. (4) Coordination: share indicators with partners via DC3/DIB programs and allied CERTs, given reported Europe and North America victimization [S1][S2][S4]."
+  },
+  "sources": [
+    {"ref": "S1", "title": "10 Things I Hate About Attribution: RomCom vs. TransferLoader (known via search summary; page not fetched)", "publisher": "Proofpoint", "date": "2025-06-30", "url": "https://www.proofpoint.com/us/blog/threat-insight/10-things-i-hate-about-attribution-romcom-vs-transferloader"},
+    {"ref": "S2", "title": "TA829 and UNK_GreenSec Share Tactics and Infrastructure in Ongoing Malware Campaigns (reporting Proofpoint)", "publisher": "The Hacker News", "date": "2025-07", "url": "https://thehackernews.com/2025/07/ta829-and-unkgreensec-share-tactics-and.html"},
+    {"ref": "S3", "title": "ESET Research discovers Mozilla and Windows zero day & zero click vulnerabilities exploited by RomCom APT group", "publisher": "ESET", "date": "2024-11-26", "url": "https://blog.eset.ie/2024/11/26/eset-research-discovers-mozilla-and-windows-zero-day-zero-click-vulnerabilities-exploited-by-romcom-apt-group/"},
+    {"ref": "S4", "title": "RomCom Exploits Zero-Day Firefox and Windows Flaws (reporting ESET)", "publisher": "The Hacker News", "date": "2024-11", "url": "https://thehackernews.com/2024/11/romcom-exploits-zero-day-firefox-and.html"},
+    {"ref": "S5", "title": "RomCom hackers chained Firefox and Windows zero-days to deliver backdoor", "publisher": "Help Net Security", "date": "2024-11-26", "url": "https://www.helpnetsecurity.com/2024/11/26/romcom-backdoor-cve-2024-9680-cve-2024-49039/"},
+    {"ref": "S6", "title": "New PEAPOD Cyberattack Campaign (reporting Trend Micro on Void Rabisu / RomCom)", "publisher": "The Hacker News", "date": "2023-10", "url": "https://thehackernews.com/2023/10/new-peapod-cyberattack-campaign.html"}
+  ],
+  "aliasesAdd": []
+}
