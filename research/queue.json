@@ -1,9 +1,6 @@
 {
  "note": "Research queue for the automatic wave runner. Waves take items from the front; finished ids move to 'done'. Scope limited to CN/RU/IR/KP on 2026-10-15 at the user's request; non-state actors moved to 'deferred'.",
- "verify": [
-  "unc5325",
-  "unc5330"
- ],
+ "verify": [],
  "research": [
   {
    "id": "unc5337",
@@ -445,6 +442,10 @@
   "unc4191",
   "unc4540",
   "unc4841",
+  "unc5325",
+  "unc5330",
+  "unc5337",
+  "unc5342",
   "vanilla-tempest",
   "violet-typhoon",
   "void-blizzard",
@@ -594,6 +595,7 @@
   "uat-8302",
   "uat-9686",
   "unc4540",
+  "unc5330",
   "volga-flood",
   "yulong-flood"
  ],

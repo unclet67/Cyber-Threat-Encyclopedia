@@ -7,21 +7,48 @@
   "attribution": {
     "sponsor": "",
     "confidence": "Mandiant describes UNC5325 as a suspected China-nexus espionage operator and assesses with moderate confidence an association with UNC3886 [S1]. No government attribution was found in the sources gathered.",
-    "basis": "Mandiant cites TTP and malware code overlaps between LITTLELAMB.WOOLTEA and PITHOOK and malware used by UNC3886 [S1]. UNC3886 is itself described by Mandiant as a suspected China-nexus actor targeting network devices and virtualization technologies [S1][S3]."
+    "basis": "Mandiant cites TTP and malware code overlaps between LITTLELAMB.WOOLTEA and PITHOOK and malware used by UNC3886 [S1]. UNC3886 is itself described by Mandiant as a suspected China-nexus actor targeting network devices and virtualization technologies [S1]."
   },
   "objectives": "",
   "targeting": {
-    "sectors": ["Defense industrial base (Ivanti ICS victims across several industries, including the U.S. DIB, per Mandiant's overall Ivanti investigation; not specific to UNC5325) [S1]", "Defense, technology and telecommunications (associated cluster UNC3886) [S1]"],
-    "regions": ["United States and Asia-Pacific (associated cluster UNC3886) [S1]"],
+    "sectors": [
+      "Defense industrial base (Ivanti ICS victims across several industries, including the U.S. DIB, per Mandiant's overall Ivanti investigation; not specific to UNC5325) [S1]",
+      "Defense, technology and telecommunications (associated cluster UNC3886) [S1]"
+    ],
+    "regions": [
+      "United States and Asia-Pacific (associated cluster UNC3886) [S1]"
+    ],
     "notes": "Mandiant's post does not publish a UNC5325 victim list. The DIB reference applies to the broader Ivanti ICS investigation and the sector/region focus applies to UNC3886 [S1]. Targeting is of internet-facing edge appliances (Ivanti ICS) [S1]."
   },
   "capabilities": {
     "summary": "Exploited CVE-2024-21893 chained with CVE-2024-21887 command injection for unauthenticated access to ICS appliances; validated targets with public tooling (Interactsh) using out-of-band DNS, then performed reconnaissance and in some cases opened a reverse shell [S1]. Used living-off-the-land techniques and abused the legitimate SparkGateway plugin mechanism: PITFUEL loads LITTLELAMB.WOOLTEA, which hooks the web process (via PITSOCK), persists across upgrades by appending components to backup/upgrade archives, and attempted (unsuccessfully, because of an encryption key mismatch) to persist through factory reset [S1]. PITDOG injects PITHOOK into the web process using an unmodified open-source Kubo Injector build and relaunches PITSTOP, a backdoor providing shell execution and file read/write over TLS [S1]. A new BUSHWALK Perl web shell variant (arbitrary file read) appeared within 12 hours of Ivanti's 2024-01-31 disclosure, and a user-agent-triggered activate/deactivate technique let the actor evade the Ivanti Integrity Checker Tool by reverting changes between its default two-hour scans [S1]. LITTLELAMB.WOOLTEA also functions as a standalone backdoor (command execution, file management, SOCKS proxy, tunneling) [S1]."
   },
   "campaigns": [
-    {"date": "2024-01-19", "name": "Earliest observed CVE-2024-21893 exploitation", "summary": "Mandiant observed exploitation of the SAML SSRF flaw CVE-2024-21893, which Ivanti disclosed on 2024-01-31 as a bypass of its initial mitigation, as early as 2024-01-19 [S1].", "sources": ["S1"]},
-    {"date": "2024-02", "name": "Mass exploitation of CVE-2024-21893 following disclosure", "summary": "Shadowserver reported attacks from more than 170 IPs after disclosure and Rapid7's proof-of-concept of 2024-02-02. Reporting does not attribute this mass exploitation to UNC5325 specifically; Mandiant describes mass exploitation by a small number of China-nexus actors [S1][S2].", "sources": ["S1", "S2"]},
-    {"date": "2024-02-27", "name": "Mandiant publication of UNC5325 activity (Cutting Edge, Part 3)", "summary": "Mandiant disclosed UNC5325 use of CVE-2024-21893, LITTLELAMB.WOOLTEA, PITHOOK and related tooling, detection guidance, YARA rules and the moderate-confidence UNC3886 association [S1].", "sources": ["S1"]}
+    {
+      "date": "2024-01-19",
+      "name": "Earliest observed CVE-2024-21893 exploitation",
+      "summary": "Mandiant observed exploitation of the SAML SSRF flaw CVE-2024-21893, which Ivanti disclosed on 2024-01-31 as a bypass of its initial mitigation, as early as 2024-01-19 [S1].",
+      "sources": [
+        "S1"
+      ]
+    },
+    {
+      "date": "2024-02",
+      "name": "Mass exploitation of CVE-2024-21893 following disclosure",
+      "summary": "Shadowserver reported attacks from more than 170 IPs after disclosure and Rapid7's proof-of-concept of 2024-02-02. Reporting does not attribute this mass exploitation to UNC5325 specifically; Mandiant describes mass exploitation by a small number of China-nexus actors [S1][S2].",
+      "sources": [
+        "S1",
+        "S2"
+      ]
+    },
+    {
+      "date": "2024-02-27",
+      "name": "Mandiant publication of UNC5325 activity (Cutting Edge, Part 3)",
+      "summary": "Mandiant disclosed UNC5325 use of CVE-2024-21893, LITTLELAMB.WOOLTEA, PITHOOK and related tooling, detection guidance, YARA rules and the moderate-confidence UNC3886 association [S1].",
+      "sources": [
+        "S1"
+      ]
+    }
   ],
   "diamond": {
     "adversary": "Suspected Chinese espionage operator tracked as UNC5325, moderately associated with UNC3886 [S1].",
@@ -46,12 +73,34 @@
     "jcc2": "Analyst assessment derived from cited sources; validate before use. (1) Situational awareness: inventory Ivanti ICS/Policy Secure assets on supported networks and contractor enclaves, and track vendor advisories and CISA KEV entries for rapid mitigation status [S1][S2]. (2) Authorities: compromised appliances may need to be treated as persistent-compromise cases, since reimaging may not remove implants; coordinate decisions on isolation and rebuild with the system owner and the appropriate cyber defense authority [S1]. (3) Mission assurance: plan for loss of remote access capability when appliances are taken offline and for alternative access paths. (4) Coordination: share indicators and YARA rules with DC3, DIB cybersecurity partners and the owning commands, and keep UNC5325, UNC3886 and UNC5221 distinct in reporting [S1][S6]."
   },
   "sources": [
-    {"ref": "S1", "title": "Cutting Edge, Part 3: Investigating Ivanti Connect Secure VPN Exploitation and Persistence Attempts", "publisher": "Mandiant (Google Cloud Threat Intelligence)", "date": "2024-02-27", "url": "https://cloud.google.com/blog/topics/threat-intelligence/investigating-ivanti-exploitation-persistence"},
-    {"ref": "S2", "title": "Ivanti Connect Secure flaw massively exploited by attackers (CVE-2024-21893)", "publisher": "Help Net Security", "date": "2024-02-07", "url": "https://www.helpnetsecurity.com/2024/02/07/cve-2024-21893-exploited/"},
-    {"ref": "S3", "title": "Fortinet Zero-Day and Custom Malware Used by Suspected Chinese Actor in Espionage Operation (UNC3886)", "publisher": "Mandiant (Google Cloud Threat Intelligence)", "date": "2023-03", "url": "https://cloud.google.com/blog/topics/threat-intelligence/fortinet-malware-ecosystem"},
-    {"ref": "S4", "title": "Chinese Hackers Breach Juniper Networks (reporting Mandiant UNC3886 research)", "publisher": "The Hacker News", "date": "2025-03", "url": "https://thehackernews.com/2025/03/chinese-hackers-breach-juniper-networks.html"},
-    {"ref": "S5", "title": "Chinese Hackers Exploiting Ivanti VPN Flaws to Deploy New Malware (reporting Mandiant)", "publisher": "The Hacker News", "date": "2024-02", "url": "https://thehackernews.com/2024/02/chinese-hackers-exploiting-ivanti-vpn.html"},
-    {"ref": "S6", "title": "Mandiant uncovers intricate UNC5325 cyber attacks on Ivanti devices (reporting Mandiant)", "publisher": "SecurityBrief", "date": "2024-02", "url": "https://securitybrief.co.uk/story/mandiant-uncovers-intricate-unc5325-cyber-attacks-on-ivanti-devices"}
+    {
+      "ref": "S1",
+      "title": "Cutting Edge, Part 3: Investigating Ivanti Connect Secure VPN Exploitation and Persistence Attempts",
+      "publisher": "Mandiant (Google Cloud Threat Intelligence)",
+      "date": "2024-02-27",
+      "url": "https://cloud.google.com/blog/topics/threat-intelligence/investigating-ivanti-exploitation-persistence"
+    },
+    {
+      "ref": "S2",
+      "title": "Ivanti Connect Secure flaw massively exploited by attackers (CVE-2024-21893)",
+      "publisher": "Help Net Security",
+      "date": "2024-02-07",
+      "url": "https://www.helpnetsecurity.com/2024/02/07/cve-2024-21893-exploited/"
+    },
+    {
+      "ref": "S5",
+      "title": "Chinese Hackers Exploiting Ivanti VPN Flaws to Deploy New Malware (reporting Mandiant)",
+      "publisher": "The Hacker News",
+      "date": "2024-02",
+      "url": "https://thehackernews.com/2024/02/chinese-hackers-exploiting-ivanti-vpn.html"
+    },
+    {
+      "ref": "S6",
+      "title": "Mandiant uncovers intricate UNC5325 cyber attacks on Ivanti devices (reporting Mandiant)",
+      "publisher": "SecurityBrief",
+      "date": "2024-02",
+      "url": "https://securitybrief.co.uk/story/mandiant-uncovers-intricate-unc5325-cyber-attacks-on-ivanti-devices"
+    }
   ],
   "aliasesAdd": []
 }
