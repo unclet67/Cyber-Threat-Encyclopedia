@@ -1,0 +1,63 @@
+{
+  "identification": {
+    "summary": "HenBox is an Android espionage malware family named by Palo Alto Networks Unit 42 in March 2018. It masquerades as VPN and Android system apps, often installs a legitimate decoy app alongside itself, and appears to primarily target Uyghurs and devices running Xiaomi's MIUI [S1][S2]. It is a malware family and associated activity cluster, not a Microsoft-named actor [S4].",
+    "firstObserved": "Unit 42's March 2018 report cites almost 200 samples, the oldest dating to 2015, most from the second half of 2017 [S1][S2]. A May 2016 sample posing as DroidVPN was downloaded from uyghurapps[.]net [S2].",
+    "notes": "No Microsoft actor name was found in the sources gathered. Unit 42 later grouped HenBox, Farseer, PlugX, Poison Ivy, 9002 and Zupdax infrastructure under the cluster name PKPLUG, and said it could not determine whether one group or several are involved [S3][S4]. Do not merge facts from other vendor clusters sharing PlugX or Poison Ivy without separate sourcing."
+  },
+  "attribution": {
+    "sponsor": "",
+    "confidence": "Unit 42 assessed with high confidence that PKPLUG has origins linked to Chinese nation-state adversaries, but said it could not determine whether one group or several are involved [S4]. This is a vendor assessment, not a government attribution.",
+    "basis": "Unit 42 infrastructure overlaps: HenBox C2 shares domains and IPs with PlugX, Zupdax, 9002 and Poison Ivy activity focused on Southeast Asian politics, and with the Windows backdoor Farseer [S1][S3][S4]."
+  },
+  "objectives": "Surveillance and data theft from mobile devices of Uyghur users, per Unit 42's assessment that HenBox primarily targets Uyghurs; the sources gathered do not state a sponsoring tasking [S1][S2].",
+  "targeting": {
+    "sectors": ["Civil society / ethnic minority communities (Uyghurs)"],
+    "regions": [
+      "China, Uyghur community, Xinjiang (Unit 42 believed victims were likely in Tibet, Xinjiang and Mongolia) [S4]",
+      "Southeast Asia, especially Myanmar, Taiwan, Vietnam and Indonesia, for the wider PKPLUG cluster [S3][S4]"
+    ],
+    "notes": "Targeting is inferred by Unit 42 from app themes, distribution sites and infrastructure overlaps, not from confirmed victim lists [S1][S3]. HenBox also targets Xiaomi devices running MIUI [S1][S2]."
+  },
+  "capabilities": {
+    "summary": "Trojanized Android apps disguised as VPN and system apps, distributed only on third-party (non-Google Play) app stores, though some decoy apps were on Google Play [S2]. HenBox sets itself to trigger based on alerts from Xiaomi smart-home IoT devices, then steals information from many sources including popular chat and social media apps [S2]. Unit 42 reported grown sample counts over time, from almost 200 in 2018 to over 400 since 2015 in a 2019 conference deck [S2][S5]. A related Windows backdoor, Farseer, shares config-file design and C2 infrastructure; it uses DLL sideloading of signed binaries and phishing or malicious PDFs [S3]."
+  },
+  "campaigns": [
+    {"date": "2015", "name": "Earliest HenBox samples", "summary": "Unit 42 reports the oldest HenBox samples date to 2015, with a handful that year [S2].", "sources": ["S2"]},
+    {"date": "2016-05", "name": "DroidVPN decoy sample", "summary": "A sample posing as DroidVPN was downloaded from uyghurapps[.]net [S2].", "sources": ["S2"]},
+    {"date": "2017", "name": "Peak HenBox sample volume", "summary": "Most of the almost 200 samples in the March 2018 report came from the second half of 2017 [S2]. Farseer samples were also mostly from 2017 [S3].", "sources": ["S2", "S3"]},
+    {"date": "2018-03", "name": "Unit 42 public disclosure of HenBox", "summary": "Unit 42 published its HenBox reports, noting Uyghur and Xiaomi MIUI targeting and infrastructure ties to Southeast Asia-focused PlugX, Zupdax, 9002 and Poison Ivy activity [S1][S2].", "sources": ["S1", "S2"]},
+    {"date": "2019-02", "name": "Farseer disclosure", "summary": "Unit 42 published Farseer research on 26 February, finding it while investigating HenBox infrastructure. Over 30 unique samples were seen, mostly 2017 with some 2018 [S3]. The retrieved snippets did not state the year; 2019 is inferred from sample span, see gaps.", "sources": ["S3"]},
+    {"date": "2019-10", "name": "PKPLUG cluster report", "summary": "Unit 42 grouped HenBox, Farseer, PlugX, Poison Ivy and 9002 under PKPLUG, with activity back to November 2013, and assessed China-nexus origins with high confidence [S4][S5].", "sources": ["S4", "S5"]}
+  ],
+  "diamond": {
+    "adversary": "Unidentified cluster; Unit 42 assesses China-nexus origin and cannot say whether one group or several [S4].",
+    "capability": "Trojanized Android apps (VPN and system app lures), IoT-alert trigger, broad app data theft; related Windows backdoor Farseer [S2][S3].",
+    "infrastructure": "Third-party app stores and sites such as uyghurapps[.]net; C2 domains and IPs overlapping with Farseer, PlugX, Poison Ivy, 9002 and Zupdax [S2][S3].",
+    "victim": "Uyghur users and Xiaomi/MIUI device owners; wider cluster in Southeast Asia and possibly Tibet, Xinjiang, Mongolia [S1][S4].",
+    "socioPolitical": "Surveillance of an ethnic minority community; Unit 42 notes Southeast Asia political focus in related infrastructure [S1][S4].",
+    "technology": "Android devices from third-party app stores, MIUI, and connected Xiaomi smart-home devices used as a trigger [S2]."
+  },
+  "gaps": [
+    "Unit 42 primary posts (HenBox: Chickens Come Home to Roost; Inside the Coop; Farseer; PKPLUG) could not be opened with WebFetch (DNS failure); claims rely on search-result summaries and secondary coverage, so exact wording is unverified.",
+    "Publication year of the Farseer post (26 February) was not stated in retrieved results; 2019 is inferred.",
+    "No government attribution or sponsoring organization is cited; sponsor left blank.",
+    "No Microsoft name or MITRE group ID was found for HenBox.",
+    "No activity after 2019 was found in the gathered sources; current status is unknown.",
+    "Exact capability list, native libraries and C2 protocol details are not captured here.",
+    "Relationship of HenBox to other PlugX/Poison Ivy users is unresolved; Unit 42 notes it may be one or multiple groups."
+  ],
+  "implications": {
+    "jipoe": "Analyst assessment derived from cited sources; validate before use. STEP 1: Personal Android devices and third-party app stores are the relevant terrain; HenBox is not documented against military networks in the sources. STEP 2: The adversary uses trojanized VPN and system apps with legitimate decoys and a smart-home IoT trigger [S2]. STEP 3: Victim-aligned lures, sideload from third-party stores, then broad data theft from chat apps [S2]. STEP 4: MLCOA is continued surveillance of Uyghur and Southeast Asian communities [S1][S4]. MDCOA is reuse of the shared infrastructure and Windows tooling against regional government personnel [S3][S4]. Candidate indicators: apps from third-party stores posing as VPNs, uyghurapps[.]net downloads, and C2 overlap with Farseer or PlugX [S2][S3].",
+    "jcc2": "Analyst assessment derived from cited sources; validate before use. (1) Situational awareness: treat as low direct relevance to DoD networks; track for personnel traveling to or working with Southeast Asia and Chinese-language communities [S4]. (2) Authorities: personal device guidance falls to unit policy, not network defense authorities. (3) Mission assurance: restrict sideloading and third-party app stores on mission devices [S2]. (4) Coordination: share indicators with partners via normal CTI channels; confidence is vendor-level only [S4]."
+  },
+  "sources": [
+    {"ref": "S1", "title": "HenBox: Chickens Come Home to Roost (Unit 42 post; read via search summary)", "publisher": "Palo Alto Networks Unit 42", "date": "2018-03", "url": "https://unit42.paloaltonetworks.com/unit42-henbox-chickens-come-home-roost/"},
+    {"ref": "S2", "title": "Android malware HenBox hits Xiaomi devices & minority group in China", "publisher": "Hackread", "date": "2018-03", "url": "https://www.hackread.com/android-malware-henbox-xiaomi-minority-in-china/"},
+    {"ref": "S3", "title": "Farseer: Previously Unknown Malware Family Bolsters the Chinese Armoury (Unit 42; reporting via SC Media)", "publisher": "Palo Alto Networks Unit 42 / SC Media", "date": "2019-02", "url": "https://www.scmagazine.com/news/farseer-backdoor-targets-windows-systems-linked-to-henbox-malware"},
+    {"ref": "S4", "title": "PKPLUG: Chinese cyber espionage group attacking Asia (Unit 42)", "publisher": "Palo Alto Networks Unit 42", "date": "2019-10", "url": "https://unit42.paloaltonetworks.com/pkplug_chinese_cyber_espionage_group_attacking_asia/"},
+    {"ref": "S5", "title": "VB2019 Hinchliffe slides (PKPLUG)", "publisher": "Virus Bulletin", "date": "2019-10", "url": "https://www.virusbulletin.com/uploads/pdf/conference_slides/2019/VB2019-Hinchliffe.pdf"}
+  ],
+  "aliasesAdd": [
+    {"name": "PKPLUG", "vendor": "Palo Alto Networks Unit 42"}
+  ]
+}

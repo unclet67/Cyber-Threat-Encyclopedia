@@ -3,46 +3,6 @@
  "verify": [],
  "research": [
   {
-   "id": "goblin-panda",
-   "tier": "T3"
-  },
-  {
-   "id": "goldfactory",
-   "tier": "T3"
-  },
-  {
-   "id": "gopherwhisper",
-   "tier": "T3"
-  },
-  {
-   "id": "grayling",
-   "tier": "T3"
-  },
-  {
-   "id": "greedybear",
-   "tier": "T3"
-  },
-  {
-   "id": "greyvibe",
-   "tier": "T3"
-  },
-  {
-   "id": "gtg-1002",
-   "tier": "T3"
-  },
-  {
-   "id": "hellsing",
-   "tier": "T3"
-  },
-  {
-   "id": "henbox",
-   "tier": "T3"
-  },
-  {
-   "id": "hiddenart",
-   "tier": "T3"
-  },
-  {
    "id": "houken",
    "tier": "T3"
   },
@@ -766,11 +726,21 @@
   "ghost-stadium",
   "ghostredirector",
   "gingham-typhoon",
+  "goblin-panda",
+  "goldfactory",
+  "gopherwhisper",
   "granite-typhoon",
   "gray-sandstorm",
+  "grayling",
+  "greedybear",
+  "greyvibe",
+  "gtg-1002",
   "hazel-sandstorm",
   "heart-typhoon",
+  "hellsing",
+  "henbox",
   "hexagon-typhoon",
+  "hiddenart",
   "houndstooth-typhoon",
   "inception",
   "indigozebra",
@@ -904,6 +874,14 @@
   "femwar02",
   "fin1",
   "gcman",
+  "goblin-panda",
+  "gopherwhisper",
+  "grayling",
+  "greedybear",
+  "greyvibe",
+  "hellsing",
+  "henbox",
+  "hiddenart",
   "lilac-typhoon",
   "mofang",
   "obsidian-sandstorm",

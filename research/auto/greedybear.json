@@ -1,0 +1,56 @@
+{
+  "identification": {
+    "summary": "GreedyBear is the name Koi Security gave to a financially motivated crypto-theft campaign that, per reporting on Koi's findings, used more than 150 malicious Firefox extensions impersonating wallets such as MetaMask, TronLink, Exodus and Rabby, with more than $1 million reported stolen [S2][S3][S4]. The campaign also included about 500 malicious Windows executables spread mainly through Russian sites offering cracked software, and scam sites posing as wallet services [S2][S3]. Koi reported more than 650 malicious tools in total and says the same group was behind its earlier FoxyWallet campaign of about 40 Firefox extensions [S2][S3][S5].",
+    "firstObserved": "Koi's FoxyWallet reporting says the related Firefox-extension activity had run since at least April 2025 [S5]. GreedyBear was publicly reported in August 2025 [S2][S3].",
+    "notes": "No Microsoft name or MITRE group ID is known for GreedyBear. Treat it as a Koi-named campaign cluster, not an established vendor-agnostic actor; the encyclopedia's MISP Galaxy import carries it as a threat actor. The FoxyWallet link comes from Koi's own claim as relayed by secondary coverage [S2][S3]."
+  },
+  "attribution": {
+    "sponsor": "Not state-sponsored in any cited source. Koi's earlier FoxyWallet research suspected Russian actors [S5][S6].",
+    "confidence": "Low and tentative. Koi suspected Russian threat actors for the earlier FoxyWallet cluster, citing Russian-language comments in extension code and metadata in a PDF from a command-and-control server [S5][S6]. No government attribution found.",
+    "basis": "Russian-language artifacts in code and C2 metadata [S5][S6]; distribution of malware through Russian sites offering cracked software [S2][S3]; shared infrastructure, with extensions, executables and phishing sites tied to the single IP 185.208.156.66 [S2][S3]."
+  },
+  "objectives": "Financial gain through theft of cryptocurrency wallet credentials and seed phrases from users, with more than $1 million reported stolen [S2][S3][S4].",
+  "targeting": {
+    "sectors": ["Cryptocurrency wallet users (individuals)"],
+    "regions": [],
+    "notes": "Targeting is by product, not geography: Firefox users of wallets including MetaMask, TronLink, Exodus and Rabby [S2][S3]. The FoxyWallet cluster also copied Coinbase, Trust Wallet, Phantom, OKX, Keplr and others [S7]. No victim country breakdown found in the sources."
+  },
+  "capabilities": {
+    "summary": "Operators used 'Extension Hollowing': publishing a harmless extension with fake positive reviews to pass marketplace checks, then adding malicious code that logs input from form fields and pop-ups and sends wallet credentials to attacker servers [S2][S3][S4]. FoxyWallet code reportedly filtered input strings longer than 30 characters and sent the victim's external IP [S7]. Koi says the code was partly AI-generated, based on artifacts it found [S4]. A Chrome extension called 'Filecoin Wallet' with the same theft logic and server suggests expansion to other browser marketplaces [S2][S3]. Windows malware samples were crypto-focused and spread via pirated software sites; reporting names LummaStealer among the payloads [S2][S3]."
+  },
+  "campaigns": [
+    {"date": "2025-04", "name": "FoxyWallet Firefox extensions (earlier cluster)", "summary": "Koi reports activity since at least April 2025 using more than 40 fake wallet extensions on the Firefox add-ons store, with Russian-language artifacts noted [S5][S6][S7].", "sources": ["S5", "S6", "S7"]},
+    {"date": "2025-08", "name": "GreedyBear public disclosure", "summary": "Koi Security reports more than 150 malicious Firefox extensions, about 500 malicious executables and numerous phishing sites tied to one IP, with over $1 million stolen. A Chrome extension using the same logic and server was also found [S1][S2][S3][S4]. Mozilla was reportedly notified and the extensions removed [S3].", "sources": ["S1", "S2", "S3", "S4"]}
+  ],
+  "diamond": {
+    "adversary": "Unnamed, likely Russian-speaking, financially motivated operators per Koi's tentative assessment [S5][S6].",
+    "capability": "Extension Hollowing, credential-logging extensions, crypto-focused stealers, phishing sites, partly AI-generated code [S2][S3][S4].",
+    "infrastructure": "Single central IP 185.208.156.66 reported as the C2 for extensions, executables and phishing sites; Firefox add-ons store for delivery; pirated-software sites [S2][S3].",
+    "victim": "Individual cryptocurrency wallet users [S2][S3].",
+    "socioPolitical": "Criminal profit motive; no state tasking cited [S2].",
+    "technology": "Weak vetting of extension updates in browser marketplaces and user trust in reviews; Windows endpoints used by people who install cracked software [S2][S3][S4]."
+  },
+  "gaps": [
+    "Could not open Koi's primary GreedyBear report or FoxyWallet report (fetch failed); all details come from search-result summaries of secondary coverage and should be re-verified against Koi's reports [S1][S5].",
+    "Publication dates for Koi's reports and the FoxyWallet coverage are approximate (month level); confirm exact dates.",
+    "The Russian attribution is tentative and rests on language artifacts; no named individuals, groups or government assessments found.",
+    "Regional distribution of victims and wallet-level loss accounting are not public in the sources gathered.",
+    "Link to FoxyWallet is Koi's own assessment; no independent vendor corroboration found.",
+    "Whether the Chrome/other-browser expansion materialized after August 2025 was not checked.",
+    "No MITRE group mapping, Microsoft name or other vendor aliases found; relevance to DoD missions is indirect (personnel with personal crypto wallets)."
+  ],
+  "implications": {
+    "jipoe": "Analyst assessment derived from cited sources; validate before use. STEP 1: Browser extension stores and personal devices used by service members and contractors are the relevant terrain; this is a criminal threat, not a mission-system threat. STEP 2: The actor exploits weak marketplace vetting and user trust in reviews [S2][S4]. STEP 3: Template is a benign extension, then a hollowed malicious update, with phishing sites and cracked-software malware as parallel channels [S2][S3]. STEP 4: MLCOA is continued theft from crypto users across more browser stores. MDCOA is the same tooling repurposed against enterprise browser users or credential theft broader than wallets. Candidate indicators: traffic to 185.208.156.66 and extensions that gain permissions or code after review [S2][S3].",
+    "jcc2": "Analyst assessment derived from cited sources; validate before use. (1) Situational awareness: low priority for operational networks, but browser extension inventory is useful. (2) Authorities: enforce extension allowlisting through existing enterprise policy; no special authority indicated. (3) Mission assurance: credential theft on personal devices could expose reused credentials, so reinforce separation of personal and official accounts. (4) Coordination: share indicators through normal CSSP channels if observed [S2][S3]."
+  },
+  "sources": [
+    {"ref": "S1", "title": "GreedyBear: 650 attack tools, one coordinated campaign (Koi Security report; seen in search results, not opened)", "publisher": "Koi Security", "date": "2025-08", "url": "https://koi.ai/blog/greedybear-650-attack-tools-one-coordinated-campaign"},
+    {"ref": "S2", "title": "Malicious Firefox Wallet Extensions (GreedyBear steals $1M in crypto)", "publisher": "The Hacker News", "date": "2025-08", "url": "https://thehackernews.com/2025/08/greedybear-steals-1m-in-crypto-using.html"},
+    {"ref": "S3", "title": "GreedyBear scam crypto theft industrial scale (reporting Koi Security)", "publisher": "Cointelegraph", "date": "2025-08", "url": "https://cointelegraph.com/news/greedybear-scam-crypto-theft-industrial-scale-koi-security"},
+    {"ref": "S4", "title": "Wave of 150 crypto-draining extensions hits Firefox add-on store", "publisher": "BleepingComputer", "date": "2025-08", "url": "https://www.bleepingcomputer.com/news/security/wave-of-150-crypto-draining-extensions-hits-firefox-add-on-store/amp/"},
+    {"ref": "S5", "title": "FoxyWallet: 40 malicious Firefox extensions exposed (Koi Security report; seen in search results, not opened)", "publisher": "Koi Security", "date": "2025-07", "url": "https://www.koi.security/blog/foxywallet-40-malicious-firefox-extensions-exposed"},
+    {"ref": "S6", "title": "\"FoxyWallet\": More than 40 malicious Firefox add-ons discovered", "publisher": "heise online", "date": "2025-07", "url": "https://heise.de/-10474853"},
+    {"ref": "S7", "title": "Crypto Draining Fake Wallet Extensions Flood Firefox Store", "publisher": "Decrypt", "date": "2025-07", "url": "https://decrypt.co/328595/crypto-draining-fake-wallet-extensions-flood-firefox-store"}
+  ],
+  "aliasesAdd": []
+}
