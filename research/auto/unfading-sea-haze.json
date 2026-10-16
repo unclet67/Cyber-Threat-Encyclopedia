@@ -1,0 +1,139 @@
+{
+  "identification": {
+    "summary": "Unfading Sea Haze is a name given by Bitdefender Labs to a previously unreported threat actor that attacked high-level, mainly military and government organizations in South China Sea countries; Bitdefender's investigation found at least eight victims and reached back to 2018 [S1][S3]. The name reflects the group's persistence and regional focus, and Bitdefender found no clear link to any previously identified actor, which is why it assigned a new name [S1][S3]. Bitdefender judged the actor to be Chinese-aligned on circumstantial evidence [S1][S2].",
+    "firstObserved": "Activity since at least 2018, per Bitdefender's investigation (reported May 2024) [S1][S3].",
+    "notes": "No Microsoft Typhoon/Storm name and no MITRE ATT&CK group ID were found in the sources gathered. Bitdefender noted one technique resembling a feature of the 'FunnySwitch' backdoor linked to APT41, but called it an isolated similarity, so this record does not merge it with APT41 [S3]. Vendor name: Bitdefender. Most press coverage (SecurityWeek, BleepingComputer, Security Affairs, GovInfoSecurity) re-reports the single Bitdefender report and is not independent confirmation [S3][S4]."
+  },
+  "attribution": {
+    "sponsor": "",
+    "confidence": "Bitdefender says the victimology points toward Chinese interests but the evidence is circumstantial; the origin and affiliation of the group are not confirmed [S1][S3]. No government attribution was found.",
+    "basis": "Victim set concentrated on South China Sea government and military bodies, use of Gh0st RAT variants common among Chinese-speaking actors, and a single technique similar to the APT41-linked FunnySwitch backdoor that Bitdefender treats as isolated [S1][S3]."
+  },
+  "objectives": "Bitdefender characterizes the activity as espionage against government and military organizations; exfiltration included browser data and messaging-app data [S1][S4]. Specific collection requirements are not stated in the sources gathered.",
+  "targeting": {
+    "sectors": [
+      "Government",
+      "Military"
+    ],
+    "regions": [
+      "South China Sea countries (individual countries not named in the sources gathered) [S1][S3]"
+    ],
+    "notes": "At least eight victims, mainly military and government, high-level organizations [S1][S3]. Bitdefender said the actor repeatedly regained access to the same entities through spear-phishing, and that exploitation reflected poor credential hygiene and inadequate patching of exposed devices and web services [S3]."
+  },
+  "capabilities": {
+    "summary": "Initial access has been spear-phishing with archives (zip files containing LNK files) that lead to the SerialPktdoor backdoor; in March 2024 the archives were disguised as Microsoft Defender installers or themed on US political issues [S4]. Ps2dllLoader has been used since 2018 to load .NET agents such as SharpJSHandler and SerialPktdoor; from 2023 the actor shifted toward MSBuild.exe loading C# payloads from a remote SMB share, which Bitdefender describes as pushing Ps2dllLoader into a backseat role rather than retiring it [S1][S4]. Gh0st RAT variants include SilentGh0st and TranslucentGh0st (since at least 2018) and newer modular variants FluffyGh0st, EtherealGh0st and InsidiousGh0st [S1][S4]. Exfiltration used DustyExfilTool (TLS over TCP) initially, then curl over FTP with dynamically generated credentials (exact transition date not confirmed) [S1][S2]. Since at least September 2022 the actor used ITarian RMM to gain a foothold, which Bitdefender calls unusual for a state-linked actor [S1][S3]. Collection scripts targeted Chrome and Edge browser data, and samples show the actor terminating Telegram and Viber and archiving their data with rar.exe [S1][S4]. The original summary also cites scheduled tasks and local administrator account manipulation for persistence; these were not re-confirmed in the sources gathered [S5]."
+  },
+  "campaigns": [
+    {
+      "date": "2018",
+      "name": "Earliest observed activity",
+      "summary": "Bitdefender traces Ps2dllLoader, SilentGh0st and TranslucentGh0st use and DustyExfilTool exfiltration to 2018 or earlier within a multi-year intrusion set against military and government targets [S1][S3][S4].",
+      "sources": [
+        "S1",
+        "S3",
+        "S4"
+      ]
+    },
+    {
+      "date": "2022-09",
+      "name": "RMM-based foothold (ITarian)",
+      "summary": "Since at least September 2022 the actor used ITarian RMM to gain footholds on victim networks [S1][S3].",
+      "sources": [
+        "S1",
+        "S3"
+      ]
+    },
+    {
+      "date": "2023",
+      "name": "Shift to MSBuild fileless loading",
+      "summary": "The actor moved toward MSBuild.exe executing C# payloads from a remote SMB share, with Ps2dllLoader taking a backseat [S1][S4].",
+      "sources": [
+        "S1",
+        "S4"
+      ]
+    },
+    {
+      "date": "2024-03",
+      "name": "Spear-phishing with Defender and US-politics lures",
+      "summary": "Zip archives with LNK files, disguised as Microsoft Defender installers or themed on US political issues, delivered SerialPktdoor [S4].",
+      "sources": [
+        "S4"
+      ]
+    },
+    {
+      "date": "2024-05",
+      "name": "Public disclosure by Bitdefender",
+      "summary": "Bitdefender Labs published its deep dive naming Unfading Sea Haze on 22 May 2024, reporting at least eight victims and activity back to 2018 [S1][S3].",
+      "sources": [
+        "S1",
+        "S3"
+      ]
+    }
+  ],
+  "diamond": {
+    "adversary": "Unattributed, Chinese-aligned espionage actor per Bitdefender; no confirmed sponsor [S1][S3].",
+    "capability": "Spear-phishing with LNK archives, SerialPktdoor, SharpJSHandler, Ps2dllLoader, MSBuild fileless loading, Gh0st RAT variants, ITarian RMM, DustyExfilTool and curl/FTP exfiltration [S1][S2][S4].",
+    "infrastructure": "Remote SMB share used to host C# payloads for MSBuild; FTP and TLS-over-TCP exfiltration servers [S1][S4]. Specific domains and IPs were not captured here.",
+    "victim": "Government and military organizations in South China Sea countries, at least eight victims, repeatedly re-compromised [S1][S3].",
+    "socioPolitical": "South China Sea regional government and military intelligence interest, consistent with Chinese interests per Bitdefender's circumstantial assessment [S1][S3].",
+    "technology": "Windows endpoints reached through email, plus exposed devices and web services with weak patching and credential hygiene [S3]."
+  },
+  "gaps": [
+    "No primary document was opened: Bitdefender's blog and technical PDF, SecurityWeek and BleepingComputer pages could not be fetched in this environment; details come from search-result summaries and should be validated against the Bitdefender report [S1].",
+    "Victim countries are not named in the sources gathered.",
+    "No government attribution, sponsor, Microsoft name or MITRE group ID found; overlap with APT41 or other PRC clusters is unresolved [S3].",
+    "Persistence via scheduled tasks and local administrator account manipulation appears in the original record but was not confirmed in gathered sources.",
+    "No activity reporting after mid-2024 was found; current status of the actor is unknown.",
+    "Source dates for SecurityWeek, BleepingComputer and Security Affairs are inferred from coverage of the May 2024 Bitdefender release; the Security Affairs article date was not confirmed.",
+    "Technical indicators (hashes, domains, IPs) and ATT&CK mapping not collected."
+  ],
+  "implications": {
+    "jipoe": "Analyst assessment derived from cited sources; validate before use. STEP 1: Key terrain is government and military email gateways and endpoints in South China Sea partner nations, plus exposed devices and web services with weak patching [S3]. STEP 2: The actor has persisted for years, re-compromised the same victims, and uses remote management tooling and fileless loading to blend in [S1][S3]. STEP 3: The template is spear-phish with zip/LNK, then SerialPktdoor or Gh0st RAT variant, then MSBuild or RMM footholds, then browser and messaging data collection and FTP/TLS exfiltration [S1][S4]. STEP 4: MLCOA is continued intelligence collection against regional partner government and military networks. MDCOA is use of retained access during a regional crisis for deeper collection; this is judgment, not stated in sources. Candidate indicators: MSBuild.exe loading from remote SMB shares, unexpected ITarian RMM agents, curl FTP outbound transfers, rar.exe archiving of Telegram or Viber data, and LNK-in-zip attachments with Defender or US-politics lures [S1][S4].",
+    "jcc2": "Analyst assessment derived from cited sources; validate before use. (1) Situational awareness: share MSBuild-from-SMB, unauthorized RMM and curl-FTP detections across partner networks, as victims are regional government and military bodies [S1][S3]. (2) Authorities: partner-network hunting and sharing depends on coalition agreements; clarify before action. (3) Mission assurance: long dwell time and repeated re-entry mean eradication must include credential resets and patching of exposed services [S3]. (4) Coordination: route indicators through cyber-defense and partner liaison channels; treat attribution as unconfirmed [S1][S3]."
+  },
+  "sources": [
+    {
+      "ref": "S1",
+      "title": "Deep Dive Into Unfading Sea Haze: A New Threat Actor in the South China Sea",
+      "publisher": "Bitdefender Labs",
+      "date": "2024-05-22",
+      "url": "https://businessinsights.bitdefender.com/deep-dive-into-unfading-sea-haze-a-new-threat-actor-in-the-south-china-sea"
+    },
+    {
+      "ref": "S2",
+      "title": "Unfading Sea Haze APT Targeting South China Sea Governments (reporting Bitdefender)",
+      "publisher": "BankInfoSecurity",
+      "date": "2024-05",
+      "url": "https://www.bankinfosecurity.com/unfading-sea-haze-apt-targeting-south-china-sea-governments-a-25289"
+    },
+    {
+      "ref": "S3",
+      "title": "Researchers Warn of Chinese-Aligned Hackers Targeting South China Sea Countries (reporting Bitdefender)",
+      "publisher": "The Hacker News",
+      "date": "2024-05",
+      "url": "https://thehackernews.com/2024/05/researchers-warn-of-chinese-aligned.html"
+    },
+    {
+      "ref": "S4",
+      "title": "Chinese actor 'Unfading Sea Haze' remained undetected for five years (reporting Bitdefender)",
+      "publisher": "Security Affairs",
+      "date": "2024-05",
+      "url": "https://securityaffairs.com/163566/apt/chinese-unfading-sea-haze-apt.html"
+    },
+    {
+      "ref": "S5",
+      "title": "Newly Detected Chinese Group Targeting Military, Government Entities (reporting Bitdefender)",
+      "publisher": "SecurityWeek",
+      "date": "2024-05",
+      "url": "https://www.securityweek.com/newly-detected-chinese-group-targeting-military-government-entities/"
+    },
+    {
+      "ref": "S6",
+      "title": "Unfading Sea Haze threat intelligence summary",
+      "publisher": "KPMG CTIP",
+      "date": "2024-06-04",
+      "url": "https://assets.kpmg.com/content/dam/kpmg/in/pdf/2024/06/kpmg-ctip-unfading-sea-haze-04-jun-2024.pdf"
+    }
+  ],
+  "aliasesAdd": []
+}

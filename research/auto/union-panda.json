@@ -1,0 +1,19 @@
+{
+"identification":{"summary":"","firstObserved":"","notes":""},
+"attribution":{"sponsor":"","confidence":"","basis":""},
+"objectives":"",
+"targeting":{"sectors":[],"regions":[],"notes":""},
+"capabilities":{"summary":""},
+"campaigns":[],
+"diamond":{"adversary":"","capability":"","infrastructure":"","victim":"","socioPolitical":"","technology":""},
+"gaps":[
+"No vendor report, profile, or technical write-up for UNION PANDA was found in web searches; it appears only as a name in catalogs (MISP Galaxy threat-actor cluster tagged China/CN; ThaiCERT/ETDA Threat Group Cards China index) with no description, campaigns, victims, or TTPs.",
+"The MISP Galaxy entry appears to cite a 2016 SANS summit presentation by CrowdStrike and IBM ('Detecting and Responding to Pandas and Bears'); the slide deck was not opened, so the context in which the name is used (and any adversary description) is unverified.",
+"No CrowdStrike adversary profile for UNION PANDA was found; CrowdStrike tracking of the name could not be confirmed.",
+"Do not merge with EMISSARY PANDA / APT27 / BRONZE UNION (Secureworks): no source found equating them; the similar name 'Bronze Union' is a different vendor's label.",
+"Sponsor, objectives, targeting, malware, infrastructure, first-observed date, and any MITRE ATT&CK group mapping are all unknown."
+],
+"implications":{"jipoe":"","jcc2":""},
+"sources":[],
+"aliasesAdd":[]
+}

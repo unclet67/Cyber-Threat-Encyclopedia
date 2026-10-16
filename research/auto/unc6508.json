@@ -1,0 +1,117 @@
+{
+  "identification": {
+    "summary": "UNC6508 is a Google Threat Intelligence Group (GTIG) uncategorized cluster that GTIG describes as a PRC-nexus actor targeting North American academic, medical and military research institutions through externally facing REDCap (Research Electronic Data Capture) servers [S1]. GTIG's June 2026 report ties it to a custom three-module REDCap implant it names INFINITERED, a web shell named help.php, and abuse of Google Workspace content compliance rules to BCC-forward email to an actor-controlled Gmail account [S1].",
+    "firstObserved": "GTIG: earliest known REDCap compromise in September 2023; last activity observed in the detailed case in November 2025; publicly disclosed 2026-06-15 [S1].",
+    "notes": "UNC6508 is a Google/Mandiant cluster designation, not a Microsoft name; no Microsoft mapping was found. GTIG's report does not name aliases or specify which other clusters share the infrastructure overlaps it cites [S1]."
+  },
+  "attribution": {
+    "sponsor": "GTIG attributes the activity to a PRC-nexus actor and assesses the motivation as espionage aligned with historic PRC state-sponsored collection priorities [S1]. No specific PRC agency or contractor is named in the sources gathered.",
+    "confidence": "GTIG states it attributes the activity to UNC6508 with high confidence [S1].",
+    "basis": "GTIG cites infrastructure overlaps between campaigns, consistent use of INFINITERED on REDCap, and targeting of the medical research and defense sectors [S1]."
+  },
+  "objectives": "Espionage. GTIG says the actor's collection interests include defense intelligence, Indo-Pacific Command operations, AI, uncrewed vehicle systems, cyber offensive programs and medical research; a keyword list in the mail-forwarding rule covers geo-strategic policy, military strategy, advanced technology and medical research facilities, and includes the term Chikungunya, which GTIG links to the 2025 outbreak in Guangdong [S1].",
+  "targeting": {
+    "sectors": [
+      "Medical research and clinical providers",
+      "Academic medical centers and universities",
+      "Military health institutions",
+      "Professional advocacy groups",
+      "Health regulatory bodies",
+      "Defense research"
+    ],
+    "regions": [
+      "North America (United States and Canada per secondary reporting) [S1][S3]"
+    ],
+    "notes": "GTIG lists victims as national, state and private medical entities, clinical providers, academic medical centers, military health institutions, advocacy groups and health regulators, and assesses known victims are likely only a fraction of a larger campaign [S1]."
+  },
+  "capabilities": {
+    "summary": "Initial access was via externally facing REDCap servers; GTIG could not confirm the exact method but observed probing of legacy REDCap versions kept side by side with current ones (a downgrade attack) [S1][S3]. After access the actor performed internal reconnaissance and credential discovery for database and service accounts and used a web shell named help.php for persistence and uploads [S1]. About three months after initial compromise it deployed INFINITERED, which trojanizes legitimate REDCap files with three modules: a dropper that injects into the REDCap upgrade process so the implant survives upgrades, a credential harvester in the authentication file that stores captured credentials encrypted in the redcap_sessions table, and a backdoor in the hooks file that runs on every page load and takes encrypted commands via the REDCAP-TOKEN cookie (shell execution, file upload and download, credential retrieval and deletion, raw SQL) [S1]. More than a year after first compromise, the actor replayed harvested credentials against an enterprise administrator account lacking two-step verification, then created a Google Workspace content compliance rule (named with the misspelling Patroit) using regex patterns to silently BCC-forward matching email to an attacker-controlled Gmail account; GTIG calls this novel for PRC actors [S1]. Operational security relied on obfuscation networks of compromised routers, residential proxies and VPS, with US-based IPs, and a mass-created Gmail account used only for exfiltration [S1]."
+  },
+  "campaigns": [
+    {
+      "date": "2023-09",
+      "name": "Earliest known REDCap compromise",
+      "summary": "GTIG reports the earliest known compromise of a REDCap server at a North American medical research institution.",
+      "sources": [
+        "S1"
+      ]
+    },
+    {
+      "date": "2023-12",
+      "name": "INFINITERED deployment (approximate)",
+      "summary": "About three months after initial compromise the actor deployed INFINITERED; the date is inferred from GTIG's 'about three months' statement.",
+      "sources": [
+        "S1"
+      ]
+    },
+    {
+      "date": "2024 to 2025",
+      "name": "Persistent credential harvesting",
+      "summary": "INFINITERED harvested REDCap logins and persisted through upgrades while the actor stayed undetected for over a year.",
+      "sources": [
+        "S1"
+      ]
+    },
+    {
+      "date": "2025-11",
+      "name": "Admin pivot and email exfiltration (last observed)",
+      "summary": "Harvested credentials were replayed against an enterprise admin account and a content compliance rule forwarded matching email to an actor-controlled Gmail account; November 2025 is the last observed activity in the detailed case.",
+      "sources": [
+        "S1"
+      ]
+    },
+    {
+      "date": "2026-06-15",
+      "name": "GTIG public disclosure",
+      "summary": "GTIG disrupted infrastructure, with Mandiant Consulting notified affected organizations, updated Google Security Operations with IOCs and published the report.",
+      "sources": [
+        "S1",
+        "S2"
+      ]
+    }
+  ],
+  "diamond": {
+    "adversary": "PRC-nexus espionage actor tracked by GTIG as UNC6508, assessed with high confidence [S1].",
+    "capability": "REDCap exploitation and legacy-version downgrade probing, help.php web shell, INFINITERED implant, credential replay, Workspace content compliance rule abuse [S1].",
+    "infrastructure": "Obfuscation networks of compromised routers (an ASUS router was the admin login source), residential proxies and VPS with US-based IPs; a mass-created Gmail account for exfiltration [S1].",
+    "victim": "North American academic, medical and military research institutions and health organizations [S1].",
+    "socioPolitical": "Collection against defense, Indo-Pacific Command, AI, uncrewed systems, cyber and medical research topics, consistent with GTIG's view of PRC collection priorities [S1].",
+    "technology": "Internet-facing REDCap (PHP) servers with legacy versions retained, admin accounts without two-step verification, and Google Workspace mail routing rules [S1]."
+  },
+  "gaps": [
+    "GTIG could not confirm the initial access vector and no CVE is named in the sources gathered [S1].",
+    "The infrastructure overlaps underpinning high-confidence attribution are not detailed, and no aliases or links to other tracked clusters (GTIG, Microsoft, MITRE) are stated [S1].",
+    "No Microsoft or MITRE group mapping found.",
+    "Number and identity of victims is not public; GTIG says known victims are likely a fraction of the campaign [S1].",
+    "Secondary outlets (Help Net Security, CSO) were not fetchable; their details are from search result snippets only [S2][S3]. Full hashes sit in a VirusTotal GTI collection requiring registration [S1].",
+    "Whether activity after November 2025 continues is unknown."
+  ],
+  "implications": {
+    "jipoe": "Analyst assessment derived from cited sources; validate before use. STEP 1: Research-support web applications such as REDCap servers, and the cloud email tenants of universities, military health and medical research organizations, are key terrain because they hold defense-relevant and medical research data [S1]. STEP 2: The actor stayed undetected for over a year, kept persistence through software upgrades, and routed via US-based compromised routers and proxies, so geolocation-based filtering is weak [S1]. STEP 3: The observed chain is exposed REDCap server, legacy-version probing, help.php web shell, INFINITERED credential harvesting, credential replay against an admin account without two-step verification, then email BCC-forwarding by regex keywords [S1]. STEP 4: MLCOA is continued quiet collection from medical and academic research entities, including DoD-adjacent health and defense research partners. MDCOA is use of the same mail-rule technique against defense contractor or military-affiliated Workspace tenants to harvest Indo-Pacific planning and technology content. Candidate indicators: unexpected content compliance rules, mail forwarded to external Gmail addresses, REDCap authentication or hooks file changes, rows in redcap_sessions with the xc32038474a prefix, the b49e334d-9c01-463e-9bc5-00a6920fb66e marker, help.php files, and admin logins from residential or router IPs [S1].",
+    "jcc2": "Analyst assessment derived from cited sources; validate before use. (1) Situational awareness: track which DoD, military health and DIB-affiliated research partners run REDCap and retain legacy versions; use the GTIG YARA rule G_Backdoor_INFINITERED_1 and IOCs for scanning [S1]. (2) Authorities: scanning or remediation of partner or contractor systems depends on contracts and the owner's authorization, so coordinate through system owners and DIB cybersecurity channels rather than assuming access. (3) Mission assurance: mail-based collection can reveal planning keywords, so review mail-rule and admin audit logs, enforce phishing-resistant two-step verification and remove old installs [S1]. (4) Coordination: share indicators with DC3, the affected organizations' security teams and health-sector partners; GTIG and Mandiant have already notified victims [S1]."
+  },
+  "sources": [
+    {
+      "ref": "S1",
+      "title": "PRC-nexus actor UNC6508 targets US medical research (GTIG report on REDCap/INFINITERED)",
+      "publisher": "Google Cloud Threat Intelligence (GTIG)",
+      "date": "2026-06-15",
+      "url": "https://cloud.google.com/blog/topics/threat-intelligence/prc-targets-us-medical-research"
+    },
+    {
+      "ref": "S2",
+      "title": "Chinese hackers breached North American research institutions via REDCap servers (secondary coverage, search snippet only)",
+      "publisher": "Help Net Security",
+      "date": "2026-06-15",
+      "url": "https://www.helpnetsecurity.com/2026/06/15/chinese-hackers-redcap-medical-research-institutions-breach/"
+    },
+    {
+      "ref": "S3",
+      "title": "China-linked hackers target US, Canada research using legacy REDCap exploits (secondary coverage, search snippet only)",
+      "publisher": "CSO Online",
+      "date": "2026-06",
+      "url": "https://csoonline.com/article/4185582/china-linked-hackers-target-us-canada-research-using-legacy-redcap-exploits.html"
+    }
+  ],
+  "aliasesAdd": []
+}

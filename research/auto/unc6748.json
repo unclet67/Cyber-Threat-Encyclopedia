@@ -1,0 +1,52 @@
+{
+  "identification": {
+    "summary": "UNC6748 is a Google Threat Intelligence Group (GTIG) uncategorized threat cluster that GTIG identified in early November 2025 using a Snapchat-themed website, snapshare[.]chat, to target Saudi Arabian users [S1]. The site delivered the DarkSword iOS exploit chain, which GTIG says supports iOS 18.4 through 18.7 and uses six vulnerabilities, and the final payload was GHOSTKNIFE, a JavaScript backdoor [S1]. GTIG describes UNC6748 as the first-observed DarkSword user in its reporting, with activity observed multiple times throughout November 2025 [S1]. UNC6748 is one of several DarkSword users: GTIG also tracks UNC6353 (suspected Russian espionage group, GHOSTBLADE) and the Turkish commercial surveillance vendor PARS Defense (GHOSTSABER) [S1].",
+    "firstObserved": "Early November 2025 (GTIG) [S1].",
+    "notes": "UNC6748 is a GTIG tracking label for a cluster, not a named group; GTIG's page does not tie it to a named vendor or state [S1]. The encyclopedia's imported record lists country RU; no source gathered supports this, and the only Russia link in the GTIG report is to a different cluster, UNC6353 [S1]. Do not merge UNC6748 facts with UNC6353 or PARS Defense."
+  },
+  "attribution": {
+    "sponsor": "",
+    "confidence": "GTIG does not name a sponsor for UNC6748. It states generally that DarkSword has been used by commercial surveillance vendors and suspected state-sponsored actors [S1]. No attribution is made here.",
+    "basis": "GTIG's assessment that the DarkSword session-storage check and frame.html to rce_loader.js logic were developed by the DarkSword developers, while the anti-debugging logic was likely added by the user (UNC6748) [S1]."
+  },
+  "objectives": "",
+  "targeting": {
+    "sectors": [],
+    "regions": ["Saudi Arabia (Saudi Arabian users) [S1]"],
+    "notes": "Targeting was of individual iPhone users reached through a Snapchat-themed lure site; GTIG's page, as retrieved, gives no victim sector or identity [S1]. The landing page checks for a touch screen and redirects non-matching visitors elsewhere, and redirects victims to the legitimate Snapchat site to mask activity [S1]."
+  },
+  "capabilities": {
+    "summary": "UNC6748 used the DarkSword full-chain iOS exploit: remote code execution via CVE-2025-31277 (JavaScriptCore, patched iOS 18.6), later also CVE-2025-43529 (JavaScriptCore, zero-day at the time per GTIG), with CVE-2026-20700 (dyld PAC bypass); sandbox escapes via CVE-2025-14174 (ANGLE) and CVE-2025-43510 (XNU); and privilege escalation via CVE-2025-43520 (XNU) [S1]. All stages and payloads are pure JavaScript [S1]. The landing page is obfuscated JavaScript that loads a hidden iframe (frame.html), then rce_loader.js, then fetches the exploit via XMLHttpRequest; it sets a sessionStorage uid key to avoid re-infecting prior victims, and later revisions added anti-debugging and more obfuscation [S1]. Chrome users were pushed to Safari via the x-safari-https:// handler, and GTIG assesses UNC6748 had no Chrome exploit chain [S1]. GHOSTKNIFE, a JavaScript backdoor, exfiltrates signed-in accounts, messages, browser data, location history and recordings, downloads files from C2, takes screenshots and records microphone audio; C2 uses a custom binary protocol over HTTP encrypted with ECDH and AES; it can update its configuration from C2 and periodically deletes selected crash logs (e.g. mediaplaybackd, SpringBoard, WebKit, panic-full) from /var/mobile/Library/Logs/CrashReporter/ [S1]. GTIG observed loader inconsistencies, for example the loader fetched the iOS 18.7 worker regardless of detected version and ignored 18.7 in early versions, which it says may mean UNC6748 received updates before other users or that others corrected the code themselves [S1]."
+  },
+  "campaigns": [
+    {"date": "2025-11", "name": "Snapchat-themed lure against Saudi users (snapshare[.]chat)", "summary": "GTIG identified UNC6748 in early November 2025 delivering DarkSword from snapshare[.]chat to Saudi Arabian users, with activity multiple times through November. The first exploit used CVE-2025-31277 and CVE-2026-20700 (iOS 18.4 worker); several days later an iOS 18.6 worker using CVE-2025-43529 was added; later in November an iOS 18.7 worker was added. GHOSTKNIFE C2 IPs 62.72.21[.]10 and 72.60.98[.]48 were reported for November 2025 [S1].", "sources": ["S1"]},
+    {"date": "2026-03-18", "name": "GTIG, Lookout and iVerify disclosure of DarkSword", "summary": "GTIG published its DarkSword report, coordinated with Lookout and iVerify. GTIG reported the vulnerabilities to Apple, all were patched by iOS 26.3 (most earlier), and GTIG added delivery domains to Safe Browsing. It recommends updating iOS or enabling Lockdown Mode [S1][S2].", "sources": ["S1", "S2"]},
+    {"date": "2026-03-23", "name": "Reported public leak of DarkSword kit", "summary": "TechCrunch reported that a newer DarkSword version had been posted publicly to GitHub, with researchers saying the HTML and JavaScript exploits are easy to repurpose. This is secondary reporting and is not attributed to UNC6748 [S3].", "sources": ["S3"]}
+  ],
+  "diamond": {
+    "adversary": "Unattributed GTIG cluster UNC6748; a user (not the developer) of the DarkSword kit, per GTIG [S1].",
+    "capability": "DarkSword iOS full chain (six vulnerabilities, iOS 18.4-18.7) and the GHOSTKNIFE JavaScript backdoor with encrypted C2 and crash-log deletion [S1].",
+    "infrastructure": "Lure/delivery domain snapshare[.]chat; GHOSTKNIFE C2 at 62.72.21[.]10 and 72.60.98[.]48 (November 2025) [S1].",
+    "victim": "Saudi Arabian iPhone users running iOS 18.4-18.7 [S1].",
+    "socioPolitical": "",
+    "technology": "Unpatched Safari/WebKit and kernel components on iOS 18.4-18.7 reached through a web link; Chrome iOS users were redirected to Safari [S1]."
+  },
+  "gaps": [
+    "Sponsor, country of origin and motive of UNC6748 are not stated in any source gathered; the imported country RU is unsupported and may stem from confusion with UNC6353 [S1].",
+    "Victim identities, number of victims and how the lure link was distributed (for example messaging or social media) are not stated in the page retrieved [S1].",
+    "Full IOC set is in a GTI Collection for registered users and was not accessed [S1].",
+    "Lookout and iVerify primary technical write-ups, the Malpedia actor entry, and Apple security notes were not opened; coverage in S2 and S3 is secondary.",
+    "Whether UNC6748 activity continued after November 2025, or used the leaked kit, is not reported in the sources gathered.",
+    "Relationship of UNC6748 to the DarkSword developers or any broker (shared source versus marketplace) is only an open GTIG question [S1]."
+  ],
+  "implications": {
+    "jipoe": "Analyst assessment derived from cited sources; validate before use. STEP 1: Key terrain is the personal and official iPhone (Safari/WebKit) of personnel and partners, especially in the Arabian Peninsula, and mobile-messaging accounts. STEP 2: Adversary use of a shared, commercial-grade iOS chain lowers the entry cost and widens the set of actors who can field iOS exploits; devices on iOS 18.x that are not updated are exposed [S1][S3]. STEP 3: The template is a themed lure link, then hidden-iframe loader, then WebKit RCE, sandbox escape and kernel privilege escalation, then a JavaScript backdoor harvesting messages, accounts, location and microphone, with crash-log cleanup [S1]. STEP 4: MLCOA is continued targeted one-click mobile surveillance of individuals in the Gulf region by users of the kit. MDCOA is use of the publicly leaked kit by many actors against US and coalition personnel on unpatched devices [S3]. Candidate indicators: access to snapshare[.]chat, traffic to 62.72.21[.]10 and 72.60.98[.]48, Chrome-to-Safari x-safari-https handoffs, and deletion of crash logs on device [S1].",
+    "jcc2": "Analyst assessment derived from cited sources; validate before use. (1) Situational awareness: track iOS version compliance across managed and BYOD devices; versions 18.4-18.7 are in scope until updated to a release containing the fixes (GTIG: all fixed by iOS 26.3) [S1]. (2) Authorities: mobile device management enforcement and Lockdown Mode for high-risk travelers or personnel require command and owning-organization approval. (3) Mission assurance: treat personal phones used for duty communications and location as exposed terrain when deployed in the Gulf region. (4) Coordination: share the published IOCs and domains with the supporting network defense provider, and coordinate with the Air Force cyber and counterintelligence channels for suspected device compromise; GTIG notes coordination with CERT-UA for a different cluster [S1]."
+  },
+  "sources": [
+    {"ref": "S1", "title": "DarkSword iOS exploit chain (GTIG report on UNC6748, UNC6353 and PARS Defense use)", "publisher": "Google Cloud / Google Threat Intelligence Group", "date": "2026-03-18", "url": "https://cloud.google.com/blog/topics/threat-intelligence/darksword-ios-exploit-chain"},
+    {"ref": "S2", "title": "DarkSword: Researchers uncover another iOS exploit kit (secondary coverage)", "publisher": "Help Net Security", "date": "2026-03-19", "url": "https://www.helpnetsecurity.com/2026/03/19/darksword-ios-exploit-iphone/"},
+    {"ref": "S3", "title": "Someone has publicly leaked an exploit kit that can hack millions of iPhones (secondary coverage)", "publisher": "TechCrunch", "date": "2026-03-23", "url": "https://techcrunch.com/2026/03/23/someone-has-publicly-leaked-an-exploit-kit-that-can-hack-millions-of-iphones/"}
+  ],
+  "aliasesAdd": []
+}

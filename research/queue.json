@@ -3,38 +3,6 @@
  "verify": [],
  "research": [
   {
-   "id": "unc6201",
-   "tier": "T3"
-  },
-  {
-   "id": "unc6293",
-   "tier": "T3"
-  },
-  {
-   "id": "unc6508",
-   "tier": "T3"
-  },
-  {
-   "id": "unc6748",
-   "tier": "T3"
-  },
-  {
-   "id": "unfading-sea-haze",
-   "tier": "T3"
-  },
-  {
-   "id": "union-panda",
-   "tier": "T3"
-  },
-  {
-   "id": "union-spider",
-   "tier": "T3"
-  },
-  {
-   "id": "unk-academicflare",
-   "tier": "T3"
-  },
-  {
    "id": "unk-remoterogue",
    "tier": "T3"
   },
@@ -438,6 +406,12 @@
   "unc5330",
   "unc5337",
   "unc5342",
+  "unc6201",
+  "unc6293",
+  "unc6508",
+  "unc6748",
+  "unfading-sea-haze",
+  "unk-academicflare",
   "vanilla-tempest",
   "violet-typhoon",
   "void-blizzard",
@@ -588,6 +562,9 @@
   "uat-9686",
   "unc4540",
   "unc5330",
+  "unc6201",
+  "unc6748",
+  "unk-academicflare",
   "volga-flood",
   "yulong-flood"
  ],
@@ -680,7 +657,9 @@
   "spicy-panda",
   "storm-2470",
   "test-panda",
-  "toxic-panda"
+  "toxic-panda",
+  "union-panda",
+  "union-spider"
  ],
  "needs_source_date": {
   "operation-emmental": "draft is in research/auto; the Unit 42 Retefe post cited as S3 has no confirmed publication date",

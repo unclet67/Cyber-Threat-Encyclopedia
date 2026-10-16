@@ -1,0 +1,54 @@
+{
+  "identification": {
+    "summary": "UNION SPIDER is a CrowdStrike-style adversary designation that Malpedia describes as an adversary targeting manufacturing and industrial organizations [S1]. The only reference Malpedia lists is a 2014 RSA Conference talk on cyber attribution [S1].",
+    "firstObserved": "",
+    "notes": "No vendor profile, MITRE group, or Microsoft mapping was found. The 'SPIDER' suffix is CrowdStrike's convention for criminal actors, but no source located here states CrowdStrike's assessment of this name. Do not merge with other SPIDER names such as SCATTERED SPIDER or RECESS SPIDER (Play ransomware), which are unrelated clusters in search results."
+  },
+  "attribution": {
+    "sponsor": "",
+    "confidence": "",
+    "basis": ""
+  },
+  "objectives": "",
+  "targeting": {
+    "sectors": [
+      "Manufacturing",
+      "Industrial organizations"
+    ],
+    "regions": [],
+    "notes": "Sector targeting is as summarized by Malpedia [S1]; no regional data located."
+  },
+  "capabilities": {
+    "summary": ""
+  },
+  "campaigns": [],
+  "diamond": {
+    "adversary": "",
+    "capability": "",
+    "infrastructure": "",
+    "victim": "Manufacturing and industrial organizations [S1].",
+    "socioPolitical": "",
+    "technology": ""
+  },
+  "gaps": [
+    "No dated campaign, malware, infrastructure, or intrusion-set reporting located for UNION SPIDER; Malpedia lists no associated families [S1].",
+    "CrowdStrike's own profile, if any, was not located; unclear whether the name is currently tracked, renamed, or merged.",
+    "Motivation (criminal vs. espionage) and any mapping to Microsoft or MITRE names are unknown.",
+    "The sole Malpedia-listed reference (a 2014 RSA Conference attribution talk) was not opened, so what it says about UNION SPIDER is unverified.",
+    "Country/origin is unverified by any located source; the existing record's country value RU is unsupported."
+  ],
+  "implications": {
+    "jipoe": "",
+    "jcc2": ""
+  },
+  "sources": [
+    {
+      "ref": "S1",
+      "title": "UNION SPIDER (Threat Actor)",
+      "publisher": "Malpedia (Fraunhofer FKIE)",
+      "date": "2026-10",
+      "url": "https://malpedia.caad.fkie.fraunhofer.de/actor/union_spider"
+    }
+  ],
+  "aliasesAdd": []
+}
