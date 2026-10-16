@@ -3,46 +3,6 @@
  "verify": [],
  "research": [
   {
-   "id": "larva-24005",
-   "tier": "T3"
-  },
-  {
-   "id": "longnosedgoblin",
-   "tier": "T3"
-  },
-  {
-   "id": "madi",
-   "tier": "T3"
-  },
-  {
-   "id": "magic-kitten",
-   "tier": "T3"
-  },
-  {
-   "id": "magnetic-spider",
-   "tier": "T3"
-  },
-  {
-   "id": "malkamak",
-   "tier": "T3"
-  },
-  {
-   "id": "mana-team",
-   "tier": "T3"
-  },
-  {
-   "id": "mora-001",
-   "tier": "T3"
-  },
-  {
-   "id": "moshen-dragon",
-   "tier": "T3"
-  },
-  {
-   "id": "nickel-alley",
-   "tier": "T3"
-  },
-  {
    "id": "night-dragon",
    "tier": "T3"
   },
@@ -715,10 +675,15 @@
   "jade-sleet",
   "jasper-sleet",
   "jinx-0164",
+  "larva-24005",
   "lemon-sandstorm",
   "leopard-typhoon",
   "lilac-typhoon",
   "linen-typhoon",
+  "longnosedgoblin",
+  "madi",
+  "magic-kitten",
+  "malkamak",
   "manatee-tempest",
   "mango-sandstorm",
   "marigold-sandstorm",
@@ -728,8 +693,11 @@
   "moafee",
   "mofang",
   "moonstone-sleet",
+  "mora-001",
+  "moshen-dragon",
   "mulberry-typhoon",
   "neva-flood",
+  "nickel-alley",
   "nomadic-octopus",
   "nylon-typhoon",
   "obsidian-sandstorm",
@@ -857,8 +825,13 @@
   "icepeony",
   "infrastructure-destruction-squad",
   "jinx-0164",
+  "larva-24005",
   "lilac-typhoon",
+  "magic-kitten",
   "mofang",
+  "mora-001",
+  "moshen-dragon",
+  "nickel-alley",
   "obsidian-sandstorm",
   "pearl-sleet",
   "pumpkin-sandstorm",
@@ -954,6 +927,8 @@
   "foxy-panda",
   "gibberish-panda",
   "impersonating-panda",
+  "magnetic-spider",
+  "mana-team",
   "storm-2470"
  ]
 }

@@ -1,0 +1,150 @@
+{
+  "identification": {
+    "summary": "LongNosedGoblin is a China-aligned APT group named by ESET Research, which announced it on 18 December 2025 [S1][S2][S4]. It targets governmental entities in Southeast Asia and Japan for cyberespionage [S2][S4]. Its most distinctive trait is abuse of Windows Group Policy to deploy malware and move laterally [S1][S4]. It uses cloud services such as OneDrive and Google Drive for command and control [S7].",
+    "firstObserved": "ESET traces activity to at least September 2023 and first noticed the group's malware in 2024 in a Southeast Asian government network [S5].",
+    "notes": "ESET is the originator of the name; no Microsoft name or MITRE group ID was found in the sources gathered. ESET judges the NosyDoor backdoor is probably shared among several China-aligned actors, so tool presence alone does not identify this group [S1][S3]. ESET reports similarities to ToddyCat and tooling resembling Erudite Mogwai but treats LongNosedGoblin as distinct [S7]. Cisco Talos tracks a separate cluster, UAT-8302, that uses NetDraft, which Talos says ESET calls NosyDoor; Talos describes a close operating relationship between clusters rather than identity [S9]. Keep these cluster boundaries separate."
+  },
+  "attribution": {
+    "sponsor": "No state sponsor or government agency is named in the sources gathered. ESET characterizes the group as China-aligned [S2][S4].",
+    "confidence": "ESET's confidence level is not stated in the secondary coverage reviewed; the primary ESET report could not be opened.",
+    "basis": "ESET's assessment of targeting, tooling and tradecraft, as relayed by press coverage [S2][S4][S5]. Cisco Talos separately assesses with high confidence that UAT-8302 is a China-nexus APT, and links its NetDraft malware to ESET's NosyDoor; this is Talos's assessment of its own cluster, not of LongNosedGoblin [S9]."
+  },
+  "objectives": "Cyberespionage against governmental entities in Southeast Asia and Japan [S2][S4]. Browser-history collection is used to select higher-interest victims for further tooling [S7].",
+  "targeting": {
+    "sectors": [
+      "Government"
+    ],
+    "regions": [
+      "Southeast Asia [S2][S4]",
+      "Japan [S2][S4]"
+    ],
+    "notes": "ESET first found the malware in a Southeast Asian government network in 2024 [S5]. Many victims received NosyHistorian but only a small subset also received NosyDoor, indicating selective follow-on targeting [S7]. Specific countries were not identified in the sources gathered. A NosyDoor variant seen in an EU country used Yandex Disk, which ESET ties to other actors' use of the tool, not necessarily this group [S10]."
+  },
+  "capabilities": {
+    "summary": "Modular custom malware ecosystem. NosyHistorian collects browser history from Chrome, Edge and Firefox to choose victims for further tooling [S7]. NosyDoor is a backdoor that uses Microsoft OneDrive for C2 in the campaigns ESET observed [S1][S5]. Other tools reported include NosyStealer, NosyLogger and NosyDownloader [S3]. Malware is deployed through Group Policy, which implies domain controller access and domain administrator credentials [search summary of S4]. A September 2025 wave used Group Policy to deliver NosyHistorian and a possible Cobalt Strike loader [S3]. Initial access was not established in most cases, as attackers were already inside the networks ESET examined [S7]."
+  },
+  "campaigns": [
+    {
+      "date": "2023-09",
+      "name": "Earliest observed activity",
+      "summary": "ESET traces the group's operations to at least September 2023.",
+      "sources": [
+        "S5"
+      ]
+    },
+    {
+      "date": "2024",
+      "name": "Initial discovery in Southeast Asian government network",
+      "summary": "ESET first noticed unfamiliar malware in a Southeast Asian government network.",
+      "sources": [
+        "S5"
+      ]
+    },
+    {
+      "date": "2025-09",
+      "name": "Renewed Southeast Asia activity",
+      "summary": "A new wave used Group Policy to deliver NosyHistorian and a possible Cobalt Strike loader (oci.dll reported on one machine, later rolled out to selected machines via Group Policy).",
+      "sources": [
+        "S3"
+      ]
+    },
+    {
+      "date": "2025-12-18",
+      "name": "ESET public disclosure",
+      "summary": "ESET Research publishes findings naming LongNosedGoblin.",
+      "sources": [
+        "S1",
+        "S2",
+        "S4"
+      ]
+    },
+    {
+      "date": "2026-05-05",
+      "name": "Talos UAT-8302 disclosure",
+      "summary": "Cisco Talos discloses UAT-8302 and says its NetDraft malware is what ESET tracks as NosyDoor; Talos reports government targets in South America since late 2024 and southeastern Europe in 2025. This is a Talos-tracked cluster, not confirmed to be the same actor.",
+      "sources": [
+        "S9"
+      ]
+    }
+  ],
+  "diamond": {
+    "adversary": "China-aligned espionage group per ESET; no sponsor named [S2][S4].",
+    "capability": "NosyHistorian, NosyDoor, NosyStealer, NosyLogger, NosyDownloader, a possible Cobalt Strike loader, and Group Policy deployment [S3][S7].",
+    "infrastructure": "Cloud services (OneDrive, Google Drive) used as C2 [S1][S7]. Specific domains and IPs were not captured from the primary report.",
+    "victim": "Governmental entities in Southeast Asia and Japan [S2][S4].",
+    "socioPolitical": "Government-focused espionage by a China-aligned actor in the Indo-Pacific; no further motive stated in sources gathered [S2][S4].",
+    "technology": "Windows Active Directory and Group Policy as a deployment channel; Chrome, Edge and Firefox browser data; trusted cloud storage services as C2 [S1][S7]."
+  },
+  "gaps": [
+    "The primary ESET WeLiveSecurity report could not be opened (fetch failed); details come from the ESET press release listing and secondary coverage found via search. Verify tool descriptions, IoCs and confidence wording against it.",
+    "Initial access vector is not established in the sources gathered [S7].",
+    "Specific victim countries and the exact victim count are unclear; victim count is not stated in the sources gathered.",
+    "ESET's formal confidence level and any government attribution are not available.",
+    "Relationship to ToddyCat, Erudite Mogwai and Talos UAT-8302 is unresolved [S7][S9].",
+    "No Microsoft actor name or MITRE ATT&CK group ID was identified; ATT&CK mapping is pending.",
+    "Whether activity continued after the September 2025 wave is unknown."
+  ],
+  "implications": {
+    "jipoe": "Analyst assessment derived from cited sources; validate before use. STEP 1: Active Directory domain controllers and Group Policy objects are key cyber terrain in government networks; browser data on user workstations supports target selection [S1][S7]. STEP 2: The actor already holds domain administrator-level access in observed cases, so perimeter-focused defenses alone are insufficient [search summary of S4][S7]. STEP 3: Template is pre-existing privileged access, then NosyHistorian harvest of browser history, then selective NosyDoor deployment, with C2 over OneDrive or Google Drive blending into normal cloud traffic [S1][S7]. STEP 4: MLCOA is continued espionage against Southeast Asian and Japanese government entities using Group Policy deployment. MDCOA is use of the same shared tooling against allied or partner government networks in the Indo-Pacific. Candidate indicators: new or modified Group Policy objects pushing executables or scheduled tasks, unexpected DLLs such as oci.dll, browser-history access by unknown processes, and OneDrive or Google Drive API traffic from servers or workstations that do not normally use them [S3].",
+    "jcc2": "Analyst assessment derived from cited sources; validate before use. (1) Situational awareness: monitor GPO change auditing and domain controller logs and track vendor reporting on shared NosyDoor/NetDraft tooling [S9]. (2) Authorities: coordinate any partner-network assistance through established agreements; vendor attribution here is not government attribution. (3) Mission assurance: protect domain admin credentials and segment tier-0 assets, since Group Policy access implies full domain control [search summary of S4]. (4) Coordination: share indicators with Indo-Pacific partners given the Southeast Asia and Japan focus [S2]."
+  },
+  "sources": [
+    {
+      "ref": "S1",
+      "title": "LongNosedGoblin tries to sniff out governmental affairs in Southeast Asia and Japan (primary not opened; known via search results)",
+      "publisher": "ESET Research (WeLiveSecurity)",
+      "date": "2025-12-18",
+      "url": "https://www.welivesecurity.com/en/eset-research/longnosedgoblin-tries-sniff-out-governmental-affairs-southeast-asia-japan/"
+    },
+    {
+      "ref": "S2",
+      "title": "New Chinese group LongNosedGoblin deploys cyberespionage tools in Southeast Asia and Japan, ESET Research discovers",
+      "publisher": "ESET",
+      "date": "2025-12-18",
+      "url": "https://www.eset.com/us/about/newsroom/research/chinese-group-longnosedgoblin-cyberespionage-eset-research/"
+    },
+    {
+      "ref": "S3",
+      "title": "Chinese APT 'LongNosedGoblin' Targeting Asian Governments",
+      "publisher": "SecurityWeek",
+      "date": "2025-12",
+      "url": "https://www.securityweek.com/chinese-apt-longnosedgoblin-targeting-asian-governments/"
+    },
+    {
+      "ref": "S4",
+      "title": "Group Policy abuse reveals China-aligned espionage group targeting governments",
+      "publisher": "Help Net Security",
+      "date": "2025-12-18",
+      "url": "https://www.helpnetsecurity.com/2025/12/18/eset-china-aligned-apt-group-policy/"
+    },
+    {
+      "ref": "S5",
+      "title": "New China-linked hacker group spies on governments in Southeast Asia, Japan",
+      "publisher": "The Record",
+      "date": "2025-12",
+      "url": "https://therecord.media/china-linked-hacker-group-spied-on-asian-govs"
+    },
+    {
+      "ref": "S7",
+      "title": "China-aligned threat group uses Windows Group Policy (The Hacker News)",
+      "publisher": "The Hacker News",
+      "date": "2025-12",
+      "url": "https://thehackernews.com/2025/12/china-aligned-threat-group-uses-windows.html"
+    },
+    {
+      "ref": "S9",
+      "title": "UAT-8302 (Talos disclosure; known via search results, primary not opened)",
+      "publisher": "Cisco Talos",
+      "date": "2026-05-05",
+      "url": "https://blog.talosintelligence.com/uat-8302"
+    },
+    {
+      "ref": "S10",
+      "title": "Windows Group Policy exploited in novel Chinese cyberespionage campaign",
+      "publisher": "SC World",
+      "date": "2025-12",
+      "url": "https://www.scworld.com/brief/windows-group-policy-exploited-in-novel-chinese-cyberespionage-campaign"
+    }
+  ],
+  "aliasesAdd": []
+}

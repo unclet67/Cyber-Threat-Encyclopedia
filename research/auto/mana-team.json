@@ -1,0 +1,27 @@
+{
+  "identification": {
+    "summary": "Malpedia maintains an actor entry named \"Mana Team\" with no associated malware families; its only listed reference is a HackDig article dated 2016-02-17 titled \"Russian Police Prevented Massive Banking Sector Cyber Attack\" [S1].",
+    "firstObserved": "2016-02",
+    "notes": "The 2016-02 date is the date of the only reference Malpedia lists, not a verified first-activity date [S1]. No searched source describing the group's activity was retrievable, so the link between the name and the banking-sector case rests solely on that Malpedia reference listing [S1]."
+  },
+  "attribution": {"sponsor": "", "confidence": "", "basis": ""},
+  "objectives": "",
+  "targeting": {"sectors": [], "regions": [], "notes": ""},
+  "capabilities": {"summary": ""},
+  "campaigns": [],
+  "diamond": {"adversary": "", "capability": "", "infrastructure": "", "victim": "", "socioPolitical": "", "technology": ""},
+  "gaps": [
+    "The HackDig article (2016-02-17) and its original upstream report could not be opened; only its title is known via Malpedia.",
+    "The encyclopedia record lists country CN; no source retrieved supports a China origin or any state sponsorship.",
+    "The case described in the article title appears to concern Russian police and the Russian banking sector, which conflicts with the CN origin tag; unresolved.",
+    "Whether the related 2016 Russian Interior Ministry banking-crime reporting (about 50 arrests) concerns this group is unverified; no retrieved source names Mana Team in it.",
+    "No malware, TTPs, infrastructure, victims, vendor aliases, or MITRE group ID could be identified.",
+    "Malpedia page itself could not be fetched (host unreachable); content is from search-result snippets only.",
+    "Possible name confusion with other groups is unresolved; no vendor cluster mapping was found."
+  ],
+  "implications": {"jipoe": "", "jcc2": ""},
+  "sources": [
+    {"ref": "S1", "title": "Mana Team (Malpedia actor entry; lists HackDig 'Russian Police Prevented Massive Banking Sector Cyber Attack')", "publisher": "Malpedia (Fraunhofer FKIE)", "date": "2016-02", "url": "https://malpedia.caad.fkie.fraunhofer.de/actor/mana_team"}
+  ],
+  "aliasesAdd": []
+}

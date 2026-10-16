@@ -1,0 +1,56 @@
+{
+  "identification": {
+    "summary": "Larva-24005 is AhnLab ASEC's name for a sub-group of Kimsuky, which ASEC describes as receiving North Korean support [S1]. ASEC reported it using compromised servers as phishing infrastructure against people involved with North Korea and university professors researching the regime, with phishing aimed at South Korea and Japan [S1]. In a later ASEC profile, the cluster was tied to intrusions into South Korean software, energy and financial organizations, using BlueKeep (CVE-2019-0708) in some cases, MySpy, RDPWrap and KimaLogger or RandomQuery keyloggers [S2][S3][S4].",
+    "firstObserved": "Activity since at least October 2023 per ASEC-based reporting [S3][S4]; one advisory says September 2023 [S6].",
+    "notes": "ASEC treats Larva-24005 as a sub-group of Kimsuky [S1]. Kimsuky is tracked by other vendors under different names; this record does not merge those facts with ASEC's cluster. Strobes states no exploited CVEs are attributed to the actor, which conflicts with ASEC's BlueKeep reporting [S2]; ASEC is treated as authoritative."
+  },
+  "attribution": {
+    "sponsor": "North Korea (DPRK), as assessed by AhnLab ASEC, which calls Larva-24005 a Kimsuky sub-group that receives North Korean support [S1].",
+    "confidence": "Not stated in the sources reviewed. This is a vendor (AhnLab ASEC) assessment; no government attribution to Larva-24005 specifically was found.",
+    "basis": "ASEC's linkage of the cluster to Kimsuky [S1][S3][S4]. The underlying technical evidence for the linkage was not available because the ASEC pages could not be opened (see gaps)."
+  },
+  "objectives": "Collection of credentials and information from individuals involved with North Korea and academics researching the regime, via phishing [S1]. Persistent remote access and keystroke capture on compromised hosts in South Korean software, energy and financial organizations [S3][S4].",
+  "targeting": {
+    "sectors": ["Academia (professors researching North Korea)", "North Korea-related individuals", "Software", "Energy", "Financial"],
+    "regions": ["South Korea [S1][S3]", "Japan (phishing target) [S1][S4]", "A threat advisory lists additional countries, including the US, Canada, Germany, UK, China, Singapore and others [S5][S6]"],
+    "notes": "Reporting differs on Japan: headlines say attacks on South Korea and Japan, but ASEC's profile describes breached South Korean firms with phishing sent to South Korea and Japan, so Japan appears to be a phishing target rather than a confirmed set of breached victims [S4]. The wider country list comes from a secondary advisory and may reflect victim or phishing recipients [S5]."
+  },
+  "capabilities": {
+    "summary": "Breaches servers in Korea, sets up a web server and PHP environment there, and uses them for phishing; pages were stored under the IIS_USER account and XAMPP home folder, with traces later deleted [S1]. Phishing emails posed as Zoom meeting links or web portal login pages [S1]. Initial access included BlueKeep (CVE-2019-0708) in some systems, although an RDP scanner found on one system showed no evidence of use, and phishing exploiting Equation Editor CVE-2017-11882 was another route [S3][S4]. Post-compromise, a dropper installed MySpy (system information collection) and RDPWrap to keep RDP access, followed by KimaLogger or RandomQuery keyloggers [S3][S4]."
+  },
+  "campaigns": [
+    {"date": "2023-10", "name": "Start of observed intrusion activity", "summary": "ASEC-based reporting says the campaign against South Korean software, energy and financial firms has been active since at least October 2023; a Hivepro advisory says September 2023 [S3][S4][S6].", "sources": ["S3", "S4", "S6"]},
+    {"date": "2025-02-27", "name": "Phishing emails targeting Japan (ASEC report)", "summary": "ASEC reported Larva-24005 used compromised Korean servers as phishing infrastructure and attack base against North Korea-related individuals and professors, and also against Japan, with Zoom-link and portal-login lures and BlueKeep, RDPWrap and a custom keylogger used on infrastructure [S1].", "sources": ["S1"]},
+    {"date": "2025-04-14", "name": "ASEC APT group profile", "summary": "ASEC published a longer Larva-24005 profile covering intrusions at South Korean software, energy and financial companies and tooling (MySpy, RDPWrap, KimaLogger, RandomQuery) [S2][S4].", "sources": ["S2", "S4"]},
+    {"date": "2025-04-21", "name": "Secondary press coverage", "summary": "The Hacker News and Security Affairs reported ASEC's findings, attributing the cluster to Kimsuky; ThaiCERT followed on 2025-04-23 [S3][S4][S5].", "sources": ["S3", "S4", "S5"]}
+  ],
+  "diamond": {
+    "adversary": "Larva-24005, an AhnLab-named Kimsuky sub-group, assessed by ASEC as North Korea-supported [S1].",
+    "capability": "BlueKeep exploitation, CVE-2017-11882 phishing, MySpy, RDPWrap, KimaLogger and RandomQuery keyloggers, and PHP/web phishing kits [S1][S3][S4].",
+    "infrastructure": "Compromised servers in Korea running IIS/XAMPP with PHP used to host phishing pages and as a C2 base [S1].",
+    "victim": "North Korea-focused individuals and academics, South Korean software, energy and financial organizations, and Japanese phishing recipients [S1][S3][S4].",
+    "socioPolitical": "Collection on North Korea policy and research communities, consistent with ASEC's Kimsuky linkage [S1].",
+    "technology": "Internet-exposed unpatched Windows RDP (BlueKeep), Microsoft Office Equation Editor, IIS/XAMPP web servers, email [S1][S3][S4]."
+  },
+  "gaps": [
+    "ASEC primary reports (asec.ahnlab.com/en/86535 and /87554) could not be opened (host unreachable); details rely on search-result summaries and secondary coverage.",
+    "Exact first-observed date conflicts (September vs October 2023) [S6][S3].",
+    "Attribution confidence and technical basis for the Kimsuky linkage are not stated in accessible sources.",
+    "Whether Japanese and other-country entities were breached or only phishing recipients is unclear [S4][S5].",
+    "No MITRE group ID, Microsoft name or government attribution identified.",
+    "Indicators (hashes, domains, IPs) were not retrieved."
+  ],
+  "implications": {
+    "jipoe": "Analyst assessment derived from cited sources; validate before use. Step 1-2: the environment of interest is Korean and Japanese academic, policy and enterprise networks plus exposed Windows RDP and IIS/XAMPP servers [S1][S3]. Step 3 (adversary): a Kimsuky sub-group using compromised third-party servers for phishing [S1]. MLCOA: continued Zoom or portal-login phishing against North Korea experts, hosted on newly compromised servers, with keyloggers and RDPWrap for persistence [S1][S3]. MDCOA: broader victim set across the countries listed in secondary advisories [S5]. Candidate indicators: new RDPWrap installs, IIS_USER or XAMPP web roots holding phishing pages, KimaLogger or RandomQuery artifacts, BlueKeep probing [S1][S3].",
+    "jcc2": "Analyst assessment derived from cited sources; validate before use. Situational awareness: share phishing and tooling indicators from ASEC with allied and academic partners once primary indicators are retrieved [S1]. Authorities: activity concerns civilian and allied networks, so response would run through host-nation or owner channels rather than DoD authorities. Mission assurance: ensure legacy Windows RDP hosts are patched against CVE-2019-0708 and Office against CVE-2017-11882 [S3][S4]. Coordination: AhnLab and Korean/Japanese CERTs hold the primary data [S1][S5]."
+  },
+  "sources": [
+    {"ref": "S1", "title": "Phishing Email Attacks by the Larva-24005 Group Targeting Japan (ASEC; page not opened, content from search summary)", "publisher": "AhnLab ASEC", "date": "2025-02-27", "url": "https://asec.ahnlab.com/en/86535/"},
+    {"ref": "S2", "title": "ASEC Larva-24005 APT group profile (page not opened, content from search summary)", "publisher": "AhnLab ASEC", "date": "2025-04-14", "url": "https://asec.ahnlab.com/en/87554/"},
+    {"ref": "S3", "title": "Kimsuky exploits BlueKeep RDP vulnerability (search summary)", "publisher": "The Hacker News", "date": "2025-04-21", "url": "https://thehackernews.com/2025/04/kimsuky-exploits-bluekeep-rdp.html"},
+    {"ref": "S4", "title": "Kimsuky APT exploited BlueKeep RDP flaw in attacks against South Korea and Japan", "publisher": "Security Affairs", "date": "2025-04-21", "url": "https://securityaffairs.com/176756/apt/kimsuky-apt-exploited-bluekeep-rdp-flaw-in-attacks-against-south-korea-and-japan.html"},
+    {"ref": "S5", "title": "ThaiCERT advisory on Larva-24005 (search summary)", "publisher": "ThaiCERT", "date": "2025-04-23", "url": "https://www.thaicert.or.th/?p=7952"},
+    {"ref": "S6", "title": "Hive Pro threat advisory TA2025122 (search summary)", "publisher": "Hive Pro", "date": "2025-04", "url": "https://hivepro.com/wp-content/uploads/2025/04/TA2025122.pdf"}
+  ],
+  "aliasesAdd": []
+}

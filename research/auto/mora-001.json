@@ -1,0 +1,108 @@
+{
+  "identification": {
+    "summary": "Mora_001 is the name Forescout's Vedere Labs uses for a ransomware operator that exploited two Fortinet authentication-bypass flaws, CVE-2024-55591 and CVE-2025-24472, in FortiOS and FortiProxy to obtain super-admin access, then deployed a ransomware strain Forescout calls SuperBlack [S1][S2][S3]. Forescout says the actor shows a distinct operational signature and post-exploitation playbook that sets it apart from other ransomware operators, including LockBit affiliates [S1][S3]. The SuperBlack encryptor was reportedly built from a leaked LockBit 3.0 builder with LockBit branding removed [S3]. Intrusions were seen from late January to early March 2025 [S2][S5].",
+    "firstObserved": "Forescout reported intrusions between late January and early March 2025 [S2][S5].",
+    "notes": "Name used is the Forescout designation Mora_001; no Microsoft name is known for this record. The ransom note reuses a TOX chat ID previously associated with LockBit, so it overlaps with LockBit-related infrastructure; this does not make Mora_001 a LockBit affiliate by itself, and Forescout treats it as an independent actor [S3]."
+  },
+  "attribution": {
+    "sponsor": "No state sponsor is stated in the sources gathered. The record's country field (RU) is not supported by an attribution statement in the cited sources beyond Forescout's observation of Russian-language artifacts [S2].",
+    "confidence": "Forescout (as reported by secondary coverage) links Mora_001 to the LockBit ecosystem but treats it as an independent actor; researchers see links rather than a clear affiliation [S2][S3]. No government attribution found.",
+    "basis": "Shared TOX ID in the ransom note with LockBit, a leaked LockBit 3.0 builder used for SuperBlack, and Russian-language artifacts, as reported from Forescout [S2][S3]."
+  },
+  "objectives": "Financially motivated double extortion: data is exfiltrated first and then encrypted [S2][S3].",
+  "targeting": {
+    "sectors": [],
+    "regions": [],
+    "notes": "Victim sectors and countries were not named in the coverage reviewed. Forescout confirmed at least three cases and said others could exist [S2]. Within victim networks the actor prioritized domain controllers, authentication servers, database servers and file servers [S2][S3]. Initial access depends on internet-exposed Fortinet management interfaces; ShadowServer data cited by The Register put India (4,631) and the US (3,863) as the top countries for exposed unpatched firewalls for CVE-2024-55591, which is exposure data and not confirmed victims [S3]."
+  },
+  "capabilities": {
+    "summary": "Initial access via authentication bypass in FortiOS and FortiProxy (CVE-2024-55591, CVE-2025-24472) on devices with exposed management interfaces, giving super_admin privileges [S2][S3]. CVE-2024-55591 was exploited as a zero-day before Fortinet's 14 January 2025 disclosure, and a public proof of concept appeared on 27 January with exploitation reportedly within 96 hours [S2][S3]. Persistence through new privileged accounts and local users imitating legitimate VPN users, scheduled scripts, and syncing with backup firewalls [S2]. SuperBlack is based on the leaked LockBit 3.0 builder with LockBit branding removed and a custom exfiltration module [S2][S3]."
+  },
+  "campaigns": [
+    {
+      "date": "2024-12",
+      "name": "CVE-2024-55591 zero-day exploitation begins",
+      "summary": "Exploit activity against the Fortinet flaw reportedly dates to December 2024, before disclosure; this is general exploitation and not specifically attributed to Mora_001.",
+      "sources": [
+        "S3"
+      ]
+    },
+    {
+      "date": "2025-01-14",
+      "name": "Fortinet discloses CVE-2024-55591",
+      "summary": "Fortinet disclosed the flaw and confirmed it had been exploited as a zero-day.",
+      "sources": [
+        "S3"
+      ]
+    },
+    {
+      "date": "2025-01",
+      "name": "Mora_001 intrusions begin",
+      "summary": "Forescout Vedere Labs observed intrusions from late January to early March 2025 using the two Fortinet authentication bypass flaws, followed by SuperBlack deployment.",
+      "sources": [
+        "S2",
+        "S5"
+      ]
+    },
+    {
+      "date": "2025-03",
+      "name": "Forescout publishes Mora_001 research",
+      "summary": "Forescout reports the new operator with ties to the LockBit ecosystem; widely covered by trade press.",
+      "sources": [
+        "S1",
+        "S3"
+      ]
+    }
+  ],
+  "diamond": {
+    "adversary": "Ransomware operator tracked by Forescout as Mora_001, with Russian-language artifacts and links to the LockBit ecosystem, but not a confirmed LockBit affiliate [S2][S3].",
+    "capability": "Fortinet authentication bypass exploits, rogue admin accounts, exfiltration, and the SuperBlack encryptor from the LockBit 3.0 builder [S2][S3].",
+    "infrastructure": "Exposed Fortinet management interfaces are the entry point. The ransom note contains a TOX ID tied to LockBit [S3]. Specific indicator values were not retrieved.",
+    "victim": "Organizations with internet-exposed, unpatched FortiOS/FortiProxy; sectors not named in sources reviewed [S2][S3].",
+    "socioPolitical": "Financially motivated extortion; no stated political objective [S2].",
+    "technology": "Perimeter firewalls with management interfaces exposed to the internet, and domain controllers, authentication, database and file servers behind them [S2][S3]."
+  },
+  "gaps": [
+    "Forescout's original blog (S1) could not be fetched in this environment; details come from search summaries and secondary coverage, so wording and exact figures should be checked against it.",
+    "Victim sectors, countries and the full victim count are not public in sources gathered; only at least three confirmed cases are reported [S2].",
+    "TOX ID value, IP addresses and file hashes were not retrieved.",
+    "No activity after March 2025 was found; whether the actor is still active is unknown.",
+    "Basis for the record's RU country tag is only Russian-language artifacts; no government or vendor attribution to a Russian state or location was found.",
+    "No Microsoft or MITRE name was found for this actor."
+  ],
+  "implications": {
+    "jipoe": "Analyst assessment derived from cited sources; validate before use. STEP 1: Internet-facing FortiOS/FortiProxy management interfaces and the domain controllers, authentication, database and file servers behind them are key cyber terrain [S2][S3]. STEP 2: Weaponization of a public proof of concept within about 96 hours narrows the patch window; exposed interfaces were the enabling condition [S3]. STEP 3: The observed template is authentication bypass, rogue super-admin and VPN-lookalike accounts, exfiltration, then encryption [S2]. STEP 4: MLCOA is continued opportunistic double-extortion of organizations with exposed, unpatched Fortinet devices. MDCOA is the same access method applied to a defense-industrial or installation network to cause encryption and data loss during a crisis. Candidate indicators: unexpected admin accounts on firewalls, new local users imitating VPN users, management-interface logins from unfamiliar IPs, and large outbound transfers before encryption [S2].",
+    "jcc2": "Analyst assessment derived from cited sources; validate before use. (1) Maintain situational awareness of Fortinet advisories and track patch status of perimeter devices [S3]. (2) Confirm authorities to disable or restrict management-interface exposure and to hunt on contractor and mission-partner networks. (3) Mission assurance: protect domain controllers and authentication servers and keep offline backups, since the actor targets these [S2]. (4) Coordinate with DC3 and the DIB CS program and CISA for ransomware reporting; attribution to LockBit versus a distinct actor is unsettled, so prioritize containment over naming [S2][S3]."
+  },
+  "sources": [
+    {
+      "ref": "S1",
+      "title": "New ransomware operator exploits Fortinet vulnerability duo (not fetched; known from search results)",
+      "publisher": "Forescout Vedere Labs",
+      "date": "2025-03",
+      "url": "https://www.forescout.com/blog/new-ransomware-operator-exploits-fortinet-vulnerability-duo/"
+    },
+    {
+      "ref": "S2",
+      "title": "Recent Fortinet Vulnerabilities Exploited in 'SuperBlack' Ransomware Attacks (search summary)",
+      "publisher": "SecurityWeek",
+      "date": "2025-03",
+      "url": "https://www.securityweek.com/recent-fortinet-vulnerabilities-exploited-in-superblack-ransomware-attacks/"
+    },
+    {
+      "ref": "S3",
+      "title": "New kids on the ransomware block channel Lockbit to raid Fortinet firewalls",
+      "publisher": "The Register",
+      "date": "2025-03-14",
+      "url": "https://www.theregister.com/2025/03/14/ransomware_gang_lockbit_ties/"
+    },
+    {
+      "ref": "S5",
+      "title": "Mora_001 Actor Exploiting Fortinet Vulnerabilities For Superblack Deployment",
+      "publisher": "Ampcus Cyber",
+      "date": "2025-03",
+      "url": "https://www.ampcuscyber.com/?p=7243"
+    }
+  ],
+  "aliasesAdd": []
+}

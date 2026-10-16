@@ -1,0 +1,50 @@
+{
+  "identification": {
+    "summary": "MAGNETIC SPIDER is a CrowdStrike-style adversary designator (the SPIDER suffix denotes eCrime in CrowdStrike naming). Searches found no CrowdStrike profile, vendor report or news article describing its activity. CrowdStrike's 2015-02-10 Global Threat Intel Report covered 2014 cybercrime and targeted-intrusion trends and tracked 39 adversary groups [S1]; this record's evidence that the name appears in that report is unverified.",
+    "firstObserved": "",
+    "notes": "The record's country field says RU, but no source gathered supports it. Do not merge facts from other adversary names into this record without the primary report."
+  },
+  "attribution": {
+    "sponsor": "",
+    "confidence": "",
+    "basis": ""
+  },
+  "objectives": "",
+  "targeting": {
+    "sectors": [],
+    "regions": [],
+    "notes": ""
+  },
+  "capabilities": {
+    "summary": ""
+  },
+  "campaigns": [],
+  "diamond": {
+    "adversary": "",
+    "capability": "",
+    "infrastructure": "",
+    "victim": "",
+    "socioPolitical": "",
+    "technology": ""
+  },
+  "gaps": [
+    "No vendor profile, report body text or news article describing MAGNETIC SPIDER activity, TTPs, targets or campaigns was found in 6 searches.",
+    "Unresolved whether MAGNETIC SPIDER is a distinct actor or a mislabeled synonym of the PANDA names; country (RU in record) is unverified.",
+    "No MITRE ATT&CK group, Microsoft mapping or government attribution was found.",
+    "The only claimed evidence of the name (a Malpedia listing, formerly S2) could not be verified in fact-check searches and was removed."
+  ],
+  "implications": {
+    "jipoe": "",
+    "jcc2": ""
+  },
+  "sources": [
+    {
+      "ref": "S1",
+      "title": "CrowdStrike Global Threat Intel Report Analyzes Cybercrime and Targeted Intrusion Trends of 2014",
+      "publisher": "CrowdStrike (press release)",
+      "date": "2015-02-10",
+      "url": "https://www.crowdstrike.com/en-us/press-releases/crowdstrike-global-threat-intel-report-analyzes-cybercrime-targeted-intrusion-trends-2014/"
+    }
+  ],
+  "aliasesAdd": []
+}

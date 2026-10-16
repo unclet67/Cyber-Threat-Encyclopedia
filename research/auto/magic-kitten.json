@@ -1,0 +1,80 @@
+{
+  "identification": {
+    "summary": "Malpedia describes Magic Kitten as an established group of cyber attackers based in Iran, with earliest activity back to November 2008, that carried out several campaigns in 2013 including attacks on political dissidents and supporters of the Iranian opposition [S1].",
+    "firstObserved": "Malpedia: earliest activity back to November 2008 [S1].",
+    "notes": "Aliases per Malpedia: Group 42 and VOYEUR [S1]. Not to be confused with Charming Kitten (Magic Hound/APT35/APT42) or Flying Kitten, which are separate clusters. Malpedia lists no associated malware families [S1]. No Microsoft name mapping is known."
+  },
+  "attribution": {
+    "sponsor": "Iran (Iran-based per Malpedia) [S1]. No specific agency attribution was supported by the sources checked.",
+    "confidence": "Low. Attribution rests on a single secondary aggregator (Malpedia); no government attribution was found.",
+    "basis": "Malpedia describes the group as Iran-based [S1]."
+  },
+  "objectives": "Espionage against political dissidents and supporters of the Iranian opposition, per Malpedia [S1].",
+  "targeting": {
+    "sectors": [
+      "Political dissidents and opposition supporters [S1]"
+    ],
+    "regions": [],
+    "notes": "An HHS document surfaced in search results lists hospitals, political dissidents and infrastructure as targets; it could not be opened or dated, so it is not used as a source."
+  },
+  "capabilities": {
+    "summary": ""
+  },
+  "campaigns": [
+    {
+      "date": "2008-11",
+      "name": "Earliest recorded activity",
+      "summary": "Malpedia dates the group's earliest activity to November 2008 [S1].",
+      "sources": [
+        "S1"
+      ]
+    },
+    {
+      "date": "2013",
+      "name": "Campaigns against dissidents and Iranian opposition supporters",
+      "summary": "Malpedia states the group carried out several campaigns in 2013, including a series targeting political dissidents and supporters of the Iranian opposition [S1].",
+      "sources": [
+        "S1"
+      ]
+    }
+  ],
+  "diamond": {
+    "adversary": "Iran-based operators per Malpedia [S1].",
+    "capability": "",
+    "infrastructure": "",
+    "victim": "Political dissidents and supporters of the Iranian opposition [S1].",
+    "socioPolitical": "",
+    "technology": ""
+  },
+  "gaps": [
+    "No primary vendor report (for example CrowdStrike, which uses the Kitten naming convention) on Magic Kitten was found; the alias set and 2013 campaign description rest on Malpedia alone.",
+    "Tooling, malware, TTPs and infrastructure are unknown: Malpedia lists no malware families.",
+    "An HHS Iranian threat actors and healthcare document lists Magic Kitten targets (hospitals, infrastructure) but could not be opened or dated.",
+    "No activity after 2013 is documented in the gathered sources; current status unknown.",
+    "Aliases Group 42 and VOYEUR are not independently corroborated by a second source.",
+    "Carnegie-attributed claims (Ministry of Intelligence relationship, targets, NSA VOYEUR linkage) were removed as unsupported by search results; Carnegie is cited by Malpedia but its text was not verified."
+  ],
+  "implications": {
+    "jipoe": "",
+    "jcc2": ""
+  },
+  "sources": [
+    {
+      "ref": "S1",
+      "title": "Magic Kitten (Threat Actor)",
+      "publisher": "Malpedia (Fraunhofer FKIE)",
+      "date": "2026-10 (retrieved)",
+      "url": "https://malpedia.caad.fkie.fraunhofer.de/actor/magic_kitten"
+    }
+  ],
+  "aliasesAdd": [
+    {
+      "name": "Group 42",
+      "vendor": "Malpedia"
+    },
+    {
+      "name": "VOYEUR",
+      "vendor": "Malpedia"
+    }
+  ]
+}
