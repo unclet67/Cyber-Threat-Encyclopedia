@@ -1,31 +1,10 @@
 {
  "note": "Research queue for the automatic wave runner. Waves take items from the front; finished ids move to 'done'. Scope limited to CN/RU/IR/KP on 2026-10-15 at the user's request; non-state actors moved to 'deferred'.",
- "verify": [],
+ "verify": [
+  "unc5325",
+  "unc5330"
+ ],
  "research": [
-  {
-   "id": "unc3890",
-   "tier": "T3"
-  },
-  {
-   "id": "unc4191",
-   "tier": "T3"
-  },
-  {
-   "id": "unc4540",
-   "tier": "T3"
-  },
-  {
-   "id": "unc4841",
-   "tier": "T3"
-  },
-  {
-   "id": "unc5325",
-   "tier": "T3"
-  },
-  {
-   "id": "unc5330",
-   "tier": "T3"
-  },
   {
    "id": "unc5337",
    "tier": "T3"
@@ -462,6 +441,10 @@
   "unc2970",
   "unc3569",
   "unc3886",
+  "unc3890",
+  "unc4191",
+  "unc4540",
+  "unc4841",
   "vanilla-tempest",
   "violet-typhoon",
   "void-blizzard",
@@ -610,6 +593,7 @@
   "uat-8099",
   "uat-8302",
   "uat-9686",
+  "unc4540",
   "volga-flood",
   "yulong-flood"
  ],

@@ -1,0 +1,54 @@
+{
+  "identification": {
+    "summary": "UNC4540 is Mandiant's uncategorized-cluster designation for a suspected Chinese actor that kept long-term access to an unpatched SonicWall Secure Mobile Access (SMA) appliance using a suite of bash scripts and one ELF binary identified as a TinyShell variant. The malware steals credentials, provides shell access and survives firmware upgrades [S1]. Mandiant published the findings on 2023-03-08 together with SonicWall PSIRT [S1].",
+    "firstObserved": "Mandiant believes the malware, or a predecessor, was likely deployed around 2021 and persisted through multiple firmware updates [S1][S3].",
+    "notes": "The 'UNC' prefix denotes an uncategorized Mandiant cluster rather than a nation-state attribution [S1]. Mandiant says the firmware-tampering techniques resemble its Pulse Secure reporting but tracks those threats separately [S1]; do not merge facts with other clusters. No Microsoft name or MITRE group was identified in the sources gathered."
+  },
+  "attribution": {
+    "sponsor": "Mandiant describes the campaign as 'suspected' Chinese; no state sponsor or organization is named [S1].",
+    "confidence": "Low to moderate, as stated by Mandiant's wording 'suspected'; the report gives no detailed attribution evidence [S1]. No government attribution was found.",
+    "basis": "Mandiant places the activity within a broader pattern of Chinese actors targeting network appliances (it cites its FortiOS and Pulse Secure reporting) [S1]. The specific indicators behind the China assessment are not published in the report [S1]."
+  },
+  "objectives": "Maintain long-term access to the compromised appliance and harvest hashed user credentials (the credential theft appears to be the main purpose of the toolset) for espionage-consistent access [S1][S2]. Specific intelligence requirements are not stated.",
+  "targeting": {
+    "sectors": [],
+    "regions": [],
+    "notes": "The target was SonicWall SMA 100 series appliances running unpatched 2021-era firmware [S1][S4]. Mandiant names no victim organizations, sectors or countries [S1]. A Mandiant spokesperson said the findings came from an extremely limited number of appliances [S4]."
+  },
+  "capabilities": {
+    "summary": "The suite comprises: /bin/firewalld, a bash main process that queries the appliance session database ('select userName,password from Sessions' from /tmp/temp.db, written to /tmp/syslog.db) so hashes can be cracked offline [S1]; /bin/httpsd, a TinyShell variant ELF that runs as a reverse shell to a C2 address with configurable beacon timing, or in bind-shell mode [S1]; /bin/iptabled, a redundant copy that restarts firewalld and vice versa [S1]; /etc/rc.d/rc.local for boot persistence [S1]; /bin/geoBotnetd, which checks every 10 seconds for /cf/FIRMWARE/NEW/INITRD.GZ, unpacks it, injects the malware, adds a UID 0 backdoor account named 'acme' and repackages it so the implant survives upgrades [S1]; and /bin/ifconfig6, a replacement for a reboot command in the legitimate firebased binary, which downs eth0, sleeps 90 seconds and then reboots [S1]. Mandiant judged the techniques 'not especially sophisticated' but showing considerable effort [S1]. The initial access vector was not determined and no CVE is cited [S1]. A Mandiant spokesperson said this was not a new vulnerability, so no patch was published [S4]."
+  },
+  "campaigns": [
+    {"date": "2021 (approx.)", "name": "Implant deployment on SMA 100 appliance", "summary": "Mandiant believes the malware or a predecessor was likely installed around 2021; the infection vector is unknown. Access persisted through multiple firmware updates.", "sources": ["S1", "S3"]},
+    {"date": "2023-03-08", "name": "Mandiant and SonicWall PSIRT disclosure", "summary": "Mandiant published its analysis of UNC4540 and the TinyShell-variant toolset. SonicWall urged upgrading SMA 100 to firmware 10.2.1.7 or later, which adds file integrity monitoring and anomalous process detection, noting this was hardening and not a vulnerability patch. Press reports disagree on the exact version number (10.2.1.7 vs 10.2.1.17).", "sources": ["S1", "S2", "S3", "S4"]}
+  ],
+  "diamond": {
+    "adversary": "Suspected Chinese actor tracked by Mandiant as UNC4540; no sponsor named [S1].",
+    "capability": "Bash scripts plus a TinyShell-variant ELF; session-database credential theft; firmware-package tampering for persistence; backdoor root account [S1].",
+    "infrastructure": "Reverse-shell C2 IP hard-coded in the binary (redacted in the report); on-device paths and a backdoor account 'acme' [S1]. Actor-side infrastructure details are not public in the sources gathered.",
+    "victim": "Unpatched SonicWall SMA 100 series appliances; victims unnamed [S1][S4].",
+    "socioPolitical": "Consistent with Chinese edge-device espionage trends that Mandiant cites; the specific policy requirement is not stated [S1].",
+    "technology": "Internet-facing VPN/remote-access appliances are hard to inspect directly and often lack endpoint monitoring, so implants can persist through upgrades [S1]."
+  },
+  "gaps": [
+    "Initial access vector is unknown; Mandiant did not identify a CVE [S1].",
+    "Victim count, sectors and geography are not published; the analysis came from an extremely limited number of appliances [S1][S4].",
+    "Attribution evidence for 'suspected Chinese' is not detailed in the report [S1].",
+    "Press sources disagree on the SonicWall firmware version (10.2.1.7 vs 10.2.1.17); SonicWall's own PSIRT post was not opened [S2][S4].",
+    "Whether upgrading to the hardened firmware removes an existing infection is not confirmed in sources gathered.",
+    "No later reporting on UNC4540 was found; any overlap with other Mandiant clusters (for example UNC4841 or UNC3886) is not supported by the sources gathered.",
+    "S2 to S4 were seen only as search result summaries, not fetched in full."
+  ],
+  "implications": {
+    "jipoe": "Analyst assessment derived from cited sources; validate before use. STEP 1: Internet-facing remote-access appliances (SMA-class VPN gateways) are key cyber terrain because they sit at the network edge and hold session and credential data [S1]. STEP 2: Defender blind spot: the implant resides in the appliance, survives firmware upgrades and is hard to inspect directly, so routine patching alone may not evict it [S1]. STEP 3: Template is compromise of an unpatched appliance (vector unknown), credential hash harvesting, reverse shell, and firmware-package tampering for persistence [S1]. STEP 4: MLCOA is quiet long-term access and credential collection from remote-access gateways for follow-on lateral movement. MDCOA is use of harvested credentials and persistent shell access for broader intrusion into a connected network during a crisis; this extension is analytic judgment, not reported in the sources. Candidate indicators: unexpected files such as /bin/firewalld, /bin/httpsd, /bin/geoBotnetd, an 'acme' UID 0 account, abnormal VPN logins, unusual internal traffic from the appliance, and outbound connections on the TinyShell port [S1].",
+    "jcc2": "Analyst assessment derived from cited sources; validate before use. (1) Situational awareness: maintain an inventory of edge and remote-access appliances and their firmware levels, and track vendor hardening releases [S1][S3]. (2) Authorities: appliance forensics and eviction on DoD or contractor-owned devices require coordination with the system owner and the responsible cyberspace defense authority. (3) Mission assurance: assume compromised appliances can expose credentials, so plan credential resets and alternate remote-access paths [S1]. (4) Coordination: share indicators with DC3 and the DIB CS program for contractor-operated gateways, and with the vendor PSIRT, as Mandiant did with SonicWall [S1]."
+  },
+  "sources": [
+    {"ref": "S1", "title": "Suspected Chinese Campaign to Persist on SonicWall Devices, Highlights Importance of Monitoring Edge Devices", "publisher": "Mandiant (Google Cloud Threat Intelligence blog)", "date": "2023-03-08", "url": "https://cloud.google.com/blog/topics/threat-intelligence/suspected-chinese-persist-sonicwall"},
+    {"ref": "S2", "title": "China-linked Hackers Targeting Unpatched SonicWall SMA Devices with Malware (reporting Mandiant)", "publisher": "The Hacker News", "date": "2023-03", "url": "https://thehackernews.com/2023/03/china-linked-hackers-targeting.html"},
+    {"ref": "S3", "title": "Malware campaign hits SonicWall SMA 100 edge devices (reporting Mandiant)", "publisher": "SC Media", "date": "2023-03", "url": "https://www.scworld.com/news/cybercrime/malware-campaign-sonicwall-sma100-edge-devices"},
+    {"ref": "S4", "title": "Attacks on SonicWall appliances linked to Chinese campaign: Mandiant", "publisher": "CSO Online", "date": "2023-03", "url": "https://www.csoonline.com/article/3690588/attacks-on-sonicwall-appliances-linked-to-chinese-campaign-mandiant.html"},
+    {"ref": "S5", "title": "SonicWall devices infected by malware that survives firmware upgrades (reporting Mandiant)", "publisher": "BleepingComputer", "date": "2023-03", "url": "https://www.bleepingcomputer.com/news/security/sonicwall-devices-infected-by-malware-that-survives-firmware-upgrades/"}
+  ],
+  "aliasesAdd": []
+}

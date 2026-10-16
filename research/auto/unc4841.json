@@ -1,0 +1,69 @@
+{
+  "identification": {
+    "summary": "UNC4841 is Mandiant's designation for a suspected China-nexus espionage actor that exploited the Barracuda Email Security Gateway (ESG) zero-day CVE-2023-2868 to compromise a subset of ESG appliances worldwide [S1]. Mandiant assessed with high confidence that UNC4841 conducts espionage in support of the People's Republic of China [S1][S2]. Mandiant describes it as well resourced, using a wide range of purpose-built malware and deploying specific families selectively against priority targets, with SKIPJACK the most widely deployed [S2]. About 5% of ESG appliances were compromised [S2].",
+    "firstObserved": "Mandiant: earliest exploit emails observed 2022-10-10 [S1]; first exploitation surge in early November 2022 [S2].",
+    "notes": "UNC4841 is a Mandiant (Google Cloud) cluster. Mandiant had not attributed it to a previously known group [S2]. No Microsoft name is recorded in this encyclopedia's record for UNC4841. Mandiant notes infrastructure overlap with UNC2286 (GhostEmperor / FamousSparrow), judged likely due to shared anonymization or hosting providers, and a similar REPTILE-derived tooling technique used by UNC3886 (CASTLETAP) [S2]. These are overlaps, not merged clusters. Mandiant's June 2023 report also noted shared infrastructure with other China-nexus operations may reflect a common procurement entity rather than the same group [S1]. CISA tracks DEPTHCHARGE as SUBMARINE [S2]."
+  },
+  "attribution": {
+    "sponsor": "People's Republic of China (Mandiant assessment: espionage in support of the PRC) [S1][S2]. No specific PRC organization (MSS, PLA, contractor) is named in the sources gathered.",
+    "confidence": "Mandiant: high confidence that UNC4841 is a China-nexus espionage actor supporting the PRC [S1][S2]. Mandiant states that US government agencies independently corroborated this (IC3, August 2023) [S2]. Press reporting says the FBI linked the activity to China [S3]; the underlying FBI document was not opened.",
+    "basis": "Targeting aligned with PRC policy priorities, particularly Asia-Pacific and Taiwan, and collection against ASEAN foreign ministries, Taiwan and Hong Kong academics and research organizations [S1]. Infrastructure overlap with UNC2286 [S2]. Mandiant's assessment is the basis; Mandiant did not tie UNC4841 to a previously known group [S2]."
+  },
+  "objectives": "Espionage: bulk and targeted collection of email data from compromised ESG appliances. Scripts searched the ESG email store for specific users or domains, and email data was staged and exfiltrated [S1]. Targeted collection covered ASEAN Ministry of Foreign Affairs staff, foreign trade offices, Taiwan and Hong Kong academics and research organizations, and Southeast Asian government officials [S1]. Mandiant also reports credential harvesting from cleartext credentials in stored messages, followed by Outlook Web Access logins [S2].",
+  "targeting": {
+    "sectors": [
+      "Government (national and local; almost a third of affected organizations) [S1][S2]",
+      "High technology and IT, including regional IT and managed service providers [S2]",
+      "Telecommunications [S2]",
+      "Manufacturing [S2]",
+      "Universities and research organizations [S1][S2]",
+      "Healthcare, biotech, aerospace and defense, semiconductors (minority targets) [S2]"
+    ],
+    "regions": [
+      "Global; victims in at least 16 countries during the May 2023 high-frequency phase [S1]",
+      "Americas (most observed activity, which may partly reflect Barracuda's customer base) [S1][S2]",
+      "Asia-Pacific, Taiwan, Hong Kong and ASEAN governments (policy-priority targeting) [S1]"
+    ],
+    "notes": "Mandiant observed 26 verticals; local government was about 7% of all victims and about 17% of US-only victims at one point [S2]. Early exploitation hit regional IT and MSP providers, possibly to reach the domains those appliances managed [S2]. Malware such as SKIPJACK, DEPTHCHARGE, FOXTROT and FOXGLOVE was reserved for priority victims; FOXTROT and FOXGLOVE only against high-priority government or government-related targets [S2]."
+  },
+  "capabilities": {
+    "summary": "Initial access by emailing crafted TAR attachments that exploit CVE-2023-2868, a command injection in ESG attachment scanning where a user-controlled filename reaches a Perl qx{} call [S1]. Early files used .tar; later ones used .jpg or .dat; some emails were sent from already compromised ESG appliances [S1]. Custom tooling included SEASPY (passive PCAP-filter backdoor), SALTWATER (bsmtpd module), SEASIDE (Lua module launching the WHIRLPOOL reverse shell), SANDBAR (kernel rootkit), SEASPRAY and SKIPJACK (trojanized Lua modules) [S1]. After Barracuda's patch, Mandiant observed SEASPY v2 (May 22, 2023), then DEPTHCHARGE, FOXGLOVE and FOXTROT (from May 30, 2023) [S2]. DEPTHCHARGE is loaded into the BSMTP daemon via LD_PRELOAD and its persistence trigger sits in the configuration database, so it can re-infect a clean appliance when an exported configuration is restored [S2]. FOXTROT, derived from open-source REPTILE, and FOXGLOVE were the only families not built for the ESG [S2]. Persistence also used cron jobs, init edits and extra SSH accounts [S1][S2]. Post-exploitation included fscan scanning of more than 50 subnets in one environment, SSH movement to VPNs, proxies and edge devices, timestomping, and exfiltration using openssl s_client and, in limited cases, anonfiles.com [S1][S2]. In December 2023 UNC4841 was reported exploiting a second zero-day, CVE-2023-7102 (Spreadsheet::ParseExcel via the Amavis scanner), deploying new SEASPY and SALTWATER variants to a limited number of devices [S4]. Infrastructure used hosting and VPS providers, default self-signed Barracuda certificates, and ports 8080, then mostly 443 or 25 [S1][S2]."
+  },
+  "campaigns": [
+    {"date": "2022-10", "name": "Initial CVE-2023-2868 exploitation", "summary": "Earliest exploit emails with malicious TAR attachments observed on 2022-10-10; first exploitation surge in early November 2022. Early compromises were on appliances geolocated to mainland China using port 8080 for C2 [S1][S2].", "sources": ["S1", "S2"]},
+    {"date": "2023-05", "name": "Discovery, patch and malware retooling", "summary": "Barracuda discovered the activity 2023-05-19 and began patching 2023-05-20 to 2023-05-21 (sources differ on the exact day). UNC4841 modified its malware within a day, deployed SEASPY v2 on 2023-05-22, and conducted high-frequency operations against victims in at least 16 countries 2023-05-22 to 05-24 [S1][S2].", "sources": ["S1", "S2"]},
+    {"date": "2023-06", "name": "Second wave: DEPTHCHARGE, FOXGLOVE, FOXTROT", "summary": "From 2023-05-30 to early June, UNC4841 deployed DEPTHCHARGE, FOXGLOVE and FOXTROT against priority victims, the most intense period of the campaign. Mandiant published its attribution on 2023-06-15. Barracuda advised replacing compromised appliances regardless of patch level [S1][S2].", "sources": ["S1", "S2"]},
+    {"date": "2023-08", "name": "FBI warning and Mandiant remediation analysis", "summary": "Press reports the FBI stated Barracuda's patches were ineffective and that all affected ESG appliances should be considered compromised; the FBI document was not opened [S3]. Mandiant's 2023-08-29 follow-up found no new compromises after the patch and described the SKIPJACK, DEPTHCHARGE, FOXTROT and FOXGLOVE tooling [S2].", "sources": ["S2", "S3"]},
+    {"date": "2023-12", "name": "CVE-2023-7102 exploitation", "summary": "Barracuda patched CVE-2023-7102 starting 2023-12-21 and pushed a cleanup patch 2023-12-22. Barracuda and Mandiant tied the exploitation to UNC4841, which deployed new SEASPY and SALTWATER variants to a limited number of ESG devices [S4].", "sources": ["S4"]}
+  ],
+  "diamond": {
+    "adversary": "UNC4841, a China-nexus espionage cluster assessed by Mandiant with high confidence to act for the PRC; not mapped to a known named group [S1][S2].",
+    "capability": "Zero-day CVE-2023-2868 (and CVE-2023-7102 later), email-borne exploit delivery, bespoke ESG-specific backdoors and rootkit, plus REPTILE-derived FOXTROT for priority targets [S1][S2][S4].",
+    "infrastructure": "Dozens of IPs on hosting and VPS providers (US, Hong Kong, elsewhere), a small set of domains, ports 8080/443/25, default Barracuda self-signed certificates, and compromised ESG appliances as mail senders [S1][S2].",
+    "victim": "Government (about a third), technology and IT, telecom, manufacturing, universities, with priority targets in ASEAN, Taiwan and Hong Kong; most activity in the Americas [S1][S2].",
+    "socioPolitical": "Collection supporting PRC policy priorities, particularly Asia-Pacific and Taiwan [S1].",
+    "technology": "Internet-facing email security appliances that sit in the mail path, hold stored mail and credentials, are difficult to monitor with EDR, and trusted with TLS certificates and network position; the vendor advised replacement rather than reimaging [S1][S2]."
+  },
+  "gaps": [
+    "No specific PRC sponsor organization (MSS, PLA, contractor) is named in the sources gathered.",
+    "No Microsoft name mapping was found for UNC4841; searches for Microsoft or other-vendor equivalents returned nothing, so alias equivalence is unverified.",
+    "The existing record lists SLIME57 as an alias with an unspecified vendor; no gathered source states it, so it is not added to aliasesAdd.",
+    "Primary documents not opened: FBI/IC3 alert and CISA malware analysis reports (MAR-10454006 series, MAR-10459736), Barracuda advisory, Mandiant hardening guide; cisa.gov is blocked. Press coverage was used for FBI statements.",
+    "Conference material referenced in the record (Black Hat Asia 2024, JSAC 2025) was not retrieved; a search did not surface it.",
+    "Activity after the December 2023 CVE-2023-7102 exploitation is not documented in the sources gathered; current status of UNC4841 is unknown.",
+    "Exact regional and sector percentages in Mandiant's figures were not retrievable in text form.",
+    "Overlap with UNC2286 (GhostEmperor / FamousSparrow) and UNC3886 is noted by Mandiant as infrastructure or technique similarity only; the relationship is unresolved [S2].",
+    "The December 2023 reporting came through secondary coverage; Barracuda's and Mandiant's original statements were not opened [S4]."
+  ],
+  "implications": {
+    "jipoe": "Analyst assessment derived from cited sources; validate before use. STEP 1: Email security gateways and similar edge appliances in the mail path are key cyber terrain; they hold stored mail and credentials and trusted certificates, and are lightly monitored [S1][S2]. STEP 2: Potentially affected battlespace includes government, telecom, IT/MSP and defense-adjacent networks, with ASEAN, Taiwan and Hong Kong policy bodies as priority interest [S1][S2]. STEP 3: The observed pattern is a zero-day against an appliance, retooling within a day of the patch, selective use of heavier implants against priority victims, then credential harvesting from mail and lateral movement via SSH to edge devices [S1][S2]. STEP 4: MLCOA is continued mail-path and edge-device exploitation for policy and diplomatic collection. MDCOA is a pre-positioned appliance implant that survives reimaging via configuration-based re-infection (as with DEPTHCHARGE) and is used for collection on US or partner government mail during a Taiwan-related crisis [S1][S2]. Candidate indicators: unexpected cron entries and init modifications on gateways, unfamiliar processes or SSH accounts on appliances, outbound connections from mail appliances on ports 8080/443/25 to hosting-provider IPs, and TAR attachments with unusual extensions [S1][S2].",
+    "jcc2": "Analyst assessment derived from cited sources; validate before use. (1) Situational awareness: track vendor end-of-support and emergency advisories for mail and edge appliances, and maintain an inventory of such devices on mission networks, since compromise persisted through patching [S1][S2]. (2) Authorities: replacement of compromised appliances (rather than patching) is a vendor and FBI-level recommendation, so decision authority and funding for hardware replacement should be clarified in advance [S1][S3]. (3) Mission assurance: assume stored mail and credentials on an affected gateway are exposed; plan credential and certificate rotation and alternate communications paths [S1]. (4) Coordination: share indicators with DC3, the DIB cybersecurity program, FBI and coalition partners, given that ASEAN and Taiwan-focused collection implies partner-network exposure [S1][S2]."
+  },
+  "sources": [
+    {"ref": "S1", "title": "Barracuda ESG Zero-Day Exploited Globally by China-Nexus Actor (CVE-2023-2868)", "publisher": "Mandiant / Google Cloud Threat Intelligence", "date": "2023-06-15", "url": "https://cloud.google.com/blog/topics/threat-intelligence/barracuda-esg-exploited-globally/"},
+    {"ref": "S2", "title": "UNC4841 Post-Barracuda Zero-Day Remediation Actions", "publisher": "Mandiant / Google Cloud Threat Intelligence", "date": "2023-08-29", "url": "https://cloud.google.com/blog/topics/threat-intelligence/unc4841-post-barracuda-zero-day-remediation/"},
+    {"ref": "S3", "title": "FBI: Patches for Barracuda ESG Zero-Day CVE-2023-2868 are ineffective (reporting FBI alert)", "publisher": "Security Affairs", "date": "2023-08", "url": "https://securityaffairs.com/149845/hacking/barracuda-esg-cve-2023-2868-flaw.html"},
+    {"ref": "S4", "title": "Barracuda fixed a new ESG zero-day exploited by Chinese group UNC4841 (reporting Barracuda advisory)", "publisher": "Security Affairs", "date": "2023-12", "url": "https://securityaffairs.com/156502/breaking-news/barracuda-fixed-a-new-esg-zero-day-exploited-by-chinese-group-unc4841.html"}
+  ],
+  "aliasesAdd": []
+}
