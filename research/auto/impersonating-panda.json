@@ -1,0 +1,24 @@
+{
+  "identification": {
+    "summary": "CrowdStrike-style 'Panda' cryptonym for a China-attributed adversary. The only open-source mention found is a listing of 'Impersonating Panda' among China-based adversary names in a CrowdStrike Crowdcasts slide deck, as summarized by search; the slides could not be opened [S1]. No profile of activity, tooling or victims was found.",
+    "firstObserved": "",
+    "notes": "The 'Panda' suffix is CrowdStrike's convention for China-nexus actors [S1]. No Microsoft name mapping or MITRE group was found. Do not merge with Mustang Panda or other Panda actors without a source."
+  },
+  "attribution": {"sponsor": "", "confidence": "", "basis": ""},
+  "objectives": "",
+  "targeting": {"sectors": [], "regions": [], "notes": ""},
+  "capabilities": {"summary": ""},
+  "campaigns": [],
+  "diamond": {"adversary": "", "capability": "", "infrastructure": "", "victim": "", "socioPolitical": "", "technology": ""},
+  "gaps": [
+    "No dedicated vendor report, MITRE entry or Microsoft mapping for IMPERSONATING PANDA was found in four web searches; activity, targeting, tooling, infrastructure and timeline are all unknown.",
+    "The CrowdStrike Crowdcasts slide deck (SlideShare) could not be fetched (host unreachable); the mention is known only from a search-result summary, and the slide's date and context are unverified [S1].",
+    "Possible overlap with other tracked clusters (CrowdStrike or other vendors) is unknown; the name may be an older or retired cryptonym.",
+    "CrowdStrike's own adversary page for this name was not located; check the CrowdStrike Falcon Intelligence portal."
+  ],
+  "implications": {"jipoe": "", "jcc2": ""},
+  "sources": [
+    {"ref": "S1", "title": "Crowd Casts Monthly: You Have an Adversary Problem (search snippet only; slides not opened)", "publisher": "CrowdStrike (via SlideShare)", "date": "2013", "url": "https://www.slideshare.net/CrowdStrike/crowd-casts-monthly-you-have-an-adversary-problem"}
+  ],
+  "aliasesAdd": []
+}

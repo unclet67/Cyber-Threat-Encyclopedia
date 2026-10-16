@@ -3,46 +3,6 @@
  "verify": [],
  "research": [
   {
-   "id": "houken",
-   "tier": "T3"
-  },
-  {
-   "id": "hummingbad",
-   "tier": "T3"
-  },
-  {
-   "id": "hunt3r-kill3rs",
-   "tier": "T3"
-  },
-  {
-   "id": "hurricane-panda",
-   "tier": "T3"
-  },
-  {
-   "id": "icepeony",
-   "tier": "T3"
-  },
-  {
-   "id": "impersonating-panda",
-   "tier": "T3"
-  },
-  {
-   "id": "infrastructure-destruction-squad",
-   "tier": "T3"
-  },
-  {
-   "id": "infy",
-   "tier": "T3"
-  },
-  {
-   "id": "ironhusky",
-   "tier": "T3"
-  },
-  {
-   "id": "jinx-0164",
-   "tier": "T3"
-  },
-  {
    "id": "larva-24005",
    "tier": "T3"
   },
@@ -741,11 +701,20 @@
   "henbox",
   "hexagon-typhoon",
   "hiddenart",
+  "houken",
   "houndstooth-typhoon",
+  "hummingbad",
+  "hunt3r-kill3rs",
+  "hurricane-panda",
+  "icepeony",
   "inception",
   "indigozebra",
+  "infrastructure-destruction-squad",
+  "infy",
+  "ironhusky",
   "jade-sleet",
   "jasper-sleet",
+  "jinx-0164",
   "lemon-sandstorm",
   "leopard-typhoon",
   "lilac-typhoon",
@@ -882,6 +851,12 @@
   "hellsing",
   "henbox",
   "hiddenart",
+  "houken",
+  "hunt3r-kill3rs",
+  "hurricane-panda",
+  "icepeony",
+  "infrastructure-destruction-squad",
+  "jinx-0164",
   "lilac-typhoon",
   "mofang",
   "obsidian-sandstorm",
@@ -978,6 +953,7 @@
   "eloquent-panda",
   "foxy-panda",
   "gibberish-panda",
+  "impersonating-panda",
   "storm-2470"
  ]
 }

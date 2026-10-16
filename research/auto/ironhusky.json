@@ -1,0 +1,118 @@
+{
+  "identification": {
+    "summary": "IronHusky is a Kaspersky-named, Chinese-speaking espionage actor that Kaspersky says has operated since at least 2017 [S1][S5]. Kaspersky linked it to the MysterySnail remote access trojan (RAT) in 2021, when MysterySnail was found alongside the Windows zero-day CVE-2021-40449 [S2][S3]. In 2025 Kaspersky reported a new MysterySnail version against government organizations in Mongolia and Russia [S1][S5].",
+    "firstObserved": "At least 2017 per Kaspersky [S1][S5]. CSO reports that older China-based infrastructure reused by MysterySnail goes back to 2012 [S3].",
+    "notes": "No Microsoft name is mapped in this record. No alias is stated in the sources gathered. Secondary coverage gives different start dates (2012 versus 2017), which come from separate claims: 2017 is the group's activity and 2012 is reused C2 infrastructure [S3][S7]."
+  },
+  "attribution": {
+    "sponsor": "",
+    "confidence": "Kaspersky describes IronHusky as a Chinese-speaking threat actor [S1][S5]. Kaspersky tied MysterySnail to IronHusky because early variants showed code and functionality overlap with IronHusky-attributed malware and reused C2 addresses of the Chinese-speaking actor dating back to 2012 [S3][S7]. This is a vendor assessment; no government attribution or state sponsor was found.",
+    "basis": "Malware code overlap and reused C2 infrastructure reported by Kaspersky [S3][S7]."
+  },
+  "objectives": "Kaspersky-derived coverage describes the activity as espionage against IT companies, defense contractors, diplomatic entities and government organizations [S3][S5][S7].",
+  "targeting": {
+    "sectors": [
+      "Government",
+      "Military and defense contractors",
+      "IT companies",
+      "Diplomatic entities",
+      "Aviation and research institutes (per the imported record, not independently confirmed)"
+    ],
+    "regions": [
+      "Mongolia [S5]",
+      "Russia [S1][S5]"
+    ],
+    "notes": "The 2021 MysterySnail activity hit IT companies, defense contractors and diplomatic entities [S3][S7]. In 2025 the targets were government organizations in Mongolia and Russia [S1][S5]. Only Windows Server systems were observed attacked with the 2021 exploit [S7]."
+  },
+  "capabilities": {
+    "summary": "The 2021 intrusions used an elevation-of-privilege exploit for CVE-2021-40449, a use-after-free in the Win32k driver, fixed by Microsoft on 12 October 2021; it was deployed against Windows servers in late August and early September 2021 [S7]. The payload was the MysterySnail RAT, which collects system information and contacts a C2 server for further commands [S7]. The 2025 version is delivered through a malicious MMC script disguised as a document from Mongolia's National Land Agency (ALAMGAC); the script downloads a ZIP second stage and a decoy DOCX, and sets persistence through registry changes [S5]. The updated RAT supports almost 40 commands, and a lighter variant, MysteryMonoSnail, supports 13 commands and uses WebSocket for C2 [S5][S6]. C2 uses public file storage and the piping-server project [S5]. Earlier reporting says the group used common Chinese-speaking tools such as PlugX and PoisonIvy [S3]."
+  },
+  "campaigns": [
+    {
+      "date": "2021-08",
+      "name": "MysterySnail and CVE-2021-40449 zero-day",
+      "summary": "Kaspersky detected Win32k privilege-escalation exploitation on Windows servers in late August and early September 2021, deploying MysterySnail against IT companies, defense contractors and diplomatic entities. Microsoft patched the flaw on 2021-10-12.",
+      "sources": [
+        "S2",
+        "S3",
+        "S7"
+      ]
+    },
+    {
+      "date": "2025-04",
+      "name": "New MysterySnail version against Mongolia and Russia",
+      "summary": "Kaspersky reported attempted deployments of a new MysterySnail version via a malicious MMC script posing as an ALAMGAC document, plus the lighter MysteryMonoSnail variant, against government organizations in Mongolia and Russia.",
+      "sources": [
+        "S1",
+        "S5",
+        "S6"
+      ]
+    }
+  ],
+  "diamond": {
+    "adversary": "Chinese-speaking espionage actor tracked by Kaspersky as IronHusky; no state sponsor stated [S1][S3].",
+    "capability": "MysterySnail RAT and MysteryMonoSnail variant, CVE-2021-40449 Win32k exploit, malicious MMC script delivery, PlugX and PoisonIvy in earlier activity [S3][S5][S7].",
+    "infrastructure": "C2 addresses reused from older Chinese-speaking activity dating to 2012; public file storage and piping-server project in 2025; WebSocket C2 for MysteryMonoSnail [S3][S5][S7].",
+    "victim": "Government, military/defense contractor, IT and diplomatic entities in Mongolia and Russia [S3][S5].",
+    "socioPolitical": "Not assessed; the only basis (a 2018 Mongolian IMF-timing report) could not be verified and was removed.",
+    "technology": "Windows Server systems exposed to Win32k privilege escalation in 2021; Windows endpoints opening MMC scripts disguised as official documents in 2025 [S5][S7]."
+  },
+  "gaps": [
+    "No state sponsor, tasking organization or government attribution found in the sources gathered.",
+    "The original Kaspersky/Securelist articles (2021 and 2025) could not be opened (fetch failed); details come from search-result summaries and secondary coverage and should be verified against the primary text.",
+    "No Microsoft actor name, MITRE group ID or vendor aliases were confirmed. Overlap with other Chinese-speaking clusters is not stated in the sources.",
+    "A Unit 42 phishing chain delivering Snake Keylogger, XLoader or Agent Tesla appeared in search results but is not attributed to IronHusky and is excluded.",
+    "Initial access vector for the 2021 intrusions and specific 2025 victim organizations are not public in the sources gathered.",
+    "A January 2018 Mongolian-government campaign (previously cited to a media reprint of Kaspersky's Q1 2018 summary) could not be confirmed in search and was removed with its source.",
+    "Aviation and research institute victims in the imported record were not detailed in any source opened."
+  ],
+  "implications": {
+    "jipoe": "Analyst assessment derived from cited sources; validate before use. STEP 1: Windows Server hosts at IT firms, defense contractors and diplomatic entities, and government endpoints that open official-looking documents, are the exposed terrain [S5][S7]. STEP 2: The actor has persisted across at least 2017 to 2025 with rebuilt tooling after reporting, so expect re-tooling rather than disappearance [S1][S5]. STEP 3: Observed pattern is zero-day or script-based delivery, then MysterySnail RAT with public-service C2 [S5][S7]. STEP 4: MLCOA is continued espionage against Mongolian and Russian government targets. MDCOA is use of a new privilege-escalation zero-day against Windows servers of defense or IT suppliers. Candidate indicators: unexpected MMC (.msc) script execution from downloads, new registry persistence keys, outbound connections to public file-storage services or piping-server hosts, and WebSocket C2 from servers [S5][S7].",
+    "jcc2": "Analyst assessment derived from cited sources; validate before use. (1) Situational awareness: track Kaspersky and Microsoft reporting on Win32k and similar server privilege-escalation flaws; patch timelines matter because the 2021 exploit preceded the patch [S7]. (2) Authorities: this record shows no US-specific victims, so relevance is as a partner-region and supplier-risk indicator; confirm reporting and sharing authorities before any action. (3) Mission assurance: harden Windows Server and restrict MMC script execution for document-style lures [S5]. (4) Coordination: share indicators with contractor and partner networks through established DIB channels."
+  },
+  "sources": [
+    {
+      "ref": "S1",
+      "title": "MysterySnail new version (GReAT research, Kaspersky Securelist; seen via search results, page not opened)",
+      "publisher": "Kaspersky Securelist",
+      "date": "2025-04",
+      "url": "https://securelist.com/mysterysnail-new-version/116226/"
+    },
+    {
+      "ref": "S2",
+      "title": "MysterySnail attacks with Windows zero-day (Kaspersky Securelist; seen via search results, page not opened)",
+      "publisher": "Kaspersky Securelist",
+      "date": "2021-10",
+      "url": "https://securelist.com/mysterysnail-attacks-with-windows-zero-day/104509/"
+    },
+    {
+      "ref": "S3",
+      "title": "Chinese APT group IronHusky exploits zero-day Windows Server privilege escalation (reporting Kaspersky research)",
+      "publisher": "CSO Online",
+      "date": "2021-10",
+      "url": "https://www.csoonline.com/article/3637068/chinese-apt-group-ironhusky-exploits-zero-day-windows-server-privilege-escalation.html"
+    },
+    {
+      "ref": "S5",
+      "title": "IronHusky APT Revives MysterySnail RAT to Target Government Organizations in Russia and Mongolia (reporting Kaspersky research)",
+      "publisher": "TechNadu",
+      "date": "2025-04",
+      "url": "https://www.technadu.com/ironhusky-apt-revives-mysterysnail-rat-to-target-government-organizations-in-russia-and-mongolia/587052/"
+    },
+    {
+      "ref": "S6",
+      "title": "Hackers Weaponize MMC Script to Deploy MysterySnail RAT Malware (reporting Kaspersky research)",
+      "publisher": "Cyber Security News",
+      "date": "2025-04",
+      "url": "https://cybersecuritynews.com/mmc-script-weaponized"
+    },
+    {
+      "ref": "S7",
+      "title": "Espionage Attackers Were Using Windows Zero Day Vulnerability CVE-2021-40449 (reporting Kaspersky research)",
+      "publisher": "Redmond Magazine",
+      "date": "2021-10-13",
+      "url": "https://redmondmag.com/Articles/2021/10/13/Espionage-Attackers-Were-Using-Windows-Zero-Day-Vulnerability.aspx"
+    }
+  ],
+  "aliasesAdd": []
+}

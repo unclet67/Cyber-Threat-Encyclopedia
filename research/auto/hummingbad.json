@@ -1,7 +1,7 @@
 {
   "identification": {
-    "summary": "HummingBad is an Android malware family that Check Point says it first reported in February 2016. It installs a persistent rootkit, generates fraudulent ad revenue and installs additional fraudulent apps [S1][S3]. Check Point tied it to Yingmob, a Beijing-based ad company that also runs a legitimate ad analytics business [S1][S3]. This is a criminal ad-fraud operation, not a state-sponsored APT group; the record's 'group' framing refers to the Yingmob-linked development team [S1].",
-    "firstObserved": "Check Point: first reported February 2016 [S3]; public attribution report published mid-2016 [S1][S2]. Lookout dates the related Shedun family to November 2015 [S4][S5].",
+    "summary": "HummingBad is an Android malware family that Check Point research says it has tracked since February 2016. It installs a persistent rootkit, generates fraudulent ad revenue and installs additional fraudulent apps [S1][S3]. Check Point tied it to Yingmob, a Beijing-based ad company that also runs a legitimate ad analytics business [S1][S3]. This is a criminal ad-fraud operation, not a state-sponsored APT group; the record's 'group' framing refers to the Yingmob-linked development team [S1].",
+    "firstObserved": "Check Point tracking from February 2016 per coverage [S3]; public attribution report published mid-2016 [S1][S2]. Lookout dates the related Shedun family to November 2015 [S4][S5].",
     "notes": "Naming conflict: Lookout argued HummingBad is Shedun (also called GhostPush, AndroidOS_libskin, right_core) [S4][S5], while ElevenPaths concluded it is a distinct threat [S6]. Cheetah Mobile's 'Hummer' is reported by secondary coverage to be the same malware as HummingBad, based on shared infrastructure and the rooting file right_core.apk [S6]. These vendor cluster boundaries are not merged here. The record's existing '85 million devices' figure describes devices that installed at least one of roughly 200 Yingmob apps, not devices infected with HummingBad; about 10 million devices downloaded a malicious one [S2]."
   },
   "attribution": {
@@ -37,8 +37,8 @@
     },
     {
       "date": "2016-02",
-      "name": "HummingBad first reported",
-      "summary": "Check Point says it first reported the HummingBad rootkit and ad-fraud malware in February 2016 [S3].",
+      "name": "Check Point begins tracking HummingBad",
+      "summary": "Coverage of Check Point research says it tracked the HummingBad rootkit and ad-fraud malware from February 2016 [S3].",
       "sources": [
         "S3"
       ]
@@ -53,7 +53,7 @@
       ]
     },
     {
-      "date": "2016-07-06",
+      "date": "2016-07-07",
       "name": "Lookout: spike in Shedun, also known as HummingBad",
       "summary": "Lookout published a blog post describing a rise in Shedun detections and treating HummingBad as the same family [S4]. Secondary coverage reports Cheetah Mobile counting about 1.4 million infections per day in the first half of 2016 for its 'Hummer' trojan [S6].",
       "sources": [
@@ -72,7 +72,7 @@
   },
   "gaps": [
     "I could not open the Check Point blog, the Check Point report PDF, or the news articles with WebFetch (DNS failure in this environment). Details here come from search-result summaries of those pages and need confirmation against the primary documents [S1][S2][S3].",
-    "Exact publication dates are month-level for several sources; day-level dates were not confirmed except for the Lookout post (2016-07-06) [S4].",
+    "Exact publication dates are month-level for several sources; day-level dates were not confirmed except for the Lookout post (2016-07-07) [S4].",
     "Unresolved vendor disagreement over whether HummingBad is a distinct family (Check Point, ElevenPaths) or Shedun renamed (Lookout); relationship to Cheetah Mobile's Hummer rests on secondary coverage [S4][S6].",
     "No public evidence gathered of state sponsorship, victim data theft, or sale of device access; Check Point's warnings are risk statements [S1][S3].",
     "Activity after 2016, and any Yingmob response or enforcement action, were not found in the sources gathered.",
@@ -108,7 +108,7 @@
       "ref": "S4",
       "title": "A Spike in Shedun, Also Known as HummingBad",
       "publisher": "Lookout",
-      "date": "2016-07-06",
+      "date": "2016-07-07",
       "url": "https://lookout.com/blog/a-spike-in-shedun-also-known-as-hummingbad"
     },
     {

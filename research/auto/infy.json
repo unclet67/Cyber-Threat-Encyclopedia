@@ -1,0 +1,160 @@
+{
+  "identification": {
+    "summary": "Infy, also called Prince of Persia, is a long-running Iranian-linked espionage group named by Palo Alto Networks Unit 42 in 2016 after a malware family called Infy [S5]. Unit 42 traced the operation back about a decade, and SafeBreach later dated activity to 2007 [S5][S1]. The group went quiet publicly after the 2016 takedown, returned in 2017 with a new malware family called Foudre [S7], and was reported as still active in late 2025 and early 2026 [S1][S3][S4].",
+    "firstObserved": "Unit 42 (2016) described a campaign running for about a decade [S5]. A secondary summary of SafeBreach research says activity was traced to 2007 [S1]; accounts of the start date differ across vendors.",
+    "notes": "Aliases seen in sources: Prince of Persia, Foudre (malware family, also used as a group label), Operation Mermaid, APT-C-07 [S2]. Foudre is the downloader and victim profiler; Tonnerre is the second-stage implant [S2]. Microsoft has no mapped name for this group in this record; msName is empty. Not to be confused with other Iranian clusters tracked by Microsoft."
+  },
+  "attribution": {
+    "sponsor": "Iran. SafeBreach assesses the group is a state-sponsored actor operated by the Iranian regime [S4]. Unit 42 attributed it to Iran on infrastructure grounds [S5].",
+    "confidence": "SafeBreach calls the evidence solid proof of state sponsorship, based on C2 maintenance stopping during Iran's January 2026 national internet shutdown [S4]. This is vendor assessment only; no government attribution was found.",
+    "basis": "Unit 42 observed numerous Iranian domains on IP addresses neighboring known C2 servers, suggesting a possible Iranian hosting reseller [S5]. About one third of victims in the 2016 sinkhole data were in Iran [S6]. C2 maintenance stopped on 2026-01-08 when Iran imposed a nationwide internet shutdown, and resumed shortly before restrictions eased [S4]."
+  },
+  "objectives": "Long-term surveillance and intelligence collection on individuals, including dissidents and academics, per SafeBreach [S2]. Unit 42 described targeting of governments and businesses of multiple nations as well as Iranian citizens [S5].",
+  "targeting": {
+    "sectors": [
+      "Individuals: dissidents and academics [S2]",
+      "Government and industry (2016 reporting) [S5]"
+    ],
+    "regions": [
+      "Iran (almost one third of victims in 2016 sinkhole data) [S6]",
+      "35 countries among 2016 victims [S6]",
+      "Iraq, Turkey, India, Canada and parts of Europe (2025 SafeBreach report) [S4]",
+      "Sweden, Netherlands, Turkey (earlier reporting cited in press) [S2]"
+    ],
+    "notes": "2016: 456 malware agents on 326 victim systems in 35 countries [S6]. Scale and sector breakdown of 2025 to 2026 victims are not public in the sources gathered."
+  },
+  "capabilities": {
+    "summary": "Custom malware lineage: Infy and Infy M (2016) [S5], Foudre (reported 2017, with anti-takeover features to prevent C2 sinkholing) [S7], and Tonnerre second stage [S2]. SafeBreach reported Foudre v34 and Tonnerre v12-18 and v50 builds, with Tonnerre v50 detected in September 2025 [S4]. C2 uses a domain generation algorithm; Tonnerre v50 redirects to a Telegram group and bot, the first Telegram use since 2016, likely replacing FTP exfiltration [S4]. A variant called Tornado v51 supports HTTP and Telegram C2 and generates domains via a new DGA and via fixed names decoded from blockchain data; it is dropped using a one-day WinRAR flaw (likely CVE-2025-8088 or CVE-2025-6218) that places it in the startup folder [S3]. Foudre is believed distributed via phishing email [S2]."
+  },
+  "campaigns": [
+    {
+      "date": "2016-05",
+      "name": "Infy decade-long campaign disclosed",
+      "summary": "Unit 42 publishes the Infy malware family and a decade-long operation against government and industry targets; Infy and fuller-featured Infy M run in parallel.",
+      "sources": [
+        "S5"
+      ]
+    },
+    {
+      "date": "2016-06",
+      "name": "Infy C2 takeover and sinkholing",
+      "summary": "Unit 42 gains control of several C2 domains, counting 456 agents on 326 systems in 35 countries, nearly one third of victims in Iran.",
+      "sources": [
+        "S6"
+      ]
+    },
+    {
+      "date": "2017-02",
+      "name": "Foudre emerges",
+      "summary": "Unit 42 observes an evolved Infy successor named Foudre in February 2017 with anti-takeover techniques, reported 2017-08-01.",
+      "sources": [
+        "S7"
+      ]
+    },
+    {
+      "date": "2025-09",
+      "name": "Tonnerre v50 and Telegram exfiltration",
+      "summary": "SafeBreach detects Tonnerre v50 (September 2025), using a DGA and Telegram group/bot for exfiltration; Foudre v34 also reported.",
+      "sources": [
+        "S1",
+        "S2"
+      ]
+    },
+    {
+      "date": "2025-12",
+      "name": "SafeBreach publishes resurgence report",
+      "summary": "SafeBreach publishes its first report on 2025-12-18 describing the renewed tooling and victims in Iran, Iraq, Turkey, India, Canada and Europe.",
+      "sources": [
+        "S1",
+        "S4"
+      ]
+    },
+    {
+      "date": "2026-01",
+      "name": "Infrastructure churn, Tornado v51, Iran shutdown",
+      "summary": "Between 2025-12-19 and 2026-01-08 the group replaced its Telegram user and all C2 servers and fielded Tornado v51; C2 maintenance stopped 2026-01-08 during Iran's internet shutdown, and new C2 appeared 2026-01-26, a day before restrictions eased.",
+      "sources": [
+        "S3",
+        "S4"
+      ]
+    }
+  ],
+  "diamond": {
+    "adversary": "Iran-linked, assessed by SafeBreach as state-sponsored [S4].",
+    "capability": "Foudre, Tonnerre and Tornado malware; DGA C2; Telegram C2/exfiltration; phishing delivery; one-day WinRAR exploit [S2][S3][S4].",
+    "infrastructure": "DGA-generated C2 domains, blockchain-derived fixed domains, Telegram bot and group, historically a possible Iranian hosting reseller [S3][S4][S5].",
+    "victim": "Dissidents, academics and individuals in Iran, Iraq, Turkey, India, Canada and Europe [S2][S4].",
+    "socioPolitical": "Surveillance of individuals of interest to the Iranian state, with operations paused when the state shut down national internet access [S2][S4].",
+    "technology": "Windows endpoints, users opening archives with vulnerable WinRAR, and unmonitored outbound Telegram traffic [S3][S4]."
+  },
+  "gaps": [
+    "I could not open the primary reports (SafeBreach, Unit 42, The Hacker News) with WebFetch; DNS resolution failed. Details come from search-result summaries and should be checked against the primary pages.",
+    "Start date is disputed across vendors (about 2004, 2007, or early 2013 in the imported Citizen Lab text); no reconciliation found.",
+    "RSA-based C2 validation is claimed only by a third-party summary (Aviatrix) and is not included here.",
+    "Search summaries differ on the date activity resumed (2026-01-26 vs early February 2026).",
+    "Initial access details for 2025 victims, victim counts, and any named Iranian government organization are not public in gathered sources.",
+    "Citizen Lab/Guarnieri paper (listed in imported references) could not be confirmed in search.",
+    "No MITRE ATT&CK group ID or Microsoft name confirmed."
+  ],
+  "implications": {
+    "jipoe": "Analyst assessment derived from cited sources; validate before use. STEP 1: Key terrain is the individual endpoint and personal communications, especially Windows systems used by dissidents, academics and diaspora, plus Telegram as a C2 channel [S2][S4]. STEP 2: The actor is selective and long-lived, rebuilds after exposure, and is tied to Iranian national network conditions [S4][S7]. STEP 3: Template is phishing or a booby-trapped archive exploiting a recent WinRAR flaw, Foudre profiling, then Tonnerre or Tornado collection and exfiltration over FTP or Telegram, with DGA C2 [S2][S3]. STEP 4: MLCOA is continued low-volume surveillance of individuals, with rapid C2 rotation after any public exposure [S3][S4]. MDCOA is expansion to US or coalition-linked personnel or contractors using the same delivery chain. Candidate indicators: Telegram bot traffic from non-messaging hosts, DGA-pattern domain lookups, files extracted by WinRAR into startup folders, and Foudre/Tonnerre artifacts [S3][S4].",
+    "jcc2": "Analyst assessment derived from cited sources; validate before use. (1) Situational awareness: track vendor reporting for new Foudre/Tonnerre/Tornado versions; activity correlates with Iranian national internet status, which may serve as an indicator of state tasking [S4]. (2) Authorities: this actor mainly targets individuals, so defensive action on personal devices is outside DoD authority; coordinate with law enforcement and the intelligence community for any DoD-affiliated victims. (3) Mission assurance: patch WinRAR and similar archive tools and control Telegram egress on government networks [S3][S4]. (4) Coordination: share DGA and C2 indicators with DC3 and partners; note that the actor rebuilt infrastructure after exposure, so indicators age quickly [S4][S7]."
+  },
+  "sources": [
+    {
+      "ref": "S1",
+      "title": "Prince of Persia: A Decade of an Iranian Nation-State APT Campaign Activity (SafeBreach; read via search summary)",
+      "publisher": "SafeBreach",
+      "date": "2025-12-18",
+      "url": "https://www.safebreach.com/blog/prince-of-persia-a-decade-of-an-iranian-nation-state-apt-campaign-activity"
+    },
+    {
+      "ref": "S2",
+      "title": "Iranian Infy APT Resurfaces with New Malware Activity (read via search summary)",
+      "publisher": "The Hacker News",
+      "date": "2025-12",
+      "url": "https://thehackernews.com/2025/12/iranian-infy-apt-resurfaces-with-new.html"
+    },
+    {
+      "ref": "S3",
+      "title": "Prince of Persia Part II (read via search summary)",
+      "publisher": "SafeBreach",
+      "date": "2026-02",
+      "url": "https://www.safebreach.com/blog/prince-of-persia-part-ii/"
+    },
+    {
+      "ref": "S4",
+      "title": "Infy Hackers Resume Operations with New C2 Infrastructure (reporting SafeBreach research)",
+      "publisher": "The Hacker News",
+      "date": "2026-02",
+      "url": "https://thehackernews.com/2026/02/infy-hackers-resume-operations-with-new.html"
+    },
+    {
+      "ref": "S5",
+      "title": "Prince of Persia: Infy Malware Active in Decade of Targeted Attacks (read via search summary)",
+      "publisher": "Palo Alto Networks Unit 42",
+      "date": "2016-05",
+      "url": "https://unit42.paloaltonetworks.com/prince-of-persia-infy-malware-active-in-decade-of-targeted-attacks/"
+    },
+    {
+      "ref": "S6",
+      "title": "Prince of Persia: Game Over (read via search summary)",
+      "publisher": "Palo Alto Networks Unit 42",
+      "date": "2016-06-28",
+      "url": "https://unit42.paloaltonetworks.com/unit42-prince-of-persia-game-over/"
+    },
+    {
+      "ref": "S7",
+      "title": "Prince of Persia - Ride the Lightning: Infy returns as Foudre (read via search summary)",
+      "publisher": "Palo Alto Networks Unit 42",
+      "date": "2017-08-01",
+      "url": "https://unit42.paloaltonetworks.com/unit42-prince-persia-ride-lightning-infy-returns-foudre/"
+    }
+  ],
+  "aliasesAdd": [
+    {
+      "name": "APT-C-07",
+      "vendor": "Other / unspecified"
+    }
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "identification": {
+    "summary": "IcePeony is a China-nexus APT cluster named by the nao_sec research team, described as active since at least 2023 and previously unknown, targeting government agencies, academic institutions and political organizations in India, Mauritius and Vietnam [S1][S3][S4]. It gains access mainly through SQL injection against public-facing web servers, then uses web shells or its custom IIS module backdoor IceCache [S1][S2][S3].",
+    "firstObserved": "At least 2023, per nao_sec as relayed by secondary coverage [S3][S4].",
+    "notes": "Name coined by nao_sec; no Microsoft name is known from the sources gathered. Malpedia lists related families IceCache and IceEvent [S5]. IceCache is distinct from CrowdStrike's IceApple IIS framework; do not merge the two (search results only noted the similarity of IIS focus) [S2]."
+  },
+  "attribution": {
+    "sponsor": "",
+    "confidence": "nao_sec and the secondary coverage describe the group as 'China-nexus'; no government attribution was found in the sources gathered [S3][S4].",
+    "basis": "Researcher inference from working-hour patterns (roughly 14 hours of activity per day, no Sunday activity, suggested to match China's '996' IT work schedule) and from victim selection resembling China's maritime strategy interests; secondary coverage presents both as possibilities, not confirmed facts [S2][S3][S4]."
+  },
+  "objectives": "Credential theft from government and related targets appears to be the main goal; researchers suggest the targeting fits Chinese national interests, possibly maritime strategy toward Indian Ocean countries. This is analyst inference, not confirmed [S3][S4].",
+  "targeting": {
+    "sectors": ["Government", "Academia", "Political organizations"],
+    "regions": ["India", "Mauritius", "Vietnam", "South and Southeast Asia (government agencies, per Virus Bulletin slide summary)"],
+    "notes": "nao_sec reportedly saw over 200 attempts against various Indian government websites in the logs it analyzed [S3]."
+  },
+  "capabilities": {
+    "summary": "Initial access via SQL injection on public-facing web servers, followed by web shells or the custom IIS module IceCache [S1][S3]. The server left as an open directory in early July 2024 exposed Cobalt Strike 4.8, frp, sqlmap, Impacket, reGeorg, suo5, Stowaway and craXcel, plus IceCache client malware and about two weeks of shell command history [S2]. Malpedia associates the families IceCache and IceEvent with the group [S5]."
+  },
+  "campaigns": [
+    {"date": "2023", "name": "Earliest activity", "summary": "nao_sec and press coverage say IcePeony has been active since at least 2023 against government, academic and political targets in India, Mauritius and Vietnam.", "sources": ["S3", "S4"]},
+    {"date": "2024-07", "name": "Open-directory exposure of attacker server", "summary": "In early July 2024 the group left a server with directory listing enabled, exposing its toolset and about two weeks of command history, which gave researchers a view of its operations.", "sources": ["S2"]},
+    {"date": "2024-10", "name": "Public disclosure by nao_sec", "summary": "nao_sec published 'IcePeony with the 996 work culture', naming the group; coverage followed, and the work was also presented at Virus Bulletin 2024.", "sources": ["S1", "S2", "S3"]}
+  ],
+  "diamond": {
+    "adversary": "China-nexus group named IcePeony; operators appear to work long, regular hours, suggested to match the 996 pattern (inference) [S3][S4].",
+    "capability": "SQL injection, web shells, IceCache IIS module, Cobalt Strike, sqlmap, frp, Impacket, reGeorg, suo5, Stowaway [S2][S3].",
+    "infrastructure": "Attacker server with open directory listing in July 2024 hosting tools and command history [S2]; further infrastructure details not verified.",
+    "victim": "Government agencies, academic institutions and political organizations in India, Mauritius and Vietnam [S3][S4].",
+    "socioPolitical": "Targeting of Indian Ocean and neighboring governments is suggested by researchers to fit Chinese maritime strategy; unconfirmed [S3][S4].",
+    "technology": "Internet-facing web servers vulnerable to SQL injection and IIS hosts that can run malicious modules [S2][S3]."
+  },
+  "gaps": [
+    "The primary nao_sec post and the Virus Bulletin slides could not be fetched (host unreachable in this environment); facts rely on search-result summaries of them and secondary coverage [S1][S2].",
+    "Exact IceCache capabilities (credential theft functionality) were not verified from the primary report.",
+    "No sponsor, government attribution or vendor naming (e.g., Microsoft) found; relationship to other China-nexus clusters is unknown.",
+    "No reporting found for 2025 or 2026 activity.",
+    "Specific victim organizations, CVEs and IOCs not gathered. The 996 and maritime-strategy links are inference only."
+  ],
+  "implications": {
+    "jipoe": "Analyst assessment derived from cited sources; validate before use. STEP 1: Internet-facing web servers, especially IIS hosts of government and academic sites, are key terrain. STEP 2: The group relies on common tools and SQL injection rather than zero-days, and its operators appear to work a regular schedule, with no Sunday activity reported [S2][S3]. STEP 3: Template is SQL injection, then web shell or IceCache, then credential theft and tunneling (frp, suo5) [S2][S3]. STEP 4: MLCOA is continued credential harvesting against South and Southeast Asian governments. MDCOA is the same web-server access pattern turned against partner-nation or DoD-adjacent sites supporting Indo-Pacific operations. Candidate indicators: unexpected IIS modules, SQL injection attempts against web applications and new web shells [S2].",
+    "jcc2": "Analyst assessment derived from cited sources; validate before use. (1) Situational awareness: track partner-nation government web compromises in the Indo-Pacific as indicators of Chinese collection interest. (2) Authorities: coordination of incident support to partner nations runs through established channels, not unilateral action. (3) Mission assurance: inventory and monitor IIS web servers and registered modules on DoD-connected sites. (4) Coordination: share indicators with partners and the DIB through existing reporting channels."
+  },
+  "sources": [
+    {"ref": "S1", "title": "IcePeony with the 996 work culture", "publisher": "nao_sec", "date": "2024-10", "url": "https://nao-sec.org/2024/10/IcePeony-with-the-996-work-culture.html"},
+    {"ref": "S2", "title": "IcePeony with the 996 work culture (Virus Bulletin 2024 slides; details via search summary)", "publisher": "Virus Bulletin", "date": "2024-10", "url": "https://www.virusbulletin.com/uploads/pdf/conference/vb2024/slides/Slides-IcePeony-with-the-996-work-culture.pdf"},
+    {"ref": "S3", "title": "IcePeony coverage of nao_sec report (ITHome Taiwan, Chinese-language)", "publisher": "ITHome", "date": "2024-10-23", "url": "https://www.ithome.com.tw/news/165649"},
+    {"ref": "S4", "title": "IcePeony – A New China-Nexus APT Group Targeting Asian Nations (reporting nao_sec)", "publisher": "hendryadrian.com", "date": "2024-10", "url": "https://www.hendryadrian.com/?p=31220"},
+    {"ref": "S5", "title": "IcePeony actor entry", "publisher": "Malpedia (Fraunhofer FKIE)", "date": "2024-10", "url": "https://malpedia.caad.fkie.fraunhofer.de/actor/icepeony"}
+  ],
+  "aliasesAdd": []
+}

@@ -1,0 +1,113 @@
+{
+  "identification": {
+    "summary": "JINX-0164 is a name used by Wiz Research for a financially motivated cluster, disclosed in late May 2026, that targets cryptocurrency organizations and software developers, almost entirely on macOS [S5][S7]. Intrusions start with fake recruiter approaches on LinkedIn that steer victims to a fake video-conferencing page, which delivers the AUDIOFIX Python infostealer/RAT; the actor then moves from developer laptops into code repositories and CI/CD pipelines [S5][S6][S7]. In April 2026 it trojanized version 9.4.1 of the npm package @velora-dex/sdk to deliver the MINIRAT Go backdoor [S5][S6].",
+    "firstObserved": "Activity dates to at least mid-2025 per Wiz [S5][S7]. Public disclosure: Wiz, late May 2026 [S5][S7].",
+    "notes": "JINX-0164 is a Wiz-assigned cluster name, not a Microsoft name; no Microsoft actor name or MITRE group was found in the sources gathered. The trojanized npm version is 9.4.1 (published 2026-04-07; clean baseline 9.4.0; reverted in 9.4.2 about three hours later per SafeDep/OpenSourceMalware); one secondary outlet's '4.9.1' is a typo [S6]. Wiz is reported as noting consistency with DPRK financially motivated groups without confirmed overlap or formal attribution (see attribution)."
+  },
+  "attribution": {
+    "sponsor": "",
+    "confidence": "Wiz tracks the cluster as financially motivated and, as reported by secondary outlets, has not formally attributed it to a state actor, though it notes consistency with DPRK financially motivated groups [S5][S7]. This record's imported country field (KP) is not supported by a primary source gathered here.",
+    "basis": "Per secondary coverage, Wiz assesses the activity as consistent with North Korean financially motivated groups (BlueNoroff, Contagious Interview, UNC1069/Sapphire Sleet) but with distinct infrastructure and no confirmed overlap; it has not formally attributed the cluster to DPRK [S5][S7]. A Cloud Security Alliance research note is reported as saying the actor does not appear to operate at the scale of large North Korea-linked crypto thefts while using similar foundational techniques [S3]. These are technique-level similarities, not attribution."
+  },
+  "objectives": "Financial gain: theft of cryptocurrency and wallet credentials from developers, plus access to code and CI/CD systems at crypto firms for follow-on compromise [S5][S7].",
+  "targeting": {
+    "sectors": [
+      "Cryptocurrency and blockchain organizations",
+      "Software developers at crypto firms",
+      "Open-source package consumers (npm) via @velora-dex/sdk"
+    ],
+    "regions": [],
+    "notes": "Targeting is by role and sector (macOS-using developers at crypto organizations) rather than by geography; regions not stated in the sources gathered [S5][S7]."
+  },
+  "capabilities": {
+    "summary": "Credible LinkedIn recruiter personas and fake meeting pages spoofing Teams-style conferencing; a shell script that profiles the system and fetches payloads from a fake driver-store domain; AUDIOFIX (Python macOS infostealer/RAT) and MINIRAT (lightweight Go backdoor sharing C2 with AUDIOFIX) [S5][S6][S7]. After initial access the actor injected AUDIOFIX into internal repositories with commits disguised under other developers' names, so colleagues building from them were infected [S5]. It also compromised an npm publisher account (not the GitHub source) to push a trojanized package [S6]. Secondary coverage says AUDIOFIX targets 51 cryptocurrency wallet browser extensions [S7]."
+  },
+  "campaigns": [
+    {
+      "date": "2025-06",
+      "name": "Recruiter-lure campaign begins (approximate)",
+      "summary": "Wiz dates the activity to at least mid-2025: fake LinkedIn recruiters send meeting invitations to crypto developers, leading to AUDIOFIX on macOS.",
+      "sources": [
+        "S5",
+        "S7"
+      ]
+    },
+    {
+      "date": "2026-04-07",
+      "name": "@velora-dex/sdk npm trojanization",
+      "summary": "The actor published trojanized version 9.4.1 of the npm package, which fetched a script deploying MINIRAT; reporting indicates only npm credentials were compromised and GitHub source was unmodified.",
+      "sources": [
+        "S5",
+        "S6"
+      ]
+    },
+    {
+      "date": "2026-05",
+      "name": "Wiz public disclosure",
+      "summary": "Wiz Research published 'Commit to Compromise' naming JINX-0164; The Hacker News covered it in May 2026.",
+      "sources": [
+        "S5",
+        "S7"
+      ]
+    },
+    {
+      "date": "2026-05-29",
+      "name": "CSA research note",
+      "summary": "Cloud Security Alliance published a research note on JINX-0164 developer and CI/CD targeting.",
+      "sources": [
+        "S3"
+      ]
+    }
+  ],
+  "diamond": {
+    "adversary": "Unattributed financially motivated cluster; technique overlap with North Korea-linked UNC1069 reported but no state link established [S5][S7].",
+    "capability": "AUDIOFIX, MINIRAT, shell-script loader, fake conferencing pages, repository and npm tampering [S5][S6].",
+    "infrastructure": "Lookalike/fake conferencing and driver-store domains; VPN exit nodes reported in the imported record are not confirmed in sources gathered.",
+    "victim": "macOS-using developers and engineering teams at crypto firms; downstream npm consumers [S5][S7].",
+    "socioPolitical": "Financial crime; no state tasking established [S5][S7].",
+    "technology": "macOS developer endpoints, LinkedIn as a contact channel, npm publishing credentials, CI/CD systems that auto-resolve packages [S5][S6]."
+  },
+  "gaps": [
+    "Primary Wiz report, Hacker News and CSA pages could not be fetched (host unreachable); details rest on search-result summaries and secondary write-ups.",
+    "Wiz primary text not fetched; npm version 9.4.1 taken from SafeDep and OpenSourceMalware.",
+    "No state attribution established; relationship to UNC1069 / Sapphire Sleet limited to reported technique similarity.",
+    "Victim count, losses, and geography not found.",
+    "VPN exit node use and full domain/IOC list not verified.",
+    "No Microsoft actor name or MITRE group mapping found."
+  ],
+  "implications": {
+    "jipoe": "Analyst assessment derived from cited sources; validate before use. STEP 1: Developer workstations (macOS), source repositories, package registry accounts and CI/CD runners are key terrain; for DoD this maps to software factories and contractor developers, though sources show only crypto-sector targeting. STEP 2: The actor exploits trust in recruiters, meeting links and upstream packages rather than software vulnerabilities [S5][S6]. STEP 3: Template: LinkedIn lure, fake meeting page, shell script, AUDIOFIX, repository/commit tampering, CI/CD access, package publishing [S5][S6]. STEP 4: MLCOA is continued crypto-developer targeting for theft. MDCOA is the same tradecraft aimed at defense software developers or widely used packages to seed supply-chain access; this is analyst projection, not sourced. Candidate indicators: unexpected npm releases without matching git tags, commits under a developer's name from unusual hosts, outbound traffic to datahub[.]ink, cloud-sync[.]online, byte-io[.]us [S5][S6].",
+    "jcc2": "Analyst assessment derived from cited sources; validate before use. (1) Situational awareness: track package-integrity and registry-account alerts for mission software. (2) Authorities: developer endpoints and CI/CD often sit with contractors or program offices; clarify who may isolate or investigate. (3) Mission assurance: protect signing keys, publish tokens and pipeline secrets; require artifact-to-source verification. (4) Coordination: share IOCs through DC3/DIB channels; treat attribution to state actors as unconfirmed [S3][S5]."
+  },
+  "sources": [
+    {
+      "ref": "S3",
+      "title": "CSA research note: JINX-0164 developer targeting in CI/CD",
+      "publisher": "Cloud Security Alliance",
+      "date": "2026-05-29",
+      "url": "https://labs.cloudsecurityalliance.org/wp-content/uploads/2026/05/CSA_research_note_jinx0164_cicd_developer_targeting_20260529-csa-styled.pdf"
+    },
+    {
+      "ref": "S5",
+      "title": "JINX-0164 cryptocurrency macOS malware CI/CD (secondary coverage of Wiz report)",
+      "publisher": "Ciphers Security",
+      "date": "2026",
+      "url": "https://cipherssecurity.com/jinx-0164-cryptocurrency-macos-malware-cicd/"
+    },
+    {
+      "ref": "S6",
+      "title": "Malicious @velora-dex/sdk Delivers Go RAT via npm",
+      "publisher": "SafeDep",
+      "date": "2026",
+      "url": "https://safedep.io/malicious-velora-dex-sdk-npm-compromised-rat/"
+    },
+    {
+      "ref": "S7",
+      "title": "JINX-0164 AUDIOFIX cryptocurrency macOS malware",
+      "publisher": "Decryption Digest",
+      "date": "2026",
+      "url": "https://www.decryptiondigest.com/blog/jinx-0164-audiofix-cryptocurrency-macos-malware"
+    }
+  ],
+  "aliasesAdd": []
+}
