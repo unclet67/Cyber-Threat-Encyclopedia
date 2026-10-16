@@ -1,53 +1,97 @@
 {
   "identification": {
-    "summary": "TAG-28 is a temporary designation used by Recorded Future's Insikt Group for an activity group it assesses as China-linked and state-sponsored, tied to suspected intrusions against Bennett Coleman and Co. Ltd (The Times Group), India's UIDAI (Aadhaar) and a Madhya Pradesh Police department, disclosed in September 2021 [S1][S2][S3]. The activity used Winnti malware and a Cobalt Strike C2 server [S1][S4].",
-    "firstObserved": "Intrusion activity against BCCL observed February to August 2021; UIDAI activity observed from 10 June 2021 to at least 20 July 2021 (Insikt telemetry as relayed by secondary coverage) [S4]. Report published 2021-09-21 [S4].",
+    "summary": "TAG-28 is a temporary designation used by Recorded Future's Insikt Group for an activity group it assesses as China-linked and state-sponsored, tied to suspected intrusions against Bennett Coleman and Co. Ltd (The Times Group), India's UIDAI (Aadhaar) and a Madhya Pradesh Police department, disclosed in September 2021 [S1][S2][S3]. The activity used Winnti malware [S1][S2].",
+    "firstObserved": "Intrusion activity against BCCL reported as occurring February to August 2021 [S2]. Report published 2021-09-21 [S1].",
     "notes": "TAG-28 is a Recorded Future temporary group name, not a Microsoft name; no Microsoft mapping is stated in the sources gathered. The Winnti malware family is described by Recorded Future as shared among several Chinese state-sponsored groups, so use of Winnti does not by itself tie TAG-28 to APT41 or any other named cluster [S2][S3]."
   },
   "attribution": {
     "sponsor": "Recorded Future assesses the activity as China-linked and state-sponsored [S1][S2]. No government attribution is cited.",
     "confidence": "Recorded Future's attribution rests on Winnti malware, which it describes as exclusively shared among several Chinese state-sponsored groups [S2]. Chinese authorities have denied state-sponsored hacking, per press coverage [S2]. Confidence level wording from the primary report was not retrievable.",
-    "basis": "Insikt Group network telemetry and malware/C2 analysis (two Winnti C2 servers, one Cobalt Strike C2 server) [S1][S4]; coverage of the report [S2][S3]."
+    "basis": "Insikt Group analysis of Winnti malware use [S1]; coverage of the report [S2][S3]."
   },
   "objectives": "Recorded Future judged UIDAI was highly likely targeted because of its ownership of the Aadhaar database, and suggested the media targeting aimed at access to journalists and their sources and pre-publication content on China or its leadership [S2][S3].",
   "targeting": {
-    "sectors": ["Media", "Government (national identification authority)", "Law enforcement (state police)"],
-    "regions": ["India"],
-    "notes": "Named victims in Recorded Future's report: Bennett Coleman and Co. Ltd (The Times Group), UIDAI and a Madhya Pradesh Police department [S1][S2][S4]. BCCL's CIO reportedly said the company learned of the incident from CERT-In and classed its alerts as non-serious [S3]. Recorded Future described this as part of a wider rise in suspected China-linked targeting of Indian organizations (a 261 percent increase in 2021 versus 2020 as of early August) amid border tensions [S2][S3]."
+    "sectors": [
+      "Media",
+      "Government (national identification authority)",
+      "Law enforcement (state police)"
+    ],
+    "regions": [
+      "India"
+    ],
+    "notes": "Named victims in Recorded Future's report: Bennett Coleman and Co. Ltd (The Times Group), UIDAI and a Madhya Pradesh Police department [S1][S2]. BCCL's CIO reportedly said the company learned of the incident from CERT-In and classed its alerts as non-serious [S3]. Recorded Future described this as part of a wider rise in suspected China-linked targeting of Indian organizations (a 261 percent increase in 2021 versus 2020 as of early August) amid border tensions [S2][S3]."
   },
   "capabilities": {
-    "summary": "Winnti malware with two identified Winnti C2 servers, plus a Cobalt Strike C2 server [S4]. About 500 MB was reportedly exfiltrated from BCCL between February and August 2021, content unidentified; at UIDAI under 10 MB egressed and almost 30 MB ingressed, which Insikt suggested may indicate additional tooling was deployed [S4][S2]."
+    "summary": "Winnti malware [S1][S2]. About 500 MB was reportedly exfiltrated from BCCL between February and August 2021, content unidentified [S2]."
   },
   "campaigns": [
-    {"date": "2021-02 to 2021-08", "name": "BCCL (The Times Group) intrusion", "summary": "Four BCCL IPs were seen communicating with two Winnti C2 servers and possibly a Cobalt Strike server; roughly 500 MB was exfiltrated [S4][S2].", "sources": ["S2", "S4"]},
-    {"date": "2021-06-10 to 2021-07-20", "name": "UIDAI (Aadhaar) intrusion", "summary": "Two UIDAI-registered IPs communicated with the same suspected Cobalt Strike C2 server used against BCCL; under 10 MB egressed, almost 30 MB ingressed [S4].", "sources": ["S4"]},
-    {"date": "2021-09-21", "name": "Recorded Future public disclosure", "summary": "Insikt Group published the TAG-28 report naming BCCL, UIDAI and a Madhya Pradesh Police department as suspected victims; press coverage followed on 2021-09-23 [S1][S2][S3][S4].", "sources": ["S1", "S2", "S3", "S4"]}
+    {
+      "date": "2021-02 to 2021-08",
+      "name": "BCCL (The Times Group) intrusion",
+      "summary": "Roughly 500 MB was reportedly exfiltrated from BCCL; content unidentified [S2].",
+      "sources": [
+        "S2"
+      ]
+    },
+    {
+      "date": "2021-09-21",
+      "name": "Recorded Future public disclosure",
+      "summary": "Insikt Group published the TAG-28 report naming BCCL, UIDAI and a Madhya Pradesh Police department as suspected victims; press coverage followed on 2021-09-23 [S1][S2][S3].",
+      "sources": [
+        "S1",
+        "S2",
+        "S3"
+      ]
+    }
   ],
   "diamond": {
     "adversary": "China-linked, state-sponsored activity group tracked by Recorded Future as TAG-28 [S1][S2].",
-    "capability": "Winnti malware and Cobalt Strike [S4].",
-    "infrastructure": "Two Winnti C2 servers and one Cobalt Strike C2 server identified by Insikt; specific addresses not captured here [S4].",
+    "capability": "Winnti malware [S1][S2].",
+    "infrastructure": "Winnti C2 infrastructure; specific addresses not captured here.",
     "victim": "BCCL (The Times Group), UIDAI and a Madhya Pradesh Police department in India [S1][S2].",
     "socioPolitical": "Context of China-India border tensions and rising China-linked targeting of India per Recorded Future [S2][S3].",
     "technology": "Windows enterprise networks of media and government organizations; initial access vector not stated in sources gathered."
   },
   "gaps": [
-    "Primary Recorded Future report (blog and PDF) could not be fetched in this environment; details come from search snippets and press coverage of it [S1][S2][S4].",
+    "Primary Recorded Future report could not be fetched in this environment; details come from search snippets and press coverage [S1][S2].",
     "Initial access vector, dwell-time details, and exact C2 indicators are not captured.",
     "Reporting on the Madhya Pradesh Police element comes from press summaries; the police department's details were not verified.",
     "Relationship to other Winnti-using clusters (e.g. APT41) is not stated; no Microsoft name or MITRE group mapping found.",
     "No activity after September 2021 was found."
   ],
   "implications": {
-    "jipoe": "Analyst assessment derived from cited sources; validate before use. STEP 1: Key terrain is identity or citizen-data repositories, media organizations holding source-protection and pre-publication material, and internet-facing hosts that reach C2. STEP 2: The actor used shared Winnti malware plus commodity Cobalt Strike, which complicates attribution and favors behavior-based detection [S2][S4]. STEP 3: Template is implant with Winnti and Cobalt Strike beaconing, followed by slow exfiltration of modest data volumes (about 500 MB over months at BCCL) [S4]. STEP 4: MLCOA is continued collection against Indian government and media targets tied to China-India tensions [S2][S3]. MDCOA is use of the same access against allied government or media entities to gain political or journalist-source intelligence. Candidate indicators: beaconing to known Winnti/Cobalt Strike C2, low-volume sustained egress, and ingress of tooling-sized transfers [S4].",
-    "jcc2": "Analyst assessment derived from cited sources; validate before use. (1) Situational awareness: track vendor reporting on Winnti-family and Cobalt Strike C2 and ingest published indicators. (2) Authorities: this actor targeted non-DoD civil entities; defensive action on partner networks depends on host-nation and CERT coordination, as BCCL learned of its incident from CERT-In [S3]. (3) Mission assurance: protect identity/personnel databases and press-facing partner systems. (4) Coordination: share indicators with partner CERTs and allied cyber commands."
+    "jipoe": "Analyst assessment derived from cited sources; validate before use. STEP 1: Key terrain is identity or citizen-data repositories, media organizations holding source-protection and pre-publication material, and internet-facing hosts that reach C2. STEP 2: The actor used shared Winnti malware, which complicates attribution and favors behavior-based detection [S2]. STEP 3: Template is Winnti implant followed by slow exfiltration of modest data volumes (about 500 MB over months at BCCL) [S2]. STEP 4: MLCOA is continued collection against Indian government and media targets tied to China-India tensions [S2][S3]. MDCOA is use of the same access against allied government or media entities to gain political or journalist-source intelligence. Candidate indicators: beaconing to known Winnti C2 and low-volume sustained egress.",
+    "jcc2": "Analyst assessment derived from cited sources; validate before use. (1) Situational awareness: track vendor reporting on Winnti-family C2 and ingest published indicators. (2) Authorities: this actor targeted non-DoD civil entities; defensive action on partner networks depends on host-nation and CERT coordination, as BCCL learned of its incident from CERT-In [S3]. (3) Mission assurance: protect identity/personnel databases and press-facing partner systems. (4) Coordination: share indicators with partner CERTs and allied cyber commands."
   },
   "sources": [
-    {"ref": "S1", "title": "China-Linked Group TAG-28 Targets India's 'The Times Group' and UIDAI (Aadhaar) Government Agency With Winnti Malware", "publisher": "Recorded Future (Insikt Group)", "date": "2021-09-21", "url": "https://www.recordedfuture.com/blog/china-linked-tag-28-targets-indias-the-times-group"},
-    {"ref": "S2", "title": "Indian government and media company 'targeted by Chinese hackers' (press coverage of Recorded Future report)", "publisher": "Yahoo News", "date": "2021-09-23", "url": "https://news.yahoo.com/indian-government-media-company-targeted-173032277.html"},
-    {"ref": "S3", "title": "Report: Suspected Chinese hack targets Indian media, govt (press coverage of Recorded Future report)", "publisher": "SecurityWeek", "date": "2021-09-23", "url": "https://www.securityweek.com/report-suspected-chinese-hack-targets-indian-media-govt/"},
-    {"ref": "S4", "title": "TAG-28 (threat actor entry summarizing Insikt report cta-2021-0921)", "publisher": "Malpedia (Fraunhofer FKIE)", "date": "2021-09-21", "url": "https://malpedia.caad.fkie.fraunhofer.de/actor/tag-28"},
-    {"ref": "S5", "title": "TAG-28 threat actor card", "publisher": "ETDA Thailand", "date": "2021-09", "url": "https://apt.etda.or.th/cgi-bin/showcard.cgi?g=TAG-28"}
+    {
+      "ref": "S1",
+      "title": "China-Linked Group TAG-28 Targets India's 'The Times Group' and UIDAI (Aadhaar) Government Agency With Winnti Malware",
+      "publisher": "Recorded Future (Insikt Group)",
+      "date": "2021-09-21",
+      "url": "https://www.recordedfuture.com/blog/china-linked-tag-28-targets-indias-the-times-group"
+    },
+    {
+      "ref": "S2",
+      "title": "Indian government and media company 'targeted by Chinese hackers' (press coverage of Recorded Future report)",
+      "publisher": "Yahoo News",
+      "date": "2021-09-23",
+      "url": "https://news.yahoo.com/indian-government-media-company-targeted-173032277.html"
+    },
+    {
+      "ref": "S3",
+      "title": "Report: Suspected Chinese hack targets Indian media, govt (press coverage of Recorded Future report)",
+      "publisher": "SecurityWeek",
+      "date": "2021-09-23",
+      "url": "https://www.securityweek.com/report-suspected-chinese-hack-targets-indian-media-govt/"
+    },
+    {
+      "ref": "S5",
+      "title": "TAG-28 threat actor card",
+      "publisher": "ETDA Thailand",
+      "date": "2021-09",
+      "url": "https://apt.etda.or.th/cgi-bin/showcard.cgi?g=TAG-28"
+    }
   ],
   "aliasesAdd": []
 }
