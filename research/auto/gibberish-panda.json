@@ -1,0 +1,69 @@
+{
+  "identification": {
+    "summary": "CrowdStrike name that appears with Electric Panda and Test Panda in Malpedia's entry for the CrowdStrike CrowdCasts Monthly session 'You Have an Adversary Problem' (dated 16 October 2013 on Malpedia) [S2]. Malpedia lists Electric Panda, Gibberish Panda and Test Panda as tags of one actor entry and notes no associated malware families [S2]. No public report describing this actor's activity was found.",
+    "firstObserved": "",
+    "notes": "The slide deck was not opened; the deck's content was not verified, and search results did not confirm it lists these names [S1][S2]. Malpedia's grouping of three names under one entry is a catalog statement, not a vendor-confirmed equivalence."
+  },
+  "attribution": {
+    "sponsor": "",
+    "confidence": "",
+    "basis": "No sponsor, tasking or confidence statement was found. A China link is not confirmed by the cited sources (country field comes from the imported MISP record)."
+  },
+  "objectives": "",
+  "targeting": {
+    "sectors": [],
+    "regions": [],
+    "notes": ""
+  },
+  "capabilities": {
+    "summary": ""
+  },
+  "campaigns": [],
+  "diamond": {
+    "adversary": "Actor name used by CrowdStrike; listed on Malpedia [S2].",
+    "capability": "",
+    "infrastructure": "",
+    "victim": "",
+    "socioPolitical": "",
+    "technology": ""
+  },
+  "gaps": [
+    "No public CrowdStrike profile, report or campaign write-up for GIBBERISH PANDA was found; the name appears only in a 2013 CrowdCasts session listing and catalog entries.",
+    "The slideshare deck [S1] and Malpedia entry [S2] could not be fetched; claims about them rest on search-result summaries and must be verified against the primary documents.",
+    "Malpedia dates the session 16 October 2013; no official event page or recording was found to confirm.",
+    "Whether GIBBERISH PANDA is the same cluster as TEST PANDA or ELECTRIC PANDA, as Malpedia's synonym list implies, is unverified.",
+    "Microsoft name mapping, MITRE group ID, sponsor, targets, tooling and timeline are all unknown; no Microsoft mapping was checked in this pass.",
+    "The existing record's MISP Galaxy origin was not reviewed for additional references.",
+    "Whether the deck lists the group as China-based is unverified."
+  ],
+  "implications": {
+    "jipoe": "",
+    "jcc2": ""
+  },
+  "sources": [
+    {
+      "ref": "S1",
+      "title": "You Have an Adversary Problem (CrowdCasts Monthly slide deck, via search-result description)",
+      "publisher": "CrowdStrike (SlideShare)",
+      "date": "2013",
+      "url": "https://www.slideshare.net/CrowdStrike/crowd-casts-monthly-you-have-an-adversary-problem"
+    },
+    {
+      "ref": "S2",
+      "title": "Test Panda actor entry (tags Electric Panda, Gibberish Panda; references CrowdCasts session)",
+      "publisher": "Malpedia (Fraunhofer FKIE)",
+      "date": "2013-10-16",
+      "url": "https://malpedia.caad.fkie.fraunhofer.de/actor/test_panda"
+    }
+  ],
+  "aliasesAdd": [
+    {
+      "name": "TEST PANDA",
+      "vendor": "CrowdStrike/Malpedia synonym [S2]"
+    },
+    {
+      "name": "ELECTRIC PANDA",
+      "vendor": "CrowdStrike/Malpedia synonym [S2]"
+    }
+  ]
+}

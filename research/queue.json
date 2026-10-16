@@ -3,46 +3,6 @@
  "verify": [],
  "research": [
   {
-   "id": "elusive-comet",
-   "tier": "T3"
-  },
-  {
-   "id": "evilweb",
-   "tier": "T3"
-  },
-  {
-   "id": "femwar02",
-   "tier": "T3"
-  },
-  {
-   "id": "fin1",
-   "tier": "T3"
-  },
-  {
-   "id": "flyingyeti",
-   "tier": "T3"
-  },
-  {
-   "id": "foxy-panda",
-   "tier": "T3"
-  },
-  {
-   "id": "gcman",
-   "tier": "T3"
-  },
-  {
-   "id": "ghost-stadium",
-   "tier": "T3"
-  },
-  {
-   "id": "ghostredirector",
-   "tier": "T3"
-  },
-  {
-   "id": "gibberish-panda",
-   "tier": "T3"
-  },
-  {
    "id": "goblin-panda",
    "tier": "T3"
   },
@@ -790,13 +750,21 @@
   "educated-manticore",
   "elderwood",
   "electric-panda",
+  "elusive-comet",
   "emerald-sleet",
+  "evilweb",
+  "femwar02",
   "ferocious-kitten",
+  "fin1",
   "fin13",
   "flax-typhoon",
+  "flyingyeti",
   "forest-blizzard",
   "frontier-blizzard",
+  "gcman",
   "ghost-blizzard",
+  "ghost-stadium",
+  "ghostredirector",
   "gingham-typhoon",
   "granite-typhoon",
   "gray-sandstorm",
@@ -931,6 +899,11 @@
   "earth-wendigo",
   "educated-manticore",
   "electric-panda",
+  "elusive-comet",
+  "evilweb",
+  "femwar02",
+  "fin1",
+  "gcman",
   "lilac-typhoon",
   "mofang",
   "obsidian-sandstorm",
@@ -1025,6 +998,8 @@
   "boulder-bear",
   "bronze-vapor",
   "eloquent-panda",
+  "foxy-panda",
+  "gibberish-panda",
   "storm-2470"
  ]
 }

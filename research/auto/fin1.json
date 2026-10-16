@@ -1,0 +1,115 @@
+{
+  "identification": {
+    "summary": "FIN1 is a FireEye designation for a financially motivated threat group first identified during an investigation at a financial-industry organization, where the group's activity dated back several years [S1]. The group deployed numerous malicious files and utilities that its developers referred to as the 'Nemesis' malware ecosystem, and used them to access victim environments and steal cardholder data [S1]. Coverage of the research describes it as the longest-running cybercrime group FireEye tracked [S5].",
+    "firstObserved": "Coverage of FireEye's December 2015 report states FireEye observed FIN1 activity dating to at least 2010 [S4][S5].",
+    "notes": "Name is FireEye's (now Mandiant); no Microsoft weather-name mapping was found in the sources gathered, and no cited source maps FIN1 to another vendor's cluster. Do not merge with FIN7/Carbanak or other FIN-numbered groups; none of the gathered sources link them. The original FireEye blog could not be opened (host unreachable from the research environment), so statements rely on the existing record text and secondary coverage of that report [S1]."
+  },
+  "attribution": {
+    "sponsor": "No state sponsor identified. FireEye characterized FIN1 as financially motivated (criminal) [S1].",
+    "confidence": "FireEye assessed that FIN1 may be located in Russia or a Russian-speaking country; this is a suspicion, not a confirmed attribution [S1][S5].",
+    "basis": "Language settings in many of the group's custom tools [S1][S5]."
+  },
+  "objectives": "Theft of data that is easily monetized from financial-sector victims, including payment card numbers, track data, ATM PIN numbers, and cardholder names and addresses [S1].",
+  "targeting": {
+    "sectors": [
+      "Banks",
+      "Credit unions",
+      "ATM operations",
+      "Financial transaction processing",
+      "Financial business services"
+    ],
+    "regions": [],
+    "notes": "Sector list from FireEye's description of the group [S1]. The known investigation was at a single unnamed financial-industry organization [S1][S5]. Victim geography is not stated in the sources gathered."
+  },
+  "capabilities": {
+    "summary": "Operated a custom malware ecosystem called Nemesis, whose backdoors support multiple network protocols and C2 channels and offer file transfer, screen capture, keystroke logging, process injection and task scheduling [S4][S3]. In early 2015 the group added a utility, named BOOTRASH by FireEye, that modifies the Volume Boot Record so Nemesis loads before Windows; it builds a virtual file system in unallocated space between partitions, so components sit outside the Windows file system, evade OS integrity checks and antivirus scanning, and survive OS reinstallation [S2][S4]. FireEye advised a complete physical wipe of systems compromised with the bootkit [S2][S4]. FireEye noted that bootkits are rarely seen among targeted threat actors [S5]."
+  },
+  "campaigns": [
+    {
+      "date": "2010",
+      "name": "Earliest observed FIN1 activity",
+      "summary": "FireEye reportedly observed FIN1 activity dating to at least 2010 [S4][S5].",
+      "sources": [
+        "S4",
+        "S5"
+      ]
+    },
+    {
+      "date": "2015",
+      "name": "Nemesis updated with BOOTRASH bootkit",
+      "summary": "In early 2015 FIN1 updated Nemesis with a utility that alters the Volume Boot Record so the malware loads before Windows [S2][S4].",
+      "sources": [
+        "S2",
+        "S4"
+      ]
+    },
+    {
+      "date": "2015-12",
+      "name": "FireEye publishes FIN1 / BOOTRASH research",
+      "summary": "FireEye reports a multi-year intrusion at a financial-industry organization in which FIN1 used Nemesis to steal cardholder data; trade press coverage follows the same month [S1][S2][S3][S4].",
+      "sources": [
+        "S1",
+        "S2",
+        "S3",
+        "S4"
+      ]
+    }
+  ],
+  "diamond": {
+    "adversary": "Financially motivated group, suspected Russia or Russian-speaking country based on tool language settings [S1][S5].",
+    "capability": "Nemesis backdoor ecosystem and BOOTRASH Volume Boot Record bootkit [S1][S2][S4].",
+    "infrastructure": "",
+    "victim": "Banks, credit unions, ATM operators, transaction processors and financial business services; one unnamed financial organization in the known case [S1][S5].",
+    "socioPolitical": "Cybercrime for profit: monetizable card and ATM data [S1].",
+    "technology": "Windows hosts with bootable disk structures (VBR, unallocated inter-partition space) and card-data environments at financial institutions [S2][S4][S1]."
+  },
+  "gaps": [
+    "FireEye's original blog post could not be opened; all details beyond the existing record text come from secondary press coverage of it [S1].",
+    "Initial access vector, C2 infrastructure, and victim count/geography are not stated in the sources gathered.",
+    "No activity after 2015 was found; whether FIN1 is still active, was renamed, or merged into another cluster is unknown.",
+    "No alias or MITRE ATT&CK group mapping was found in the sources gathered; the existing record has no MITRE group id.",
+    "Dates for several press articles are given only to month (December 2015) based on reporting of FireEye's release; verify exact publication dates."
+  ],
+  "implications": {
+    "jipoe": "Analyst assessment derived from cited sources; validate before use. STEP 1: Key terrain is financial-sector card-processing and ATM-management networks, and the boot sectors of hosts within them [S1][S2]. STEP 2: Pre-OS persistence defeats OS integrity checks and AV and survives reimaging, so standard remediation may leave the adversary in place [S2][S4]. STEP 3: Template is long-dwell access, Nemesis backdoors for collection (keylogging, screenshots, file transfer), then cardholder data theft [S1][S4]. STEP 4: MLCOA is continued theft of card and ATM data from financial institutions. MDCOA, an extrapolation not stated in sources, is reuse of boot-level persistence against a defense-contractor or military financial-services provider. Candidate indicators: unexpected modification of the Volume Boot Record, data in unallocated space between partitions, and reinfection after OS reimage [S2][S4].",
+    "jcc2": "Analyst assessment derived from cited sources; validate before use. (1) Situational awareness: criminal, not state-directed, per FireEye, so treat as a DIB/financial-services risk to personnel pay, ATM and card systems rather than a mission-system threat [S1]. (2) Authorities: remediation requiring full physical wipe has operational and legal implications for owned versus commercial systems [S2]. (3) Mission assurance: plan for rebuild from known-good media instead of reimaging in place [S2][S4]. (4) Coordination: share indicators with financial-sector partners and law enforcement channels; no source here documents specific DoD involvement."
+  },
+  "sources": [
+    {
+      "ref": "S1",
+      "title": "FIN1 Targets Boot Record (FireEye blog; URL from record, not opened, content known via record text and press coverage)",
+      "publisher": "FireEye",
+      "date": "2015-12",
+      "url": "https://www.fireeye.com/blog/threat-research/2015/12/fin1-targets-boot-record.html"
+    },
+    {
+      "ref": "S2",
+      "title": "Nemesis financial malware kit gains bootkit capabilities, extra stealth (reporting FireEye research)",
+      "publisher": "Help Net Security",
+      "date": "2015-12-08",
+      "url": "https://www.helpnetsecurity.com/2015/12/08/nemesis-financial-malware-kit-gains-bootkit-capabilities-extra-stealth/"
+    },
+    {
+      "ref": "S3",
+      "title": "Nemesis banking malware (reporting FireEye research)",
+      "publisher": "The Hacker News",
+      "date": "2015-12",
+      "url": "https://thehackernews.com/2015/12/nemesis-banking-malware.html"
+    },
+    {
+      "ref": "S4",
+      "title": "Russian hackers using bootkit to steal payment data (reporting FireEye research)",
+      "publisher": "SecurityWeek",
+      "date": "2015-12",
+      "url": "https://www.securityweek.com/russian-hackers-using-bootkit-steal-payment-data/amp/"
+    },
+    {
+      "ref": "S5",
+      "title": "Bootrash Uses Volume Boot Record to Exploit Financial Services (reporting FireEye research)",
+      "publisher": "eWEEK",
+      "date": "2015-12",
+      "url": "https://www.eweek.com/de/security/bootrash-uses-volume-boot-record-to-exploit-financial-services/"
+    }
+  ],
+  "aliasesAdd": []
+}

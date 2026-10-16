@@ -1,0 +1,48 @@
+{
+  "identification": {
+    "summary": "FOXY PANDA is a CrowdStrike-style adversary name that Malpedia describes as a group targeting telecommunication and technology organizations [S1][S2].",
+    "firstObserved": "",
+    "notes": "Malpedia lists POISONUS PANDA as a synonym and cites a 2016 CrowdStrike presentation, 'Detecting and Responding: Pandas and Bears', as its reference [S1]. Do not confuse with LIMINAL PANDA or PHANTOM PANDA, which are separate CrowdStrike telecom-focused clusters."
+  },
+  "attribution": {
+    "sponsor": "",
+    "confidence": "",
+    "basis": "Strobes tags the actor as China-linked (CN) [S2]. No source gathered states a sponsoring agency or an attribution confidence level."
+  },
+  "objectives": "",
+  "targeting": {
+    "sectors": ["Telecommunications", "Technology"],
+    "regions": [],
+    "notes": "Sector focus only, as stated by Malpedia and Strobes [S1][S2]. No victim regions or named victims found."
+  },
+  "capabilities": {
+    "summary": ""
+  },
+  "campaigns": [],
+  "diamond": {
+    "adversary": "China-linked actor per Strobes tag; no operator or organization identified [S2].",
+    "capability": "",
+    "infrastructure": "",
+    "victim": "Telecommunication and technology organizations [S1][S2].",
+    "socioPolitical": "",
+    "technology": ""
+  },
+  "gaps": [
+    "No public CrowdStrike adversary profile for FOXY PANDA was found; the only reference is a 2016 presentation I could not open.",
+    "Malpedia and Strobes pages could not be fetched (host resolution failed); content relies on search-result summaries only.",
+    "The SANS Summit PDF listed in the existing record was not seen in search results and was not verified.",
+    "Tooling, campaigns, victims, infrastructure, first-observed date, MITRE group ID and Microsoft mapping are all unknown.",
+    "Relationship to POISONUS PANDA, and to any Microsoft-named actor, is unverified."
+  ],
+  "implications": {
+    "jipoe": "",
+    "jcc2": ""
+  },
+  "sources": [
+    {"ref": "S1", "title": "FOXY PANDA (Malpedia actor entry, via search summary)", "publisher": "Fraunhofer FKIE Malpedia", "date": "2026-10", "url": "https://malpedia.caad.fkie.fraunhofer.de/actor/foxy_panda"},
+    {"ref": "S2", "title": "FOXY PANDA threat actor profile (via search summary)", "publisher": "Strobes VI", "date": "2026-10", "url": "https://strobes.co/vi/threat-actors/FOXY%20PANDA"}
+  ],
+  "aliasesAdd": [
+    {"name": "POISONUS PANDA", "vendor": "Malpedia"}
+  ]
+}

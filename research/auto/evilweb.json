@@ -1,0 +1,105 @@
+{
+ "identification": {
+  "summary": "Check Point describes EvilWeb as a pro-Russian hacktivist group created in March 2024 that targeted American and European entities in support of the Russian narrative, using a hack-and-leak method in parallel with traditional DDoS attacks [S1]. It claimed to have obtained data from various high-profile American organizations [S1]. Its Telegram channel had 1,146 members as of 2024-09-03 [S1].",
+  "firstObserved": "2024-03",
+  "notes": "Do not confuse with Evil Corp (Indrik Spider), a separate financially motivated Russian cybercrime group; the name similarity is coincidental in the sources reviewed. A Russian-language wiki entry (cyclowiki) names a leader 'Levis'; this was not corroborated and is not used. Malpedia lists the group under a Russia country tag [S5]."
+ },
+ "attribution": {
+  "sponsor": "",
+  "confidence": "",
+  "basis": "Check Point characterizes the group only as 'pro-Russian' [S1]; Malpedia tags it Russia [S5]. No reviewed source ties it to a Russian government organization, and none is asserted here."
+ },
+ "objectives": "Check Point states the group acted in support of the Russian narrative [S1]. During #FreeDurov it joined a campaign demanding release of Telegram founder Pavel Durov after his arrest in France [S1][S2].",
+ "targeting": {
+  "sectors": [],
+  "regions": [
+   "United States",
+   "Europe",
+   "France"
+  ],
+  "notes": "Check Point says EvilWeb targeted various American and European entities and claimed data from high-profile American organizations [S1]. The #FreeDurov campaign as a whole targeted more than 50 French targets, primarily with DDoS [S1]; specific sectors hit by EvilWeb itself could not be confirmed from accessible text."
+ },
+ "capabilities": {
+  "summary": "The group operates a hack-and-leak model alongside conventional DDoS attacks [S1]. It publicizes claims via a Telegram channel [S1]. Strobes notes no exploited CVEs attributed to it (secondary, undated; not cited as fact). Claimed data thefts were not independently verified in the sources reviewed."
+ },
+ "campaigns": [
+  {
+   "date": "2024-03",
+   "name": "Group creation",
+   "summary": "EvilWeb was created in March 2024 and began targeting American and European entities using hack-and-leak and DDoS [S1].",
+   "sources": [
+    "S1"
+   ]
+  },
+  {
+   "date": "2024-08-25",
+   "name": "#FreeDurov / #OpDurov participation",
+   "summary": "After Pavel Durov's arrest in France on 2024-08-24, hacktivist groups launched #FreeDurov; EvilWeb announced participation on 2024-08-25 and began DDoS and hacking attacks [S1]. Dozens of groups collaborated against more than 50 French targets, mainly via DDoS [S1]. SC Media reported the observed attacks appeared limited to DDoS disruption rather than exfiltration or ransomware [S3]; Cyber Daily reported disruption appeared largely minimal [S2].",
+   "sources": [
+    "S1",
+    "S2",
+    "S3"
+   ]
+  },
+  {
+   "date": "2024-09-03",
+   "name": "Telegram channel size snapshot",
+   "summary": "EvilWeb's Telegram channel had 1,146 members [S1].",
+   "sources": [
+    "S1"
+   ]
+  }
+ ],
+ "diamond": {
+  "adversary": "Pro-Russian hacktivist collective; no state sponsor identified in reviewed sources [S1][S5].",
+  "capability": "Hack-and-leak plus DDoS [S1].",
+  "infrastructure": "Telegram channel for announcements and claims [S1]; technical infrastructure not documented in reviewed sources.",
+  "victim": "American and European entities; French targets during #FreeDurov [S1].",
+  "socioPolitical": "Support of Russian narrative; opportunistic joining of the #FreeDurov campaign [S1].",
+  "technology": "DDoS tooling and data-theft methods not specified in reviewed sources."
+ },
+ "gaps": [
+  "Check Point primary article and Malpedia page could not be fetched (host unreachable); details come from search-result excerpts.",
+  "Specific victims, leaked datasets, and sectors for EvilWeb are not identified; data-theft claims unverified.",
+  "No evidence found of activity after September 2024.",
+  "No state link, sponsor, or attribution assessment found.",
+  "No technical indicators or tooling documented.",
+  "No MITRE group ID or Microsoft name.",
+  "Cyble coverage not read in full; Cipher report URL could not be verified and was removed."
+ ],
+ "implications": {
+  "jipoe": "Analyst assessment derived from cited sources; validate before use. Environment: EvilWeb is a low-sophistication, publicity-driven hacktivist actor aligned with Russian narratives that targets US and European entities [S1]. MLCOA: opportunistic DDoS and claimed hack-and-leak against Western public-facing sites when geopolitical triggers arise, as with #FreeDurov, which saw 50+ French targets hit mainly by DDoS [S1], with limited disruption [S2][S3]. MDCOA: leak of genuine data from a US organization amplified by pro-Russian channels [S1]. Candidate indicators: Telegram announcements joining named operations (#Free... hashtags), target lists, and claimed leak posts [S1]. Evidence is thin; reassess if new reporting emerges.",
+  "jcc2": "Analyst assessment derived from cited sources; validate before use. Situational awareness: monitor open-source Telegram claims by hacktivist groups, noting claims can be exaggerated and impact is often minimal [S2][S3]. Authorities: monitoring public channels is open-source collection; any defensive response to DDoS on civilian sites follows owner/operator and national cyber authorities. Mission assurance: ensure public-facing DoD web services have DDoS mitigation and verify leak claims before attributing to compromise. Coordination: share indicators with sector and law-enforcement partners; no sourced basis for further specifics."
+ },
+ "sources": [
+  {
+   "ref": "S1",
+   "title": "Hacktivists call for release of Telegram founder with #FreeDurov DDoS campaign",
+   "publisher": "Check Point Research",
+   "date": "2024-09",
+   "url": "https://blog.checkpoint.com/?p=246510"
+  },
+  {
+   "ref": "S2",
+   "title": "Russian hacktivists target French websites in the wake of Telegram founder's arrest",
+   "publisher": "Cyber Daily",
+   "date": "2024-08",
+   "url": "https://cyberdaily.au/security/11012-russian-hacktivists-target-french-websites-in-the-wake-of-telegram-founder-s-arrest"
+  },
+  {
+   "ref": "S3",
+   "title": "Arrest of Telegram CEO sparks cyberattacks against French websites",
+   "publisher": "SC Media",
+   "date": "2024-08",
+   "url": "https://www.scworld.com/brief/arrest-of-telegram-ceo-sparks-cyberattacks-against-french-websites"
+  },
+  {
+   "ref": "S5",
+   "title": "EvilWeb (actor entry; MISP galaxy addition Nov 2024)",
+   "publisher": "Malpedia / MISP",
+   "date": "2024-11",
+   "url": "https://malpedia.caad.fkie.fraunhofer.de/actor/evilweb"
+  }
+ ],
+ "aliasesAdd": []
+}

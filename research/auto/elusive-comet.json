@@ -1,0 +1,139 @@
+{
+ "identification": {
+  "summary": "ELUSIVE COMET is a name used by the Security Alliance (SEAL) for a threat actor that lures cryptocurrency professionals into fake interviews or meetings on Zoom and then gets them to grant remote control of their computer, enabling malware installation and wallet theft [S1][S2][S4].",
+  "firstObserved": "2025-04",
+  "notes": "The earliest dated reporting found is April 2025 (Trail of Bits post of 2025-04-17) [S1]; SEAL's own report date was not retrieved and earlier activity may exist. Vendor-style name; no Microsoft name or MITRE group ID was found in the sources consulted."
+ },
+ "attribution": {
+  "sponsor": "",
+  "confidence": "",
+  "basis": "Trail of Bits, as relayed by secondary reporting, linked the methods to the Bybit heist of February 2025, which public reporting attributes to Lazarus (North Korea) [S1][S6]. Other reporting says the campaign resembles activity previously associated with Lazarus but that attribution is unconfirmed [S7]. No government attribution of ELUSIVE COMET itself was found."
+ },
+ "objectives": "Financial gain: theft of cryptocurrency from individuals and executives, for example more than $100,000 drained from the wallets of Emblem Vault's CEO [S4][S8]. Reporting attributes millions of dollars in losses to the group [S8].",
+ "targeting": {
+  "sectors": [
+   "Cryptocurrency / digital assets",
+   "Venture capital and crypto media (as lure personas)",
+   "Cybersecurity vendors (Trail of Bits CEO targeted)"
+  ],
+  "regions": [],
+  "notes": "Known targets named in sources are the Trail of Bits CEO (fake 'Bloomberg Crypto' interview request) and the Emblem Vault CEO [S1][S4]. Geographic scope was not stated in the sources consulted."
+ },
+ "capabilities": {
+  "summary": "Social engineering rather than technical exploitation: operators approach targets on X, use Calendly links and Gmail addresses, join Zoom calls under the display name 'Zoom' so the remote-control request looks like a native system prompt, and exploit users habituated to clicking Approve [S1][S2][S9]. In the Emblem Vault case the victim was tricked into allowing a malware install; the payload was reported as GOOPDATE, which gave full device control and exposed credentials and wallets [S4][S10]. The attacker also took over the victim's X account to message contacts with the same scam [S10]. Zoom permits guests to request remote control by default, so success depends on the victim approving [S11]."
+ },
+ "campaigns": [
+  {
+   "date": "2025-04",
+   "name": "Fake 'Bloomberg Crypto' interview lure against Trail of Bits CEO",
+   "summary": "Trail of Bits CEO Dan Guido received an interview request appearing to come from 'Bloomberg Crypto' via X, using unofficial Calendly links and Gmail addresses; Trail of Bits identified it as ELUSIVE COMET activity and published mitigations on 2025-04-17 (PPPC profiles denying Zoom accessibility permission, a TCC monitoring script) [S1][S2].",
+   "sources": [
+    "S1",
+    "S2"
+   ]
+  },
+  {
+   "date": "2025-04",
+   "name": "Emblem Vault CEO compromise",
+   "summary": "Emblem Vault CEO Jake Gallen reported losing more than $100,000 in Bitcoin and Ether after a Zoom interview with an X persona posing as a crypto mining founder led to a malware install [S4][S10].",
+   "sources": [
+    "S4",
+    "S10"
+   ]
+  }
+ ],
+ "diamond": {
+  "adversary": "Unnamed operators tracked by SEAL as ELUSIVE COMET; sponsorship and nationality not confirmed in sources consulted; reported Lazarus similarities unconfirmed [S1][S7].",
+  "capability": "Zoom remote-control abuse via social engineering; malware reported as GOOPDATE; account takeover on X [S1][S10].",
+  "infrastructure": "Attacker X accounts, Gmail addresses, Calendly links and Zoom meeting URLs [S1].",
+  "victim": "Crypto executives and security-vendor leadership, e.g. Trail of Bits CEO and Emblem Vault CEO [S1][S4].",
+  "socioPolitical": "",
+  "technology": "Zoom remote-control feature (default allows guest requests), macOS accessibility permissions, Calendly, X and Gmail [S1][S11]."
+ },
+ "gaps": [
+  "Could not open the primary Trail of Bits post, SEAL report, or BleepingComputer/Ampcus pages (host unreachable in this environment); facts rely on search-result summaries of secondary coverage.",
+  "SEAL's original publication date and indicator set were not retrieved.",
+  "No confirmed sponsor; the Bybit/Lazarus link is a similarity of methods per Trail of Bits as relayed by press, not shared infrastructure evidence found here. The record's country 'KP' (MISP Galaxy import) was not independently confirmed.",
+  "File names such as Comb_Setup.exe and version_8.ocx appeared in one search summary (Ampcus) but could not be verified.",
+  "Activity after April 2025 was not found; current status unknown.",
+  "Whether the Trail of Bits post covers DMARC/SPF/DKIM (as the existing summary states) was not verified.",
+  "Removed claim of an Aureon Capital / Aureon Press / OnChain Podcast front linked by SEAL: searches did not confirm it against any cited source."
+ ],
+ "implications": {
+  "jipoe": "",
+  "jcc2": ""
+ },
+ "sources": [
+  {
+   "ref": "S1",
+   "title": "Mitigating ELUSIVE COMET Zoom remote control attacks",
+   "publisher": "Trail of Bits",
+   "date": "2025-04-17",
+   "url": "https://blog.trailofbits.com/2025/04/17/mitigating-elusive-comet-zoom-remote-control-attacks/"
+  },
+  {
+   "ref": "S2",
+   "title": "Zoom's remote control feature exploited in ELUSIVE COMET attacks (reporting Trail of Bits/SEAL)",
+   "publisher": "CyberInsider",
+   "date": "2025-04",
+   "url": "https://cyberinsider.com/zooms-remote-control-feature-exploited-in-elusive-comet-attacks/"
+  },
+  {
+   "ref": "S4",
+   "title": "Crypto exec warns of 'ELUSIVE COMET' threat after losing 75% of assets",
+   "publisher": "Cointelegraph (via TradingView)",
+   "date": "2025-04",
+   "url": "https://ru.tradingview.com/news/cointelegraph%3Ad34191998094b%3A0-crypto-exec-warns-of-elusive-comet-threat-after-losing-75-of-assets"
+  },
+  {
+   "ref": "S5",
+   "title": "The Zoom attack you didn't see coming (reporting SEAL)",
+   "publisher": "Help Net Security",
+   "date": "2025-04",
+   "url": "https://helpnetsecurity.com/?p=328347"
+  },
+  {
+   "ref": "S6",
+   "title": "North Korea's Lazarus Group Behind Bybit's $1.4 Billion Ethereum Hack: Arkham",
+   "publisher": "Decrypt",
+   "date": "2025-02",
+   "url": "https://decrypt.co/307304?amp=1"
+  },
+  {
+   "ref": "S7",
+   "title": "North Korean cryptocurrency thieves caught hijacking Zoom 'remote control' feature (reporting SecurityWeek)",
+   "publisher": "ThreatBeat",
+   "date": "2025-04",
+   "url": "https://threatbeat.com/north-korean-cryptocurrency-thieves-caught-hijacking-zoom-remote-control-feature"
+  },
+  {
+   "ref": "S8",
+   "title": "Hackers exploit Zoom to steal $100,000 from Emblem Vault CEO",
+   "publisher": "Forklog",
+   "date": "2025-04",
+   "url": "https://forklog.com/en/news/hackers-exploit-zoom-to-steal-100000-from-emblem-vault-ceo"
+  },
+  {
+   "ref": "S9",
+   "title": "Risky Bulletin: Zoom has a remote control feature and crypto thieves are abusing it",
+   "publisher": "Risky Business Media",
+   "date": "2025-04-21",
+   "url": "https://news.risky.biz/risky-bulletin-zoom-has-a-remote-control-feature-and-crypto-thieves-are-abusing-it"
+  },
+  {
+   "ref": "S10",
+   "title": "Crypto CEO Loses $100K in Zoom Call Hack by 'ELUSIVE COMET'",
+   "publisher": "Coinfomania",
+   "date": "2025-04",
+   "url": "https://coinfomania.com/crypto-ceo-loses-100k-in-zoom-call-hack-by-elusive-comet/"
+  },
+  {
+   "ref": "S11",
+   "title": "Crypto exec warns of 'ELUSIVE COMET' threat after losing 75% of assets (RSS mirror of Cointelegraph)",
+   "publisher": "Cointelegraph (mirror)",
+   "date": "2025-04",
+   "url": "https://rss.boorghani.com/?p=300445"
+  }
+ ],
+ "aliasesAdd": []
+}
