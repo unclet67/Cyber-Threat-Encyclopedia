@@ -1,9 +1,6 @@
 {
  "note": "Research queue for the automatic wave runner. Waves take items from the front; finished ids move to 'done'. Scope limited to CN/RU/IR/KP on 2026-10-15 at the user's request; non-state actors moved to 'deferred'.",
- "verify": [
-  "tag-112",
-  "tag-28"
- ],
+ "verify": [],
  "research": [
   {
    "id": "tag-56",
@@ -557,6 +554,8 @@
   "ta577",
   "ta829",
   "taffeta-typhoon",
+  "tag-112",
+  "tag-28",
   "taizi-flood",
   "tropic-trooper",
   "tumbleweed-typhoon",
@@ -689,6 +688,8 @@
   "ta570",
   "ta829",
   "taffeta-typhoon",
+  "tag-112",
+  "tag-28",
   "tumbleweed-typhoon",
   "volga-flood",
   "yulong-flood"
