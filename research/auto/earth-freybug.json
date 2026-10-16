@@ -1,0 +1,93 @@
+{
+  "identification": {
+    "summary": "Trend Micro describes Earth Freybug as a cyberthreat group active since at least 2012 that conducts espionage and financially motivated activity, and as a subset of APT41 [S2]. Trend Micro's 2 April 2024 report described a campaign in which the group used DLL hijacking and API unhooking through a previously undocumented malware it named UNAPIMON [S2][S3].",
+    "firstObserved": "Trend Micro: active since at least 2012 [S2]. The UNAPIMON campaign was reported 2024-04-02 [S3].",
+    "notes": "Earth Freybug is a Trend Micro cluster name. Trend Micro says its TTPs are similar to the activity Cybereason reported as Operation CuckooBees [S2]. Secondary coverage lists APT41 aliases such as Winnti, Wicked Panda, Brass Typhoon (formerly Barium), Axiom, Bronze Atlas and HOODOO [S2][S4]. These are aliases of the broader APT41 set, not of Earth Freybug, so none were added here."
+  },
+  "attribution": {
+    "sponsor": "",
+    "confidence": "Trend Micro characterizes Earth Freybug as a subset of APT41, a China-linked group [S2][S4]. RH-ISAC's write-up states the report matched TTPs of Operation CuckooBees, which it describes as widely attributed to Winnti/APT41 [S3]. No government attribution of Earth Freybug specifically was found.",
+    "basis": "Trend Micro TTP comparison with Operation CuckooBees [S3]; vendor characterization as an APT41 subset [S2]."
+  },
+  "objectives": "Trend Micro describes the group as focused on espionage and financially motivated activity [S2]. Specific collection requirements in the UNAPIMON campaign are not stated in the sources reviewed.",
+  "targeting": {
+    "sectors": [],
+    "regions": [],
+    "notes": "Trend Micro says the group attacks organizations across various sectors and countries; the sources reviewed did not name specific sectors, countries or victims for the UNAPIMON campaign [S3]."
+  },
+  "capabilities": {
+    "summary": "Trend Micro reports use of living-off-the-land binaries together with custom malware, plus DLL hijacking and API unhooking [S2][S3]. In the observed chain a process in the legitimate VMware Tools binary vmtoolsd.exe used schtasks.exe to create a remote scheduled task that ran a pre-deployed batch file (cc.bat) for reconnaissance and to launch further tasks [S2]. A later batch step reportedly side-loaded a DLL (TSMSISrv.dll) via the SessionEnv service to load UNAPIMON into a cmd.exe process [S5]. UNAPIMON is a C++ DLL, neither packed nor obfuscated, that uses Microsoft Detours to hook CreateProcessW and unhook API hooks in child processes, preventing security tools from monitoring them [S3][S5]. How the VMware Tools process was initially compromised is unknown; exploitation of external-facing servers is suspected [S2]."
+  },
+  "campaigns": [
+    {
+      "date": "2012",
+      "name": "Earliest activity (Trend Micro assessment)",
+      "summary": "Trend Micro states the group has been active since at least 2012; no specific campaigns from that period are cited in the sources reviewed.",
+      "sources": [
+        "S2"
+      ]
+    },
+    {
+      "date": "2024-04-02",
+      "name": "UNAPIMON campaign",
+      "summary": "Trend Micro published analysis of an Earth Freybug intrusion using a vmtoolsd.exe process to create remote scheduled tasks running cc.bat, then DLL side-loading to deploy the UNAPIMON API-unhooking malware, with TTPs similar to Operation CuckooBees.",
+      "sources": [
+        "S2",
+        "S3",
+        "S5"
+      ]
+    }
+  ],
+  "diamond": {
+    "adversary": "Cluster described by Trend Micro as an APT41 subset, China-linked, active since at least 2012 [S2][S4].",
+    "capability": "LOLBins, custom malware (UNAPIMON), DLL hijacking/side-loading, Microsoft Detours-based API unhooking, scheduled tasks and batch scripts [S2][S5].",
+    "infrastructure": "",
+    "victim": "Organizations across various sectors and countries; none named in sources reviewed [S3].",
+    "socioPolitical": "Espionage and financially motivated activity per Trend Micro [S2].",
+    "technology": "Windows hosts running VMware Tools (vmtoolsd.exe), Task Scheduler and the SessionEnv service; endpoint security that relies on API hooking [S5]."
+  },
+  "gaps": [
+    "Trend Micro's primary report could not be fetched or confirmed in search results, so it is not cited; details rest on secondary coverage (The Hacker News, RH-ISAC, Dark Reading, BleepingComputer).",
+    "Victim sectors, countries and number of victims are not identified in the sources reviewed.",
+    "Initial access vector is unknown; exploitation of external-facing servers is only suspected [S2].",
+    "C2 infrastructure and indicators were not captured.",
+    "Only one dated campaign (April 2024) was found; no earlier Earth Freybug campaigns were located, and activity after April 2024 was not found.",
+    "Relationship to the rest of APT41 (and to Microsoft's Brass Typhoon naming) is a vendor characterization (subset); the cluster boundary is not independently verified.",
+    "No MITRE ATT&CK group ID or Microsoft name mapping was found for Earth Freybug."
+  ],
+  "implications": {
+    "jipoe": "Analyst assessment derived from cited sources; validate before use. STEP 1: Virtualized Windows servers running VMware Tools and Task Scheduler are the relevant terrain [S5]. STEP 2: The group's defense-evasion approach (unhooking API monitoring in child processes) degrades hook-based EDR visibility on affected hosts [S3][S5]. STEP 3: Observed pattern is a trusted process (vmtoolsd.exe) creating remote scheduled tasks that run batch files, then DLL side-loading to load UNAPIMON [S5]. STEP 4: MLCOA is continued espionage-focused intrusion using LOLBins and custom tooling against organizations in multiple sectors [S2]. MDCOA, which is speculative as the sources do not show it, is the same unhooking capability applied to defense-sector networks to run follow-on tools unseen. Candidate indicators: vmtoolsd.exe spawning schtasks.exe or cmd.exe, creation of remote tasks running cc.bat, TSMSISrv.dll loaded via SessionEnv, and hooks on CreateProcessW added by Detours [S5].",
+    "jcc2": "Analyst assessment derived from cited sources; validate before use. (1) Situational awareness: because EDR hook visibility can be blinded, supplement with kernel/ETW and process-lineage telemetry and track the Trend Micro and APT41 reporting [S3]. (2) Authorities: hunting on contractor or partner hosts requires the appropriate owner or DIB CS coordination; confirm authority before acting. (3) Mission assurance: apply least privilege and restrict admin accounts, as Trend Micro recommends, on virtualization and management hosts [S3]. (4) Coordination: share indicators with DC3 and partners, noting that victim and infrastructure data are unavailable and attribution is vendor-level only [S2]."
+  },
+  "sources": [
+    {
+      "ref": "S2",
+      "title": "China-linked Hackers Deploy New UNAPIMON Malware (The Hacker News, reporting Trend Micro)",
+      "publisher": "The Hacker News",
+      "date": "2024-04",
+      "url": "https://thehackernews.com/2024/04/china-linked-hackers-deploy-new.html"
+    },
+    {
+      "ref": "S3",
+      "title": "Earth Freybug Threat Actor Deploys New Unapimon Malware (reporting Trend Micro)",
+      "publisher": "RH-ISAC",
+      "date": "2024-04",
+      "url": "https://rhisac.org/threat-intelligence/earth-freybug-threat-actor-deploys-new-unapimon-malware-leveraging-dll-hijacking-and-api-unhooking-to-target-multiple-industries-globally/"
+    },
+    {
+      "ref": "S4",
+      "title": "China-Linked Threat Actor Taps 'Peculiar' Malware to Evade Detection (reporting Trend Micro)",
+      "publisher": "Dark Reading",
+      "date": "2024-04",
+      "url": "https://www.darkreading.com/cyberattacks-data-breaches/china-linked-threat-actor-using-peculiar-malware-to-hide-malicious-activities"
+    },
+    {
+      "ref": "S5",
+      "title": "Winnti's new UNAPIMON tool hides malware from security software (reporting Trend Micro)",
+      "publisher": "BleepingComputer",
+      "date": "2024-04",
+      "url": "https://www.bleepingcomputer.com/news/security/winntis-new-unapimon-tool-hides-malware-from-security-software/"
+    }
+  ],
+  "aliasesAdd": []
+}

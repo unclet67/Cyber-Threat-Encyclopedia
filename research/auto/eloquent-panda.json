@@ -1,0 +1,46 @@
+{
+  "identification": {
+    "summary": "ELOQUENT PANDA is a name listed in the MISP Galaxy adversary-groups data with country code CN (China) and no descriptive text [S1]. The name follows the CrowdStrike 'Panda' convention for China-nexus adversaries, and the MISP entry cites a CrowdStrike presentation titled 'Detecting and Responding: Pandas and Bears' [S1]. No vendor profile, malware, targeting or campaign reporting was found in open searches.",
+    "firstObserved": "",
+    "notes": "Search-result summaries of the Malpedia 'Union Panda' entry mention Eloquent Panda as a related name alongside Union Panda, with the same CrowdStrike presentation as reference; the synonym field itself could not be confirmed [S2]. This record could not be confirmed by fetching Malpedia directly. Do not merge any facts from Union Panda, Emissary Panda or Evasive Panda into this record without a source that states the link."
+  },
+  "attribution": {
+    "sponsor": "",
+    "confidence": "",
+    "basis": "MISP Galaxy tags the name with country CN only; no source gathered states a sponsoring organization [S1]."
+  },
+  "objectives": "",
+  "targeting": {
+    "sectors": [],
+    "regions": [],
+    "notes": ""
+  },
+  "capabilities": {
+    "summary": ""
+  },
+  "campaigns": [],
+  "diamond": {
+    "adversary": "",
+    "capability": "",
+    "infrastructure": "",
+    "victim": "",
+    "socioPolitical": "",
+    "technology": ""
+  },
+  "gaps": [
+    "No open-source report was found that describes ELOQUENT PANDA's activity, tooling, victims or infrastructure.",
+    "The CrowdStrike presentation 'Detecting and Responding: Pandas and Bears' (cited by MISP) could not be opened (the dokumen.tips host did not resolve), so its content and date are unverified [S1].",
+    "Possible synonymy with Union Panda (per a Malpedia listing seen only in search results) is unverified; Malpedia could not be fetched [S2].",
+    "CrowdStrike's own adversary page for this name was not found; origin of the name, first-observed date and sponsor are unknown.",
+    "No Microsoft name mapping or MITRE group ID is known for this name."
+  ],
+  "implications": {
+    "jipoe": "",
+    "jcc2": ""
+  },
+  "sources": [
+    {"ref": "S1", "title": "MISP Galaxy adversary-groups.json (Eloquent Panda entry, country CN; community-maintained list citing CrowdStrike presentation)", "publisher": "MISP Project", "date": "2026-07 (record imported)", "url": "https://helga.circl.lu/MISP/misp-galaxy/src/commit/07f388fe5b63c0a7e710fe3f09320f68d1ed38c6/elements/adversary-groups.json"},
+    {"ref": "S2", "title": "Union Panda actor entry (synonym listing, seen via search result only)", "publisher": "Malpedia (Fraunhofer FKIE)", "date": "2026-10 (search result retrieved)", "url": "https://malpedia.caad.fkie.fraunhofer.de/actor/union_panda"}
+  ],
+  "aliasesAdd": []
+}

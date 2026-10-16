@@ -1,0 +1,136 @@
+{
+  "identification": {
+    "summary": "Earth Lamia is Trend Micro's name for a China-nexus intrusion set that Trend Research says has been active since at least 2023 and that mainly exploits web application vulnerabilities [S1][S3]. Google Threat Intelligence Group tracks Earth Lamia as UNC5454 [S4]. Microsoft has no mapping in this record; no Microsoft name was found.",
+    "firstObserved": "At least 2023 (Trend Micro) [S1][S3]. The PULSEPACK backdoor was first seen in attacks in August 2024 [S3].",
+    "notes": "Trend Micro names Earth Lamia; GTIG uses UNC5454 [S4]. Trend Micro reportedly links the cluster to REF0657 (Elastic), STAC6451 (Sophos) and CL-STA-0048 (Unit 42), per a search summary of the Trend report; the original report page could not be opened to confirm [S1]. Keep these as vendor-cluster overlaps, not merged facts. AWS names Earth Lamia and, separately, Jackpot Panda; GTIG says no public indicators exist to assess a relationship between them [S4][S5]."
+  },
+  "attribution": {
+    "sponsor": "",
+    "confidence": "Trend Micro assesses the activity as a China-nexus intrusion set [S1]. GTIG and AWS describe related React2Shell exploitation as China-nexus; GTIG states the Earth Lamia/Jackpot Panda link comes from AWS reporting, not its own assessment [S4][S5]. AWS notes shared anonymization infrastructure among Chinese groups makes definitive attribution challenging [S5]. No government attribution found.",
+    "basis": "Trend Micro research evidence (details not verified here) [S1]; AWS honeypot observations of exploitation attempts from infrastructure historically linked to named groups [S5]."
+  },
+  "objectives": "",
+  "targeting": {
+    "sectors": [
+      "Financial services (early focus)",
+      "Logistics",
+      "Online retail",
+      "IT companies",
+      "Universities",
+      "Government"
+    ],
+    "regions": [
+      "Brazil",
+      "India",
+      "Southeast Asia"
+    ],
+    "notes": "Trend Micro says targeting has shifted over time from financial services, to logistics and online retail, and most recently to IT firms, universities and government organizations [S1][S3]. An aggregator (strobes.co) also lists Latin America and the Middle East; that is not confirmed in Trend Micro coverage seen here."
+  },
+  "capabilities": {
+    "summary": "Initial access is mainly through exploitation of web application flaws, frequently scanning for SQL injection (Trend Micro suspects sqlmap) and exploiting known vulnerabilities in public-facing servers [S1][S3]. Trend Micro lists CVE-2024-27198 (JetBrains TeamCity), CVE-2024-51378 (CyberPanel) and CVE-2025-31324 (SAP NetWeaver Visual Composer) among exploited flaws [S1]. Custom tooling includes the modular .NET backdoor PULSEPACK (TCP C2 in 2024) and the privilege-escalation tool BypassBoss [S1][S3]. The group uses DLL sideloading to run Cobalt Strike and Brute Ratel shellcode [S1][S3]. AWS reported Earth Lamia exploiting React2Shell (CVE-2025-55182) within hours of its 3 December 2025 disclosure [S5][S4]."
+  },
+  "campaigns": [
+    {
+      "date": "2023 to early 2024",
+      "name": "Financial services targeting",
+      "summary": "Trend Micro says the cluster initially focused on financial services organizations; a secondary write-up places this in 2023 to early 2024 [S1][S3].",
+      "sources": [
+        "S1",
+        "S3"
+      ]
+    },
+    {
+      "date": "2024-08",
+      "name": "PULSEPACK first observed",
+      "summary": "Trend Micro first saw the previously unseen PULSEPACK backdoor in attacks in August 2024, with TCP-based C2 [S3].",
+      "sources": [
+        "S3"
+      ]
+    },
+    {
+      "date": "2024 (mid)",
+      "name": "Logistics and online retail focus",
+      "summary": "Targeting shifted to logistics and online retail, per Trend Micro [S1][S3].",
+      "sources": [
+        "S1",
+        "S3"
+      ]
+    },
+    {
+      "date": "2025-05",
+      "name": "Trend Micro public reporting",
+      "summary": "Trend Micro published its Earth Lamia report describing recent focus on IT companies, universities and government in Brazil, India and Southeast Asia [S1][S3].",
+      "sources": [
+        "S1",
+        "S3"
+      ]
+    },
+    {
+      "date": "2025-12",
+      "name": "React2Shell (CVE-2025-55182) exploitation",
+      "summary": "AWS reported China-nexus groups including Earth Lamia and Jackpot Panda began exploiting the flaw within hours of the 3 December 2025 disclosure; GTIG relayed the AWS finding and gave no UNC5454-specific tooling [S4][S5].",
+      "sources": [
+        "S4",
+        "S5"
+      ]
+    }
+  ],
+  "diamond": {
+    "adversary": "China-nexus intrusion set tracked as Earth Lamia (Trend Micro) and UNC5454 (GTIG); operator identity and sponsor not established in sources gathered [S1][S4].",
+    "capability": "Web application exploitation, SQL injection, PULSEPACK, BypassBoss, DLL sideloading, Cobalt Strike and Brute Ratel [S1][S3].",
+    "infrastructure": "",
+    "victim": "Financial, logistics, retail, IT, education and government organizations in Brazil, India and Southeast Asia [S1][S3].",
+    "socioPolitical": "",
+    "technology": "Internet-facing web applications and servers with unpatched or SQL-injectable flaws (TeamCity, CyberPanel, SAP NetWeaver, React Server Components) [S1][S5]."
+  },
+  "gaps": [
+    "Trend Micro's primary report, AWS's primary blog and the Google Cloud and trade-press pages could not be fully opened (fetch failures); several details rest on search-result summaries and should be verified against the originals.",
+    "Sponsor, tasking and objectives are not stated in sources gathered.",
+    "Attribution rests on vendor assessments; AWS notes definitive attribution is challenging due to shared infrastructure [S5].",
+    "Overlaps with REF0657 (Elastic), STAC6451 (Sophos, which deployed Mimic ransomware) and CL-STA-0048 (Unit 42) not independently confirmed; Earth Lamia itself has not been observed using ransomware per Trend Micro summary [S1].",
+    "Relationship between Earth Lamia and Jackpot Panda is unknown; GTIG says no public indicators [S4].",
+    "No Microsoft actor name found; MITRE group ID not assigned in this record.",
+    "Infrastructure details and indicators not gathered.",
+    "Forescout's Chaya_004 (SAP NetWeaver CVE-2025-31324 exploitation) was not linked to Earth Lamia in any source found; do not merge."
+  ],
+  "implications": {
+    "jipoe": "Analyst assessment derived from cited sources; validate before use. STEP 1: Internet-facing web applications, developer/CI servers (TeamCity), hosting control panels, ERP middleware (SAP NetWeaver) and React/Next.js servers are key terrain, especially for IT, university and government organizations in Brazil, India and Southeast Asia [S1][S5]. STEP 2: Exploitation within hours of disclosure (React2Shell) narrows the patch window to near zero [S5]. STEP 3: Template is web-app exploit or SQL injection, then PULSEPACK or Cobalt Strike/Brute Ratel via DLL sideloading, then privilege escalation with BypassBoss [S1][S3]. STEP 4: MLCOA is continued opportunistic exploitation of newly disclosed web flaws against regional IT, education and government targets. MDCOA is use of compromised IT service providers or partner government networks as a path to coalition or DoD-adjacent partners in the region. Candidate indicators: SQL injection scanning against web apps, DLL sideloading by legitimate signed binaries, and unexpected Cobalt Strike/Brute Ratel beacons [S1][S3].",
+    "jcc2": "Analyst assessment derived from cited sources; validate before use. (1) Situational awareness: track exploited-vulnerability advisories for web frameworks and enterprise middleware and push mitigation status to partner networks in Southeast Asia and Latin America. (2) Authorities: partner-network hunting depends on host-nation consent and DCO authorities; coordinate before action outside DODIN. (3) Mission assurance: prioritize patching and WAF coverage of internet-facing apps supporting mission systems and contractors. (4) Coordination: share indicators with DC3 and allied CERTs; note attribution is vendor-level and clusters overlap, so prioritize containment over naming [S4]."
+  },
+  "sources": [
+    {
+      "ref": "S1",
+      "title": "Earth Lamia Develops Exploits and Custom Tooling Targeting Multiple Industries (Trend Micro report, read via search summary)",
+      "publisher": "Trend Micro",
+      "date": "2025-05",
+      "url": "https://www.trendmicro.com/en_us/research/25/e/earth-lamia.html"
+    },
+    {
+      "ref": "S3",
+      "title": "Earth Lamia Expands Arsenal to Target Multiple Industries in 2025 (secondary summary of Trend Micro)",
+      "publisher": "Ampcus Cyber",
+      "date": "2025",
+      "url": "https://www.ampcuscyber.com/shadowopsintel/earth-lamia-expands-arsenal-to-target-multiple-industries-in-2025/"
+    },
+    {
+      "ref": "S4",
+      "title": "Threat actors exploit React2Shell (CVE-2025-55182)",
+      "publisher": "Google Cloud Threat Intelligence (GTIG)",
+      "date": "2025-12-12",
+      "url": "https://cloud.google.com/blog/topics/threat-intelligence/threat-actors-exploit-react2shell-cve-2025-55182"
+    },
+    {
+      "ref": "S5",
+      "title": "China-nexus cyber threat groups rapidly exploit React2Shell vulnerability (CVE-2025-55182) (read via search summary)",
+      "publisher": "Amazon Web Services",
+      "date": "2025-12",
+      "url": "https://aws.amazon.com/blogs/security/china-nexus-cyber-threat-groups-rapidly-exploit-react2shell-vulnerability-cve-2025-55182/"
+    }
+  ],
+  "aliasesAdd": [
+    {
+      "name": "UNC5454",
+      "vendor": "Google Threat Intelligence Group"
+    }
+  ]
+}

@@ -3,46 +3,6 @@
  "verify": [],
  "research": [
   {
-   "id": "earth-berberoka",
-   "tier": "T3"
-  },
-  {
-   "id": "earth-freybug",
-   "tier": "T3"
-  },
-  {
-   "id": "earth-krahang",
-   "tier": "T3"
-  },
-  {
-   "id": "earth-lamia",
-   "tier": "T3"
-  },
-  {
-   "id": "earth-naga",
-   "tier": "T3"
-  },
-  {
-   "id": "earth-wendigo",
-   "tier": "T3"
-  },
-  {
-   "id": "edalat-e-ali",
-   "tier": "T3"
-  },
-  {
-   "id": "educated-manticore",
-   "tier": "T3"
-  },
-  {
-   "id": "electric-panda",
-   "tier": "T3"
-  },
-  {
-   "id": "eloquent-panda",
-   "tier": "T3"
-  },
-  {
    "id": "elusive-comet",
    "tier": "T3"
   },
@@ -820,7 +780,16 @@
   "driftingcloud",
   "earth-alux",
   "earth-baxia",
+  "earth-berberoka",
+  "earth-freybug",
+  "earth-krahang",
+  "earth-lamia",
+  "earth-naga",
+  "earth-wendigo",
+  "edalat-e-ali",
+  "educated-manticore",
   "elderwood",
+  "electric-panda",
   "emerald-sleet",
   "ferocious-kitten",
   "fin13",
@@ -957,6 +926,11 @@
   "driftingcloud",
   "earth-alux",
   "earth-baxia",
+  "earth-freybug",
+  "earth-naga",
+  "earth-wendigo",
+  "educated-manticore",
+  "electric-panda",
   "lilac-typhoon",
   "mofang",
   "obsidian-sandstorm",
@@ -1050,6 +1024,7 @@
   "big-panda",
   "boulder-bear",
   "bronze-vapor",
+  "eloquent-panda",
   "storm-2470"
  ]
 }
