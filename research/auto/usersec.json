@@ -1,0 +1,120 @@
+{
+ "identification": {
+  "summary": "UserSec is a pro-Russian hacktivist group that announced a cyber campaign targeting NATO member states in May 2023 and said it was joining forces with KillNet for attacks against NATO [S1]. It is described as a politically motivated group attacking NATO countries and organizations that support Ukraine [S3].",
+  "firstObserved": "2023-05 (earliest dated item in sources reviewed; other vendors reportedly date activity to early 2023 or 2022, not verified here)",
+  "notes": "UserSec has also claimed collaboration with Anonymous Sudan in supporting KillNet attacks [S1]. Anonymous Sudan and KillNet are separate clusters; their attribution is contested and should not be merged with UserSec facts [S2]."
+ },
+ "attribution": {
+  "sponsor": "",
+  "confidence": "",
+  "basis": ""
+ },
+ "objectives": "Disrupt and publicize pressure on NATO member states and organizations supporting Ukraine [S1][S3].",
+ "targeting": {
+  "sectors": [
+   "Government",
+   "Judiciary"
+  ],
+  "regions": [
+   "NATO member states",
+   "France"
+  ],
+  "notes": "In August 2024 UserSec confirmed attacks on the National Court of France (reported also as the Court of Cassation) and the Paris Administrative Tribunal as part of the #FreeDurov campaign [S3][S4]."
+ },
+ "capabilities": {
+  "summary": "Reporting describes UserSec activity as primarily DDoS, coordinated through calls on other hacktivist groups to join campaigns [S3][S4]. No malware or exploitation tooling is documented in the sources reviewed."
+ },
+ "campaigns": [
+  {
+   "date": "2023-05",
+   "name": "NATO campaign with KillNet",
+   "summary": "UserSec announced a campaign against NATO member states, joined forces with KillNet, and teased an operation for 18 May [S1].",
+   "sources": [
+    "S1"
+   ]
+  },
+  {
+   "date": "2023-06",
+   "name": "Alignment with KillNet / Anonymous Sudan collective",
+   "summary": "SOCRadar published a report on a KillNet, Anonymous Sudan and REvil alliance; UserSec is associated with it in MISP, but report contents were not retrieved [S2].",
+   "sources": [
+    "S2"
+   ]
+  },
+  {
+   "date": "2024-07",
+   "name": "High Society / Holy League",
+   "summary": "Intel Insights reports High Society and the pro-Palestine 7 October Union launched the Holy League coalition on 22 July 2024; UserSec is listed as an alleged member by Orange Cyberdefense, with member counts varying by source [S5].",
+   "sources": [
+    "S5"
+   ]
+  },
+  {
+   "date": "2024-08",
+   "name": "#FreeDurov attacks on France",
+   "summary": "After Pavel Durov's arrest on 24 August 2024, UserSec was among the first to react, invited other hacktivist groups to join, and confirmed attacks on the National Court of France and the Paris Administrative Tribunal (partner group named as CARR by Check Point, People's Cyber Army by others); reporting says more than 50 French targets were hit mostly by DDoS [S3][S4].",
+   "sources": [
+    "S3",
+    "S4"
+   ]
+  }
+ ],
+ "diamond": {
+  "adversary": "Pro-Russian hacktivist collective operating via Telegram with alliance partners including KillNet [S1][S3].",
+  "capability": "DDoS campaigns coordinated with other hacktivist groups [S3][S4].",
+  "infrastructure": "",
+  "victim": "NATO member state and French government and judicial websites [S1][S3].",
+  "socioPolitical": "Support for Russia's position against NATO and Ukraine's supporters [S1].",
+  "technology": ""
+ },
+ "gaps": [
+  "State sponsorship or direction is unverified; no government attribution found in sources reviewed.",
+  "Could not open SOCRadar's UserSec profile, The Record, Cyble, dig.watch or other pages directly (fetch failed); facts rest on search-result summaries.",
+  "Founding date conflicts across vendors (2022 vs early 2023).",
+  "Claim of assisting Anonymous Sudan against SAS rests on a single Nordic IT Security report and is unverified.",
+  "Holy League membership figures are inconsistent across sources (54-55 at launch, 70+ later); UserSec's specific role is not documented.",
+  "No infrastructure, tooling or victim impact data found."
+ ],
+ "implications": {
+  "jipoe": "",
+  "jcc2": ""
+ },
+ "sources": [
+  {
+   "ref": "S1",
+   "title": "Pro-Russian hacker group UserSec announces cyber campaign targeting NATO member states",
+   "publisher": "Digital Watch Observatory",
+   "date": "2023-05",
+   "url": "https://dig.watch/updates/pro-russian-hacker-group-usersec-announces-cyber-campaign-targeting-nato-member-states"
+  },
+  {
+   "ref": "S2",
+   "title": "Cyber Shadows Pact: Darknet Parliament (KillNet, Anonymous Sudan, REvil)",
+   "publisher": "SOCRadar",
+   "date": "2023-06-20",
+   "url": "https://socradar.io/cyber-shadows-pact-darknet-parliament-killnet-anonymous-sudan-revil/"
+  },
+  {
+   "ref": "S3",
+   "title": "Threat Actors Retaliate After Durov's Arrest (search summary)",
+   "publisher": "Breached Company",
+   "date": "2024-08",
+   "url": "https://breached.company/cyber-retaliation-unleashed-at-france-after-durov-arrest/"
+  },
+  {
+   "ref": "S4",
+   "title": "Check Point blog on CARR and #FreeDurov attacks (search summary)",
+   "publisher": "Check Point",
+   "date": "2024-08",
+   "url": "https://blog.checkpoint.com/?p=246510"
+  },
+  {
+   "ref": "S5",
+   "title": "Holy League - The Largest Hacktivist Alliance (so far)",
+   "publisher": "Intel Insights (Substack)",
+   "date": "2024-07",
+   "url": "https://intelinsights.substack.com/p/holy-league-the-largest-hacktivist"
+  }
+ ],
+ "aliasesAdd": []
+}

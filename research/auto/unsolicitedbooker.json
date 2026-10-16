@@ -1,0 +1,56 @@
+{
+  "identification": {
+    "summary": "UnsolicitedBooker is a China-aligned cluster, named by ESET, that has repeatedly targeted governmental organizations in Asia, Africa and the Middle East, mainly through spear-phishing [S1][S2]. ESET documented a previously undocumented backdoor, MarsSnake, used against an unnamed international organization in Saudi Arabia [S1][S2]. Positive Technologies, as relayed by press, later attributed attacks on telecommunications companies in Kyrgyzstan and Tajikistan to the group, using the backdoors LuciDoor and MarsSnake [S4].",
+    "firstObserved": "ESET says it first found the group's intrusions against the Saudi international organization in March 2023, with a further wave a year later [S2][S3].",
+    "notes": "UnsolicitedBooker is an ESET cluster name. No Microsoft name or MITRE group was found in the sources gathered. ESET assesses overlap with the Space Pirates cluster and with an unattributed cluster that used the Zardoor backdoor against an Islamic non-profit in Saudi Arabia [S3]. These overlaps are assessments; do not merge those clusters' facts into this record. The ESET original and the Positive Technologies original could not be opened (host unreachable); content relies on secondary coverage."
+  },
+  "attribution": {
+    "sponsor": "China-aligned (ESET wording); no specific state organization is named in the sources gathered [S1][S3].",
+    "confidence": "ESET describes the group as China-aligned [S1][S3]. Positive Technologies is reported as describing it as presumed Chinese in origin [S4]. No government attribution found.",
+    "basis": "ESET reporting on tooling shared among Chinese APT groups (Chinoxy, DeedRAT, Poison Ivy, BeRAT) and overlap with Space Pirates [S3]; as relayed by press."
+  },
+  "objectives": "ESET assesses the motive as espionage and data theft against governmental and international organizations [S3].",
+  "targeting": {
+    "sectors": ["Government", "International organization", "Telecommunications"],
+    "regions": ["Saudi Arabia [S2][S3]", "Asia, Africa and the Middle East (governmental organizations, per ESET) [S3]", "Kyrgyzstan and Tajikistan (telecommunications) [S4]"],
+    "notes": "Saudi targeting is by ESET [S2][S3]; Central Asian telecom targeting is by Positive Technologies via press coverage [S4]."
+  },
+  "capabilities": {
+    "summary": "Spear-phishing with decoy documents: in the Saudi campaign, emails spoofing Saudia Airlines carried a Word document posing as a flight ticket [S2][S3]. In 2025 Central Asian activity, Office documents asking the victim to enable macros installed the LuciLoad loader, which delivered LuciDoor; a later chain used MarsSnakeLoader to deploy MarsSnake [S4]. MarsSnake is a custom backdoor [S1][S2]. ESET lists Chinoxy, DeedRAT, Poison Ivy and BeRAT among backdoors used in the group's attacks and notes they are widely used by Chinese hacking crews [S3]."
+  },
+  "campaigns": [
+    {"date": "2023-03", "name": "Intrusions against an international organization in Saudi Arabia", "summary": "ESET says it first found UnsolicitedBooker intrusions against an unnamed international organization in Saudi Arabia in March 2023, with another wave a year later, using flight-ticket spear-phishing lures [S2][S3].", "sources": ["S2", "S3"]},
+    {"date": "2025-01", "name": "Spoofed Saudia flight-ticket phishing", "summary": "Phishing emails came from a spoofed Saudia address carrying a Word document posing as a flight ticket [S3].", "sources": ["S3"]},
+    {"date": "2025-05", "name": "ESET discloses MarsSnake", "summary": "ESET publicly documents the MarsSnake backdoor and the UnsolicitedBooker cluster [S1][S2][S4].", "sources": ["S1", "S2", "S4"]},
+    {"date": "2025-09", "name": "Kyrgyzstan telecom phishing (LuciDoor)", "summary": "Per Positive Technologies via press, late-September 2025 emails with macro-enabled Office documents (a telecom tariff-plan lure) installed the LuciLoad loader and delivered LuciDoor [S4].", "sources": ["S4"]},
+    {"date": "2025-11", "name": "MarsSnake via MarsSnakeLoader", "summary": "A November 2025 attack used a different loader, MarsSnakeLoader, to deploy MarsSnake against Central Asian telecom targets [S4].", "sources": ["S4"]},
+    {"date": "2026-01", "name": "Tajikistan phishing", "summary": "The group reportedly used phishing emails to target companies in Tajikistan as recently as January 2026 [S4].", "sources": ["S4"]}
+  ],
+  "diamond": {
+    "adversary": "China-aligned cluster tracked by ESET as UnsolicitedBooker; overlaps assessed with Space Pirates [S1][S3].",
+    "capability": "Macro-laden decoy documents; MarsSnake, LuciDoor, LuciLoad, MarsSnakeLoader; shared Chinese-APT backdoors (Chinoxy, DeedRAT, Poison Ivy, BeRAT) [S3][S4].",
+    "infrastructure": "Spoofed sender addresses (Saudia) used for phishing [S3]; C2 infrastructure details not captured in the sources gathered.",
+    "victim": "Governmental and international organizations (Saudi Arabia and wider Asia, Africa, Middle East); telecommunications providers in Kyrgyzstan and Tajikistan [S3][S4].",
+    "socioPolitical": "Espionage and data theft as assessed by ESET [S3]; shift toward Central Asian telecoms per Positive Technologies [S4].",
+    "technology": "Microsoft Office macro execution on user endpoints; email as delivery channel [S3][S4]."
+  },
+  "gaps": [
+    "ESET's original report and Positive Technologies' original report could not be opened (fetch failed); details rely on secondary coverage [S1][S2][S3][S4].",
+    "No Microsoft actor name, MITRE group ID or government attribution found.",
+    "Overlap with Space Pirates and the Zardoor cluster is an ESET assessment; the strength of the link is not established here [S3].",
+    "Infrastructure, C2 and indicator details were not retrieved.",
+    "Which Saudi international organization was targeted is not public in the sources gathered [S2].",
+    "Positive Technologies findings are known only through press summary; sector scope beyond telecoms is unverified [S4]."
+  ],
+  "implications": {
+    "jipoe": "Analyst assessment derived from cited sources; validate before use. STEP 1: Key terrain is user endpoints running Office with macros enabled and the email gateways serving government, international-organization and telecom staff; telecom networks are also infrastructure of interest [S3][S4]. STEP 2: Travel and tariff-themed lures are tailored to the recipient's work context, and the group has returned to the same victim over a year apart [S2][S3]. STEP 3: Template is spoofed-sender spear-phish, then macro document, then loader, then custom backdoor (MarsSnake or LuciDoor) [S3][S4]. STEP 4: MLCOA is continued espionage against government and telecom targets in the Middle East and Central Asia. MDCOA, an assessment not stated in sources, is use of telecom footholds for broader access; treat as hypothesis only. Candidate indicators: Office applications spawning loaders, executables such as smssdrvhost.exe dropped by documents, and mail spoofing airline brands [S3][S4].",
+    "jcc2": "Analyst assessment derived from cited sources; validate before use. (1) Situational awareness: track vendor reporting (ESET, Positive Technologies) on this cluster and its overlaps, noting it is tracked by names unknown to some partners. (2) Authorities: targets are mostly non-US, so defensive action on partner networks depends on coalition or host-nation agreements. (3) Mission assurance: block or restrict Office macros from internet-sourced documents and screen travel-themed phishing for personnel and mission partners. (4) Coordination: share indicators with partners in the Middle East and Central Asia through established intelligence-sharing channels [S3][S4]."
+  },
+  "sources": [
+    {"ref": "S1", "title": "China-linked UnsolicitedBooker APT used new backdoor MarsSnake in recent attacks (reporting ESET)", "publisher": "Security Affairs", "date": "2025-05", "url": "https://securityaffairs.com/178105/hacking/china-linked-unsolicitedbooker-used-new-backdoor-marssnake.html"},
+    {"ref": "S2", "title": "Chinese Hackers Deploy MarsSnake Backdoor (reporting ESET)", "publisher": "The Hacker News", "date": "2025-05", "url": "https://thehackernews.com/2025/05/chinese-hackers-deploy-marssnake.html"},
+    {"ref": "S3", "title": "ESET APT Activity Report Q4 2024-Q1 2025 (podcast page)", "publisher": "ESET WeLiveSecurity", "date": "2025-05", "url": "https://www.welivesecurity.com/en/podcasts/eset-apt-activity-report-q4-2024q1-2025-malware-sharing-wipers-exploits/"},
+    {"ref": "S4", "title": "UnsolicitedBooker Targets Central Asian Telecoms with LuciDoor and MarsSnake (reporting Positive Technologies)", "publisher": "The Hacker News", "date": "2026-02", "url": "https://thehackernews.com/2026/02/unsolicitedbooker-targets-central-asian.html"}
+  ],
+  "aliasesAdd": []
+}

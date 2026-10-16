@@ -3,38 +3,6 @@
  "verify": [],
  "research": [
   {
-   "id": "unk-remoterogue",
-   "tier": "T3"
-  },
-  {
-   "id": "unnamed-actor",
-   "tier": "T3"
-  },
-  {
-   "id": "unsolicitedbooker",
-   "tier": "T3"
-  },
-  {
-   "id": "usersec",
-   "tier": "T3"
-  },
-  {
-   "id": "uta0178",
-   "tier": "T3"
-  },
-  {
-   "id": "uta0352",
-   "tier": "T3"
-  },
-  {
-   "id": "uta0355",
-   "tier": "T3"
-  },
-  {
-   "id": "uta0388",
-   "tier": "T3"
-  },
-  {
    "id": "vicious-panda",
    "tier": "T3"
   },
@@ -412,6 +380,14 @@
   "unc6748",
   "unfading-sea-haze",
   "unk-academicflare",
+  "unk-remoterogue",
+  "unnamed-actor",
+  "unsolicitedbooker",
+  "usersec",
+  "uta0178",
+  "uta0352",
+  "uta0355",
+  "uta0388",
   "vanilla-tempest",
   "violet-typhoon",
   "void-blizzard",
@@ -565,6 +541,13 @@
   "unc6201",
   "unc6748",
   "unk-academicflare",
+  "unk-remoterogue",
+  "unnamed-actor",
+  "unsolicitedbooker",
+  "usersec",
+  "uta0352",
+  "uta0355",
+  "uta0388",
   "volga-flood",
   "yulong-flood"
  ],
