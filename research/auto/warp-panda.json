@@ -1,0 +1,89 @@
+{
+  "identification": {
+    "summary": "WARP PANDA is CrowdStrike's name for a China-nexus intrusion actor that targets VMware vCenter environments and Microsoft Azure / Microsoft 365 tenants, mainly at U.S. legal, technology and manufacturing organizations. CrowdStrike assesses it has been active since at least 2022 and describes it as cloud-focused. [S1][S5] Its toolset is the BRICKSTORM backdoor plus two Golang implants, Junction (ESXi hosts) and GuestConduit (guest VMs), and JSP web shells. [S1][S5] CrowdStrike says it has seen only WARP PANDA use BRICKSTORM so far, but that multiple adjacent China-nexus actors likely use it too. [S5]",
+    "firstObserved": "2022 (CrowdStrike: active since at least 2022); one intrusion dates to late 2023; named publicly 2025-12-04. [S1][S5]",
+    "notes": "Vendor cluster boundary: Google Threat Intelligence tracks BRICKSTORM use under UNC5221, a separate Google/Mandiant cluster known for Ivanti zero-day exploitation. [S4] A secondary blog (Hurricane Labs) equates UNC5221 with WARP PANDA, but I did not find that stated in CrowdStrike's or Google's own text, so the two are not merged here. The joint CISA/NSA/Canadian Cyber Centre report analyses BRICKSTORM malware and does not name WARP PANDA in the coverage I saw. [S2][S3]"
+  },
+  "attribution": {
+    "sponsor": "People's Republic of China (assessed nexus; no specific agency named in the sources reviewed)",
+    "confidence": "CrowdStrike describes the actor as China-nexus and assesses its operations as likely aligned with PRC intelligence-collection priorities. [S1][S5] CISA, NSA and the Canadian Cyber Centre assess that PRC state-sponsored cyber actors use BRICKSTORM for long-term persistence; that is a malware-level statement and is not an attribution of WARP PANDA specifically. [S2][S3]",
+    "basis": "Basis reported is victimology, tradecraft and tooling consistent with intelligence collection, as characterised by CrowdStrike. [S1][S5] I could not open the CrowdStrike blog directly (fetch failed), so the detailed attribution reasoning is taken from secondary coverage of it. [S5][S7]"
+  },
+  "objectives": "Long-term persistence and data collection in support of PRC intelligence priorities, reported by CrowdStrike as mainly against North American and Asia-Pacific entities. [S1][S5] In late summer 2025 the actor used access to Azure environments mainly to reach Microsoft 365 data in OneDrive, SharePoint and Exchange. [S1][S6]",
+  "targeting": {
+    "sectors": ["Legal", "Technology", "Manufacturing"],
+    "regions": ["United States", "North America", "Asia-Pacific"],
+    "notes": "CrowdStrike reported multiple 2025 vCenter intrusions at U.S. legal, technology and manufacturing entities. [S5] CrowdStrike's June 2026 technology report lists WARP PANDA among China-nexus actors that targeted the technology sector more than any other industry between April 2025 and March 2026, and says it repeatedly targeted North American tech organizations. [S6] Google's separate BRICKSTORM reporting (UNC5221) names legal, technology, SaaS and BPO victims. [S4]"
+  },
+  "capabilities": {
+    "summary": "Initial access is typically through exploiting internet-facing edge devices, including Ivanti Connect Secure / Policy Secure (CVE-2023-46805, CVE-2024-21887) and F5 BIG-IP (CVE-2023-46747); the actor then pivots to vCenter using valid credentials or vCenter vulnerabilities. [S1][S5] Implants: BRICKSTORM backdoor; Junction, a Golang ESXi implant that masquerades as a legitimate ESXi service listening on port 8090 (also used by vvold); GuestConduit, a Golang traffic-tunnelling implant in guest VMs with a VSOCK listener on port 5555; and JSP web shells. [S1][S5][S7] Traffic is tunnelled through BRICKSTORM on vCenter servers, ESXi hosts and guest VMs to mimic routine administration. [S5] Observed defence evasion includes log wiping, timestomping and creating malicious VMs that do not appear in the vCenter inventory. [S1] In the cloud, the actor in one case obtained user session tokens and replayed them through BRICKSTORM tunnels to reach Microsoft 365, and in at least one case registered a new MFA device after logging in. [S1][S6] The joint government report describes BRICKSTORM using HTTPS, WebSockets, nested TLS and DNS-over-HTTPS, and creating rogue VMs and cloned VM snapshots for credential harvesting. [S2]"
+  },
+  "campaigns": [
+    {
+      "date": "2022",
+      "name": "Earliest assessed activity",
+      "summary": "CrowdStrike believes the group has been active since at least 2022. [S1][S5]",
+      "sources": ["S1", "S5"]
+    },
+    {
+      "date": "2023-late",
+      "name": "Earliest identified vCenter intrusion",
+      "summary": "One intrusion investigated by CrowdStrike dates to late 2023. [S1]",
+      "sources": ["S1"]
+    },
+    {
+      "date": "2025",
+      "name": "vCenter intrusions at U.S. entities",
+      "summary": "CrowdStrike identified multiple 2025 intrusions into VMware vCenter at U.S. legal, technology and manufacturing organizations, leading to BRICKSTORM deployment. [S5]",
+      "sources": ["S5", "S1"]
+    },
+    {
+      "date": "2025-late summer",
+      "name": "Azure and Microsoft 365 access",
+      "summary": "The actor exploited access to multiple entities' Azure environments, primarily to reach Microsoft 365 data in OneDrive, SharePoint and Exchange, in one case replaying stolen session tokens through BRICKSTORM tunnels. [S1][S6]",
+      "sources": ["S1", "S6"]
+    },
+    {
+      "date": "2025-12-04",
+      "name": "Public disclosure and joint government report",
+      "summary": "CrowdStrike published its WARP PANDA research the same day CISA, NSA and the Canadian Cyber Centre released their BRICKSTORM malware analysis report; the report was updated 2025-12-19 with three more samples. [S1][S2][S5]",
+      "sources": ["S1", "S2", "S5"]
+    },
+    {
+      "date": "2026-06",
+      "name": "Continued tech-sector targeting",
+      "summary": "CrowdStrike's 2026 Technology Threat Landscape Report names WARP PANDA among China-nexus actors repeatedly targeting North American technology organizations, exploiting vulnerabilities and maintaining persistent access. No new tooling details were found. [S6]",
+      "sources": ["S6"]
+    }
+  ],
+  "diamond": {
+    "adversary": "China-nexus espionage actor tracked by CrowdStrike as WARP PANDA; PRC intelligence-collection alignment assessed by CrowdStrike. [S1][S5]",
+    "capability": "BRICKSTORM, Junction, GuestConduit, JSP web shells, edge-device exploitation, session-token replay, MFA-device registration, log wiping and timestomping. [S1][S5]",
+    "infrastructure": "Compromised internet-facing edge devices, vCenter servers, ESXi hosts and guest VMs used as tunnelling relays; BRICKSTORM C2 for the UNC5221 cluster is reported masquerading as Cloudflare and Heroku traffic. [S4][S5]",
+    "victim": "U.S. legal, technology and manufacturing organizations; Azure and Microsoft 365 tenants. [S1][S5]",
+    "socioPolitical": "PRC intelligence-collection priorities against North American and Asia-Pacific entities, as assessed by CrowdStrike. [S1]",
+    "technology": "VMware vCenter and ESXi, Ivanti Connect Secure, F5 BIG-IP, Microsoft Azure and Microsoft 365 (OneDrive, SharePoint, Exchange). [S1][S5]"
+  },
+  "gaps": [
+    "CrowdStrike's primary blog and the CISA/NSA/Cyber Centre PDF could not be opened (fetch failed); details come from search-result summaries and secondary coverage. [S1][S2]",
+    "Relationship between WARP PANDA (CrowdStrike) and UNC5221 (Google/Mandiant) is unresolved; one secondary source equates them but no primary vendor text confirmed it. [S4]",
+    "No government attribution of WARP PANDA to a named PRC agency or contractor was found.",
+    "Initial access for some victims is unknown; Google reports average BRICKSTORM dwell time of 393 days that exceeded log retention in many cases, so original entry points are often unrecoverable. [S4]",
+    "No indicators (hashes, IPs, domains) were collected; no technique-level detail beyond vendor summaries.",
+    "No 2026 operational detail beyond the CrowdStrike June 2026 mention. [S6]"
+  ],
+  "implications": {
+    "jipoe": "Analyst assessment derived from cited sources; validate before use. Step 1-2 (environment and effects): virtualization management planes (vCenter, ESXi) and edge VPN/ADC appliances are key cyber terrain because EDR is generally not supported on them, which is where BRICKSTORM is reported to sit. [S4][S1] Cloud identity (Azure/Microsoft 365 tokens and MFA registration) is a second terrain set. [S1] Step 3 (threat evaluation): a patient, low-footprint espionage actor with long dwell and strong OPSEC. [S1][S4] Step 4 MLCOA: exploit an unpatched edge device, pivot to vCenter, tunnel through BRICKSTORM, create hidden VMs or clones for credential theft, then reach Microsoft 365 data via replayed session tokens. [S1][S2][S5] MDCOA: use the same vCenter access against defense-industrial or technology suppliers to the Department of the Air Force; this is an inference, not stated in sources. Candidate indicators: unexpected listener on port 8090 on ESXi or VSOCK port 5555 in guests, VMs absent from vCenter inventory, new MFA devices after logins, token reuse from new locations, cleared logs. [S1][S5][S7]",
+    "jcc2": "Analyst assessment derived from cited sources; validate before use. Situational awareness: inventory edge devices and hypervisor management interfaces, and hunt for BRICKSTORM using the government report and Mandiant scanner and YARA rules, noting they may miss variants. [S2][S4] Authorities: hunting on contractor or commercial cloud networks depends on the relevant owners and legal authorities; coordinate through established channels (for example CISA, NSA, DC3) rather than assuming access; this is analyst guidance, not from the sources. Mission assurance: retain logs beyond typical retention because dwell time can exceed it, restrict service-account rights, limit RDP/SMB from DMZ to internal networks and block unauthorized DoH, as the joint report recommends. [S2][S4] Coordination: share indicators with partners and the defense industrial base, and track updates to the joint report. [S2]"
+  },
+  "sources": [
+    {"ref": "S1", "title": "Unveiling WARP PANDA: A New Sophisticated China-Nexus Adversary (seen via search results only; fetch failed)", "publisher": "CrowdStrike", "date": "2025-12-04", "url": "https://www.crowdstrike.com/en-us/blog/warp-panda-cloud-threats/"},
+    {"ref": "S2", "title": "Malware Analysis Report: BRICKSTORM Backdoor, AR25-338A (seen via search results only)", "publisher": "CISA / NSA / Canadian Centre for Cyber Security", "date": "2025-12-04", "url": "https://media.defense.gov/2025/Dec/04/2003834878/-1/-1/0/malware-analysis-report-brickstorm-backdoor.PDF"},
+    {"ref": "S3", "title": "Joint malware analysis report on Brickstorm backdoor (announcement)", "publisher": "Canadian Centre for Cyber Security", "date": "2025-12", "url": "https://cyber.gc.ca/en/news-events/joint-malware-analysis-report-brickstorm-backdoor"},
+    {"ref": "S4", "title": "BRICKSTORM espionage campaign (UNC5221; summarised via BleepingComputer coverage)", "publisher": "Google Cloud / Mandiant Threat Intelligence", "date": "2025-09", "url": "https://cloud.google.com/blog/topics/threat-intelligence/brickstorm-espionage-campaign"},
+    {"ref": "S5", "title": "CISA reports PRC hackers using BRICKSTORM (reporting CrowdStrike and CISA findings)", "publisher": "The Hacker News", "date": "2025-12", "url": "https://thehackernews.com/2025/12/cisa-reports-prc-hackers-using.html"},
+    {"ref": "S6", "title": "CrowdStrike 2026 Technology Threat Landscape Report: China's Ambitions Fuel Attacks", "publisher": "CrowdStrike", "date": "2026-06", "url": "https://www.crowdstrike.com/en-us/resources/reports/crowdstrike-2026-technology-threat-landscape-report/"},
+    {"ref": "S7", "title": "US Organizations Warned of Chinese Malware Used for Long-Term Persistence (reporting CrowdStrike findings)", "publisher": "SecurityWeek", "date": "2025-12", "url": "https://www.securityweek.com/us-organizations-warned-of-chinese-malware-used-for-long-term-persistence/"}
+  ],
+  "aliasesAdd": []
+}

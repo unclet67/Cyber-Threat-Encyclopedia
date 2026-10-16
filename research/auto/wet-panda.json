@@ -1,0 +1,60 @@
+{
+ "identification": {
+  "summary": "WET PANDA is a CrowdStrike-style 'PANDA' adversary name that appears as a listed synonym in a Malpedia entry for PALE PANDA, which cites CrowdStrike's 10 Feb 2015 Global Threat Intelligence Report; the same entry lists MAGNETIC SPIDER, PREDATOR PANDA, SABRE PANDA and SPICY PANDA as synonyms. [S2] The retrieved sources provide no description of WET PANDA activity. [S2]",
+  "firstObserved": "",
+  "notes": "The name mapping is Malpedia's and was not independently confirmed against the CrowdStrike report text; the entry does not establish what each listed name covers. [S2] The MISP Galaxy threat-actor cluster lists 'Red Chimera' as a synonym of WET PANDA, citing the same CrowdStrike report. [S4]"
+ },
+ "attribution": {
+  "sponsor": "",
+  "confidence": "",
+  "basis": ""
+ },
+ "objectives": "",
+ "targeting": {
+  "sectors": [],
+  "regions": [],
+  "notes": ""
+ },
+ "capabilities": {
+  "summary": ""
+ },
+ "campaigns": [],
+ "diamond": {
+  "adversary": "",
+  "capability": "",
+  "infrastructure": "",
+  "victim": "",
+  "socioPolitical": "",
+  "technology": ""
+ },
+ "gaps": [
+  "No vendor profile, campaign, malware, infrastructure or victimology for WET PANDA was found in open search results.",
+  "The CrowdStrike 2015 Global Threat Intelligence Report PDF (the lead URL in the actor record) was not opened; its treatment of WET PANDA is unverified.",
+  "Whether WET PANDA is truly a synonym of PALE PANDA, or a separate CrowdStrike cluster, is unresolved; do not merge facts across these names.",
+  "China nexus (country CN in the record) is inferred from the PANDA naming convention only and is not supported by a cited source here.",
+  "Sponsor, objectives, targeting, TTPs and timeline are all unknown from open sources reviewed.",
+  "The alias 'Red Chimera' comes only from a MISP Galaxy search snippet and was not verified against the CrowdStrike report.",
+  "Malpedia and MISP Galaxy pages were seen via search snippets only."
+ ],
+ "implications": {
+  "jipoe": "",
+  "jcc2": ""
+ },
+ "sources": [
+  {
+   "ref": "S2",
+   "title": "PALE PANDA actor entry listing synonyms incl. WET PANDA (Malpedia, citing CrowdStrike 2015 report; seen via search snippet only)",
+   "publisher": "Malpedia (Fraunhofer FKIE)",
+   "date": "2015-02",
+   "url": "https://malpedia.caad.fkie.fraunhofer.de/actor/pale_panda"
+  },
+  {
+   "ref": "S4",
+   "title": "MISP Galaxy threat-actor cluster (WET PANDA, synonym Red Chimera; seen via search snippet only)",
+   "publisher": "MISP Project",
+   "date": "",
+   "url": "https://helga.circl.lu/MISP/misp-galaxy/src/branch/dev/clusters/threat-actor.json"
+  }
+ ],
+ "aliasesAdd": []
+}

@@ -1,0 +1,107 @@
+{
+ "identification": {
+  "summary": "WIP19 is a threat cluster tracked by SentinelLabs that targets telecommunications and IT service providers in the Middle East and Asia; SentinelLabs assesses it is highly likely espionage-related and that the group is Chinese-speaking [S1][S3]. It signs its tools with a certificate issued to South Korean messaging provider DEEPSoft Co., which SentinelLabs judges was likely stolen because it also signed legitimate software in the past [S1][S3]. Tooling includes SQLMaggie (an MSSQL backdoor), ScreenCap (a screen recorder) and a credential dumper [S1][S2].",
+  "firstObserved": "",
+  "notes": "WIP19 is SentinelLabs' own temporary cluster designation, published October 2022 with additional insights from QGroup [S1][S2]. Some components are attributed to WinEggDrop, a Chinese-speaking malware author active since 2014 [S3]. SentinelLabs notes overlap with Operation Shadow Force (reported by Trend Micro and AhnLab) but says the toolset appears shared among several actors, so it is unclear whether WIP19 is a new iteration of Shadow Force or a different actor using similar TTPs [S3][S2]. Do not merge Shadow Force facts into WIP19. The 'Maggie' MSSQL backdoor was separately reported by DCSO CyTec [S5]."
+ },
+ "attribution": {
+  "sponsor": "",
+  "confidence": "SentinelLabs: 'highly likely' espionage-related and Chinese-speaking; no state sponsor named [S1][S3].",
+  "basis": "Language and tooling indicators, including WinEggDrop-authored components and possible Shadow Force overlap, as assessed by SentinelLabs [S3][S2]. No government attribution located."
+ },
+ "objectives": "SentinelLabs assesses the activity is highly likely espionage-related [S1][S3]. Hardcoded victim identifiers in some ScreenCap samples suggest some intrusions were well researched and targeted at specific victims [S1][S4].",
+ "targeting": {
+  "sectors": [
+   "Telecommunications",
+   "IT service providers"
+  ],
+  "regions": [
+   "Middle East",
+   "Asia"
+  ],
+  "notes": "SentinelLabs describes targeting of telecom and IT service providers across the Middle East and Asia [S1][S3]. The SQLMaggie/Maggie backdoor was reported on 285 MSSQL servers in 42 countries, mostly South Korea, India and Vietnam, followed by China and Taiwan, but that count comes from DCSO CyTec reporting on Maggie and is not confirmed as WIP19-only [S5]. Specific victim organizations were not identified in the sources reviewed."
+ },
+ "capabilities": {
+  "summary": "Toolset includes SQLMaggie, ScreenCap, a credential dumper and a keylogger [S2][S3]. Tools were signed with the DEEPSoft certificate [S1][S3]. The credential dumper uses open-source code to load an SSP into LSASS [S3]. DLL search order hijacking was used to load a keylogger and screen recorder [S3]. SQLMaggie registers as a DLL in MSSQL Server, giving the operator control of the server and ability to do internal reconnaissance [S3]. Maggie reportedly supports 51 commands, including process execution, file operations, remote desktop setup, port forwarding and brute-forcing other MSSQL logins [S5]. Almost all operations were hands-on-keyboard in interactive sessions; the actor gave up a stable C2 channel in exchange for stealth [S3][S2]."
+ },
+ "campaigns": [
+  {
+   "date": "2022-10",
+   "name": "SentinelLabs publication of WIP19 cluster",
+   "summary": "SentinelLabs (Joey Chen, Amitai Ben Shushan Ehrlich, with QGroup) published the WIP19 report describing signed malware used against telecom and IT service providers in the Middle East and Asia [S1][S2][S3]. Coverage followed on 2022-10-14 and in the same month [S2][S4].",
+   "sources": [
+    "S1",
+    "S2",
+    "S3",
+    "S4"
+   ]
+  },
+  {
+   "date": "2022-10",
+   "name": "Maggie MSSQL backdoor reporting (related, separate research)",
+   "summary": "DCSO CyTec reported the Maggie MSSQL backdoor, signed by DEEPSoft Co. Ltd, on 285 servers in 42 countries [S5]. Relationship to WIP19 activity is by shared malware family name and certificate only, per cited coverage [S5][S1].",
+   "sources": [
+    "S5",
+    "S1"
+   ]
+  }
+ ],
+ "diamond": {
+  "adversary": "Chinese-speaking espionage cluster WIP19; sponsor not named [S1][S3].",
+  "capability": "SQLMaggie MSSQL backdoor, ScreenCap, credential dumper, keylogger, DLL search order hijacking, signed with stolen certificate [S1][S3].",
+  "infrastructure": "Stable C2 largely forgone in favor of interactive hands-on-keyboard operation [S3][S2]. Specific infrastructure details not obtained.",
+  "victim": "Telecommunications and IT service providers in the Middle East and Asia [S1][S3].",
+  "socioPolitical": "Espionage motivation assessed as highly likely by SentinelLabs [S1][S3]. Further context not sourced.",
+  "technology": "Microsoft SQL Server (extended stored procedure DLL), Windows LSASS, code-signing trust [S3][S5]."
+ },
+ "gaps": [
+  "Primary SentinelLabs report could not be opened directly (fetch blocked); details come from secondary coverage and search summaries.",
+  "First-observed date, specific victims and exact infection vectors not confirmed.",
+  "Relationship to Operation Shadow Force unresolved; toolset appears shared among actors [S3].",
+  "Whether the 285-server Maggie count reflects WIP19 activity is unverified [S5].",
+  "No government attribution or sponsor identified.",
+  "Activity after October 2022 not found."
+ ],
+ "implications": {
+  "jipoe": "Analyst assessment derived from cited sources; validate before use. Step 1-2: telecom and IT service provider networks in the Middle East and Asia are operationally relevant terrain, and MSSQL servers are a key cyber terrain feature [S1][S5]. Step 3: the adversary is a Chinese-speaking espionage cluster with low-volume, hands-on-keyboard tradecraft and signed tools [S1][S3]. MLCOA (inference): continued targeted credential theft and screen/keystroke collection from telecom and IT provider hosts. MDCOA (inference): leveraging provider access to reach downstream customers. Candidate indicators: unexpected extended stored procedure DLLs in MSSQL, binaries signed by DEEPSoft Co., LSASS SSP loading, DLL search order hijacking [S3][S5].",
+  "jcc2": "Analyst assessment derived from cited sources; validate before use. Situational awareness: share signed-binary and MSSQL DLL indicators with partner telecom and IT providers where relevant [S1][S5]. Authorities: monitoring of partner or commercial networks requires appropriate legal authority and coordination. Mission assurance: harden and audit MSSQL servers, and treat certificate trust (revoked DEEPSoft certificate) as a detection pivot [S3]. Coordination: coordinate with the owners of exposed provider infrastructure and with intelligence channels, given limited public detail."
+ },
+ "sources": [
+  {
+   "ref": "S1",
+   "title": "WIP19 Espionage | New Chinese APT Targets IT Service Providers and Telcos With Signed Malware (SentinelLabs; seen in search results, not fetched)",
+   "publisher": "SentinelOne / SentinelLabs",
+   "date": "2022-10",
+   "url": "https://www.sentinelone.com/labs/wip19-espionage-new-chinese-apt-targets-it-service-providers-and-telcos-with-signed-malware/"
+  },
+  {
+   "ref": "S2",
+   "title": "WIP19, a new Chinese APT targets IT Service Providers and Telcos (reporting SentinelLabs)",
+   "publisher": "Security Affairs",
+   "date": "2022-10-14",
+   "url": "https://securityaffairs.com/137107/apt/wip19-targets-middle-east-asia.html"
+  },
+  {
+   "ref": "S3",
+   "title": "Chinese APT WIP19 Targets IT Service Providers and Telcos (reporting SentinelLabs)",
+   "publisher": "Infosecurity Magazine",
+   "date": "2022-10",
+   "url": "https://www.infosecurity-magazine.com/news/chinese-apt-targets-middle-east/"
+  },
+  {
+   "ref": "S4",
+   "title": "New Chinese Cyberespionage Group WIP19 Targets Telcos, IT Service Providers (reporting SentinelLabs)",
+   "publisher": "SecurityWeek",
+   "date": "2022-10",
+   "url": "https://www.securityweek.com/new-chinese-cyberespionage-group-wip19-targets-telcos-it-service-providers/"
+  },
+  {
+   "ref": "S5",
+   "title": "New MSSQL Backdoor 'Maggie' Infects Hundreds of Servers Worldwide (reporting DCSO CyTec)",
+   "publisher": "eSecurity Planet",
+   "date": "2022-10",
+   "url": "https://www.esecurityplanet.com/threats/mssql-backdoor-maggie/"
+  }
+ ],
+ "aliasesAdd": []
+}

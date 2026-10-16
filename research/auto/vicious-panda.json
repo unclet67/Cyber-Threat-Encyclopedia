@@ -1,0 +1,115 @@
+{
+  "identification": {
+    "summary": "Vicious Panda is Check Point Research's name for an anonymous, suspected China-based espionage actor first publicly described in March 2020 after a COVID-19-themed campaign against the Mongolian public sector, which delivered a previously unknown RAT [S1][S2]. Check Point tied the campaign to earlier operations dating to at least 2016 against Ukraine, Russia and Belarus [S1][S2]. In May 2020 ESET and Avast linked related activity (the Mikroceen RAT) to Central Asian targets and to the Vicious Panda and Belarus (BYEBY) campaigns, but said it was unclear whether one group or several groups share the malware [S3][S4]. Kaspersky tracks a related set as SixLittleMonkeys (Microcin) [S5].",
+    "firstObserved": "Check Point: activity dating back to at least 2016 [S1][S2].",
+    "notes": "No Microsoft Threat Actor name or MITRE group ID was found in the sources gathered. Vendor clusters differ: Vicious Panda (Check Point), Mikroceen (ESET/Avast malware name) and SixLittleMonkeys/Microcin (Kaspersky). The sources report links between them but do not establish that they are one actor [S3][S4][S5]."
+  },
+  "attribution": {
+    "sponsor": "",
+    "confidence": "Check Point describes the group as anonymous and believed to be Chinese [S2]. Avast said the actor could possibly be from China, and ESET/Avast said it is unclear whether all the campaigns were run by one group or whether multiple groups have access to the same Mikroceen malware family [S4]. No government attribution was found.",
+    "basis": "Check Point tied the 2020 Mongolia campaign to earlier operations by the same anonymous group dating back to at least 2016 [S2]; the sources reviewed did not specify the shared tooling. ESET/Avast linked Mikroceen to the Vicious Panda and Belarus campaigns by analysis of the RAT [S3][S4]."
+  },
+  "objectives": "Espionage against government and strategic sectors. Reporting describes government, telecommunications and gas targets in Central Asia, and a RAT that takes screenshots, lists and downloads files [S2][S3][S4]. Specific tasking is not stated in the sources.",
+  "targeting": {
+    "sectors": [
+      "Government / public sector",
+      "Telecommunications",
+      "Gas / energy",
+      "Diplomatic entities"
+    ],
+    "regions": [
+      "Mongolia [S1][S2]",
+      "Central Asia [S3][S4]",
+      "Ukraine, Russia, Belarus (earlier operations per Check Point) [S1]"
+    ],
+    "notes": "Mongolia public sector was the 2020 target [S1]. Mikroceen victims included telecom and gas companies and governmental entities in Central Asia [S3][S4]. Kaspersky reports a 2020 intrusion at a diplomatic entity attributed with high confidence to SixLittleMonkeys [S5]; whether this is the same cluster as Vicious Panda is unconfirmed."
+  },
+  "capabilities": {
+    "summary": "The March 2020 chain used Mongolian-language RTF documents impersonating the Mongolian Foreign Ministry, weaponized with the RoyalRoad builder (v7.x) to exploit Word, and dropped a file (intel.wll) into the Word startup folder for persistence [S2]. The payload was a custom RAT that takes screenshots, lists files and directories, and downloads files [S1][S2]. Check Point's detection name was Backdoor.Win32.Viciouspanda [S2]. ESET/Avast's Mikroceen RAT shows similarities to Gh0st RAT, with the connection secured by a certificate, and most C2 servers were registered to Choopa, LLC [S4]. Kaspersky describes SixLittleMonkeys tradecraft as including steganography and DLL search-order hijacking [S5]."
+  },
+  "campaigns": [
+    {
+      "date": "2020-03",
+      "name": "COVID-19 lure against Mongolian public sector",
+      "summary": "Weaponized RTF files impersonating the Mongolian Foreign Ministry delivered a previously unknown RAT.",
+      "sources": [
+        "S1",
+        "S2"
+      ]
+    },
+    {
+      "date": "2020-05",
+      "name": "Mikroceen in Central Asia",
+      "summary": "ESET and Avast describe a RAT used against telecom, gas and government targets in Central Asia, and link it to the Vicious Panda and Belarus campaigns.",
+      "sources": [
+        "S3",
+        "S4"
+      ]
+    },
+    {
+      "date": "2020-06",
+      "name": "SixLittleMonkeys (Microcin) update",
+      "summary": "Kaspersky reports the group using enterprise-style programming in its malware and a 2020 intrusion at a diplomatic entity.",
+      "sources": [
+        "S5"
+      ]
+    }
+  ],
+  "diamond": {
+    "adversary": "Anonymous, suspected China-based actor; clustering across vendors is uncertain [S2][S4].",
+    "capability": "RoyalRoad-weaponized RTF lures, Word startup-folder persistence, custom RAT; Mikroceen RAT [S2][S4].",
+    "infrastructure": "C2 servers mostly registered to Choopa, LLC (Mikroceen) [S4].",
+    "victim": "Mongolian public sector; Central Asian government, telecom and gas organizations [S1][S3][S4].",
+    "socioPolitical": "",
+    "technology": "Microsoft Word / RTF document handling and user-opened email attachments [S2]."
+  },
+  "gaps": [
+    "WebFetch could not reach research.checkpoint.com, so the Check Point report was read only through search summaries and press coverage; technical details (C2, hashes) are unverified.",
+    "Unit 42's CMSTAR/BYEBY report and Kaspersky's Microcin/Securelist posts were seen in search results but not opened; their dates are unverified and they are not cited as sources.",
+    "Whether Vicious Panda, Mikroceen and SixLittleMonkeys/Microcin are one actor is unresolved; ESET/Avast say multiple groups may share the malware [S4].",
+    "No Microsoft name, MITRE group ID, sponsor or government attribution was found.",
+    "No reporting after mid-2020 was gathered; current activity is unknown."
+  ],
+  "implications": {
+    "jipoe": "Analyst assessment derived from cited sources; validate before use. STEP 1: Email inboxes and Word on government, telecom and energy networks in Central Asia and Mongolia are the exposed terrain [S2][S4]. STEP 2: The actor exploits current events (COVID-19) and impersonates ministries to gain execution [S2]. STEP 3: Template is lure RTF, Word exploit, startup-folder persistence, then RAT collection [S2]. STEP 4: MLCOA is continued espionage against regional government and telecom targets. MDCOA is use of the same implants against coalition partners in the region; this is judgment, not stated in sources. Candidate indicators: new files in the Word startup folder (for example .wll), RTF attachments from spoofed ministry senders, and connections to Choopa-hosted servers [S2][S4].",
+    "jcc2": "Analyst assessment derived from cited sources; validate before use. (1) Situational awareness: track lure themes tied to current events and partner-nation government impersonation [S2]. (2) Authorities: any action on partner-nation networks needs partner or host-nation coordination. (3) Mission assurance: monitor Word startup-folder persistence on endpoints handling coalition email [S2]. (4) Coordination: attribution is uncertain across vendor clusters, so share indicators with vendors by their own names and avoid merging [S4]."
+  },
+  "sources": [
+    {
+      "ref": "S1",
+      "title": "Chinese hackers push COVID-19 cyber infection chain at Mongolian targets (reporting Check Point research)",
+      "publisher": "Global Security Mag",
+      "date": "2020-03-13",
+      "url": "https://www.globalsecuritymag.fr/Chinese-hackers-push-COVID-19,20200313,96628.html"
+    },
+    {
+      "ref": "S2",
+      "title": "Vicious Panda: The COVID Campaign (as summarized in search results; page not opened)",
+      "publisher": "Check Point Research",
+      "date": "2020-03",
+      "url": "https://research.checkpoint.com/2020/vicious-panda-the-covid-campaign/"
+    },
+    {
+      "ref": "S3",
+      "title": "Deconstructing Mikroceen: Researchers uncover spying backdoor attacking high-profile targets in Central Asia (press release)",
+      "publisher": "ESET",
+      "date": "2020-05",
+      "url": "https://www.eset.com/ca/about/newsroom/press-releases/deconstructing-mikroceen-researchers-uncover-spying-backdoor-attacking-high-profile-targets-in-cent/"
+    },
+    {
+      "ref": "S4",
+      "title": "APT group targets high profile networks in Central Asia (reporting ESET/Avast research)",
+      "publisher": "Security Affairs",
+      "date": "2020-05",
+      "url": "https://securityaffairs.com/103321/apt/apt-group-central-asia.html"
+    },
+    {
+      "ref": "S5",
+      "title": "Kaspersky researchers find SixLittleMonkeys APT now applies enterprise-style programming to their malware (press release)",
+      "publisher": "Kaspersky",
+      "date": "2020-06",
+      "url": "https://usa.kaspersky.com/about/press-releases/2020_kaspersky-researchers-find-sixlittlemonkeys-apt-now-applies-enterprise-style-programming-to-their-malware"
+    }
+  ],
+  "aliasesAdd": []
+}

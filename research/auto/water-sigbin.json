@@ -1,0 +1,143 @@
+{
+  "identification": {
+    "summary": "Water Sigbin is Trend Micro's name for the cryptomining-focused group also known as the 8220 Gang [S1][S2]. Trend Micro reported in 2024 that it exploiting Oracle WebLogic servers to deploy the PureCrypter loader and the XMRig miner via PowerShell [S2][S1]. QiAnXin XLab describes the 8220 group as a mining gang from China active since 2017 [S6].",
+    "firstObserved": "XLab: active since at least 2017 [S6]. Coverage of SentinelOne research states Cisco Talos first documented the group in late 2018 and that the name comes from its early use of port 8220 for C2 [S3].",
+    "notes": "Vendor names: Water Sigbin (Trend Micro), 8220 Gang [S1]. Whether the 2024 Windows/WebLogic activity and the earlier Linux/cloud botnet (Tsunami, PwnRig) are the same operator is stated by Trend Micro and XLab, who equate the names, but this record has not independently verified code or infrastructure overlap [S1][S6]. Script components used by the group are reused by other actors, so not every sample using them is 8220 Gang [S3]."
+  },
+  "attribution": {
+    "sponsor": "No state sponsor is asserted in the sources gathered. XLab describes the group as a mining gang from China [S6]; Talos (via SentinelOne coverage) assessed it as probably Chinese-speaking [S3].",
+    "confidence": "Vendor assessment only. Origin statements are attributed to XLab [S6]; coverage of SentinelOne research says Talos assessed from GitHub repository details and infrastructure that the group is probably Chinese-speaking [S3]. This is a financially motivated criminal cluster, not a government-attributed one.",
+    "basis": "Vendor reporting on exploits, malware and infrastructure [S1][S2][S3][S6]. No government attribution located."
+  },
+  "objectives": "Financial gain through unauthorized cryptocurrency (Monero) mining on compromised servers [S1][S6]. The group has also deployed the Tsunami IRC/DDoS bot alongside miners [S3][S6].",
+  "targeting": {
+    "sectors": [],
+    "regions": [],
+    "notes": "Imperva's researcher, as reported by The Hacker News, described the group as opportunistic with no clear trend in country or industry [S5]. Coverage of SentinelOne research states victims are chosen by internet accessibility (exposed Docker, Confluence, WebLogic, Redis) rather than geography [S3]. Targets are Windows and Linux internet-facing servers [S5]."
+  },
+  "capabilities": {
+    "summary": "Initial access through n-day remote code execution flaws in internet-facing services: Oracle WebLogic CVE-2017-3506 and CVE-2023-21839 [S1][S2], CVE-2020-14883 [S5], and CVE-2020-14882 (with k4spreader) [S6]; Confluence CVE-2022-26134 and WebLogic CVE-2019-2725 in a 2022 cloud campaign [S3][S4]. In the 2024 Windows chain a PowerShell script leads to the PureCrypter loader, which decrypts its server response with TripleDES, decompresses with Gzip, starts AddinProcess.exe and injects XMRig into it; payloads are protected with .NET Reactor and run fileless in memory [S1]. Trend Micro also reports hexadecimal-encoded URLs, HTTP over port 443 and environment-variable script obfuscation [S2]. Linux/cloud tooling includes the Tsunami IRC bot, the PwnRig custom XMRig miner, SSH brute-force lateral movement and a blocklist to avoid honeypots [S3]; the k4spreader installer, first seen by XLab on 2024-06-17, installs Tsunami and PwnRig [S6]. Imperva reported PowerShell WebClient download-and-execute on Windows and cross-OS payload delivery [S5]."
+  },
+  "campaigns": [
+    {
+      "date": "2018",
+      "name": "Early documentation",
+      "summary": "Coverage of SentinelOne research states Cisco Talos first documented the group in late 2018; the name derives from port 8220 C2 use.",
+      "sources": [
+        "S3"
+      ]
+    },
+    {
+      "date": "2022-06",
+      "name": "Confluence CVE-2022-26134 exploitation",
+      "summary": "Aqua observed an 8220 Gang campaign exploiting the Confluence flaw against its honeypot, with scripts changing and a growing focus on containers. Wiz lists the campaign as of 2022-07-07.",
+      "sources": [
+        "S4"
+      ]
+    },
+    {
+      "date": "2022",
+      "name": "Cloud botnet expansion",
+      "summary": "SentinelOne reported the botnet grew from about 2,000 hosts in mid-2021 to about 30,000, using Tsunami, PwnRig, SSH brute forcing and Confluence/WebLogic exploits.",
+      "sources": [
+        "S3"
+      ]
+    },
+    {
+      "date": "2023-12",
+      "name": "WebLogic CVE-2020-14883 activity",
+      "summary": "Imperva reported 8220 Gang exploitation of CVE-2020-14883 against Windows and Linux web servers, delivering miners and stealers, as covered by The Hacker News.",
+      "sources": [
+        "S5"
+      ]
+    },
+    {
+      "date": "2024-05",
+      "name": "Obfuscation-focused WebLogic campaign",
+      "summary": "Trend Micro reported Water Sigbin exploiting CVE-2017-3506 and CVE-2023-21839 with hex-encoded URLs, port 443 delivery and fileless .NET reflection to run a miner.",
+      "sources": [
+        "S2"
+      ]
+    },
+    {
+      "date": "2024-06",
+      "name": "PureCrypter and XMRig multistage loading",
+      "summary": "Trend Micro detailed the multistage chain to PureCrypter and XMRig injected into AddinProcess.exe. XLab separately found the k4spreader installer on 2024-06-17.",
+      "sources": [
+        "S1",
+        "S6"
+      ]
+    }
+  ],
+  "diamond": {
+    "adversary": "Financially motivated cryptomining cluster described by XLab as from China and by Talos as probably Chinese-speaking [S3][S6].",
+    "capability": "n-day exploitation, PowerShell staging, PureCrypter, XMRig/PwnRig, Tsunami bot, k4spreader, .NET Reactor obfuscation, fileless injection [S1][S3][S6].",
+    "infrastructure": "Actor-controlled download and C2 servers, a mining pool and wallet, historically port 8220; mining proxy details are not captured here [S1][S3].",
+    "victim": "Opportunistic internet-exposed WebLogic, Confluence, Docker, Redis and similar servers on Windows and Linux [S3][S5].",
+    "socioPolitical": "Profit-driven; no political or state-tasking indicators in the sources gathered [S1][S5].",
+    "technology": "Unpatched, internet-facing enterprise middleware and cloud workloads with weak segmentation and exposed management services [S3][S5]."
+  },
+  "gaps": [
+    "Trend Micro posts [S1][S2] could not be opened directly in this session (fetch failed); details come from search-result excerpts and the publication months are inferred from the URL path, so verify dates and content.",
+    "Original Imperva, Aqua, Uptycs, AhnLab and Cisco Talos reports were not opened; Imperva is cited through The Hacker News [S5] and Talos through SentinelOne coverage [S3].",
+    "Hivepro advisory (2024-07) and Fortinet PwnRig article were seen in search results but not read, so they are not cited.",
+    "No evidence located on the operators' identity, organization or any government link; the China-origin claim rests on vendor assessments [S3][S6].",
+    "Unverified whether Windows PureCrypter operations and Linux Tsunami/PwnRig operations share one operator beyond vendor equation of the names.",
+    "No victim counts or sector breakdown for the 2024 campaigns; wallet and pool figures were not captured.",
+    "No MITRE ATT&CK group ID is assigned in this record."
+  ],
+  "implications": {
+    "jipoe": "Analyst assessment derived from cited sources; validate before use. STEP 1: Internet-facing application servers (WebLogic, Confluence) and cloud container hosts, including contractor- or mission-hosted ones, are the relevant terrain; they offer compute that a miner can consume. STEP 2: The actor is opportunistic and weaponizes old, publicly known CVEs, so unpatched legacy systems are the exposure [S3][S5]. STEP 3: Template is n-day RCE, PowerShell or shell script, loader (PureCrypter) with in-memory injection into a benign-looking process, then miner or IRC bot, with SSH brute force for spread [S1][S3]. STEP 4: MLCOA is continued mass scanning and Monero mining that degrades performance and raises cost on exposed servers. MDCOA is that the same footholds and the Tsunami DDoS bot are used for DDoS or resold access; this is a possibility not shown in the sources. Candidate indicators: AddinProcess.exe with unusual network connections or injected memory, PowerShell spawned from WebLogic processes, outbound connections to mining pools, high sustained CPU, and SSH brute-force traffic [S1][S3].",
+    "jcc2": "Analyst assessment derived from cited sources; validate before use. (1) Situational awareness: track vendor patch status of WebLogic and Confluence across supported networks and feed unpatched findings to the common operational picture. (2) Authorities: the activity is criminal, so response generally falls to defensive and law-enforcement channels; confirm authorities before any active measure. (3) Mission assurance: miner resource consumption and a possible DDoS bot can degrade mission systems; prioritize isolating exposed servers. (4) Coordination: share indicators with the base cyber defense and DIB partners; treat this as a hygiene issue, not a state threat, unless other evidence emerges."
+  },
+  "sources": [
+    {
+      "ref": "S1",
+      "title": "Water Sigbin (8220 Gang) XMRig / PureCrypter multistage loading (publication month inferred from URL)",
+      "publisher": "Trend Micro",
+      "date": "2024-06",
+      "url": "https://www.trendmicro.com/en_us/research/24/f/water-sigbin-xmrig.html"
+    },
+    {
+      "ref": "S2",
+      "title": "Decoding Water Sigbin's Latest Obfuscation Tricks (publication month inferred from URL)",
+      "publisher": "Trend Micro",
+      "date": "2024-05",
+      "url": "https://www.trendmicro.com/en_us/research/24/e/decoding-8220-latest-obfuscation-tricks.html"
+    },
+    {
+      "ref": "S3",
+      "title": "From the Front Lines: 8220 Gang Massively Expands Cloud Botnet to 30,000 Infected Hosts (republished by Cloud Security Alliance 2022-08-09)",
+      "publisher": "SentinelOne",
+      "date": "2022",
+      "url": "https://www.sentinelone.com/blog/from-the-front-lines-8220-gang-massively-expands-cloud-botnet-to-30000-infected-hosts/"
+    },
+    {
+      "ref": "S4",
+      "title": "8220 Gang Confluence vulnerability CVE-2022-26134 (campaign listed by Wiz as 2022-07-07)",
+      "publisher": "Aqua Security",
+      "date": "2022-07",
+      "url": "https://aquasec.com/blog/8220-gang-confluence-vulnerability-cve-2022-26134"
+    },
+    {
+      "ref": "S5",
+      "title": "8220 Gang exploiting Oracle WebLogic Server vulnerability (reporting Imperva research)",
+      "publisher": "The Hacker News",
+      "date": "2023-12",
+      "url": "https://thehackernews.com/2023/12/8220-gang-exploiting-oracle-weblogic.html?m=0"
+    },
+    {
+      "ref": "S6",
+      "title": "8220 Mining Gang's New Tool: k4spreader (publication date approximate; sample first seen 2024-06-17)",
+      "publisher": "QiAnXin XLab",
+      "date": "2024-06",
+      "url": "https://blog.xlab.qianxin.com/8220-k4spreader-new-tool-en/"
+    }
+  ],
+  "aliasesAdd": [
+    {
+      "name": "Water Sigbin",
+      "vendor": "Trend Micro"
+    }
+  ]
+}

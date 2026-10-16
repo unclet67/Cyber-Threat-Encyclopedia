@@ -3,38 +3,6 @@
  "verify": [],
  "research": [
   {
-   "id": "vicious-panda",
-   "tier": "T3"
-  },
-  {
-   "id": "warp-panda",
-   "tier": "T3"
-  },
-  {
-   "id": "wassonite",
-   "tier": "T3"
-  },
-  {
-   "id": "water-gamayun",
-   "tier": "T3"
-  },
-  {
-   "id": "water-sigbin",
-   "tier": "T3"
-  },
-  {
-   "id": "webworm",
-   "tier": "T3"
-  },
-  {
-   "id": "wet-panda",
-   "tier": "T3"
-  },
-  {
-   "id": "wip19",
-   "tier": "T3"
-  },
-  {
    "id": "witchetty",
    "tier": "T3"
   },
@@ -389,11 +357,17 @@
   "uta0355",
   "uta0388",
   "vanilla-tempest",
+  "vicious-panda",
   "violet-typhoon",
   "void-blizzard",
   "volga-flood",
   "volt-typhoon",
+  "warp-panda",
+  "water-gamayun",
+  "water-sigbin",
+  "webworm",
   "winter-vivern",
+  "wip19",
   "yulong-flood"
  ],
  "thin": [
@@ -548,7 +522,9 @@
   "uta0352",
   "uta0355",
   "uta0388",
+  "vicious-panda",
   "volga-flood",
+  "wip19",
   "yulong-flood"
  ],
  "halts": [],
@@ -642,11 +618,13 @@
   "test-panda",
   "toxic-panda",
   "union-panda",
-  "union-spider"
+  "union-spider",
+  "wet-panda"
  ],
  "needs_source_date": {
   "operation-emmental": "draft is in research/auto; the Unit 42 Retefe post cited as S3 has no confirmed publication date",
   "red-dev-17": "draft is in research/auto; the Malpedia entry carrying the PwC assessment (S1) and the MITRE Chinoxy page (S3) lost their dates in fact-checking",
-  "tstark": "draft is in research/auto; its main claims rest on an undated Malpedia entry (S3)"
+  "tstark": "draft is in research/auto; its main claims rest on an undated Malpedia entry (S3)",
+  "wassonite": "draft is in research/auto; its North Korea link rests on an undated Malpedia entry (S8)"
  }
 }

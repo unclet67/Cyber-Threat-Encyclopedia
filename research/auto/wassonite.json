@@ -1,0 +1,131 @@
+{
+ "identification": {
+  "summary": "WASSONITE is the Dragos name for an ICS/OT-focused activity group (third-party catalogs describe it as North Korea-linked [S8]); Dragos first identified it after a malware intrusion at the Kudankulam Nuclear Power Plant (KKNPP) in India [S1]. Activity dates to at least 2018 [S1].",
+  "firstObserved": "2018",
+  "notes": "Dragos (not Microsoft or MITRE) is the naming vendor; no Microsoft name or MITRE group ID was found. Dragos describes some similarity to its COVELLITE group (also tied to Lazarus) but says COVELLITE uses different capabilities and targets [S1]. AppleSeed is also reported by Malwarebytes in Kimsuky activity against South Korean government targets [S7]; none of the sources reviewed establish whether WASSONITE and Kimsuky are the same cluster, so they are not merged here."
+ },
+ "attribution": {
+  "sponsor": "North Korea (per third-party catalog Malpedia and indirect Lazarus/DTrack links; Dragos pages reviewed do not state it directly)",
+  "confidence": "Not stated numerically in the sources reviewed; the North Korea link is a vendor assessment, not a government attribution.",
+  "basis": "Malpedia describes WASSONITE as a North Korea-linked APT [S8]. The link is indirect: security firms associate DTrack with Lazarus [S4], and Dragos pages reviewed do not state a North Korea attribution directly [S1]. Kaspersky tied DTrack to Lazarus through code overlap with the 2013 DarkSeoul campaign, including a shared C2 protocol implementation [S4]. NPCIL did not attribute the Kudankulam infection; the Lazarus link there rests on researcher analysis [S5]."
+ },
+ "objectives": "Dragos reports activity limited to IT-network access at Stage 1 of the ICS kill chain, with no ICS-specific disruptive or destructive capability observed [S1]. The stated objective is not given in the sources; the pattern of access, reconnaissance and data collection against industrial and nuclear-sector targets is consistent with espionage, but this is not stated by a cited source.",
+ "targeting": {
+  "sectors": [
+   "Nuclear energy",
+   "Electric generation",
+   "Manufacturing",
+   "Space-centric research organizations"
+  ],
+  "regions": [
+   "India",
+   "Japan (possible)",
+   "South Korea (possible)"
+  ],
+  "notes": "Dragos reports targeting of Asian entities, largely in India, and possibly Japan and South Korea [S1]. The Kudankulam plant infection was on an internet-connected administrative network that NPCIL said was isolated from the critical internal network [S5]."
+ },
+ "capabilities": {
+  "summary": "Dragos reports WASSONITE uses DTrack for remote access, Mimikatz for credential theft, and built-in system utilities for lateral movement and file transfer, and has used nuclear-themed phishing lures to deliver the AppleSeed backdoor [S1]. Kaspersky describes DTrack as a RAT with keylogging, browser history retrieval, process and network enumeration and file listing, delivered via multiple droppers and using process hollowing [S3][S4]."
+ },
+ "campaigns": [
+  {
+   "date": "2019-09",
+   "name": "Kudankulam Nuclear Power Plant intrusion (DTrack)",
+   "summary": "Kaspersky publicly described DTrack on 2019-09-23, with last observed activity in early September 2019 [S2][S3]. NPCIL later confirmed malware on an administrative-network computer at Kudankulam, saying CERT-In had flagged it on 4 September 2019 [S5]. Dragos says it identified WASSONITE following this intrusion [S1]. The Lazarus link here rests on researcher analysis, not an official attribution [S5].",
+   "sources": [
+    "S1",
+    "S2",
+    "S3",
+    "S5"
+   ]
+  },
+  {
+   "date": "2021",
+   "name": "AppleSeed backdoor activity against industrial victims",
+   "summary": "Dragos reports WASSONITE used nuclear energy-themed spear-phishing lures to deliver the AppleSeed backdoor [S1]. Dragos said it monitored and reported renewed WASSONITE activity in 2021 [S6]. Details of victim counts are not confirmed in an opened source (see gaps).",
+   "sources": [
+    "S1",
+    "S6"
+   ]
+  }
+ ],
+ "diamond": {
+  "adversary": "Activity group tracked by Dragos as WASSONITE, described by third parties as North Korea-linked with indirect Lazarus connections [S1][S8].",
+  "capability": "DTrack RAT, Mimikatz, AppleSeed backdoor, native system utilities [S1].",
+  "infrastructure": "AppleSeed command-and-control servers are referenced by Dragos, but specifics were not obtained from an opened source.",
+  "victim": "Nuclear energy, electric generation, manufacturing and space-research organizations, mainly India [S1].",
+  "socioPolitical": "",
+  "technology": "Windows IT networks, including internet-connected administrative networks at industrial sites [S1][S5]."
+ },
+ "gaps": [
+  "The Dragos WASSONITE profile and Dragos reports could not be opened (fetch tool failed with DNS errors); Dragos claims rely on search-result summaries of the profile, and the profile page is undated.",
+  "Dragos reporting of June 2021 victims in oil and gas, electric and component manufacturing communicating with a WASSONITE AppleSeed C2 (seen only in a search summary of an Automation.com article, not opened or dated) is unverified here.",
+  "Whether WASSONITE overlaps with Kimsuky (AppleSeed) or Lazarus sub-clusters is unresolved.",
+  "No Microsoft name, MITRE group ID, or government attribution found.",
+  "Victim counts, C2 infrastructure, intrusion dates after 2021 and any ICS-impacting activity are unknown.",
+  "Primary Kaspersky technical blog and NPCIL statement were not opened; coverage was used."
+ ],
+ "implications": {
+  "jipoe": "Analyst assessment derived from cited sources; validate before use. Step 1-2: relevant environment is IT and administrative networks of nuclear, electric, manufacturing and space-research entities in India and possibly Japan and South Korea [S1][S5]. Step 3: the adversary has shown Stage 1 ICS kill chain access only, no disruptive capability [S1]. MLCOA: continued spear-phishing (nuclear-themed lures) delivering AppleSeed/DTrack, credential theft with Mimikatz and lateral movement to collect data [S1]. MDCOA: pivot from IT to OT; no cited source shows this capability. Candidate indicators: nuclear-themed phishing lures, DTrack and AppleSeed artifacts, Mimikatz use, outbound traffic from administrative networks to known C2 [S1][S3].",
+  "jcc2": "Analyst assessment derived from cited sources; validate before use. Situational awareness: track vendor reporting on DTrack and AppleSeed and share indicators with allied energy-sector partners; the Kudankulam case showed an operator may initially deny an intrusion, so cross-check [S5]. Authorities and coordination: reporting relies on commercial intelligence and foreign operator statements; sharing with partners requires proper release channels. Mission assurance: segment administrative networks from control networks, as NPCIL claimed for Kudankulam, and verify the claim [S5]."
+ },
+ "sources": [
+  {
+   "ref": "S1",
+   "title": "WASSONITE threat group profile (Dragos; page not opened, content from search-result summary; undated, accessed 2026-10)",
+   "publisher": "Dragos",
+   "date": "2026-10",
+   "url": "https://www.dragos.com/threat/wassonite/"
+  },
+  {
+   "ref": "S2",
+   "title": "DTrack: previously unknown spy tool hits financial institutions and research centers (press release)",
+   "publisher": "Kaspersky",
+   "date": "2019-09-23",
+   "url": "https://www.kaspersky.com/about/press-releases/dtrack-previously-unknown-spy-tool-hits-financial-institutions-and-research-centers"
+  },
+  {
+   "ref": "S3",
+   "title": "North Korea-linked DTrack RAT discovered",
+   "publisher": "SecurityWeek",
+   "date": "2019-09",
+   "url": "https://www.securityweek.com/north-korean-linked-dtrack-rat-discovered/amp/"
+  },
+  {
+   "ref": "S4",
+   "title": "Kaspersky: Dual-use Dtrack malware linked to ATM thefts",
+   "publisher": "BankInfoSecurity",
+   "date": "2019-09",
+   "url": "https://www.bankinfosecurity.com/kaspersky-dual-use-dtrack-malware-linked-to-atm-thefts-a-13144"
+  },
+  {
+   "ref": "S5",
+   "title": "It's official, administrative network at Kudankulam Nuclear Power Plant was infected with DTrack",
+   "publisher": "Security Affairs",
+   "date": "2019-10",
+   "url": "https://securityaffairs.com/93183/security/kudankulam-nuclear-power-plant-infection.html"
+  },
+  {
+   "ref": "S6",
+   "title": "Dragos Industrial Cybersecurity Year in Review reports rise in threat groups (press release)",
+   "publisher": "Business Wire",
+   "date": "2022-02-23",
+   "url": "https://www.businesswire.com/news/home/20220223005575/en/Dragos-Industrial-Cybersecurity-%25E2%2580%259CYear-in-Review%25E2%2580%259D-Reports-Rise-in-Threat-Groups-Vulnerabilities-and-Ransomware-as-ICSOT-Systems-Digitally-Transform"
+  },
+  {
+   "ref": "S7",
+   "title": "Kimsuky APT AppleSeed coverage (reporting Malwarebytes research)",
+   "publisher": "The Hacker News",
+   "date": "2021-06",
+   "url": "https://thehackernews.com/2021/06/researchers-uncover-hacking-operations.html"
+  },
+  {
+   "ref": "S8",
+   "title": "WASSONITE (Malpedia actor entry)",
+   "publisher": "Malpedia (Fraunhofer FKIE)",
+   "date": "",
+   "url": "https://malpedia.caad.fkie.fraunhofer.de/actor/wassonite"
+  }
+ ],
+ "aliasesAdd": []
+}
