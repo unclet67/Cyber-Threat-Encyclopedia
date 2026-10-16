@@ -3,38 +3,6 @@
  "verify": [],
  "research": [
   {
-   "id": "spicy-panda",
-   "tier": "T3"
-  },
-  {
-   "id": "storm-0381",
-   "tier": "T3"
-  },
-  {
-   "id": "storm-0530",
-   "tier": "T3"
-  },
-  {
-   "id": "storm-1084",
-   "tier": "T3"
-  },
-  {
-   "id": "storm-1099",
-   "tier": "T3"
-  },
-  {
-   "id": "storm-cloud",
-   "tier": "T3"
-  },
-  {
-   "id": "ta406",
-   "tier": "T3"
-  },
-  {
-   "id": "ta428",
-   "tier": "T3"
-  },
-  {
    "id": "ta444",
    "tier": "T3"
   },
@@ -590,18 +558,25 @@
   "storm-0133",
   "storm-0216",
   "storm-0247",
+  "storm-0381",
+  "storm-0530",
   "storm-0593",
   "storm-0940",
   "storm-0978",
+  "storm-1084",
+  "storm-1099",
   "storm-1175",
   "storm-1982",
   "storm-2035",
   "storm-2077",
   "storm-2372",
   "storm-2603",
+  "storm-cloud",
   "suckfly",
   "sunglow-blizzard",
   "swirl-typhoon",
+  "ta406",
+  "ta428",
   "ta459",
   "ta577",
   "taffeta-typhoon",
@@ -721,10 +696,16 @@
   "slime88",
   "sneakychef",
   "spacebears",
+  "storm-0381",
+  "storm-0530",
   "storm-0940",
+  "storm-1084",
+  "storm-1099",
   "storm-2035",
+  "storm-cloud",
   "suckfly",
   "sunglow-blizzard",
+  "ta406",
   "ta459",
   "taffeta-typhoon",
   "tumbleweed-typhoon",
@@ -817,6 +798,7 @@
   "predator-panda",
   "sabre-panda",
   "slime29",
+  "spicy-panda",
   "storm-2470"
  ],
  "needs_source_date": {

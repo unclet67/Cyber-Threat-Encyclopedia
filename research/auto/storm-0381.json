@@ -1,0 +1,111 @@
+{
+ "identification": {
+  "summary": "Storm-0381 is Microsoft's designation for a threat actor described as a Russian cybercrime group known for using malvertising to deploy Magniber ransomware [S2]. Its earlier Microsoft in-development designation was DEV-0381 [S2]. The Microsoft Digital Defense Report 2023 is the cited basis for this description [S2].",
+  "firstObserved": "",
+  "notes": "The Storm-0381 to Magniber link rests on a Malpedia entry that cites Microsoft's 2023 report; Microsoft's own wording was not opened [S2]. The Magniber malware family itself was first reported in 2017 [S3], but that is the malware, not necessarily this Microsoft-tracked cluster. Third-party Magniber reporting below does not name Storm-0381 and must not be merged with this actor without a primary Microsoft statement."
+ },
+ "attribution": {
+  "sponsor": "Cybercrime (non-state), per Microsoft's description as relayed by Malpedia [S2]",
+  "confidence": "Not stated in the sources reviewed",
+  "basis": "Malpedia describes Storm-0381 as a Russian cybercrime group identified by Microsoft, citing the Digital Defense Report 2023 [S2]. No government attribution was found. No technical basis for the Russia assessment was available to this research."
+ },
+ "objectives": "Financial gain through ransomware deployment is implied by the description of the actor as a cybercrime group deploying Magniber ransomware [S2]. Magniber has been reported to demand ransoms of up to 2,500 USD from individuals in related third-party reporting, but that reporting was not retrieved with a citable date in this pass.",
+ "targeting": {
+  "sectors": [],
+  "regions": [],
+  "notes": "Sources do not give Storm-0381-specific victimology. Magniber malware, as reported by third parties, initially targeted South Korea via malvertising [S3], with early variants checking for Korean system language [S3]. Google TAG reported in March 2023 that over 80 percent of downloads of malicious MSI files by users were in Europe, a departure from the usual Korea and Taiwan focus [S6]. Whether these map to Storm-0381 is unconfirmed."
+ },
+ "capabilities": {
+  "summary": "Storm-0381 is described as using malvertising to deploy Magniber ransomware [S2]. Third-party reporting on Magniber, not confirmed as Storm-0381, shows: Magnitude Exploit Kit malvertising against Korean users in 2017 [S3]; signed APPX packages posing as Chrome or Edge updates in early 2022, which created a DLL and EXE under WindowsApps that downloaded and decoded the payload [S4]; and use of a SmartScreen bypass (malformed Authenticode signature) to evade warnings, patched as CVE-2022-44698 and then CVE-2023-24880 after a workaround variant [S6]."
+ },
+ "campaigns": [
+  {
+   "date": "2017-10",
+   "name": "Magniber via Magnitude Exploit Kit (malware family, actor link unconfirmed)",
+   "summary": "Trend Micro reported Magnitude Exploit Kit malvertising delivering Magniber ransomware to South Korean users [S3]. Not attributed to Storm-0381 in the source.",
+   "sources": [
+    "S3"
+   ]
+  },
+  {
+   "date": "2022-01",
+   "name": "Fake Chrome and Edge update APPX distribution (actor link unconfirmed)",
+   "summary": "ASEC reported Magniber distributed through signed .appx packages disguised as Microsoft Edge and Google Chrome updates, shifting from Internet Explorer exploitation; the campaign was predominantly in South Korea [S4]. Not attributed to Storm-0381 in the sources.",
+   "sources": [
+    "S4"
+   ]
+  },
+  {
+   "date": "2023-03",
+   "name": "Magniber use of SmartScreen bypass variant (actor link unconfirmed)",
+   "summary": "Google TAG reported Magniber actors used a variant of a Microsoft SmartScreen bypass, patched as CVE-2023-24880 in the March 2023 Patch Tuesday release, after the earlier CVE-2022-44698 was fixed [S6]. Not attributed to Storm-0381 in the sources.",
+   "sources": [
+    "S6"
+   ]
+  },
+  {
+   "date": "2023-10",
+   "name": "Microsoft Digital Defense Report 2023 listing",
+   "summary": "Microsoft's 2023 report is the cited origin of the Storm-0381 description as a Russian cybercrime group using malvertising to deploy Magniber [S2].",
+   "sources": [
+    "S2"
+   ]
+  }
+ ],
+ "diamond": {
+  "adversary": "Russian cybercrime group per Microsoft's description relayed by Malpedia [S2].",
+  "capability": "Malvertising delivery of Magniber ransomware [S2]; related Magniber reporting covers exploit kits, fake update lures and SmartScreen bypass [S3][S4][S6].",
+  "infrastructure": "",
+  "victim": "",
+  "socioPolitical": "",
+  "technology": "Windows endpoints and browsers (Chrome, Edge) and the Windows SmartScreen feature are the technologies abused in related Magniber reporting [S4][S6]."
+ },
+ "gaps": [
+  "Microsoft's primary text on Storm-0381 (Digital Defense Report 2023) was not opened; its PDF URL was not confirmed in search and was removed.",
+  "No Microsoft blog or Defender TI profile for Storm-0381 was found; no named-actor (weather) promotion was found.",
+  "No evidence reviewed ties the Magniber campaigns in S3, S4 and S6 specifically to the Storm-0381 cluster; vendors (AhnLab, Google TAG, Trend Micro) do not use Microsoft's name.",
+  "Sponsor, confidence level, first-observed date, infrastructure, sector targeting and victim counts are unknown.",
+  "No 2024-2026 activity was found.",
+  "Not retrieved: HP Threat Research (JavaScript lure, Sept 2022), ASEC follow-up on cessation (Feb 2022), Picus CVE-2023-24880 write-up, Malpedia Magniber page."
+ ],
+ "implications": {
+  "jipoe": "",
+  "jcc2": ""
+ },
+ "sources": [
+  {
+   "ref": "S2",
+   "title": "Storm-0381 (Threat Actor), Malpedia entry citing Microsoft Digital Defense Report 2023 (secondary coverage; page accessed via search result)",
+   "publisher": "Fraunhofer FKIE Malpedia",
+   "date": "2026-10",
+   "url": "https://malpedia.caad.fkie.fraunhofer.de/actor/storm-0381"
+  },
+  {
+   "ref": "S3",
+   "title": "Magnitude Exploit Kit Now Targeting Korea with Magniber Ransomware",
+   "publisher": "Trend Micro",
+   "date": "2017-10",
+   "url": "https://www.trendmicro.com/en_us/research/17/j/magnitude-exploit-kit-now-targeting-korea-with-magniber-ransomware.html"
+  },
+  {
+   "ref": "S4",
+   "title": "Magniber Ransomware Being Distributed via Microsoft Edge and Google Chrome (search-result summary)",
+   "publisher": "AhnLab ASEC",
+   "date": "2022-01",
+   "url": "https://asec.ahnlab.com/en/30645/"
+  },
+  {
+   "ref": "S6",
+   "title": "Magniber ransomware actors used a variant of Microsoft SmartScreen bypass (search-result summary)",
+   "publisher": "Google Threat Analysis Group",
+   "date": "2023-03",
+   "url": "https://blog.google/threat-analysis-group/magniber-ransomware-actors-used-a-variant-of-microsoft-smartscreen-bypass/"
+  }
+ ],
+ "aliasesAdd": [
+  {
+   "name": "DEV-0381",
+   "vendor": "Microsoft"
+  }
+ ]
+}

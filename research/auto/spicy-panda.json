@@ -1,0 +1,51 @@
+{
+  "identification": {
+    "summary": "SPICY PANDA is a CrowdStrike-style 'PANDA' cryptonym listed as a China (CN) threat actor in the MISP threat-actor galaxy, which cites a CrowdStrike report; no dates, targets or campaign details were seen [S1]. No vendor profile of the activity was found.",
+    "firstObserved": "",
+    "notes": "No Microsoft name mapping and no MITRE group ID were found. Any relationship to PALE PANDA is unverified and the groups should not be merged."
+  },
+  "attribution": {
+    "sponsor": "",
+    "confidence": "",
+    "basis": "The MISP galaxy entry lists country CN with an attribution-confidence value of 50 and a CrowdStrike reference; no sponsor or basis is stated in the snippet seen [S1]."
+  },
+  "objectives": "",
+  "targeting": {
+    "sectors": [],
+    "regions": [],
+    "notes": ""
+  },
+  "capabilities": {
+    "summary": ""
+  },
+  "campaigns": [],
+  "diamond": {
+    "adversary": "",
+    "capability": "",
+    "infrastructure": "",
+    "victim": "",
+    "socioPolitical": "",
+    "technology": ""
+  },
+  "gaps": [
+    "No public vendor profile, campaign, target, tooling or infrastructure reporting for SPICY PANDA was found in 6 searches.",
+    "The imported reference (CrowdStrike Global Threat Intel report PDF, go.crowdstrike.com) could not be fetched (host not resolvable), so the original wording is unverified.",
+    "No Microsoft actor name, MITRE group ID, or government attribution identified.",
+    "Treat as a name-only record; recommend a CrowdStrike customer-portal or ETDA/Malpedia direct check.",
+    "The ETDA and Malpedia pages originally cited could not be confirmed in independent searches and were removed; the MISP galaxy snippet is secondary data."
+  ],
+  "implications": {
+    "jipoe": "",
+    "jcc2": ""
+  },
+  "sources": [
+    {
+      "ref": "S1",
+      "title": "MISP galaxy threat-actor cluster (snippet only)",
+      "publisher": "MISP Project",
+      "date": "2026-10 (retrieved)",
+      "url": "https://helga.circl.lu/MISP/misp-galaxy/src/branch/dev/clusters/threat-actor.json"
+    }
+  ],
+  "aliasesAdd": []
+}
