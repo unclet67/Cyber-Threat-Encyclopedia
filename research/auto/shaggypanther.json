@@ -1,0 +1,83 @@
+{
+  "identification": {
+    "summary": "ShaggyPanther is a China-linked cluster named by Kaspersky that targets government entities mainly in Taiwan and Malaysia [S3][S4]. The MISP galaxy entry states it has been active since 2008, hides encrypted payloads in registry keys, and has been seen in Indonesia and Syria [S3].",
+    "firstObserved": "The MISP galaxy entry says active since 2008 [S3]; this is not verified against a primary Kaspersky text. Kaspersky coverage dates from 2018 [S4].",
+    "notes": "Kaspersky name. No Microsoft name is mapped in this record."
+  },
+  "attribution": {
+    "sponsor": "",
+    "confidence": "Kaspersky's quarterly reporting, as relayed by secondary coverage, groups ShaggyPanther with Chinese-speaking activity [S4]. The MISP galaxy entry records country CN [S3]. No government attribution found.",
+    "basis": "Kaspersky APT reporting relayed by secondary sources [S3][S4]. Underlying indicators not reviewed."
+  },
+  "objectives": "",
+  "targeting": {
+    "sectors": [
+      "Government"
+    ],
+    "regions": [
+      "Taiwan [S3][S4]",
+      "Malaysia [S3][S4]",
+      "Indonesia [S3]",
+      "Syria [S3]"
+    ],
+    "notes": "Government entities are the stated focus [S3][S4]."
+  },
+  "capabilities": {
+    "summary": "The MISP galaxy entry states the group hides encrypted payloads in registry keys [S3]. No malware families or infrastructure were found in the sources reviewed."
+  },
+  "campaigns": [
+    {
+      "date": "2018-04",
+      "name": "Kaspersky Q1 2018 APT trends mention",
+      "summary": "Coverage of Kaspersky's Q1 2018 report lists ShaggyPanther within a rise in Chinese-speaking activity, targeting government entities mainly in Taiwan and Malaysia [S4].",
+      "sources": [
+        "S4"
+      ]
+    },
+    {
+      "date": "2024-02",
+      "name": "Added to MISP galaxy",
+      "summary": "MISP galaxy added the actor with country CN, citing Kaspersky reviews from 2018-2019 [S3].",
+      "sources": [
+        "S3"
+      ]
+    }
+  ],
+  "diamond": {
+    "adversary": "China-linked, unnamed operators [S3].",
+    "capability": "Encrypted payloads hidden in registry keys [S3].",
+    "infrastructure": "",
+    "victim": "Government entities in Taiwan and Malaysia; also Indonesia and Syria [S3][S4].",
+    "socioPolitical": "",
+    "technology": "Windows hosts, where registry-resident payloads are used [S3]."
+  },
+  "gaps": [
+    "Primary Kaspersky reports (Securelist Q3 2019 trends, 2018 and 2019 annual reviews) could not be opened; the host was unreachable. All claims rest on secondary profiles.",
+    "The 2008 start date is unverified.",
+    "No malware names, infrastructure, CVEs, victims or dated campaigns found.",
+    "Sponsor and objectives are not stated in the sources reviewed.",
+    "No Microsoft or MITRE mapping found.",
+    "Sources S1 (Malpedia) and S2 (Strobes) were removed in fact-check because their URLs were not seen in search results."
+  ],
+  "implications": {
+    "jipoe": "",
+    "jcc2": ""
+  },
+  "sources": [
+    {
+      "ref": "S3",
+      "title": "MISP galaxy commit adding ShaggyPanther",
+      "publisher": "MISP Project (CIRCL)",
+      "date": "2024-02",
+      "url": "https://helga.circl.lu/MISP/misp-galaxy/commit/dd01813e51b0b9b45b3d085939dcc1733eb7c745"
+    },
+    {
+      "ref": "S4",
+      "title": "Asia and Middle East a hotbed of new threat actors in Q1 2018",
+      "publisher": "Kaspersky",
+      "date": "2018-04-12",
+      "url": "https://kaspersky.com/about/press-releases/asia-and-middle-east-a-hotbed-of-new-threat-actors-in-q1-2018"
+    }
+  ],
+  "aliasesAdd": []
+}

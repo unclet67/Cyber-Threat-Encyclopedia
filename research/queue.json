@@ -3,38 +3,6 @@
  "verify": [],
  "research": [
   {
-   "id": "scarab",
-   "tier": "T3"
-  },
-  {
-   "id": "scarred-manticore",
-   "tier": "T3"
-  },
-  {
-   "id": "shadow-earth-053",
-   "tier": "T3"
-  },
-  {
-   "id": "shaggypanther",
-   "tier": "T3"
-  },
-  {
-   "id": "shahid-hemmat",
-   "tier": "T3"
-  },
-  {
-   "id": "shamoon-group",
-   "tier": "T3"
-  },
-  {
-   "id": "shark-spider",
-   "tier": "T3"
-  },
-  {
-   "id": "sharppanda",
-   "tier": "T3"
-  },
-  {
    "id": "silkspecter",
    "tier": "T3"
   },
@@ -626,11 +594,19 @@
   "sangria-tempest",
   "sapphire-sleet",
   "satin-typhoon",
+  "scarab",
   "scarlet-mimic",
+  "scarred-manticore",
   "seashell-blizzard",
   "secret-blizzard",
   "sefid-flood",
+  "shadow-earth-053",
   "shadow-typhoon",
+  "shaggypanther",
+  "shahid-hemmat",
+  "shamoon-group",
+  "shark-spider",
+  "sharppanda",
   "silent-librarian",
   "silk-typhoon",
   "smoke-sandstorm",
@@ -757,8 +733,14 @@
   "ruthless-rabbit",
   "ruza-flood",
   "sands-casino",
+  "scarab",
+  "scarred-manticore",
   "sefid-flood",
+  "shadow-earth-053",
   "shadow-typhoon",
+  "shaggypanther",
+  "shahid-hemmat",
+  "shark-spider",
   "storm-0940",
   "storm-2035",
   "suckfly",
