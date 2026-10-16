@@ -1,0 +1,64 @@
+{
+  "identification": {
+    "summary": "Witchetty is Symantec's name for a China-linked cyber-espionage cluster that ESET calls LookingFrog, one of three teams ESET placed under the TA410 umbrella [S1][S2]. ESET documented it in April 2022; its earlier toolset was the X4 first-stage backdoor and the LookBack second-stage payload [S1][S2]. In September 2022 Symantec reported an updated toolset that included a new steganography-based backdoor, Backdoor.Stegmap [S2][S3].",
+    "firstObserved": "LookBack malware was first reported by Proofpoint in August 2019; Proofpoint's later TA410 reporting (June 2020) linked LookBack and FlowCloud to one actor [S4]; the LookingFrog/Witchetty name dates to ESET's April 2022 report [S1]. Symantec observed the Stegmap activity from February to September 2022 [S2].",
+    "notes": "Name mapping: Witchetty (Symantec) = LookingFrog (ESET), a subgroup of TA410 [S2][S3]. ESET's other TA410 subgroups are FlowingFrog (FlowCloud) and JollyFrog (generic tools such as QuasarRAT and Korplug/PlugX); these are separate clusters and their facts are not merged here [S1][S5]. Proofpoint's TA410 reporting (LookBack, FlowCloud) predates the subgroup split [S4]. No Microsoft Typhoon/Storm name was found for this cluster in the sources gathered."
+  },
+  "attribution": {
+    "sponsor": "",
+    "confidence": "Symantec does not offer a state attribution for Witchetty; it quotes ESET's association of Witchetty with TA410 [S6]. ESET describes TA410 as having some links to Cicada (APT10) [S1]. Proofpoint noted TA410 similarities with APT10 (TA429) in macros and infrastructure but said the overlap could be intentional false flags [S5].",
+    "basis": "ESET assessed Witchetty/LookingFrog as one of three TA410 teams based on overlapping TTPs, victimology and infrastructure [S1][S5]. Symantec's report ties Stegmap to Witchetty through the group's established LookBack tooling and Exchange-exploitation pattern [S2][S3]. No government attribution was found in the sources reviewed."
+  },
+  "objectives": "Inferred from victimology only: ESET reports Witchetty/LookingFrog targets governments, diplomatic missions, charities, and industrial and manufacturing organizations [S1], and Symantec observed the group with a fully functional backdoor able to steal local files [S2][S3]. This is consistent with espionage; no source states specific collection requirements.",
+  "targeting": {
+    "sectors": ["Government", "Diplomatic missions", "Charities", "Industrial and manufacturing", "Financial markets (an African stock exchange)"],
+    "regions": ["Middle East (governments of two countries, 2022) [S2][S3]", "Africa (a stock exchange in one country, 2022) [S2][S3]"],
+    "notes": "Sector list for LookingFrog is from ESET [S1]; Symantec's 2022 victims were the governments of two Middle Eastern countries and an African stock exchange, with activity February to September 2022 [S2][S3]. Country names were not given in the coverage reviewed. ESET's ProxyShell example in the TA410 umbrella was a Japanese industrial manufacturer in August 2021, but the sources reviewed do not state which subgroup it belongs to [S1]."
+  },
+  "capabilities": {
+    "summary": "Earlier toolset: X4 first-stage backdoor loaded by a VMProtect-ed loader, then the LookBack second-stage RAT [S1][S2]. ESET states TA410 had access to recent Microsoft Exchange RCE vulnerabilities, ProxyLogon (March 2021) and ProxyShell (August 2021) [S1]. In 2022 Symantec saw Witchetty exploit ProxyLogon and ProxyShell to drop the China Chopper web shell, then perform credential theft and lateral movement before deploying LookBack [S2][S3]. Symantec also listed Mimikatz (LSASS dumping observed June 2022), Plink, a keylogger, an LSASS credential stealer and a Korplug/PlugX loader [S2][S6]. The new Backdoor.Stegmap is delivered by a DLL loader that downloads a bitmap of an old Windows logo from a GitHub repository; the payload hidden in the image is decrypted with an XOR key [S2][S3]. Stegmap can create and remove directories; copy, move and delete files; start, terminate and enumerate processes; download and execute files; steal local files; and modify registry keys [S2][S3]."
+  },
+  "campaigns": [
+    {"date": "2019-08", "name": "LookBack attacks on US utilities (TA410 umbrella)", "summary": "Proofpoint reported LookBack malware against the US utilities sector in August 2019; its June 2020 reporting tied it with FlowCloud to a single actor it named TA410. ESET later assigned LookBack to the LookingFrog (Witchetty) team.", "sources": ["S4", "S1"]},
+    {"date": "2021-03", "name": "ProxyLogon access available to TA410", "summary": "ESET states TA410 had access to ProxyLogon (March 2021) and ProxyShell (August 2021) Exchange vulnerabilities.", "sources": ["S1"]},
+    {"date": "2022-04", "name": "ESET publishes TA410 subgroup analysis", "summary": "ESET splits TA410 into FlowingFrog, LookingFrog and JollyFrog and describes LookingFrog's X4 and LookBack toolset and targets.", "sources": ["S1"]},
+    {"date": "2022-02", "name": "Stegmap-era intrusions (Feb to Sep 2022)", "summary": "Symantec observed Witchetty targeting two Middle Eastern governments and an African stock exchange, exploiting Exchange flaws, dropping China Chopper, stealing credentials (Mimikatz LSASS dump in June 2022) and deploying LookBack and Backdoor.Stegmap.", "sources": ["S2", "S3", "S6"]},
+    {"date": "2022-09", "name": "Symantec publishes Witchetty/Stegmap report", "summary": "Symantec reports the updated toolset and the Windows-logo steganography technique; media coverage runs through early October 2022.", "sources": ["S2", "S3", "S7"]},
+    {"date": "2023-04", "name": "ESET follow-up report on TA410", "summary": "A Malpedia index lists an ESET post dated 2023-04-23, 'TA410: APT10's distant cousin', tagged with Witchetty; its contents could not be opened.", "sources": ["S8"]}
+  ],
+  "diamond": {
+    "adversary": "China-linked cluster tracked as Witchetty (Symantec) and LookingFrog (ESET) within TA410; no state sponsor named by the vendors [S1][S2][S6].",
+    "capability": "X4, LookBack, Backdoor.Stegmap, China Chopper, Mimikatz, Plink, keylogger, PlugX/Korplug loader; Exchange ProxyLogon/ProxyShell exploitation [S1][S2][S3].",
+    "infrastructure": "Public-facing Exchange servers as entry points; GitHub repository used to host the steganographic bitmap [S2][S3]. Further C2 details are not in the sources reviewed.",
+    "victim": "Governments of two Middle Eastern countries and an African stock exchange (2022); more broadly governments, diplomatic missions, charities and industrial/manufacturing organizations [S1][S2].",
+    "socioPolitical": "Victim set (governments, diplomatic missions, financial market operator) is consistent with political and economic intelligence collection; no source states the tasking.",
+    "technology": "Internet-exposed, unpatched Microsoft Exchange servers; use of trusted hosting (GitHub) to blend payload retrieval with normal traffic [S1][S2][S7]."
+  },
+  "gaps": [
+    "No government or Microsoft attribution or naming for this cluster was found; sponsor remains unconfirmed.",
+    "Relationship to APT10/Cicada is described only as loose or suspected, and Proofpoint cautioned about false flags [S1][S5].",
+    "Victim countries and organizations in the 2022 campaign were not named in coverage reviewed.",
+    "Primary Symantec and ESET pages could not be fetched in this environment (host unreachable); details rely on search-result summaries and secondary coverage and should be verified against the originals [S1][S2].",
+    "ESET's 2023 'TA410: APT10's distant cousin' report could not be opened; only a Malpedia index entry was seen [S8].",
+    "Activity after late 2022 specifically attributed to Witchetty/LookingFrog was not found.",
+    "Exact Symantec publication date is approximate (late September 2022); IOCs were not reviewed."
+  ],
+  "implications": {
+    "jipoe": "Analyst assessment derived from cited sources; validate before use. STEP 1: Internet-facing Microsoft Exchange servers at government, diplomatic and financial-sector organizations are key terrain; they were the entry point in 2022 [S2][S3]. STEP 2: Environment includes allied/partner governments in the Middle East and Africa and unpatched Exchange exposure; the actor weaponized ProxyLogon and ProxyShell within the disclosure period [S1][S2]. STEP 3: Threat model is Exchange exploit, China Chopper web shell, credential theft (Mimikatz/LSASS), lateral movement, then LookBack or Stegmap with payload retrieval from GitHub [S2][S3]. STEP 4: MLCOA is continued espionage against government and diplomatic networks in the Middle East and Africa via unpatched Exchange. MDCOA is use of the same access against partner networks that support US/coalition operations to harvest planning and diplomatic data. Candidate indicators: new ASPX web shells on Exchange servers, LSASS access by non-standard processes, DLL side-loading from user-writable paths, and endpoints fetching bitmap images from GitHub repositories followed by new processes [S2][S3].",
+    "jcc2": "Analyst assessment derived from cited sources; validate before use. (1) Situational awareness: track Exchange patch status and web-shell hunts for partner and DoD-adjacent networks; correlate vendor reporting using both names (Witchetty, LookingFrog) and the TA410 umbrella [S1][S2]. (2) Authorities: partner-network defense typically needs host-nation or coalition agreement; confirm authorities before any hunt outside DODIN. (3) Mission assurance: Exchange and credential stores support command communications; prioritize patching, LSASS protection and egress filtering of code-hosting sites where mission permits [S2][S3]. (4) Coordination: share indicators through DC3/DIB channels and with partners; avoid asserting government attribution, which sources do not provide."
+  },
+  "sources": [
+    {"ref": "S1", "title": "A lookback under the TA410 umbrella: Its cyberespionage TTPs and activity", "publisher": "ESET (WeLiveSecurity)", "date": "2022-04-27", "url": "https://www.welivesecurity.com/2022/04/27/lookback-ta410-umbrella-cyberespionage-ttps-activity/"},
+    {"ref": "S2", "title": "Witchetty: Group Uses Updated Toolset in Attacks on Governments in Middle East", "publisher": "Symantec Threat Hunter Team (Broadcom)", "date": "2022-09", "url": "https://www.security.com/threat-intelligence/witchetty-steganography-espionage"},
+    {"ref": "S3", "title": "Cyber Attacks Against Middle East Governments Hide Malware in Windows Logo (reporting Symantec)", "publisher": "The Hacker News", "date": "2022-09", "url": "https://thehackernews.com/2022/09/cyber-attacks-against-middle-east.html"},
+    {"ref": "S4", "title": "TA410: Malware Attacks Against U.S. Utilities Sector (LookBack and FlowCloud)", "publisher": "Proofpoint", "date": "2020-06", "url": "https://www.proofpoint.com/us/blog/threat-insight/ta410-group-behind-lookback-attacks-against-us-utilities-sector-returns-new"},
+    {"ref": "S5", "title": "Experts Detail 3 Hacking Teams Working Under the Umbrella of TA410 Group (reporting ESET)", "publisher": "The Hacker News", "date": "2022-04", "url": "https://thehackernews.com/2022/04/experts-detail-3-hacking-teams-working.html"},
+    {"ref": "S6", "title": "Chinese Cyberespionage Group 'Witchetty' Updates Toolset in Recent Attacks (reporting Symantec)", "publisher": "SecurityWeek", "date": "2022-09", "url": "https://www.securityweek.com/chinese-cyberespionage-group-witchetty-updates-toolset-recent-attacks/"},
+    {"ref": "S7", "title": "Spyware found hidden in Microsoft logo using steganography (reporting Symantec)", "publisher": "The Register", "date": "2022-10-02", "url": "https://www.theregister.com/2022/10/02/witchetty_windows_logo_spyware"},
+    {"ref": "S8", "title": "Witchetty (Threat Actor) (index listing ESET 2023 report)", "publisher": "Malpedia", "date": "2023-04", "url": "https://malpedia.caad.fkie.fraunhofer.de/actor/witchetty"}
+  ],
+  "aliasesAdd": [
+    {"name": "LookingFrog", "vendor": "ESET"},
+    {"name": "TA410 (umbrella)", "vendor": "Proofpoint"}
+  ]
+}

@@ -1,0 +1,94 @@
+{
+  "identification": {
+    "summary": "XakNet Team is a Russian-language Telegram channel of a self-proclaimed hacktivist group that says it is made up of Russian patriotic volunteers formed in response to Anonymous's declaration of war on Russia (the group's own claim, not independently verified) [S1]. Mandiant reports the moderators advertise multiple domains and social media channels it determined are controlled by the same actors [S1]. Reported activity includes DDoS, website defacement, compromises and hack-and-leak [S1]. Mandiant's April 2024 update re-linked the intrusion activity claimed by these personas from APT28 to APT44 (Sandworm) with high confidence [S1].",
+    "firstObserved": "2022-03 (a defaced Ukrainian TV news ticker in early March 2022 was claimed by the moderators) [S1]",
+    "notes": "Do not merge clusters: Mandiant treats XakNet Team, Infoccentr and CyberArmyofRussia_Reborn as separate Telegram personas it assesses coordinate with APT44, and also notes limited, separate links to KillNet [S1]. The existing record's alias UAC-0100 is not supported here: secondary reporting describes UAC-0100 as a separate fraud-themed cluster and UAC-0106 as XakNet, but I did not open the CERT-UA primary advisories [S7]."
+  },
+  "attribution": {
+    "sponsor": "Russian GRU (Mandiant assessment: personas coordinate with, or are run by officers of or alongside, APT44/Sandworm) [S1]",
+    "confidence": "Moderate (Mandiant) for coordination with APT44, and for moderators being GRU officers or working directly with APT44 operators; Mandiant's 2024 update says the intrusion activity is linked to APT44 with high confidence [S1]. This is a vendor assessment, not a government attribution.",
+    "basis": "A unique technical artifact from an APT44 intrusion appeared in an XakNet data leak, indicating APT44 had access to the same network [S1]. In two incidents APT44 wiper attacks (ARGUEPATCH dropping CADDYWIPER) were followed within 24 hours by Telegram leaks of the victims' data [S1]. Mandiant reserves judgement on the groups' composition and exact degree of GRU affiliation [S1]."
+  },
+  "objectives": "Mandiant suggests two possible influence objectives: promoting Russian interests abroad and projecting to domestic audiences that ordinary Russians support the government [S1]. Disruption and leak of Ukrainian government data is the observed operational pattern [S1][S2].",
+  "targeting": {
+    "sectors": [
+      "Government",
+      "Media"
+    ],
+    "regions": [
+      "Ukraine"
+    ],
+    "notes": "Claims include a defaced Ukrainian TV news ticker with a fake capitulation message (early March 2022) [S1] and the December 2024 attack on Ukraine's state registers, which XakNet claimed [S2]."
+  },
+  "capabilities": {
+    "summary": "Publicly visible tradecraft is DDoS, defacement, compromise and hack-and-leak amplified through Telegram, with active solicitation of media coverage [S1]. Mandiant counted at least 16 leaks across the three personas, four of which coincided with APT44 wiping attacks [S1]. Mandiant has observed CADDYWIPER and ARGUEPATCH only in APT44 use, so the destructive capability is attributed to APT44, not the persona [S1]."
+  },
+  "campaigns": [
+    {
+      "date": "2022-03",
+      "name": "Fake capitulation message on Ukrainian TV",
+      "summary": "A Ukrainian news organization's ticker was defaced during a live broadcast with a fake message of capitulation attributed to President Zelenskyy; the XakNet moderators claimed involvement [S1].",
+      "sources": [
+        "S1"
+      ]
+    },
+    {
+      "date": "2022-09",
+      "name": "Mandiant links personas to GRU",
+      "summary": "Mandiant published its assessment of moderate-confidence coordination with GRU-sponsored APT44 (then attributed to APT28), citing a leaked APT44 artifact and wiper-then-leak timing [S1].",
+      "sources": [
+        "S1"
+      ]
+    },
+    {
+      "date": "2024-12",
+      "name": "Ukraine state registers attack",
+      "summary": "XakNet claimed it breached the National Information Systems and deleted databases and backups; Ukrainian officials called it among the largest cyberattacks, said registration services were disrupted, and denied data was leaked [S2]. Claims of deletion were not independently verified, and attribution to Russian military intelligence in reporting was unconfirmed by officials [S2].",
+      "sources": [
+        "S2"
+      ]
+    }
+  ],
+  "diamond": {
+    "adversary": "Persona of Russian-language Telegram moderators assessed by Mandiant as GRU officers or working directly with APT44 operators (moderate confidence) [S1].",
+    "capability": "DDoS, defacement, hack-and-leak and media amplification; destructive tooling (ARGUEPATCH, CADDYWIPER) attributed to APT44 [S1].",
+    "infrastructure": "Telegram channels plus multiple domains and social media channels controlled by the same actors [S1].",
+    "victim": "Ukrainian government and media bodies [S1][S2].",
+    "socioPolitical": "Persona fronts for state-linked operations in the Russia-Ukraine war, claiming volunteer patriotism [S1].",
+    "technology": "Telegram for claims and leaks; Windows-network compromise with wiper payloads attributed to APT44 [S1]."
+  },
+  "gaps": [
+    "Primary CERT-UA advisories and SSSCIP material could not be opened; alias UAC-0106 and the UAC-0100 mapping are unverified [S7].",
+    "XakNet-specific leak counts, infrastructure indicators and tooling are not published in the sources opened [S1].",
+    "Claims of the state registers data deletion are unverified and officials disputed data-theft claims [S2].",
+    "Whether post-2022 XakNet posts are independent of APT44 is unknown; government attribution not found."
+  ],
+  "implications": {
+    "jipoe": "Analyst assessment derived from cited sources; validate before use. Step 1-2: operating environment is Ukrainian government and media networks, with spillover risk to states supporting Ukraine [S1][S2]. Step 3: the persona is an influence front that amplifies state-linked intrusions; leaks may follow wiper activity within 24 hours [S1]. MLCOA: continued Telegram-announced leak and disruption claims against Ukrainian public-sector systems [S2]. MDCOA: destructive wiper activity against critical registries paired with claims of mass data deletion [S1][S2]. Candidate indicators: Telegram claims preceding or following outages, domains tied to the persona, and wiper artifacts matching APT44 [S1].",
+    "jcc2": "Analyst assessment derived from cited sources; validate before use. Situational awareness: monitor persona channels for claims and treat them as potential cover for GRU operations, validating against victim telemetry [S1]. Authorities: attribution to a state is a vendor assessment, so response actions need separate government attribution [S1]. Mission assurance: backups held offsite were reportedly claimed deleted in 2024, so verify backup isolation for registry-type services [S2]. Coordination: share indicators with Ukrainian and allied CERT partners and track APT44 reporting [S1]."
+  },
+  "sources": [
+    {
+      "ref": "S1",
+      "title": "Hacktivists Collaborate with GRU-sponsored Threat Actors (April 2024 update re-attributing to APT44)",
+      "publisher": "Mandiant / Google Cloud",
+      "date": "2022-09-23",
+      "url": "https://cloud.google.com/blog/topics/threat-intelligence/gru-rise-telegram-minions"
+    },
+    {
+      "ref": "S2",
+      "title": "Ukraine's state registers hit with one of Russia's largest cyberattacks, officials say",
+      "publisher": "The Record",
+      "date": "2024-12",
+      "url": "https://therecord.media/ukraine-government-cyberattack-state-registers-russia"
+    },
+    {
+      "ref": "S7",
+      "title": "The Russia-Ukraine Cyber War Part 2 (secondary coverage of CERT-UA/SSSCIP naming; primary not opened)",
+      "publisher": "LevelBlue SpiderLabs",
+      "date": "2023",
+      "url": "https://www.levelblue.com/blogs/spiderlabs-blog/attacks-against-government-entities-defense-sector-and-human-targets"
+    }
+  ],
+  "aliasesAdd": []
+}

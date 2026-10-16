@@ -1,0 +1,76 @@
+{
+  "identification": {
+    "summary": "Zarya (Russian for 'dawn') is a pro-Russian hacktivist group reported to have emerged in March 2022 as a special-forces-style unit under Killnet and to have become an independent entity known as Zarya in August 2022 [S1][S2]. It is known for DDoS, website defacement and data leaks [S2]. Radware described it in February 2023 as building Mirai variants to enlarge its DDoS botnet [S1].",
+    "firstObserved": "March 2022 per Radware-derived reporting [S1][S2].",
+    "notes": "Sources differ on the Killnet timeline: one account has the unit rejoining Killnet in May 2022 as part of a project called 'Legion', then going independent in August 2022 [S2]; a separate analysis states there are two Zarya groups that both claim links to Killnet [S6]. UAC-0109 is listed as an alias by Malpedia; no CERT-UA publication naming it was found [S8]. 'Zarya Legion' and 'Zarya' are used in the sources as related names; whether they are one cluster is not settled [S2][S6]. SANS suggests the name likely reflects a Cyrillic-style spelling of 'dawn' [S5]."
+  },
+  "attribution": {
+    "sponsor": "",
+    "confidence": "Low. No government or vendor attribution to a state organization was found. A leaked US document, as reported by journalists, described Zarya operators showing an FSB-linked handler screenshots of access to a Canadian gas facility [S7]. A Cyberknow analysis says Zarya Legion referenced a relationship with Russian intelligence services; this is one researcher's inference [S6]. Thales judged it unlikely that a group truly associated with Russian armed forces would publicize its actions on a public channel [S3].",
+    "basis": "Self-published Telegram claims relayed by Thales and Radware [S1][S3]; leaked-document reporting [S7]; single-analyst assessment [S6]. These are not primary government attribution."
+  },
+  "objectives": "Disruption, defacement and data leakage against states and organizations seen as opposed to Russia, framed as hacktivism in support of Russia's war in Ukraine [S2][S3]. The group also claimed to have sent members to support Russian forces in Donbass with cyber operations (unverified claim) [S3].",
+  "targeting": {
+    "sectors": [
+      "Government agencies",
+      "Service providers",
+      "Critical infrastructure (claimed)",
+      "Civil service employees",
+      "Ukrainian research and state bodies (claimed)"
+    ],
+    "regions": [
+      "Ukraine (claimed data theft, Nov 2022) [S3]",
+      "Western states generally ('attacks on the West') [S1]",
+      "Canada (alleged gas facility access, per leaked document reporting) [S7]"
+    ],
+    "notes": "Sector list from the group profile in the existing record and secondary summaries [S2]. Most victim claims are self-reported and unverified [S1][S3]."
+  },
+  "capabilities": {
+    "summary": "DDoS using a botnet; Radware reported the group building Mirai variants to grow it [S1]. Propaganda site 'Zarya - CyberFront' listed links to 48 hacking campaigns and allegedly 655 GB of leaked data (the group's own claim, relayed by Radware); the site and malware were hosted by Akur Group, described as a bulletproof hosting provider [S1]. SANS observed opportunistic scanning for SharePoint servers (CVE-2023-29357 path /_api/web/siteusers) and a defaced host, from infrastructure on the Aeza network (ASN 210644), and characterized the group as using low-hanging-fruit exploits to find defacement targets; SANS judged most attacks would fail even against a vulnerable target [S4][S5]. Researchers questioned whether the group could conduct destructive attacks on critical infrastructure [S7]."
+  },
+  "campaigns": [
+    {"date": "2022-03", "name": "Emergence under Killnet", "summary": "Group reported to emerge as a special-forces-style unit under Killnet command.", "sources": ["S1", "S2"]},
+    {"date": "2022-08", "name": "Independence from Killnet", "summary": "Reported to become an independent entity named Zarya (timeline contested across sources).", "sources": ["S2", "S6"]},
+    {"date": "2022-11", "name": "Claimed breach of Ukrainian State Logistics Department data", "summary": "Zarya claimed to have stolen databases belonging to the State Logistics Department of the National Academy of Sciences of Ukraine and published them on its channel; Thales viewed a link to the Donbass-support claim as plausible but unconfirmed.", "sources": ["S3"]},
+    {"date": "2023-02", "name": "Mirai-variant botnet development", "summary": "Radware advisory reports Zarya building Mirai variants to grow its DDoS botnet and hosting its CyberFront site with Akur Group.", "sources": ["S1", "S2"]},
+    {"date": "2023-04", "name": "Alleged Canadian gas facility access", "summary": "Reporting on a leaked US document describes Zarya operators showing an FSB-linked handler screenshots of access to a Canadian gas distribution station; researchers doubted capability for destructive attack.", "sources": ["S7"]},
+    {"date": "2023-06", "name": "Possible botnet link to Microsoft DDoS", "summary": "A Cyberknow analysis speculates Anonymous Sudan used a botnet run by Zarya Legion in June 2023 attacks on Microsoft; not confirmed by DOJ or industry reporting found.", "sources": ["S6"]},
+    {"date": "2023-11", "name": "SharePoint scanning and defacement", "summary": "SANS ISC observed pro-Russian scanning for SharePoint CVE-2023-29357 and a defaced host; a follow-up on 2023-12-04 tied the activity to Zarya and Radware's Mirai reporting.", "sources": ["S4", "S5"]}
+  ],
+  "diamond": {
+    "adversary": "Pro-Russian hacktivist collective with Killnet origins; state ties are alleged but unproven [S2][S6][S7].",
+    "capability": "DDoS botnet with Mirai variants, defacement, data leaks, opportunistic exploit scanning (SharePoint CVE-2023-29357) [S1][S4][S5].",
+    "infrastructure": "Akur Group bulletproof hosting for the CyberFront site and malware [S1]; Aeza network (ASN 210644) hosts used for scanning [S5]; Telegram channel for publication of claims [S3].",
+    "victim": "Ukrainian state bodies, Western government and service-provider targets, claimed critical infrastructure [S1][S3][S7].",
+    "socioPolitical": "Support for Russia's war in Ukraine; information-effect and visibility goals via public claims [S2][S3].",
+    "technology": "Internet-facing unpatched servers (SharePoint), misconfigured or unpatched devices usable for Mirai-type botnets [S1][S5]."
+  },
+  "gaps": [
+    "WebFetch could not reach any of the source hosts in this session (DNS failure); content was taken from search-result summaries of Radware, ITWire/Security Solutions Media, Thales, SANS ISC, Cyberknow and Zetter/Security Affairs, and should be verified against the originals.",
+    "Radware advisory (Feb 2023) is the primary source for botnet and CyberFront claims but was not opened directly; ITWire and ChannelLife are secondary coverage.",
+    "Killnet timeline conflicts between sources (May 2022 rejoin, August 2022 independence, two groups claiming Zarya) [S2][S6].",
+    "No Zarya activity found for 2024-2026; current status unknown.",
+    "The CERT-UA tracking label UAC-0109 could not be confirmed against a CERT-UA publication [S8].",
+    "State sponsorship unverified; the Canadian gas facility and Anonymous Sudan links rest on a leaked-document report and one analyst's inference [S6][S7].",
+    "Mandiant's 2022 Killnet report and its 2024 update on Telegram personas (linked to APT44 with high confidence) do not mention Zarya in sources reviewed; do not merge those clusters with Zarya.",
+    "Existing record URLs (Mandiant Killnet blog, CYFIRMA, SOCRadar, CIP Ukraine attachment) were not opened and are not cited."
+  ],
+  "implications": {
+    "jipoe": "Analyst assessment derived from cited sources; validate before use. STEP 1: Internet-facing collaboration servers (SharePoint), public web properties and DDoS-exposed services of government and contractors are the terrain this actor touches [S4][S5]. STEP 2: Low sophistication and a record of mostly failed opportunistic attacks limit direct effect, but claimed access and leaks create information-environment effects [S5][S7]. STEP 3: Template is scanning for known CVEs, defacement or data leak, Mirai-style DDoS, then publicity on Telegram and CyberFront [S1][S3][S5]. STEP 4: MLCOA is continued DDoS, defacement and claimed leaks against Ukraine-supporting government and service-provider sites. MDCOA is a state-directed tasking using the group as a deniable front against critical infrastructure, as alleged but unproven in leak reporting [S7]. Candidate indicators: scanning for /_api/web/siteusers, traffic from Aeza ASN 210644, Mirai-variant botnet C2, Telegram claims naming new victims [S1][S4][S5].",
+    "jcc2": "Analyst assessment derived from cited sources; validate before use. (1) Situational awareness: track hacktivist Telegram claims separately from confirmed intrusions to avoid overstating effects [S3][S5]. (2) Authorities: reporting is largely open-source; response to DDoS and defacement on DoD-adjacent sites follows normal network defense and law enforcement channels. (3) Mission assurance: patch internet-facing SharePoint and IoT devices and prepare DDoS mitigation for public-facing sites [S1][S4]. (4) Coordination: share indicators such as ASN 210644 activity with DC3/DIB partners and allied CERTs; treat alleged state tasking as unvalidated [S5][S7]."
+  },
+  "sources": [
+    {"ref": "S1", "title": "Pro-Russian Hacktivists Leverage Mirai Botnets (Radware threat advisory; accessed via search summary)", "publisher": "Radware", "date": "2023-02", "url": "https://www.radware.com/security/threat-advisories-and-attack-reports/pro-russian-hacktivists-leverage-mirai-botnets/"},
+    {"ref": "S2", "title": "Former Killnet special forces unit Zarya increases attack power as Russian-Ukrainian war enters second year (reporting Radware)", "publisher": "ITWire", "date": "2023-02", "url": "https://www.itwire.com/guest-articles/guest-research/former-killnet-special-forces-unit-zarya-increases-attack-power-as-russian-ukrainian-war-enters-second-year.html"},
+    {"ref": "S3", "title": "Thales Cyber Threat Intelligence note on Zarya claims against Ukrainian organizations (claim date Nov 2022; publication date not verified)", "publisher": "Thales", "date": "2022-11", "url": "https://cds.thalesgroup.com/es/node/527"},
+    {"ref": "S4", "title": "Pro Russian Attackers Scanning for Sharepoint Servers to Exploit CVE-2023-29357", "publisher": "SANS Internet Storm Center", "date": "2023-11-28", "url": "https://dshield.org/diary/30436"},
+    {"ref": "S5", "title": "Zarya Hacktivists: More than just Sharepoint", "publisher": "SANS Internet Storm Center", "date": "2023-12-04", "url": "https://isc.sans.edu/diary/30450"},
+    {"ref": "S6", "title": "The Microsoft DDoS attacks - Hacktivism or Vendetta?", "publisher": "Cyberknow (Substack)", "date": "2023-06", "url": "https://cyberknow.substack.com/p/the-microsoft-ddos-attacks-hacktivism"},
+    {"ref": "S7", "title": "Pro-Russia hacking group executed a disruptive attack against a Canadian gas pipeline (reporting leaked US document)", "publisher": "Security Affairs", "date": "2023-04", "url": "https://securityaffairs.com/?p=145307"},
+    {"ref": "S8", "title": "Zarya actor entry (alias UAC-0109)", "publisher": "Malpedia", "date": "2026-10-16 (retrieved)", "url": "https://malpedia.caad.fkie.fraunhofer.de/actor/zarya"}
+  ],
+  "aliasesAdd": [
+    {"name": "Zarya Legion", "vendor": "Cyberknow / ITWire (Radware reporting)"},
+    {"name": "Zarya - CyberFront", "vendor": "Radware"}
+  ]
+}

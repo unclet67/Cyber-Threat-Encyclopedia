@@ -1,36 +1,7 @@
 {
  "note": "Research queue for the automatic wave runner. Waves take items from the front; finished ids move to 'done'. Scope limited to CN/RU/IR/KP on 2026-10-15 at the user's request; non-state actors moved to 'deferred'.",
  "verify": [],
- "research": [
-  {
-   "id": "witchetty",
-   "tier": "T3"
-  },
-  {
-   "id": "worok",
-   "tier": "T3"
-  },
-  {
-   "id": "xaknet",
-   "tier": "T3"
-  },
-  {
-   "id": "xiaoqiying",
-   "tier": "T3"
-  },
-  {
-   "id": "xinxin",
-   "tier": "T3"
-  },
-  {
-   "id": "z-pentest-alliance",
-   "tier": "T3"
-  },
-  {
-   "id": "zarya",
-   "tier": "T3"
-  }
- ],
+ "research": [],
  "done": [
   "1937cn",
   "ababil-of-minab",
@@ -368,7 +339,14 @@
   "webworm",
   "winter-vivern",
   "wip19",
-  "yulong-flood"
+  "witchetty",
+  "worok",
+  "xaknet",
+  "xiaoqiying",
+  "xinxin",
+  "yulong-flood",
+  "z-pentest-alliance",
+  "zarya"
  ],
  "thin": [
   "1937cn",
@@ -525,7 +503,12 @@
   "vicious-panda",
   "volga-flood",
   "wip19",
-  "yulong-flood"
+  "worok",
+  "xaknet",
+  "xiaoqiying",
+  "xinxin",
+  "yulong-flood",
+  "z-pentest-alliance"
  ],
  "halts": [],
  "deferred": [
@@ -626,5 +609,6 @@
   "red-dev-17": "draft is in research/auto; the Malpedia entry carrying the PwC assessment (S1) and the MITRE Chinoxy page (S3) lost their dates in fact-checking",
   "tstark": "draft is in research/auto; its main claims rest on an undated Malpedia entry (S3)",
   "wassonite": "draft is in research/auto; its North Korea link rests on an undated Malpedia entry (S8)"
- }
+ },
+ "queue_complete": "2026-10-17: all China/Russia/Iran/North Korea actors processed; see held-back lists"
 }
