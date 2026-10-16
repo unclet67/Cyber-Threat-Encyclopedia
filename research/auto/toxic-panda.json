@@ -1,0 +1,27 @@
+{
+  "identification": {
+    "summary": "TOXIC PANDA appears in Malpedia as an actor name whose one-line description is a group targeting dissident groups in China and at its boundaries, sourced to a 2014 RSA Conference session titled The Art of Attribution [S1][S2]. No vendor report dedicated to this actor was found in open search, so the profile rests on that single descriptive line [S1].",
+    "firstObserved": "",
+    "notes": "The PANDA suffix follows CrowdStrike's naming convention, but no CrowdStrike adversary page for TOXIC PANDA was found; do not assume CrowdStrike authorship of the description beyond the RSA session listing [S1]. Name collision: the Android banking trojan ToxicPanda (Cleafy, 2024) is a separate, financially motivated malware family assessed by Cleafy as likely operated by Chinese speakers and related to TgToxic [S3]. There is no source linking it to the 2014 TOXIC PANDA actor name; the two must not be merged."
+  },
+  "attribution": {"sponsor": "", "confidence": "", "basis": ""},
+  "objectives": "",
+  "targeting": {"sectors": [], "regions": [], "notes": "The only sourced targeting statement is dissident groups in China and at its boundaries [S1]. No sectors, regions or victims were found."},
+  "capabilities": {"summary": ""},
+  "campaigns": [],
+  "diamond": {"adversary": "", "capability": "", "infrastructure": "", "victim": "Dissident groups in China and at its boundaries [S1].", "socioPolitical": "", "technology": ""},
+  "gaps": [
+    "No dedicated vendor report, malware, infrastructure, campaign dates or ATT&CK mapping for TOXIC PANDA was found; the profile is a single descriptive line from a 2014 conference listing.",
+    "The 2014 RSA slide deck (docs.huihoo.com mirror) and the Malpedia page could not be fetched in this environment (host resolution failure), so the underlying text was seen only through search-result summaries [S1][S2].",
+    "State sponsor, confidence and Microsoft mapping are unknown; the record's country value CN is carried from the import and is not independently supported here.",
+    "Possible overlap with other PANDA-named or Malpedia-listed clusters is unverified.",
+    "Whether TOXIC PANDA relates to the 2024 ToxicPanda Android banking trojan is unsupported; treated as name collision only [S3]."
+  ],
+  "implications": {"jipoe": "", "jcc2": ""},
+  "sources": [
+    {"ref": "S1", "title": "TOXIC PANDA actor entry (seen via search results; page not fetched)", "publisher": "Malpedia (Fraunhofer FKIE)", "date": "2014-02", "url": "https://malpedia.caad.fkie.fraunhofer.de/actor/toxic_panda"},
+    {"ref": "S2", "title": "The Art of Attribution: Identifying and Pursuing Your Cyber Adversaries (RSA Conference 2014 slides, mirror; not opened)", "publisher": "RSA Conference via docs.huihoo.com", "date": "2014-02", "url": "https://docs.huihoo.com/rsaconference/usa-2014/anf-t07b-the-art-of-attribution-identifying-and-pursuing-your-cyber-adversaries-final.pdf"},
+    {"ref": "S3", "title": "ToxicPanda: a new banking trojan from Asia hit Europe and LATAM (name-collision context only)", "publisher": "Cleafy Labs", "date": "2024-11", "url": "https://www.cleafy.com/cleafy-labs/toxicpanda-a-new-banking-trojan-from-asia-hit-europe-and-latam"}
+  ],
+  "aliasesAdd": []
+}

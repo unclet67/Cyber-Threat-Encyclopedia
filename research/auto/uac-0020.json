@@ -1,0 +1,135 @@
+{
+  "identification": {
+    "summary": "UAC-0020 is CERT-UA's designator for the actor widely called Vermin, a pro-Russian group that The Record describes as reportedly controlled by law enforcement of the so-called Luhansk People's Republic and believed to act on behalf of the Kremlin [S3]. CERT-UA's 2024 reporting pairs the SPECTR spyware with the legitimate SyncThing tool in a campaign it named SickSync [S2]. SPECTR has been linked to Vermin since 2019 [S4].",
+    "firstObserved": "ESET documented the custom Vermin RAT in campaigns against Ukrainian government institutions in 2018 [S6]. Press reporting says the group's last known operation before 2024 was in March 2022 [S7].",
+    "notes": "Aliases in this record: Vermin and SickSync (the latter is CERT-UA's campaign name, not necessarily a group name) [S2]. No Microsoft name or MITRE group id was found in the sources gathered. Vermin is the malware name ESET used for a RAT; the actor label derives from it [S6]."
+  },
+  "attribution": {
+    "sponsor": "Reported as Luhansk People's Republic (LPR) law-enforcement/security structures acting on behalf of Russia, per The Record's description of the group [S3]. SOC Prime reporting of CERT-UA's 2022 work likewise ties the activity to the so-called security agencies of the LPR [S1].",
+    "confidence": "Not stated with a formal confidence level in the sources gathered. The Record uses hedged language (reportedly controlled, believed to act on behalf of the Kremlin) [S3].",
+    "basis": "CERT-UA tracking and reporting of UAC-0020 as relayed by SOC Prime, The Record and Security Affairs [S1][S2][S3]. Primary CERT-UA text was not opened."
+  },
+  "objectives": "Cyber-espionage against Ukrainian government, military and defense targets: theft of documents, screenshots, credentials and messenger/browser data [S1][S2][S3].",
+  "targeting": {
+    "sectors": [
+      "Government",
+      "Military / defense forces"
+    ],
+    "regions": [
+      "Ukraine"
+    ],
+    "notes": "ESET reported attacks on Ukrainian government institutions in 2018 [S6]. In 2024 CERT-UA reported targeting of Ukraine's defense forces [S2] and lures built around Kursk-region prisoners of war [S4][S5]."
+  },
+  "capabilities": {
+    "summary": "Spear-phishing delivering RAR or ZIP archives [S1][S4]. 2018 tooling included the custom Vermin RAT alongside open-source Quasar RAT and Sobaken RAT [S6]. In 2024 the actor used SPECTR spyware, which reportedly collects files, screenshots, credentials and data from messaging apps such as Signal, Telegram, Skype and Element [S2], bundled with a modified SyncThing for exfiltration [S1][S2]. The August 2024 chain used a CHM file running obfuscated PowerShell that installed SPECTR components and the new FIRMACHAGENT, which uploads stolen data to a remote server [S4]."
+  },
+  "campaigns": [
+    {
+      "date": "2018-07",
+      "name": "Vermin / Quasar / Sobaken RAT campaigns",
+      "summary": "ESET identified three .NET RAT families (Quasar, Sobaken, custom Vermin) used against Ukrainian government institutions, with a few hundred victims by ESET telemetry.",
+      "sources": [
+        "S6"
+      ]
+    },
+    {
+      "date": "2022-03",
+      "name": "SPECTR spear-phishing wave",
+      "summary": "CERT-UA reported emails with the subject 'supply' carrying password-protected RAR archives that delivered SPECTR to Ukrainian government bodies, attributed to UAC-0020 (Vermin) and tied to LPR security agencies.",
+      "sources": [
+        "S1"
+      ]
+    },
+    {
+      "date": "2024-06",
+      "name": "SickSync",
+      "summary": "CERT-UA reported a campaign against Ukraine's defense forces. A phishing RAR held a decoy PDF, a trojanized SyncThing and a batch script, deploying SPECTR. CERT-UA described it as not very successful.",
+      "sources": [
+        "S2",
+        "S7"
+      ]
+    },
+    {
+      "date": "2024-08",
+      "name": "Kursk prisoner-of-war lure (CERT-UA#10742)",
+      "summary": "Phishing with images of alleged Kursk-region POWs and a ZIP containing a CHM file that ran obfuscated PowerShell, installing SPECTR components and the new FIRMACHAGENT. Scale and scope were unknown.",
+      "sources": [
+        "S4",
+        "S5"
+      ]
+    }
+  ],
+  "diamond": {
+    "adversary": "Pro-Russian group reportedly controlled by LPR law enforcement [S3].",
+    "capability": "SPECTR, FIRMACHAGENT, modified SyncThing, Vermin/Quasar/Sobaken RATs; CHM and PowerShell loaders [S2][S4][S6].",
+    "infrastructure": "Remote management server receiving stolen data via FIRMACHAGENT [S4]; further infrastructure details not gathered.",
+    "victim": "Ukrainian government bodies and defense forces [S1][S2][S6].",
+    "socioPolitical": "Russia's war against Ukraine; lures exploit wartime topics such as POWs from Kursk [S4][S3].",
+    "technology": "Windows endpoints where users can open archives, CHM files and run PowerShell; legitimate sync software abused for exfiltration [S1][S4]."
+  },
+  "gaps": [
+    "WebFetch could not reach any host in this session, so all facts come from search-result summaries; primary CERT-UA pages (including cert.gov.ua/article/6279600 from the imported record) were not opened.",
+    "Dates for The Record article (S3) and the Security Affairs Firmachagent item (S4) are approximate (2024-08) from search results.",
+    "Search results mentioned FireEye assessing a possible LPR link and activity possibly since 2014, and a 2018 Palo Alto Unit 42 report; no dated URL for these was captured, so they are not asserted.",
+    "No vendor confidence level, Microsoft naming, MITRE group id, or infrastructure indicators were found.",
+    "Activity after August 2024 was not found; the CXO/CERT-UA 2025 item could not be confirmed.",
+    "A one-page SPECTR/Vermin relationship (tool vs. actor boundary) and any overlap with other LPR-linked clusters remain unverified.",
+    "Fact-check: S2 (Security Affairs 164250) and S5 (The Hacker News 2024/08) URLs were not returned verbatim in verification searches; S1 appears to be the earlier SOC Prime SPECTR post, so its date was set to 2022 and it was removed from the SickSync campaign sources."
+  ],
+  "implications": {
+    "jipoe": "Analyst assessment derived from cited sources; validate before use. STEP 1: Key terrain is the Ukrainian military and government endpoint and email environment, plus messenger applications holding operational data [S2][S6]. STEP 2: The actor adapts lures to wartime events and exploits user trust in archives and documents [S4]. STEP 3: Template is spear-phish with archive, then script or CHM and PowerShell, then SPECTR, then exfiltration through SyncThing or FIRMACHAGENT [S1][S4]. STEP 4: MLCOA is continued espionage against Ukrainian defense forces with topical lures. MDCOA is use of the same chain against coalition partners or logistics contacts supporting Ukraine, harvesting messenger data. Candidate indicators: RAR/ZIP or CHM attachments with war-themed names, unexpected SyncThing processes or sync traffic, PowerShell spawned from hh.exe [S1][S4].",
+    "jcc2": "Analyst assessment derived from cited sources; validate before use. (1) Situational awareness: track CERT-UA advisories on UAC-0020 and feed indicators to hunt teams. (2) Authorities: partner-network defense and information sharing with Ukrainian counterparts depends on agreements outside these sources. (3) Mission assurance: restrict CHM execution and unmanaged sync tools, and review messenger use on operational devices [S2][S4]. (4) Coordination: share lure themes and tooling with allied CERTs and DC3-type channels."
+  },
+  "sources": [
+    {
+      "ref": "S1",
+      "title": "Vermin (UAC-0020) Hacking Collective Hits Ukrainian Government and Military with SPECTR Malware",
+      "publisher": "SOC Prime",
+      "date": "2022",
+      "url": "https://socprime.com/blog/vermin-uac-0020-hacking-collective-hits-ukrainian-government-and-military-with-spectr-malware/"
+    },
+    {
+      "ref": "S2",
+      "title": "SPECTR malware used in SickSync campaign (reporting CERT-UA)",
+      "publisher": "Security Affairs",
+      "date": "2024-06-07",
+      "url": "https://securityaffairs.com/164250/intelligence/spectr-malware-used-in-sicksync-campaign.html"
+    },
+    {
+      "ref": "S3",
+      "title": "Russian Vermin hackers target Ukraine",
+      "publisher": "The Record",
+      "date": "2024-08",
+      "url": "https://therecord.media/russian-vermin-hackers-target-ukraine"
+    },
+    {
+      "ref": "S4",
+      "title": "Pro-Russia group Vermin targets Ukraine with a new malware family (reporting CERT-UA)",
+      "publisher": "Security Affairs",
+      "date": "2024-08",
+      "url": "https://securityaffairs.com/?p=167327"
+    },
+    {
+      "ref": "S5",
+      "title": "CERT-UA Warns of New Vermin-Linked Phishing Attacks with PoW Bait",
+      "publisher": "The Hacker News",
+      "date": "2024-08",
+      "url": "https://thehackernews.com/2024/08/cert-ua-warns-of-new-vermin-linked.html"
+    },
+    {
+      "ref": "S6",
+      "title": "Deep dive into Vermin: rathole",
+      "publisher": "ESET WeLiveSecurity",
+      "date": "2018-07-17",
+      "url": "https://www.welivesecurity.com/2018/07/17/deep-dive-vermin-rathole/"
+    },
+    {
+      "ref": "S7",
+      "title": "Renewed info-stealer campaign targets Ukrainian military",
+      "publisher": "GovInfoSecurity",
+      "date": "2024-06",
+      "url": "https://www.govinfosecurity.com/renewed-info-stealer-campaign-targets-ukrainian-military-a-25443"
+    }
+  ],
+  "aliasesAdd": []
+}

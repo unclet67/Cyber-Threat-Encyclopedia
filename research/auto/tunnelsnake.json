@@ -1,0 +1,107 @@
+{
+  "identification": {
+    "summary": "TunnelSnake is the name of an espionage campaign, and by extension the actor behind it, documented by Kaspersky in 2021. It centred on a previously unknown Windows rootkit named Moriya, a passive backdoor that lets operators covertly monitor network traffic and send commands to compromised hosts [S2]. Kaspersky described the campaign as active since 2019, with a small number of victims, reported by secondary coverage as about ten diplomatic entities [S3][S6]. Moriya is described as the successor of IISSpy, a rootkit seen in 2018 in attacks unrelated to the TunnelSnake campaign [S3][S6].",
+    "firstObserved": "Kaspersky: campaign active since 2019 (oldest Moriya instances dated October 2019); an older Moriya version appeared in a 2018 standalone attack, so activity may date to at least 2018 [S2][S3].",
+    "notes": "TunnelSnake is a Kaspersky campaign/cluster name. Kaspersky did not map it to a named group; no Microsoft name or MITRE group ID is known to this record. Coverage links the tooling developers to the authors of ProcessKiller, but this is a tool link, not a group merge [S3][S6]. Facts here come from secondary coverage; the Kaspersky Securelist report was not opened (see gaps)."
+  },
+  "attribution": {
+    "sponsor": "",
+    "confidence": "Kaspersky did not attribute the attacks to a specific adversary. A Kaspersky researcher said both targets and tools connect to known Chinese-speaking groups, suggesting the actor is likely Chinese-speaking [S2][S3]. No government attribution is cited.",
+    "basis": "Kaspersky assessment based on targets and tooling: a mix of custom tools and open-source malware commonly used by Chinese threat actors, plus a link between Moriya developers and ProcessKiller authors [S2][S3][S6]."
+  },
+  "objectives": "Kaspersky assessed the purpose as espionage, while noting it lacked visibility into any data actually siphoned [S2].",
+  "targeting": {
+    "sectors": [
+      "Diplomatic entities",
+      "Regional diplomatic organizations"
+    ],
+    "regions": [
+      "Asia",
+      "Africa"
+    ],
+    "notes": "Secondary coverage (SOC Prime) says about ten prominent diplomatic entities in Africa and Asia were targeted; an exact victim count was not confirmed [S3][S6]. Kaspersky said attackers likely entered via vulnerable public-facing web servers; in one case the China Chopper web shell was used to infect an organization's mail server [S2]."
+  },
+  "capabilities": {
+    "summary": "Moriya is a rootkit with a kernel-mode driver and a user-mode agent. The agent loads the unsigned driver by abusing a VirtualBox driver to bypass driver signature enforcement. The driver uses the Windows Filtering Platform to inspect incoming traffic and pick out the actor's C2 packets; Moriya does not connect out to a server but waits for incoming traffic [S2][S6]. Other tools cited in a summary of Kaspersky's findings include the China Chopper web shell, BOUNCER, TRAN, Termite and Earthworm [S6]. ProcessKiller, used to shut down antivirus products, is linked to the same developers [S3][S6]."
+  },
+  "campaigns": [
+    {
+      "date": "2018",
+      "name": "Earlier Moriya version / IISSpy",
+      "summary": "An older Moriya version appeared in a standalone 2018 attack, and IISSpy, its predecessor, was seen in 2018 in attacks unrelated to TunnelSnake.",
+      "sources": [
+        "S2",
+        "S3"
+      ]
+    },
+    {
+      "date": "2019-10",
+      "name": "Operation TunnelSnake",
+      "summary": "Oldest Moriya instances dated to October 2019 on networks of regional diplomatic organizations in Asia and Africa; activity continued through 2020.",
+      "sources": [
+        "S3",
+        "S6"
+      ]
+    },
+    {
+      "date": "2021-05",
+      "name": "Kaspersky public disclosure",
+      "summary": "Kaspersky published the TunnelSnake and Moriya findings and a press release; press coverage followed.",
+      "sources": [
+        "S1",
+        "S2",
+        "S3"
+      ]
+    }
+  ],
+  "diamond": {
+    "adversary": "Unattributed to a named group; Kaspersky judges a Chinese-speaking actor likely [S2][S3].",
+    "capability": "Moriya rootkit, VirtualBox-driver abuse to load an unsigned driver, China Chopper, BOUNCER, TRAN, Termite, Earthworm, ProcessKiller [S2][S6].",
+    "infrastructure": "Covert C2 channel carried over incoming traffic filtered by the Windows Filtering Platform; specific servers and domains were not found in the sources gathered [S2][S6].",
+    "victim": "About ten diplomatic entities in Asia and Africa (count not confirmed) [S3][S6].",
+    "socioPolitical": "Espionage against diplomatic bodies; Kaspersky saw ties to Chinese-speaking groups but made no state attribution [S2].",
+    "technology": "Internet-facing web and mail servers, and Windows hosts allowing driver loading [S2][S6]."
+  },
+  "gaps": [
+    "The Kaspersky Securelist primary report was not opened; all facts come from search summaries of press coverage and Kaspersky's press release listing. Verify against the primary report, including the exact victim count.",
+    "Source dates for S1 to S3 and S6 are month-level and partly inferred (S1 date from the URL); confirm exact publication dates.",
+    "No actor name, sponsor or government attribution is available; overlap with named Chinese groups is not established.",
+    "Specific indicators, C2 infrastructure, victim identities and exfiltrated data are unknown.",
+    "Termite, Earthworm and BOUNCER usage is from a secondary summary only."
+  ],
+  "implications": {
+    "jipoe": "Analyst assessment derived from cited sources; validate before use. STEP 1: Internet-facing web and mail servers at diplomatic and government organizations are key terrain, as they were the likely entry points [S2]. STEP 2: Kernel-mode rootkit stealth and passive C2 (no outbound beaconing) reduce the value of network-egress detection [S2][S6]. STEP 3: Template is web-server compromise via web shell, tunneling tools, then Moriya rootkit for long-term persistence [S2][S6]. STEP 4: MLCOA is continued low-volume espionage against diplomatic targets in Asia and Africa. MDCOA is use of the same driver-abuse technique against defense or coalition partners in the region. Candidate indicators: unexpected web shells on IIS or mail servers, VirtualBox drivers loaded on hosts without VirtualBox, unsigned kernel drivers, and Windows Filtering Platform filters not tied to known software [S2][S6].",
+    "jcc2": "Analyst assessment derived from cited sources; validate before use. (1) Situational awareness: track partner-nation and coalition diplomatic networks in Asia and Africa as likely targets [S2][S3]. (2) Authorities: kernel-level hunting and host forensics on partner or contractor systems need owner consent and proper authority. (3) Mission assurance: patch and harden public-facing web and mail servers and enforce driver blocklists [S2][S6]. (4) Coordination: share Kaspersky-derived indicators with partners and cyber defense providers, noting attribution is unconfirmed."
+  },
+  "sources": [
+    {
+      "ref": "S1",
+      "title": "Operation TunnelSnake: formerly unknown rootkit used to secretly control networks of organisations in Asia and Africa",
+      "publisher": "Global Security Mag (reporting Kaspersky)",
+      "date": "2021-05-06",
+      "url": "https://www.globalsecuritymag.fr/Operation-TunnelSnake-formerly,20210506,111278.html"
+    },
+    {
+      "ref": "S2",
+      "title": "Operation TunnelSnake: formerly unknown rootkit used to secretly control networks in Asia and Africa (press release)",
+      "publisher": "Kaspersky",
+      "date": "2021-05",
+      "url": "https://usa.kaspersky.com/about/press-releases/operation-tunnel-snake-formerly-unknown-rootkit-used-to-secretly-control-networks-in-asia-and-africa"
+    },
+    {
+      "ref": "S3",
+      "title": "Diplomatic Entities Targeted by New Moriya Windows Rootkit (reporting Kaspersky)",
+      "publisher": "SecurityWeek",
+      "date": "2021-05",
+      "url": "https://www.securityweek.com/diplomatic-entities-targeted-new-moriya-windows-rootkit"
+    },
+    {
+      "ref": "S6",
+      "title": "Operation TunnelSnake: Moriya Rootkit Detection (summary of Kaspersky findings)",
+      "publisher": "SOC Prime",
+      "date": "2021-05",
+      "url": "https://socprime.com/it/blog/operation-tunnelsnake-moriya-rootkit-detection/"
+    }
+  ],
+  "aliasesAdd": []
+}

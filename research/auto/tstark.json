@@ -1,0 +1,83 @@
+{
+ "identification": {
+  "summary": "TStark is the label for a threat actor device/cluster described by Sophos X-Ops in its Pacific Rim reporting; per Malpedia's summary, files recovered included macOS and iOS malware and IFRAME injection code exploiting a WebAssembly vulnerability, and telemetry suggested intermittent VPN use switching between Hong Kong and Chengdu IP addresses [S3]. The name appears to be a device/handle label rather than a named vendor threat group.",
+  "firstObserved": "",
+  "notes": "Device details come from Malpedia's secondary summary of the Sophos report; the primary Sophos timeline page was not confirmed. Do not merge with Volt Typhoon, APT31 or APT41 clusters; Sophos only described TTP overlaps [S4]."
+ },
+ "attribution": {
+  "sponsor": "",
+  "confidence": "",
+  "basis": "Sophos X-Ops assessed with medium confidence the existence of a research community centred on educational establishments in Chengdu, and attributed specific clusters of Pacific Rim activity, with varying confidence, to Volt Typhoon, APT31 and APT41/Winnti [S4]. No source seen attributes TStark itself to a state sponsor."
+ },
+ "objectives": "",
+ "targeting": {
+  "sectors": [],
+  "regions": [],
+  "notes": "TStark was described as an adversary-side device rather than a victim-facing actor in sources seen. Wider Pacific Rim activity targeted Sophos perimeter firewalls [S4]."
+ },
+ "capabilities": {
+  "summary": "Per Malpedia, files associated with TStark included macOS and iOS malware and IFRAME injection code exploiting a WebAssembly vulnerability [S3]."
+ },
+ "campaigns": [
+  {
+   "date": "2024-10-31",
+   "name": "Sophos publishes Pacific Rim report",
+   "summary": "Sophos disclosed its multi-year investigation into China-based actors targeting network devices [S4].",
+   "sources": [
+    "S4"
+   ]
+  },
+  {
+   "date": "2024-12",
+   "name": "US action on Sichuan Silence and Guan Tianfeng",
+   "summary": "Press reported US charges against Guan Tianfeng of Sichuan Silence over exploitation of Sophos firewalls, and Treasury sanctions; this is related context and no source seen links it to TStark [S2].",
+   "sources": [
+    "S2"
+   ]
+  }
+ ],
+ "diamond": {
+  "adversary": "Unattributed operator behind the TStark device; Hong Kong/Chengdu VPN IPs [S3].",
+  "capability": "macOS and iOS malware; WebAssembly-based IFRAME injection [S3].",
+  "infrastructure": "",
+  "victim": "",
+  "socioPolitical": "",
+  "technology": "macOS, iOS, web browsers (WebAssembly) [S3]."
+ },
+ "gaps": [
+  "Original Sophos Pacific Rim timeline URL could not be confirmed and was removed; TStark device details rest on Malpedia's secondary summary and should be verified against Sophos.",
+  "Malpedia also cites CVE-2020-15069 and libsophos.so; not independently verified here.",
+  "Discovery date of the TStark device unconfirmed.",
+  "No state sponsor, objectives, victims or infrastructure established.",
+  "Relationship to Sichuan Silence, Double Helix and Volt Typhoon/APT31/APT41 clusters unconfirmed.",
+  "Aliases and MITRE group id unknown."
+ ],
+ "implications": {
+  "jipoe": "",
+  "jcc2": ""
+ },
+ "sources": [
+  {
+   "ref": "S2",
+   "title": "US Charges Chinese Hacker for Exploiting Zero-Day in 81,000 Sophos Firewalls (reporting DOJ indictment; seen via search excerpts)",
+   "publisher": "The Hacker News",
+   "date": "2024-12",
+   "url": "https://thehackernews.com/2024/12/us-charges-chinese-hacker-for.html"
+  },
+  {
+   "ref": "S3",
+   "title": "TStark (Malpedia actor entry)",
+   "publisher": "Malpedia (Fraunhofer FKIE)",
+   "date": "",
+   "url": "https://malpedia.caad.fkie.fraunhofer.de/actor/tstark"
+  },
+  {
+   "ref": "S4",
+   "title": "Pacific Rim: Neutralizing China-based threat (Executive Summary)",
+   "publisher": "Sophos",
+   "date": "2024-10-31",
+   "url": "https://www.sophos.com/en-us/blog/pacific-rim-neutralizing-china-based-threat"
+  }
+ ],
+ "aliasesAdd": []
+}

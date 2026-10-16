@@ -3,38 +3,6 @@
  "verify": [],
  "research": [
   {
-   "id": "tianwu",
-   "tier": "T3"
-  },
-  {
-   "id": "tidrone",
-   "tier": "T3"
-  },
-  {
-   "id": "toxic-panda",
-   "tier": "T3"
-  },
-  {
-   "id": "tracer-kitten",
-   "tier": "T3"
-  },
-  {
-   "id": "tstark",
-   "tier": "T3"
-  },
-  {
-   "id": "tunnelsnake",
-   "tier": "T3"
-  },
-  {
-   "id": "uac-0020",
-   "tier": "T3"
-  },
-  {
-   "id": "uac-0094",
-   "tier": "T3"
-  },
-  {
    "id": "uac-0194",
    "tier": "T3"
   },
@@ -532,9 +500,15 @@
   "temp-heretic",
   "temp-hermit",
   "temptick",
+  "tianwu",
+  "tidrone",
+  "tracer-kitten",
   "tropic-trooper",
   "tumbleweed-typhoon",
+  "tunnelsnake",
   "twill-typhoon",
+  "uac-0020",
+  "uac-0094",
   "unc3886",
   "vanilla-tempest",
   "violet-typhoon",
@@ -670,7 +644,12 @@
   "teamspy-crew",
   "teleboyi",
   "temp-heretic",
+  "tianwu",
+  "tidrone",
+  "tracer-kitten",
   "tumbleweed-typhoon",
+  "tunnelsnake",
+  "uac-0094",
   "volga-flood",
   "yulong-flood"
  ],
@@ -762,10 +741,12 @@
   "slime29",
   "spicy-panda",
   "storm-2470",
-  "test-panda"
+  "test-panda",
+  "toxic-panda"
  ],
  "needs_source_date": {
   "operation-emmental": "draft is in research/auto; the Unit 42 Retefe post cited as S3 has no confirmed publication date",
-  "red-dev-17": "draft is in research/auto; the Malpedia entry carrying the PwC assessment (S1) and the MITRE Chinoxy page (S3) lost their dates in fact-checking"
+  "red-dev-17": "draft is in research/auto; the Malpedia entry carrying the PwC assessment (S1) and the MITRE Chinoxy page (S3) lost their dates in fact-checking",
+  "tstark": "draft is in research/auto; its main claims rest on an undated Malpedia entry (S3)"
  }
 }

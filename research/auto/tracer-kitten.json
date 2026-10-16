@@ -1,0 +1,90 @@
+{
+  "identification": {
+    "summary": "CrowdStrike describes TRACER KITTEN as an Iran-based adversary active since at least 2016 with a suspected link to the Iranian government [S2]. In April 2020 CrowdStrike Falcon OverWatch observed it conducting interactive activity against multiple hosts at a telecommunications company in the EMEA region, operating under valid user accounts with custom backdoors and SSH tunnels for C2 [S3].",
+    "firstObserved": "CrowdStrike: active since at least 2016 [S2].",
+    "notes": "CrowdStrike name; no Microsoft name or other vendor aliases were found in the sources gathered. Do not confuse with other CrowdStrike Kitten adversaries (e.g. PIONEER KITTEN, ARCANE KITTEN) or with Mirage Kitten/Tortoiseshell, which are separate clusters."
+  },
+  "attribution": {
+    "sponsor": "CrowdStrike states a suspected link to the Iranian government [S2].",
+    "confidence": "CrowdStrike labels the government link 'suspected' [S2]. No government attribution was found.",
+    "basis": "CrowdStrike Falcon OverWatch threat hunting and adversary profile [S2]; specific indicators underlying the assessment are not public in the sources gathered."
+  },
+  "objectives": "CrowdStrike assesses the group likely serves Iranian intelligence needs regarding telecommunications entities [S2]. In the 2020 intrusion it performed reconnaissance, credential harvesting and prepared for data exfiltration [S3].",
+  "targeting": {
+    "sectors": [
+      "Telecommunications"
+    ],
+    "regions": [
+      "Middle East [S2]",
+      "North Africa [S2]",
+      "South Asia [S2]",
+      "EMEA (2020 telecom victim) [S3]"
+    ],
+    "notes": "Targeting per CrowdStrike profile snippet and the 2020 OverWatch case [S2]."
+  },
+  "capabilities": {
+    "summary": "In the April 2020 case the actor used valid user accounts, custom backdoors and SSH tunnels for C2, with reconnaissance, credential harvesting and exfiltration preparation [S3]. CrowdStrike's profile indicates activity begins with compromise of victim web servers; the rest of that description was not retrievable [S2]. A secondary listing notes no exploited CVEs have been tied to the group [S4]."
+  },
+  "campaigns": [
+    {
+      "date": "2016",
+      "name": "Earliest CrowdStrike-reported activity",
+      "summary": "CrowdStrike states the adversary has been active since at least 2016 [S2].",
+      "sources": [
+        "S2"
+      ]
+    },
+    {
+      "date": "2020-04",
+      "name": "EMEA telecommunications intrusion",
+      "summary": "Falcon OverWatch discovered interactive activity on multiple hosts at an EMEA telecom, using valid accounts, custom backdoors and SSH tunnel C2, with recon, credential harvesting and exfiltration preparation [S3].",
+      "sources": [
+        "S3"
+      ]
+    }
+  ],
+  "diamond": {
+    "adversary": "Iran-based, suspected Iranian government link per CrowdStrike [S2].",
+    "capability": "Custom backdoors, valid accounts, SSH tunnels, credential harvesting [S3]; web-server compromise [S2].",
+    "infrastructure": "SSH tunnels used for C2 [S3]; compromised victim web servers [S2].",
+    "victim": "Telecommunications entities in the Middle East, North Africa and South Asia; an EMEA telecom in 2020 [S2].",
+    "socioPolitical": "Likely serves Iranian intelligence requirements on telecommunications [S2].",
+    "technology": "Internet-facing web servers and telecom enterprise hosts with valid-credential access [S2]."
+  },
+  "gaps": [
+    "The CrowdStrike adversary profile and Malpedia page could not be opened (fetch failed); the profile was read only through search-result snippets, which were truncated, and is undated.",
+    "The primary CrowdStrike OverWatch report 'Nowhere to Hide' (2020, dated 2020-09-15 per Malpedia) was not opened; the TRACER KITTEN text was seen via aggregator copies [S3][S4].",
+    "Custom backdoor names, infrastructure, and victim identities are unknown.",
+    "No activity after 2020 found; current status unknown.",
+    "Unclear whether the 2020 telecom case and the web-server compromise pattern in the profile are the same activity.",
+    "Basis for the 'suspected' Iranian government link is not public."
+  ],
+  "implications": {
+    "jipoe": "",
+    "jcc2": ""
+  },
+  "sources": [
+    {
+      "ref": "S2",
+      "title": "TRACER KITTEN adversary profile (search snippet; page undated, retrieved)",
+      "publisher": "CrowdStrike",
+      "date": "2026-10-16",
+      "url": "https://crowdstrike.com/adversaries/tracer-kitten"
+    },
+    {
+      "ref": "S3",
+      "title": "TRACER KITTEN actor entry (citing CrowdStrike 2020 report)",
+      "publisher": "Malpedia (Fraunhofer FKIE)",
+      "date": "2026-10-16",
+      "url": "https://malpedia.caad.fkie.fraunhofer.de/actor/tracer_kitten"
+    },
+    {
+      "ref": "S4",
+      "title": "Tracer Kitten threat actor listing (retrieved)",
+      "publisher": "Strobes VI",
+      "date": "2026-10-16",
+      "url": "https://strobes.co/vi/threat-actors/Tracer%20Kitten/"
+    }
+  ],
+  "aliasesAdd": []
+}
