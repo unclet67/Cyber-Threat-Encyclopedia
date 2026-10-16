@@ -1,0 +1,27 @@
+{
+  "identification": {
+    "summary": "Malpedia lists POISONUS PANDA as a separate actor entry whose cited reference is a 2016 CrowdStrike presentation, 'Detecting and Responding: Pandas and Bears' [S1]. Malpedia lists the same presentation under FOXY PANDA, which it describes as a group targeting telecommunication and technology organizations, and the MISP galaxy carries a Foxy Panda entry with that description [S2][S3]. The search results do not show whether the two names refer to one group.",
+    "firstObserved": "",
+    "notes": "Spelled 'POISONOUS PANDA' in one search summary and 'Poisonus Panda' in Malpedia's entry URL [S1]. No vendor page describing this actor was found. Do not merge facts with FOXY PANDA or any other PANDA cluster without a primary CrowdStrike source."
+  },
+  "attribution": {"sponsor": "", "confidence": "", "basis": ""},
+  "objectives": "",
+  "targeting": {"sectors": [], "regions": [], "notes": "The only targeting statement found (telecommunication and technology organizations) is attached to FOXY PANDA, not directly to POISONUS PANDA [S2][S3]."},
+  "capabilities": {"summary": ""},
+  "campaigns": [],
+  "diamond": {"adversary": "", "capability": "", "infrastructure": "", "victim": "", "socioPolitical": "", "technology": ""},
+  "gaps": [
+    "No dedicated public profile of POISONUS PANDA was found; only catalog entries (Malpedia, MISP galaxy) citing a 2016 CrowdStrike presentation.",
+    "The CrowdStrike presentation 'Detecting and Responding: Pandas and Bears' (Chris Scott and Wendi Whitmore, dated 2016-08-13 in Malpedia) could not be opened, so its content is unverified [S1].",
+    "Relationship between POISONUS PANDA and FOXY PANDA (alias, same group, or sibling entries) is unconfirmed.",
+    "Country, sponsor, tooling, victims, first-seen date and campaigns are unknown from the sources gathered.",
+    "The Malpedia and SANS summit PDF pages could not be fetched in this environment (host resolution failure); the imported SANS reference was not verified."
+  ],
+  "implications": {"jipoe": "", "jcc2": ""},
+  "sources": [
+    {"ref": "S1", "title": "Malpedia actor entry: Poisonus Panda (cites CrowdStrike 'Detecting and Responding: Pandas and Bears', 2016; seen in search results only)", "publisher": "Malpedia (Fraunhofer FKIE)", "date": "2016-08", "url": "https://malpedia.caad.fkie.fraunhofer.de/actor/poisonus_panda"},
+    {"ref": "S2", "title": "Malpedia actor entry: Foxy Panda (seen in search results only)", "publisher": "Malpedia (Fraunhofer FKIE)", "date": "2016-08", "url": "https://malpedia.caad.fkie.fraunhofer.de/actor/foxy_panda"},
+    {"ref": "S3", "title": "MISP galaxy threat-actor cluster (mirror), Foxy Panda entry (seen in search results only)", "publisher": "MISP Project", "date": "2026-10", "url": "https://eugit.opencloud.lu/MISP/misp-galaxy/src/commit/653a7d70d04085cfd2072e5c3db328ddce66a2b2/clusters/threat-actor.json"}
+  ],
+  "aliasesAdd": []
+}

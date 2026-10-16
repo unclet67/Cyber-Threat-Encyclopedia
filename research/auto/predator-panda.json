@@ -1,0 +1,25 @@
+{
+  "identification": {
+    "summary": "The MISP threat-actor galaxy lists PREDATOR PANDA as an adversary group with country code CN and no description or references in the entry seen [S1].",
+    "firstObserved": "",
+    "notes": "The name follows the CrowdStrike 'PANDA' cryptonym convention for China-nexus actors, but no CrowdStrike profile page for PREDATOR PANDA appeared in web searches, and the CrowdStrike 2013 Global Threat Report contents seen in search coverage did not list a PREDATOR PANDA section [S1]."
+  },
+  "attribution": {"sponsor": "", "confidence": "", "basis": ""},
+  "objectives": "",
+  "targeting": {"sectors": [], "regions": [], "notes": ""},
+  "capabilities": {"summary": ""},
+  "campaigns": [],
+  "diamond": {"adversary": "", "capability": "", "infrastructure": "", "victim": "", "socioPolitical": "", "technology": ""},
+  "gaps": [
+    "No vendor report, government document or press coverage describing PREDATOR PANDA activity was found; the only hits naming it were MISP galaxy entries (a bare adversary-groups entry [S1]; a threat-actor cluster entry was reported in search snippets as carrying a CN tag and a CrowdStrike report reference, not verified).",
+    "The CrowdStrike Global Threat Report PDF listed in the existing record (go.crowdstrike.com) could not be opened (host not resolvable), so any mention of PREDATOR PANDA there is unverified.",
+    "The MISP galaxy file itself could not be fetched; the entry details come from the search tool's summary only.",
+    "No Microsoft name mapping, MITRE group ID, aliases, TTPs, malware, targets, timeframe or sponsor are established.",
+    "Possible overlap with other CrowdStrike PANDA clusters or other vendors' names is unknown."
+  ],
+  "implications": {"jipoe": "", "jcc2": ""},
+  "sources": [
+    {"ref": "S1", "title": "adversary groups (MISP galaxy adversary-groups.json, bare PREDATOR PANDA entry)", "publisher": "MISP Project (hosted at CIRCL)", "date": "2026-10", "url": "https://helga.circl.lu/MISP/misp-galaxy/src/commit/07f388fe5b63c0a7e710fe3f09320f68d1ed38c6/elements/adversary-groups.json"}
+  ],
+  "aliasesAdd": []
+}

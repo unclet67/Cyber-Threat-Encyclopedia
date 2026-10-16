@@ -1,0 +1,82 @@
+{
+  "identification": {
+    "summary": "RADIO PANDA is a name that the MISP Galaxy threat-actor cluster lists as a China-attributed actor with the synonym Shrouded Crossbow, and the same cluster lists Radio Panda and Circuit Panda among the synonyms of BlackTech (Palmerworm, Temp.Overboard, Earth Hundun, Manga Taurus, Canary Typhoon and others) [S8]. A September 2023 joint advisory by NSA, FBI, CISA and Japanese agencies lists Radio Panda as an alias of BlackTech (confirmed in search summary of the advisory [S4]; also relayed by [S5][S6]). BlackTech is described by Trend Micro as a cyber espionage group operating against targets in East Asia, particularly Taiwan, and occasionally Japan and Hong Kong [S2]. Trend Micro named Shrouded Crossbow as one of three campaigns (with PLEAD and Waterbear) that it linked to BlackTech and said they may be run by the same group [S2].",
+    "firstObserved": "Trend Micro said Shrouded Crossbow was first observed in 2010 [S1]. Trend Micro dated PLEAD to 2012 [S8]. MITRE describes BlackTech activity since at least 2013 [S10].",
+    "notes": "Name mapping rests on aggregator and secondary sources, not on a vendor page for RADIO PANDA itself: the MISP cluster maps RADIO PANDA to the Shrouded Crossbow synonym [S8] and lists RADIO PANDA among BlackTech synonyms [S8]; press coverage of the 2023 advisory relays the same alias [S6]. Vendor names for the BlackTech cluster: Palmerworm (Symantec) [S3], Earth Hundun (Trend Micro) [S7], Manga Taurus (Unit 42, per Malpedia listing) [S9], Circuit Panda, Temp.Overboard, Canary Typhoon [S8]. Trend Micro itself says only that Shrouded Crossbow, PLEAD and Waterbear 'may' be run by one group [S2], so the equivalence of Shrouded Crossbow with the wider BlackTech cluster is a vendor hypothesis and not settled."
+  },
+  "attribution": {
+    "sponsor": "The September 2023 advisory is titled as covering People's Republic of China-linked cyber actors [S6]. MITRE describes BlackTech as a suspected Chinese cyber espionage group [S10]. No specific PRC government organization is named in the sources gathered.",
+    "confidence": "Symantec did not tie the 2019-2020 Palmerworm campaign to a specific country; it noted that Taiwanese officials have publicly linked BlackTech to the Chinese government [S3]. Trend Micro described Shrouded Crossbow's operator as well-funded, an inference from the apparent purchase of BIFROST source code [S1]. The MISP Galaxy record for the RADIO PANDA name carries an attribution-confidence value of 50 for the name mapping itself [S8].",
+    "basis": "Vendor technical reporting (Trend Micro [S1][S2][S7], Symantec [S3]), the joint US-Japan advisory as relayed by secondary coverage [S5][S6], and aggregator alias mappings [S8][S9]."
+  },
+  "objectives": "Trend Micro assessed that BlackTech campaigns are likely designed to steal targets' technology, based on mutexes and C2 domain names [S2]. Shrouded Crossbow focused on espionage-style backdoor access against Asian government contractors, privatized government agencies and several commercial sectors [S1]. The 2023 advisory describes pivoting from overseas subsidiaries into US and Japanese headquarters networks [S5].",
+  "targeting": {
+    "sectors": [
+      "Government contractors and privatized government agencies (Shrouded Crossbow) [S1]",
+      "Consumer electronics, computer, healthcare and financial industries (Shrouded Crossbow) [S1]",
+      "Media, electronics, finance, construction and engineering (Palmerworm 2019-2020) [S3]",
+      "Technology and government (Earth Hundun) [S7]",
+      "Multinational companies with subsidiaries linked to US and Japanese headquarters (2023 advisory) [S5]"
+    ],
+    "regions": [
+      "Asia (Shrouded Crossbow) [S1]",
+      "East Asia, particularly Taiwan, occasionally Japan and Hong Kong [S2]",
+      "Japan, Taiwan, China and the United States (Palmerworm 2019-2020) [S3]",
+      "Asia-Pacific (Earth Hundun, Waterbear) [S7]",
+      "United States and Japan headquarters, via international subsidiaries [S5]"
+    ],
+    "notes": "Targeting is drawn from sub-cluster reporting under different vendor names; it should not be read as the profile of a single separately confirmed 'Radio Panda' operation [S2][S8]."
+  },
+  "capabilities": {
+    "summary": "Shrouded Crossbow used three backdoors derived from BIFROST (BIFROSE, KIVARS, XBOW); Trend Micro inferred the operators bought and improved the source code, and delivered the malware by spear-phishing with booby-trapped attachments and decoy documents [S1]. BIFROSE used Tor for C2 and had a UNIX version; KIVARS added a 64-bit variant [S1]. Trend Micro estimated a development team of at least 10 people and more than 100 C2 servers [S1]. Palmerworm in 2019-2020 used stolen code-signing certificates, new backdoors named Consock, Waship, Dalwit and Nomri, and dual-use tools such as PuTTY, PsExec, SNScan and WinRAR [S3]. Trend Micro reports the Waterbear backdoor (more than ten versions since 2009), with a newer Deuterbear variant from 2022, and anti-debug, anti-sandbox and anti-AV features [S7]. The 2023 advisory describes router firmware tampering: downgrading to older legitimate firmware, hot patching in memory, loading unsigned bootloader and firmware, a built-in SSH backdoor activated by crafted TCP or UDP packets, and hiding activity from logs; the advisory names no CVE and says the technique is not limited to Cisco [S4][S5]."
+  },
+  "campaigns": [
+    {"date": "2010 onward", "name": "Shrouded Crossbow", "summary": "Trend Micro reported a campaign first observed in 2010 against Asian government contractors, privatized government agencies and firms in consumer electronics, computing, healthcare and finance, using BIFROST-derived backdoors delivered by spear-phishing.", "sources": ["S1"]},
+    {"date": "2017-06", "name": "Trend Micro links Shrouded Crossbow, PLEAD and Waterbear to BlackTech", "summary": "Trend Micro published its BlackTech analysis tying three campaigns together and said they may be operated by the same group.", "sources": ["S2"]},
+    {"date": "2019-08 to 2020-09", "name": "Palmerworm campaign against media, finance and other sectors", "summary": "Symantec reported activity from August 2019 against organizations in Taiwan, Japan, the US and China, using stolen certificates, four new backdoors and dual-use tools.", "sources": ["S3"]},
+    {"date": "2023-09", "name": "Joint advisory on router firmware modification", "summary": "NSA, FBI, CISA and Japanese NPA and NISC described BlackTech modifying router firmware to pivot from subsidiaries into US and Japanese headquarters networks (primary advisory not opened; relayed by secondary coverage).", "sources": ["S4", "S5", "S6"]},
+    {"date": "2024-04", "name": "Earth Hundun Waterbear and Deuterbear reporting", "summary": "Trend Micro described Earth Hundun (also known as BlackTech) activity in Asia-Pacific technology and government sectors and the Deuterbear variant in use since 2022.", "sources": ["S7"]}
+  ],
+  "diamond": {
+    "adversary": "Suspected PRC-linked espionage group tracked as BlackTech and under many vendor names; Radio Panda is one listed synonym [S6][S8][S10].",
+    "capability": "BIFROST-derived backdoors, PLEAD and Waterbear families, stolen code-signing certificates, dual-use tools, and router firmware modification [S1][S3][S5][S7].",
+    "infrastructure": "More than 100 C2 servers and Tor use for Shrouded Crossbow [S1]; compromised public-facing branch routers used as proxies in the 2023 advisory [S5]. Further infrastructure detail is not in the sources gathered.",
+    "victim": "Asian government contractors and commercial firms, Taiwan-centered East Asian targets, and US and Japanese multinationals via subsidiaries [S1][S2][S5].",
+    "socioPolitical": "Technology theft and regional intelligence collection focused on Taiwan and Japan are the objectives vendors infer [S2]; no government tasking is documented in the sources gathered.",
+    "technology": "Edge routers at subsidiary sites with trusted links to headquarters, and endpoints reachable by spear-phishing [S1][S5]."
+  },
+  "gaps": [
+    "No vendor page for RADIO PANDA itself was opened; the CrowdStrike naming is known here only from a MISP Galaxy entry [S8] and from secondary coverage of the 2023 advisory [S6]. A 2013 CrowdStrike slide deck listing Radio Panda was seen in a search result but not opened and is not cited.",
+    "The primary advisory (AA23-270A on cisa.gov, also hosted on ic3.gov) could not be opened because government sites are blocked; its exact alias list and wording are unverified [S4].",
+    "MISP Galaxy treats RADIO PANDA as both a Shrouded Crossbow synonym and a BlackTech synonym; Trend Micro only says the two 'may' be the same group [S2][S8]. Confirm before merging the records.",
+    "Microsoft's own naming page for Canary Typhoon was not opened; the mapping comes from MISP Galaxy [S8].",
+    "Trend Micro's original 2015 Shrouded Crossbow paper and the 2017 BlackTech page could not be fetched (host unreachable); content relies on SecurityWeek and search summaries [S1][S2].",
+    "No activity after 2024 was found; current status and any 2025-2026 operations are unknown.",
+    "Specific PRC sponsor (MSS, PLA or contractor) is not identified in the sources gathered."
+  ],
+  "implications": {
+    "jipoe": "Analyst assessment derived from cited sources; validate before use. STEP 1: Key terrain is edge routers at overseas subsidiaries and contractor sites with trusted links to headquarters, plus the trust relationships between them [S5]. STEP 2: The actor operates against Taiwan, Japan and the US, and against government contractors, so DoD-adjacent suppliers and Indo-Pacific partners in technology, electronics and finance are in scope [S1][S3][S5]. STEP 3: Observed pattern is spear-phishing or other initial access, backdoor with stolen-certificate signing, dual-use tools, and then pivoting through router trust and firmware tampering [S1][S3][S5]. STEP 4: MLCOA is continued technology and policy collection against Taiwan, Japan and regional contractors. MDCOA is persistent footholds in network edge devices used to reach defense-industrial or allied headquarters networks unnoticed in a crisis. Candidate indicators: unexpected firmware downgrades or bootloader changes, hidden SSH sessions absent from logs, anomalous EEM policies, trusted subsidiary-to-headquarters traffic from unusual hosts, and binaries signed with stolen certificates [S3][S5].",
+    "jcc2": "Analyst assessment derived from cited sources; validate before use. (1) Situational awareness: track router firmware integrity and configuration baselines at contractor and partner sites as a mission-relevant cyber terrain item [S5]. (2) Authorities: monitoring of supplier and allied networks depends on contract and partner-nation agreements, so coordinate through DC3, the DIB cybersecurity program and host-nation channels rather than assuming direct access. (3) Mission assurance: treat subsidiary and partner links as untrusted segments and prepare to isolate them without losing mission data flow [S5]. (4) Coordination: align alias handling with intelligence staff because the same actor appears under many names and sources disagree on cluster boundaries [S2][S8]."
+  },
+  "sources": [
+    {"ref": "S1", "title": "Well-Funded Threat Group Targets Asian Firms (reporting Trend Micro Shrouded Crossbow research)", "publisher": "SecurityWeek", "date": "2015-12", "url": "https://www.securityweek.com/well-funded-threat-group-targets-asian-firms/"},
+    {"ref": "S2", "title": "The Trail of BlackTech's Cyber Espionage Campaigns", "publisher": "Trend Micro", "date": "2017-06", "url": "https://www.trendmicro.com/en_us/research/17/f/following-trail-blacktech-cyber-espionage-campaigns.html"},
+    {"ref": "S3", "title": "Palmerworm: Espionage Gang Targets the Media, Finance, and Other Sectors", "publisher": "Symantec", "date": "2020-09", "url": "https://www.security.com/threat-intelligence/palmerworm-blacktech-espionage-apt"},
+    {"ref": "S4", "title": "Cybersecurity Advisory AA23-270A, PRC-Linked Cyber Actors Hide in Router Firmware (primary document not opened; content from secondary coverage)", "publisher": "NSA, FBI, CISA, Japan NPA and NISC", "date": "2023-09-27", "url": "https://cisa.gov/news-events/cybersecurity-advisories/aa23-270a"},
+    {"ref": "S5", "title": "China APT Cracks Cisco Firmware in Attacks Against the US and Japan (reporting joint advisory)", "publisher": "Dark Reading", "date": "2023-09", "url": "https://www.darkreading.com/threat-intelligence/china-apt-cracks-cisco-firmware-attacks-against-us-japan"},
+    {"ref": "S6", "title": "Cyber Advisory TLP Clear People's Republic of China-Linked Cyber Actors Hide in Router Firmware (repost of joint advisory)", "publisher": "American Hospital Association", "date": "2023-09-27", "url": "https://www.aha.org/cybersecurity-government-intelligence-reports/2023-09-27-cyber-advisory-tlp-clear-peoples-republic-china-linked-cyber-actors"},
+    {"ref": "S7", "title": "Earth Hundun: Waterbear and Deuterbear", "publisher": "Trend Micro", "date": "2024-04", "url": "https://www.trendmicro.com/en/research/24/d/earth-hundun-waterbear-deuterbear.html"},
+    {"ref": "S8", "title": "MISP Galaxy threat-actor cluster (RADIO PANDA and BlackTech entries)", "publisher": "MISP Project", "date": "2026-10-16 (retrieved)", "url": "https://raw.githubusercontent.com/MISP/misp-galaxy/main/clusters/threat-actor.json"},
+    {"ref": "S9", "title": "BlackTech actor entry (alias list; lists Unit 42 Manga Taurus report of 2022-07-18)", "publisher": "Malpedia", "date": "2026-10-16 (retrieved via search)", "url": "https://malpedia.caad.fkie.fraunhofer.de/actor/blacktech"},
+    {"ref": "S10", "title": "BlackTech, G0098 (group description)", "publisher": "MITRE ATT&CK", "date": "2026-10-16 (retrieved via search snippet)", "url": "https://attack.mitre.org/groups/G0098/"}
+  ],
+  "aliasesAdd": [
+    {"name": "BlackTech", "vendor": "Trend Micro"},
+    {"name": "Circuit Panda", "vendor": "Other / unspecified"},
+    {"name": "Palmerworm", "vendor": "Symantec"},
+    {"name": "Temp.Overboard", "vendor": "Other / unspecified"},
+    {"name": "Earth Hundun", "vendor": "Trend Micro"},
+    {"name": "Manga Taurus", "vendor": "Palo Alto Unit 42"},
+    {"name": "Canary Typhoon", "vendor": "Microsoft"}
+  ]
+}

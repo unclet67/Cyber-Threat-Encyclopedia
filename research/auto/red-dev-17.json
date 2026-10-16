@@ -1,0 +1,109 @@
+{
+  "identification": {
+    "summary": "Red Dev 17 is a PwC-assigned cluster name for a series of intrusions that PwC began tracking in 2021 and assesses were highly likely conducted by a China-based threat actor, active since at least 2017 [S1]. PwC assesses it as highly probable that the actor behind Red Dev 17 is also responsible for the campaign known in open source as Operation NightScout [S1]. Operation NightScout, reported by ESET, was a supply-chain compromise of the NoxPlayer Android emulator update mechanism that delivered malware to a small number of selected victims in Taiwan, Hong Kong and Sri Lanka [S2].",
+    "firstObserved": "PwC: active since at least 2017; tracked from 2021 [S1]. Earliest NightScout indicators of compromise were seen in September 2020 [S2].",
+    "notes": "Red Dev is PwC's naming scheme; Microsoft has no mapped name for this cluster in this record. PwC describes capability and infrastructure links to Red Hariasa (FunnyDream) and infrastructure overlaps with Red Wendigo (Icefog/RedFoxtrot) and ShadowPad C2 servers, but states it lacks sufficient evidence to directly link Red Dev 17 to those actors [S1]. Keep these clusters separate."
+  },
+  "attribution": {
+    "sponsor": "",
+    "confidence": "PwC: highly likely a China-based threat actor (PwC's own assessment of origin, not a government attribution) [S1]. PwC assesses with realistic probability that Red Dev 17 operates within a cluster of actors sharing tools and infrastructure [S1].",
+    "basis": "PwC cites use of the 8.t/RoyalRoad weaponisation framework, DLL sideloading of Chinoxy or PoisonIvy via benign Logitech or Windows Defender binaries, and capability and infrastructure links to other China-linked clusters [S1]. No state sponsor or organization is named in the sources gathered."
+  },
+  "objectives": "PwC does not state objectives explicitly; its description of targets (Indian military, a state energy company, a multinational technology company) is consistent with espionage, but this is an inference not stated in the source [S1].",
+  "targeting": {
+    "sectors": [
+      "Military",
+      "Energy (state-owned)",
+      "Technology (multinational)",
+      "Online gaming community (via NoxPlayer, Operation NightScout, per PwC's assessed link)"
+    ],
+    "regions": [
+      "India [S1]",
+      "Taiwan, Hong Kong, Sri Lanka (Operation NightScout victims) [S2]",
+      "Southeast and Central Asia (strong targeting focus of the wider cluster per PwC) [S1]"
+    ],
+    "notes": "Observed Red Dev 17 targets are mainly in India [S1]. NightScout victims were selected from more than 100,000 NoxPlayer installs, of which only five received a malicious update, per ESET coverage [S2]."
+  },
+  "capabilities": {
+    "summary": "PwC reports use of the 8.t document weaponisation framework (also known as RoyalRoad) and abuse of benign utilities such as Logitech or Windows Defender binaries to sideload and execute Chinoxy or PoisonIvy variants [S1]. MITRE ATT&CK describes Chinoxy as a backdoor used in the FunnyDream campaign that can load via a digitally signed Logitech binary [S3]. Operation NightScout used a compromised software update channel to deliver three malware families to selected victims [S2]."
+  },
+  "campaigns": [
+    {
+      "date": "2017",
+      "name": "Earliest activity assessed by PwC",
+      "summary": "PwC's analysis suggests Red Dev 17 has been active since at least 2017.",
+      "sources": [
+        "S1"
+      ]
+    },
+    {
+      "date": "2020-09",
+      "name": "Operation NightScout (earliest indicators)",
+      "summary": "ESET reports indicators of compromise in the NoxPlayer update mechanism first seen in September 2020; PwC assesses it highly probable that Red Dev 17 is responsible for this campaign.",
+      "sources": [
+        "S2",
+        "S1"
+      ]
+    },
+    {
+      "date": "2021-02",
+      "name": "Operation NightScout disclosure",
+      "summary": "ESET publicly reported the NoxPlayer supply-chain attack; targeted malware reached about five users in Taiwan, Hong Kong and Sri Lanka, and BigNox later hardened its update delivery.",
+      "sources": [
+        "S2"
+      ]
+    },
+    {
+      "date": "2021",
+      "name": "PwC tracking of India-focused intrusions",
+      "summary": "PwC began tracking Red Dev 17 intrusions against the Indian military, a multinational India-based technology company and a state energy company. Exact intrusion dates are not given in the sources gathered.",
+      "sources": [
+        "S1"
+      ]
+    }
+  ],
+  "diamond": {
+    "adversary": "China-based actor per PwC, possibly part of a cluster sharing tools and infrastructure; no sponsor named [S1].",
+    "capability": "8.t/RoyalRoad weaponised documents; sideloading via Logitech or Windows Defender binaries; Chinoxy and PoisonIvy variants; software update supply-chain compromise (NightScout) [S1][S2].",
+    "infrastructure": "Infrastructure overlaps with Red Wendigo (Icefog) and ShadowPad C2 servers, and links to Red Hariasa (FunnyDream); no direct actor linkage claimed by PwC [S1].",
+    "victim": "Indian military, a multinational India-based technology company, a state energy company; NightScout victims in Taiwan, Hong Kong and Sri Lanka [S1][S2].",
+    "socioPolitical": "",
+    "technology": "Email/document-borne exploitation of office software via weaponised documents, trust in signed benign binaries, and trust in third-party software update channels [S1][S2]."
+  },
+  "gaps": [
+    "WebFetch to ESET (welivesecurity.com) and Malpedia failed with a network error; NightScout details come from secondary coverage (The Hacker News) of the ESET report [S2].",
+    "No sponsor, government attribution, or Microsoft naming mapping found.",
+    "No CVEs, specific victim names, intrusion dates, or IOCs for Red Dev 17 itself found; the search summary indicates none were attributed to the group.",
+    "Overlap with Red Hariasa (FunnyDream), Red Wendigo (Icefog/RedFoxtrot) and ShadowPad operators is stated as links only, not as identity; FunnyDream's China link is itself researcher-assessed [S3].",
+    "ESET's own attribution of NightScout to a named group was not confirmed in the sources gathered.",
+    "Original PwC report not located; PwC statements rest on the Malpedia entry. Fact-check removed unverified sources S4, S5 and the Red Dev 26 note."
+  ],
+  "implications": {
+    "jipoe": "Analyst assessment derived from cited sources; validate before use. STEP 1: Key terrain includes email gateways and endpoints of Indian-region defense, energy and technology partners, plus third-party software update channels used by personnel. STEP 2: The actor uses weaponised documents and sideloading of signed benign binaries, which evades simple signature controls [S1]. STEP 3: Template: weaponised document (8.t/RoyalRoad), then sideloaded Chinoxy or PoisonIvy, with supply-chain delivery in NightScout [S1][S2]. STEP 4: MLCOA is continued espionage against South and Southeast Asian military and energy targets [S1]. MDCOA is a trusted-update-channel compromise reaching coalition-partner or DoD-adjacent users in the region [S2]. Candidate indicators: Logitech or Windows Defender binaries executing from unusual paths and loading unsigned DLLs, and update clients fetching over plain HTTP or with unverified hashes [S1][S2][S3].",
+    "jcc2": "Analyst assessment derived from cited sources; validate before use. (1) Situational awareness: track PwC, ESET and MITRE/vendor reporting on this overlapping cluster set, noting that cluster boundaries are unresolved [S1][S3]. (2) Authorities: partner-network activity in India and Southeast Asia depends on host-nation and coalition coordination, not US authorities alone. (3) Mission assurance: inventory software-update dependencies and enforce signature and hash validation [S2]. (4) Coordination: share sideloading detections with partner CERTs and DC3 where contractors are involved."
+  },
+  "sources": [
+    {
+      "ref": "S1",
+      "title": "Malpedia: Red Dev 17 actor entry (reproducing PwC assessment; PwC PDF not verified)",
+      "publisher": "Malpedia",
+      "date": "",
+      "url": "https://malpedia.caad.fkie.fraunhofer.de/actor/red_dev_17"
+    },
+    {
+      "ref": "S2",
+      "title": "Operation NightScout: supply-chain attack on NoxPlayer (reporting ESET research)",
+      "publisher": "The Hacker News",
+      "date": "2021-02",
+      "url": "https://thehackernews.com/2021/02/a-new-software-supplychain-attack.html"
+    },
+    {
+      "ref": "S3",
+      "title": "MITRE ATT&CK: Chinoxy (S1041)",
+      "publisher": "MITRE ATT&CK",
+      "date": "",
+      "url": "https://attack.mitre.org/software/S1041"
+    }
+  ],
+  "aliasesAdd": []
+}

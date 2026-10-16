@@ -3,46 +3,6 @@
  "verify": [],
  "research": [
   {
-   "id": "passcv",
-   "tier": "T3"
-  },
-  {
-   "id": "plushdaemon",
-   "tier": "T3"
-  },
-  {
-   "id": "poisonus-panda",
-   "tier": "T3"
-  },
-  {
-   "id": "predator-panda",
-   "tier": "T3"
-  },
-  {
-   "id": "punk-003",
-   "tier": "T3"
-  },
-  {
-   "id": "purplehaze",
-   "tier": "T3"
-  },
-  {
-   "id": "radio-panda",
-   "tier": "T3"
-  },
-  {
-   "id": "rahdit",
-   "tier": "T3"
-  },
-  {
-   "id": "red-dev-17",
-   "tier": "T3"
-  },
-  {
-   "id": "red-menshen",
-   "tier": "T3"
-  },
-  {
    "id": "red-nue",
    "tier": "T3"
   },
@@ -672,16 +632,23 @@
   "operation-drbcontrol",
   "operation-red-signature",
   "operation-shadow-force",
+  "passcv",
   "peach-sandstorm",
   "pearl-sleet",
   "pepper-typhoon",
   "periwinkle-tempest",
   "pink-sandstorm",
+  "plushdaemon",
   "pumpkin-sandstorm",
+  "punk-003",
   "purple-typhoon",
+  "purplehaze",
   "putter-panda",
+  "radio-panda",
+  "rahdit",
   "rancor",
   "raspberry-typhoon",
+  "red-menshen",
   "red-sandstorm",
   "ruby-sleet",
   "ruza-flood",
@@ -807,8 +774,14 @@
   "operation-drbcontrol",
   "operation-red-signature",
   "operation-shadow-force",
+  "passcv",
   "pearl-sleet",
+  "plushdaemon",
   "pumpkin-sandstorm",
+  "punk-003",
+  "purplehaze",
+  "rahdit",
+  "red-menshen",
   "ruza-flood",
   "sefid-flood",
   "shadow-typhoon",
@@ -904,9 +877,12 @@
   "magnetic-spider",
   "mana-team",
   "pale-panda",
+  "poisonus-panda",
+  "predator-panda",
   "storm-2470"
  ],
  "needs_source_date": {
-  "operation-emmental": "draft is in research/auto; the Unit 42 Retefe post cited as S3 has no confirmed publication date"
+  "operation-emmental": "draft is in research/auto; the Unit 42 Retefe post cited as S3 has no confirmed publication date",
+  "red-dev-17": "draft is in research/auto; the Malpedia entry carrying the PwC assessment (S1) and the MITRE Chinoxy page (S3) lost their dates in fact-checking"
  }
 }

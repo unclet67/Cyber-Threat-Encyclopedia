@@ -1,0 +1,107 @@
+{
+  "identification": {
+    "summary": "PlushDaemon is a China-aligned APT group that ESET Research first publicly documented in January 2025 [S1]. It is the only known user of the SlowStepper backdoor, a toolkit of more than 30 components written in C++, Python and Go [S1]. Initial access is mainly by hijacking updates of legitimate applications, and ESET also reports exploitation of vulnerabilities in legitimate web servers [S1]. In November 2025 ESET described a network-device implant, EdgeStepper, used to redirect DNS and hijack software updates [S2][S4].",
+    "firstObserved": "ESET assesses activity since at least 2019 (January 2025 reporting) [S1]; its November 2025 reporting says at least 2018 [S2][S4].",
+    "notes": "No Microsoft name or MITRE group ID is recorded for this actor. ESET's January 2025 report is the origin of the name PlushDaemon; coverage consistently traces back to ESET [S1]."
+  },
+  "attribution": {
+    "sponsor": "",
+    "confidence": "ESET describes the group as China-aligned (a vendor assessment) [S1][S2]. No government attribution is cited.",
+    "basis": "ESET's own telemetry and malware analysis, including SlowStepper being unique to this group [S1]. ESET notes that router-level DNS hijacking of updates is a tactic also seen in other China-aligned clusters [S2]."
+  },
+  "objectives": "Cyberespionage [S1][S2]. SlowStepper capabilities reported by ESET (browser data and password theft, document scanning, audio/video recording, photo capture, monitoring of chat apps such as WeChat and Telegram) indicate collection of personal and organizational information [S1]. A specific sponsor requirement is not stated in the sources gathered.",
+  "targeting": {
+    "sectors": [
+      "Semiconductor (South Korea)",
+      "Software (South Korea)",
+      "Individuals using hijacked Chinese applications or the IPany VPN"
+    ],
+    "regions": [
+      "China",
+      "Taiwan",
+      "Hong Kong",
+      "South Korea",
+      "United States",
+      "New Zealand",
+      "Cambodia (named in ESET's November 2025 reporting) [S2][S4]",
+      "Japan (individual victims of the IPany compromise) [S1]"
+    ],
+    "notes": "ESET lists China, Taiwan, Hong Kong, South Korea, the US and New Zealand in January 2025 [S1] and adds Cambodia in November 2025 [S2][S4]. IPany victims included South Korean semiconductor and software entities and individuals in China and Japan [S1]."
+  },
+  "capabilities": {
+    "summary": "Supply-chain compromise of a South Korean VPN provider's installer (IPany), with the trojanized installer found by ESET in May 2024 [S1]. Hijacking of legitimate Chinese application updates [S1]. Exploitation of vulnerabilities in legitimate web servers [S1]. SlowStepper is a multi-stage backdoor with more than 30 components in C++, Python and Go; C2 resolution uses DNS, and Python modules can be downloaded for additional functions [S1]. Secondary reporting says the group side-loads a malicious DLL (lregdll.dll) via a renamed Microsoft utility (regcap.exe) [single secondary source, not verified here]. EdgeStepper (internally dns_cheat_v2), a Go-based implant on network devices, forwards DNS queries to a malicious DNS node that identifies update-related domains and steers them to a hijacking node; this delivers the LittleDaemon and DaemonicLogistics downloaders, which deploy SlowStepper on Windows hosts [S2][S4]."
+  },
+  "campaigns": [
+    {
+      "date": "2023",
+      "name": "IPany VPN installer supply-chain compromise",
+      "summary": "Several outlets date the compromise of the IPany installer to 2023; ESET found the trojanized installer in May 2024, contacted the developer, and the installer was removed from the vendor site. Victims included South Korean semiconductor and software entities and individuals in China and Japan [S1].",
+      "sources": [
+        "S1"
+      ]
+    },
+    {
+      "date": "2025-01",
+      "name": "ESET publishes PlushDaemon and SlowStepper",
+      "summary": "ESET first documents the group, SlowStepper's 30-plus components, and its update-hijacking initial access [S1].",
+      "sources": [
+        "S1"
+      ]
+    },
+    {
+      "date": "2025-11",
+      "name": "EdgeStepper adversary-in-the-middle update hijacking",
+      "summary": "ESET (2025-11-19) describes compromise of network devices running EdgeStepper to redirect DNS and hijack updates of popular Chinese software, delivering LittleDaemon and DaemonicLogistics and then SlowStepper; Cambodia is added to the target list [S2][S4].",
+      "sources": [
+        "S2",
+        "S4"
+      ]
+    }
+  ],
+  "diamond": {
+    "adversary": "China-aligned espionage group tracked by ESET as PlushDaemon; sponsor not publicly specified [S1][S2].",
+    "capability": "SlowStepper backdoor, LittleDaemon and DaemonicLogistics downloaders, EdgeStepper DNS-hijacking implant, update hijacking, web-server exploitation [S1][S2].",
+    "infrastructure": "Malicious DNS nodes and update-hijacking nodes used with EdgeStepper; DNS-based C2 for SlowStepper; compromised network devices and a compromised vendor download site/installer [S1][S2][S4].",
+    "victim": "South Korean semiconductor and software entities; individuals and organizations in China, Taiwan, Hong Kong, the US, New Zealand, Cambodia and Japan [S1][S2].",
+    "socioPolitical": "Intelligence collection consistent with a China-aligned espionage mission focused on East Asia; no sponsor statement is cited [S1][S2].",
+    "technology": "Weak integrity of software update channels, unsecured DNS on edge routers and network devices, and trust in third-party VPN/installer downloads [S1][S2][S4]."
+  },
+  "gaps": [
+    "No government attribution or named sponsoring organization found; only ESET's China-aligned assessment [S1][S2].",
+    "ESET's primary reports (welivesecurity.com) could not be fetched in this session; details rely on search-result summaries and secondary coverage and should be verified against the originals.",
+    "Start of activity is stated as 2018 in one ESET report and 2019 in another [S1][S2].",
+    "How network devices were initially compromised to host EdgeStepper is not established in the sources gathered.",
+    "The regcap.exe / lregdll.dll side-loading detail comes from a single secondary source and is unverified.",
+    "No Microsoft actor name, MITRE group ID, or cross-vendor alias mapping found; overlaps with other clusters not established (ESET only notes a shared update-hijacking tactic with other China-aligned groups) [S2].",
+    "No reporting from 2026 was found.",
+    "Secondary-outlet sources (The Hacker News, Infosecurity Magazine) were removed because their URLs did not appear in search results; ESET build/variant details (June 2024, Lite 0.2.10) were removed as unsupported."
+  ],
+  "implications": {
+    "jipoe": "Analyst assessment derived from cited sources; validate before use. STEP 1: Key terrain is the software update path (vendor update servers, DNS resolvers, edge routers and network devices) and third-party VPN installers [S1][S2]. STEP 2: Environment effects: update traffic is implicitly trusted and DNS is rarely validated, so a compromised router can silently deliver malware to every host behind it [S2][S4]. STEP 3: Threat model: supply-chain or DNS-level update hijack, then downloader (LittleDaemon/DaemonicLogistics), then SlowStepper, then collection of documents, credentials, and audio/video [S1][S2]. STEP 4: MLCOA is continued espionage against East Asian technology, semiconductor and software entities and individuals using trojanized or hijacked updates [S1]. MDCOA is use of compromised edge devices in a deployed or coalition network to push implants to personnel systems during a crisis. Candidate indicators: DNS queries from hosts resolving update domains to unexpected addresses, unexpected DNS forwarding on edge devices, updates failing signature validation, and DNS-based C2 patterns [S2][S4].",
+    "jcc2": "Analyst assessment derived from cited sources; validate before use. (1) Situational awareness: track edge-device and DNS integrity as mission-relevant cyber terrain, especially on networks serving personnel in East Asia [S2]. (2) Authorities: verify who may inspect or reset commercial routers and third-party VPN clients on partner or host-nation networks. (3) Mission assurance: restrict unapproved VPN installers and enforce signed-update verification and trusted DNS resolvers for critical systems [S1][S2]. (4) Coordination: share indicators with allied and partner network defenders, since victims span South Korea, Taiwan, Japan, New Zealand and the US [S1]."
+  },
+  "sources": [
+    {
+      "ref": "S1",
+      "title": "PlushDaemon compromises supply chain of Korean VPN service",
+      "publisher": "ESET Research (WeLiveSecurity), seen via search results only; page not fetched",
+      "date": "2025-01-22",
+      "url": "https://www.welivesecurity.com/en/eset-research/plushdaemon-compromises-supply-chain-korean-vpn-service/"
+    },
+    {
+      "ref": "S2",
+      "title": "PlushDaemon compromises network devices for adversary-in-the-middle attacks (ESET Research, seen via search results only)",
+      "publisher": "ESET Research (WeLiveSecurity)",
+      "date": "2025-11-19",
+      "url": "https://www.welivesecurity.com/en/eset-research/plushdaemon-compromises-network-devices-for-adversary-in-the-middle-attacks/"
+    },
+    {
+      "ref": "S4",
+      "title": "ESET Research: Chinese PlushDaemon group compromises network devices for adversary-in-the-middle attacks",
+      "publisher": "ESET",
+      "date": "2025-11-19",
+      "url": "https://www.eset.com/us/about/newsroom/research/eset-research-chinese-plushdaemon-group-compromises-network-devices-for-adversary-in-the-middle-attacks/"
+    }
+  ],
+  "aliasesAdd": []
+}
