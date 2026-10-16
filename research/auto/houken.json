@@ -1,0 +1,91 @@
+{
+  "identification": {
+    "summary": "Houken is the name France's ANSSI (CERT-FR) gave to an intrusion set that exploited three Ivanti Cloud Services Appliance (CSA) zero-days (CVE-2024-8190, CVE-2024-8963, CVE-2024-9380) against French organizations from September 2024 [S1][S2][S3]. ANSSI assesses that the operators likely seek valuable initial accesses to sell to a state-linked actor wanting intelligence, and that the actor might correspond to a private entity selling access and data to several state-linked bodies [S2][S3]. The operators use many open-source tools, mostly written by Chinese-speaking developers, plus custom webshells and, in some cases, a rootkit [S1][S2].",
+    "firstObserved": "Campaign detected in September 2024; ANSSI says activity could date back to 2023 [S2][S3]. CERT-FR published its report CERTFR-2025-CTI-009 on 2025-07-01 [S3].",
+    "notes": "ANSSI names the set Houken. Per Infosecurity Magazine, CERT-FR assessed Houken as run by the same actor Google's GTIG/Mandiant tracks as UNC5174 [S3]; The Hacker News frames the overlap as tradecraft similarity that raises the possibility of a common operator [S2]. Do not merge the two vendor clusters' facts; UNC5174 facts below are labeled as Mandiant's [S4][S5]. No Microsoft Typhoon/Storm name for Houken was found in the sources gathered."
+  },
+  "attribution": {
+    "sponsor": "No government attribution located. ANSSI describes a Chinese-linked, likely access-broker operator supplying state-linked customers; it does not name a specific PRC agency in the coverage reviewed [S2][S3]. Mandiant (for UNC5174, the cluster ANSSI links to Houken) said that actor appeared to work as a contractor for China's Ministry of State Security [S4][S5].",
+    "confidence": "ANSSI's Houken-to-UNC5174 link is reported as an assessment of same operator [S3]; other coverage describes it as similarity in tradecraft [S2]. Mandiant's own UNC5174 statements were made with moderate confidence [S4][S5]. Confidence level of ANSSI's wording could not be verified against the primary PDF.",
+    "basis": "ANSSI incident-response findings in French organizations [S1][S2]; overlap in tooling such as VShell and GOREVERSE between Houken and Mandiant's UNC5174 reporting [S2][S4]; use of open-source tools by Chinese-speaking developers [S1][S2]."
+  },
+  "objectives": "Obtain and monetize initial access to sensitive networks, likely for sale to state-linked actors seeking intelligence, with some direct data theft and occasional profit-driven activity such as cryptomining on one victim system [S2][S3].",
+  "targeting": {
+    "sectors": [
+      "Government",
+      "Telecommunications",
+      "Media",
+      "Finance",
+      "Transportation",
+      "Education (Southeast Asia)",
+      "Non-governmental organizations (China, Hong Kong, Macau)",
+      "Defense, media and telecom (Western targets, broad ANSSI targeting view)"
+    ],
+    "regions": [
+      "France (Ivanti CSA campaign, victims in government, telecom, media, finance, transport) [S2][S3]",
+      "Southeast Asia, including Thailand, Vietnam and Indonesia [S3]",
+      "China including Hong Kong and Macau (NGOs) [S2]",
+      "Western countries [S2]"
+    ],
+    "notes": "Targeting statements come from secondary coverage of the ANSSI report [S2][S3]. A secondary outlet reported a South American foreign ministry among victims; not verified in the sources gathered."
+  },
+  "capabilities": {
+    "summary": "Exploited three Ivanti CSA zero-days (CVE-2024-8190, CVE-2024-8963, CVE-2024-9380) before the Ivanti advisory was published, starting early September 2024 [S1][S2][S3]. After access, operators deployed custom PHP webshells, modified legitimate scripts, and in some cases installed a custom rootkit for persistence [S1][S2]. Named open-source tools include Neo-reGeorg, Behinder (Ice Scorpion), Suo5, ffuf and VShell [S3]; secondary summaries of the ANSSI report also name GOREVERSE and a sysinitd kernel-module rootkit [S1]. A cryptominer was found on one victim, which ANSSI called uncommon for this actor [S2]. For UNC5174 (Mandiant's cluster), custom SNOWLIGHT, GOHEAVY and GOREVERSE tools and the SUPERSHELL framework were reported in 2024 [S4][S5]."
+  },
+  "campaigns": [
+    {
+      "date": "2023-10",
+      "name": "UNC5174 F5 BIG-IP exploitation (Mandiant cluster, linked to Houken by ANSSI)",
+      "summary": "Mandiant reports UNC5174 exploited F5 BIG-IP CVE-2023-46747 beginning October 2023 and tried to sell access to US defense contractor appliances, UK government entities and Asian institutions. Included for context only; ANSSI's link to Houken is an assessment, not established fact in these sources.",
+      "sources": ["S4", "S5"]
+    },
+    {
+      "date": "2024-02",
+      "name": "UNC5174 ScreenConnect exploitation (Mandiant cluster)",
+      "summary": "Mandiant reports UNC5174 exploited ScreenConnect CVE-2024-1709 in February 2024, using SNOWLIGHT, GOHEAVY, GOREVERSE and SUPERSHELL.",
+      "sources": ["S4", "S5"]
+    },
+    {
+      "date": "2024-09",
+      "name": "Houken Ivanti CSA zero-day campaign against France",
+      "summary": "From early September 2024 the actor exploited CVE-2024-8190, CVE-2024-8963 and CVE-2024-9380 on Ivanti CSA devices, hitting French government, telecom, media, finance and transport organizations, and deployed webshells, open-source tools and in some cases a rootkit. Activity reportedly ran into late 2024 and may have started in 2023.",
+      "sources": ["S1", "S2", "S3"]
+    },
+    {
+      "date": "2025-07-01",
+      "name": "ANSSI/CERT-FR publishes Houken report",
+      "summary": "CERT-FR report CERTFR-2025-CTI-009 names the Houken intrusion set, assesses it as the same actor as UNC5174, and states both were still active in mid-2025.",
+      "sources": ["S2", "S3", "S6"]
+    }
+  ],
+  "diamond": {
+    "adversary": "Chinese-linked operator assessed by ANSSI as an access broker, possibly a private entity selling access and data to state-linked bodies; ANSSI links it to UNC5174 [S2][S3].",
+    "capability": "Ivanti CSA zero-days, custom PHP webshells, rootkit, and open-source tooling (Neo-reGeorg, Behinder, Suo5, ffuf, VShell) [S1][S2][S3].",
+    "infrastructure": "Compromised Ivanti CSA appliances as footholds [S2][S3]. Actor C2 infrastructure details are in the ANSSI PDF, which could not be opened.",
+    "victim": "French government, telecom, media, finance and transport organizations; also Southeast Asian government and education, and NGOs in China/Hong Kong/Macau [S2][S3].",
+    "socioPolitical": "Access brokerage serving state-linked intelligence customers, with some financial self-enrichment [S2][S3].",
+    "technology": "Internet-facing network appliances (Ivanti CSA) with unpatched or unknown flaws; Linux hosts where a rootkit was used [S1][S2]."
+  },
+  "gaps": [
+    "The primary CERT-FR report (CERTFR-2025-CTI-009) could not be fetched in this session (fetch tool DNS failure); all details come from search-result summaries and secondary coverage. Exact IOCs, infrastructure, timeline and confidence wording are unverified.",
+    "Strength of the Houken-UNC5174 link is reported inconsistently (same actor vs. tradecraft similarity) [S2][S3]. Treat as one assessment, not merged clusters.",
+    "No government (US/FR) attribution to a named PRC agency found; whether Houken customers are MSS, PLA or others is unknown.",
+    "No Microsoft or MITRE ATT&CK group entry was located for Houken.",
+    "Reports of a South American foreign ministry victim and OVH-hosted infrastructure were not verified.",
+    "Sysdig's UNC5174 reporting (SNOWLIGHT to VShell) appeared in results but was not opened or dated.",
+    "Activity after mid-2025 is not covered in the sources gathered."
+  ],
+  "implications": {
+    "jipoe": "Analyst assessment derived from cited sources; validate before use. STEP 1: Internet-facing edge appliances (Ivanti CSA and similar VPN/remote-access devices) in government, telecom and transport networks are key cyber terrain because they are the foothold [S2][S3]. STEP 2: The actor exploits zero-days before advisories, so patch status alone does not provide assurance, and compromised devices may be resold to other actors [S2][S3]. STEP 3: The template is edge-appliance zero-day, webshell, open-source tunneling/RAT tools, and sometimes a Linux rootkit [S1][S2][S3]. STEP 4: MLCOA is continued opportunistic exploitation of edge devices to build a portfolio of access for state-linked customers. MDCOA is that access being handed to an espionage or pre-positioning customer against allied government or telecom networks in a crisis. Candidate indicators: unexpected PHP files or modified scripts on appliances, Neo-reGeorg/Behinder/Suo5 traffic patterns, unauthorized kernel modules on Linux hosts, and unexplained cryptominer processes [S1][S2][S3].",
+    "jcc2": "Analyst assessment derived from cited sources; validate before use. (1) Situational awareness: track edge-appliance zero-day disclosures and vendor advisories, and assume exposure before a patch exists [S2][S3]. (2) Authorities: appliance forensics and takedown on partner or contractor networks need coordination through DC3/DIB CS or host-nation channels; confirm authorities before acting. (3) Mission assurance: inventory mission-critical systems reachable via exposed appliances and prepare to isolate them. (4) Coordination: share indicators with allies (ANSSI/CERT-FR published the source report) and note that one access may be reused by multiple actors, so containment should precede attribution [S2][S3]."
+  },
+  "sources": [
+    {"ref": "S1", "title": "HOUKEN, CERTFR-2025-CTI-009 (primary PDF not opened; details via secondary summaries)", "publisher": "CERT-FR / ANSSI", "date": "2025-07-01", "url": "https://www.cert.ssi.gouv.fr/uploads/CERTFR-2025-CTI-009.pdf"},
+    {"ref": "S2", "title": "Chinese Hackers Exploit Ivanti CSA Zero-Days in Attacks on French Government, Telecoms (reporting CERT-FR)", "publisher": "The Hacker News", "date": "2025-07", "url": "https://thehackernews.com/2025/07/chinese-hackers-exploit-ivanti-csa-zero.html"},
+    {"ref": "S3", "title": "Chinese Hackers Target France in Ivanti Zero-Day Exploit Campaign (reporting CERT-FR)", "publisher": "Infosecurity Magazine", "date": "2025-07", "url": "https://www.infosecurity-magazine.com/news/chinese-hackers-france-ivanti/"},
+    {"ref": "S4", "title": "Bringing Access Back: Initial Access Brokers Exploit F5 BIG-IP and ScreenConnect (UNC5174; read via search summary)", "publisher": "Mandiant / Google Cloud", "date": "2024-03-21", "url": "https://cloud.google.com/blog/topics/threat-intelligence/initial-access-brokers-exploit-f5-screenconnect"},
+    {"ref": "S5", "title": "China-Linked Group Breaches Networks via Connectwise, F5 Software Flaws (reporting Mandiant)", "publisher": "The Hacker News", "date": "2024-03", "url": "https://thehackernews.com/2024/03/china-linked-group-breaches-networks.html"},
+    {"ref": "S6", "title": "Chinese Hackers Exploit Ivanti CSA Zero-Day Vulnerabilities (reporting CERT-FR)", "publisher": "Zendata", "date": "2025-07-03", "url": "https://zendata.security/2025/07/03/chinese-hackers-exploit-ivanti-csa-zero-day-vulnerabilities/"}
+  ],
+  "aliasesAdd": []
+}

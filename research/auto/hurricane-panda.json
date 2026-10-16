@@ -1,0 +1,52 @@
+{
+  "identification": {
+    "summary": "HURRICANE PANDA is CrowdStrike's name for a China-based adversary whose intrusions CrowdStrike says it has investigated since 2013, including at several large telecommunications and technology companies [S2]. Its preferred initial access and persistence is a China Chopper webshell, followed by credential theft with a tool such as Mimikatz [S2]. In October 2014 CrowdStrike reported the group using a 64-bit Windows privilege-escalation zero-day, CVE-2014-4113 [S1].",
+    "firstObserved": "CrowdStrike: intrusions investigated since 2013 [S2].",
+    "notes": "CrowdStrike name only. No Microsoft Typhoon/Storm name is recorded in this encyclopedia for this actor. Search results for other aggregators (Malpedia, MISP Galaxy) listed it alongside other Chinese-nexus groups, but no cited source here states an alias, so none is added."
+  },
+  "attribution": {
+    "sponsor": "",
+    "confidence": "CrowdStrike describes the group as China-based [S2]. No government attribution was found in the sources gathered.",
+    "basis": "Vendor investigation by CrowdStrike across multiple customer intrusions [S2]. The basis for the China assessment was not visible in the material reviewed."
+  },
+  "objectives": "",
+  "targeting": {
+    "sectors": ["Telecommunications", "Technology"],
+    "regions": [],
+    "notes": "CrowdStrike says it fought the group at several large telecommunications and technology companies and in April 2015 described defending two customers [S2][S3]. Regions and customer names were not found."
+  },
+  "capabilities": {
+    "summary": "Initial access via a China Chopper webshell, a roughly 70-byte eval() text file uploaded through SQL injection or WebDAV vulnerabilities on web servers [S2]. Post-compromise the group runs a repacked credential theft tool such as Mimikatz and, with administrator credentials, moves laterally using 'net use' and 'wmic' commands through the webshell [S2]. CrowdStrike reported use of a 64-bit Windows local privilege-escalation zero-day, CVE-2014-4113, in October 2014 [S1]. CrowdStrike described itself as having reported this to Microsoft for patching [S3]. Secondary reporting of CrowdStrike's findings also mentions PlugX and free DNS services, but those details were not confirmed in a primary page I could open."
+  },
+  "campaigns": [
+    {"date": "2013 onward", "name": "Intrusions at telecommunications and technology companies", "summary": "CrowdStrike began investigating HURRICANE PANDA intrusions in 2013 and describes ongoing battles at several large telecom and technology firms.", "sources": ["S2"]},
+    {"date": "2014-10", "name": "CVE-2014-4113 zero-day use", "summary": "CrowdStrike reported the group's use of a 64-bit Windows privilege-escalation zero-day.", "sources": ["S1"]},
+    {"date": "2015-04-13", "name": "Long-running campaign reportedly halted", "summary": "CrowdStrike's chief of technology said on a public mailing list that the group stopped a multi-year campaign against two Falcon customers; a participant questioned whether this reflected a detection blind spot.", "sources": ["S2", "S3"]}
+  ],
+  "diamond": {
+    "adversary": "China-based group tracked by CrowdStrike; sponsor not established in sources [S2].",
+    "capability": "China Chopper webshell, Mimikatz, net use/wmic lateral movement, CVE-2014-4113 zero-day [S1][S2].",
+    "infrastructure": "Internet-facing web servers compromised via SQL injection or WebDAV flaws serve as footholds [S2]. Actor-controlled C2 details not found.",
+    "victim": "Large telecommunications and technology companies [S2].",
+    "socioPolitical": "",
+    "technology": "Exposed web applications with injection or WebDAV weaknesses, and unpatched Windows privilege-escalation flaws [S1][S2]."
+  },
+  "gaps": [
+    "Could not open the CrowdStrike blog posts directly (fetch failed); S1 and S2 content comes from the existing encyclopedia record text and search-result summaries. Re-verify against the primary posts.",
+    "No sponsor, state organization, or government attribution found.",
+    "Aliases and overlap with other vendor clusters are unconfirmed; do not merge with Deep Panda, APT19, or others without a cited source.",
+    "No activity found after 2015; whether the cluster is still tracked or was merged into a newer CrowdStrike name is unknown.",
+    "Dark Reading, SCMP, Malpedia and FireEye coverage of the zero-day surfaced in searches but were not opened or dated, so are not cited.",
+    "Specific victims, regions, objectives and infrastructure are not public in the material gathered."
+  ],
+  "implications": {
+    "jipoe": "",
+    "jcc2": ""
+  },
+  "sources": [
+    {"ref": "S1", "title": "CrowdStrike Discovers Use of 64-bit Zero-Day Privilege Escalation Exploit (CVE-2014-4113) by Hurricane Panda (per search result summary)", "publisher": "CrowdStrike", "date": "2014-10", "url": "https://www.crowdstrike.com/en-us/blog/crowdstrike-discovers-use-64-bit-zero-day-privilege-escalation-exploit-cve-2014-4113-hurricane-panda/"},
+    {"ref": "S2", "title": "Cyber Deterrence in Action? A story of one long HURRICANE PANDA campaign", "publisher": "CrowdStrike", "date": "2015-04-13", "url": "https://www.crowdstrike.com/blog/cyber-deterrence-in-action-a-story-of-one-long-hurricane-panda-campaign/"},
+    {"ref": "S3", "title": "[Dailydave] Cyber deterrence in action (mailing list thread, CrowdStrike announcement and reply)", "publisher": "Immunity Inc. Dailydave list", "date": "2015-04", "url": "https://lists.immunityinc.com/pipermail/dailydave/2015-April/000921.html"}
+  ],
+  "aliasesAdd": []
+}
