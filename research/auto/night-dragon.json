@@ -1,0 +1,130 @@
+{
+  "identification": {
+    "summary": "Night Dragon is the name McAfee gave to a series of coordinated, covert intrusions against global oil, energy and petrochemical companies, described in a McAfee Foundstone/McAfee Labs white paper dated 10 February 2011 [S1]. Attackers used spear-phishing, social engineering, Windows vulnerabilities, Active Directory compromise and remote administration tools (RATs), and stole proprietary operations and project-financing information such as oil and gas field bid data [S1][S2]. McAfee's Dmitri Alperovitch said no zero-day exploits were used [S2]. MITRE ATT&CK tracks it as campaign C0002, with an older group object G0014 [S5].",
+    "firstObserved": "McAfee: activity began in November 2009 [S1][S2]. The ICS-CERT advisory says activity began in 2009 or possibly as early as 2007 [S3].",
+    "notes": "Night Dragon is a McAfee campaign name, not a Microsoft-named actor; no Microsoft name or mapping was found in the sources gathered. Treat it as a campaign label for one intrusion set in 2009-2011, not a continuing group. Third-party mirrors of ATT&CK data mention an alias 'Musical Chairs' but I could not verify it on a primary page, so it is not added as an alias."
+  },
+  "attribution": {
+    "sponsor": "",
+    "confidence": "McAfee said the tools and network activity pointed primarily to China, and described the evidence as circumstantial [S1][S2]. Some other researchers said they had detected the attacks but were less certain of McAfee's conclusions [S2]. McAfee traced C2 infrastructure to a person or hosting provider in Heze City, Shandong Province, China (sources differ on which) [S4]. Control Engineering reported that no one could say whether the Chinese government sanctioned the attacks or whether a private company was responsible (as reported in search results, not opened).",
+    "basis": "McAfee cited Chinese-based tooling and network activity, and C2 infrastructure linked to Heze City, Shandong Province [S1][S4]. No government attribution to a named PRC organization was found in the sources gathered."
+  },
+  "objectives": "Theft of sensitive proprietary operations and project-financing information, including financial documents on oil and gas field exploration and bid negotiations and operational details on oil and gas field production supervisory control and data acquisition (SCADA) systems [S1][S2].",
+  "targeting": {
+    "sectors": [
+      "Oil and gas",
+      "Energy",
+      "Petrochemical"
+    ],
+    "regions": [
+      "Companies, individuals and executives in Kazakhstan, Taiwan, Greece and the United States [S2]",
+      "McAfee said it saw evidence of the activity in virtually every region of the globe [S1]"
+    ],
+    "notes": "McAfee confirmed five victim companies, none named publicly [S2]. NERC rated risk to bulk power system reliability as MEDIUM, noting financial data appeared to be the primary target although successful exploits may reach industrial control and SCADA systems [S6]. ICS-CERT said the tools and techniques can be highly successful against any industry [S3]."
+  },
+  "capabilities": {
+    "summary": "Unsophisticated but effective: spear-phishing, social engineering, exploitation of Windows vulnerabilities, Active Directory compromise and commodity remote administration tools, with no zero-days [S1][S2]. McAfee's paper documents the zwShell RAT and its command-and-control (C2) infrastructure in an appendix [S1]. ATT&CK lists hosted C2 infrastructure, HTTP-based C2 and password cracking with Cain & Abel, and a third-party mirror lists gsecdump, PsExec and ASPXSpy [S5]."
+  },
+  "campaigns": [
+    {
+      "date": "2009-11",
+      "name": "Start of Night Dragon intrusions",
+      "summary": "McAfee dates the start of the coordinated attacks on global oil, energy and petrochemical companies to November 2009; ICS-CERT says 2009 or possibly 2007.",
+      "sources": [
+        "S1",
+        "S3"
+      ]
+    },
+    {
+      "date": "2011-02-10",
+      "name": "McAfee publishes Night Dragon report",
+      "summary": "McAfee Foundstone and McAfee Labs publish 'Global Energy Cyberattacks: Night Dragon'; McAfee confirms five victim companies and points to China-based actors on circumstantial evidence.",
+      "sources": [
+        "S1",
+        "S2"
+      ]
+    },
+    {
+      "date": "2011-02-10",
+      "name": "ICS-CERT advisory ICSA-11-041-01A",
+      "summary": "ICS-CERT issues an advisory referencing the McAfee report, noting the energy-sector focus and that the techniques can succeed against any industry.",
+      "sources": [
+        "S3"
+      ]
+    },
+    {
+      "date": "2011-02-18",
+      "name": "NERC industry alert",
+      "summary": "NERC issues an informational alert on Night Dragon rating risk to bulk power system reliability as MEDIUM.",
+      "sources": [
+        "S6"
+      ]
+    }
+  ],
+  "diamond": {
+    "adversary": "China-based operators per McAfee's circumstantial assessment; no named organization or state sponsor established in the gathered sources [S1][S2].",
+    "capability": "Spear-phishing, Windows vulnerability exploitation, Active Directory compromise, RATs including zwShell; no zero-days [S1][S2].",
+    "infrastructure": "zwShell C2 infrastructure supplied by one individual or hosting provider reportedly located in Heze City, Shandong, China [S1][S4].",
+    "victim": "Oil, energy and petrochemical companies and their executives in Kazakhstan, Taiwan, Greece and the United States [S2].",
+    "socioPolitical": "Collection of bid, exploration and project-financing data suggests commercial and economic intelligence value; McAfee did not establish state tasking [S1][S2].",
+    "technology": "Windows and Active Directory enterprise networks, with exposure of SCADA-related operational data to intruders in corporate networks [S1][S2][S6]."
+  },
+  "gaps": [
+    "I could not open the McAfee white paper, the ICS-CERT advisory, the NERC alert or the MITRE pages (fetch failed); statements are drawn from search-result summaries of these documents and should be verified against the originals.",
+    "Details such as the exact attack chain (for example web-server compromise and credential theft steps), full tool list and C2 indicators were not confirmed from opened sources.",
+    "Victim companies were never named publicly; the total number of victims beyond five confirmed is unknown.",
+    "No government attribution or Microsoft naming was found; sponsor is unresolved.",
+    "Whether Night Dragon activity continued after 2011 under another name is unknown.",
+    "The alias 'Musical Chairs' appears in third-party mirrors only and is unverified.",
+    "The Heze City/Shandong C2 link comes from McAfee-based press reporting; NERC text mentioning Shandong was not confirmed."
+  ],
+  "implications": {
+    "jipoe": "Analyst assessment derived from cited sources; validate before use. STEP 1: Corporate networks of energy firms, Active Directory and bid or project-financing data stores are key terrain; SCADA data held on corporate systems is a secondary concern [S1][S2][S6]. STEP 2: Commodity tooling and no zero-days mean defenders' known-patch and credential hygiene gaps determine exposure [S2]. STEP 3: Template is spear-phishing or Windows exploitation, then Active Directory compromise, then RAT-based collection and exfiltration to leased C2 [S1]. STEP 4: MLCOA is continued economic and commercial intelligence theft from energy and defense-energy suppliers. MDCOA is use of the same footholds to reach operational technology data in a crisis; NERC judged this lower risk in 2011 [S6]. Candidate indicators: unexpected RAT beacons from corporate hosts, anomalous Active Directory authentication, and bulk transfers of bid or financial documents [S1].",
+    "jcc2": "Analyst assessment derived from cited sources; validate before use. (1) Situational awareness: track energy-sector compromise of installations that support DoD fuel and power supply chains [S1][S6]. (2) Authorities: coordinate responses through owners of commercial networks and sector channels such as ICS-CERT and NERC rather than assuming DoD authority [S3][S6]. (3) Mission assurance: separate corporate IT from SCADA and OT networks and verify what operational data sits on corporate systems [S2][S6]. (4) Coordination: share indicators with DIB and energy sector partners; attribution was circumstantial, so prioritize containment over naming [S2]."
+  },
+  "sources": [
+    {
+      "ref": "S1",
+      "title": "Global Energy Cyberattacks: Night Dragon (McAfee white paper, dated 10 Feb 2011; known from search-result summary, not opened)",
+      "publisher": "McAfee Foundstone Professional Services and McAfee Labs",
+      "date": "2011-02-10",
+      "url": "https://mcafee.com/blogs/wp-content/uploads/2011/02/McAfee_NightDragon_wp_draft_to_customersv1-1.pdf"
+    },
+    {
+      "ref": "S2",
+      "title": "McAfee: Night Dragon Cyber-Attack Unsophisticated but Effective (reporting McAfee findings)",
+      "publisher": "eWEEK",
+      "date": "2011-02",
+      "url": "https://www.eweek.com/security/mcafee-night-dragon-cyber-attack-unsophisticated-but-effective/"
+    },
+    {
+      "ref": "S3",
+      "title": "McAfee Night Dragon Report (Update A), ICSA-11-041-01A (archived; known from search-result summary)",
+      "publisher": "CISA / ICS-CERT",
+      "date": "2011-02",
+      "url": "https://www.cisa.gov/news-events/ics-advisories/icsa-11-041-01a"
+    },
+    {
+      "ref": "S4",
+      "title": "Night Dragon attacks from China strike energy companies (reporting McAfee findings)",
+      "publisher": "CSO Online",
+      "date": "2011-02",
+      "url": "https://www.csoonline.com/article/528364/malware-cybercrime-night-dragon-attacks-from-china-strike-energy-companies.html"
+    },
+    {
+      "ref": "S5",
+      "title": "Night Dragon, campaign C0002 (ATT&CK; known from search-result summary, not opened)",
+      "publisher": "MITRE ATT&CK",
+      "date": "2026-10 (retrieved)",
+      "url": "https://attack.mitre.org/campaigns/C0002/"
+    },
+    {
+      "ref": "S6",
+      "title": "NERC Alert A-2011-02-18-01, Night Dragon (known from search-result summary, not opened)",
+      "publisher": "North American Electric Reliability Corporation",
+      "date": "2011-02-18",
+      "url": "https://www.nerc.com/pa/rrm/bpsa/Alerts%20DL/2011%20Alerts/A-2011-02-18-01%20Night%20Dragon%20FINAL.pdf"
+    }
+  ],
+  "aliasesAdd": []
+}

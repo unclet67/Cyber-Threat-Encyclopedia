@@ -3,46 +3,6 @@
  "verify": [],
  "research": [
   {
-   "id": "night-dragon",
-   "tier": "T3"
-  },
-  {
-   "id": "nitro",
-   "tier": "T3"
-  },
-  {
-   "id": "oldgremlin",
-   "tier": "T3"
-  },
-  {
-   "id": "oniondog",
-   "tier": "T3"
-  },
-  {
-   "id": "operation-bugdrop",
-   "tier": "T3"
-  },
-  {
-   "id": "operation-drbcontrol",
-   "tier": "T3"
-  },
-  {
-   "id": "operation-emmental",
-   "tier": "T3"
-  },
-  {
-   "id": "operation-red-signature",
-   "tier": "T3"
-  },
-  {
-   "id": "operation-shadow-force",
-   "tier": "T3"
-  },
-  {
-   "id": "pale-panda",
-   "tier": "T3"
-  },
-  {
    "id": "passcv",
    "tier": "T3"
   },
@@ -698,12 +658,20 @@
   "mulberry-typhoon",
   "neva-flood",
   "nickel-alley",
+  "night-dragon",
+  "nitro",
   "nomadic-octopus",
   "nylon-typhoon",
   "obsidian-sandstorm",
   "oka-flood",
+  "oldgremlin",
+  "oniondog",
   "onyx-sleet",
   "opal-sleet",
+  "operation-bugdrop",
+  "operation-drbcontrol",
+  "operation-red-signature",
+  "operation-shadow-force",
   "peach-sandstorm",
   "pearl-sleet",
   "pepper-typhoon",
@@ -832,7 +800,13 @@
   "mora-001",
   "moshen-dragon",
   "nickel-alley",
+  "night-dragon",
   "obsidian-sandstorm",
+  "oniondog",
+  "operation-bugdrop",
+  "operation-drbcontrol",
+  "operation-red-signature",
+  "operation-shadow-force",
   "pearl-sleet",
   "pumpkin-sandstorm",
   "ruza-flood",
@@ -929,6 +903,10 @@
   "impersonating-panda",
   "magnetic-spider",
   "mana-team",
+  "pale-panda",
   "storm-2470"
- ]
+ ],
+ "needs_source_date": {
+  "operation-emmental": "draft is in research/auto; the Unit 42 Retefe post cited as S3 has no confirmed publication date"
+ }
 }

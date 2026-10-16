@@ -1,0 +1,110 @@
+{
+  "identification": {
+    "summary": "Operation BugDrop is a cyber-reconnaissance (espionage) campaign publicly disclosed by industrial cybersecurity firm CyberX in February 2017, named for its use of Dropbox to hold stolen data [S1][S3]. CyberX confirmed at least 70 victims across critical infrastructure, media and scientific research, mostly in Ukraine, with smaller numbers in Russia, Saudi Arabia and Austria [S1][S3]. The malware takes over PC microphones to record audio and also captured credentials, documents and screenshots [S1][S3].",
+    "firstObserved": "CyberX reported activity from no later than June 2016 [S1]. Public disclosure was February 2017 [S1][S3].",
+    "notes": "BugDrop is a campaign name coined by CyberX, not a vendor-assigned actor name; no Microsoft name or MITRE group exists for it. CyberX noted TTP and targeting similarities to Operation Groundbait (ESET, May 2016) but said the campaigns may be unrelated or that the actors changed methods after exposure [S2]. Do not merge the two clusters. The 600GB figure in one headline is not confirmed in the body text of the sources reviewed [S6]."
+  },
+  "attribution": {
+    "sponsor": "",
+    "confidence": "CyberX did not identify the actors; it floated possibilities including Ukrainians spying on pro-Russian Ukrainians, Russians spying on Ukrainians, or a hired third party [S1]. Infosecurity Magazine's headline calls it state-sponsored [S3].",
+    "basis": "CyberX's assessment of operational scale and targeting [S1][S3]. Malware reported as likely created in Russia, unconfirmed [S1]. No government attribution found in the sources reviewed."
+  },
+  "objectives": "Intelligence collection through audio eavesdropping and theft of credentials, documents and screenshots from Ukrainian critical infrastructure, media and research targets [S1][S3].",
+  "targeting": {
+    "sectors": [
+      "Critical infrastructure",
+      "Media",
+      "Scientific research"
+    ],
+    "regions": [
+      "Ukraine (most victims)",
+      "Russia",
+      "Saudi Arabia",
+      "Austria"
+    ],
+    "notes": "At least 70 confirmed victims [S1][S3]. Reporting on the CyberX findings says victims included people in Donetsk and Luhansk, as did Groundbait [S2]."
+  },
+  "capabilities": {
+    "summary": "Initial infection reportedly via phishing emails with malicious macros [S1][S2]. The malware used reflective DLL injection, a technique also seen in BlackEnergy and Duqu, to avoid the normal Windows loading path [S3]. DLLs were encrypted to evade antivirus and sandboxing [S3]. The malware checks for anti-malware software and monitoring tools such as Wireshark before running [S1]. It records from the PC microphone and captures credentials, documents and screenshots [S1]. Dropbox was the exfiltration channel and is hard to block in corporate networks [S1][S2]; free web hosting sites were used for command and control [S3]. CyberX estimated 2.5 to 3 GB per infected computer per day [S1]."
+  },
+  "campaigns": [
+    {
+      "date": "2016-05",
+      "name": "Operation Groundbait (related, separate cluster)",
+      "summary": "ESET disclosed Groundbait, which CyberX later compared with BugDrop for similar TTPs and targeting; the relationship is unconfirmed [S2].",
+      "sources": [
+        "S2"
+      ]
+    },
+    {
+      "date": "2016-06",
+      "name": "Earliest reported BugDrop activity",
+      "summary": "CyberX reported the campaign dated to no later than June 2016. The malware was reportedly compiled one month after ESET's Groundbait report [S1][S2].",
+      "sources": [
+        "S1",
+        "S2"
+      ]
+    },
+    {
+      "date": "2017-02",
+      "name": "CyberX public disclosure",
+      "summary": "CyberX named Operation BugDrop, reporting at least 70 victims, mostly in Ukraine, and microphone-based eavesdropping with Dropbox exfiltration [S1][S3].",
+      "sources": [
+        "S1",
+        "S3"
+      ]
+    }
+  ],
+  "diamond": {
+    "adversary": "Unidentified; CyberX offered several candidate actor types and did not attribute [S1].",
+    "capability": "Phishing with macros, reflective DLL injection, encrypted DLLs, anti-analysis checks, microphone capture, credential, document and screenshot theft [S1][S3].",
+    "infrastructure": "Dropbox for staging stolen data; free web hosting for command and control [S1][S3]. Groundbait operators by contrast registered their own domains [S2].",
+    "victim": "At least 70 organizations in critical infrastructure, media and scientific research, mostly in Ukraine, plus Russia, Saudi Arabia and Austria [S1][S3].",
+    "socioPolitical": "Collection against Ukrainian targets during the ongoing Ukraine conflict, with victims reported in Donetsk and Luhansk [S2]. Motive beyond collection is not stated in the sources.",
+    "technology": "Windows PCs with attached microphones, Office macro execution, and permitted cloud storage traffic such as Dropbox [S1][S2][S3]."
+  },
+  "gaps": [
+    "No attribution to a named actor or government in the sources reviewed; the 'state-sponsored' headline is not backed by quoted evidence [S1][S3].",
+    "The original CyberX report was not opened; WebFetch failed on all hosts (DNS errors) so only search-result summaries were used, and all details are secondhand.",
+    "Relationship to Operation Groundbait is unresolved [S2].",
+    "Whether BugDrop continued after February 2017 is unknown [S1].",
+    "Indicators (hashes, Dropbox accounts, hosting domains) were not gathered.",
+    "The 600GB figure in the Security Affairs headline is unverified [S6].",
+    "Source publication dates are approximate to the month, taken from search results and URL date patterns."
+  ],
+  "implications": {
+    "jipoe": "Analyst assessment derived from cited sources; validate before use. STEP 1: Key terrain is workstations with microphones and Office macro execution in energy and infrastructure organizations, plus permitted cloud-storage egress paths [S1][S3]. STEP 2: The adversary exploits cloud-service traffic that is rarely blocked and avoids owned domains [S1][S2][S3]. STEP 3: Template is phishing with macro document, reflective DLL loading, microphone and document collection, then Dropbox exfiltration [S1][S3]. STEP 4: MLCOA is continued collection against Ukrainian-linked infrastructure and media. MDCOA is use of the same audio-capture access against sensitive deployed or coalition facilities (this extension is not shown in the sources). Candidate indicators: unexpected processes accessing audio devices, Office macro child processes, unapproved Dropbox traffic from servers or control-room workstations, and tools checking for Wireshark [S1].",
+    "jcc2": "Analyst assessment derived from cited sources; validate before use. (1) Situational awareness: include endpoint audio-device access and cloud-storage egress in mission-system monitoring [S1]. (2) Authorities: monitoring of user audio endpoints and cloud traffic requires clear authority and legal review; confirm before tasking. (3) Mission assurance: disable or physically cover microphones on sensitive workstations and restrict personal cloud storage [S1][S3]. (4) Coordination: attribution is unresolved, so share indicators through partners without naming a sponsor [S1]."
+  },
+  "sources": [
+    {
+      "ref": "S1",
+      "title": "At Least 70 Organizations Targeted In Sophisticated Cyber Surveillance Operation (search summary)",
+      "publisher": "Dark Reading",
+      "date": "2017-02",
+      "url": "https://www.darkreading.com/attacks-breaches/at-least-70-organizations-targeted-in-sophisticated-cyber-surveillance-operation"
+    },
+    {
+      "ref": "S2",
+      "title": "Spies used malware to eavesdrop on Ukrainian businesses and media, researchers say (search summary)",
+      "publisher": "CyberScoop",
+      "date": "2017-02",
+      "url": "https://cyberscoop.com/?p=9088"
+    },
+    {
+      "ref": "S3",
+      "title": "State-sponsored Spy Campaign Targets Ukrainian Infrastructure (search summary)",
+      "publisher": "Infosecurity Magazine",
+      "date": "2017-02",
+      "url": "https://www.infosecurity-magazine.com/news/statesponsored-spy-campaign/"
+    },
+    {
+      "ref": "S6",
+      "title": "Operation BugDrop - Hackers siphoned 600GB taking control of PC microphones (search summary)",
+      "publisher": "Security Affairs",
+      "date": "2017-02",
+      "url": "https://securityaffairs.com/?p=56517"
+    }
+  ],
+  "aliasesAdd": []
+}

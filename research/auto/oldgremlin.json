@@ -1,0 +1,133 @@
+{
+  "identification": {
+    "summary": "Russian-speaking, financially motivated ransomware group that Group-IB (as reported by the press) describes as unusual because it mainly attacks Russian organizations, which most Russian-speaking ransomware operators avoid [S1][S2]. Group-IB's first public reporting was in September 2020 and dated campaigns to spring 2020 [S1]. Kaspersky reported renewed activity in early 2025 [S6].",
+    "firstObserved": "Spring 2020 (campaigns since about March 2020 per Group-IB's 2022 reporting [S4]; first reported by Group-IB in September 2020 [S1]).",
+    "notes": "Group-IB also tracks the group as TinyScouts [S2][S4]. Coverage of the 2022 Linux report and of Brandefense's 2025 write-up differs on geographic scope: Group-IB-derived reporting describes mainly Russian targets [S2][S4], while Brandefense says Europe and the Americas are also targeted [S7]; the Brandefense claim is not corroborated by other gathered sources. The 2025 Kaspersky ransom-note use of the 'OldGremlin' name is reported as the first time the operators used the name themselves [S6]."
+  },
+  "attribution": {
+    "sponsor": "",
+    "confidence": "Vendors describe the group as financially motivated and Russian-speaking [S1][S2][S6]. No government or state sponsorship attribution was found in gathered sources. Kaspersky links its 2025 incidents to earlier OldGremlin campaigns via consistent tactics and a reused cryptographic public key (Kaspersky's own assessment, as reported) [S6].",
+    "basis": "Group-IB analysis of 2020-2022 campaigns (via press coverage) [S1][S2]; Kaspersky Threat Research on 2025 activity (via press-release coverage) [S6]."
+  },
+  "objectives": "Financial gain through large-scale ransomware extortion; Group-IB-derived reporting gives a maximum demand of $4.2 million in 2021 and $16.9 million in 2022 [S2][S4]. Kaspersky's 2025 report mentions the group earlier demanded nearly $17 million from one victim [S6].",
+  "targeting": {
+    "sectors": [
+      "Banking",
+      "Industrial / manufacturing",
+      "Medical laboratories and healthcare",
+      "Software development",
+      "Logistics",
+      "Insurance",
+      "Retail",
+      "Real estate",
+      "Technology"
+    ],
+    "regions": [
+      "Russia (primary focus in Group-IB-derived reporting) [S1][S2]"
+    ],
+    "notes": "2020 reporting: medical labs, banks, manufacturers and software developers [S1]. 2022: logistics, industry, insurance, retail, real estate, software development, banking [S2][S4]. 2025: manufacturing, healthcare, retail and technology [S6]. Brandefense claims Europe and the Americas as well [S7] (uncorroborated)."
+  },
+  "capabilities": {
+    "summary": "Targeted phishing email as initial access, with lures such as an invoice purporting to come from RBC and COVID-themed mails impersonating a Russian microfinance organization [S1]. A link downloads a ZIP containing the custom TinyNode backdoor or the TinyPosh trojan [S1]. Cobalt Strike is used for lateral movement, followed by domain admin credential theft, creation of a privileged account for persistence, deletion of server backups and encryption with TinyCryptor (aka decr1pt) several weeks after the attack began [S1]. A Go-built Linux variant of the TinyCrypt ransomware (AES-256-CBC, .crypt extension) was found in 2022 [S4]. Kaspersky's 2025 toolkit comprises a backdoor, a 'patcher' abusing a flaw in a legitimate Windows driver to disable protections, an encryptor, and a 'closethedoor' tool to isolate the host and remove traces, with Node.js used to run commands; typical dwell time before encryption is about 49 days [S6]."
+  },
+  "campaigns": [
+    {
+      "date": "2020-03",
+      "name": "Initial phishing campaigns (TinyNode/TinyCryptor)",
+      "summary": "Group-IB reports custom-tool operations (nine campaigns between May and August 2020 per the Sept 2020 report [S1]; Group-IB's later reporting counts activity since March 2020 [S4]) against Russian medical labs, banks, manufacturers and software developers; a successful attack in August 2020 hit a clinical diagnostics lab. Ransom demand cited at $50,000 in cryptocurrency.",
+      "sources": [
+        "S1",
+        "S4"
+      ]
+    },
+    {
+      "date": "2021",
+      "name": "Retail-association impersonation campaign",
+      "summary": "Coverage of Group-IB reporting describes a single 2021 campaign in which the actor impersonated an association of online retailers; maximum demand that year was $4.2 million.",
+      "sources": [
+        "S4"
+      ]
+    },
+    {
+      "date": "2022-10",
+      "name": "Linux TinyCrypt variant and record demand",
+      "summary": "Group-IB reported a Go-built Linux version of TinyCrypt and a maximum ransom demand of $16.9 million in 2022; targets spanned logistics, industry, insurance, retail, real estate, software and banking.",
+      "sources": [
+        "S2",
+        "S4"
+      ]
+    },
+    {
+      "date": "2025-08",
+      "name": "Return in 2025",
+      "summary": "Kaspersky reported new attacks from early 2025 against manufacturing, healthcare, retail and technology firms, with a new toolkit, about 49 days of dwell time, and first use of the 'OldGremlin' name in ransom notes and file paths.",
+      "sources": [
+        "S6"
+      ]
+    }
+  ],
+  "diamond": {
+    "adversary": "Russian-speaking financially motivated ransomware group, also tracked by Group-IB as TinyScouts [S2][S4].",
+    "capability": "Phishing, custom backdoors (TinyNode, TinyPosh), Cobalt Strike, TinyCryptor/TinyCrypt ransomware for Windows and Linux, BYOVD-style driver abuse in 2025 [S1][S4][S6].",
+    "infrastructure": "Phishing links hosting ZIP payloads [S1]; specific infrastructure details were not obtained.",
+    "victim": "Mainly Russian banks, industrial, medical, software, logistics, insurance and retail organizations [S1][S2][S6].",
+    "socioPolitical": "Financial extortion against Russian entities, atypical for Russian-speaking ransomware actors [S1].",
+    "technology": "Windows and Linux enterprise networks reachable through email; Active Directory domain credentials; backups targeted for deletion [S1][S4]."
+  },
+  "gaps": [
+    "Direct fetches of Group-IB, Kaspersky, The Hacker News and BleepingComputer pages failed in this environment; content relies on search-result summaries of those reports, and primary documents were not opened.",
+    "Year of the $16.9 million demand and details of the 2021 campaign come from secondary coverage [S4].",
+    "No sponsor, individuals, or law-enforcement action identified in gathered sources.",
+    "Brandefense claim of non-Russian targeting is uncorroborated [S7].",
+    "No MITRE ATT&CK group ID or Microsoft name was identified.",
+    "Initial access broker relationships, infrastructure and IOCs not gathered.",
+    "Hackread and Security Affairs URLs could not be confirmed in search results; those sources and the TinyFluff (2022) claims resting on them were removed."
+  ],
+  "implications": {
+    "jipoe": "Analyst assessment derived from cited sources; validate before use. STEP 1: Email gateways, domain controllers and backup systems are key terrain in organizations the group targets [S1]. STEP 2: The group primarily victimizes Russian entities, so direct relevance to US/allied networks is limited and mainly as a model of criminal intrusion tradecraft [S1][S2]. STEP 3: Template is phishing, custom backdoor, Cobalt Strike, domain-admin theft, backup deletion, then long-dwell encryption (about 49 days in 2025) on Windows and Linux [S1][S4][S6]. STEP 4: MLCOA is continued low-volume, high-demand ransomware against Russian industry. MDCOA is expansion to non-Russian organizations, as one unverified vendor claim suggests [S7]. Candidate indicators: phishing mail with ZIP links impersonating trade bodies, Cobalt Strike beacons, new privileged accounts, loading of vulnerable Windows drivers, mass backup deletion [S1][S6].",
+    "jcc2": "Analyst assessment derived from cited sources; validate before use. (1) Long dwell time (about 49 days) gives a detection window; feed backup-deletion and new-admin-account alerts into situational awareness [S1][S6]. (2) Mission assurance: protect offline backups and Linux servers, since a Linux encryptor exists [S4]. (3) Authorities and coordination: treat as criminal activity; coordinate through normal law-enforcement and DC3/industry-sharing channels if any DoD-adjacent victim emerges. Relevance is low unless targeting shifts [S7]."
+  },
+  "sources": [
+    {
+      "ref": "S1",
+      "title": "Russian Ransomware hack (reporting Group-IB OldGremlin research)",
+      "publisher": "The Hacker News",
+      "date": "2020-09",
+      "url": "https://thehackernews.com/2020/09/russian-ransomware-hack.html"
+    },
+    {
+      "ref": "S2",
+      "title": "Gremlins' prey, secrets, and dirty tricks: the ransomware gang OldGremlin set new records",
+      "publisher": "Group-IB",
+      "date": "2022-10",
+      "url": "https://www.group-ib.com/media-center/press-releases/oldgremlin-2022"
+    },
+    {
+      "ref": "S4",
+      "title": "OldGremlin, which targets Russia, debuts new Linux ransomware (reporting Group-IB)",
+      "publisher": "Computing",
+      "date": "2022-10",
+      "url": "https://computing.co.uk/news/4058606/oldgremlin-targets-russia-debuts-linux-ransomware"
+    },
+    {
+      "ref": "S6",
+      "title": "Kaspersky reports the return of Russian-speaking ransomware group OldGremlin",
+      "publisher": "Kaspersky",
+      "date": "2025-08",
+      "url": "https://www.kaspersky.com/about/press-releases/2025_kaspersky-reports-the-return-of-russian-speaking-ransomware-group-oldgremlin"
+    },
+    {
+      "ref": "S7",
+      "title": "OldGremlin: A Stealthy Russian-Speaking Ransomware and Espionage Threat Group Evolving Into a Precision Striking APT",
+      "publisher": "Brandefense",
+      "date": "2025-12",
+      "url": "https://brandefense.io/blog/oldgremlin-apt-2025/"
+    }
+  ],
+  "aliasesAdd": [
+    {
+      "name": "TinyScouts",
+      "vendor": "Group-IB"
+    }
+  ]
+}

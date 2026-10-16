@@ -1,0 +1,65 @@
+{
+  "identification": {
+    "summary": "PALE PANDA is a CrowdStrike adversary name listed in Malpedia's actor catalogue, which cites CrowdStrike's Global Threat Intel Report of 2015-02-10 as a reference [S1][S2]. Coverage of CrowdStrike's 2014 report gives Panda-named examples linked to China (e.g. Deep Panda) [S3]; that article's text was not retrieved in full, so the convention is not directly confirmed. No open source retrieved describes this actor's activity, tooling or victims.",
+    "firstObserved": "",
+    "notes": "The Malpedia entry lists other names (MAGNETIC SPIDER, PREDATOR PANDA, SABRE PANDA, SPICY PANDA, WET PANDA) in its synonyms field as returned by search; these were not verified and some may be different CrowdStrike adversaries, so none are added as aliases [S1]. Malpedia states no malware families are associated with the actor [S1]."
+  },
+  "attribution": {
+    "sponsor": "",
+    "confidence": "",
+    "basis": ""
+  },
+  "objectives": "",
+  "targeting": {
+    "sectors": [],
+    "regions": [],
+    "notes": ""
+  },
+  "capabilities": {
+    "summary": ""
+  },
+  "campaigns": [],
+  "diamond": {
+    "adversary": "",
+    "capability": "",
+    "infrastructure": "",
+    "victim": "",
+    "socioPolitical": "",
+    "technology": ""
+  },
+  "gaps": [
+    "No open-source description of PALE PANDA activity, targets, tooling, infrastructure or timeline was found in six-plus searches; the actor appears only as a name in a catalogue entry [S1].",
+    "The CrowdStrike 2014 Global Threat Intel Report PDF (the URL in the existing record, go.crowdstrike.com) could not be opened (host not resolvable from this environment), so the primary description, if any, is unverified.",
+    "Whether the Malpedia synonym list reflects true CrowdStrike aliases or a catalogue artefact is unverified; other names in that list (e.g. SABRE PANDA, PREDATOR PANDA) are not confirmed as PALE PANDA.",
+    "Sponsor, state organisation, first-observed date, MITRE group ID and Microsoft mapping are unknown; the record's country value of CN rests only on the Panda naming pattern seen in coverage [S3], not confirmed for this actor.",
+    "Malpedia page could not be fetched directly; its content is known only through search-result summaries."
+  ],
+  "implications": {
+    "jipoe": "",
+    "jcc2": ""
+  },
+  "sources": [
+    {
+      "ref": "S1",
+      "title": "PALE PANDA actor entry (Malpedia; search-result summary, page not fetched)",
+      "publisher": "Fraunhofer FKIE Malpedia",
+      "date": "2026-10 (retrieved)",
+      "url": "https://malpedia.caad.fkie.fraunhofer.de/actor/pale_panda"
+    },
+    {
+      "ref": "S2",
+      "title": "CrowdStrike Global Threat Intel Report analyzes cybercrime and targeted intrusion trends in 2014",
+      "publisher": "CrowdStrike",
+      "date": "2015-02-10",
+      "url": "https://www.crowdstrike.com/en-us/press-releases/crowdstrike-global-threat-intel-report-analyzes-cybercrime-targeted-intrusion-trends-2014/"
+    },
+    {
+      "ref": "S3",
+      "title": "Threats in 2014: Bears and Pandas and Malware, Oh My (naming convention)",
+      "publisher": "The Security Ledger",
+      "date": "2015-02",
+      "url": "https://securityledger.com/2015/02/threats-in-2014-bears-and-pandas-and-malware-oh-my/"
+    }
+  ],
+  "aliasesAdd": []
+}

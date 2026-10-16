@@ -1,0 +1,153 @@
+{
+  "identification": {
+    "summary": "Operation Emmental is the name Trend Micro gave in 2014 to a financially motivated campaign against online-banking customers in Switzerland, Austria, Sweden and Japan, which combined a Windows DNS/certificate-hijacking Trojan with a malicious Android app to defeat SMS-based two-factor authentication [S1]. The Windows malware is known as Retefe (also Werdlod), and the same operators are called the Retefe gang [S5][S3]. Later reporting ties the macOS malware Dok to Retefe [S5][S6].",
+    "firstObserved": "Trend Micro linked the operators to the handles -=FreeMan=- and Northwinds, active since at least 2011 [S1]. Swiss MELANI said it knew of Retefe since November 2013 [S2]. Public reporting on Operation Emmental dates to July 2014 [S1][S2].",
+    "notes": "This is a cybercrime cluster, not a state-sponsored actor; Microsoft does not map it to a Typhoon, Blizzard, Sandstorm or Sleet name, and no Microsoft name is stated in the cited sources. 'Operation Emmental' is Trend Micro's campaign name; 'Retefe' is the malware family name and is used by other vendors (Proofpoint, Palo Alto Unit 42, ESET) for the same tooling [S3][S4][S7]. Whether every Retefe campaign is run by one group is not established in the cited sources."
+  },
+  "attribution": {
+    "sponsor": "",
+    "confidence": "Trend Micro stated the operators are likely Russian speakers [S1]. No state sponsor is identified in any cited source; the activity is described as bank fraud.",
+    "basis": "Trend Micro linked the campaign to the handles -=FreeMan=- and Northwinds and assessed them as likely Russian speakers [S1]. No indictment or government attribution was found in the sources gathered."
+  },
+  "objectives": "Financial theft from online-banking customers by harvesting credentials and one-time passwords and redirecting bank traffic to spoofed sites [S1][S3].",
+  "targeting": {
+    "sectors": [
+      "Financial services (retail online-banking customers)"
+    ],
+    "regions": [
+      "Switzerland (16 Swiss online banking sites reported in 2014) [S2]",
+      "Austria, Sweden, Japan [S1]",
+      "United Kingdom (2016 reporting) [S4]",
+      "Germany and Switzerland (from April 2019, Windows and macOS) [S7]"
+    ],
+    "notes": "Targeting is of bank customers, not banks or government networks. The Retefe command-and-control server was observed returning the proxy configuration only to hosts located in Sweden, Switzerland and Japan [S3]. The macOS Dok variant hijacked traffic only if the victim's external IP was in Switzerland [S5]. Emails were localized per country, posing as order or receipt notices from local electronics retailers [S3]."
+  },
+  "capabilities": {
+    "summary": "Localized phishing emails with a malicious attachment; the Windows malware changes DNS settings or sets a proxy and installs a rogue root SSL certificate so fake bank pages look trusted, then may delete itself [S1][S3]. Victims entering credentials on the fake bank site were told to install an Android app that captured SMS one-time passwords, defeating SMS-based two-factor authentication [S1]. Retefe does not use web injects; it routes bank traffic through proxy servers, often hosted on Tor [S3][S7]. Unit 42 described PowerShell being used to install the certificate and proxy configuration, and Smoke Loader being downloaded in later campaigns [S3]. In 2017 the Windows delivery used a .docx that fetched Werdlod/Retefe from a Dropbox account, alongside a zipped macOS Dok sample [S5]. Proofpoint reported EternalBlue added for internal spread in 2017 and, in 2019, a move from Tor to stunnel, Smoke Loader as intermediate loader, and abuse of a shareware app packaged as a Python script [S7]. Dok abused a signed developer certificate, installed a local certificate to enable man-in-the-middle, and used fake 'OS X update' prompts to obtain admin rights [S6]."
+  },
+  "campaigns": [
+    {
+      "date": "2013-11",
+      "name": "Early Retefe tracking by Swiss authorities",
+      "summary": "MELANI said authorities had known of Retefe since November 2013 and worked with Swiss banks and European partners [S2].",
+      "sources": [
+        "S2"
+      ]
+    },
+    {
+      "date": "2014-07",
+      "name": "Operation Emmental report",
+      "summary": "Trend Micro published 'Finding Holes: Operation Emmental', describing the bypass of SMS-based two-factor authentication using DNS hijacking, a rogue root certificate and a malicious Android app, with victims in Switzerland, Austria, Sweden and Japan [S1]. Swiss coverage reported 16 targeted Swiss banking sites [S2].",
+      "sources": [
+        "S1",
+        "S2"
+      ]
+    },
+    {
+      "date": "2016-11",
+      "name": "Retefe against UK and other banks",
+      "summary": "ESET reported Retefe targeting various banks, mostly in Switzerland, Austria and the UK, including Tesco Bank [S4].",
+      "sources": [
+        "S4"
+      ]
+    },
+    {
+      "date": "2017-04",
+      "name": "OSX/Dok macOS variant",
+      "summary": "Check Point described Dok as macOS malware ported from Windows Retefe, spread by phishing (including a lure posing as a Swiss tax notice) and signed with a developer certificate Apple later revoked [S6].",
+      "sources": [
+        "S6"
+      ]
+    },
+    {
+      "date": "2017-07",
+      "name": "Combined Windows and macOS Swiss campaign",
+      "summary": "Emails carried a .docx delivering Werdlod/Retefe and a zip with a Dok sample; Trend Micro attributed the wave to the Operation Emmental actors and said Dok is the Mac version of Retefe [S5]. Proofpoint later called 2017 the last major campaign before a quiet period, noting EternalBlue added for spread [S7].",
+      "sources": [
+        "S5",
+        "S7"
+      ]
+    },
+    {
+      "date": "2019-04",
+      "name": "Retefe resurgence against Swiss and German customers",
+      "summary": "After a mostly dormant 2018, Retefe resumed in April 2019 against Swiss and German customers on Windows and macOS, using stunnel instead of Tor and Smoke Loader as loader [S7].",
+      "sources": [
+        "S7"
+      ]
+    }
+  ],
+  "diamond": {
+    "adversary": "Financially motivated, likely Russian-speaking operators linked by Trend Micro to the handles -=FreeMan=- and Northwinds [S1].",
+    "capability": "Phishing, DNS/proxy and rogue-certificate traffic hijack, Android OTP-stealing app, Retefe/Werdlod for Windows, Dok for macOS, Smoke Loader, EternalBlue spread [S1][S3][S5][S7].",
+    "infrastructure": "Attacker-controlled DNS servers and proxies, often on Tor, later stunnel; Dropbox used to host a payload in 2017; geo-restricted C2 [S1][S3][S5][S7].",
+    "victim": "Retail online-banking customers in Switzerland, Austria, Sweden, Japan, the UK and Germany [S1][S4][S7].",
+    "socioPolitical": "Profit-driven fraud against European and Japanese banking customers; no political objective is stated in the sources [S1].",
+    "technology": "Banking authentication that relies on SMS one-time passwords, user-trusted root certificate stores, and Windows and macOS endpoints that accept unsigned or abused-signed installers [S1][S6]."
+  },
+  "gaps": [
+    "No state sponsor or government attribution found; the actor appears to be criminal. Relevance to DoD is indirect (personnel as consumers, financial-sector disruption).",
+    "The Trend Micro primary report (hosted copy), Proofpoint, Check Point, Unit 42 and MELANI pages could not be opened with the fetch tool; facts rely on search-result summaries and secondary coverage. Re-verify against the primary documents.",
+    "Number of banks (reports of 34) and the Romania/Russia attribution wording appeared in search summaries but were not confirmed in an opened document, so they are excluded from the profile.",
+    "Source dates for the Unit 42 post (from page metadata) and the Check Point Dok page (approximate) should be confirmed.",
+    "No law-enforcement action, arrest or victim-loss total was found. Activity after 2019 was not found in the searches run.",
+    "Unclear whether all Retefe use is by one operator group or whether the malware is shared.",
+    "The Unit 42 Retefe post date (previously given as 2015-08) could not be confirmed; its content (Smoke Loader, UK targeting) suggests a later date, so the dated campaign entry was removed."
+  ],
+  "implications": {
+    "jipoe": "Analyst assessment derived from cited sources; validate before use. STEP 1: The relevant environment is consumer online banking and personal endpoints, including those of service members and families in or near Europe and Japan; DoD networks are not a stated target [S1][S7]. STEP 2: The actor adapts delivery and tooling over time (Tor to stunnel, new loaders, macOS port) and goes quiet between waves [S7]. STEP 3: Template is localized phishing, then certificate and proxy hijack, then OTP capture, with geo-fencing of victims [S1][S3][S5]. STEP 4: MLCOA is continued bank-customer fraud in European markets. MDCOA is the same tooling retargeted to additional countries or to personal devices of cleared personnel for credential theft; this is a judgment, not a sourced event. Candidate indicators: unexpected root certificates, changed DNS or proxy settings, PowerShell activity after Office document opens, unsigned or revoked-certificate macOS installers [S3][S6].",
+    "jcc2": "Analyst assessment derived from cited sources; validate before use. (1) Situational awareness: treat as a criminal threat to personnel finances and personal devices, not a mission network threat, unless indicators appear on government systems. (2) Authorities: response is largely law-enforcement and bank-CERT led (for example Swiss MELANI engagement noted in 2014) [S2]; no military action implied. (3) Mission assurance: low direct impact; advise personnel on SMS-OTP weaknesses and certificate-store hygiene [S1]. (4) Coordination: share indicators through DC3 or civilian CERT channels if seen on DoD-adjacent devices."
+  },
+  "sources": [
+    {
+      "ref": "S1",
+      "title": "Finding Holes: Operation Emmental (Trend Micro report, hosted copy; facts from search summaries)",
+      "publisher": "Trend Micro",
+      "date": "2014-07",
+      "url": "https://nki.gov.hu/wp-content/uploads/2014/08/wp-finding-holes-operation-emmental.pdf"
+    },
+    {
+      "ref": "S2",
+      "title": "Hackers exploit holes in Swiss online banking",
+      "publisher": "The Local (Switzerland)",
+      "date": "2014-07-22",
+      "url": "https://www.thelocal.ch/20140722/hackers-exploit-holes-in-swiss-online-banking"
+    },
+    {
+      "ref": "S3",
+      "title": "Retefe Banking Trojan Targets Sweden, Switzerland and Japan",
+      "publisher": "Palo Alto Networks Unit 42",
+      "date": "",
+      "url": "https://unit42.paloaltonetworks.com/retefe-banking-trojan-targets-sweden-switzerland-and-japan/"
+    },
+    {
+      "ref": "S4",
+      "title": "Tesco Bank not alone in being targeted by Retefe malware",
+      "publisher": "ESET Ireland",
+      "date": "2016-11-11",
+      "url": "https://blog.eset.ie/2016/11/11/tesco-bank-not-alone-in-being-targeted-by-retefe-malware/"
+    },
+    {
+      "ref": "S5",
+      "title": "Swiss users targeted with Windows, macOS banking Trojan (reporting Trend Micro analysis)",
+      "publisher": "Help Net Security",
+      "date": "2017-07-11",
+      "url": "https://www.helpnetsecurity.com/2017/07/11/swiss-users-macos-banking-trojan/"
+    },
+    {
+      "ref": "S6",
+      "title": "Dok malware family page (macOS)",
+      "publisher": "Check Point Research",
+      "date": "2017-04",
+      "url": "https://macos.checkpoint.com/families/Dok/"
+    },
+    {
+      "ref": "S7",
+      "title": "Retefe banking Trojan leverages EternalBlue exploit in Swiss campaigns",
+      "publisher": "Proofpoint",
+      "date": "2019-05",
+      "url": "https://www.proofpoint.com/us/threat-insight/post/retefe-banking-trojan-leverages-eternalblue-exploit-swiss-campaigns"
+    }
+  ],
+  "aliasesAdd": []
+}

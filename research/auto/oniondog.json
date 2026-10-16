@@ -1,0 +1,112 @@
+{
+  "identification": {
+    "summary": "OnionDog is a name given by Qihoo 360's Helios Team (SkyEye Labs) in 2016 to an activity cluster that reportedly stole data from energy and transportation organizations in Korean-speaking countries, with activity traced back to October 2013 [S2]. In August 2017 Trend Micro assessed that OnionDog is not a targeted attack but a cyber drill, because several of the eight C&C IP addresses in the 360 report were linked to South Korea's National Cybersecurity Center (NCSC) [S1][S3].",
+    "firstObserved": "360 Helios: activity traced back to October 2013 [S2].",
+    "notes": "The existing record's country value (KP) is not supported by any source gathered here; neither the 360 report coverage nor Trend Micro attributes OnionDog to North Korea [S1][S2]. The two vendor readings conflict (real APT per 360, drill per Trend Micro) and this record does not resolve them [S1][S2]."
+  },
+  "attribution": {
+    "sponsor": "",
+    "confidence": "",
+    "basis": "No source gathered names a sponsor. 360 Helios described a group but the coverage reviewed names no state [S2]. Trend Micro, reviewing the same indicators, assessed the samples were linked to official South Korean cyber practices (the NCSC) and concluded this was a cyber drill, not a targeted attack [S1][S3]."
+  },
+  "objectives": "",
+  "targeting": {
+    "sectors": [
+      "Energy (electric power, water resources)",
+      "Transportation (harbors, vessel traffic services, subways, public transportation)"
+    ],
+    "regions": [
+      "Korean-speaking countries (per 360 Helios) [S2]"
+    ],
+    "notes": "360 Helios reported 2014 targeting of electric power and water resources corporations and other energy enterprises, and 2015 targeting of harbors, VTS, subways and public transportation [S2]. The existing record also lists government as a target; no source gathered here confirms this. All targeting claims derive from the 360 report and are disputed by Trend Micro [S1]."
+  },
+  "capabilities": {
+    "summary": "360 Helios reported spear-phishing email lures, an early Trojan disguised as a Hangul (HWP) document using icons and file numbers, later use of a vulnerability in an upgraded Hangul version to embed malicious code in a genuine HWP file, and a USB worm to reach network-isolated targets [S2]. Helios reported 96 groups of malicious code and 14 C&C domains/IPs [S2]. Trend Micro reviewed the eight hardcoded C&C IPs and said the malware does no actual harm to systems and that about 200 unique samples are known [S1][S3]."
+  },
+  "campaigns": [
+    {
+      "date": "2013-10",
+      "name": "Earliest reported OnionDog activity",
+      "summary": "360 Helios traced the group's activity back to October 2013 [S2].",
+      "sources": [
+        "S2"
+      ]
+    },
+    {
+      "date": "2014",
+      "name": "Energy sector targeting (as reported by 360)",
+      "summary": "360 Helios reported attacks on many electric power and water resources corporations and other energy enterprises [S2].",
+      "sources": [
+        "S2"
+      ]
+    },
+    {
+      "date": "2015",
+      "name": "Transportation sector targeting (as reported by 360)",
+      "summary": "360 Helios reported attacks mainly on harbors, VTS, subways, public transportation and other transportation systems [S2].",
+      "sources": [
+        "S2"
+      ]
+    },
+    {
+      "date": "2016-03",
+      "name": "360 Helios publishes OnionDog report",
+      "summary": "The Helios Team at 360 SkyEye Labs disclosed OnionDog with IoCs including file hashes and eight C&C IPs [S2].",
+      "sources": [
+        "S2"
+      ]
+    },
+    {
+      "date": "2017-08-09",
+      "name": "Trend Micro reassessment: cyber drill",
+      "summary": "Trend Micro used historic passive DNS to link several of the eight C&C IPs to South Korea's NCSC (ncsc.go.kr hostnames, historic resolutions 2011-2013) and concluded OnionDog is a cyber drill, not a targeted attack [S1][S3].",
+      "sources": [
+        "S1",
+        "S3"
+      ]
+    }
+  ],
+  "diamond": {
+    "adversary": "Unknown. 360 described a group; Trend Micro assessed official South Korean (NCSC) cyber-practice activity [S1][S2].",
+    "capability": "Spear-phishing, malicious/fake HWP documents, Hangul vulnerability, USB worm for isolated networks [S2].",
+    "infrastructure": "Eight hardcoded C&C IPs, several linked by Trend Micro to NCSC-associated domains [S1]; 14 C&C domains/IPs per Helios [S2].",
+    "victim": "Energy and transportation organizations in Korean-speaking countries per 360 [S2]; Trend Micro disputes that these were real victims [S1].",
+    "socioPolitical": "",
+    "technology": "Reliance on Hangul word-processor documents in Korean organizations, and USB media crossing isolated networks [S2]."
+  },
+  "gaps": [
+    "Core dispute: 360 presented a real APT; Trend Micro concluded a cyber drill. Neither is independently confirmed by the South Korean government in the sources gathered [S1][S2].",
+    "No sponsor or state attribution is stated in any source gathered; the KP country value in the original record is unsupported. A secondary vendor blog reportedly links OnionDog to Lazarus, but this was not verified and Qianxin's own report reportedly says no link was found; not used here.",
+    "The original 360/Qianxin report and Trend Micro appendix (hashes) could not be opened (WebFetch failed); details rely on search summaries and secondary coverage.",
+    "No aliases or MITRE group are established. Help Net Security, ETDA, Malpedia and CFR pages were not opened.",
+    "Actor objectives and any post-2017 activity are not documented in sources gathered."
+  ],
+  "implications": {
+    "jipoe": "",
+    "jcc2": ""
+  },
+  "sources": [
+    {
+      "ref": "S1",
+      "title": "OnionDog is not a Targeted Attack - It's a Cyber Drill (via search summary; page not opened)",
+      "publisher": "Trend Micro",
+      "date": "2017-08-09",
+      "url": "https://www.trendmicro.com/en_gb/research/17/h/oniondog-not-targeted-attack-cyber-drill.html"
+    },
+    {
+      "ref": "S2",
+      "title": "OnionDog APT report coverage of 360 Helios Team findings (via search summary)",
+      "publisher": "DataBreaches.net",
+      "date": "2016-03",
+      "url": "https://databreaches.net/?p=48603"
+    },
+    {
+      "ref": "S3",
+      "title": "South Korea tests citizens' cyber capabilities, Trend Micro reports",
+      "publisher": "TI Inside",
+      "date": "2017-08-25",
+      "url": "https://tiinside.com.br/en/25/08/2017/South-Korea-tests-citizens%27-cyber-capabilities--Trend-Micro-reports/"
+    }
+  ],
+  "aliasesAdd": []
+}
