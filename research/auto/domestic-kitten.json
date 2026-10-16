@@ -1,0 +1,61 @@
+{
+  "identification": {
+    "summary": "Domestic Kitten is the name Check Point gave to a mobile surveillance operation using malicious Android apps against Iranian citizens; reporting links it to APT-C-50 [S1][S3][S5]. Check Point's 2018 report described targets as Kurdish and Turkish natives and ISIS supporters, all Iranian citizens [S1][S2]. A February 2021 Check Point update described 10 unique campaigns since 2017, over 1,200 targeted individuals and more than 600 successful infections [S3][S4]. ESET in 2022 described a new variant of the Android malware FurBall used in a Domestic Kitten campaign by APT-C-50 [S5][S6].",
+    "firstObserved": "Check Point (2018): attack ongoing since 2016 [S1]. Check Point (2021): campaign series beginning in 2017 as reported by press [S3][S4]. ESET: active since at least 2016 per press summaries [S6].",
+    "notes": "No Microsoft name is known to this record. Aliases per cited sources: APT-C-50 (ESET, via press) [S5][S6] and Bouncing Golf, which Trend Micro described as possibly tied to Domestic Kitten based on similar code string structure and data format [S7]. The Bouncing Golf link is tentative and Trend Micro's campaign (GolfSpy) targeted Middle Eastern countries with mostly military-related data, a different victim profile, so the clusters should not be merged [S7]."
+  },
+  "attribution": {
+    "sponsor": "Iranian government, as assessed by Check Point [S1][S3].",
+    "confidence": "Check Point's 2018 report said researchers had not identified the exact actors but judged from the nature of the apps and the infrastructure that Iranian actors were behind them [S1][S2]. The 2021 report linked the operation to the Iranian government [S3][S4]. No government attribution located.",
+    "basis": "Targeting of groups Check Point says Iranian bodies such as the IRGC and Ministry of Intelligence routinely surveil, plus app content and attack infrastructure [S1][S2]."
+  },
+  "objectives": "Domestic surveillance of individuals the regime views as threats, including dissidents, the Kurdish minority, opposition forces and ISIS supporters [S1][S3][S4].",
+  "targeting": {
+    "sectors": ["Civil society and dissidents", "Ethnic minorities (Kurdish)", "Opposition groups", "ISIS supporters"],
+    "regions": ["Iran (primary) [S1][S3]", "Victims also reported in the US, UK, Pakistan, Afghanistan, Turkey and Uzbekistan [S3][S4]"],
+    "notes": "Targeting is of individuals, not organizations or infrastructure [S1][S3]. Lures observed: ISIS-themed wallpaper changer, fake ANF Kurdistan News update app, fake Videogram messaging app (2018) [S1][S2]; VIPRE Mobile Security, Exotic Flowers, Iranian Woman Ninja and a fake restaurant app (2021) [S3][S4]; a translation app hosted on a copycat of an Iranian website since June 2021 (ESET) [S5][S6]."
+  },
+  "capabilities": {
+    "summary": "Android spyware delivered as trojanized or fake apps outside official stores. Data collected includes contacts, call logs, SMS, photos, browser history and bookmarks, geolocation and surrounding audio, sent to C2 over HTTP POST with AES encryption (2018) [S1][S2]. The later FurBall malware collects device identifiers, SMS, call logs, media, location and microphone audio [S3][S4]. Delivery channels included SMS links, an Iranian blog and Telegram channels [S3][S4], and copycat websites reached via messages, social media, email, SMS and SEO poisoning [S6]. ESET says FurBall is based on the commercial stalkerware KidLogger and that the 2022 version mainly added obfuscation to evade detection, requesting only a contacts permission in the analyzed sample [S5][S6]."
+  },
+  "campaigns": [
+    {"date": "2016", "name": "Early mobile surveillance activity", "summary": "Check Point reports an extensive targeted attack under way since 2016 using spyware-laden apps against Kurdish, Turkish and ISIS-supporting Iranian citizens.", "sources": ["S1"]},
+    {"date": "2018-09", "name": "Check Point public disclosure", "summary": "Check Point publishes 'Domestic Kitten: An Iranian Surveillance Operation' describing ISIS wallpaper, ANF Kurdistan News and Videogram lure apps.", "sources": ["S1", "S2"]},
+    {"date": "2019-06", "name": "Bouncing Golf (possible related cluster)", "summary": "Trend Micro reports GolfSpy Android malware in repackaged apps targeting the Middle East, over 660 infected devices observed via C2; says it may be tied to Domestic Kitten.", "sources": ["S7"]},
+    {"date": "2021-02", "name": "Check Point update: 10 campaigns", "summary": "Check Point describes 10 campaigns since 2017, over 1,200 targets, 600+ infections, FurBall malware and 4 active campaigns at publication; latest used a fake restaurant app spread via SMS, a blog and Telegram.", "sources": ["S3", "S4"]},
+    {"date": "2022-10", "name": "FurBall translation-app campaign", "summary": "ESET reports a new FurBall version, distributed since June 2021 as a translation app via a copycat of an Iranian site, with obfuscation to evade detection.", "sources": ["S5", "S6"]}
+  ],
+  "diamond": {
+    "adversary": "Unnamed Iranian actors assessed by Check Point as working for the Iranian government; tracked as APT-C-50 [S1][S5].",
+    "capability": "Android spyware (FurBall, built on KidLogger) with audio, SMS, call, location and media collection [S3][S6].",
+    "infrastructure": "Fake or copycat websites, Iranian blog, Telegram channels, SMS links and HTTP POST C2 [S1][S3][S6].",
+    "victim": "Iranian dissidents, Kurdish minority, opposition and ISIS supporters, with some victims abroad [S1][S3].",
+    "socioPolitical": "Regime internal security and surveillance of perceived threats [S1][S3].",
+    "technology": "Sideloaded Android apps and unmanaged personal devices; users lured via messaging and social platforms [S3][S6]."
+  },
+  "gaps": [
+    "WebFetch could not reach any source host in this run, so all facts rest on search-result summaries and secondary coverage, not on the full primary reports (Check Point 2018 and 2021, ESET 2022, Trend Micro 2019). Validate against the originals.",
+    "Exact Iranian organization (IRGC, MOIS or contractor) is not identified in the sources gathered.",
+    "Whether Bouncing Golf/GolfSpy is the same actor is unresolved; Trend Micro only noted similarities [S7].",
+    "Origin of the APT-C-50 designation is not confirmed here; the sources found cite it via ESET and press only; Qihoo 360 reporting was not located.",
+    "No activity after the 2022 ESET report was found in searches; no MITRE ATT&CK group, Microsoft name or government advisory was located.",
+    "Operational relevance to DoD is indirect: targets are Iranian civilians, not US military or government networks."
+  ],
+  "implications": {
+    "jipoe": "Analyst assessment derived from cited sources; validate before use. STEP 1: The relevant environment is personal mobile devices and the messaging channels (SMS, Telegram, social media, copycat websites) used by Iranian dissident and minority communities [S3][S6]. STEP 2: Adversary strength is moderate technically (stalkerware-derived malware, obfuscation) but persistent over years [S1][S5][S6]. STEP 3: The template is a lure app or copycat site, sideloaded install, then continuous collection of audio, SMS, calls and location to C2 [S1][S3]. STEP 4: MLCOA is continued domestic surveillance with rotating lure themes [S3][S6]. MDCOA is extension of the same tooling against diaspora, coalition-partner or foreign government personnel in the region, since victims were found in several countries [S3]. Candidate indicators: sideloaded apps imitating local news, security, translation or lifestyle apps, and HTTP POST traffic carrying encrypted device data [S1][S6].",
+    "jcc2": "Analyst assessment derived from cited sources; validate before use. (1) Situational awareness: treat this as low direct threat to DoD networks but a counterintelligence and force-protection concern for personnel and partners operating in or near Iran, Iraq and Turkey. (2) Authorities: monitoring of personal devices is a policy and legal matter; coordinate with command security and counterintelligence rather than assuming network-defense authorities. (3) Mission assurance: reinforce no-sideloading guidance and mobile device management for deployed personnel. (4) Coordination: share indicators with partner nations and mobile security vendors [S3][S6]."
+  },
+  "sources": [
+    {"ref": "S1", "title": "Domestic Kitten: An Iranian Surveillance Operation", "publisher": "Check Point Research", "date": "2018-09-07", "url": "https://research.checkpoint.com/2018/domestic-kitten-an-iranian-surveillance-operation/"},
+    {"ref": "S2", "title": "Domestic Kitten APT operates in silence since 2016 (reporting Check Point)", "publisher": "BleepingComputer", "date": "2018-09", "url": "https://www.bleepingcomputer.com/news/security/domestic-kitten-apt-operates-in-silence-since-2016"},
+    {"ref": "S3", "title": "Domestic Kitten: An Inside Look at the Iranian Surveillance Operations", "publisher": "Check Point Research", "date": "2021-02", "url": "https://research.checkpoint.com/2021/domestic-kitten-an-inside-look-at-the-iranian-surveillance-operations/"},
+    {"ref": "S4", "title": "Over 1,200 Iranians Targeted in Domestic Surveillance Campaign (reporting Check Point)", "publisher": "SecurityWeek", "date": "2021-02", "url": "https://www.securityweek.com/over-1200-iranians-targeted-domestic-surveillance-campaign/"},
+    {"ref": "S5", "title": "Masquerading as a translation app, Furball spyware goes after Iranian citizens, ESET Research finds", "publisher": "ESET", "date": "2022-10-20", "url": "https://www.eset.com/sg/about/newsroom/press-releases1/research/masquerading-as-a-translation-app-furball-spyware-goes-after-iranian-citizens-eset-research-finds-1/"},
+    {"ref": "S6", "title": "Domestic Kitten campaign spying on Iranian citizens with new FurBall malware", "publisher": "ESET WeLiveSecurity", "date": "2022-10-20", "url": "https://www.welivesecurity.com/2022/10/20/domestic-kitten-campaign-spying-iranian-citizens-furball-malware/"},
+    {"ref": "S7", "title": "Mobile Cyberespionage Campaign 'Bouncing Golf' Affects Middle East", "publisher": "Trend Micro", "date": "2019-06", "url": "https://www.trendmicro.com/en_us/research/19/f/mobile-cyberespionage-campaign-bouncing-golf-affects-middle-east.html"}
+  ],
+  "aliasesAdd": [
+    {"name": "APT-C-50", "vendor": "ESET (per cited reporting)"},
+    {"name": "Bouncing Golf", "vendor": "Trend Micro (possible link only)"}
+  ]
+}

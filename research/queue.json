@@ -3,46 +3,6 @@
  "verify": [],
  "research": [
   {
-   "id": "dagger-panda",
-   "tier": "T3"
-  },
-  {
-   "id": "dalbit",
-   "tier": "T3"
-  },
-  {
-   "id": "dev-0147",
-   "tier": "T3"
-  },
-  {
-   "id": "dev-0270",
-   "tier": "T3"
-  },
-  {
-   "id": "diceyf",
-   "tier": "T3"
-  },
-  {
-   "id": "domestic-kitten",
-   "tier": "T3"
-  },
-  {
-   "id": "dragonspark",
-   "tier": "T3"
-  },
-  {
-   "id": "driftingcloud",
-   "tier": "T3"
-  },
-  {
-   "id": "earth-alux",
-   "tier": "T3"
-  },
-  {
-   "id": "earth-baxia",
-   "tier": "T3"
-  },
-  {
    "id": "earth-berberoka",
    "tier": "T3"
   },
@@ -848,8 +808,18 @@
   "cyber-islamic-resistance",
   "cyber-serp",
   "cyber-toufan",
+  "dagger-panda",
   "daggerfly",
+  "dalbit",
+  "dev-0147",
+  "dev-0270",
   "diamond-sleet",
+  "diceyf",
+  "domestic-kitten",
+  "dragonspark",
+  "driftingcloud",
+  "earth-alux",
+  "earth-baxia",
   "elderwood",
   "emerald-sleet",
   "ferocious-kitten",
@@ -979,6 +949,14 @@
   "cyber-islamic-resistance",
   "cyber-serp",
   "cyber-toufan",
+  "dagger-panda",
+  "dalbit",
+  "dev-0147",
+  "diceyf",
+  "dragonspark",
+  "driftingcloud",
+  "earth-alux",
+  "earth-baxia",
   "lilac-typhoon",
   "mofang",
   "obsidian-sandstorm",

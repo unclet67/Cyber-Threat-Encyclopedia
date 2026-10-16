@@ -11,20 +11,34 @@
   },
   "objectives": "ASEC describes data theft (credentials and emails collected, with extortion implied) and, in some cases, drive encryption with BitLocker for impact; exact motivation is not established [S1][S2][S3].",
   "targeting": {
-    "sectors": [
-      "Multiple industries (not itemized in sources gathered) [S4]"
-    ],
+    "sectors": [],
     "regions": [
       "South Korea [S1][S2]"
     ],
     "notes": "Most victims were small and mid-size companies, with some major companies; ASEC said about 30% of infected companies used a certain Korean groupware product, with no vulnerability in it confirmed [S1][S2]. The true victim count may be higher than the 50 identified [S1]."
   },
   "capabilities": {
-    "summary": "Initial access through web and SQL vulnerabilities (one example cited: WebLogic CVE-2017-10271), then webshells including Godzilla, ASPXSpy, AntSword and China Chopper [S1][S3]. Tools were downloaded with certutil and Bitsadmin, privilege escalation used Potato-family exploits, and FRP and LCX were used as proxy tools, including FRP registered in Task Scheduler for persistence [S1][S3]. Compromised victims were left as proxy and download servers to relay communications for later intrusions [S1][S2]. Evasion included VMProtect packing and log and firewall tampering, and BitLocker was used for encryption [S3]. The group relies largely on public and open-source tooling [S1][S2]. A US HHS analyst note on the Godzilla webshell references the ASEC Dalbit campaign [S4]."
+    "summary": "Initial access through web and SQL vulnerabilities (one example cited: WebLogic CVE-2017-10271), then webshells including Godzilla, ASPXSpy, AntSword and China Chopper [S1][S3]. Tools were downloaded with certutil and Bitsadmin, privilege escalation used Potato-family exploits, and FRP and LCX were used as proxy tools, including FRP registered in Task Scheduler for persistence [S1][S3]. Compromised victims were left as proxy and download servers to relay communications for later intrusions [S1][S2]. Evasion included VMProtect packing and log and firewall tampering, and BitLocker was used for encryption [S3]. The group relies largely on public and open-source tooling [S1][S2]."
   },
   "campaigns": [
-    {"date": "2022", "name": "Korean company intrusions begin", "summary": "ASEC reports attack activity against Korean companies from 2022, with server infrastructure in abused Korean company hosts, later moved to a m00nlight.top domain after blocking.", "sources": ["S1", "S2"]},
-    {"date": "2023-02", "name": "ASEC publication of Dalbit (m00nlight) campaign", "summary": "ASEC publicly named the group and reported 50+ confirmed attacks on Korean companies using webshells, FRP/LCX proxies and, in some cases, BitLocker encryption.", "sources": ["S1", "S3", "S4"]}
+    {
+      "date": "2022",
+      "name": "Korean company intrusions begin",
+      "summary": "ASEC reports attack activity against Korean companies from 2022, with server infrastructure in abused Korean company hosts, later moved to a m00nlight.top domain after blocking.",
+      "sources": [
+        "S1",
+        "S2"
+      ]
+    },
+    {
+      "date": "2023-02",
+      "name": "ASEC publication of Dalbit (m00nlight) campaign",
+      "summary": "ASEC publicly named the group and reported 50+ confirmed attacks on Korean companies using webshells, FRP/LCX proxies and, in some cases, BitLocker encryption.",
+      "sources": [
+        "S1",
+        "S3"
+      ]
+    }
   ],
   "diamond": {
     "adversary": "Unattributed group with an assessed partial China connection by ASEC [S1].",
@@ -47,13 +61,36 @@
     "jcc2": "Analyst assessment derived from cited sources; validate before use. (1) Situational awareness: track exposed Windows web and groupware servers on partner and contractor networks in Korea. (2) Authorities: remediation on non-DoD partner systems requires host-nation or owner action. (3) Mission assurance: BitLocker misuse can cause availability loss, so maintain offline backups and recovery procedures. (4) Coordination: share indicators with ROK counterparts and the vendor community [S1][S2]."
   },
   "sources": [
-    {"ref": "S1", "title": "Dalbit (m00nlight): Chinese Hacker Group's APT Attack Campaign (known only via search results; page not opened)", "publisher": "AhnLab ASEC", "date": "2023-02", "url": "https://asec.ahnlab.com/en/47455/"},
-    {"ref": "S2", "title": "Dalbit Threat Actor Launches Attack Campaign Against Multiple Korean Organizations TA2023085 (reporting ASEC)", "publisher": "HivePro", "date": "2023-02", "url": "https://hivepro.com/wp-content/uploads/2023/02/Dalbit-Threat-Actor-Launches-Attack-Campaign-Against-Multiple-Korean-Organizations_TA2023085.pdf"},
-    {"ref": "S3", "title": "Dalbit (m00nlight) campaign summary (repost of ASEC blog, reporting ASEC)", "publisher": "hendryadrian.com", "date": "2023-02", "url": "https://www.hendryadrian.com/dalbit-m00nlight-chinese-hacker-groups-apt-attack-campaign-asec-blog/"},
-    {"ref": "S4", "title": "November 2024 Godzilla Webshell Analyst Note", "publisher": "US HHS", "date": "2024-11", "url": "https://www.hhs.gov/sites/default/files/november-2024–godzilla-webshell-analyst-note.pdf"}
+    {
+      "ref": "S1",
+      "title": "Dalbit (m00nlight): Chinese Hacker Group's APT Attack Campaign (known only via search results; page not opened)",
+      "publisher": "AhnLab ASEC",
+      "date": "2023-02",
+      "url": "https://asec.ahnlab.com/en/47455/"
+    },
+    {
+      "ref": "S2",
+      "title": "Dalbit Threat Actor Launches Attack Campaign Against Multiple Korean Organizations TA2023085 (reporting ASEC)",
+      "publisher": "HivePro",
+      "date": "2023-02",
+      "url": "https://hivepro.com/wp-content/uploads/2023/02/Dalbit-Threat-Actor-Launches-Attack-Campaign-Against-Multiple-Korean-Organizations_TA2023085.pdf"
+    },
+    {
+      "ref": "S3",
+      "title": "Dalbit (m00nlight) campaign summary (repost of ASEC blog, reporting ASEC)",
+      "publisher": "hendryadrian.com",
+      "date": "2023-02",
+      "url": "https://www.hendryadrian.com/dalbit-m00nlight-chinese-hacker-groups-apt-attack-campaign-asec-blog/"
+    }
   ],
   "aliasesAdd": [
-    {"name": "m00nlight", "vendor": "AhnLab ASEC"},
-    {"name": "Moonlight", "vendor": "AhnLab ASEC"}
+    {
+      "name": "m00nlight",
+      "vendor": "AhnLab ASEC"
+    },
+    {
+      "name": "Moonlight",
+      "vendor": "AhnLab ASEC"
+    }
   ]
 }

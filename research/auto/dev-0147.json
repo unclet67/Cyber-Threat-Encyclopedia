@@ -1,0 +1,92 @@
+{
+  "identification": {
+    "summary": "DEV-0147 is Microsoft's emerging-threat designation for a China-based cyber espionage actor. On 2023-02-13 Microsoft Security Intelligence said it observed the actor compromising diplomatic entities in South America, which it called a notable expansion of data-exfiltration operations that traditionally targeted government agencies and think tanks in Asia and Europe [S2][S4]. Microsoft said the actor uses ShadowPad (also called PoisonPlug) for persistence and QuasarLoader, a webpack loader, to download and run further malware [S2][S4]. Post-exploitation included abuse of on-premises identity infrastructure for reconnaissance and lateral movement, and Cobalt Strike for command and control and exfiltration [S2][S4].",
+    "firstObserved": "Public naming: 2023-02-13 (Microsoft Security Intelligence post, per press coverage) [S4]. Earlier activity against Asia and Europe is described only generically [S4].",
+    "notes": "DEV-0147 is a Microsoft 'development' designation, meaning an unfinalized cluster; no Microsoft final (weather-based) name was found in the sources gathered. The primary post is a short social-media thread; most detail here comes from news coverage of it [S2][S3][S4]. One vendor blog title links DEV-0147 to 'Naplistener' [S7]; NAPLISTENER was not mentioned in the other coverage of Microsoft's post, so this link is unverified."
+  },
+  "attribution": {
+    "sponsor": "",
+    "confidence": "Microsoft describes DEV-0147 as 'China-based' [S4]. No state sponsor, agency or unit is named in the sources gathered.",
+    "basis": "Microsoft's own telemetry-based statement (as relayed by press) [S4]. Press notes ShadowPad is used by several China-linked groups, and Secureworks CTU linked ShadowPad use to MSS-affiliated and PLA-affiliated groups; this is context about the tool, not attribution of DEV-0147 [S2]."
+  },
+  "objectives": "Data exfiltration from government agencies, think tanks and, as newly observed in 2023, diplomatic entities, consistent with espionage [S4].",
+  "targeting": {
+    "sectors": [
+      "Diplomatic entities",
+      "Government agencies",
+      "Think tanks"
+    ],
+    "regions": [
+      "South America (diplomatic entities)",
+      "Asia",
+      "Europe"
+    ],
+    "notes": "South America is the new area as of 2023-02; Asia and Europe are described as the group's traditional focus [S4]. Number, countries and names of South American victims were not published in the sources gathered [S2][S4]."
+  },
+  "capabilities": {
+    "summary": "ShadowPad RAT for persistent access [S4]; QuasarLoader webpack loader to download and execute additional malware [S2][S4]; Cobalt Strike for C2 and exfiltration [S4]; abuse of on-premises identity infrastructure for recon and lateral movement [S4]. ShadowPad is a modular RAT described as a successor to PlugX, used by multiple China-linked groups, so the tool alone does not identify DEV-0147 [S2][S4]. Microsoft did not disclose the initial-access method; phishing and unpatched applications were commentators' speculation only [S4]. Microsoft said Defender for Identity and Defender for Endpoint detect the activity and urged enforcement of MFA [S2][S4]."
+  },
+  "campaigns": [
+    {
+      "date": "2023-02",
+      "name": "South American diplomatic entity compromises",
+      "summary": "Microsoft Security Intelligence reported DEV-0147 intrusions at diplomatic entities in South America using ShadowPad, QuasarLoader and Cobalt Strike, with identity-infrastructure abuse for lateral movement. Disclosed 2023-02-13 [S2][S4].",
+      "sources": [
+        "S2",
+        "S4"
+      ]
+    }
+  ],
+  "diamond": {
+    "adversary": "China-based espionage actor tracked by Microsoft as DEV-0147; sponsor not named [S4].",
+    "capability": "ShadowPad, QuasarLoader, Cobalt Strike, identity-infrastructure abuse [S2][S4].",
+    "infrastructure": "",
+    "victim": "Diplomatic entities in South America; historically government agencies and think tanks in Asia and Europe [S4].",
+    "socioPolitical": "Collection of diplomatic and policy information, inferred from victim set; Microsoft describes the activity as data exfiltration [S4].",
+    "technology": "On-premises identity infrastructure in victim networks was abused; the specific product (for example AD FS) was not named in the sources gathered [S2][S4]."
+  },
+  "gaps": [
+    "Primary Microsoft post could not be opened or verified in search results and was removed as a source; details rely on press coverage.",
+    "No Microsoft blog or technical report with IOCs, victim count or timeline was found.",
+    "Initial access vector is undisclosed.",
+    "Which identity infrastructure was abused (AD FS, Active Directory, Entra Connect) is not stated in the sources gathered.",
+    "No state sponsor, MITRE group ID or other-vendor cluster mapping was found; overlap with other ShadowPad users (APT41, REF2924 and others) is unestablished and must not be assumed.",
+    "Unverified vendor claim linking DEV-0147 to NAPLISTENER [S7].",
+    "No activity after 2023-02 was identified in the searches run; possible later renaming by Microsoft not checked."
+  ],
+  "implications": {
+    "jipoe": "Analyst assessment derived from cited sources; validate before use. STEP 1: Diplomatic networks and their on-premises identity infrastructure are key terrain [S4]. STEP 2: The actor has broadened from Asia/Europe government and think-tank targets to South American diplomatic entities, indicating regional collection interest beyond its earlier footprint [S4]. STEP 3: Observed pattern is persistent RAT (ShadowPad), loader (QuasarLoader), Cobalt Strike C2/exfiltration, and identity-system abuse for lateral movement [S2][S4]; initial access is unknown. STEP 4: MLCOA is continued data exfiltration from diplomatic and government networks using these tools. MDCOA (not sourced; planning hypothesis) is expansion to additional regions' foreign ministries. Candidate indicators: ShadowPad and Cobalt Strike detections, anomalous identity-server queries and authentications, and webpack-loader-style payload downloads [S2][S4].",
+    "jcc2": "Analyst assessment derived from cited sources; validate before use. Situational awareness: track Microsoft naming updates for DEV-0147 and ShadowPad reporting; treat the tool as shared across China-linked groups [S2]. Authorities: any partner-network defensive support needs the appropriate legal and policy authority; this record supports none by itself. Mission assurance: harden and monitor on-premises identity servers, enforce MFA, and use endpoint and identity detections Microsoft cited [S2][S4]. Coordination: share indicators with Microsoft, allied diplomatic and CERT partners; verify claims against the primary post ."
+  },
+  "sources": [
+    {
+      "ref": "S2",
+      "title": "Chinese Hackers Targeting South American Diplomatic Entities with ShadowPad (reporting Microsoft post)",
+      "publisher": "The Hacker News",
+      "date": "2023-02",
+      "url": "https://thehackernews.com/2023/02/chinese-hackers-targeting-south.html"
+    },
+    {
+      "ref": "S3",
+      "title": "China-based cyberespionage actor seen targeting South America (reporting Microsoft post)",
+      "publisher": "CSO Online",
+      "date": "2023-02",
+      "url": "https://www.csoonline.com/article/3687618/china-based-cyberespionage-actor-seen-targeting-south-america.html"
+    },
+    {
+      "ref": "S4",
+      "title": "Chinese Hackers ShadowPad Diplomatic Entities (reporting Microsoft post)",
+      "publisher": "Heimdal Security",
+      "date": "2023-02",
+      "url": "https://heimdalsecurity.com/blog/chinese-hackers-shadowpad-diplomatic-entities/"
+    },
+    {
+      "ref": "S7",
+      "title": "Dev-0147 Expands Operations to South America with Naplistener",
+      "publisher": "Critical Start",
+      "date": "2023-02",
+      "url": "https://criticalstart.com/node/624"
+    }
+  ],
+  "aliasesAdd": []
+}
