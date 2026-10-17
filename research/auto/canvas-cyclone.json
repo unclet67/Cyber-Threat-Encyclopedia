@@ -1,0 +1,75 @@
+{
+  "mitre": "G0050",
+  "identification": {
+    "summary": "Suspected Vietnam-aligned cyber espionage group that Mandiant (then FireEye) designated APT32 in May 2017; it assessed the group uses a suite of fully featured custom malware plus commercial tools in operations aligned with Vietnamese state interests [S1]. Microsoft tracked it as BISMUTH and said it had run increasingly complex espionage attacks as early as 2012 [S5]. MITRE ATT&CK tracks it as G0050 [S7].",
+    "firstObserved": "Mandiant: private-sector targeting since at least 2014 and government/political targeting since at least 2013 [S1]. Microsoft: BISMUTH espionage activity as early as 2012 [S5].",
+    "notes": "Microsoft name: Canvas Cyclone (formerly BISMUTH); Cyclone is Microsoft's family name for Vietnam-origin actors under the 2023 weather-based scheme [S8][S9]. Cybereason's Operation Cobalt Kitty was attributed to OceanLotus (also APT-C-00, SeaLotus, APT32) [S2]; Trend Micro uses the same set of names [S4]. Vendor cluster boundaries (APT32, OceanLotus, BISMUTH) are treated here as equivalent only as the cited sources equate them; the underlying tracking criteria of each vendor are not public in the sources gathered."
+  },
+  "attribution": {
+    "sponsor": "Vietnam (suspected). Mandiant assessed APT32 as a group aligned with Vietnamese government interests; this is an alignment assessment, not a named government organization [S1].",
+    "confidence": "Mandiant stated its assessment as 'aligned with Vietnamese state interests' and did not name a sponsoring agency [S1]. Cybereason noted OceanLotus is thought to align with Vietnamese state interests [S2]. Huntress tied a 2024 intrusion to APT32 on technique overlap and target profile, not a definitive link [S6]. No government attribution was found in the sources gathered.",
+    "basis": "Mandiant: targeting of foreign firms with a stake in Vietnam's manufacturing, consumer products and hospitality sectors, plus Vietnamese dissidents, journalists and diaspora; corroborating earlier reporting by EFF (2014) and Qihoo 360 SkyEye Labs (2015) on overlapping malware, infrastructure and targets [S1]. Cybereason: tools, methods and indicators of compromise [S2]. Trend Micro: code and dynamic behavior similarities to earlier OceanLotus samples [S4]."
+  },
+  "objectives": "Cyber espionage against organizations tied to Vietnam's economy and politics: foreign corporate access (Mandiant noted the access could support law enforcement action, intellectual property theft or anticorruption measures eroding competitive advantage) and monitoring of dissidents, journalists, diaspora and regional governments [S1]. Cybereason described theft of proprietary business information from an Asian multinational [S2].",
+  "targeting": {
+    "sectors": [
+      "Foreign corporations in manufacturing, consumer products, hospitality, banking, media, network security and technology infrastructure [S1]",
+      "Foreign governments and a Western national legislature (2014) [S1]",
+      "Dissidents, journalists and human rights defenders [S1][S6]",
+      "Regional organizations (ASEAN website compromise reported 2017) [S3]",
+      "Vietnamese state-owned enterprises and entities with ties to a Vietnamese government agency (BISMUTH, 2020) [S5]"
+    ],
+    "regions": [
+      "Vietnam [S1][S5][S6]",
+      "Southeast Asia including the Philippines [S1][S3]",
+      "Vietnamese diaspora in Australia [S1]",
+      "France (2020 BISMUTH activity) [S5]"
+    ],
+    "notes": "Mandiant stated it believes the actor poses significant risk to companies doing business in, or preparing to invest in, Vietnam [S1]. Mandiant also noted indications of targeting of peripheral network security and technology infrastructure firms [S1]."
+  },
+  "capabilities": {
+    "summary": "Mandiant described a unique suite of fully featured malware, including WINDSHIELD (TCP raw-socket C2), KOMPROGO (full backdoor), SOUNDBITE (DNS C2) and PHOREAL (ICMP C2), alongside Cobalt Strike BEACON with malleable C2 profiles [S1]. Initial access was spear-phishing with victim-tailored, multilingual lures that tricked users into enabling content, with email-tracking analytics to measure success [S1]. Persistence used scheduled tasks (including mshta and Squiblydoo-style whitelisting bypass), with logs cleared, obfuscated PowerShell and a compromised McAfee ePO used to push malware [S1]. Cybereason's Cobalt Kitty case found six custom signature tools, including DLL-sideloading backdoors and an Outlook-targeting backdoor, in a network with 40+ compromised systems and at least a year of dwell time [S2]. Trend Micro documented OSX_OCEANLOTUS.D, a macOS backdoor delivered in a Word-themed archive [S4]. In mid-2020 Microsoft reported BISMUTH deploying Monero coin miners that it said helped the group evade attention and persist while it pursued credential theft [S5]. Huntress described a 2024 intrusion using registry keys and scheduled tasks to deploy Chrome cookie theft, Cobalt Strike beacons and embedded DLL loaders [S6]."
+  },
+  "campaigns": [
+    {"date": "2014-2017", "name": "Corporate and political espionage (APT32 report)", "summary": "Mandiant reports private-sector intrusions since at least 2014 and political targeting since at least 2013, including a 2017 compromise of a global consulting firm's Vietnam offices and a 2016 malware attack on a hospitality developer, and publishes the APT32 designation in May 2017 [S1].", "sources": ["S1"]},
+    {"date": "2017-05", "name": "Operation Cobalt Kitty", "summary": "Cybereason attributes to OceanLotus a campaign against a global Asian corporation: spear-phishing of senior management, 40+ PCs and servers compromised, at least a year of persistence, and use of Cobalt Strike and custom tools [S2].", "sources": ["S2"]},
+    {"date": "2017-11", "name": "ASEAN summit-related website compromise", "summary": "Press coverage of Volexity reporting says the group compromised the ASEAN website around summit meetings; the primary Volexity report was not opened [S3].", "sources": ["S3"]},
+    {"date": "2018-04", "name": "OSX_OCEANLOTUS.D macOS backdoor", "summary": "Trend Micro reports a new macOS backdoor linked to OceanLotus based on code and behavior similarity, delivered in a malicious Word-themed file with a Vietnamese filename suggesting Vietnam-focused targeting [S4].", "sources": ["S4"]},
+    {"date": "2020-12", "name": "BISMUTH coin-miner campaigns", "summary": "Microsoft reports July-August 2020 deployment of Monero coin miners against private and government targets in France and Vietnam, with victims including Vietnamese state-owned enterprises [S5].", "sources": ["S5"]},
+    {"date": "2024-08", "name": "Multi-year intrusion against Vietnamese human rights defender", "summary": "Huntress attributes to APT32, with caveats on basis, an intrusion believed to have run at least four years, with four hosts in the latest activity and Cobalt Strike and cookie theft tooling [S6].", "sources": ["S6"]}
+  ],
+  "diamond": {
+    "adversary": "Suspected Vietnam-aligned group tracked as APT32, OceanLotus, BISMUTH and Canvas Cyclone; no named sponsoring organization in the sources [S1][S8].",
+    "capability": "Custom backdoors (WINDSHIELD, KOMPROGO, SOUNDBITE, PHOREAL, OSX_OCEANLOTUS.D), Cobalt Strike, spear-phishing, scheduled-task persistence, and coin miners as cover [S1][S4][S5].",
+    "infrastructure": "Large sets of domains and IPs for C2 over TCP, DNS and ICMP; malleable-profile Cobalt Strike; email-tracking services and external images used for victim profiling [S1]. Compromise of a trusted regional website (ASEAN) reported [S3].",
+    "victim": "Foreign firms invested in Vietnam, dissidents, journalists, human rights defenders, regional bodies and Southeast Asian governments [S1][S3][S6].",
+    "socioPolitical": "Collection supporting Vietnamese state interests: economic and investment intelligence and monitoring of political activism and the diaspora, as assessed by Mandiant [S1].",
+    "technology": "Windows enterprise networks (email, domain controllers, McAfee ePO), Microsoft Office macro/content-enable lures, and macOS endpoints [S1][S2][S4]."
+  },
+  "gaps": [
+    "No government attribution or indictment found; sponsor identity within the Vietnamese state is not established in the sources gathered.",
+    "Primary reports for Volexity (ASEAN and later website-based campaigns) and Huntress were not opened; Volexity and Huntress details rest on press coverage [S3][S6]. The Huntress blog fetch failed.",
+    "Microsoft's original BISMUTH post was not opened; details rest on press coverage [S5]. Microsoft's own naming page was not read; the Cyclone-Vietnam convention is from secondary coverage [S9].",
+    "Activity after August 2024 was not found in these searches; current operational tempo is unknown.",
+    "Cobalt Kitty and CrowdStrike (Ocean Buffalo) cluster boundaries relative to Mandiant's APT32 are not established in the sources; treat overlap as vendor-asserted.",
+    "Counts of payloads in Cobalt Kitty vary across reporting; only the primary-style description of 40+ systems and six custom tools is used [S2]."
+  ],
+  "implications": {
+    "jipoe": "Analyst assessment derived from cited sources; validate before use. STEP 1: Key terrain is email infrastructure (executive mailboxes), domain controllers, endpoint security management servers such as McAfee ePO, and trusted regional websites [S1][S2][S3]. STEP 2: The actor is patient (a year or more of dwell time, multi-year human rights intrusion), adapts tooling when detected, and masks activity with commodity tools like Cobalt Strike and coin miners [S2][S5][S6]. STEP 3: Template is tailored spear-phish, then Cobalt Strike or custom backdoor, scheduled-task persistence, credential theft, then collection [S1][S2][S6]. STEP 4: MLCOA is continued espionage against firms and civil society tied to Vietnam and Southeast Asia, which is largely peripheral to DoD networks [S1]. MDCOA is use of the same access methods against US or partner entities involved in Indo-Pacific engagement, regional summits or defense-industrial supply chains; the sources do not show this has occurred. Candidate indicators: scheduled tasks with maintenance-themed names invoking mshta or regsvr32, DNS or ICMP tunneling beacons, Cobalt Strike with malleable profiles, unexpected coin-miner alerts, and Word-themed archives with non-English filenames [S1][S4][S5].",
+    "jcc2": "Analyst assessment derived from cited sources; validate before use. (1) Situational awareness: treat low-priority alerts such as coin miners as possible cover for credential theft and escalate for hunting [S5]. (2) Authorities: activity on partner or commercial networks requires coordination through the owners and appropriate cyber authorities; the sources give no basis for DoD-specific tasking. (3) Mission assurance: protect executive email and endpoint-management servers, which were compromised in cited cases [S1][S2]. (4) Coordination: share indicators with Southeast Asian partners and civil-society targets via approved channels, given regional targeting [S1][S3]."
+  },
+  "sources": [
+    {"ref": "S1", "title": "Cyber Espionage is Alive and Well: APT32 and the Threat to Global Corporations", "publisher": "FireEye / Mandiant (Google Cloud blog)", "date": "2017-05-14", "url": "https://cloud.google.com/blog/topics/threat-intelligence/cyber-espionage-apt32/"},
+    {"ref": "S2", "title": "Operation Cobalt Kitty: A large-scale APT in Asia carried out by the OceanLotus Group (blog; details via search summaries)", "publisher": "Cybereason", "date": "2017-05-24", "url": "https://www.cybereason.com/blog/operation-cobalt-kitty-apt"},
+    {"ref": "S3", "title": "ASEAN summit targeted by hackers: report (press coverage of Volexity reporting)", "publisher": "Interaksyon / Philstar", "date": "2017-11-07", "url": "https://interaksyon.philstar.com/infotek/2017/11/07/107743/asean-summit-targeted-by-hackers-report/"},
+    {"ref": "S4", "title": "New macOS Backdoor Linked to OceanLotus Found (OSX_OCEANLOTUS.D; via search summaries)", "publisher": "Trend Micro", "date": "2018-04", "url": "https://www.trendmicro.com/en/research/18/d/new-macos-backdoor-linked-to-oceanlotus-found.html"},
+    {"ref": "S5", "title": "Vietnam-linked Bismuth APT leverages coin miners to stay under the radar (reporting Microsoft research)", "publisher": "Security Affairs", "date": "2020-12-01", "url": "https://securityaffairs.com/111716/apt/bismuth-crypto-miners.html"},
+    {"ref": "S6", "title": "Vietnamese Human Rights Group Targeted in Multi-Year Cyberattack (reporting Huntress research)", "publisher": "The Hacker News", "date": "2024-08", "url": "https://thehackernews.com/2024/08/vietnamese-human-rights-group-targeted.html"},
+    {"ref": "S7", "title": "APT32, G0050", "publisher": "MITRE ATT&CK", "date": "2026-07-31", "url": "https://attack.mitre.org/groups/G0050/"},
+    {"ref": "S8", "title": "Microsoft threat actor naming mapping (MicrosoftMapping.json)", "publisher": "Microsoft Threat Intelligence", "date": "2026-10-14", "url": "https://github.com/microsoft/mstic/blob/master/PublicFeeds/ThreatActorNaming/MicrosoftMapping.json"},
+    {"ref": "S9", "title": "Microsoft has a new way of naming security threats (coverage of the 2023 naming scheme)", "publisher": "TechRadar", "date": "2023-04", "url": "https://www.techradar.com/news/microsoft-has-a-new-way-of-naming-security-threats"}
+  ],
+  "aliasesAdd": [
+    {"name": "Cobalt Kitty", "vendor": "Cybereason (operation name)"}
+  ]
+}

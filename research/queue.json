@@ -1,31 +1,10 @@
 {
  "note": "Research queue for the automatic wave runner. Waves take items from the front; finished ids move to 'done'. Scope limited to CN/RU/IR/KP on 2026-10-15 at the user's request; non-state actors moved to 'deferred'. Non-state actors restored to the research queue on 2026-10-17 at the user's request.",
- "verify": [],
+ "verify": [
+  "carmine-tsunami",
+  "covertnetwork-1658"
+ ],
  "research": [
-  {
-   "id": "amethyst-rain",
-   "tier": "NS"
-  },
-  {
-   "id": "blue-tsunami",
-   "tier": "NS"
-  },
-  {
-   "id": "canvas-cyclone",
-   "tier": "NS"
-  },
-  {
-   "id": "caramel-tsunami",
-   "tier": "NS"
-  },
-  {
-   "id": "carmine-tsunami",
-   "tier": "NS"
-  },
-  {
-   "id": "covertnetwork-1658",
-   "tier": "NS"
-  },
   {
    "id": "daffodil-gust",
    "tier": "NS"
@@ -281,6 +260,7 @@
   "admin-338",
   "ajax-security-team",
   "amaranth-dragon",
+  "amethyst-rain",
   "angry-likho",
   "antique-typhoon",
   "antlion",
@@ -304,6 +284,7 @@
   "blackwood",
   "bladedfeline",
   "blue-termite",
+  "blue-tsunami",
   "brass-typhoon",
   "brazenbamboo",
   "brocade-typhoon",
@@ -316,6 +297,8 @@
   "cadet-blizzard",
   "calypso",
   "canary-typhoon",
+  "canvas-cyclone",
+  "caramel-tsunami",
   "cardinallizard",
   "ceranakeeper",
   "charcoal-typhoon",
@@ -634,6 +617,7 @@
   "berry-sandstorm",
   "blackwood",
   "blue-termite",
+  "blue-tsunami",
   "brazenbamboo",
   "bronze-edgewood",
   "bronze-spiral",
