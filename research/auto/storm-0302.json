@@ -1,0 +1,153 @@
+{
+ "identification": {
+  "summary": "Storm-0302 is Microsoft's name for a financially motivated eCrime actor that CrowdStrike tracks as NARWHAL SPIDER and Proofpoint as TA544; BlueVoyant uses all three names for the same activity [S1][S3][S5]. CrowdStrike describes NARWHAL SPIDER as the criminal actor that developed and operated the Cutwail version 2 spam engine, which dates to 2007 and is delivered through the Pushdo loader [S3]. Proofpoint describes TA544 as a highly financially motivated actor distributing Ursnif and URLZone against Italy, western Europe and Japan [S2]. Proofpoint also tied TA544 to the WikiLoader downloader, first seen December 2022 [S6].",
+  "firstObserved": "Proofpoint began tracking TA544 in February 2017 [S2]. CrowdStrike dates the Cutwail spam engine to 2007, but that is the malware's history, not necessarily this actor's [S3].",
+  "notes": "Name mapping per Microsoft is in the record's existing MS source; BlueVoyant independently equates Narwhal Spider, Storm-0302 and TA544 [S5]. The actor's relationship to the Cutwail botnet (spam-for-hire) means campaign payloads may belong to customers rather than the actor; do not merge customer malware families into this cluster [S3]. WikiLoader was also distributed by a second actor, TA551, which is a separate Proofpoint cluster [S6]."
+ },
+ "attribution": {
+  "sponsor": "Criminal (non-state). No state sponsor is stated in the cited sources.",
+  "confidence": "Vendor-level only. Name equivalence is stated by BlueVoyant and Microsoft's naming table; the NaurLegal campaign link is BlueVoyant's own belief [S5]. No government attribution found.",
+  "basis": "CrowdStrike lists the Russian Federation as the actor's location [S3]. BlueVoyant attributed the March 2024 NaurLegal campaign to Narwhal Spider (Storm-0302, TA544) based on WikiLoader-linked infrastructure [S5][S7]. Proofpoint tied WikiLoader's first campaign to TA544 [S6]."
+ },
+ "objectives": "Financial gain: distributing banking trojans and loaders via mass phishing and spam [S2][S3]. CrowdStrike states Cutwail campaign targets and payloads are determined by NARWHAL SPIDER's customers, i.e. spam is sold as a service [S3].",
+ "targeting": {
+  "sectors": [
+   "Financial services and general commercial recipients (banking-trojan targets)",
+   "Professional and legal services customers (NaurLegal lure)"
+  ],
+  "regions": [
+   "Italy",
+   "Japan",
+   "Western Europe",
+   "Canada",
+   "United States (reported expansion)"
+  ],
+  "notes": "Proofpoint says TA544 focuses on Italy and Japan [S2]. CrowdStrike saw a Japanese-language campaign starting 24 October 2018 that fetched URLZone only when the system language was Japanese [S4]. Proofpoint reported a 2021 surge of Ursnif campaigns against Italian organizations using courier and energy-company lures and geofencing [S8]. BlueVoyant reported the group expanding beyond Italy toward the end of 2023, and the 7 March 2024 wave reached Canada and Europe [S5][S7]. Sector targeting is opportunistic; no specific military or government targeting is stated in the sources."
+ },
+ "capabilities": {
+  "summary": "Operates the Cutwail v2 spam engine, delivered through the Pushdo loader, and sells spam services to other criminals including TrickBot developers and operators of URLZone, Nymaim and Gozi ISFB [S3]. TA544 delivery has used Office attachments with malicious macros, steganography in embedded images, and geofencing to check recipient location before infection [S2][S8]. In October 2018 CrowdStrike observed malicious PowerShell combined with steganography to deliver URLZone [S4]. WikiLoader is a downloader that checks connectivity by requesting Wikipedia and looking for the string 'The Free'; Proofpoint counted at least eight campaigns since December 2022, with Excel/VBA, OneNote and PDF lures, and Ursnif as the usual payload [S6]. Proofpoint judged WikiLoader may be rented to other criminals [S6]. In March 2024 BlueVoyant reported PDF invoices impersonating law firms, with command and control via compromised WordPress sites and VirusTotal hints of IcedID as a payload [S5][S7]."
+ },
+ "campaigns": [
+  {
+   "date": "2017-02",
+   "name": "Panda Banker email campaigns against Italy",
+   "summary": "Proofpoint began tracking TA544 when email campaigns against Italian customers using Panda Banker were reported [S2].",
+   "sources": [
+    "S2"
+   ]
+  },
+  {
+   "date": "2018-10",
+   "name": "Japanese-language Cutwail campaign delivering URLZone",
+   "summary": "From 24 October 2018 CrowdStrike observed Cutwail spam using malicious PowerShell and steganography to deliver URLZone (Bebloh), conditional on a Japanese system language. The final payload was not observed and CrowdStrike noted spam levels had been lower in the prior three months [S4].",
+   "sources": [
+    "S4"
+   ]
+  },
+  {
+   "date": "2021",
+   "name": "Ursnif surge against Italy",
+   "summary": "Proofpoint reported that Ursnif campaigns against Italy from January to August 2021 exceeded the 2020 total, using courier and energy-company payment lures and geofencing [S8].",
+   "sources": [
+    "S8"
+   ]
+  },
+  {
+   "date": "2022-12",
+   "name": "WikiLoader first campaign",
+   "summary": "On 27 December 2022 the first WikiLoader version appeared in a campaign spoofing the Italian Revenue Agency, attributed by Proofpoint to TA544 [S6].",
+   "sources": [
+    "S6"
+   ]
+  },
+  {
+   "date": "2024-03",
+   "name": "NaurLegal law-firm invoice phishing",
+   "summary": "BlueVoyant named and attributed to Narwhal Spider a 7 March 2024 wave of PDFs posing as law-firm invoices, reaching Italy, Canada and Europe, with WikiLoader-linked infrastructure on compromised WordPress sites [S5][S7].",
+   "sources": [
+    "S5",
+    "S7"
+   ]
+  }
+ ],
+ "diamond": {
+  "adversary": "Financially motivated eCrime operator tracked as Storm-0302 / NARWHAL SPIDER / TA544; CrowdStrike lists Russia as location [S3][S5].",
+  "capability": "Cutwail v2 spam engine and Pushdo loader; WikiLoader; macro, PowerShell and steganography delivery; customer payloads such as URLZone, Ursnif, Gozi ISFB [S2][S3][S4][S6].",
+  "infrastructure": "Compromised WordPress sites used for command and control in NaurLegal, with domains linked to WikiLoader [S5][S7]. Cutwail botnet of infected hosts [S3].",
+  "victim": "Organizations and individuals in Italy and Japan, expanding to Canada, Europe and potentially the US [S2][S5][S7].",
+  "socioPolitical": "Criminal profit motive; no political objective stated in sources [S2][S3].",
+  "technology": "Windows endpoints and email clients; Office macros, PDF, OneNote lures; PowerShell [S4][S6][S7]."
+ },
+ "gaps": [
+  "Microsoft's own reporting on Storm-0302 was not found or opened; only the naming-table entry is known.",
+  "Activity after March 2024 was not found in searches; current status is unknown.",
+  "Direct fetches of BlueVoyant, Proofpoint and Malpedia pages failed (host resolution), so details rely on search-result summaries and secondary coverage.",
+  "The Proofpoint TA544 profile ('TA544 Buffet of Malware') and CrowdStrike adversary page were seen only as search summaries and are undated, so they are cited without a firm publication date.",
+  "Publication month of the Proofpoint WikiLoader post is not confirmed from the page; 2023-08 is an estimate to be verified.",
+  "Whether the Cutwail operation and WikiLoader/Ursnif activity are run by the same people, versus customers, is not established.",
+  "No indicators, CVE exploitation or victim counts verified; one database reportedly lists no attributed CVEs and another note mentions a Windows SmartScreen one-day, unverified."
+ ],
+ "implications": {
+  "jipoe": "Analyst assessment derived from cited sources; validate before use. Step 1-2: the actor is a criminal spam-for-hire and loader operator with no stated state tasking, so its relevance to defended networks is as a delivery channel for banking trojans and loaders (Ursnif, URLZone, IcedID possible) [S2][S3][S5]. Step 3-4: MLCOA is mass phishing with PDF, Office or OneNote lures that pull a WikiLoader-style downloader from compromised websites [S6][S7]. MDCOA is customer payloads of higher impact, as BlueVoyant noted IcedID could indicate more destructive follow-on [S5]. Candidate indicators: invoice-themed PDFs from law-firm names, WikiLoader's Wikipedia connectivity check with 'The Free' string, geofenced or language-gated payload retrieval, and compromised WordPress C2 [S4][S6][S7].",
+  "jcc2": "Analyst assessment derived from cited sources; validate before use. Situational awareness: track this cluster as an email-borne initial-access enabler and watch for expansion to US and Canadian targets [S5][S7]. Authorities: response is a defensive, network-owner action (blocking, email filtering, account reset); no offensive action is implied by the sources. Mission assurance: prioritize email gateway and endpoint controls for macro, PDF and OneNote attachments and monitor for loader-to-ransomware chains if customers change [S5][S6]. Coordination: share indicators through established vendor and law-enforcement channels; the sources give no government advisory."
+ },
+ "sources": [
+  {
+   "ref": "S1",
+   "title": "Microsoft threat actor naming mapping (MicrosoftMapping.json)",
+   "publisher": "Microsoft Threat Intelligence",
+   "date": "2026-10-14",
+   "url": "https://github.com/microsoft/mstic/blob/master/PublicFeeds/ThreatActorNaming/MicrosoftMapping.json"
+  },
+  {
+   "ref": "S2",
+   "title": "TA544 Buffet of Malware (Proofpoint threat actor profile, seen via search summary)",
+   "publisher": "Proofpoint",
+   "date": "2026-10-17 (retrieved; undated)",
+   "url": "https://www.proofpoint.com/us/threat-insight/post/threat-actor-profile-ta544-targets-geographies-italy-japan-range-malware"
+  },
+  {
+   "ref": "S3",
+   "title": "NARWHAL SPIDER adversary profile (seen via search summary)",
+   "publisher": "CrowdStrike",
+   "date": "2026-10-17 (retrieved; undated)",
+   "url": "https://crowdstrike.com/adversaries/narwhal-spider"
+  },
+  {
+   "ref": "S4",
+   "title": "Cutwail Spam Campaign Uses Steganography to Distribute URLZone",
+   "publisher": "CrowdStrike",
+   "date": "2018-11",
+   "url": "https://www.crowdstrike.com/blog/cutwail-spam-campaign-uses-steganography-to-distribute-urlzone/"
+  },
+  {
+   "ref": "S5",
+   "title": "BlueVoyant identifies novel threat actor campaign (NaurLegal)",
+   "publisher": "BlueVoyant",
+   "date": "2024-03-20",
+   "url": "https://www.bluevoyant.com/blog/bluevoyant-identifies-novel-threat-actor-campaign"
+  },
+  {
+   "ref": "S6",
+   "title": "Out of the Sandbox: WikiLoader Digs Sophisticated Evasion (seen via search summary and secondary coverage)",
+   "publisher": "Proofpoint",
+   "date": "2023-08",
+   "url": "https://www.proofpoint.com/uk/blog/threat-insight/out-sandbox-wikiloader-digs-sophisticated-evasion"
+  },
+  {
+   "ref": "S7",
+   "title": "Hackers Posing as Law Firms Phish Global Orgs in Multiple Languages",
+   "publisher": "Dark Reading",
+   "date": "2024-03-20",
+   "url": "https://darkreading.com/cyberattacks-data-breaches/hackers-posing-law-firms-phish-global-orgs-multiple-languages"
+  },
+  {
+   "ref": "S8",
+   "title": "TA544 group behind a spike in Ursnif malware campaigns targeting Italy (reporting Proofpoint research)",
+   "publisher": "Security Affairs",
+   "date": "2021-10",
+   "url": "https://securityaffairs.com/122875/malware/ta544-ursnif-campaigns-italy.html"
+  }
+ ],
+ "aliasesAdd": []
+}

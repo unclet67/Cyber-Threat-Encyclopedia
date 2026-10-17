@@ -1,0 +1,13 @@
+{
+ "identification": {"summary": "Microsoft lists Storm-0259 as a group in development, a temporary designation for an emerging or unattributed cluster of threat activity. No public reporting describing its activity was found. [S1]", "firstObserved": "", "notes": "Searches for Storm-0259 returned no threat reporting. Neighbouring identifiers (for example Storm-0249, Storm-0252, Storm-2570) are separate clusters and must not be merged with it. [S1]"},
+ "attribution": {"sponsor": "", "confidence": "", "basis": ""},
+ "objectives": "",
+ "targeting": {"sectors": [], "regions": [], "notes": ""},
+ "capabilities": {"summary": ""},
+ "campaigns": [],
+ "diamond": {"adversary": "", "capability": "", "infrastructure": "", "victim": "", "socioPolitical": "", "technology": ""},
+ "gaps": ["No open-source reporting on Storm-0259 activity, targets, tooling or attribution was found in four web searches.", "Microsoft Defender portal threat analytics, if any exist for this cluster, are not publicly accessible and were not reviewed.", "Whether the designation has been retired, merged or converted to a named actor is unverified."],
+ "implications": {"jipoe": "", "jcc2": ""},
+ "sources": [{"ref": "S1", "title": "Microsoft threat actor naming mapping (MicrosoftMapping.json)", "publisher": "Microsoft Threat Intelligence", "date": "2026-10-14", "url": "https://github.com/microsoft/mstic/blob/master/PublicFeeds/ThreatActorNaming/MicrosoftMapping.json"}],
+ "aliasesAdd": []
+}

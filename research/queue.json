@@ -3,38 +3,6 @@
  "verify": [],
  "research": [
   {
-   "id": "storm-0252",
-   "tier": "NS"
-  },
-  {
-   "id": "storm-0259",
-   "tier": "NS"
-  },
-  {
-   "id": "storm-0288",
-   "tier": "NS"
-  },
-  {
-   "id": "storm-0302",
-   "tier": "NS"
-  },
-  {
-   "id": "storm-0408",
-   "tier": "NS"
-  },
-  {
-   "id": "storm-0485",
-   "tier": "NS"
-  },
-  {
-   "id": "storm-0501",
-   "tier": "NS"
-  },
-  {
-   "id": "storm-0538",
-   "tier": "NS"
-  },
-  {
    "id": "storm-0539",
    "tier": "NS"
   },
@@ -439,8 +407,15 @@
   "storm-0230",
   "storm-0247",
   "storm-0249",
+  "storm-0252",
+  "storm-0288",
+  "storm-0302",
   "storm-0381",
+  "storm-0408",
+  "storm-0485",
+  "storm-0501",
   "storm-0530",
+  "storm-0538",
   "storm-0593",
   "storm-0940",
   "storm-0978",
@@ -653,7 +628,12 @@
   "sneakychef",
   "spacebears",
   "storm-0230",
+  "storm-0252",
+  "storm-0288",
+  "storm-0302",
   "storm-0381",
+  "storm-0408",
+  "storm-0485",
   "storm-0530",
   "storm-0940",
   "storm-1084",
@@ -733,6 +713,7 @@
   "sabre-panda",
   "slime29",
   "spicy-panda",
+  "storm-0259",
   "storm-2470",
   "test-panda",
   "toxic-panda",
