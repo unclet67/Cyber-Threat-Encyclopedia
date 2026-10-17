@@ -1,7 +1,280 @@
 {
- "note": "Research queue for the automatic wave runner. Waves take items from the front; finished ids move to 'done'. Scope limited to CN/RU/IR/KP on 2026-10-15 at the user's request; non-state actors moved to 'deferred'.",
+ "note": "Research queue for the automatic wave runner. Waves take items from the front; finished ids move to 'done'. Scope limited to CN/RU/IR/KP on 2026-10-15 at the user's request; non-state actors moved to 'deferred'. Non-state actors restored to the research queue on 2026-10-17 at the user's request.",
  "verify": [],
- "research": [],
+ "research": [
+  {
+   "id": "amethyst-rain",
+   "tier": "NS"
+  },
+  {
+   "id": "blue-tsunami",
+   "tier": "NS"
+  },
+  {
+   "id": "canvas-cyclone",
+   "tier": "NS"
+  },
+  {
+   "id": "caramel-tsunami",
+   "tier": "NS"
+  },
+  {
+   "id": "carmine-tsunami",
+   "tier": "NS"
+  },
+  {
+   "id": "covertnetwork-1658",
+   "tier": "NS"
+  },
+  {
+   "id": "daffodil-gust",
+   "tier": "NS"
+  },
+  {
+   "id": "denim-tsunami",
+   "tier": "NS"
+  },
+  {
+   "id": "fallow-squall",
+   "tier": "NS"
+  },
+  {
+   "id": "fox-tempest",
+   "tier": "NS"
+  },
+  {
+   "id": "lace-tempest",
+   "tier": "NS"
+  },
+  {
+   "id": "luna-tempest",
+   "tier": "NS"
+  },
+  {
+   "id": "magenta-dust",
+   "tier": "NS"
+  },
+  {
+   "id": "marbled-dust",
+   "tier": "NS"
+  },
+  {
+   "id": "mustard-tempest",
+   "tier": "NS"
+  },
+  {
+   "id": "night-tsunami",
+   "tier": "NS"
+  },
+  {
+   "id": "octo-tempest",
+   "tier": "NS"
+  },
+  {
+   "id": "patched-lightning",
+   "tier": "NS"
+  },
+  {
+   "id": "phlox-tempest",
+   "tier": "NS"
+  },
+  {
+   "id": "pinstripe-lightning",
+   "tier": "NS"
+  },
+  {
+   "id": "pistachio-tempest",
+   "tier": "NS"
+  },
+  {
+   "id": "plaid-rain",
+   "tier": "NS"
+  },
+  {
+   "id": "storm-0230",
+   "tier": "NS"
+  },
+  {
+   "id": "storm-0249",
+   "tier": "NS"
+  },
+  {
+   "id": "storm-0252",
+   "tier": "NS"
+  },
+  {
+   "id": "storm-0259",
+   "tier": "NS"
+  },
+  {
+   "id": "storm-0288",
+   "tier": "NS"
+  },
+  {
+   "id": "storm-0302",
+   "tier": "NS"
+  },
+  {
+   "id": "storm-0408",
+   "tier": "NS"
+  },
+  {
+   "id": "storm-0485",
+   "tier": "NS"
+  },
+  {
+   "id": "storm-0501",
+   "tier": "NS"
+  },
+  {
+   "id": "storm-0538",
+   "tier": "NS"
+  },
+  {
+   "id": "storm-0539",
+   "tier": "NS"
+  },
+  {
+   "id": "storm-0569",
+   "tier": "NS"
+  },
+  {
+   "id": "storm-0671",
+   "tier": "NS"
+  },
+  {
+   "id": "storm-1101",
+   "tier": "NS"
+  },
+  {
+   "id": "storm-1113",
+   "tier": "NS"
+  },
+  {
+   "id": "storm-1125",
+   "tier": "NS"
+  },
+  {
+   "id": "storm-1152",
+   "tier": "NS"
+  },
+  {
+   "id": "storm-1194",
+   "tier": "NS"
+  },
+  {
+   "id": "storm-1249",
+   "tier": "NS"
+  },
+  {
+   "id": "storm-1567",
+   "tier": "NS"
+  },
+  {
+   "id": "storm-1575",
+   "tier": "NS"
+  },
+  {
+   "id": "storm-1607",
+   "tier": "NS"
+  },
+  {
+   "id": "storm-1674",
+   "tier": "NS"
+  },
+  {
+   "id": "storm-1747",
+   "tier": "NS"
+  },
+  {
+   "id": "storm-1811",
+   "tier": "NS"
+  },
+  {
+   "id": "storm-1865",
+   "tier": "NS"
+  },
+  {
+   "id": "storm-2227",
+   "tier": "NS"
+  },
+  {
+   "id": "storm-2460",
+   "tier": "NS"
+  },
+  {
+   "id": "storm-2477",
+   "tier": "NS"
+  },
+  {
+   "id": "storm-2561",
+   "tier": "NS"
+  },
+  {
+   "id": "storm-2581",
+   "tier": "NS"
+  },
+  {
+   "id": "storm-2657",
+   "tier": "NS"
+  },
+  {
+   "id": "storm-2697",
+   "tier": "NS"
+  },
+  {
+   "id": "storm-2755",
+   "tier": "NS"
+  },
+  {
+   "id": "storm-2945",
+   "tier": "NS"
+  },
+  {
+   "id": "storm-2949",
+   "tier": "NS"
+  },
+  {
+   "id": "storm-2981",
+   "tier": "NS"
+  },
+  {
+   "id": "storm-2999",
+   "tier": "NS"
+  },
+  {
+   "id": "storm-3075",
+   "tier": "NS"
+  },
+  {
+   "id": "storm-3127",
+   "tier": "NS"
+  },
+  {
+   "id": "strawberry-tempest",
+   "tier": "NS"
+  },
+  {
+   "id": "velvet-tempest",
+   "tier": "NS"
+  },
+  {
+   "id": "viridian-vortex",
+   "tier": "NS"
+  },
+  {
+   "id": "wheat-tempest",
+   "tier": "NS"
+  },
+  {
+   "id": "wisteria-tsunami",
+   "tier": "NS"
+  },
+  {
+   "id": "zigzag-hail",
+   "tier": "NS"
+  }
+ ],
  "done": [
   "1937cn",
   "ababil-of-minab",
@@ -511,76 +784,7 @@
   "z-pentest-alliance"
  ],
  "halts": [],
- "deferred": [
-  "amethyst-rain",
-  "blue-tsunami",
-  "canvas-cyclone",
-  "caramel-tsunami",
-  "carmine-tsunami",
-  "covertnetwork-1658",
-  "daffodil-gust",
-  "denim-tsunami",
-  "fallow-squall",
-  "fox-tempest",
-  "lace-tempest",
-  "luna-tempest",
-  "magenta-dust",
-  "marbled-dust",
-  "mustard-tempest",
-  "night-tsunami",
-  "octo-tempest",
-  "patched-lightning",
-  "phlox-tempest",
-  "pinstripe-lightning",
-  "pistachio-tempest",
-  "plaid-rain",
-  "storm-0230",
-  "storm-0249",
-  "storm-0252",
-  "storm-0259",
-  "storm-0288",
-  "storm-0302",
-  "storm-0408",
-  "storm-0485",
-  "storm-0501",
-  "storm-0538",
-  "storm-0539",
-  "storm-0569",
-  "storm-0671",
-  "storm-1101",
-  "storm-1113",
-  "storm-1125",
-  "storm-1152",
-  "storm-1194",
-  "storm-1249",
-  "storm-1567",
-  "storm-1575",
-  "storm-1607",
-  "storm-1674",
-  "storm-1747",
-  "storm-1811",
-  "storm-1865",
-  "storm-2227",
-  "storm-2460",
-  "storm-2477",
-  "storm-2561",
-  "storm-2581",
-  "storm-2657",
-  "storm-2697",
-  "storm-2755",
-  "storm-2945",
-  "storm-2949",
-  "storm-2981",
-  "storm-2999",
-  "storm-3075",
-  "storm-3127",
-  "strawberry-tempest",
-  "velvet-tempest",
-  "viridian-vortex",
-  "wheat-tempest",
-  "wisteria-tsunami",
-  "zigzag-hail"
- ],
+ "deferred": [],
  "no_public_reporting": [
   "big-panda",
   "boulder-bear",
@@ -609,6 +813,5 @@
   "red-dev-17": "draft is in research/auto; the Malpedia entry carrying the PwC assessment (S1) and the MITRE Chinoxy page (S3) lost their dates in fact-checking",
   "tstark": "draft is in research/auto; its main claims rest on an undated Malpedia entry (S3)",
   "wassonite": "draft is in research/auto; its North Korea link rests on an undated Malpedia entry (S8)"
- },
- "queue_complete": "2026-10-17: all China/Russia/Iran/North Korea actors processed; see held-back lists"
+ }
 }
