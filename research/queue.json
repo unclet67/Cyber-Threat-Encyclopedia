@@ -1,18 +1,7 @@
 {
  "note": "Research queue for the automatic wave runner. Waves take items from the front; finished ids move to 'done'. Scope limited to CN/RU/IR/KP on 2026-10-15 at the user's request; non-state actors moved to 'deferred'. Non-state actors restored to the research queue on 2026-10-17 at the user's request.",
- "verify": [
-  "carmine-tsunami",
-  "covertnetwork-1658"
- ],
+ "verify": [],
  "research": [
-  {
-   "id": "daffodil-gust",
-   "tier": "NS"
-  },
-  {
-   "id": "denim-tsunami",
-   "tier": "NS"
-  },
   {
    "id": "fallow-squall",
    "tier": "NS"
@@ -300,6 +289,7 @@
   "canvas-cyclone",
   "caramel-tsunami",
   "cardinallizard",
+  "carmine-tsunami",
   "ceranakeeper",
   "charcoal-typhoon",
   "chaya-004",
@@ -319,6 +309,7 @@
   "copykittens",
   "coral-sleet",
   "cotton-sandstorm",
+  "covertnetwork-1658",
   "crescent-typhoon",
   "crimson-sandstorm",
   "cuboid-sandstorm",
@@ -331,9 +322,11 @@
   "cyber-islamic-resistance",
   "cyber-serp",
   "cyber-toufan",
+  "daffodil-gust",
   "dagger-panda",
   "daggerfly",
   "dalbit",
+  "denim-tsunami",
   "dev-0147",
   "dev-0270",
   "diamond-sleet",
@@ -635,6 +628,7 @@
   "cyber-islamic-resistance",
   "cyber-serp",
   "cyber-toufan",
+  "daffodil-gust",
   "dagger-panda",
   "dalbit",
   "dev-0147",

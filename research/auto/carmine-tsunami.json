@@ -19,7 +19,6 @@
 {"ref":"S2","title":"Pegasus-like spyware Reign was used in targeted iPhone attacks (reporting Citizen Lab research)","publisher":"gHacks","date":"2023-04","url":"https://www.ghacks.net/?p=191834"},
 {"ref":"S3","title":"Report: iPhone flaw exploited by second Israeli spyware firm (reporting Reuters)","publisher":"Israel Hayom","date":"2022-02-04","url":"https://www.israelhayom.com/2022/02/04/report-iphone-flaw-exploited-by-second-israeli-spyware-firm/"},
 {"ref":"S4","title":"Meta Cracks Down on Spyware Vendors (reporting Meta threat report)","publisher":"OCCRP","date":"2022-12","url":"https://www.occrp.org/en/daily/17193-meta-cracks-down-on-spyware-vendors"},
-{"ref":"S5","title":"Offensive cyber company QuaDream shutting down amidst spyware accusations","publisher":"Calcalist (CTech)","date":"2023-04","url":"https://calcalistech.com/ctechnews/article/hy78kiym2"},
-{"ref":"S6","title":"Israeli spyware used to hack across 10 countries, Microsoft and watchdog say","publisher":"TBS News (wire reprint)","date":"2023-04","url":"https://www.tbsnews.net/node/615218"}],
+{"ref":"S5","title":"Offensive cyber company QuaDream shutting down amidst spyware accusations","publisher":"Calcalist (CTech)","date":"2023-04","url":"https://calcalistech.com/ctechnews/article/hy78kiym2"}],
 "aliasesAdd":[{"name":"DEV-0196","vendor":"Microsoft"},{"name":"QuaDream","vendor":"Microsoft"}]
 }
