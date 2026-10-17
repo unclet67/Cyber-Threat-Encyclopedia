@@ -1,0 +1,74 @@
+{
+  "identification": {
+    "summary": "A Microsoft Threat Intelligence Podcast episode titled \"Threat Landscape Update on Grandoreiro and Luna Tempest\" (Episode 20) was published on 2024-06-05 [S2][S3]. Microsoft's \"Tempest\" naming family denotes financially motivated actors [S1].",
+    "firstObserved": "",
+    "notes": "No standalone Microsoft blog post or vendor report on Luna Tempest was found in open search. Do not merge with Octo Tempest (Scattered Spider) or Luna Moth (Silent Ransom Group); no source found links them to Luna Tempest."
+  },
+  "attribution": {
+    "sponsor": "",
+    "confidence": "",
+    "basis": "Microsoft's Tempest naming family denotes financially motivated actors [S1]. No state or criminal-group attribution found in sources."
+  },
+  "objectives": "",
+  "targeting": {
+    "sectors": [],
+    "regions": [],
+    "notes": ""
+  },
+  "capabilities": {
+    "summary": ""
+  },
+  "campaigns": [
+    {
+      "date": "2024-06",
+      "name": "Microsoft Threat Intelligence Podcast episode on Grandoreiro and Luna Tempest",
+      "summary": "Microsoft's podcast published an episode titled \"Threat Landscape Update on Grandoreiro and Luna Tempest\" on 2024-06-05. Only the title and date were verified; the episode description and content could not be opened [S2][S3].",
+      "sources": [
+        "S2",
+        "S3"
+      ]
+    }
+  ],
+  "diamond": {
+    "adversary": "",
+    "capability": "",
+    "infrastructure": "",
+    "victim": "",
+    "socioPolitical": "",
+    "technology": ""
+  },
+  "gaps": [
+    "No Microsoft blog, report or other primary technical reporting on Luna Tempest was found in about 6 searches.",
+    "Podcast show notes (S3) reportedly describe Luna Tempest as a US/UK-based extortion group; this was seen only in a search summary, not verified on the page, and is not used here.",
+    "Sectors, regions, TTPs, tooling, infrastructure, campaigns and first-observed date are all unknown from open sources gathered.",
+    "Possible relationship to other named clusters (Octo Tempest, Luna Moth, Grandoreiro operators) is unverified."
+  ],
+  "implications": {
+    "jipoe": "",
+    "jcc2": ""
+  },
+  "sources": [
+    {
+      "ref": "S1",
+      "title": "How Microsoft names threat actors",
+      "publisher": "Microsoft",
+      "date": "",
+      "url": "https://learn.microsoft.com/microsoft-365/security/intelligence/microsoft-threat-actor-naming"
+    },
+    {
+      "ref": "S2",
+      "title": "Microsoft Threat Intelligence Podcast listing (episode title and date only)",
+      "publisher": "Podcast Republic",
+      "date": "2024-06-05",
+      "url": "https://podcastrepublic.net/podcast/1710656242"
+    },
+    {
+      "ref": "S3",
+      "title": "The Microsoft Threat Intelligence Podcast 6.5.24: Threat Landscape Update on Grandoreiro and Luna Tempest (episode notes)",
+      "publisher": "The CyberWire / Microsoft Threat Intelligence Podcast",
+      "date": "2024-06-05",
+      "url": "https://thecyberwire.com/podcasts/microsoft-threat-intelligence/20/notes"
+    }
+  ],
+  "aliasesAdd": []
+}

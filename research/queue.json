@@ -3,38 +3,6 @@
  "verify": [],
  "research": [
   {
-   "id": "fallow-squall",
-   "tier": "NS"
-  },
-  {
-   "id": "fox-tempest",
-   "tier": "NS"
-  },
-  {
-   "id": "lace-tempest",
-   "tier": "NS"
-  },
-  {
-   "id": "luna-tempest",
-   "tier": "NS"
-  },
-  {
-   "id": "magenta-dust",
-   "tier": "NS"
-  },
-  {
-   "id": "marbled-dust",
-   "tier": "NS"
-  },
-  {
-   "id": "mustard-tempest",
-   "tier": "NS"
-  },
-  {
-   "id": "night-tsunami",
-   "tier": "NS"
-  },
-  {
    "id": "octo-tempest",
    "tier": "NS"
   },
@@ -349,6 +317,7 @@
   "elusive-comet",
   "emerald-sleet",
   "evilweb",
+  "fallow-squall",
   "femwar02",
   "ferocious-kitten",
   "fin1",
@@ -356,6 +325,7 @@
   "flax-typhoon",
   "flyingyeti",
   "forest-blizzard",
+  "fox-tempest",
   "frontier-blizzard",
   "gcman",
   "ghost-blizzard",
@@ -391,6 +361,7 @@
   "jade-sleet",
   "jasper-sleet",
   "jinx-0164",
+  "lace-tempest",
   "larva-24005",
   "lemon-sandstorm",
   "leopard-typhoon",
@@ -398,10 +369,12 @@
   "linen-typhoon",
   "longnosedgoblin",
   "madi",
+  "magenta-dust",
   "magic-kitten",
   "malkamak",
   "manatee-tempest",
   "mango-sandstorm",
+  "marbled-dust",
   "marigold-sandstorm",
   "midnight-blizzard",
   "mint-sandstorm",
@@ -412,6 +385,7 @@
   "mora-001",
   "moshen-dragon",
   "mulberry-typhoon",
+  "mustard-tempest",
   "neva-flood",
   "nickel-alley",
   "night-dragon",
@@ -771,8 +745,10 @@
   "foxy-panda",
   "gibberish-panda",
   "impersonating-panda",
+  "luna-tempest",
   "magnetic-spider",
   "mana-team",
+  "night-tsunami",
   "pale-panda",
   "poisonus-panda",
   "predator-panda",

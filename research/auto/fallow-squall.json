@@ -1,0 +1,77 @@
+{
+  "identification": {
+    "summary": "Fallow Squall is the Microsoft threat actor name that the Microsoft naming mapping lists alongside the legacy name PLATINUM (with RUBYVINE, GINGERSNAP and a Dragos name, PARASITE, as other names) [S1]. PLATINUM was named in April 2016 by Microsoft's Windows Defender Advanced Threat Hunting team, which described a cyberespionage actor active since at least 2009 and focused on government, defense, intelligence, diplomatic and telecommunications targets in South and Southeast Asia [S2][S3]. MITRE ATT&CK tracks the group as G0068 PLATINUM [S6]. The public technical reporting found in this research is published under the PLATINUM name, not Fallow Squall; the equivalence rests on the Microsoft mapping [S1].",
+    "firstObserved": "Active since at least 2009 per Microsoft's 2016 reporting [S2][S3]; Kaspersky later judged the campaigns it examined may have started as early as 2012 [S4].",
+    "notes": "Microsoft name: Fallow Squall (Singapore origin recorded in the mapping file) [S1]. Reporting on PLATINUM was found only in secondary coverage; Microsoft's original 2016 and 2017 posts and Kaspersky's SecureList posts could not be opened directly. Do not merge with other vendor clusters sharing similar names without checking the vendor definitions."
+  },
+  "attribution": {
+    "sponsor": "",
+    "confidence": "Microsoft's researchers stopped short of stating with certainty that PLATINUM is state-sponsored [S3]. Secondary summaries note that the target profile suggests state sponsorship but that no state has been publicly confirmed as operator [S6].",
+    "basis": "Target set (government, defense, intelligence, diplomatic, telecom in South and Southeast Asia), long-running activity and custom tooling are the observable bases cited by vendors [S2][S3][S6]. No government attribution was found."
+  },
+  "objectives": "Espionage: PLATINUM targets were described as government, defense, intelligence, diplomatic and telecommunications organizations, consistent with intelligence collection [S2][S3]. Titanium-campaign targets were mostly army and government institutions [S5]. Specific collection requirements are not stated in the sources found.",
+  "targeting": {
+    "sectors": ["Government", "Defense / military", "Intelligence agencies", "Diplomatic", "Telecommunications"],
+    "regions": ["South Asia", "Southeast Asia", "Malaysia", "Indonesia", "China", "India"],
+    "notes": "Microsoft's 2016 coverage reported Malaysia as the largest victim set, followed by Indonesia, China and India [S2]. Kaspersky's 2019 reporting described diplomatic, government and military targets in South and Southeast Asia [S4], and Titanium-campaign targets in South and Southeast Asia, mostly army and government institutions [S5]."
+  },
+  "capabilities": {
+    "summary": "Initial access relied mainly on spearphishing, often combined with zero-day exploits delivering custom malware [S3][S6]. In 2016 Microsoft reported PLATINUM abusing the Windows hotpatching feature to inject code into running processes (e.g. svchost.exe) and evade security products, falling back to ordinary injection into winlogon.exe, lsass.exe and svchost.exe [S2][S3]. Associated Windows backdoors include Dipsind, JPIN and adbupd [S2][S6]. In June 2017 Microsoft described PLATINUM using Intel AMT Serial-over-LAN as an out-of-band file-transfer channel invisible to host firewalls and monitoring; this misused AMT within victim networks (requiring administrative privileges and SOL enabled) rather than exploiting an AMT flaw [S7]. In 2019 Kaspersky reported steganography to hide C2 communications, with a campaign using WMI subscriptions to launch a PowerShell downloader and a DLL backdoor persisting as a Winsock NSP with hardcoded active hours and free-hosting C2 domains [S4]. In November 2019 Kaspersky reported the Titanium backdoor, the last stage of a multi-step chain, able to read, delete, drop and run files and run commands, with evasion by mimicking common software [S5]."
+  },
+  "campaigns": [
+    {
+      "date": "2016-04",
+      "name": "Microsoft discloses PLATINUM and hotpatching abuse",
+      "summary": "Microsoft's Windows Defender Advanced Threat Hunting team named PLATINUM and reported it spying on government, defense, intelligence, diplomatic and telecom targets in South and Southeast Asia, abusing Windows hotpatching to hide Dipsind, adbupd and JPIN backdoors [S2][S3].",
+      "sources": ["S2", "S3"]
+    },
+    {
+      "date": "2017-06",
+      "name": "Intel AMT Serial-over-LAN file transfer",
+      "summary": "Microsoft reported PLATINUM using Intel AMT SOL to transfer files outside the visibility of host firewalls and network monitoring, without exploiting an AMT vulnerability [S7].",
+      "sources": ["S7"]
+    },
+    {
+      "date": "2019-06",
+      "name": "Steganographic C2 campaign (Kaspersky)",
+      "summary": "Kaspersky disclosed a PLATINUM campaign first seen in June 2018 that hid C2 communications using steganography and used WMI subscriptions and a PowerShell downloader against diplomatic, government and military targets in South and Southeast Asia [S4].",
+      "sources": ["S4"]
+    },
+    {
+      "date": "2019-11",
+      "name": "Titanium backdoor campaign (Kaspersky)",
+      "summary": "Kaspersky identified the Titanium backdoor used by PLATINUM against mainly army and government institutions in South and Southeast Asia [S5].",
+      "sources": ["S5"]
+    }
+  ],
+  "diamond": {
+    "adversary": "PLATINUM (Microsoft; now Fallow Squall in Microsoft's mapping) [S1]. Operator and sponsor not publicly confirmed [S3][S6].",
+    "capability": "Custom backdoors (Dipsind, JPIN, adbupd, Titanium), hotpatching injection, Intel AMT SOL file transfer, steganographic C2, WMI/PowerShell staging, spearphishing with zero-days [S2][S3][S4][S5][S6][S7].",
+    "infrastructure": "Free-hosting domains used as C2 addresses and image-based steganographic C2 in the 2018-2019 campaign [S4]; intranet websites and BITS-downloaded archives in the Titanium chain [S5]. Specific indicators not collected here.",
+    "victim": "Government, defense, intelligence, diplomatic and telecom organizations in South and Southeast Asia, led by Malaysia, Indonesia, China and India in 2016 reporting [S2][S3][S4].",
+    "socioPolitical": "",
+    "technology": "Windows hosts (hotpatching affected Windows Server 2003 SP1, 2008, 2008 R2, Vista and 7; Microsoft said Windows 10 was not vulnerable) [S2]; Intel AMT SOL where enabled [S7]; WMI and PowerShell [S4]."
+  },
+  "gaps": [
+    "No public source found that uses the name Fallow Squall; the PLATINUM equivalence rests on the Microsoft mapping file only [S1].",
+    "Microsoft's original 2016 and 2017 PLATINUM posts, Kaspersky's SecureList posts (2019) and the MITRE ATT&CK G0068 page were not opened directly; findings come from secondary coverage.",
+    "Sponsor and nation-state link unattributed; no government attribution found.",
+    "Activity after 2019 not found in this research; current operating status unknown.",
+    "Alias provenance conflicting: secondary pages attribute the name TwoForOne to Kaspersky and to FireEye, and list a Thales name; not added as aliases. Dragos PARASITE, RUBYVINE and GINGERSNAP are not explained by sources found.",
+    "Specific indicators, infrastructure and victim counts not collected."
+  ],
+  "implications": {
+    "jipoe": "Analyst assessment derived from cited sources; validate before use. Step 1-2: relevant terrain is Windows-based government, defense and telecom networks in South and Southeast Asia, including hosts with Intel AMT enabled [S2][S7]. Step 3: the actor is a long-running espionage cluster with custom backdoors and evasion tradecraft [S2][S4][S5]. MLCOA: spearphishing (with possible zero-days) to implant a persistent backdoor on government or military hosts, followed by quiet collection [S3][S6]. MDCOA: out-of-band channels such as AMT SOL and steganographic C2 to bypass host firewall and network monitoring [S4][S7]. Candidate indicators: WMI event subscriptions launching PowerShell, Winsock NSP DLLs, svchost injection, AMT SOL use on workstations, BITS-downloaded archives, and C2 to free-hosting domains [S2][S4][S5][S7].",
+    "jcc2": "Analyst assessment derived from cited sources; validate before use. Situational awareness: share indicators for hotpatching injection, WMI persistence and AMT SOL use with partners in the affected region [S2][S4][S7]. Authorities: monitoring of partner or host-nation networks requires the appropriate authorities and agreements; none are assumed here. Mission assurance: audit and disable unneeded Intel AMT/SOL, and monitor out-of-band channels not visible to host defenses [S7]. Coordination: because sponsor is unattributed, route reporting through intelligence channels and avoid stating attribution beyond the cited vendor assessments [S3][S6]."
+  },
+  "sources": [
+    {"ref": "S1", "title": "Microsoft threat actor naming mapping (MicrosoftMapping.json)", "publisher": "Microsoft Threat Intelligence", "date": "2026-10", "url": "https://github.com/microsoft/mstic/blob/master/PublicFeeds/ThreatActorNaming/MicrosoftMapping.json"},
+    {"ref": "S2", "title": "Cyberespionage group abuses Windows hotpatching mechanism for malware stealth (reporting Microsoft PLATINUM report)", "publisher": "PCWorld", "date": "2016-04", "url": "https://www.pcworld.com/article/414630/cyberespionage-group-abuses-windows-hotpatching-mechanism-for-malware-stealth.html"},
+    {"ref": "S3", "title": "PLATINUM cyberspies abuse hotpatching in Asia attacks (reporting Microsoft report)", "publisher": "SecurityWeek", "date": "2016-04", "url": "https://www.securityweek.com/platinum-cyberspies-abuse-hotpatching-asia-attacks"},
+    {"ref": "S4", "title": "PLATINUM hackers use steganography to mask C&C communications (reporting Kaspersky)", "publisher": "SecurityWeek", "date": "2019-06", "url": "https://www.securityweek.com/platinum-hackers-use-steganography-mask-cc-communications/"},
+    {"ref": "S5", "title": "Kaspersky identifies new Titanium backdoor used for attacks by notorious Platinum group in APAC region", "publisher": "Kaspersky", "date": "2019-11", "url": "https://www.kaspersky.co.uk/about/press-releases/kaspersky-identifies-new-titanium-backdoor-used-for-attacks-by-notorious-platinum-group-in-apac-region"},
+    {"ref": "S6", "title": "G0068 PLATINUM (mirror of MITRE ATT&CK group entry)", "publisher": "y-security (MITRE mirror)", "date": "2026-10", "url": "https://redteam.y-security.de/MITRE/groups/G0068/"},
+    {"ref": "S7", "title": "Platinum hackers leverages Intel Active Management tools to bypass Windows firewall (reporting Microsoft advisory)", "publisher": "Security Affairs", "date": "2017-06", "url": "https://securityaffairs.com/?p=59876"}
+  ],
+  "aliasesAdd": []
+}

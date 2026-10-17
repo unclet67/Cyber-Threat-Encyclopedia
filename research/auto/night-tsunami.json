@@ -1,0 +1,40 @@
+{
+ "identification": {
+  "summary": "",
+  "firstObserved": "",
+  "notes": "Do not merge with Microsoft's other Israel-linked Tsunami actors (Carmine Tsunami, Caramel Tsunami), which are separate clusters."
+ },
+ "attribution": {
+  "sponsor": "",
+  "confidence": "",
+  "basis": ""
+ },
+ "objectives": "",
+ "targeting": {
+  "sectors": [],
+  "regions": [],
+  "notes": ""
+ },
+ "capabilities": {
+  "summary": ""
+ },
+ "campaigns": [],
+ "diamond": {
+  "adversary": "",
+  "capability": "",
+  "infrastructure": "",
+  "victim": "",
+  "socioPolitical": "",
+  "technology": ""
+ },
+ "gaps": [
+  "Independent fact-check found no search result confirming a Microsoft 'Night Tsunami' or DEV-0336 entry, its Israel origin, or any NSO Group mapping; prior claims removed as unsupported.",
+  "Campaigns, tooling, victimology, infrastructure and first-observed date are unknown."
+ ],
+ "implications": {
+  "jipoe": "",
+  "jcc2": ""
+ },
+ "sources": [],
+ "aliasesAdd": []
+}

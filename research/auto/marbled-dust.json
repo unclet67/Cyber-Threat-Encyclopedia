@@ -1,0 +1,156 @@
+{
+  "mitre": "G1041",
+  "identification": {
+    "summary": "Microsoft assesses Marbled Dust as a Turkiye-affiliated espionage actor [S1]. MITRE tracks it as Sea Turtle (G1041), active since at least 2017, performing espionage and service-provider compromise against victims in Asia, Europe and North America, including DNS-based intrusions against registrars and DNS providers [S7]. Cisco Talos first publicly documented the DNS-hijacking campaign in April 2019 [S3].",
+    "firstObserved": "Talos-reported activity began in early 2017 [S3][S5]; MITRE: at least 2017 [S7]. Microsoft's Output Messenger exploitation began April 2024 [S1].",
+    "notes": "Microsoft name: Marbled Dust (formerly Silicon). Aliases reported with it: Sea Turtle, Cosmic Wolf, Teal Kurma, UNC1326 [S5][S8]. Microsoft's blog itself notes overlap with Sea Turtle and UNC1326 reported by other vendors [S1]. Vendor cluster boundaries may differ slightly; see gaps."
+  },
+  "attribution": {
+    "sponsor": "Microsoft assesses a Turkiye-affiliated actor; it does not name a specific agency in the cited material [S1].",
+    "confidence": "Microsoft states high confidence that the Output Messenger victims are associated with the Kurdish military operating in Iraq, and moderate confidence that the actor performs reconnaissance to confirm targets use Output Messenger; the confidence level of the Turkiye-affiliation assessment is not stated in the article [S1]. Talos in 2019 assessed with high confidence a state-sponsored actor but named no country [S3]. Hunt & Hackett said activity appeared consistent with 2020 US official claims about hacker groups acting in Turkey's interest [S4].",
+    "basis": "Microsoft telemetry and victimology [S1]; Talos infrastructure analysis [S2][S3]; Hunt & Hackett incident response in the Netherlands [S4][S5]. No government attribution has been cited."
+  },
+  "objectives": "Espionage against government institutions and organizations seen as counter to Turkish government interests, including Kurdish-associated targets and telecom/IT providers used as stepping stones [S1][S4].",
+  "targeting": {
+    "sectors": [
+      "Government",
+      "Military (Kurdish military in Iraq)",
+      "Telecommunications",
+      "IT services",
+      "Internet service providers",
+      "Media",
+      "Kurdish websites",
+      "Domain registrars and registries",
+      "DNS providers"
+    ],
+    "regions": [
+      "Europe and the Middle East [S1]",
+      "Iraq (2024-2025 Output Messenger) [S1]",
+      "Netherlands (2021-2023) [S4][S5]",
+      "Middle East and North Africa concentration, 13 countries (2019) [S3]"
+    ],
+    "notes": "Microsoft describes government institutions in Europe and the Middle East, plus telecom and IT, particularly entities counter to Turkish government interests [S1]. Talos reported about 40 organizations in 13 countries, primary victims including national security organizations, foreign ministries and energy organizations, and secondary victims such as registrars and ISPs [S3]. Talos's July 2019 follow-up reported a ccTLD registry compromised and used to reach further government entities [S2]."
+  },
+  "capabilities": {
+    "summary": "Historic signature is DNS hijacking: abusing compromised registries/registrars to change DNS server configuration so traffic is intercepted and credentials logged and reused; Talos observed man-in-the-middle servers with certificates from Let's Encrypt, Comodo, Sectigo and self-signed [S1][S3]. Microsoft says the actor also scans internet-facing appliances and applications for known vulnerabilities to reach infrastructure providers [S1]. In 2024-2025 it exploited the Output Messenger zero-day CVE-2025-27920 (directory traversal), dropping VBS launchers and Golang backdoors (OMServerService.exe, OMClientService.exe), executing C2 responses via cmd /c, archiving files to RAR and exfiltrating with plink; C2 domain api.wordinfos[.]com [S1]. In Dutch intrusions Hunt & Hackett reported compromised cPanel accounts, SSH access, the SnappyTCP Linux/Unix reverse shell (first disclosed by PwC, December 2023), Adminer in a web directory and e-mail archive theft; they rated the actor moderately sophisticated [S4][S5]. Technique lists come from MITRE separately."
+  },
+  "campaigns": [
+    {
+      "date": "2017 to 2019",
+      "name": "Sea Turtle DNS hijacking campaign",
+      "summary": "Talos reported Sea Turtle campaign beginning early 2017 with about 40 organizations in 13 countries compromised via registrar/registry/DNS provider abuse [S3][S5].",
+      "sources": [
+        "S3",
+        "S5"
+      ]
+    },
+    {
+      "date": "2019-07",
+      "name": "Sea Turtle regroups with new infrastructure",
+      "summary": "Talos reported the actor regrouped after exposure, compromised a ccTLD registry to reach more government entities, and assessed with moderate confidence a second DNS hijacking method used sparingly in 2018 [S2].",
+      "sources": [
+        "S2"
+      ]
+    },
+    {
+      "date": "2021 to 2023",
+      "name": "Dutch telecom, media, ISP, IT and Kurdish website intrusions",
+      "summary": "Hunt & Hackett reported multiple Netherlands campaigns using compromised cPanel accounts and SnappyTCP, with e-mail archive theft [S4][S5].",
+      "sources": [
+        "S4",
+        "S5"
+      ]
+    },
+    {
+      "date": "2024-04 to 2025-05",
+      "name": "Output Messenger zero-day exploitation",
+      "summary": "Microsoft observed exploitation of CVE-2025-27920 since April 2024 against users associated with the Kurdish military in Iraq; patched in Server 2.0.62 and Windows client 2.0.63 [S1][S6].",
+      "sources": [
+        "S1",
+        "S6"
+      ]
+    }
+  ],
+  "diamond": {
+    "adversary": "Turkiye-affiliated espionage actor tracked by Microsoft as Marbled Dust [S1].",
+    "capability": "DNS hijacking, vulnerability scanning and exploitation (including a zero-day), cPanel/SSH account abuse, Golang backdoors and SnappyTCP [S1][S4].",
+    "infrastructure": "Actor-controlled DNS and MITM servers with certificates from public CAs [S3]; C2 domain api.wordinfos[.]com [S1]; compromised registrar, registry and hosting accounts [S2][S4].",
+    "victim": "Government, Kurdish military in Iraq, telecom, IT, ISP, media and Kurdish websites in Europe and the Middle East [S1][S4].",
+    "socioPolitical": "Collection against entities seen as counter to Turkish government interests, including Kurdish-related targets [S1][S4].",
+    "technology": "Internet-facing messaging servers, DNS registrars/registries, shared hosting control panels (cPanel) and Linux web hosts [S1][S3][S4]."
+  },
+  "gaps": [
+    "Could not open the Talos blog, The Hacker News, BleepingComputer or Hunt & Hackett primary report (fetch blocked); Talos and Hunt & Hackett details rely on search-result summaries and secondary coverage [S2][S3][S4][S5].",
+    "The PwC December 2023 SnappyTCP report was not opened directly; its date comes from secondary coverage [S5].",
+    "Microsoft's Marbled Dust article does not mention SnappyTCP; MITRE's software entry is from the MITRE record [S1][S7].",
+    "Specific Turkish government agency sponsor is not stated in any cited source.",
+    "Secondary snippets mention 2018-2020 Greece, Cyprus and Iraq government targeting; not verified against a primary source and not included in targeting.",
+    "Whether Microsoft's Marbled Dust cluster exactly matches Sea Turtle, UNC1326 and Silicon is stated by vendors as overlap, not identity; Mandiant UNC1326 primary reporting not reviewed.",
+    "Initial access for the Output Messenger intrusions (assessed DNS hijacking or typosquatting) is not confirmed [S1].",
+    "Activity after May 2025 not found in these searches.",
+    "Netnod as a named victim could not be confirmed in fact-check searches and was removed."
+  ],
+  "implications": {
+    "jipoe": "Analyst assessment derived from cited sources; validate before use. STEP 1: Key terrain is DNS control planes (registrar and registry accounts), shared hosting and cPanel accounts, and internet-facing collaboration/messaging servers hosting organizational communications [S1][S3][S4]. STEP 2: The actor preferentially targets entities counter to Turkish government interests and the telecom/IT providers that serve them; the most likely US-relevant exposure is coalition or partner government, telecom and ISP networks in Europe and the Middle East, not direct DoD networks [S1][S4]. STEP 3: Observed pattern is vulnerability scanning, DNS or credential interception for authenticated access, web-server or application exploitation, Golang or reverse-shell implants, archive and exfiltrate [S1][S4]. STEP 4: MLCOA is continued regional espionage against Kurdish-related, government and telecom targets using known flaws and stolen credentials. MDCOA is use of a compromised registrar, ISP or DNS provider to intercept credentials of partner or coalition government users in a crisis [S2][S3]. Candidate indicators: unexpected NS or A record changes, new certificates for government domains, OMServerService.vbs in Startup folders, api.wordinfos[.]com lookups, plink egress from servers [S1][S3].",
+    "jcc2": "Analyst assessment derived from cited sources; validate before use. (1) Situational awareness: monitor DNS record and certificate-transparency changes for supported mission partner domains; DNS-layer compromise can be invisible from endpoint telemetry [S3]. (2) Authorities: DNS and registrar infrastructure is largely commercial or foreign; response will rely on partner and registrar coordination rather than direct action, and cited sources do not show direct US military targeting. (3) Mission assurance: enforce registry lock, MFA at registrars and patch third-party messaging software such as Output Messenger on mission-support networks [S1][S3]. (4) Coordination: share indicators with coalition partners and service providers in Europe and the Middle East, where the actor is most active [S1][S4]."
+  },
+  "sources": [
+    {
+      "ref": "S1",
+      "title": "Marbled Dust leverages zero-day in Output Messenger for regional espionage",
+      "publisher": "Microsoft Threat Intelligence",
+      "date": "2025-05-12",
+      "url": "https://microsoft.com/en-us/security/blog/2025/05/12/marbled-dust-leverages-zero-day-in-output-messenger-for-regional-espionage"
+    },
+    {
+      "ref": "S2",
+      "title": "Sea Turtle keeps on swimming",
+      "publisher": "Cisco Talos (via search summary; page not opened, date from Cisco tag listing)",
+      "date": "2019-07-09",
+      "url": "https://blog.talosintelligence.com/sea-turtle-keeps-on-swimming/"
+    },
+    {
+      "ref": "S3",
+      "title": "Talos report on the Sea Turtle DNS hijacking campaign",
+      "publisher": "Cisco Talos",
+      "date": "2019-04",
+      "url": "https://blog.talosintelligence.com/seaturtle/"
+    },
+    {
+      "ref": "S4",
+      "title": "Turkish APT Sea Turtle Resurfaces, Spies on Dutch IT Firms (reporting Hunt & Hackett)",
+      "publisher": "Infosecurity Magazine",
+      "date": "2024-01",
+      "url": "https://www.infosecurity-magazine.com/news/turkish-apt-sea-turtle-resurfaces/"
+    },
+    {
+      "ref": "S5",
+      "title": "Sea Turtle Cyber Espionage Campaign (reporting Hunt & Hackett and PwC)",
+      "publisher": "The Hacker News",
+      "date": "2024-01",
+      "url": "https://thehackernews.com/2024/01/sea-turtle-cyber-espionage-campaign.html"
+    },
+    {
+      "ref": "S6",
+      "title": "Turkiye-linked spy crew exploited a messaging app zero-day to snoop on Kurdish army in Iraq",
+      "publisher": "The Register",
+      "date": "2025-05-13",
+      "url": "https://www.theregister.com/2025/05/13/turkish_spies_messaging_app/"
+    },
+    {
+      "ref": "S7",
+      "title": "Sea Turtle, G1041 (description, techniques and software)",
+      "publisher": "MITRE ATT&CK",
+      "date": "2026-07-31",
+      "url": "https://attack.mitre.org/groups/G1041/"
+    },
+    {
+      "ref": "S8",
+      "title": "Microsoft threat actor naming mapping (MicrosoftMapping.json)",
+      "publisher": "Microsoft Threat Intelligence",
+      "date": "2026-10-14",
+      "url": "https://github.com/microsoft/mstic/blob/master/PublicFeeds/ThreatActorNaming/MicrosoftMapping.json"
+    }
+  ],
+  "aliasesAdd": []
+}
