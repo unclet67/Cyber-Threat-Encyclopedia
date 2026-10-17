@@ -1,0 +1,72 @@
+{
+  "mitre": "G1005",
+  "identification": {
+    "summary": "Microsoft describes POLONIUM (now Plaid Rain) as an operational group based in Lebanon that targeted Israeli organizations, with activity observed since February 2022 [S1]. Microsoft's April 2023 taxonomy update renamed the group Plaid Rain [S1]. Microsoft's June 2022 report counted more than 20 Israeli victims plus one intergovernmental organization with operations in Lebanon [S1]. ESET reported a separate telemetry view showing Israeli targeting since at least September 2021 [S2][S3].",
+    "firstObserved": "Microsoft: activity observed since February 2022 [S1]. ESET: Israeli targeting since at least September 2021 [S2][S3].",
+    "notes": "Microsoft name: Plaid Rain (formerly POLONIUM) [S1][S6]. MITRE tracks the group as POLONIUM, G1005 [S5]. The existing record lists INCENDIARY JACKAL as another name per the Microsoft mapping file [S6]. Microsoft found no current links to Volatile Cedar, another Lebanon-linked group [S1]."
+  },
+  "attribution": {
+    "sponsor": "No government attribution is cited. Microsoft assesses the group is based in Lebanon and coordinates with Iran's Ministry of Intelligence and Security (MOIS)-affiliated actors [S1].",
+    "confidence": "Microsoft: high confidence the group is an operational group based in Lebanon; moderate confidence it coordinates with multiple MOIS-affiliated actors [S1].",
+    "basis": "Microsoft cites victim overlap and shared tools and techniques: victims previously compromised by MERCURY (MuddyWater), OneDrive C2 use also seen with DEV-0133 (Lyceum), and AirVPN use shared with DEV-0588 (CopyKittens) [S1]. Microsoft raised a possible hand-off model in which MOIS provides access to previously compromised environments, noted as still being verified [S1]. ESET's title and press coverage call the group Iran-affiliated, relying on Microsoft's assessment [S2][S3]."
+  },
+  "objectives": "ESET assesses POLONIUM as interested solely in cyberespionage and reports no wipers, ransomware or other destructive tools [S3]. Microsoft observed theft and exfiltration of data via actor-controlled cloud accounts [S1].",
+  "targeting": {
+    "sectors": [
+      "Critical manufacturing",
+      "Information technology",
+      "Defense industry (Israel)",
+      "Transportation",
+      "Government",
+      "Food and agriculture",
+      "Financial services",
+      "Healthcare",
+      "Law and aviation (downstream of an IT service provider)",
+      "Engineering, media and insurance (ESET telemetry)"
+    ],
+    "regions": [
+      "Israel [S1][S2]",
+      "Lebanon (one intergovernmental organization with operations there) [S1]"
+    ],
+    "notes": "Microsoft: more than 20 victims, primarily Israeli, focused on critical manufacturing, IT and the defense industry; an Israeli cloud service provider was compromised and used to reach a downstream law firm and an aviation company [S1]. ESET: more than a dozen Israeli organizations across engineering, IT, law, media, insurance and other sectors [S2][S3]."
+  },
+  "capabilities": {
+    "summary": "Microsoft reports likely initial access via exploitation of Fortinet CVE-2018-13379 (about 80 percent of victims beaconing to graph.microsoft.com ran Fortinet devices; Microsoft says this suggests but does not prove the link), compromise of service providers to reach downstream customers, and use of the plink SSH tool for redundant tunnels [S1]. Custom implants include CreepyDrive (PowerShell; uses an actor-owned OneDrive account for C2 and exfiltration via an embedded OAuth refresh token), CreepySnail (PowerShell backdoor using stolen credentials against actor C2), CreepyBox (MSIL; OneDrive and Dropbox) and others named CreepyRing and CreepyWink [S1]. Microsoft observed malicious multi-tenant OAuth apps with offline_access and Files.ReadWrite.All permissions, and suspended more than 20 malicious OneDrive applications; Microsoft states no OneDrive vulnerability was involved [S1][S3]. ESET counted at least seven custom backdoors since September 2021, five newly named with a Creep suffix, able to log keystrokes, capture screenshots, use the webcam, exfiltrate files and run commands, with C2 over Dropbox, OneDrive and Mega [S2][S3]. ESET reports PapaCreep (discovered September 2022) as the first in C++, using plain TCP command channels [S2][S3]."
+  },
+  "campaigns": [
+    {"date": "2021-09", "name": "Earliest ESET-observed Israeli targeting", "summary": "ESET telemetry shows Israeli organizations targeted since at least September 2021, with custom Creep-family backdoors.", "sources": ["S2", "S3"]},
+    {"date": "2022-02", "name": "Microsoft-observed activity begins", "summary": "Microsoft observed POLONIUM activity from February 2022, mainly against Israeli critical manufacturing, IT and defense firms, including a supply-chain compromise of an Israeli cloud service provider.", "sources": ["S1"]},
+    {"date": "2022-06", "name": "Microsoft exposure and OneDrive disruption", "summary": "Microsoft published its analysis, suspended more than 20 malicious OneDrive applications, shipped detections and listed C2 indicators.", "sources": ["S1", "S3"]},
+    {"date": "2022-09", "name": "PapaCreep backdoor", "summary": "ESET discovered PapaCreep, a C++ backdoor, as the most recent tool in its reporting; activity was assessed as ongoing.", "sources": ["S2", "S3"]},
+    {"date": "2022-10", "name": "ESET publication of Creep backdoor family", "summary": "ESET published research on at least seven custom backdoors and the group's use of multiple cloud providers.", "sources": ["S2", "S3"]},
+    {"date": "2023-04", "name": "Rename to Plaid Rain", "summary": "Microsoft's taxonomy update renamed POLONIUM to Plaid Rain.", "sources": ["S1"]}
+  ],
+  "diamond": {
+    "adversary": "Lebanon-based operational group that Microsoft assesses coordinates with MOIS-affiliated actors [S1].",
+    "capability": "Custom PowerShell, MSIL and C++ Creep backdoors, plink tunnels, malicious OAuth apps and likely Fortinet CVE-2018-13379 exploitation [S1][S2][S3].",
+    "infrastructure": "Actor-owned OneDrive and Dropbox accounts (and Mega per ESET), IPv4 C2 endpoints, plink tunnel endpoints and AirVPN use [S1][S3].",
+    "victim": "Israeli critical manufacturing, IT, defense, law, aviation, media and insurance organizations, reached in part through a compromised cloud service provider [S1][S3].",
+    "socioPolitical": "Espionage against Israeli organizations, with Microsoft assessing coordination with Iranian MOIS-affiliated actors [S1][S3].",
+    "technology": "Internet-facing Fortinet VPN appliances, single-factor VPN accounts, service-provider trust relationships and consumer cloud storage services [S1]."
+  },
+  "gaps": [
+    "No cited reporting on activity after ESET's October 2022 publication. Searches for 2023 to 2025 activity returned only 2022 and renaming material; current status is unknown.",
+    "Dark Reading's article 'Iran Threatens Israel's Critical Infrastructure With Polonium Proxy' (date not confirmed) reportedly cites an Israel National Cyber Directorate warning of expansion to water and energy and a shift toward destructive attacks. The article could not be opened (fetch blocked), so this is unverified and not used above. It conflicts with ESET's no-destructive-tools observation from 2022 [S3].",
+    "Iran link rests on Microsoft's moderate-confidence assessment and a hand-off model Microsoft said was still being verified [S1]. Secondary commentary reportedly notes it is unclear who is behind the group; not independently verified.",
+    "ESET's original article, MITRE G1005 page, and CrowdStrike's INCENDIARY JACKAL profile could not be opened directly. ESET content is taken from search summaries and press coverage; CrowdStrike's own description and any other vendor aliases are unverified.",
+    "Vendor cluster boundaries: Microsoft's 20-plus victim count and ESET's dozen-plus count come from different telemetry and should not be merged.",
+    "Whether the Fortinet CVE-2018-13379 initial-access link is confirmed is unknown; Microsoft calls it suggestive only [S1]."
+  ],
+  "implications": {
+    "jipoe": "Analyst assessment derived from cited sources; validate before use. STEP 1: Key terrain is internet-facing VPN appliances (Fortinet in Microsoft's observations), managed service and cloud service providers with downstream customer access, and tenant OAuth app registration in Microsoft cloud environments [S1]. STEP 2: The group uses legitimate consumer cloud services (OneDrive, Dropbox, Mega) for C2 and exfiltration, so traffic to these services blends with normal use; Microsoft shipped detections and suspended apps in 2022 [S1][S3]. STEP 3: Template is VPN exploitation or provider compromise, then PowerShell or custom backdoor, then cloud-storage C2 and plink tunnels [S1][S3]. STEP 4: MLCOA is continued espionage against Israeli and regional defense-industrial and IT targets using Creep-family tooling [S1][S3]. MDCOA, an assessment rather than a sourced finding, is use of a compromised service provider to reach a defense contractor or partner network supporting coalition operations. Candidate indicators: multi-tenant OAuth apps holding only offline_access and Files.ReadWrite.All, workstation beaconing to graph.microsoft.com from unexpected hosts, unexpected plink usage, and single-factor VPN logins [S1].",
+    "jcc2": "Analyst assessment derived from cited sources; validate before use. (1) Situational awareness: track Microsoft and ESET updates, since sourced activity ends in 2022 and the current status is a gap [S1][S3]. (2) Authorities: OAuth app audits and cloud tenant hunts in partner or contractor environments require coordination with the owning organization and its provider. (3) Mission assurance: enforce MFA on all remote access and audit service provider and partner access [S1]. (4) Coordination: share indicators with allied and partner network defenders; Israeli-focused targeting makes partner reporting the main source of detail."
+  },
+  "sources": [
+    {"ref": "S1", "title": "Exposing POLONIUM activity and infrastructure targeting Israeli organizations (April 2023 update notes rename to Plaid Rain)", "publisher": "Microsoft Threat Intelligence", "date": "2022-06-02", "url": "https://www.microsoft.com/en-us/security/blog/?p=115518"},
+    {"ref": "S2", "title": "Polonium targets Israel with Creepy malware (seen via search summaries and ESET press coverage; article not opened)", "publisher": "ESET (WeLiveSecurity)", "date": "2022-10-11", "url": "https://www.welivesecurity.com/2022/10/11/polonium-targets-israel-creepy-malware/"},
+    {"ref": "S3", "title": "Researchers uncover custom backdoors used by Polonium hackers (reporting ESET research)", "publisher": "The Hacker News", "date": "2022-10", "url": "https://thehackernews.com/2022/10/researchers-uncover-custom-backdoors.html"},
+    {"ref": "S5", "title": "POLONIUM, G1005 (description, techniques and software)", "publisher": "MITRE ATT&CK", "date": "2026-07-31 (object modified)", "url": "https://attack.mitre.org/groups/G1005/"},
+    {"ref": "S6", "title": "Microsoft threat actor naming mapping (MicrosoftMapping.json)", "publisher": "Microsoft Threat Intelligence", "date": "2026-10-14 (retrieved)", "url": "https://github.com/microsoft/mstic/blob/master/PublicFeeds/ThreatActorNaming/MicrosoftMapping.json"}
+  ],
+  "aliasesAdd": []
+}

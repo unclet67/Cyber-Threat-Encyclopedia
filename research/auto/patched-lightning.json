@@ -1,0 +1,50 @@
+{
+  "identification": {
+    "summary": "Microsoft uses the Storm-#### label as a temporary designation for activity clusters still in development until origin or identity is established [S2]. A link between the name 'Patched Lightning' and 'Storm-0113' could not be confirmed in fact-check searches.",
+    "firstObserved": "",
+    "notes": "The 'Lightning' family name's meaning (origin or motivation) is unverified; do not infer country or motivation. Searches for 'Patched Lightning' and 'Storm-0113' returned no matching results."
+  },
+  "attribution": {
+    "sponsor": "",
+    "confidence": "",
+    "basis": ""
+  },
+  "objectives": "",
+  "targeting": {
+    "sectors": [],
+    "regions": [],
+    "notes": ""
+  },
+  "capabilities": {
+    "summary": ""
+  },
+  "campaigns": [],
+  "diamond": {
+    "adversary": "",
+    "capability": "",
+    "infrastructure": "",
+    "victim": "",
+    "socioPolitical": "",
+    "technology": ""
+  },
+  "gaps": [
+    "No open-source report was found describing Patched Lightning or Storm-0113 activity, targets, tooling or timeline.",
+    "The Patched Lightning to Storm-0113 mapping could not be verified; the primary Microsoft mapping file was not retrieved.",
+    "The meaning of the 'Lightning' family name in Microsoft's taxonomy is unverified; do not infer country or motivation.",
+    "Possible overlap with other vendors' cluster names is unknown."
+  ],
+  "implications": {
+    "jipoe": "",
+    "jcc2": ""
+  },
+  "sources": [
+    {
+      "ref": "S2",
+      "title": "How Microsoft names threat actors (reported via search result)",
+      "publisher": "Microsoft Learn",
+      "date": "2026-10",
+      "url": "https://learn.microsoft.com/microsoft-365/security/intelligence/microsoft-threat-actor-naming"
+    }
+  ],
+  "aliasesAdd": []
+}

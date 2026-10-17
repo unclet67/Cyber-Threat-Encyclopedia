@@ -1,0 +1,184 @@
+{
+  "identification": {
+    "summary": "Octo Tempest is Microsoft's name for a financially motivated collective of native English-speaking threat actors that Microsoft assessed in 2023 as one of the most dangerous financial criminal groups, with extensive technical depth and multiple hands-on-keyboard operators [S1]. Microsoft says it overlaps with research on 0ktapus, Scattered Spider and UNC3944 [S1]. The group began in early 2022 with SIM swaps against mobile telecom and BPO organizations, moved to data-theft extortion, then became an ALPHV/BlackCat affiliate in 2023 and, by 2025, deployed DragonForce ransomware against VMware ESX environments [S1][S2].",
+    "firstObserved": "Early 2022 (Microsoft) [S1].",
+    "notes": "Microsoft name: Octo Tempest. Microsoft's 2025 blog lists Scattered Spider, Muddled Libra, UNC3944 and 0ktapus as aliases [S2]; Google's GTIG ties UNC3944 to 0ktapus, Octo Tempest and Scattered Spider via overlap with public reporting [S3]. The encyclopedia record also carries Storm-0875 (Microsoft in-development designation) from Microsoft's naming mapping [S9]; the Microsoft blogs reviewed do not mention it [S2]. Microsoft describes 0ktapus/Scattered Spider/UNC3944 as overlapping research, not confirmed identity [S1]. Vendor cluster boundaries differ, and some incidents (for example the 2023 casino intrusions) are attributed to the group by press reporting rather than by Microsoft in the sources reviewed [S5]."
+  },
+  "attribution": {
+    "sponsor": "Not state-sponsored in the sources reviewed; Microsoft characterizes the actor as a financially motivated criminal collective [S1].",
+    "confidence": "Microsoft calls Octo Tempest one of the most dangerous financial criminal groups but states no formal confidence level in its 2023 profile [S1]. Criminal charges against individuals described in press coverage as Scattered Spider members are not Microsoft attribution, and the sources reviewed do not equate every defendant with Octo Tempest.",
+    "basis": "Microsoft Threat Intelligence and Defender Experts incident response observations [S1][S2]; Google GTIG observations for UNC3944 [S3]; reporting on a joint US/partner advisory update on Scattered Spider [S4]; press reporting on arrests [S7]."
+  },
+  "objectives": "Financial gain through cryptocurrency theft, data theft for extortion, and ransomware deployment [S1].",
+  "targeting": {
+    "sectors": [
+      "Mobile telecommunications and BPO (2022 SIM swapping) [S1]",
+      "Cable telecom, email and technology (late 2022 to early 2023) [S1]",
+      "Gaming and hospitality [S1]",
+      "Natural resources, consumer products, retail, managed service providers, manufacturing, law, technology, financial services [S1]",
+      "Retail, food services, hospitality and insurance (April to July 2025) [S2]",
+      "Airlines and transportation (mid-2025) [S2][S3]"
+    ],
+    "regions": [
+      "Global; Microsoft says the group compromises organizations across the globe without naming regions [S1]",
+      "North America (Google observed retail, airline, insurance and transportation targeting) [S3]"
+    ],
+    "notes": "Microsoft says the group typically concentrates on one industry for weeks or months before moving to another [S2]. Individuals were also targeted: high-net-worth accounts were taken over for cryptocurrency theft [S1]."
+  },
+  "capabilities": {
+    "summary": "Core tradecraft is social engineering: calls to help desks and administrators to reset passwords or change MFA methods, impersonation of employees (including new hires), SMS phishing to adversary-in-the-middle portals, purchase of credentials or session tokens, and SIM swaps via telecom/BPO access [S1]. Post-access, Microsoft observed Entra ID and Active Directory enumeration, credential theft with tools such as Mimikatz, NTDS.dit extraction (including snapshots of virtual domain controllers), federation abuse and forged SAML tokens, Okta Org2Org abuse, many legitimate RMM and tunneling tools (AnyDesk, ScreenConnect, ngrok, Tailscale and others), and exfiltration to anonymous file-hosting and cloud services [S1]. Ransomware use progressed from ALPHV/BlackCat (Windows, Linux and VMware ESXi) in 2023 to DragonForce with a focus on ESX hypervisors in 2025 [S1][S2]. In 2025 Microsoft saw a shift to compromising on-premises accounts and infrastructure first, then moving to cloud, with hybrid identity infrastructure such as Entra Connect a frequent target, plus ngrok, Chisel and AADInternals [S2]. Google reports UNC3944 using help-desk calls with personal data, targeting vSphere Admins groups, logging into vCenter without MFA, installing the Teleport remote access tool, copying domain controller disks offline, and deleting backups, then running a custom hypervisor-deployed encryptor (Google does not name the family) [S3]. Microsoft notes the group also taunted responders over Slack, Zoom and Teams and recorded calls with OtterAI [S1]."
+  },
+  "campaigns": [
+    {
+      "date": "2022",
+      "name": "SIM-swap and account-takeover operations",
+      "summary": "Microsoft reports activity from early 2022 against mobile telecom and BPO organizations to initiate SIM swaps, sold SIM swaps to other criminals and took over high-net-worth accounts to steal cryptocurrency.",
+      "sources": [
+        "S1"
+      ]
+    },
+    {
+      "date": "2022-11 to 2023-06",
+      "name": "Expansion to data-theft extortion",
+      "summary": "Microsoft reports expansion to cable telecom, email and technology organizations, and extortion of victims for stolen data, sometimes with physical threats.",
+      "sources": [
+        "S1"
+      ]
+    },
+    {
+      "date": "2023-06",
+      "name": "ALPHV/BlackCat affiliation and ransomware deployment",
+      "summary": "Microsoft reports the group became an ALPHV/BlackCat affiliate in mid-2023 and from June 2023 deployed ALPHV payloads for Windows and Linux, later focused mainly on VMware ESXi.",
+      "sources": [
+        "S1"
+      ]
+    },
+    {
+      "date": "2023-09",
+      "name": "MGM Resorts and Caesars intrusions (press attribution)",
+      "summary": "Press reporting describes a help-desk password-reset social engineering call leading to administrator access in MGM's Okta and Azure tenants, with reported ESXi encryption; Bloomberg via Reuters reported the same group hit MGM and Caesars. Authorities had not confirmed these attributions at the time of the reporting reviewed.",
+      "sources": [
+        "S5"
+      ]
+    },
+    {
+      "date": "2023-10-25",
+      "name": "Microsoft publishes Octo Tempest profile",
+      "summary": "Microsoft Threat Intelligence and Defender Experts publish a detailed TTP profile of the group.",
+      "sources": [
+        "S1"
+      ]
+    },
+    {
+      "date": "2025-04 to 2025-07",
+      "name": "Retail, food services, hospitality and insurance wave; DragonForce",
+      "summary": "Microsoft reports the group hit retail, food services, hospitality and insurance between April and July 2025 and deployed DragonForce ransomware focusing on VMware ESX.",
+      "sources": [
+        "S2"
+      ]
+    },
+    {
+      "date": "2025-07",
+      "name": "Airline and transportation targeting; UK arrests",
+      "summary": "Microsoft reports airlines were being impacted in the weeks before 16 July 2025; Google reports a UNC3944 campaign across retail, airline, insurance and transportation in North America. In July 2025 the UK NCA arrested four people in connection with the April 2025 M&S, Co-op and Harrods attacks; press reports link them to Scattered Spider but the NCA did not name the group.",
+      "sources": [
+        "S2",
+        "S3",
+        "S7"
+      ]
+    },
+    {
+      "date": "2025-07-29",
+      "name": "Updated joint advisory on Scattered Spider",
+      "summary": "Per coverage of the advisory (not the primary document), CISA and partners updated advisory AA23-320A with FBI investigative tactics through June 2025, noting recent DragonForce deployment.",
+      "sources": [
+        "S4"
+      ]
+    }
+  ],
+  "diamond": {
+    "adversary": "Native English-speaking financially motivated collective with multiple hands-on-keyboard operators; some individuals have been arrested per press reporting [S1][S7].",
+    "capability": "Help-desk and SMS social engineering, AiTM phishing, SIM swapping, identity-provider and federation abuse, legitimate RMM/tunneling tools, hypervisor-level ransomware (ALPHV/BlackCat, then DragonForce) [S1][S2][S3].",
+    "infrastructure": "Attacker-controlled AiTM phishing domains, legitimate RMM and tunneling services (ngrok, Chisel, Tailscale, Teleport), anonymous file-hosting and cloud storage for exfiltration, and leak sites for extortion [S1][S2][S3].",
+    "victim": "Telecom/BPO, gaming, hospitality, retail, insurance, airlines, MSPs and other large enterprises with hybrid identity and VMware estates [S1][S2][S3].",
+    "socioPolitical": "Profit-driven; no state sponsor identified in the sources reviewed. Microsoft notes affiliation with a ransomware-as-a-service operation was notable given Eastern European groups historically avoided English-speaking criminals [S1].",
+    "technology": "Weak help-desk identity verification, MFA reset processes, SMS-based and non-phishing-resistant MFA, hybrid Entra/AD identity, and VMware vCenter/ESX hosts without MFA or EDR visibility [S1][S2][S3]."
+  },
+  "gaps": [
+    "Microsoft's 2023 and 2025 blogs state no formal confidence levels; no government attribution of the group to a state exists in the sources reviewed [S1][S2].",
+    "Relationship between Octo Tempest and the Storm-0875 designation is only stated in Microsoft's naming mapping; the blogs reviewed do not discuss it [S2][S9].",
+    "The primary CISA/FBI advisory AA23-320A and its July 2025 update and NCA statements could not be opened; they are cited only through secondary coverage [S4][S7].",
+    "Press attribution of the MGM and Caesars incidents (2023) and the M&S/Co-op/Harrods incidents (2025) to this group is not confirmed by Microsoft in the sources reviewed [S5][S7].",
+    "Google does not name the ransomware used in its vSphere-focused UNC3944 reporting, so its link to DragonForce is unverified [S3].",
+    "Cluster overlap: 0ktapus, Scattered Spider, UNC3944 and Muddled Libra are tracked by different vendors and may not map one-to-one [S1][S2][S3].",
+    "Post-arrest and post-sentencing operational tempo of the group, and the roles of arrested individuals in specific intrusions, are unverified."
+  ],
+  "implications": {
+    "jipoe": "Analyst assessment derived from cited sources; validate before use. STEP 1: Key terrain is the identity layer (help desk, MFA reset workflow, Entra ID/Okta, AD FS and Entra Connect) and the virtualization layer (vCenter and ESX hosts) [S1][S2][S3]. STEP 2: The actor concentrates on one industry for weeks to months, then pivots, so campaign focus shifts quickly [S2]. STEP 3: Template is a phone or SMS social-engineering contact to a help desk, credential and MFA reset, AD and cloud reconnaissance, RMM and tunnel tools, hypervisor access, data exfiltration, then ESX-level ransomware [S1][S2][S3]. STEP 4: MLCOA is continued extortion and ransomware against commercial enterprises in whichever sector the group is working [S2]. MDCOA is the same help-desk and hypervisor technique applied to a defense-industrial-base or DoD-supporting contractor, MSP or telecom provider, disrupting mission-supporting services; this is an analyst projection, not sourced reporting, based on the group's MSP, telecom and BPO targeting [S1]. Candidate indicators: unusual help-desk password or MFA reset requests, new MFA methods or removed FIDO2 tokens, inbox rules deleting vendor mail, new federated domains, unexpected RMM or tunneling tools (ngrok, Chisel, Teleport), vCenter logins without MFA and VCSA reboots, domain controller disks attached to other VMs, and deleted backup jobs [S1][S2][S3].",
+    "jcc2": "Analyst assessment derived from cited sources; validate before use. (1) Situational awareness: share help-desk social-engineering indicators and hypervisor-level telemetry across the enterprise; the actor's activity can precede ransomware by short intervals, so identity and vCenter logging should feed the common operating picture [S1][S3]. (2) Authorities: verify who may order emergency credential resets, account disablement and hypervisor isolation before an incident; the reviewed sources do not address DoD authorities, so this is a planning gap. (3) Mission assurance: protect and test offline backups and recovery of virtualization infrastructure, since the actor deletes backups and encrypts at the hypervisor [S3]. (4) Coordination: coordinate with help-desk and service providers, MSPs and telecom partners, and with law enforcement and DC3-type channels for contractor impact; these actors target outsourced service providers [S1]."
+  },
+  "sources": [
+    {
+      "ref": "S1",
+      "title": "Octo Tempest crosses boundaries to facilitate extortion, encryption, and destruction",
+      "publisher": "Microsoft Threat Intelligence",
+      "date": "2023-10-25",
+      "url": "https://www.microsoft.com/en-us/security/blog/2023/10/25/octo-tempest-crosses-boundaries-to-facilitate-extortion-encryption-and-destruction/"
+    },
+    {
+      "ref": "S2",
+      "title": "Protecting customers from Octo Tempest attacks across multiple industries",
+      "publisher": "Microsoft Defender Security Research Team",
+      "date": "2025-07-16",
+      "url": "https://microsoft.com/en-us/security/blog/2025/07/16/protecting-customers-from-octo-tempest-attacks-across-multiple-industries"
+    },
+    {
+      "ref": "S3",
+      "title": "Defending Your VMware vSphere Estate from UNC3944",
+      "publisher": "Google Cloud / Mandiant (GTIG)",
+      "date": "2025-07-23",
+      "url": "https://cloud.google.com/blog/topics/threat-intelligence/defending-vsphere-from-unc3944/"
+    },
+    {
+      "ref": "S4",
+      "title": "CISA and Partners Release Updated Advisory on Scattered Spider Group (bulletin on advisory AA23-320A update)",
+      "publisher": "CISA via GovDelivery",
+      "date": "2025-07-29",
+      "url": "https://content.govdelivery.com/accounts/USDHSCISA/bulletins/3eb9139"
+    },
+    {
+      "ref": "S5",
+      "title": "MGM Resorts ESXi servers allegedly encrypted in ransomware attack (and related MGM/Caesars press reporting)",
+      "publisher": "BleepingComputer",
+      "date": "2023-09",
+      "url": "https://www.bleepingcomputer.com/news/security/mgm-resorts-esxi-servers-allegedly-encrypted-in-ransomware-attack/"
+    },
+    {
+      "ref": "S7",
+      "title": "Scattered Spider arrests UK NCA Marks and Spencer (reporting NCA arrests)",
+      "publisher": "CyberScoop",
+      "date": "2025-07",
+      "url": "https://cyberscoop.com/scattered-spider-arrests-uk-nca-marks-and-spencer/"
+    },
+    {
+      "ref": "S8",
+      "title": "Scattered Spider, G1015 (description, techniques and software)",
+      "publisher": "MITRE ATT&CK",
+      "date": "2026-09-11 (object modified)",
+      "url": "https://attack.mitre.org/groups/G1015/"
+    },
+    {
+      "ref": "S9",
+      "title": "Microsoft threat actor naming mapping (MicrosoftMapping.json)",
+      "publisher": "Microsoft Threat Intelligence",
+      "date": "2026-10-14 (retrieved)",
+      "url": "https://github.com/microsoft/mstic/blob/master/PublicFeeds/ThreatActorNaming/MicrosoftMapping.json"
+    }
+  ],
+  "aliasesAdd": [
+    {
+      "name": "Muddled Libra",
+      "vendor": "Other / unspecified (listed as alias in Microsoft 2025 blog)"
+    }
+  ]
+}
