@@ -1,0 +1,55 @@
+{
+  "identification": {
+    "summary": "Storm-2561 is a financially motivated cybercriminal actor tracked by Microsoft, described as active since at least May 2025 and known for malware distribution via SEO poisoning and impersonation of well-known software vendors [S1][S2]. In mid-January 2026 Microsoft Defender Experts identified a credential-theft campaign using fake enterprise VPN clients that Microsoft Threat Intelligence attributes to Storm-2561 [S1][S2].",
+    "firstObserved": "Microsoft reports the actor as active since at least May 2025 [S1].",
+    "notes": "Microsoft name: Storm-2561 (group in development; no other names listed in Microsoft's mapping) [S7]. Microsoft's report names no aliases and makes no link to ransomware or to other named clusters [S1]. SonicWall separately reported a trojanized NetExtender installer; secondary sources reviewed do not clearly tie that incident to Storm-2561, so it is not merged here [S4]."
+  },
+  "attribution": {
+    "sponsor": "Not state-sponsored per available sources; Microsoft describes Storm-2561 as a cybercriminal threat actor [S2][S1].",
+    "confidence": "Microsoft Threat Intelligence attributes the January 2026 fake-VPN campaign to Storm-2561 (attribution statement by Microsoft; no confidence level stated in coverage reviewed) [S2].",
+    "basis": "Microsoft Defender Experts observation of the campaign and Microsoft Threat Intelligence tracking [S1][S2]. Code-signing certificate issued to 'Taiyuan Lihua Near Information Technology Co., Ltd.' (since revoked) is a campaign artifact, not an attribution to a state [S1]."
+  },
+  "objectives": "Financial motivation per Microsoft; the campaign aims to collect and exfiltrate VPN credentials and VPN configuration data from users seeking enterprise VPN clients [S1][S2]. Downstream monetization of stolen credentials is not described in the sources reviewed.",
+  "targeting": {
+    "sectors": [],
+    "regions": [],
+    "notes": "Microsoft's report does not identify specific victims, organizations or regions [S1]. Lures target users searching for enterprise VPN software from Pulse Secure/Ivanti, Fortinet/FortiClient, Cisco Secure Client, Check Point, SonicWall NetExtender, Sophos Connect, WatchGuard and GlobalProtect (Palo Alto Networks) [S1]. Lure domains include German (.de) and Dutch (.nl) top-level domains, which is not evidence of victim geography [S1]."
+  },
+  "capabilities": {
+    "summary": "SEO poisoning places spoofed vendor sites high in results for queries such as 'Pulse VPN download' or 'Pulse Secure client' [S1]. Victims are redirected to a ZIP (VPN-CLIENT.zip) in a GitHub release (repository 'latestver/vpn', since taken down) holding an MSI that mimics Pulse Secure [S1]. The MSI and DLLs were signed with a legitimate-looking certificate (since revoked) to avoid Windows warnings and some allowlisting [S1]. dwmapi.dll acts as an in-memory loader running embedded shellcode that loads inspector.dll, a variant of the Hyrax infostealer [S1]. Files are placed in %CommonFiles%\\Pulse Secure and persistence uses the RunOnce registry key [S1]. The malware shows a fake VPN sign-in dialog, then a fake error and directs the user to the legitimate vendor site, hiding the compromise; inspector.dll reads stored VPN configuration from C:\\ProgramData\\Pulse Secure\\ConnectionStore\\ and exfiltrates it [S1]. Reported C2 includes 194.76.226[.]93:8080 and domains myconnection[.]pro and v_pn-connection[.]pro [S1]. One secondary source says the installers use EV code-signing certificates issued to Chinese-registered companies; precise relationship to the actor not publicly confirmed [S3]."
+  },
+  "campaigns": [
+    {"date": "2025-05", "name": "Start of reported activity", "summary": "Microsoft reports Storm-2561 as active since at least May 2025, known for SEO-poisoning malware distribution and vendor impersonation. Specific earlier campaigns are not detailed in sources reviewed [S1][S2].", "sources": ["S1", "S2"]},
+    {"date": "2026-01", "name": "Fake enterprise VPN client credential theft", "summary": "In mid-January 2026 Microsoft Defender Experts identified SEO-poisoned sites delivering signed trojan VPN installers hosted on GitHub that side-load a Hyrax stealer variant to steal VPN credentials [S1][S2].", "sources": ["S1", "S2"]},
+    {"date": "2026-03-12", "name": "Microsoft public report", "summary": "Microsoft published its analysis; the GitHub repository was taken down and the signing certificate revoked [S1]. Trade press followed (CSO, BleepingComputer, SecurityWeek) [S2][S5][S6].", "sources": ["S1", "S2", "S5", "S6"]}
+  ],
+  "diamond": {
+    "adversary": "Financially motivated cybercriminal actor tracked by Microsoft as Storm-2561 [S1][S2].",
+    "capability": "SEO poisoning, vendor impersonation, signed MSI trojan, DLL sideloading, in-memory shellcode loader, Hyrax infostealer variant, fake error cover-up, RunOnce persistence [S1].",
+    "infrastructure": "Spoofed vendor domains (e.g. forticlient-vpn[.]de, fortinet-vpn[.]com, ivanti-vpn[.]org, sophos-connect[.]org, sonicwall-netextender[.]nl), GitHub-hosted ZIP, C2 at 194.76.226[.]93:8080 and myconnection[.]pro / v_pn-connection[.]pro [S1].",
+    "victim": "Individuals and employees searching for enterprise VPN clients; specific victims and sectors not disclosed [S1].",
+    "socioPolitical": "Criminal monetization; no geopolitical objective stated in sources reviewed [S1][S2].",
+    "technology": "Windows endpoints, search engine ranking, GitHub release hosting, code-signing trust, and enterprise VPN clients from the eight spoofed vendors [S1]."
+  },
+  "gaps": [
+    "Victim count, sectors, geography and downstream use of stolen VPN credentials (access brokering, ransomware) are not disclosed in Microsoft's report [S1].",
+    "Activity between May 2025 and January 2026 is not detailed in sources reviewed; Microsoft cites a related trojanized SonicWall NetExtender analysis, but whether it is Storm-2561 is not confirmed by secondary sources found [S1][S4].",
+    "No Malpedia, MITRE or other vendor-cluster mapping could be opened (malpedia.caad.fkie.fraunhofer.de and cert.gov.az fetches failed); overlaps with other clusters are unverified.",
+    "CSO, SecurityWeek, BleepingComputer, CSA and Ampcus were seen only as search-result summaries, not opened; exact publication dates are approximate (month level).",
+    "Operator nationality or location is not stated; the Chinese-registered signing certificate entities are not evidence of operator origin."
+  ],
+  "implications": {
+    "jipoe": "Analyst assessment derived from cited sources; validate before use. STEP 1: Remote-access VPN clients and the personnel who download them are key terrain; VPN credentials and stored connection configuration provide direct network entry. STEP 2: The actor exploits user trust in search results, GitHub and signed binaries rather than software vulnerabilities, so patching does not close the gap [S1]. STEP 3: Template is SEO-poisoned lure, GitHub-hosted signed MSI, DLL sideloading, credential theft, fake error [S1]. STEP 4: MLCOA is continued criminal credential harvesting from users of enterprise VPN products (financial motive) [S1][S2]. MDCOA, an analytic extrapolation not stated in sources, is stolen VPN credentials reused against defense contractors or DoD-adjacent organizations by this actor or a buyer. Candidate indicators: MSI or ZIP downloads from unofficial VPN domains, Pulse.exe or other vendor binaries under %CommonFiles%\\Pulse Secure launched via RunOnce, dwmapi.dll/inspector.dll loads, reads of the Pulse ConnectionStore folder, outbound to 194.76.226[.]93:8080 [S1].",
+    "jcc2": "Analyst assessment derived from cited sources; validate before use. (1) Situational awareness: feed Microsoft IOCs into endpoint and proxy monitoring and watch for VPN credential use from new locations. (2) Authorities: blocking domains and revoking credentials on contractor or mission-partner networks depends on owner authorities; coordinate through DC3 and DIB CS channels. (3) Mission assurance: obtain VPN clients only from vendor or internal software repositories, enforce MFA, avoid browser-stored credentials, and use ASR/allowlisting controls recommended by Microsoft [S1]. (4) Coordination: user awareness messaging on search-result download risk and rapid credential reset procedures after suspected fake-client installation."
+  },
+  "sources": [
+    {"ref": "S1", "title": "Storm-2561 uses SEO poisoning to distribute fake VPN clients for credential theft", "publisher": "Microsoft Threat Intelligence", "date": "2026-03-12", "url": "https://microsoft.com/en-us/security/blog/2026/03/12/storm-2561-uses-seo-poisoning-to-distribute-fake-vpn-clients-for-credential-theft"},
+    {"ref": "S2", "title": "Storm-2561 targets enterprise VPN users with SEO poisoning, fake clients (coverage of Microsoft report)", "publisher": "CSO Online", "date": "2026-03", "url": "https://www.csoonline.com/article/4144783/storm-2561-targets-enterprise-vpn-users-with-seo-poisoning-fake-clients.html"},
+    {"ref": "S3", "title": "Storm-2561: Signed VPN Impersonation via SEO Poisoning (research note)", "publisher": "Cloud Security Alliance Labs", "date": "2026-03", "url": "https://labs.cloudsecurityalliance.org/research/csa-research-note-storm2561-signed-vpn-impersonation-seo-cre/"},
+    {"ref": "S4", "title": "Storm-2561's Credential Harvesting via Fake VPN Installers (advisory)", "publisher": "Ampcus Cyber", "date": "2026-03", "url": "https://www.ampcuscyber.com/shadowopsintel/storm-2561-credential-harvesting-via-fake-vpn-installers/"},
+    {"ref": "S5", "title": "Fake enterprise VPN downloads used to steal company credentials", "publisher": "BleepingComputer", "date": "2026-03", "url": "https://www.bleepingcomputer.com/news/security/fake-enterprise-vpn-downloads-used-to-steal-company-credentials/amp/"},
+    {"ref": "S6", "title": "Threat actor targeting VPN users in new credential theft campaign", "publisher": "SecurityWeek", "date": "2026-03", "url": "https://www.securityweek.com/threat-actor-targeting-vpn-users-in-new-credential-theft-campaign/"},
+    {"ref": "S7", "title": "Microsoft threat actor naming mapping (MicrosoftMapping.json)", "publisher": "Microsoft Threat Intelligence", "date": "2026-10-14", "url": "https://github.com/microsoft/mstic/blob/master/PublicFeeds/ThreatActorNaming/MicrosoftMapping.json"}
+  ],
+  "aliasesAdd": []
+}

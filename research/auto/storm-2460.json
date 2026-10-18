@@ -1,0 +1,94 @@
+{
+  "identification": {
+    "summary": "Storm-2460 is a Microsoft 'Storm' designation for an actor that Microsoft says exploited the Windows Common Log File System (CLFS) zero-day CVE-2025-29824 in a small number of attacks and used the PipeMagic malware to deploy ransomware [S1]. Microsoft attributes the exploitation activity to Storm-2460 [S1]. The Storm- prefix marks a group still in development, per the Microsoft mapping entry [S2].",
+    "firstObserved": "Microsoft published the Storm-2460 reporting on 2025-04-08, the day the CVE-2025-29824 fix shipped [S1]. Earlier start date of the cluster is not stated in the sources gathered.",
+    "notes": "The imported alias 'Lumma Stealer' comes from the Microsoft mapping file [S2]. Searches found secondary reporting that Microsoft tracks the Lumma developer/operator as Storm-2477, and no source links Storm-2460 to Lumma, so the alias is not carried forward (see gaps). PipeMagic is a separate malware family documented by ESET before the Microsoft report [S5]; reporting on PipeMagic by other vendors is not the same as Storm-2460 attribution."
+  },
+  "attribution": {
+    "sponsor": "",
+    "confidence": "Microsoft states 'Microsoft is attributing the exploitation activity to Storm-2460'; the article gives no explicit confidence level [S1]. No government attribution found.",
+    "basis": "Microsoft telemetry and incident observation of CLFS exploitation followed by PipeMagic and ransomware activity [S1]."
+  },
+  "objectives": "Ransomware deployment: Microsoft says Storm-2460 used PipeMagic to deploy ransomware after CLFS privilege escalation [S1].",
+  "targeting": {
+    "sectors": [
+      "Information technology (United States)",
+      "Real estate (United States)",
+      "Financial (Venezuela)",
+      "Software (Spain)",
+      "Retail (Saudi Arabia)"
+    ],
+    "regions": [
+      "United States",
+      "Venezuela",
+      "Spain",
+      "Saudi Arabia"
+    ],
+    "notes": "Microsoft describes a small number of targets in these sectors and countries [S1]."
+  },
+  "capabilities": {
+    "summary": "Microsoft reports a zero-day elevation-of-privilege exploit for CVE-2025-29824 in the CLFS kernel driver, run in memory from a dllhost.exe process; it leaked kernel addresses with NtQuerySystemInformation and used RtlSetAllBits to overwrite the process token [S1]. Windows 11 24H2 was not affected by the observed exploitation [S1]. Microsoft did not determine initial access; it observed certutil downloading a malicious MSBuild file from a compromised legitimate third-party site, which decrypted and ran PipeMagic via the EnumCalendarInfoA callback [S1]. Post-exploitation included injection into winlogon.exe and LSASS dumping with procdump [S1]. Ransomware activity used a random per-device file extension, the note !_READ_ME_REXX2_!.txt, and recovery-inhibiting commands (bcdedit, wbadmin, wevtutil); Microsoft obtained no ransomware sample and noted one ransom-note .onion domain tied to RansomEXX [S1]. PipeMagic is a plugin-based backdoor first discovered in 2022 and seen by ESET with a Win32k zero-day (CVE-2025-24983) from March 2023 [S5]; whether Storm-2460 operated those earlier uses is not stated."
+  },
+  "campaigns": [
+    {
+      "date": "2025-04",
+      "name": "CLFS zero-day exploitation and PipeMagic ransomware",
+      "summary": "Microsoft reports Storm-2460 exploiting CVE-2025-29824 against a small number of targets in the US (IT, real estate), Venezuela (financial), Spain (software) and Saudi Arabia (retail), using PipeMagic and then ransomware; patch released 2025-04-08 [S1].",
+      "sources": [
+        "S1"
+      ]
+    },
+    {
+      "date": "2025-03",
+      "name": "PipeMagic seen with Win32k zero-day (related malware, not attributed)",
+      "summary": "Reporting on ESET findings says CVE-2025-24983 was exploited from March 2023 and delivered through PipeMagic; Microsoft patched it in March 2025. Link to Storm-2460 is not stated [S5].",
+      "sources": [
+        "S5"
+      ]
+    }
+  ],
+  "diamond": {
+    "adversary": "Storm-2460, a Microsoft group in development; sponsor and nationality unknown [S1][S2].",
+    "capability": "CVE-2025-29824 CLFS zero-day, PipeMagic backdoor, MSBuild-based loader, certutil download, procdump LSASS theft, ransomware [S1].",
+    "infrastructure": "A compromised legitimate third-party website hosting the MSBuild payload and a PipeMagic C2 domain on Azure cloudapp (disabled by Microsoft) [S1].",
+    "victim": "Small number of organizations in IT, real estate, finance, software and retail in the US, Venezuela, Spain and Saudi Arabia [S1].",
+    "socioPolitical": "",
+    "technology": "Windows systems other than Windows 11 24H2 with the CLFS driver unpatched before 2025-04-08 [S1]."
+  },
+  "gaps": [
+    "Naming conflict: the Microsoft mapping lists 'Lumma Stealer' as an alias of Storm-2460 [S2], but no source gathered links Storm-2460 to Lumma; secondary reporting names Storm-2477 as the Lumma operator. The alias appears erroneous or unexplained; verify against Microsoft before use.",
+    "Initial access vector is undetermined [S1].",
+    "Sponsor, nationality and long-term identity of Storm-2460 are not stated in the sources gathered; link to RansomEXX operators is only suggested by a ransom-note domain [S1].",
+    "Relationship between Storm-2460 and the PipeMagic operators described by ESET is not established in the sources gathered [S5].",
+    "ESET details rely on secondary coverage [S5].",
+    "No ransomware sample was recovered by Microsoft [S1]; post-April 2025 Storm-2460 activity not found."
+  ],
+  "implications": {
+    "jipoe": "Analyst assessment derived from cited sources; validate before use. STEP 1: Unpatched Windows endpoints and servers in commercial and contractor networks are key terrain, since the exploit gives a standard user SYSTEM rights [S1]. STEP 2: Storm-2460 used a zero-day and living-off-the-land tools (certutil, MSBuild, procdump) against a few targets across several regions, so it is a capable but financially oriented ransomware-linked actor, not a demonstrated state actor [S1]. STEP 3: Observed sequence is staged MSBuild payload from a compromised site, PipeMagic, CLFS privilege escalation, LSASS dump, then ransomware [S1]. STEP 4: MLCOA is continued opportunistic ransomware intrusions against commercial entities, using whatever privilege-escalation flaw is available. MDCOA is use of a similar zero-day against defense industrial base or supplier networks to disrupt logistics. Candidate indicators: certutil fetching .xml/MSBuild files, dllhost.exe launching with unusual arguments, C:\\ProgramData\\SkyPDF\\PDUDrv.blf, procdump targeting lsass, and bcdedit/wbadmin/wevtutil recovery-inhibition commands [S1].",
+    "jcc2": "Analyst assessment derived from cited sources; validate before use. (1) Situational awareness: track Windows privilege-escalation zero-days and patch status on non-24H2 systems, and share indicators with supporting CSSPs [S1]. (2) Authorities: ransomware against contractors is mostly a civil and law-enforcement matter, so coordinate reporting through DC3 and DIB channels rather than assuming a military response. (3) Mission assurance: protect backups and recovery paths because the actor disables recovery and clears logs [S1]. (4) Coordination: deconflict naming with Microsoft and ESET because PipeMagic reporting is not confirmed as Storm-2460 [S5]."
+  },
+  "sources": [
+    {
+      "ref": "S1",
+      "title": "Exploitation of CLFS zero-day leads to ransomware activity",
+      "publisher": "Microsoft Threat Intelligence",
+      "date": "2025-04-08",
+      "url": "https://www.microsoft.com/en-us/security/blog/2025/04/08/exploitation-of-clfs-zero-day-leads-to-ransomware-activity/"
+    },
+    {
+      "ref": "S2",
+      "title": "Microsoft threat actor naming mapping (MicrosoftMapping.json)",
+      "publisher": "Microsoft Threat Intelligence",
+      "date": "2026-10-14 (retrieved)",
+      "url": "https://github.com/microsoft/mstic/blob/master/PublicFeeds/ThreatActorNaming/MicrosoftMapping.json"
+    },
+    {
+      "ref": "S5",
+      "title": "Urgent: Microsoft patches 57 security flaws (reporting ESET findings on CVE-2025-24983 and PipeMagic)",
+      "publisher": "The Hacker News",
+      "date": "2025-03",
+      "url": "https://thehackernews.com/2025/03/urgent-microsoft-patches-57-security.html"
+    }
+  ],
+  "aliasesAdd": []
+}

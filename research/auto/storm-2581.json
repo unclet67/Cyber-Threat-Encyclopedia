@@ -1,0 +1,81 @@
+{
+  "identification": {
+    "summary": "Storm-2581 is a Microsoft-assigned name for a financially motivated actor; Microsoft's naming mapping lists UNC6040 (Mandiant / Google TI) as an alias [S1]. Google Threat Intelligence Group describes UNC6040 as a financially motivated cluster specializing in voice phishing (vishing) to compromise Salesforce instances for data theft [S2]. No Microsoft report describing Storm-2581 was found in searches, so the profile below is built from Google, FBI-republication and press reporting on UNC6040 and assumes the Microsoft mapping is accurate [S1].",
+    "firstObserved": "FBI FLASH (as republished by AHA) says UNC6040 has relied on vishing since October 2024 [S3]. Google published its first public report on 2025-06-04 [S2].",
+    "notes": "Only the Microsoft mapping file links Storm-2581 to UNC6040 [S1]. UNC6240 (the extortion activity that follows UNC6040 intrusions) and UNC6395 (Salesloft Drift OAuth token theft) are separate Google/Mandiant clusters and are not merged here [S2][S3]. Press and criminal personas (ShinyHunters, Scattered LAPSUS$ Hunters) overlap in reporting but are not confirmed to be the same as UNC6040 [S2][S4]."
+  },
+  "attribution": {
+    "sponsor": "No state sponsor. Google describes UNC6040 as financially motivated [S2].",
+    "confidence": "Google states that the delay between intrusion and extortion suggests UNC6040 may have partnered with a second actor that monetizes stolen data, presented as a possibility [S2]. Google also states that shared infrastructure and TTPs with 'The Com' are plausibly due to actors in the same communities, not a confirmed direct operational relationship [S2]. The extortion actor (UNC6240) claims to be ShinyHunters [S2].",
+    "basis": "Google Threat Intelligence Group investigation of vishing intrusions and follow-on extortion [S2]; FBI FLASH-20250912-001 names UNC6040 as a cyber criminal group compromising Salesforce instances (known here only through AHA republication and press coverage) [S3]."
+  },
+  "objectives": "Financial gain through large-scale theft of data from victims' Salesforce environments, followed by extortion (bitcoin demanded within 72 hours in observed cases) [S2].",
+  "targeting": {
+    "sectors": ["Hospitality", "Retail", "Education", "Insurance", "Technology"],
+    "regions": ["Americas", "Europe"],
+    "notes": "Google says targets are primarily English-speaking employees at multinational companies, with IT-support impersonation as the pretext [S2]. A Google analyst quoted by The Register put the initial campaign at approximately 20 organizations in hospitality, retail, education and other sectors across the Americas and Europe [S5]. Press named later victims including Qantas, Chanel, Allianz Life and Farmers Insurance, per SalesforceBen coverage of the FBI FLASH [S3]; link of each named victim to UNC6040 specifically is as reported by that coverage. Google's own corporate Salesforce instance was affected in June 2025, with data limited to basic, largely public business information [S2]. Insurance and Technology sector entries rest on press-reported victims [S3]."
+  },
+  "capabilities": {
+    "summary": "UNC6040 relies on social engineering rather than software vulnerabilities; Google reports all observed cases manipulated end users and none exploited a Salesforce flaw [S2]. Operators call employees posing as IT support and guide them to approve a malicious connected app, often a modified Salesforce Data Loader with different branding (for example 'My Ticket Portal'), by entering a connection code [S2]. Victims were also directed to an Okta phishing panel to give credentials and MFA codes, and harvested credentials were used to reach Okta and Microsoft 365 [S2]. Google observed an evolution from stock Data Loader to custom Python scripts and from webmail-registered Salesforce trial accounts to compromised accounts of unrelated organizations [S2]. Initial calls used Mullvad VPN IPs or Tor, and automated data collection used Tor [S2]. The FBI FLASH reportedly also cites OAuth token approval and provides IOCs (IPs, URLs, user agents), which were not retrieved here [S3]."
+  },
+  "campaigns": [
+    {
+      "date": "2024-10",
+      "name": "Vishing against Salesforce users begins",
+      "summary": "FBI FLASH reportedly says UNC6040 operators have used IT-support vishing since October 2024 [S3].",
+      "sources": ["S3"]
+    },
+    {
+      "date": "2025-06-04",
+      "name": "Google GTIG public report on UNC6040 and UNC6240",
+      "summary": "Google disclosed UNC6040 vishing intrusions into Salesforce instances and the follow-on extortion tracked as UNC6240, which claims to be ShinyHunters and sometimes acts months after theft; Google warned a data leak site might be prepared [S2]. A Google analyst put affected organizations at about 20 [S5].",
+      "sources": ["S2", "S5"]
+    },
+    {
+      "date": "2025-06",
+      "name": "Google corporate Salesforce instance affected",
+      "summary": "A Google Salesforce instance holding SMB contact information and notes was accessed; Google said data was basic, largely public business information and completed notifications by 2025-08-08 [S2].",
+      "sources": ["S2"]
+    },
+    {
+      "date": "2025-09-12",
+      "name": "FBI FLASH on UNC6040 and UNC6395",
+      "summary": "FBI issued FLASH-20250912-001 (TLP:CLEAR) on UNC6040 and UNC6395 compromising Salesforce instances with IOCs; UNC6395 used stolen Salesloft Drift OAuth tokens in August 2025, a distinct cluster [S3].",
+      "sources": ["S3"]
+    },
+    {
+      "date": "2025-10",
+      "name": "Salesforce-themed leak site",
+      "summary": "Press reported that a group called Scattered LAPSUS$ Hunters launched a leak site in early October 2025 listing 39 victims tied to the Salesloft Drift integration, with an October 10 payment deadline and unverified claims of about 1 billion records; Dark Reading says Google tracks this activity as UNC6040 and UNC6395, which conflicts with Google's separation of clusters, so the UNC6040 link is unresolved [S4].",
+      "sources": ["S4"]
+    }
+  ],
+  "diamond": {
+    "adversary": "Financially motivated cluster tracked by Google as UNC6040, mapped by Microsoft to Storm-2581; possibly partnered with an extortion actor (UNC6240) claiming ShinyHunters, with plausible community overlap with The Com [S1][S2].",
+    "capability": "Voice phishing under IT-support pretext, malicious or modified Salesforce Data Loader connected apps, Okta phishing panel, custom Python data-extraction scripts [S2].",
+    "infrastructure": "Mullvad VPN and Tor for calls and automated collection; Okta phishing panel co-hosted with Salesforce access infrastructure; extortion emails from tuta.com addresses (shinycorp, shinygroup) [S2].",
+    "victim": "Employees and Salesforce tenants of multinational, English-speaking organizations in hospitality, retail, education and other sectors in the Americas and Europe [S2][S5].",
+    "socioPolitical": "Cybercriminal ecosystem with English-speaking youth community overlap (The Com) as assessed plausible by Google; ShinyHunters branding used for pressure [S2].",
+    "technology": "Salesforce (connected apps, Data Loader, API), Okta, Microsoft 365, Workplace [S2]."
+  },
+  "gaps": [
+    "No Microsoft Threat Intelligence report on Storm-2581 was found; the mapping to UNC6040 rests only on the Microsoft naming file [S1].",
+    "FBI FLASH-20250912-001 was not opened directly; details come from AHA republication and press summaries [S3].",
+    "The Hacker News and The Register pages could not be fetched; Register and Dark Reading details come from search snippets only [S4][S5].",
+    "Relationship between UNC6040, UNC6240, ShinyHunters and Scattered LAPSUS$ Hunters is unresolved; press equates them while Google separates clusters [S2][S4].",
+    "Total victim count, ransoms paid and any activity after October 2025 are not established in the sources gathered.",
+    "No Mandiant primary report was retrieved."
+  ],
+  "implications": {
+    "jipoe": "Analyst assessment derived from cited sources; validate before use. Step 1-2 (environment and effects): the threat acts against cloud SaaS tenants and identity providers, not network terrain; key cyber terrain is Salesforce tenant configuration (connected apps, API permissions), Okta and Microsoft 365 accounts, and the help desk process [S2]. Step 3 (adversary): financially motivated, no state tasking indicated, uses social engineering and legitimate tools [S2]. Step 4 MLCOA: continued vishing of help desk or employees against SaaS tenants of English-speaking multinationals, followed by delayed extortion [S2][S3]. MDCOA: pivot from CRM data to identity-provider and Microsoft 365 access using harvested credentials and MFA codes, enabling follow-on access to broader enterprise data [S2]. Candidate indicators: unapproved connected apps or Data Loader variants, mass API exports, logins from Mullvad or Tor IPs, new Okta sign-ins following help desk calls, extortion email from the cited tuta.com addresses [S2]. Applicability to a DoD mission is unestablished; any relevance is via defense contractors or DoD personnel using commercial SaaS.",
+    "jcc2": "Analyst assessment derived from cited sources; validate before use. Situational awareness: monitor SaaS audit logs and identity-provider telemetry for the indicators above and track FBI and Google reporting [S2][S3]. Authorities: connected-app and permission changes belong to tenant administrators; reporting criminal extortion typically routes through law enforcement such as the FBI, which issued the FLASH [S3]. Mission assurance: apply Google's mitigations of least privilege on API Enabled and export rights, connected-app allowlisting, login IP restrictions, Shield monitoring and universal MFA with user training [S2]. Coordination: help desk, identity, SaaS owners, and legal or public affairs for extortion contact, sharing indicators with partners via the FBI FLASH channel [S3]."
+  },
+  "sources": [
+    {"ref": "S1", "title": "Microsoft threat actor naming mapping (MicrosoftMapping.json)", "publisher": "Microsoft Threat Intelligence", "date": "2026-10-14", "url": "https://github.com/microsoft/mstic/blob/master/PublicFeeds/ThreatActorNaming/MicrosoftMapping.json"},
+    {"ref": "S2", "title": "The Cost of a Call: From Voice Phishing to Data Extortion (Google GTIG, with Aug 2025 updates)", "publisher": "Google Cloud / Google Threat Intelligence Group", "date": "2025-06-04", "url": "https://cloud.google.com/blog/topics/threat-intelligence/voice-phishing-data-extortion"},
+    {"ref": "S3", "title": "FBI Flash TLP Clear: Cyber Criminal Groups UNC6040 and UNC6395 Compromising Salesforce Instances (AHA republication of FBI FLASH-20250912-001)", "publisher": "American Hospital Association H-ISAC", "date": "2025-09-12", "url": "https://www.aha.org/h-isac-white-reports/2025-09-12-fbi-flash-tlp-clear-cyber-criminal-groups-unc6040-and-unc6395-compromising-salesforce-instances"},
+    {"ref": "S4", "title": "Scattered Lapsus$ Hunters Returns With Salesforce Leak Site (search snippet only)", "publisher": "Dark Reading", "date": "2025-10", "url": "https://www.darkreading.com/cyberattacks-data-breaches/scattered-lapsus-hunters-returns-salesforce-leak-site%250A"},
+    {"ref": "S5", "title": "Fake IT support calls hit 20 orgs, end in stolen Salesforce data and extortion, Google warns (search snippet only)", "publisher": "The Register", "date": "2025-06", "url": "https://www.theregister.com/2025/06/04/fake_it_support_calls_hit/"}
+  ],
+  "aliasesAdd": []
+}

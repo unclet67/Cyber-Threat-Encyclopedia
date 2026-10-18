@@ -1,0 +1,68 @@
+{
+  "identification": {
+    "summary": "Storm-2227 is a Microsoft temporary designation for a cluster of threat activity still in development. Microsoft's only located public mention lists it among multiple cybercriminal actors that used RedVDS infrastructure, a paid service renting unlicensed Windows RDP servers [S1]. Microsoft uses 'Storm-####' for newly discovered or unattributed clusters that have not yet met the criteria for a named actor [S2].",
+    "firstObserved": "",
+    "notes": "Microsoft name: Storm-2227 (group in development). The RedVDS report names it alongside Storm-0259, Storm-1575 and Storm-1747; the RedVDS operator itself is tracked separately as Storm-2470 [S1]. Do not merge these clusters. The report gives no further detail on Storm-2227, so the RedVDS context is customer-of-infrastructure only and does not describe its objectives or tradecraft [S1]."
+  },
+  "attribution": {
+    "sponsor": "",
+    "confidence": "",
+    "basis": ""
+  },
+  "objectives": "",
+  "targeting": {
+    "sectors": [],
+    "regions": [],
+    "notes": "RedVDS-enabled activity as a whole targeted legal, construction, manufacturing, real estate, healthcare and education organizations in the US, Canada, UK, France, Germany and Australia [S1]. The report does not state which of these victims were Storm-2227's, so none are attributed to it."
+  },
+  "capabilities": {
+    "summary": ""
+  },
+  "campaigns": [
+    {
+      "date": "2026-01",
+      "name": "Use of RedVDS infrastructure (Microsoft DCU disruption report)",
+      "summary": "Microsoft's 14 January 2026 report lists Storm-2227 among multiple cybercriminal actors that leveraged RedVDS, a virtual dedicated server provider used for business email compromise, mass phishing, account takeover and financial fraud. Microsoft's Digital Crimes Unit and law enforcement facilitated a disruption of RedVDS infrastructure. No Storm-2227-specific activity is described [S1].",
+      "sources": [
+        "S1"
+      ]
+    }
+  ],
+  "diamond": {
+    "adversary": "",
+    "capability": "",
+    "infrastructure": "RedVDS rented Windows RDP servers (operator tracked by Microsoft as Storm-2470) were used by multiple actors including Storm-2227 [S1].",
+    "victim": "",
+    "socioPolitical": "",
+    "technology": ""
+  },
+  "gaps": [
+    "Fact-check search confirmed the RedVDS report (14 Jan 2026) and Storm-2470 as operator, but did not surface the Storm-2227 mention itself; that listing is not independently re-verified [S1].",
+    "No Microsoft blog, Threat Analytics entry or third-party report describing Storm-2227's own TTPs, targets, objectives or timeline was found in searches; only one passing mention in the RedVDS report [S1].",
+    "Motivation is not stated for Storm-2227; the report describes RedVDS users as cybercriminal and financially motivated in general, not this cluster specifically [S1].",
+    "Not established whether Storm-2227 is state-linked or criminal beyond the 'cybercriminal actors' grouping in [S1].",
+    "The Storm-#### definition is taken from Microsoft's threat actor naming page and search-result text [S2].",
+    "The Microsoft threat-actor mapping file lists no aliases or other vendor names for this cluster."
+  ],
+  "implications": {
+    "jipoe": "",
+    "jcc2": ""
+  },
+  "sources": [
+    {
+      "ref": "S1",
+      "title": "Inside RedVDS: How a single virtual desktop provider fueled worldwide cybercriminal operations",
+      "publisher": "Microsoft Threat Intelligence",
+      "date": "2026-01-14",
+      "url": "https://microsoft.com/en-us/security/blog/2026/01/14/inside-redvds-how-a-single-virtual-desktop-provider-fueled-worldwide-cybercriminal-operations"
+    },
+    {
+      "ref": "S2",
+      "title": "How Microsoft names threat actors",
+      "publisher": "Microsoft Learn",
+      "date": "",
+      "url": "https://learn.microsoft.com/microsoft-365/security/intelligence/microsoft-threat-actor-naming"
+    }
+  ],
+  "aliasesAdd": []
+}
