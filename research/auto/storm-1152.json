@@ -1,0 +1,142 @@
+{
+  "identification": {
+    "summary": "Storm-1152 is the Microsoft name for a Vietnam-based cybercrime-as-a-service (CaaS) provider that created and sold fraudulent Microsoft accounts and sold CAPTCHA-bypass services; Microsoft estimated it created about 750 million fraudulent accounts for sale [S1][S2]. Microsoft says the accounts served as a gateway to downstream crime such as mass phishing, identity theft, fraud and DDoS [S2].",
+    "firstObserved": "Microsoft analyst Matthew Mesa began tracking the activity in February 2023 [S1]. Arkose Labs is reported to have tracked the group since August 2021 [S3].",
+    "notes": "Microsoft name: Storm-1152 (financially motivated) [S7]. The existing record lists country 'FIN', which is not supported by any source reviewed; sources place the operators in Vietnam [S1][S2]. Websites and brands named by sources: Hotmailbox[.]me, 1stCAPTCHA, AnyCAPTCHA, NoneCAPTCHA (December 2023) and RockCAPTCHA (2024) [S3][S1][S4]. Storm-1152 is a service provider, not an intrusion set; customers are tracked as separate clusters (Octo Tempest, Storm-0252, Storm-0455) and their activity must not be merged into this profile [S2]."
+  },
+  "attribution": {
+    "sponsor": "No state sponsor is asserted in the sources reviewed. Microsoft describes a financially motivated criminal enterprise run by three Vietnam-based individuals [S2][S1].",
+    "confidence": "Microsoft names Duong Dinh Tu, Linh Van Nguyen (also rendered Nguyen Van Linh) and Tai Van Nguyen as the operators and filed civil action against them; these are civil allegations, not criminal convictions [S2][S1][S3]. A criminal referral to US law enforcement was mentioned in search-result summaries but not verified against a fetched source.",
+    "basis": "Microsoft Threat Intelligence and Digital Crimes Unit (DCU) investigation with Arkose Labs threat intelligence, resulting in a US District Court (SDNY) order dated 7 December 2023 [S2][S3]. Individuals are said to have operated the sites, written code, produced video tutorials and run chat support [S1]."
+  },
+  "objectives": "Financial gain by selling fraudulent accounts and CAPTCHA-bypass services to other criminal actors [S2][S1]. Payments were reportedly accepted via PayPal and cryptocurrency [S1].",
+  "targeting": {
+    "sectors": [
+      "Technology platforms and online account providers (Microsoft consumer and enterprise services were the largest victim of the bypass services)",
+      "Microsoft partners and supply-chain members affected by fraudulent sign-ups"
+    ],
+    "regions": [],
+    "notes": "Microsoft names no end-victim sectors or regions for the service itself; it refers to 'well-known technology platforms' [S1][S2]. Downstream victims depend on the customer actors that bought accounts. US-based hosting was seized by court order [S2][S1]."
+  },
+  "capabilities": {
+    "summary": "Storm-1152 ran bots that harvested CAPTCHA tokens in bulk and sold them before expiration, used harvested tokens to create fraudulent Microsoft accounts for resale, and operated CAPTCHA-solving services (1stCAPTCHA, AnyCAPTCHA, NoneCAPTCHA, later RockCAPTCHA) marketed to defeat any CAPTCHA, including Arkose Labs' [S1][S3][S4]. Microsoft reports the group pivoted from bypass tools to account resale after detection, used AI to generate human-like signatures to evade detection, recruited AI engineers in Vietnam and China, and onboarded customers with video tutorials and chat support [S1]. Microsoft said it blocked or suspended over 60% of sign-ups it identified as abusive [S1]."
+  },
+  "campaigns": [
+    {
+      "date": "2021-08",
+      "name": "Arkose Labs begins tracking",
+      "summary": "Arkose Labs is reported to have been tracking the group from August 2021.",
+      "sources": [
+        "S3"
+      ]
+    },
+    {
+      "date": "2023-02",
+      "name": "Microsoft profile created",
+      "summary": "Microsoft analyst Matthew Mesa noticed mass phishing using Outlook accounts and created the Storm-1152 profile.",
+      "sources": [
+        "S1"
+      ]
+    },
+    {
+      "date": "2023-03",
+      "name": "Fraudulent sign-up surge",
+      "summary": "A major Microsoft customer suffered outages tied to fraudulent sign-ups; Microsoft blocked new Outlook and Hotmail sign-ups and engaged the DCU. Sign-up traffic later dropped about 60% after coordinated action with Arkose Labs.",
+      "sources": [
+        "S1"
+      ]
+    },
+    {
+      "date": "2023-12",
+      "name": "SDNY seizure order against Hotmailbox.me and CAPTCHA sites",
+      "summary": "On 7 December 2023 Microsoft obtained a Southern District of New York order to seize US-based infrastructure; seized sites included Hotmailbox[.]me, 1stCAPTCHA, AnyCAPTCHA and NoneCAPTCHA. Microsoft announced the action on 13 December and named Octo Tempest (Scattered Spider), Storm-0252 and Storm-0455 as account buyers.",
+      "sources": [
+        "S2",
+        "S3",
+        "S6"
+      ]
+    },
+    {
+      "date": "2024-07",
+      "name": "RockCAPTCHA domain seizure",
+      "summary": "Under a court order dated 23 July 2024 Microsoft took control of rockcaptcha[.]com, a successor service offering to defeat Arkose Labs CAPTCHA. Secondary reporting says the group had resumed on a smaller scale after December 2023.",
+      "sources": [
+        "S1",
+        "S4"
+      ]
+    }
+  ],
+  "diamond": {
+    "adversary": "Three Vietnam-based individuals named by Microsoft in civil action; financially motivated CaaS operators [S2][S1].",
+    "capability": "CAPTCHA-token harvesting bots, CAPTCHA-solving services, bulk fraudulent account creation, AI-assisted evasion [S1][S3].",
+    "infrastructure": "Public storefront and support websites (Hotmailbox[.]me, 1stCAPTCHA, AnyCAPTCHA, NoneCAPTCHA, rockcaptcha[.]com), social media promotion accounts, and US-based hosting seized under court order; payments via PayPal and cryptocurrency [S3][S1][S2].",
+    "victim": "Microsoft consumer and enterprise account services and other technology platforms; indirect victims of customers such as Octo Tempest [S1][S2].",
+    "socioPolitical": "Criminal service economy supplying other criminal actors; no state direction is cited [S2].",
+    "technology": "Account-creation and sign-up systems that rely on CAPTCHA as a human-verification control [S1]."
+  },
+  "gaps": [
+    "Primary Microsoft blog (blogs.microsoft.com, 2023-12-13), CyberScoop, and Arkose Labs pages could not be fetched in this environment; facts rely on a fetched Microsoft Security Insider article and search-result summaries [S1][S2][S3].",
+    "The SDNY complaint (published on DocumentCloud) was not opened; the specific legal counts and defendant roles are unverified.",
+    "Whether a July 2024 filing was a new complaint or a follow-on order in the same case is unclear from reporting [S4].",
+    "Current status after 2024, any criminal charges, and the real-world identity or location details beyond 'Vietnam' are not established.",
+    "The country code 'FIN' in the existing record is unsupported and likely wrong.",
+    "Customer overlap: Octo Tempest, Storm-0252 and Storm-0455 are separate Microsoft clusters; extent of other buyers is unknown [S2].",
+    "Volume figures (750 million accounts, 60% reduction) are Microsoft estimates, not independently verified [S1]."
+  ],
+  "implications": {
+    "jipoe": "Analyst assessment derived from cited sources; validate before use. STEP 1: Account-registration and identity-verification systems (webmail, cloud sign-up, CAPTCHA) are the relevant terrain; they are commercial, not military. STEP 2: Storm-1152 is an enabler, not a state actor; it lowers the cost for other actors to obtain disposable accounts at scale [S2][S1]. STEP 3: Template is CAPTCHA-token harvesting, bulk account creation, resale, with rapid rebranding and domain changes after takedown [S1][S4]. STEP 4: MLCOA is continued commercial resale under new brands supporting phishing and fraud against organizations including DoD-adjacent ones. MDCOA is that a state or advanced criminal actor buys bulk accounts to stage phishing, infrastructure registration or influence activity; this is analytic inference not stated in sources. Candidate indicators: bursts of new webmail accounts contacting an organization, repeated sign-ups sharing CAPTCHA token patterns, and domains matching named services [S1][S3].",
+    "jcc2": "Analyst assessment derived from cited sources; validate before use. (1) Situational awareness: treat bulk-created webmail accounts as a phishing-precursor indicator and share indicators through established threat-sharing channels. (2) Authorities: the disruption was civil litigation by a private company, not a government action; military cyber forces have no apparent role against this actor absent a separate legal basis. (3) Mission assurance: apply email-filtering and reputation controls that do not assume free-webmail senders are legitimate. (4) Coordination: coordinate with DC3, law enforcement and commercial providers such as Microsoft, who hold the takedown knowledge [S2]."
+  },
+  "sources": [
+    {
+      "ref": "S1",
+      "title": "Bold action against fraud: Disrupting Storm-1152",
+      "publisher": "Microsoft Security Insider",
+      "date": "2024-08-07",
+      "url": "https://www.microsoft.com/en-us/security/security-insider/risk-management/Bold-action-against-fraud-Disrupting-Storm-1152"
+    },
+    {
+      "ref": "S2",
+      "title": "Disrupting the gateway services to cybercrime",
+      "publisher": "Microsoft On the Issues",
+      "date": "2023-12-13",
+      "url": "https://blogs.microsoft.com/on-the-issues/2023/12/13/cybercrime-cybersecurity-storm-1152-fraudulent-accounts/"
+    },
+    {
+      "ref": "S3",
+      "title": "Microsoft seizes infrastructure of top cybercrime group",
+      "publisher": "CyberScoop",
+      "date": "2023-12",
+      "url": "https://cyberscoop.com/microsoft-seizes-infrastructure-of-top-cybercrime-group/"
+    },
+    {
+      "ref": "S4",
+      "title": "Microsoft seizes domain used by Vietnamese group to sell fake accounts services",
+      "publisher": "CyberScoop",
+      "date": "2024-07",
+      "url": "https://cyberscoop.com/microsoft-seizes-domain-used-by-vietnamese-group-to-sell-fake-accounts-services/"
+    },
+    {
+      "ref": "S5",
+      "title": "Microsoft disrupts cybercrime operation selling fraudulent accounts to notorious hacking gang",
+      "publisher": "TechCrunch",
+      "date": "2023-12-14",
+      "url": "https://techcrunch.com/2023/12/14/microsoft-disrupts-cybercrime-operation-selling-fraudulent-accounts-to-notorious-hacking-gang"
+    },
+    {
+      "ref": "S6",
+      "title": "Microsoft disrupts cybercrime service that created 750 million fraudulent accounts",
+      "publisher": "Arkose Labs",
+      "date": "2023-12",
+      "url": "https://www.arkoselabs.com/latest-news/microsoft-disrupts-cybercrime-service-that-created-750-million-fraudulent-accounts"
+    },
+    {
+      "ref": "S7",
+      "title": "Microsoft threat actor naming mapping (MicrosoftMapping.json)",
+      "publisher": "Microsoft Threat Intelligence",
+      "date": "2026-10-14",
+      "url": "https://github.com/microsoft/mstic/blob/master/PublicFeeds/ThreatActorNaming/MicrosoftMapping.json"
+    }
+  ],
+  "aliasesAdd": []
+}
