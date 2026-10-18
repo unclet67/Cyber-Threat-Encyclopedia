@@ -67,10 +67,6 @@
    "tier": "NS"
   },
   {
-   "id": "storm-2227",
-   "tier": "NS"
-  },
-  {
    "id": "storm-2460",
    "tier": "NS"
   },
@@ -442,7 +438,14 @@
   "storm-2035",
   "storm-2077",
   "storm-2372",
+  "storm-2460",
+  "storm-2477",
+  "storm-2561",
+  "storm-2581",
   "storm-2603",
+  "storm-2657",
+  "storm-2697",
+  "storm-2755",
   "storm-cloud",
   "suckfly",
   "sunglow-blizzard",
@@ -741,6 +744,7 @@
   "operation-emmental": "draft is in research/auto; the Unit 42 Retefe post cited as S3 has no confirmed publication date",
   "red-dev-17": "draft is in research/auto; the Malpedia entry carrying the PwC assessment (S1) and the MITRE Chinoxy page (S3) lost their dates in fact-checking",
   "tstark": "draft is in research/auto; its main claims rest on an undated Malpedia entry (S3)",
-  "wassonite": "draft is in research/auto; its North Korea link rests on an undated Malpedia entry (S8)"
+  "wassonite": "draft is in research/auto; its North Korea link rests on an undated Malpedia entry (S8)",
+  "storm-2227": "Replacement source S2 (Microsoft Learn naming page) has no date; draft held, no date guessed"
  }
 }
