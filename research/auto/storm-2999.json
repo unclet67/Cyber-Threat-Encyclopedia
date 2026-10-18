@@ -1,0 +1,68 @@
+{
+  "identification": {
+    "summary": "Storm-2999 is a Microsoft temporary actor designation that Microsoft's public naming mapping lists as financially motivated, with TeamPCP as the other name [S1]. TeamPCP is described in vendor and press reporting as a cybercriminal group behind a 2026 wave of software supply chain compromises of developer and security tools, including Trivy, Checkmarx KICS, LiteLLM and the Telnyx Python SDK [S2][S3][S5]. The FBI described it as a cyber criminal group that compromised widely used developer and security tools to steal cloud credentials [S5]. No Microsoft report on Storm-2999 was found in searches, so the Microsoft-to-TeamPCP link rests on the mapping file alone [S1].",
+    "firstObserved": "Flare reporting (via search summary) says TeamPCP has run automated supply chain poisoning waves since 2025-09-14; the best-documented campaign began 2026-03-19 with the Trivy compromise [S2][S3].",
+    "notes": "Microsoft name: Storm-2999. Other names per Microsoft: TeamPCP [S1]. Other vendors list PCPcat, ShellForce, DeadCatx3 and PersyPCP as names for TeamPCP [S6]. KELA and MITRE reporting (via search results) also associate UNC6780 (Google GTIG) and SHADOW-WATER-058, but the primary pages could not be opened. Pluto Security argues public reporting wrongly treats TeamPCP as one actor and describes it as a 17+ person collective [S4]. Do not merge facts across these names without confirming the vendor cluster boundaries."
+  },
+  "attribution": {
+    "sponsor": "Non-state, financially motivated cybercriminal group; no state sponsor is stated in the sources reviewed [S1][S5].",
+    "confidence": "Microsoft's mapping classifies the actor as financially motivated [S1]. The FBI FLASH (as reported by Security Affairs) characterised TeamPCP as a cyber criminal group [S5]. Two alleged members were arrested and charged in Western Australia on 2026-08-26 by the AFP working with the FBI and Western Australia Police [S7]. These are allegations; charges have not been adjudicated in the sources reviewed.",
+    "basis": "Microsoft naming mapping [S1]; FBI FLASH reported by press [S5]; AFP/FBI arrest announcement reported by Help Net Security [S7]. Whether the arrested individuals are the whole group is disputed or unknown [S4][S7]."
+  },
+  "objectives": "Financial gain: theft of cloud and CI/CD credentials and secrets from developer environments, with monetisation through data sales, extortion and ransomware partnerships [S2][S4][S5]. Pluto Security describes CipherForce as TeamPCP's private ransomware tool [S4].",
+  "targeting": {
+    "sectors": ["Software development and DevOps tooling", "Open-source software ecosystem (npm, PyPI, GitHub Actions, Docker Hub, OpenVSX)", "AI development infrastructure", "Cloud-hosted enterprises (downstream victims)"],
+    "regions": ["Global (indiscriminate downstream victims)"],
+    "notes": "Targeting is of the supply chain rather than specific organisations. Arctic Wolf (via search summary) said at least 1,000 enterprise SaaS environments may be affected [S2]. Arrest reporting says over a thousand organisations may have been compromised, with half a million credentials and at least 300 GB of data stolen [S7]. One lower-tier blog repeated similar figures that other sources did not corroborate [S2]. Reporting says GitHub confirmed in May 2026 that a malicious VS Code extension led to exfiltration of roughly 3,800 internal repositories (secondhand, via Decrypt/Hoodline) [S8]."
+  },
+  "capabilities": {
+    "summary": "TeamPCP injected malicious code into trusted release channels: Trivy GitHub Actions workflows and Docker images (CVE-2026-33634, CVSS 9.4), Checkmarx KICS and AST GitHub Actions and OpenVSX extensions, LiteLLM PyPI versions 1.82.7 and 1.82.8 published with tokens stolen in the Trivy compromise, and the Telnyx Python SDK [S2][S3][S5]. The FBI named malware and tooling including CanisterWorm (harvests AWS, GCP and Azure tokens, credentials and API keys), SANDCLOCK (AWS credentials, Kubernetes ServiceAccount tokens, crypto wallet data) and the self-spreading npm/PyPI worms Mini Shai-Hulud and Miasma, and two GitHub repository names used for exfiltration, tpcp-docs and docs-tpcp [S5]. Kaspersky reports persistent backdoors in Kubernetes clusters [S2]. CSA describes WAV-embedded malware aimed at AI developer toolchains [S3][S5]. Stolen credentials from one compromise were reused to pivot to the next target, producing a cascading chain [S2][S3]."
+  },
+  "campaigns": [
+    {"date": "2025-09", "name": "Early automated poisoning waves", "summary": "Flare assesses (via search summary) that TeamPCP ran at least three waves of automated supply chain poisoning since 2025-09-14; primary page not opened [S2].", "sources": ["S2"]},
+    {"date": "2026-03-19", "name": "Trivy compromise", "summary": "Malware was injected into official Trivy GitHub Actions workflows and Docker images; Aqua disclosed it and CVE-2026-33634 was assigned. Malicious Trivy Docker Hub images 0.69.5 and 0.69.6 were reported [S2][S5].", "sources": ["S2", "S5"]},
+    {"date": "2026-03-23", "name": "Checkmarx KICS and AST compromise", "summary": "Checkmarx kics-github-action and ast-github-action and two OpenVSX extensions were compromised; malicious code was removed about three hours later [S2][S5].", "sources": ["S2", "S5"]},
+    {"date": "2026-03-24", "name": "LiteLLM PyPI compromise", "summary": "Tokens stolen in the Trivy compromise were used to publish malicious LiteLLM 1.82.7 and 1.82.8, live for roughly three to five hours depending on source [S2][S3].", "sources": ["S2", "S3"]},
+    {"date": "2026-04-21", "name": "Reactivation after hiatus", "summary": "Reporting (via search summary, source not opened) says the campaign reactivated on 2026-04-21 to 22 after a 26-day pause, and ties it to UNC6780 [S2].", "sources": ["S2"]},
+    {"date": "2026-05-20", "name": "GitHub internal repository exfiltration", "summary": "Secondhand reporting says GitHub confirmed attackers used a malicious VS Code extension to exfiltrate about 3,800 internal repositories [S8].", "sources": ["S8"]},
+    {"date": "2026-07-02", "name": "FBI FLASH alert", "summary": "The FBI issued a FLASH on TeamPCP's compromise of Trivy, KICS, LiteLLM and the Telnyx Python SDK (4.87.1 to 4.87.2), advising pinning GitHub Actions to commit SHAs, least-privilege CI/CD tokens and MFA [S5].", "sources": ["S5"]},
+    {"date": "2026-08-26", "name": "Arrests in Western Australia", "summary": "The AFP with the FBI and WA Police arrested a 21-year-old and a 23-year-old and charged them with 14 offences combined; police say they extracted 100 TB of data and further arrests are not ruled out [S7]. KELA updated its profile on 2026-08-27 [S6].", "sources": ["S6", "S7"]}
+  ],
+  "diamond": {
+    "adversary": "TeamPCP, a financially motivated criminal group or collective (aliases PCPcat, ShellForce, DeadCatx3, PersyPCP) mapped by Microsoft to Storm-2999; two alleged members charged in Australia [S1][S6][S7].",
+    "capability": "Poisoning of CI/CD actions, container images, package registries and IDE extensions; credential stealers and self-propagating worms; ransomware via a private locker or partners [S4][S5].",
+    "infrastructure": "GitHub repositories used for exfiltration (tpcp-docs, docs-tpcp), compromised publisher tokens and registries (PyPI, npm, Docker Hub, OpenVSX) [S5]. Other infrastructure not verified.",
+    "victim": "Developers and organisations that consumed trusted tools, and cloud, Kubernetes and AI environments reachable with stolen secrets [S2][S5].",
+    "socioPolitical": "Profit-driven, tied to the cybercrime economy (data sales, extortion, ransomware partnerships); Pluto Security reports internal friction with other criminal groups such as ShinyHunters [S4].",
+    "technology": "GitHub Actions, Docker, PyPI, npm, OpenVSX/VS Code extensions, Kubernetes, AWS, GCP and Azure credentials, AI/LLM gateway libraries [S2][S5]."
+  },
+  "gaps": [
+    "No Microsoft Threat Intelligence report on Storm-2999 was found; the Storm-2999 to TeamPCP equivalence rests only on Microsoft's naming mapping [S1].",
+    "Primary documents could not be opened: FBI FLASH (ic3.gov, read via press coverage), MITRE ATT&CK G1056, Unit 42, Kaspersky, CSA, Flare, Bitsight and KELA pages (fetch failed; relied on search-result summaries).",
+    "UNC6780 and SHADOW-WATER-058 overlap with TeamPCP is reported but not verified against primary pages; vendor cluster boundaries may differ.",
+    "Whether TeamPCP is one group or a loose collective, and whether the arrested individuals represent its core, is disputed [S4][S7].",
+    "Status of the Vect and CipherForce relationships is contradictory between sources [S4].",
+    "Victim and data-loss figures (1,000 organisations, 500,000 credentials, 300 GB) come from press or lower-tier sources and are unconfirmed.",
+    "Activity after the 2026-08-26 arrests is not assessed."
+  ],
+  "implications": {
+    "jipoe": "Analyst assessment derived from cited sources; validate before use. Step 1-2: relevant battlespace is the software supply chain feeding DoD and contractor development pipelines (GitHub Actions, container registries, PyPI/npm, IDE extensions, AI gateway libraries) [S2][S5]. Step 3: the actor is a criminal group using trusted-channel poisoning and credential theft, with cascading reuse of stolen tokens [S2][S3][S5]. Step 4 MLCOA: further poisoning of widely used developer tools to harvest cloud and CI/CD secrets for sale or extortion [S4][S5]. MDCOA: stolen secrets are resold or handed to other actors, giving access to defence-industrial or mission-system build pipelines; this is an extrapolation not stated in sources. Candidate indicators: unpinned Action or package updates followed by unexpected outbound traffic, GitHub repositories named tpcp-docs or docs-tpcp, use of LiteLLM 1.82.7/1.82.8, Telnyx 4.87.1-4.87.2, Trivy 0.69.5/0.69.6 [S3][S5].",
+    "jcc2": "Analyst assessment derived from cited sources; validate before use. Situational awareness: track FBI FLASH and vendor advisories on TeamPCP-affected tools and inventory use of the named components in unit and contractor pipelines [S5]. Authorities: remediation of DODIN and contractor CI/CD falls to system owners and network operators; law enforcement matters (the AFP/FBI case) are outside operational control [S7]. Mission assurance: pin GitHub Actions to commit SHAs, enforce least-privilege tokens and MFA, and rotate secrets reachable from any affected environment [S5]. Coordination: share indicators through established cyber defense reporting channels and with the supply chain risk and acquisition communities."
+  },
+  "sources": [
+    {"ref": "S1", "title": "Microsoft threat actor naming mapping (MicrosoftMapping.json)", "publisher": "Microsoft Threat Intelligence", "date": "2026-10-14", "url": "https://github.com/microsoft/mstic/blob/master/PublicFeeds/ThreatActorNaming/MicrosoftMapping.json"},
+    {"ref": "S2", "title": "Supply chain attack via Trivy and LiteLLM (read via search summary only)", "publisher": "Kaspersky", "date": "2026-03", "url": "https://www.kaspersky.com/blog/critical-supply-chain-attack-trivy-litellm-checkmarx/55510/"},
+    {"ref": "S3", "title": "TeamPCP: CI/CD Security Tool Supply Chain Compromise (read via search summary only)", "publisher": "Cloud Security Alliance Labs", "date": "2026-03-25", "url": "https://labs.cloudsecurityalliance.org/research/csa-research-note-teampcp-cicd-supply-chain-20260325/"},
+    {"ref": "S4", "title": "TeamPCP actor profile (read via search summary only)", "publisher": "Pluto Security", "date": "2026-06", "url": "https://teampcp.pluto.security/actors/"},
+    {"ref": "S5", "title": "FBI: TeamPCP Compromised Dev Tools to Steal Cloud Credentials (reporting FBI FLASH)", "publisher": "Security Affairs", "date": "2026-07-02", "url": "https://securityaffairs.com/194741/cyber-crime/fbi-teampcp-compromised-dev-tools-to-steal-cloud-credentials.html"},
+    {"ref": "S6", "title": "TeamPCP background and notable attacks (read via search summary only)", "publisher": "KELA", "date": "2026-08-27", "url": "https://www.kelacyber.com/blog/teampcp-background-and-notable-attacks/"},
+    {"ref": "S7", "title": "Two alleged TeamPCP hackers arrested over global supply chain attacks (reporting AFP announcement)", "publisher": "Help Net Security", "date": "2026-08-27", "url": "https://www.helpnetsecurity.com/2026/08/27/alleged-teampcp-hackers-arrested-australia/"},
+    {"ref": "S8", "title": "FBI Honolulu sounds alarm as TeamPCP hijacks developer supply lines (citing Decrypt)", "publisher": "Hoodline", "date": "2026-07", "url": "https://hoodline.com/2026/07/fbi-honolulu-sounds-alarm-as-teampcp-hijacks-developer-supply-lines/"}
+  ],
+  "aliasesAdd": [
+    {"name": "PCPcat", "vendor": "KELA"},
+    {"name": "ShellForce", "vendor": "KELA"},
+    {"name": "DeadCatx3", "vendor": "KELA"},
+    {"name": "PersyPCP", "vendor": "KELA"}
+  ]
+}

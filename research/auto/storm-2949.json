@@ -1,0 +1,75 @@
+{
+ "identification": {
+  "summary": "Storm-2949 is Microsoft's designation for a threat actor, in development status, that Microsoft Defender researchers describe as running an identity-led, malware-light campaign against one victim organization, moving from compromised Entra ID accounts to Microsoft 365 data and Azure production resources to exfiltrate sensitive data [S1].",
+  "firstObserved": "2026-05",
+  "notes": "Microsoft's report is based on one unnamed victim; its intrusion dates are not given [S1]. Microsoft's naming map lists no aliases [S2]. Secondary vendor coverage restates the Microsoft report [S4]."
+ },
+ "attribution": {
+  "sponsor": "",
+  "confidence": "",
+  "basis": "Microsoft's post does not attribute the activity to a nation-state or named group and makes no alias or overlap statements [S1]. Microsoft's motive wording is data theft: a singular focus on exfiltrating as much sensitive data as possible from high-value assets [S1]. Microsoft assesses with high confidence that SSPR abuse was the initial access technique [S1]."
+ },
+ "objectives": "Microsoft describes a singular focus on exfiltrating as much sensitive data as possible from the target's high-value assets [S1]. The actor searched OneDrive and SharePoint for IT documents on VPN configuration and remote access, likely seeking a path into the endpoint network [S1].",
+ "targeting": {
+  "sectors": [],
+  "regions": [],
+  "notes": "Microsoft's report covers a single unnamed organization; sector and region are not stated [S1]. Within the victim, the actor targeted users with privileged roles such as IT personnel and senior leadership [S1]."
+ },
+ "capabilities": {
+  "summary": "Initial access: the actor triggered Self-Service Password Reset for targeted users, impersonated IT support to get them to approve MFA prompts, then removed existing authentication methods and registered its own Microsoft Authenticator; the same method compromised three more cloud accounts [S1]. Discovery: a custom Python script made Microsoft Graph API calls to enumerate users, roles and applications; an attempt to add credentials to a service principal failed for lack of permissions [S1]. Collection: bulk downloads from OneDrive/SharePoint through the web interface [S1]. Azure control-plane abuse: retrieved App Service publishing profiles, changed Key Vault access and read dozens of secrets in about four minutes, opened SQL firewall rules then deleted them, changed storage network rules, listed storage keys and SAS tokens, and used a custom Azure Storage SDK Python script to download blobs over multiple days [S1]. VM abuse: VMAccess extension to create a local admin account, Run Command to query IMDS for a managed identity token (failed for lack of permissions), disable Defender Antivirus protections, and clear logs and artifacts [S1]. Remote access: installed ScreenConnect RMM from attacker infrastructure disguised as a trusted update, then ran discovery and collected .pfx certificate files on a subset of hosts [S1]. Microsoft emphasizes the actor did not rely on traditional malware and used legitimate cloud management features [S1]."
+ },
+ "campaigns": [
+  {
+   "date": "2026-05",
+   "name": "Identity-to-cloud data theft against one organization",
+   "summary": "Microsoft reported SSPR and MFA social engineering against privileged users, followed by Graph discovery, OneDrive/SharePoint bulk download, Azure RBAC abuse across App Service, Key Vault, SQL, Storage and VMs, and ScreenConnect deployment for secondary discovery. The post gives no intrusion dates; it was published 2026-05-18 [S1][S4].",
+   "sources": [
+    "S1",
+    "S4"
+   ]
+  }
+ ],
+ "diamond": {
+  "adversary": "Unattributed actor tracked by Microsoft as Storm-2949 (in development); no sponsor, nation or alias stated [S1][S2].",
+  "capability": "Social engineering of SSPR and MFA, custom Python scripts using Graph and Azure SDKs, abuse of Azure RBAC operations, Run Command and VM extensions, and ScreenConnect RMM; no traditional malware [S1].",
+  "infrastructure": "Microsoft lists attacker egress IPs 176.123.4[.]44 and 91.208.197[.]87 and a ScreenConnect instance at 185.241.208[.]243, noting they may not be exhaustive or persistent [S1]. Attacker-owned IPs were also added to storage network allow rules [S1].",
+  "victim": "One unnamed organization with Microsoft 365 and Azure production workloads; privileged IT staff and senior leadership were targeted [S1].",
+  "socioPolitical": "",
+  "technology": "Microsoft Entra ID (SSPR, Authenticator), Microsoft Graph, OneDrive, SharePoint, Azure App Service, Key Vault, SQL, Storage, Virtual Machines (VMAccess, Run Command, IMDS), Microsoft Defender Antivirus, ScreenConnect [S1]."
+ },
+ "gaps": [
+  "Sponsor, nationality, motivation beyond data theft, and any monetization (extortion, sale) are not stated in sources reviewed [S1].",
+  "Victim sector, region, intrusion dates and number of victims are not disclosed; some secondary writeups mention multiple organizations but this was not confirmed against Microsoft's post.",
+  "Relationship to other named clusters (for example other SSPR or help-desk social engineering actors) is not addressed by Microsoft [S1]; do not merge.",
+  "Phishing/vishing channel used to contact victims is not detailed in the fetched text.",
+  "Government reporting on this activity was not located."
+ ],
+ "implications": {
+  "jipoe": "Analyst assessment derived from cited sources; validate before use. Step 1-2: relevant cyber terrain is the mission partner's Entra ID tenant (SSPR, MFA registration), M365 file stores holding VPN and remote access documentation, and Azure production subscriptions (Key Vault, Storage, SQL, App Service, VMs) [S1]. Step 3: the actor demonstrated identity-first access using legitimate cloud administrative operations rather than malware [S1]. Step 4 MLCOA: social engineering of privileged users via SSPR and MFA approval, Graph enumeration, bulk data download, then Azure RBAC abuse to reach secrets and data stores [S1]. MDCOA (analyst inference): use harvested VPN and remote access documentation and ScreenConnect footholds to pivot from cloud to on-premises networks, which Microsoft notes VMs could bridge [S1]. Candidate indicators: SSPR followed by removal of authentication methods and new Authenticator registration; Graph enumeration by scripts; publishxml action, Key Vault access-policy changes, storage firewall and listkeys operations, SQL firewall rule write and delete; VMAccess and Run Command use; Defender real-time protection disabled; new ScreenConnect services; and the Microsoft-listed IPs [S1].",
+  "jcc2": "Analyst assessment derived from cited sources; validate before use. Situational awareness: cloud audit logs (Entra, Azure Activity, Key Vault, Storage) are the primary sensing source because host malware signatures are absent [S1]. Authorities: response actions on mission-partner or contractor tenants (disabling accounts, changing RBAC, blocking IPs) require tenant-owner authority and coordination; confirm roles before action. Mission assurance: Microsoft's mitigations include phishing-resistant MFA for privileged users, pre-registered MFA methods, Conditional Access, private endpoints, Key Vault purge protection, Entra-only SQL authentication, restricting Run Command and VMAccess, and Defender tamper protection [S1]. Coordination: share indicators with Microsoft, the defense industrial base and service cyber elements through established channels; note that Microsoft's IOCs may be neither exhaustive nor persistent [S1]."
+ },
+ "sources": [
+  {
+   "ref": "S1",
+   "title": "Storm-2949 turned compromised identity into cloud-wide breach",
+   "publisher": "Microsoft Defender Security Research / Microsoft Security Blog",
+   "date": "2026-05-18",
+   "url": "https://www.microsoft.com/en-us/security/blog/2026/05/18/storm-2949-turned-compromised-identity-into-cloud-wide-breach/"
+  },
+  {
+   "ref": "S2",
+   "title": "Microsoft threat actor naming mapping (MicrosoftMapping.json)",
+   "publisher": "Microsoft Threat Intelligence",
+   "date": "2026-10-14",
+   "url": "https://github.com/microsoft/mstic/blob/master/PublicFeeds/ThreatActorNaming/MicrosoftMapping.json"
+  },
+  {
+   "ref": "S4",
+   "title": "Storm-2949 SSPR Abuse: From MFA Prompt to Cloud-Wide Breach (secondary coverage of Microsoft report)",
+   "publisher": "GridinSoft",
+   "date": "2026-05",
+   "url": "https://blog.gridinsoft.com/storm-2949-sspr-azure-data-theft/"
+  }
+ ],
+ "aliasesAdd": []
+}
