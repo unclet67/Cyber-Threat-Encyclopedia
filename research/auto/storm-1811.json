@@ -1,0 +1,61 @@
+{
+  "identification": {
+    "summary": "Storm-1811 is the Microsoft name for a financially motivated cybercriminal group known to deploy Black Basta ransomware [S1]. Microsoft observed it using vishing (voice phishing), often after email bombing, to get victims to open a Quick Assist remote session, followed by credential theft, hands-on-keyboard activity and PsExec-based ransomware deployment [S1]. Red Canary describes it as a Black Basta affiliate using tech-support scams and remote monitoring and management (RMM) tools [S3].",
+    "firstObserved": "Microsoft: Quick Assist abuse observed since mid-April 2024 [S1]. Black Basta itself debuted in April 2022 [S1].",
+    "notes": "Microsoft name: Storm-1811 (financially motivated) [S8]. CrowdStrike name CURLY SPIDER is taken from the encyclopedia's Microsoft mapping record [S8]; no CrowdStrike primary page was opened. MITRE tracks the group as G1046 [S7]. Microsoft says Black Basta is a closed offering distributed by a small number of actors that rely on others for initial access, infrastructure and malware development [S1]; Storm-1811 should therefore be read as an access-and-deployment cluster tied to Black Basta, not as the whole Black Basta operation."
+  },
+  "attribution": {
+    "sponsor": "",
+    "confidence": "Microsoft assesses Storm-1811 as financially motivated and known to deploy Black Basta ransomware [S1]. No state sponsor is asserted in the sources gathered.",
+    "basis": "Microsoft Threat Intelligence observation of the intrusion chain ending in Black Basta deployment [S1]; Red Canary classifies the actor as a Black Basta affiliate [S3]."
+  },
+  "objectives": "Financial gain through ransomware deployment: the observed chain ends with Black Basta being pushed across the victim network via PsExec [S1]. CISA and partners describe Black Basta affiliates as encrypting and stealing data from victims for extortion [S2].",
+  "targeting": {
+    "sectors": [],
+    "regions": [],
+    "notes": "Microsoft's May 2024 report names no victim organizations or industry sectors; the targets it describes are individual users contacted by phone or Teams while the actor claims a company IT or Microsoft support relationship [S1]. For the wider Black Basta operation, CISA and partners report affiliates hit at least 12 of 16 critical infrastructure sectors, including healthcare, and over 500 organizations globally as of May 2024 [S2]. That count covers all Black Basta affiliates and should not be attributed to Storm-1811 alone."
+  },
+  "capabilities": {
+    "summary": "Initial access is by social engineering: vishing as IT or Microsoft support, or email bombing followed by a call offering to fix the spam, steering the user to Quick Assist (Ctrl+Windows+Q, security code, screen share and request control) [S1]. From late May 2024 Microsoft saw contact through Teams messages and calls from actor-created tenants with display names such as 'Help Desk' and 'IT Support' [S1]. After access the actor used scripted cURL and BITSAdmin to fetch batch and ZIP files, a fake spam-filter batch script asking for credentials, and links to an EvilProxy adversary-in-the-middle phishing site [S1]. Tools Microsoft lists are Qakbot, Cobalt Strike, ScreenConnect, NetSupport Manager, an OpenSSH tunneling tool and SystemBC, with domain enumeration, lateral movement and PsExec deployment of Black Basta [S1]. Red Canary also reports Impacket and AnyDesk use [S3]."
+  },
+  "campaigns": [
+    {"date": "2024-04", "name": "Quick Assist vishing and email bombing", "summary": "Microsoft observed Storm-1811 abusing Quick Assist since mid-April 2024, impersonating IT or help desk staff, sometimes after flooding inboxes with spam, with Qakbot, Cobalt Strike and Black Basta follow-on [S1].", "sources": ["S1"]},
+    {"date": "2024-05", "name": "Microsoft public disclosure and Black Basta advisory", "summary": "Microsoft published its Quick Assist analysis on 2024-05-15 and suspended identified accounts and tenants [S1]. Separately, CISA, FBI, HHS and MS-ISAC issued a #StopRansomware Black Basta advisory on 2024-05-10, later updated on 2024-11-08 with new affiliate TTPs [S2].", "sources": ["S1", "S2"]},
+    {"date": "2024-05", "name": "Shift to Microsoft Teams", "summary": "At the end of May 2024 Microsoft saw Storm-1811 contacting targets through Teams from actor-created tenants with help-desk display names, leading to Quick Assist, EvilProxy credential theft, batch scripts and SystemBC [S1].", "sources": ["S1"]},
+    {"date": "2024-06", "name": "Rise in detection prevalence", "summary": "Red Canary's June 2024 Intelligence Insights reported Storm-1811 as a newcomer to its top-ten prevalent threats list [S3].", "sources": ["S3"]},
+    {"date": "2024-12", "name": "Continued email bombing plus Teams phishing", "summary": "ReliaQuest's report, updated 2024-12-12, describes Black Basta-linked flooding of employee inboxes followed by impersonation of IT support on Teams to push RMM tools [S4].", "sources": ["S4"]},
+    {"date": "2025-02", "name": "Black Basta internal chat leak", "summary": "A persona called ExploitWhispers posted internal Black Basta chats covering roughly September 2023 to September 2024; Trustwave's analysis found members posing as IT administrators with Teams often the vector of choice [S5].", "sources": ["S5"]}
+  ],
+  "diamond": {
+    "adversary": "Financially motivated cybercriminal cluster known to deploy Black Basta, operating within a closed ransomware ecosystem that depends on other actors for access, infrastructure and malware [S1].",
+    "capability": "Vishing and Teams social engineering, Quick Assist abuse, EvilProxy AiTM, Qakbot, Cobalt Strike, ScreenConnect, NetSupport, SystemBC, PsExec-deployed Black Basta [S1].",
+    "infrastructure": "Actor-created Microsoft tenants with help-desk display names; attacker domains such as upd7a[.]com, antispam3[.]com and Cobalt Strike C2 zziveastnews[.]com and realsepnews[.]com as listed by Microsoft [S1].",
+    "victim": "Individual employees of organizations, reached by phone or Teams; Microsoft names no sectors [S1]. Black Basta overall has hit many critical infrastructure sectors including healthcare [S2].",
+    "socioPolitical": "Profit-driven extortion; no state tasking is asserted in the sources [S1][S2].",
+    "technology": "Default-installed Quick Assist on Windows 11, Teams configurations allowing external-tenant contact, and users who trust unsolicited help-desk contact [S1]."
+  },
+  "gaps": [
+    "No victim sectors or regions are published specifically for Storm-1811; Black Basta-wide statistics in the CISA advisory are not an attributable Storm-1811 victim set [S1][S2].",
+    "The CISA AA24-131A advisory and its November 2024 update were not opened directly (government site blocked); content is from search-result summaries, and the source is labeled accordingly.",
+    "Sophos MDR reported cluster STAC5777 overlapping Storm-1811 TTPs (and STAC5143 with possible FIN7 links), with incidents in November and December 2024. The Sophos page could not be fetched and its publication date was not confirmed, so it is not cited as a source; vendor cluster boundaries should not be merged with Storm-1811.",
+    "CrowdStrike's CURLY SPIDER profile was not opened; one aggregator also lists UNC4393 as an alias, which is unverified here and not added.",
+    "ReliaQuest, Red Canary and The Register pages could not be fetched; those entries rest on search-result summaries.",
+    "Whether Storm-1811 activity continued after the February 2025 Black Basta leak, and its relationship to successor groups, is not established in the sources gathered.",
+    "Operator identities, location and the group's internal relationship to Black Basta leadership are unknown from these sources."
+  ],
+  "implications": {
+    "jipoe": "Analyst assessment derived from cited sources; validate before use. STEP 1: Key terrain is the user-to-IT trust boundary: help-desk workflows, Teams external-tenant federation, and remote-support tools such as Quick Assist [S1]. STEP 2: The actor needs no software vulnerability, so patch posture does not constrain it; the exploited condition is user trust and permissive remote-tool and Teams settings [S1]. STEP 3: Observed template is email bombing or cold call, then Quick Assist, then credential theft and RMM/C2 tooling, then domain enumeration, lateral movement and PsExec ransomware deployment [S1]. STEP 4: MLCOA is continued vishing and Teams-based access against corporate and critical infrastructure users culminating in ransomware, with affiliates reusing the tradecraft [S2][S4]. MDCOA is the same social-engineering access applied to a defense contractor or DoD-adjacent help desk during a crisis to cause mission-disrupting encryption. Candidate indicators: sudden high-volume inbound mail to one user, one-on-one Teams chats from external tenants with 'Help Desk' display names, Quick Assist launch on endpoints that do not use it, curl or BITSAdmin fetching batch or ZIP files, and PsExec use from a workstation [S1].",
+    "jcc2": "Analyst assessment derived from cited sources; validate before use. (1) Situational awareness: feed endpoint and Teams telemetry on Quick Assist and external-tenant chats into the common operational picture, and track Microsoft and CISA updates on Black Basta TTPs [S1][S2]. (2) Authorities: blocking or uninstalling Quick Assist and restricting Teams external access are configuration decisions that need system-owner or cyber-commander approval and a documented exception path for legitimate help-desk use [S1]. (3) Mission assurance: ransomware deployed via PsExec across a network threatens availability, so identify mission-critical systems and offline backups, and prioritize isolation of domain controllers [S1][S2]. (4) Coordination: report suspicious sessions through the help desk and CSSP, share indicators with DC3 and partners for contractor networks, and train users that unsolicited IT contact must be verified out of band [S1]."
+  },
+  "sources": [
+    {"ref": "S1", "title": "Threat actors misusing Quick Assist in social engineering attacks leading to ransomware", "publisher": "Microsoft Threat Intelligence", "date": "2024-05-15", "url": "https://www.microsoft.com/en-us/security/blog/2024/05/15/threat-actors-misusing-quick-assist-in-social-engineering-attacks-leading-to-ransomware/"},
+    {"ref": "S2", "title": "#StopRansomware: Black Basta, AA24-131A (reporting via search summary; page not opened)", "publisher": "CISA, FBI, HHS, MS-ISAC", "date": "2024-05-10", "url": "https://www.cisa.gov/news-events/cybersecurity-advisories/aa24-131a"},
+    {"ref": "S3", "title": "Intelligence Insights: June 2024 (search summary; page not opened)", "publisher": "Red Canary", "date": "2024-06", "url": "https://redcanary.com/blog/threat-intelligence/intelligence-insights-june-2024/"},
+    {"ref": "S4", "title": "Black Basta social engineering technique using Microsoft Teams (updated 2024-12-12; search summary)", "publisher": "ReliaQuest", "date": "2024-12-12", "url": "https://www.reliaquest.com/blog/black-basta-social-engineering-technique-microsoft-teams/"},
+    {"ref": "S5", "title": "Experts race to extract intel from Black Basta internal chat leaks (search summary)", "publisher": "The Register", "date": "2025-02-21", "url": "https://www.theregister.com/2025/02/21/experts_race_to_extract_intel/"},
+    {"ref": "S6", "title": "Detecting Teams Chat Phishing Attacks (Black Basta)", "publisher": "NVISO", "date": "2025-01-16", "url": "https://blog.nviso.eu/2025/01/16/detecting-teams-chat-phishing-attacks-black-basta/"},
+    {"ref": "S7", "title": "Storm-1811, G1046", "publisher": "MITRE ATT&CK", "date": "2026-07-31", "url": "https://attack.mitre.org/groups/G1046/"},
+    {"ref": "S8", "title": "Microsoft threat actor naming mapping (MicrosoftMapping.json)", "publisher": "Microsoft Threat Intelligence", "date": "2026-10-14", "url": "https://github.com/microsoft/mstic/blob/master/PublicFeeds/ThreatActorNaming/MicrosoftMapping.json"}
+  ],
+  "aliasesAdd": []
+}

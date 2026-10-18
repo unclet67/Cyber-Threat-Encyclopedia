@@ -1,0 +1,63 @@
+{
+  "identification": {
+    "summary": "Storm-1567 is Microsoft's name for the financially motivated operator behind Akira ransomware [S2][S3]. CrowdStrike tracks PUNK SPIDER as the Big Game Hunting adversary, first identified in April 2023, that develops and maintains Akira ransomware and its dedicated leak site [S7]. Microsoft reported that Defender for Endpoint's user containment helped thwart a large-scale remote encryption attempt by Akira actors against an industrial organization in early June 2023 [S2][S3]. Secondary coverage describes Akira as ransomware-as-a-service with double extortion [S9].",
+    "firstObserved": "CrowdStrike: first identified April 2023 [S7]. Microsoft-reported incident: early June 2023 [S2][S3].",
+    "notes": "Microsoft name: Storm-1567 (financially motivated); CrowdStrike name PUNK SPIDER [S1][S7]. An aggregator also lists GOLD SAHARA as an alias; this is not confirmed by a primary vendor source seen and is not added. Storm-1567 is the actor; 'Akira' is the ransomware family, and CISA's advisory is written about the Akira ransomware variants and their affiliates [S4]. Microsoft's original blog post was not retrieved; Microsoft statements here come from secondary reporting [S2][S3]."
+  },
+  "attribution": {
+    "sponsor": "Financially motivated criminal group; no state sponsor is stated in the sources gathered [S9].",
+    "confidence": "Huntress states analysts have not publicly attributed the group to a specific nation-state or geographic region [S9]. Source-country claims on aggregator sites conflict and are not relied upon.",
+    "basis": "Vendor naming by Microsoft and CrowdStrike [S1][S7]; joint CISA/FBI/DC3/HHS/Europol advisory on Akira ransomware activity [S4][S5]."
+  },
+  "objectives": "Financial gain through double extortion: data theft plus encryption, with a dedicated leak site used for pressure [S7][S9]. CISA and partners state Akira had claimed approximately $244.17 million in ransomware proceeds as of late September 2025 [S4][S5].",
+  "targeting": {
+    "sectors": ["Industrial engineering (June 2023 Microsoft-reported victim) [S2][S3]", "Multiple industries; Arctic Wolf describes SonicWall-campaign victims as spanning many industries and sizes [S6]", "Critical infrastructure (CISA/FBI warned of imminent threat in Nov 2025 update) [S4][S5]"],
+    "regions": ["Reported first spotted targeting Swedish organizations in March 2023 (aggregator, low confidence) [S9]", "Otherwise not geographically restricted in sources gathered [S6]"],
+    "notes": "Arctic Wolf assessed the 2025 SonicWall activity as opportunistic mass exploitation rather than targeted intrusion [S6]."
+  },
+  "capabilities": {
+    "summary": "Initial access has included compromised VPN credentials, possibly via initial access brokers or brute-forcing VPN endpoints, per the November 2025 advisory as reported [S5]. The update ties intrusions to abuse of SonicWall CVE-2024-40766 [S4][S5]. Arctic Wolf reported SonicWall SSL VPN logins likely using credentials exfiltrated earlier via CVE-2024-40766, including accounts with OTP MFA, with ransomware deployed within as little as 55 minutes and typically under four hours from credential access [S6]. In June 2025 Akira actors began encrypting Nutanix AHV virtual machine disk files [S4][S5]. Earlier, Akira added a Linux encryptor targeting VMware ESXi (reported in 2023) and was reported abusing Cisco VPNs without MFA [S3][S9]. CrowdStrike notes heavy use of legitimate repurposed software and open-source penetration-testing tools [S7]. Microsoft reported attackers used machines not onboarded to Defender for Endpoint, performed reconnaissance and lateral movement, then encrypted remotely using a compromised user account [S2][S3]."
+  },
+  "campaigns": [
+    {"date": "2023-03", "name": "Akira emergence", "summary": "Aggregator reporting says the group was first spotted targeting Swedish organizations in March 2023 (low confidence).", "sources": ["S9"]},
+    {"date": "2023-04", "name": "PUNK SPIDER first identified", "summary": "CrowdStrike states it first identified the Akira-developing BGH adversary in April 2023.", "sources": ["S7"]},
+    {"date": "2023-06", "name": "Industrial engineering firm attack disrupted", "summary": "Microsoft reported Defender for Endpoint user containment blocked a large-scale remote encryption attempt by Storm-1567 against an industrial organization, with encryption of onboarded devices prevented.", "sources": ["S2", "S3"]},
+    {"date": "2024-04-18", "name": "Original joint advisory AA24-109A", "summary": "CISA and partners first published the #StopRansomware Akira advisory.", "sources": ["S4", "S8"]},
+    {"date": "2025-06", "name": "Nutanix AHV encryption", "summary": "Akira actors began encrypting disk files of Nutanix AHV virtual machines.", "sources": ["S4", "S5"]},
+    {"date": "2025-07", "name": "SonicWall SSL VPN campaign", "summary": "Arctic Wolf tracked increased Akira activity against SonicWall SSL VPN accounts from late July 2025, with new infrastructure seen as late as 20 September 2025 and very short dwell times.", "sources": ["S6"]},
+    {"date": "2025-11-13", "name": "Updated advisory AA24-109A", "summary": "CISA, FBI, DC3, HHS, Europol EC3 and partners updated the advisory citing an imminent threat to critical infrastructure and approximately $244.17 million in proceeds as of late September 2025.", "sources": ["S4", "S5"]}
+  ],
+  "diamond": {
+    "adversary": "Financially motivated RaaS operator and affiliates tracked as Storm-1567 and PUNK SPIDER [S1][S7].",
+    "capability": "VPN credential abuse, SonicWall CVE-2024-40766-linked access, rapid ransomware deployment, ESXi/Linux and Nutanix AHV encryptors, repurposed legitimate and open-source tools [S4][S5][S6][S7].",
+    "infrastructure": "Dedicated leak site for extortion [S7]; Arctic Wolf reported new campaign infrastructure through 20 September 2025 [S6]. Specific indicators not collected.",
+    "victim": "Cross-sector organizations with internet-facing VPNs, notably SonicWall and Cisco, and virtualized environments; critical infrastructure flagged in 2025 [S3][S4][S6].",
+    "socioPolitical": "Criminal profit motive; no state tasking established in sources gathered [S9].",
+    "technology": "Perimeter VPN appliances without strong MFA or patching, unmanaged endpoints outside EDR coverage, and hypervisors (ESXi, Nutanix AHV) [S2][S4][S6]."
+  },
+  "gaps": [
+    "Microsoft's original Storm-1567 publication was not retrieved; Microsoft claims come from secondary coverage [S2][S3].",
+    "CISA advisory AA24-109A (cisa.gov) and the ic3.gov PDF could not be opened (fetch blocked); advisory claims rely on news summaries and search snippets [S4][S5].",
+    "CrowdStrike adversary page content was only seen via search snippets [S7].",
+    "Whether SonicWall MFA bypass was achieved by stolen OTP seeds or another method was unexplained by Arctic Wolf at publication [S6].",
+    "Alleged Conti lineage and the Megazord variant are reported by secondary sources only and were not independently verified; alias GOLD SAHARA unverified.",
+    "Mapping between Microsoft Storm-1567 and affiliates/IABs that perform initial access is not established; cluster boundaries unclear.",
+    "No MITRE ATT&CK group ID recorded for this actor."
+  ],
+  "implications": {
+    "jipoe": "Analyst assessment derived from cited sources; validate before use. STEP 1: Internet-facing VPN gateways, hypervisor clusters (ESXi, Nutanix AHV) and backup servers are key terrain in DoD-adjacent contractor and critical-infrastructure networks [S4][S5][S6]. STEP 2: Fast credential-to-encryption timelines (under four hours, some 55 minutes) compress the defender decision window [S6]. STEP 3: Template is VPN credential access, lateral movement with repurposed tools, exfiltration, hypervisor encryption, leak-site extortion [S5][S6][S7]. STEP 4: MLCOA is opportunistic ransomware against vulnerable VPN-fronted organizations across sectors. MDCOA is simultaneous hypervisor-level encryption at a DIB supplier or critical-infrastructure operator supporting a mission during crisis. Candidate indicators: SSL VPN logins from unusual hosts or after credential exposure, new domain accounts, unmanaged devices on the network, and unexpected disk-file encryption on hypervisors [S2][S4][S6].",
+    "jcc2": "Analyst assessment derived from cited sources; validate before use. (1) Situational awareness: track vendor VPN CVE status (e.g., CVE-2024-40766) and credential-reset completion across supported enclaves [S4][S6]. (2) Authorities: DIB and commercial partner networks fall outside DoD-owned DODIN, so response runs through coordination with the owner and law enforcement rather than direct action [S4]. (3) Mission assurance: enforce phishing-resistant MFA, ensure EDR onboarding on all endpoints, and maintain offline backups and hypervisor restoration plans [S2][S4]. (4) Coordination: share indicators through DC3/DIB CS and FBI channels, as DC3 co-authored the advisory update [S4]."
+  },
+  "sources": [
+    {"ref": "S1", "title": "Microsoft threat actor naming mapping (MicrosoftMapping.json)", "publisher": "Microsoft Threat Intelligence", "date": "2026-10-14", "url": "https://github.com/microsoft/mstic/blob/master/PublicFeeds/ThreatActorNaming/MicrosoftMapping.json"},
+    {"ref": "S2", "title": "Microsoft Defender thwarts Akira ransomware attack (reporting Microsoft Threat Intelligence)", "publisher": "The Hacker News", "date": "2023-10", "url": "https://thehackernews.com/2023/10/microsoft-defender-thwarts-akira.html"},
+    {"ref": "S3", "title": "Microsoft Defender thwarted Akira ransomware attack on an industrial engineering firm (reporting Microsoft)", "publisher": "Security Affairs", "date": "2023-10", "url": "https://securityaffairs.com/152501/malware/akira-ransomware-attack-blocked.html"},
+    {"ref": "S4", "title": "#StopRansomware: Akira Ransomware, updated advisory AA24-109A (PDF copy; summary from search results, not opened)", "publisher": "CISA, FBI, DC3, HHS, Europol EC3 et al. via ic3.gov", "date": "2025-11-13", "url": "https://www.ic3.gov/CSA/2025/251113.pdf"},
+    {"ref": "S5", "title": "CISA flags imminent threat as Akira ransomware starts hitting Nutanix AHV (reporting CISA/FBI update)", "publisher": "The Register", "date": "2025-11-14", "url": "https://www.theregister.com/2025/11/14/cisa_akira_ransomware/"},
+    {"ref": "S6", "title": "Smash and Grab: Aggressive Akira Campaign Targets SonicWall VPNs, Deploys Ransomware in an Hour or Less", "publisher": "Arctic Wolf", "date": "2025-09", "url": "https://arcticwolf.com/resources/blog/smash-and-grab-aggressive-akira-campaign-targets-sonicwall-vpns/"},
+    {"ref": "S7", "title": "PUNK SPIDER adversary profile (search snippet)", "publisher": "CrowdStrike", "date": "2026-10", "url": "https://crowdstrike.com/adversaries/punk-spider"},
+    {"ref": "S8", "title": "#StopRansomware: Akira Ransomware, original advisory AA24-109A (PDF copy, not opened)", "publisher": "CISA/FBI via ic3.gov", "date": "2024-04-18", "url": "https://www.ic3.gov/CSA/2024/240418.pdf"},
+    {"ref": "S9", "title": "PUNK SPIDER threat actor profile", "publisher": "Huntress", "date": "2026-10", "url": "https://www.huntress.com/threat-library/threat-actors/punk-spider"}
+  ],
+  "aliasesAdd": []
+}

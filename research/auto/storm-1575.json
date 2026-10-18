@@ -1,0 +1,57 @@
+{
+"identification": {
+ "summary": "Storm-1575 is Microsoft's name for a phishing actor tied to the Dadsec phishing platform; it runs campaigns that use hundreds of domain-generated-algorithm (DGA) domains to host credential-harvesting pages aimed at Microsoft 365 credentials of organizations worldwide [S2]. A later report states Microsoft tracks the developers and distributors of the Dadsec phishing-as-a-service (PhaaS) platform under the name Storm-1575, and that Rockstar 2FA is assessed to be an updated version of the DadSec (aka Phoenix) kit [S3].",
+ "firstObserved": "2023-07 (Bridewell dated the campaign it matched to Storm-1575 as running since July 2023; Microsoft's public naming dates to 2023-10) [S1][S2]",
+ "notes": "Microsoft status is 'group in development' (Storm-#### designation); no Microsoft long-form report on Storm-1575 was retrieved. Do not merge with Storm-1747 (Tycoon2FA developer) or Storm-1167: Microsoft's March 2026 Tycoon2FA post names only Storm-1747 and does not mention Storm-1575 or Dadsec [S5]. Secondary reporting of Dadsec/Tycoon2FA infrastructure overlap exists [S4] but was not verified against the original vendor report."
+},
+"attribution": {
+ "sponsor": "Financially motivated / criminal PhaaS ecosystem; no state sponsor identified in retrieved sources.",
+ "confidence": "Bridewell assessed with a high degree of confidence that the campaign it analysed matches the cluster of activity Microsoft associates with Storm-1575 (Bridewell's assessment, not Microsoft's or a government's) [S1].",
+ "basis": "Bridewell compared its own observations (DGA domains, Cyber Panel hosting) to Microsoft's description of Storm-1575 [S1]. Microsoft's description is cited via its October 2023 social media post as recorded in the MISP galaxy [S2]. Another report notes Dadsec-style kits can be bought and run by any actor with little sophistication or money, so campaign operators and platform developers may differ [S1][S3]."
+},
+"objectives": "Theft of Microsoft 365 credentials via phishing pages [S2]. Where the AiTM kit lineage applies, capture of credentials and session cookies so MFA-protected accounts can still be compromised [S3]. Downstream use of stolen access is not described in the retrieved sources.",
+"targeting": {
+ "sectors": ["Education (US school districts, per a March 2024 secondary report) [S4]", "Cross-sector Microsoft 365 organizations (generic) [S2]"],
+ "regions": ["Global (generic Microsoft description) [S2]", "United States (school districts) [S4]"],
+ "notes": "Targeting is described generically as global organizations using Microsoft 365 [S2]. The sole sector detail found is a secondary news report of US school-district targeting that links Tycoon and Storm-1575 [S4]; the primary source was not opened."
+},
+"capabilities": {
+ "summary": "Phishing campaigns on the Dadsec platform using hundreds of DGA domains to host credential-harvesting pages [S2]. Bridewell observed over 500 DGA domains with up to 900 associated subdomains generated daily since July 2023, with the open-source Cyber Panel web panel used to run the domains [S1]. The platform is described as purchasable by actors with little sophistication [S1]. The related kit lineage (Rockstar 2FA, assessed as an updated DadSec/Phoenix) performs adversary-in-the-middle capture of credentials and session cookies, mimics Microsoft 365 login pages, uses legitimate link redirectors and Cloudflare Turnstile checks, abuses hosting on services such as Atlassian Confluence, Google Docs Viewer, LiveAgent, OneDrive, OneNote and Dynamics 365 Customer Voice, and is sold via ICQ, Telegram and Mail.ru for $200 per two weeks or $350 per month [S3]."
+},
+"campaigns": [
+ {"date":"2023-07","name":"Dadsec DGA credential-harvesting campaign","summary":"Bridewell tracked a Microsoft 365 credential-harvesting campaign running since July 2023 with over 500 DGA domains and up to 900 subdomains generated daily, run with Cyber Panel, and assessed with high confidence that it matched Storm-1575 [S1].","sources":["S1"]},
+ {"date":"2023-10","name":"Microsoft public identification of Storm-1575","summary":"Microsoft Threat Intelligence posted about Storm-1575 and the Dadsec phishing platform on 2023-10-13, as cited by the MISP galaxy entry [S2].","sources":["S2"]},
+ {"date":"2024-03","name":"US school district targeting report","summary":"A secondary news report (Hackread via Cyware) linked Tycoon and Storm-1575 to phishing aimed at Microsoft 365 credentials at large US school districts [S4].","sources":["S4"]},
+ {"date":"2024-11","name":"Rockstar 2FA identified as updated DadSec kit","summary":"Trustwave research reported by The Hacker News assessed Rockstar 2FA as an updated version of the DadSec (Phoenix) kit and stated Microsoft tracks the Dadsec developers and distributors as Storm-1575 [S3].","sources":["S3"]}
+],
+"diamond": {
+ "adversary": "Developers and distributors of the Dadsec PhaaS platform, tracked by Microsoft as Storm-1575; operators who buy campaigns may be separate actors [S1][S3].",
+ "capability": "Phishing pages for Microsoft 365 hosted on mass DGA domains; AiTM credential and cookie capture in the related Rockstar 2FA lineage [S2][S3].",
+ "infrastructure": "Hundreds of DGA domains and subdomains operated through Cyber Panel [S1]; abuse of legitimate hosting and redirect services and Cloudflare Turnstile in the related kit [S3].",
+ "victim": "Microsoft 365 users at organizations worldwide [S2]; US school districts reported [S4].",
+ "socioPolitical": "Criminal subscription-based PhaaS market; kit sold on ICQ, Telegram and Mail.ru [S3]. No political or state motive found in sources.",
+ "technology": "Microsoft 365 / Entra sign-in flows and MFA (bypassed by AiTM session-cookie theft in the related kit) [S3]."
+},
+"gaps": [
+ "No Microsoft primary report on Storm-1575 retrieved; Microsoft's description is known only via the MISP galaxy citation of its 2023-10-13 post [S2].",
+ "Bridewell and Trustwave originals could not be opened (host unreachable); Bridewell details come from search-result summaries [S1].",
+ "Dadsec/Tycoon2FA infrastructure overlap is reported only in secondary coverage; cluster boundary with Storm-1747 is unresolved [S5].",
+ "Whether Storm-1575 operates campaigns itself or only sells the platform is unclear [S1][S3].",
+ "Sector and victim data is thin (one secondary report on schools) [S4]; no named victims, losses or follow-on activity found.",
+ "Current (2025-2026) status of Dadsec and Storm-1575 not established; no MITRE group ID."
+],
+"implications": {
+ "jipoe": "Analyst assessment derived from cited sources; validate before use. Step 1-2 (operational environment): the relevant terrain is cloud identity, i.e. Microsoft 365 sign-in and MFA, rather than DoD networks per se; the sourced targeting is generic Microsoft 365 organizations and US school districts [S2][S4]. Step 3 (threat evaluation): a criminal, subscription-based PhaaS capability available to low-skill buyers [S1][S3]. Step 4 MLCOA: mass credential phishing against Microsoft 365 tenants, including contractors and education/training partners, using DGA domains and, in the Rockstar lineage, AiTM cookie theft that defeats non-phishing-resistant MFA [S1][S3]. MDCOA (not sourced as observed): stolen sessions used against defense-adjacent tenants; treat as a planning assumption only. Candidate indicators: newly generated DGA domains with many subdomains, Cyber Panel-hosted pages, Microsoft-themed login pages behind Cloudflare Turnstile, links via legitimate redirectors or document-hosting services [S1][S3].",
+ "jcc2": "Analyst assessment derived from cited sources; validate before use. Situational awareness: share domain and URL indicators from vendor reporting through existing CTI channels; the actor is non-state and low-sophistication [S1][S3]. Authorities: response is limited to defensive actions on owned tenants; no sourced basis for offensive action. Mission assurance: prioritise phishing-resistant MFA and session-token protection for cloud mission accounts since AiTM kits bypass ordinary MFA [S3]. Coordination: coordinate with commercial vendors and cloud provider (Microsoft) for takedown and domain blocking; supplement with user reporting of Microsoft-themed login lures."
+},
+"sources": [
+ {"ref":"S1","title":"Analysing a Widespread Microsoft 365 Credential Harvesting Campaign (via search-result summary; page not opened)","publisher":"Bridewell","date":"2023-10","url":"https://www.bridewell.com/insights/blogs/detail/analysing-widespread-microsoft365-credential-harvesting-campaign"},
+ {"ref":"S2","title":"MISP galaxy entry for Storm-1575 citing Microsoft Threat Intelligence post of 2023-10-13 (reporting Microsoft statement)","publisher":"MISP Project / CIRCL","date":"2023-10","url":"https://helga.circl.lu/MISP/misp-galaxy/commit/e497ec2b381ac764c3209972a4c6bed05392ead0"},
+ {"ref":"S3","title":"Phishing-as-a-Service Rockstar 2FA (reporting Trustwave research; via search-result summary)","publisher":"The Hacker News","date":"2024-11","url":"https://thehackernews.com/2024/11/phishing-as-service-rockstar-2fa.html"},
+ {"ref":"S4","title":"Tycoon and Storm-1575 Linked to Phishing Attacks on US Schools (reporting Hackread; via search-result summary)","publisher":"Cyware","date":"2024-03","url":"https://cyware.com/news/tycoon-and-storm-1575-linked-to-phishing-attacks-on-us-schools-bba733e8"},
+ {"ref":"S5","title":"Inside Tycoon2FA: How a leading AiTM phishing kit operated at scale (does not mention Storm-1575)","publisher":"Microsoft Threat Intelligence","date":"2026-03-04","url":"https://microsoft.com/en-us/security/blog/2026/03/04/inside-tycoon2fa-how-a-leading-aitm-phishing-kit-operated-at-scale"}
+],
+"aliasesAdd": [
+ {"name":"DadSec (platform name, not actor alias)","vendor":"Bridewell / Trustwave via The Hacker News"}
+]
+}
