@@ -21,7 +21,7 @@
  "relatedMs": [],
  "mitreGroupId": "G0096",
  "identification": {
-  "summary": "China-based actor that combines state-sponsored espionage with financially motivated intrusions. US charges describe members working through a Chengdu company and compromising more than 100 victims worldwide, stealing source code, code-signing certificates, customer data and business information [S1]. Mandiant documented a deliberate 2021\u20132022 campaign that compromised at least six US state government networks [S2]. Google disrupted a 2025 campaign that used Google Calendar for command and control [S3].",
+  "summary": "China-based actor that combines state-sponsored espionage with financially motivated intrusions. US charges describe members working through a Chengdu company and compromising more than 100 victims worldwide, stealing source code, code-signing certificates, customer data and business information [S1]. Mandiant documented a deliberate 2021–2022 campaign that compromised at least six US state government networks [S2]. Google disrupted a 2025 campaign that used Google Calendar for command and control [S3].",
   "firstObserved": "MITRE: active since at least 2012 [S4]. US indictments were returned in August 2019 and August 2020 [S1].",
   "notes": "Microsoft name: Brass Typhoon (formerly BARIUM). Microsoft maps WICKED PANDA and APT41 to it [S5]. Microsoft tracks Leopard Typhoon (LEAD / Winnti Group) separately, though both share the CrowdStrike label WICKED PANDA; public 'Winnti' reporting often blurs the two."
  },
@@ -908,7 +908,7 @@
   {
    "date": "2024-08 to 2025-05",
    "name": "TOUGHPROGRESS / Google Calendar C2",
-   "summary": "Spear-phishing with archives hosted on a compromised government website; malware used Google Calendar events for C2. Google terminated the attacker's Workspace accounts. Reported 28\u201329 May 2025.",
+   "summary": "Spear-phishing with archives hosted on a compromised government website; malware used Google Calendar events for C2. Google terminated the attacker's Workspace accounts. Reported 28–29 May 2025.",
    "sources": [
     "S3"
    ]
@@ -926,7 +926,7 @@
   "Boundary between Brass Typhoon (APT41/BARIUM) and Leopard Typhoon (Winnti Group/LEAD): vendor reporting often merges them.",
   "APT41 activity after May 2025 was not found in this research pass.",
   "DOJ press release and indictment text not fetched (government sites blocked); details come from coverage.",
-  "Whether the 2021\u20132022 state-government campaign was espionage or financially motivated remains open per Mandiant [S2]."
+  "Whether the 2021–2022 state-government campaign was espionage or financially motivated remains open per Mandiant [S2]."
  ],
  "implications": {
   "jipoe": "Analyst assessment derived from cited sources; validate before use. STEP 1: Include state and local government systems and commercial software suppliers in the OE. They support National Guard, emergency management and DoD-adjacent functions and are soft entry points. STEP 2: Abuse of legitimate cloud services for C2 blends with normal business traffic. STEP 3: The template is web-application exploitation or spear-phishing, then web shells and custom backdoors, then credential theft and lateral movement, plus theft of code-signing material for later supply-chain use. Re-compromise after eviction is likely. STEP 4: MLCOA is continued espionage against government and technology targets mixed with profit-driven theft. MDCOA is a supply-chain operation using stolen signing certificates to reach DoD or DIB networks during a crisis. Candidate indicators: .NET deserialization exploit attempts, newly signed binaries with unexpected certificates, and calendar or cloud-API traffic from servers [S1][S2][S3].",
@@ -949,10 +949,10 @@
   },
   {
    "ref": "S3",
-   "title": "China-linked APT41 used Google Calendar as C2 to control its TOUGHPROGRESS malware (reporting Google Threat Intelligence Group)",
-   "publisher": "Security Affairs",
-   "date": "2025-05",
-   "url": "https://securityaffairs.com/178424/apt/china-linked-apt41-used-google-calendar-as-c2-to-control-its-toughprogress-malware.html"
+   "title": "Mark Your Calendar: APT41 Innovative Tactics",
+   "publisher": "Google Threat Intelligence Group (Google Cloud Blog)",
+   "date": "2025-05-28",
+   "url": "https://cloud.google.com/blog/topics/threat-intelligence/apt41-innovative-tactics"
   },
   {
    "ref": "S4",

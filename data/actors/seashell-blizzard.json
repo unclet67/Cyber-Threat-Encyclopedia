@@ -1,1 +1,1098 @@
-{"id":"seashell-blizzard","primaryName":"Seashell Blizzard","msName":"Seashell Blizzard","msCandidates":[],"country":"RU","aliases":[{"name":"Sandworm Team","vendor":"Other / unspecified"},{"name":"APT44","vendor":"Mandiant / Google TI"},{"name":"BE2","vendor":"Other / unspecified"},{"name":"BlackEnergy (Group)","vendor":"Other / unspecified"},{"name":"BlackEnergy Lite","vendor":"Other / unspecified"},{"name":"Blue Echidna","vendor":"Other / unspecified"},{"name":"ELECTRUM","vendor":"Other / unspecified"},{"name":"FROZENBARENTS","vendor":"Other / unspecified"},{"name":"IRIDIUM","vendor":"Other / unspecified"},{"name":"IRON VIKING","vendor":"Secureworks CTU"},{"name":"PHANTOM","vendor":"Other / unspecified"},{"name":"Quedagh","vendor":"Other / unspecified"},{"name":"Sandworm","vendor":"Other / unspecified"},{"name":"Telebots","vendor":"Other / unspecified"},{"name":"TEMP.Noble","vendor":"Mandiant / Google TI"},{"name":"UAC-0082","vendor":"Other / unspecified"},{"name":"UAC-0113","vendor":"Other / unspecified"},{"name":"Voodoo Bear","vendor":"CrowdStrike"}],"mitreGroupId":"G0034","identification":{"summary":"Russian military intelligence (GRU) cyber unit responsible for most of the destructive and disruptive cyberattacks against Ukraine over the past decade, including the 2015 and 2016 power-grid outages, NotPetya (2017), and wipers deployed around the February 2022 invasion [S2][S3]. It combines espionage, sabotage and information operations, and paces its attacks to support Russian conventional military operations [S3].","firstObserved":"Publicly documented destructive activity since at least the December 2015 Ukraine grid outage; the 2020 DOJ indictment covers attacks from 2015 to 2019 [S2][S3]. Earlier espionage activity under the Sandworm name is reported in the imported references but was not re-verified here. Microsoft's BadPilot subgroup has been active since at least 2021 [S1].","notes":"Microsoft name: Seashell Blizzard (formerly IRIDIUM). Microsoft maps Sandworm, VOODOO BEAR, APT44, UAC-0113, BE2 and BlackEnergy Lite to it [S8]. Mandiant upgraded the cluster to APT44 in April 2024 to separate it from APT28 (GRU Unit 26165) [S3]."},"attribution":{"sponsor":"Russian Federation: GRU Unit 74455, the Main Centre for Special Technologies (GTsST) of the Main Directorate of the General Staff [S1][S2][S3].","confidence":"Formal US government attribution through the October 2020 indictment of six named Unit 74455 officers [S2]. Microsoft states the actor works on behalf of GRU Unit 74455 [S1]. ESET attributes the December 2025 Poland wiper attempt with medium confidence [S6].","basis":"DOJ indictment evidence [S2]; long-running vendor forensics (Mandiant, ESET, Microsoft, Dragos) [S1][S3][S4][S6]; malware lineage across BlackEnergy, Industroyer/Industroyer2, NotPetya and later wipers."},"objectives":"Support Russian military and political objectives through destructive and disruptive attacks, intelligence collection and influence operations, focused on Ukraine and increasingly on states supporting it [S1][S3]. Targets Western elections and institutions, including in NATO countries [S3]. Microsoft assesses its access subgroup exists to establish and hold access in sectors of interest to Russia, which can later enable destructive operations [S1].","targeting":{"sectors":["Energy and electric power (including OT/ICS)","Oil and gas","Government and defense","Telecommunications","Transportation and shipping","Arms manufacturing","Media and civil society","Water and heating utilities (Ukraine)","Electoral systems and institutions"],"regions":["Ukraine (primary)","Russia's near abroad","NATO and EU states, including Poland (Dec 2025 energy-sector wiper attempt)","United States, Canada, Australia and the United Kingdom (BadPilot focus in 2024)","Central Asia and the Middle East (BadPilot, 2023)"],"notes":"Sector and region data from Mandiant [S3], Microsoft's BadPilot reporting [S1] and ESET [S6]. Ukrainian water and heating targeting as reported in ESET-derived coverage [S6]."},"capabilities":{"summary":"Full-spectrum: espionage, destructive wipers and OT effects. OT capability is proven: Industroyer (2016), Industroyer2 against a Ukrainian substation (thwarted April 2022) [S5], and an October 2022 outage caused by executing native MicroSCADA binaries (scilc.exe), a living-off-the-land approach to OT [S4]. Wipers include NotPetya, KillDisk, CaddyWiper and DynoWiper (Poland, Dec 2025) [S2][S4][S6]. Initial access through edge devices and n-day exploits (Exchange CVE-2021-34473, Zimbra CVE-2022-41352, ScreenConnect CVE-2024-1709, FortiClient EMS CVE-2023-48788), with persistence through RMM tools (Atera, Splashtop), the ShadowLink Tor hidden-service tool and the LocalOlive web shell [S1]. Uses hacktivist-branded Telegram personas for influence [S3].","software":[{"id":"S0002","name":"Mimikatz","type":"tool"},{"id":"S0029","name":"PsExec","type":"tool"},{"id":"S0039","name":"Net","type":"tool"},{"id":"S0089","name":"BlackEnergy","type":"malware"},{"id":"S0154","name":"Cobalt Strike","type":"malware"},{"id":"S0195","name":"SDelete","type":"tool"},{"id":"S0231","name":"Invoke-PSImage","type":"tool"},{"id":"S0342","name":"GreyEnergy","type":"malware"},{"id":"S0343","name":"Exaramel for Windows","type":"malware"},{"id":"S0357","name":"Impacket","type":"tool"},{"id":"S0363","name":"Empire","type":"tool"},{"id":"S0365","name":"Olympic Destroyer","type":"malware"},{"id":"S0368","name":"NotPetya","type":"malware"},{"id":"S0378","name":"PoshC2","type":"tool"},{"id":"S0401","name":"Exaramel for Linux","type":"malware"},{"id":"S0598","name":"P.A.S. Webshell","type":"malware"},{"id":"S0604","name":"Industroyer","type":"malware"},{"id":"S0606","name":"Bad Rabbit","type":"malware"},{"id":"S0607","name":"KillDisk","type":"malware"},{"id":"S0687","name":"Cyclops Blink","type":"malware"},{"id":"S1010","name":"VPNFilter","type":"malware"},{"id":"S1058","name":"Prestige","type":"malware"},{"id":"S1072","name":"Industroyer2","type":"malware"},{"id":"S1125","name":"AcidRain","type":"malware"},{"id":"S1167","name":"AcidPour","type":"malware"},{"id":"S1189","name":"Neo-reGeorg","type":"malware"},{"id":"S1190","name":"Kapeka","type":"malware"}]},"attack":[{"id":"T1003.001","name":"LSASS Memory","source":"MITRE ATT&CK G0034 (2026-07-31)","tactics":["credential-access"]},{"id":"T1003.003","name":"NTDS","source":"MITRE ATT&CK G0034 (2026-07-31)","tactics":["credential-access"]},{"id":"T1005","name":"Data from Local System","source":"MITRE ATT&CK G0034 (2026-07-31)","tactics":["collection"]},{"id":"T1018","name":"Remote System Discovery","source":"MITRE ATT&CK G0034 (2026-07-31)","tactics":["discovery"]},{"id":"T1021.002","name":"SMB/Windows Admin Shares","source":"MITRE ATT&CK G0034 (2026-07-31)","tactics":["lateral-movement"]},{"id":"T1027","name":"Obfuscated Files or Information","source":"MITRE ATT&CK G0034 (2026-07-31)","tactics":["stealth"]},{"id":"T1027.010","name":"Command Obfuscation","source":"MITRE ATT&CK G0034 (2026-07-31)","tactics":["stealth"]},{"id":"T1033","name":"System Owner/User Discovery","source":"MITRE ATT&CK G0034 (2026-07-31)","tactics":["discovery"]},{"id":"T1036","name":"Masquerading","source":"MITRE ATT&CK G0034 (2026-07-31)","tactics":["stealth"]},{"id":"T1036.005","name":"Match Legitimate Resource Name or Location","source":"MITRE ATT&CK G0034 (2026-07-31)","tactics":["stealth"]},{"id":"T1040","name":"Network Sniffing","source":"MITRE ATT&CK G0034 (2026-07-31)","tactics":["credential-access","discovery"]},{"id":"T1041","name":"Exfiltration Over C2 Channel","source":"MITRE ATT&CK G0034 (2026-07-31)","tactics":["exfiltration"]},{"id":"T1047","name":"Windows Management Instrumentation","source":"MITRE ATT&CK G0034 (2026-07-31)","tactics":["execution"]},{"id":"T1049","name":"System Network Connections Discovery","source":"MITRE ATT&CK G0034 (2026-07-31)","tactics":["discovery"]},{"id":"T1053.005","name":"Scheduled Task","source":"MITRE ATT&CK G0034 (2026-07-31)","tactics":["execution","persistence","privilege-escalation"]},{"id":"T1056.001","name":"Keylogging","source":"MITRE ATT&CK G0034 (2026-07-31)","tactics":["collection","credential-access"]},{"id":"T1059.001","name":"PowerShell","source":"MITRE ATT&CK G0034 (2026-07-31)","tactics":["execution"]},{"id":"T1059.005","name":"Visual Basic","source":"MITRE ATT&CK G0034 (2026-07-31)","tactics":["execution"]},{"id":"T1070.004","name":"File Deletion","source":"MITRE ATT&CK G0034 (2026-07-31)","tactics":["stealth"]},{"id":"T1071.001","name":"Web Protocols","source":"MITRE ATT&CK G0034 (2026-07-31)","tactics":["command-and-control"]},{"id":"T1072","name":"Software Deployment Tools","source":"MITRE ATT&CK G0034 (2026-07-31)","tactics":["execution","lateral-movement"]},{"id":"T1078","name":"Valid Accounts","source":"MITRE ATT&CK G0034 (2026-07-31)","tactics":["stealth","persistence","privilege-escalation","initial-access"]},{"id":"T1078.002","name":"Domain Accounts","source":"MITRE ATT&CK G0034 (2026-07-31)","tactics":["stealth","persistence","privilege-escalation","initial-access"]},{"id":"T1082","name":"System Information Discovery","source":"MITRE ATT&CK G0034 (2026-07-31)","tactics":["discovery"]},{"id":"T1083","name":"File and Directory Discovery","source":"MITRE ATT&CK G0034 (2026-07-31)","tactics":["discovery"]},{"id":"T1087.002","name":"Domain Account","source":"MITRE ATT&CK G0034 (2026-07-31)","tactics":["discovery"]},{"id":"T1087.003","name":"Email Account","source":"MITRE ATT&CK G0034 (2026-07-31)","tactics":["discovery"]},{"id":"T1090","name":"Proxy","source":"MITRE ATT&CK G0034 (2026-07-31)","tactics":["command-and-control"]},{"id":"T1102.002","name":"Bidirectional Communication","source":"MITRE ATT&CK G0034 (2026-07-31)","tactics":["command-and-control"]},{"id":"T1105","name":"Ingress Tool Transfer","source":"MITRE ATT&CK G0034 (2026-07-31)","tactics":["command-and-control"]},{"id":"T1106","name":"Native API","source":"MITRE ATT&CK G0034 (2026-07-31)","tactics":["execution"]},{"id":"T1132.001","name":"Standard Encoding","source":"MITRE ATT&CK G0034 (2026-07-31)","tactics":["command-and-control"]},{"id":"T1133","name":"External Remote Services","source":"MITRE ATT&CK G0034 (2026-07-31)","tactics":["persistence","initial-access"]},{"id":"T1140","name":"Deobfuscate/Decode Files or Information","source":"MITRE ATT&CK G0034 (2026-07-31)","tactics":["stealth"]},{"id":"T1190","name":"Exploit Public-Facing Application","source":"MITRE ATT&CK G0034 (2026-07-31)","tactics":["initial-access"]},{"id":"T1195","name":"Supply Chain Compromise","source":"MITRE ATT&CK G0034 (2026-07-31)","tactics":["initial-access"]},{"id":"T1195.002","name":"Compromise Software Supply Chain","source":"MITRE ATT&CK G0034 (2026-07-31)","tactics":["initial-access"]},{"id":"T1199","name":"Trusted Relationship","source":"MITRE ATT&CK G0034 (2026-07-31)","tactics":["initial-access"]},{"id":"T1203","name":"Exploitation for Client Execution","source":"MITRE ATT&CK G0034 (2026-07-31)","tactics":["execution"]},{"id":"T1204.001","name":"Malicious Link","source":"MITRE ATT&CK G0034 (2026-07-31)","tactics":["execution"]},{"id":"T1204.002","name":"Malicious File","source":"MITRE ATT&CK G0034 (2026-07-31)","tactics":["execution"]},{"id":"T1213.006","name":"Databases","source":"MITRE ATT&CK G0034 (2026-07-31)","tactics":["collection"]},{"id":"T1218.011","name":"Rundll32","source":"MITRE ATT&CK G0034 (2026-07-31)","tactics":["stealth"]},{"id":"T1219","name":"Remote Access Tools","source":"MITRE ATT&CK G0034 (2026-07-31)","tactics":["command-and-control"]},{"id":"T1485","name":"Data Destruction","source":"MITRE ATT&CK G0034 (2026-07-31)","tactics":["impact"]},{"id":"T1486","name":"Data Encrypted for Impact","source":"MITRE ATT&CK G0034 (2026-07-31)","tactics":["impact"]},{"id":"T1489","name":"Service Stop","source":"MITRE ATT&CK G0034 (2026-07-31)","tactics":["impact"]},{"id":"T1490","name":"Inhibit System Recovery","source":"MITRE ATT&CK G0034 (2026-07-31)","tactics":["impact"]},{"id":"T1491.002","name":"External Defacement","source":"MITRE ATT&CK G0034 (2026-07-31)","tactics":["impact"]},{"id":"T1499","name":"Endpoint Denial of Service","source":"MITRE ATT&CK G0034 (2026-07-31)","tactics":["impact"]},{"id":"T1505.003","name":"Web Shell","source":"MITRE ATT&CK G0034 (2026-07-31)","tactics":["persistence"]},{"id":"T1539","name":"Steal Web Session Cookie","source":"MITRE ATT&CK G0034 (2026-07-31)","tactics":["credential-access"]},{"id":"T1555.003","name":"Credentials from Web Browsers","source":"MITRE ATT&CK G0034 (2026-07-31)","tactics":["credential-access"]},{"id":"T1561.002","name":"Disk Structure Wipe","source":"MITRE ATT&CK G0034 (2026-07-31)","tactics":["impact"]},{"id":"T1566.001","name":"Spearphishing Attachment","source":"MITRE ATT&CK G0034 (2026-07-31)","tactics":["initial-access"]},{"id":"T1566.002","name":"Spearphishing Link","source":"MITRE ATT&CK G0034 (2026-07-31)","tactics":["initial-access"]},{"id":"T1570","name":"Lateral Tool Transfer","source":"MITRE ATT&CK G0034 (2026-07-31)","tactics":["lateral-movement"]},{"id":"T1571","name":"Non-Standard Port","source":"MITRE ATT&CK G0034 (2026-07-31)","tactics":["command-and-control"]},{"id":"T1583","name":"Acquire Infrastructure","source":"MITRE ATT&CK G0034 (2026-07-31)","tactics":["resource-development"]},{"id":"T1583.001","name":"Domains","source":"MITRE ATT&CK G0034 (2026-07-31)","tactics":["resource-development"]},{"id":"T1583.004","name":"Server","source":"MITRE ATT&CK G0034 (2026-07-31)","tactics":["resource-development"]},{"id":"T1584.004","name":"Server","source":"MITRE ATT&CK G0034 (2026-07-31)","tactics":["resource-development"]},{"id":"T1584.005","name":"Botnet","source":"MITRE ATT&CK G0034 (2026-07-31)","tactics":["resource-development"]},{"id":"T1585.001","name":"Social Media Accounts","source":"MITRE ATT&CK G0034 (2026-07-31)","tactics":["resource-development"]},{"id":"T1585.002","name":"Email Accounts","source":"MITRE ATT&CK G0034 (2026-07-31)","tactics":["resource-development"]},{"id":"T1586.001","name":"Social Media Accounts","source":"MITRE ATT&CK G0034 (2026-07-31)","tactics":["resource-development"]},{"id":"T1587.001","name":"Malware","source":"MITRE ATT&CK G0034 (2026-07-31)","tactics":["resource-development"]},{"id":"T1588.002","name":"Tool","source":"MITRE ATT&CK G0034 (2026-07-31)","tactics":["resource-development"]},{"id":"T1588.006","name":"Vulnerabilities","source":"MITRE ATT&CK G0034 (2026-07-31)","tactics":["resource-development"]},{"id":"T1589.002","name":"Email Addresses","source":"MITRE ATT&CK G0034 (2026-07-31)","tactics":["reconnaissance"]},{"id":"T1589.003","name":"Employee Names","source":"MITRE ATT&CK G0034 (2026-07-31)","tactics":["reconnaissance"]},{"id":"T1590.001","name":"Domain Properties","source":"MITRE ATT&CK G0034 (2026-07-31)","tactics":["reconnaissance"]},{"id":"T1591.002","name":"Business Relationships","source":"MITRE ATT&CK G0034 (2026-07-31)","tactics":["reconnaissance"]},{"id":"T1592.002","name":"Software","source":"MITRE ATT&CK G0034 (2026-07-31)","tactics":["reconnaissance"]},{"id":"T1593","name":"Search Open Websites/Domains","source":"MITRE ATT&CK G0034 (2026-07-31)","tactics":["reconnaissance"]},{"id":"T1594","name":"Search Victim-Owned Websites","source":"MITRE ATT&CK G0034 (2026-07-31)","tactics":["reconnaissance"]},{"id":"T1595.002","name":"Vulnerability Scanning","source":"MITRE ATT&CK G0034 (2026-07-31)","tactics":["reconnaissance"]},{"id":"T1598.003","name":"Spearphishing Link","source":"MITRE ATT&CK G0034 (2026-07-31)","tactics":["reconnaissance"]},{"id":"T1608.001","name":"Upload Malware","source":"MITRE ATT&CK G0034 (2026-07-31)","tactics":["resource-development"]}],"campaigns":[{"date":"2015-12","name":"Ukraine power outage (BlackEnergy)","summary":"First publicly confirmed grid outage caused by a cyberattack; attributed to Sandworm by Mandiant and named in the 2020 DOJ indictment.","sources":["S2","S3"]},{"date":"2016-12","name":"Industroyer / CrashOverride","summary":"Second Ukraine grid attack using malware purpose-built to speak ICS protocols to substation equipment.","sources":["S2","S9"]},{"date":"2017-06-27","name":"NotPetya","summary":"Destructive malware launched against Ukraine spread worldwide through multinational networks; nearly $1 billion in losses to three victims named in the indictment alone.","sources":["S2"]},{"date":"2018-02","name":"Olympic Destroyer","summary":"Attack on the PyeongChang Winter Olympics with false flags pointing at North Korea.","sources":["S2"]},{"date":"2020-10-19","name":"DOJ indictment","summary":"Six GRU Unit 74455 officers charged for NotPetya, the Ukraine grid attacks, Olympic Destroyer and other operations.","sources":["S2"]},{"date":"2022-04","name":"Industroyer2 (thwarted)","summary":"CERT-UA, with ESET and Microsoft, prevented a planned attack on a Ukrainian energy provider's substations.","sources":["S5"]},{"date":"2022-10","name":"OT-induced outage via MicroSCADA","summary":"Mandiant documents a power outage caused by native MicroSCADA commands, followed two days later by CaddyWiper in IT. Reported 2023-11-09.","sources":["S4"]},{"date":"2021 to 2025","name":"BadPilot access subgroup","summary":"Microsoft reports a Seashell Blizzard subgroup running global opportunistic access operations, expanding from Ukraine (2022) to the US, UK, Canada and Australia (2024). It likely enabled at least three destructive attacks in Ukraine since 2023.","sources":["S1"]},{"date":"2025-12-29","name":"Poland energy-sector wiper attempt","summary":"DynoWiper deployed against Polish energy organizations, including combined heat and power plants and a renewables management system. Execution was blocked; ESET attributes it to Sandworm with medium confidence.","sources":["S6"]}],"diamond":{"adversary":"GRU Unit 74455 (GTsST); six officers named in the 2020 DOJ indictment [S2].","capability":"OT-specific malware (Industroyer, Industroyer2) and OT living-off-the-land; wipers (NotPetya, KillDisk, CaddyWiper, DynoWiper); n-day edge exploitation; RMM-based persistence; ShadowLink; hacktivist personas [S1][S3][S4][S5][S6].","infrastructure":"Compromised edge devices and internet-facing servers; RMM services for C2; Tor hidden services via ShadowLink; Telegram personas for influence and leak operations [S1][S3].","victim":"Ukrainian energy, government, telecom, water and heating; NATO-state energy (Poland); global energy, oil and gas, shipping, telecoms and arms manufacturing reached through BadPilot [S1][S6].","socioPolitical":"Coercion and sabotage aligned with Russian war aims in Ukraine and pressure on states supporting Ukraine; election interference [S3].","technology":"IT-to-OT pivot through Windows domain and SCADA management hosts; reuse of native vendor tools to avoid OT-specific malware signatures [S4]."},"gaps":["Relationship between the BadPilot access subgroup and Sandworm's destructive teams: how accesses are handed off and prioritized is not public [S1].","Extent of BadPilot access in US, UK, Canadian and Australian networks after Microsoft's 2025 disclosure.","Primary-source confirmation still needed: the DOJ 2020 indictment, the Mandiant APT44 report and ESET's Industroyer2 analysis were verified through coverage only, because those sites were blocked from this environment.","Operational coordination between Seashell Blizzard and other GRU units (Forest Blizzard / APT28, Cadet Blizzard) in shared campaigns.","Whether the Poland attempt reflects an intent change toward NATO critical infrastructure or opportunistic access use."],"implications":{"jipoe":"Analyst assessment derived from cited sources; validate before use. STEP 1: For any EUCOM or NATO contingency, the cyberspace OE includes allied energy, heating, water and telecom OT, not just DoD networks. Poland in Dec 2025 shows NATO-state energy is in range. STEP 2: Sandworm times effects with kinetic operations, so cyber effects should be modeled alongside the adversary's fires and maneuver timeline, not as a separate line. STEP 3: The template is edge or n-day initial access (often prepared long in advance by BadPilot), then domain compromise, then pivot to SCADA management hosts, then OT effect using native tools, then wiper to destroy evidence and slow recovery. STEP 4: MLCOA is sustained espionage and access maintenance in allied energy and logistics with periodic destructive attacks in Ukraine. MDCOA is synchronized wiper and OT attacks on allied energy and logistics nodes supporting reinforcement of NATO's eastern flank. Candidate indicators: RMM tools (Atera, Splashtop) appearing without change records, Tor hidden-service persistence, new local admin accounts on SCADA management hosts, and abnormal MicroSCADA or engineering tool execution [S1][S4].","jcc2":"Analyst assessment derived from cited sources; validate before use. (1) Integrate allied CERT reporting (CERT-UA, Polish CSIRTs) and vendor ICS telemetry into shared situational awareness, since the earliest warning is often in partner OT networks. (2) Plan for degraded host-nation infrastructure: C2 resilience and mission assurance assessments should assume possible power and heating loss at staging areas. (3) Authorities: defense of allied civilian infrastructure is a host-nation lead. US cyber forces support through partner agreements and hunt-forward-type missions, which must be coordinated through EUCOM and USCYBERCOM channels. (4) Wiper resilience: offline backups and restoration drills for deployed mission systems are a C2 continuity requirement, not just an IT task."},"sources":[{"ref":"S1","title":"The BadPilot campaign: Seashell Blizzard subgroup conducts multiyear global access operation","publisher":"Microsoft Threat Intelligence","date":"2025-02-12","url":"https://www.microsoft.com/en-us/security/blog/2025/02/12/the-badpilot-campaign-seashell-blizzard-subgroup-conducts-multiyear-global-access-operation/"},{"ref":"S2","title":"US Indicts GRU Officers for NotPetya, Olympics Attacks and More (reporting the DOJ indictment)","publisher":"Infosecurity Magazine","date":"2020-10-19","url":"https://infosecurity-magazine.com/news/us-indicts-gru-officers-notpetya"},{"ref":"S3","title":"Russia's Sandworm Upgraded to APT44 by Google's Mandiant (reporting Mandiant 'APT44: Unearthing Sandworm')","publisher":"Infosecurity Magazine","date":"2024-04","url":"https://www.infosecurity-magazine.com/news/russia-sandworm-upgraded-apt44/"},{"ref":"S4","title":"Sandworm hackers incapacitated Ukrainian power grid amid missile strike (reporting Mandiant)","publisher":"Help Net Security","date":"2023-11-09","url":"https://www.helpnetsecurity.com/2023/11/09/ukrainian-power-grid-disruption/"},{"ref":"S5","title":"Industroyer2 attack on Ukrainian power substation","publisher":"RISI database (summarizing CERT-UA and ESET)","date":"2022-04","url":"https://www.risidata.com/Database/Detail/ukraine-industroyer2-sandworm-substation-2022"},{"ref":"S6","title":"ESET Research: Sandworm behind cyberattack on Poland's power grid in late 2025","publisher":"ESET (WeLiveSecurity)","date":"2026-01","url":"https://www.welivesecurity.com/en/eset-research/eset-research-sandworm-cyberattack-poland-power-grid-late-2025/"},{"ref":"S7","title":"Sandworm Team, G0034 (techniques and software)","publisher":"MITRE ATT&CK","date":"2026-07-31 (object modified)","url":"https://attack.mitre.org/groups/G0034/"},{"ref":"S8","title":"Microsoft threat actor naming mapping (MicrosoftMapping.json)","publisher":"Microsoft Threat Intelligence","date":"2026-10-14 (retrieved)","url":"https://github.com/microsoft/mstic/blob/master/PublicFeeds/ThreatActorNaming/MicrosoftMapping.json"},{"ref":"S9","title":"TA17-163A: CrashOverride Malware","publisher":"US-CERT (CISA)","date":"2017-06-12","url":"https://www.us-cert.gov/ncas/alerts/TA17-163A"}],"importFlags":[],"provenance":{"origin":"import+research","file":"actors.json","generated":"2026-07-14T22:45:41.952Z","upstream":["MITRE ATT&CK","MISP Galaxy","Microsoft Threat Intelligence"],"importedRefs":["https://attack.mitre.org/groups/G0034/","https://dragos.com/blog/crashoverride/CrashOverride-01.pdf","https://www.us-cert.gov/ncas/alerts/TA17-163A","https://ics.sans.org/blog/2016/01/09/confirmation-of-a-coordinated-attack-on-the-ukrainian-power-grid","https://web.archive.org/web/20141016132823/https://www.symantec.com/connect/blogs/sandworm-windows-zero-day-vulnerability-being-actively-exploited-targeted-attacks","https://ics.sans.org/blog/2015/12/30/current-reporting-on-the-cyber-attack-in-ukraine-resulting-in-power-outage","https://web.archive.org/web/20141224060545/http://blog.trendmicro.com/trendlabs-security-intelligence/timeline-of-sandworm-attacks/","https://attack.mitre.org/groups/G0034","https://blog.google/threat-analysis-group/continued-cyber-activity-in-eastern-europe-observed-by-tag","https://www.welivesecurity.com/wp-content/uploads/2017/06/Win32_Industroyer.pdf","https://dragos.com/media/2017-Review-Industrial-Control-System-Threats.pdf","https://dragos.com/adversaries.html","http://www.welivesecurity.com/2016/12/13/rise-telebots-analyzing-disruptive-killdisk-attacks","https://www.welivesecurity.com/2017/01/05/killdisk-now-targeting-linux-demands-250k-ransom-cant-decrypt","https://www.welivesecurity.com/2017/06/30/telebots-back-supply-chain-attacks-against-ukraine","https://www.welivesecurity.com/2017/05/23/xdata-ransomware-making-rounds-amid-global-wannacryptor-scare","https://www.welivesecurity.com/2017/06/27/new-ransomware-attack-hits-ukraine","https://www.welivesecurity.com/2017/10/24/bad-rabbit-not-petya-back","https://blog.google/threat-analysis-group/fog-of-war-how-the-ukraine-conflict-transformed-the-cyber-threat-landscape/","https://www.recordedfuture.com/russia-nexus-uac-0113-emulating-telecommunication-providers-in-ukraine"],"importedSummary":"This threat actor targets industrial control systems, using a tool called Black Energy, associated with electricity and power generation for espionage, denial of service, and data destruction purposes. Some believe that the threat actor is linked to the 2015 compromise of the Ukrainian electrical grid and a distributed denial of service prior to the Russian invasion of Georgia. Believed to be responsible for the 2008 DDoS attacks in Georgia and the 2015 Ukraine power grid outage"},"updatedAt":"2026-10-14T00:00:00Z","updatedBy":"Research build 2026-10-14","relatedMs":[]}
+{
+ "id": "seashell-blizzard",
+ "primaryName": "Seashell Blizzard",
+ "msName": "Seashell Blizzard",
+ "msCandidates": [],
+ "country": "RU",
+ "aliases": [
+  {
+   "name": "Sandworm Team",
+   "vendor": "Other / unspecified"
+  },
+  {
+   "name": "APT44",
+   "vendor": "Mandiant / Google TI"
+  },
+  {
+   "name": "BE2",
+   "vendor": "Other / unspecified"
+  },
+  {
+   "name": "BlackEnergy (Group)",
+   "vendor": "Other / unspecified"
+  },
+  {
+   "name": "BlackEnergy Lite",
+   "vendor": "Other / unspecified"
+  },
+  {
+   "name": "Blue Echidna",
+   "vendor": "Other / unspecified"
+  },
+  {
+   "name": "ELECTRUM",
+   "vendor": "Other / unspecified"
+  },
+  {
+   "name": "FROZENBARENTS",
+   "vendor": "Other / unspecified"
+  },
+  {
+   "name": "IRIDIUM",
+   "vendor": "Other / unspecified"
+  },
+  {
+   "name": "IRON VIKING",
+   "vendor": "Secureworks CTU"
+  },
+  {
+   "name": "PHANTOM",
+   "vendor": "Other / unspecified"
+  },
+  {
+   "name": "Quedagh",
+   "vendor": "Other / unspecified"
+  },
+  {
+   "name": "Sandworm",
+   "vendor": "Other / unspecified"
+  },
+  {
+   "name": "Telebots",
+   "vendor": "Other / unspecified"
+  },
+  {
+   "name": "TEMP.Noble",
+   "vendor": "Mandiant / Google TI"
+  },
+  {
+   "name": "UAC-0082",
+   "vendor": "Other / unspecified"
+  },
+  {
+   "name": "UAC-0113",
+   "vendor": "Other / unspecified"
+  },
+  {
+   "name": "Voodoo Bear",
+   "vendor": "CrowdStrike"
+  }
+ ],
+ "mitreGroupId": "G0034",
+ "identification": {
+  "summary": "Russian military intelligence (GRU) cyber unit responsible for most of the destructive and disruptive cyberattacks against Ukraine over the past decade, including the 2015 and 2016 power-grid outages, NotPetya (2017), and wipers deployed around the February 2022 invasion [S2][S3]. It combines espionage, sabotage and information operations, and paces its attacks to support Russian conventional military operations [S3].",
+  "firstObserved": "Publicly documented destructive activity since at least the December 2015 Ukraine grid outage; the 2020 DOJ indictment covers attacks from 2015 to 2019 [S2][S3]. Earlier espionage activity under the Sandworm name is reported in the imported references but was not re-verified here. Microsoft's BadPilot subgroup has been active since at least 2021 [S1].",
+  "notes": "Microsoft name: Seashell Blizzard (formerly IRIDIUM). Microsoft maps Sandworm, VOODOO BEAR, APT44, UAC-0113, BE2 and BlackEnergy Lite to it [S8]. Mandiant upgraded the cluster to APT44 in April 2024 to separate it from APT28 (GRU Unit 26165) [S3]."
+ },
+ "attribution": {
+  "sponsor": "Russian Federation: GRU Unit 74455, the Main Centre for Special Technologies (GTsST) of the Main Directorate of the General Staff [S1][S2][S3].",
+  "confidence": "Formal US government attribution through the October 2020 indictment of six named Unit 74455 officers [S2]. Microsoft states the actor works on behalf of GRU Unit 74455 [S1]. ESET attributes the December 2025 Poland wiper attempt with medium confidence [S6].",
+  "basis": "DOJ indictment evidence [S2]; long-running vendor forensics (Mandiant, ESET, Microsoft, Dragos) [S1][S3][S4][S6]; malware lineage across BlackEnergy, Industroyer/Industroyer2, NotPetya and later wipers."
+ },
+ "objectives": "Support Russian military and political objectives through destructive and disruptive attacks, intelligence collection and influence operations, focused on Ukraine and increasingly on states supporting it [S1][S3]. Targets Western elections and institutions, including in NATO countries [S3]. Microsoft assesses its access subgroup exists to establish and hold access in sectors of interest to Russia, which can later enable destructive operations [S1].",
+ "targeting": {
+  "sectors": [
+   "Energy and electric power (including OT/ICS)",
+   "Oil and gas",
+   "Government and defense",
+   "Telecommunications",
+   "Transportation and shipping",
+   "Arms manufacturing",
+   "Media and civil society",
+   "Water and heating utilities (Ukraine)",
+   "Electoral systems and institutions"
+  ],
+  "regions": [
+   "Ukraine (primary)",
+   "Russia's near abroad",
+   "NATO and EU states, including Poland (Dec 2025 energy-sector wiper attempt)",
+   "United States, Canada, Australia and the United Kingdom (BadPilot focus in 2024)",
+   "Central Asia and the Middle East (BadPilot, 2023)"
+  ],
+  "notes": "Sector and region data from Mandiant [S3], Microsoft's BadPilot reporting [S1] and ESET [S6]. Ukrainian water and heating targeting as reported in ESET-derived coverage [S6]."
+ },
+ "capabilities": {
+  "summary": "Full-spectrum: espionage, destructive wipers and OT effects. OT capability is proven: Industroyer (2016), Industroyer2 against a Ukrainian substation (thwarted April 2022) [S5], and an October 2022 outage caused by executing native MicroSCADA binaries (scilc.exe), a living-off-the-land approach to OT [S4]. Wipers include NotPetya, KillDisk, CaddyWiper and DynoWiper (Poland, Dec 2025) [S2][S4][S6]. Initial access through edge devices and n-day exploits (Exchange CVE-2021-34473, Zimbra CVE-2022-41352, ScreenConnect CVE-2024-1709, FortiClient EMS CVE-2023-48788), with persistence through RMM tools (Atera, Splashtop), the ShadowLink Tor hidden-service tool and the LocalOlive web shell [S1]. Uses hacktivist-branded Telegram personas for influence [S3].",
+  "software": [
+   {
+    "id": "S0002",
+    "name": "Mimikatz",
+    "type": "tool"
+   },
+   {
+    "id": "S0029",
+    "name": "PsExec",
+    "type": "tool"
+   },
+   {
+    "id": "S0039",
+    "name": "Net",
+    "type": "tool"
+   },
+   {
+    "id": "S0089",
+    "name": "BlackEnergy",
+    "type": "malware"
+   },
+   {
+    "id": "S0154",
+    "name": "Cobalt Strike",
+    "type": "malware"
+   },
+   {
+    "id": "S0195",
+    "name": "SDelete",
+    "type": "tool"
+   },
+   {
+    "id": "S0231",
+    "name": "Invoke-PSImage",
+    "type": "tool"
+   },
+   {
+    "id": "S0342",
+    "name": "GreyEnergy",
+    "type": "malware"
+   },
+   {
+    "id": "S0343",
+    "name": "Exaramel for Windows",
+    "type": "malware"
+   },
+   {
+    "id": "S0357",
+    "name": "Impacket",
+    "type": "tool"
+   },
+   {
+    "id": "S0363",
+    "name": "Empire",
+    "type": "tool"
+   },
+   {
+    "id": "S0365",
+    "name": "Olympic Destroyer",
+    "type": "malware"
+   },
+   {
+    "id": "S0368",
+    "name": "NotPetya",
+    "type": "malware"
+   },
+   {
+    "id": "S0378",
+    "name": "PoshC2",
+    "type": "tool"
+   },
+   {
+    "id": "S0401",
+    "name": "Exaramel for Linux",
+    "type": "malware"
+   },
+   {
+    "id": "S0598",
+    "name": "P.A.S. Webshell",
+    "type": "malware"
+   },
+   {
+    "id": "S0604",
+    "name": "Industroyer",
+    "type": "malware"
+   },
+   {
+    "id": "S0606",
+    "name": "Bad Rabbit",
+    "type": "malware"
+   },
+   {
+    "id": "S0607",
+    "name": "KillDisk",
+    "type": "malware"
+   },
+   {
+    "id": "S0687",
+    "name": "Cyclops Blink",
+    "type": "malware"
+   },
+   {
+    "id": "S1010",
+    "name": "VPNFilter",
+    "type": "malware"
+   },
+   {
+    "id": "S1058",
+    "name": "Prestige",
+    "type": "malware"
+   },
+   {
+    "id": "S1072",
+    "name": "Industroyer2",
+    "type": "malware"
+   },
+   {
+    "id": "S1125",
+    "name": "AcidRain",
+    "type": "malware"
+   },
+   {
+    "id": "S1167",
+    "name": "AcidPour",
+    "type": "malware"
+   },
+   {
+    "id": "S1189",
+    "name": "Neo-reGeorg",
+    "type": "malware"
+   },
+   {
+    "id": "S1190",
+    "name": "Kapeka",
+    "type": "malware"
+   }
+  ]
+ },
+ "attack": [
+  {
+   "id": "T1003.001",
+   "name": "LSASS Memory",
+   "source": "MITRE ATT&CK G0034 (2026-07-31)",
+   "tactics": [
+    "credential-access"
+   ]
+  },
+  {
+   "id": "T1003.003",
+   "name": "NTDS",
+   "source": "MITRE ATT&CK G0034 (2026-07-31)",
+   "tactics": [
+    "credential-access"
+   ]
+  },
+  {
+   "id": "T1005",
+   "name": "Data from Local System",
+   "source": "MITRE ATT&CK G0034 (2026-07-31)",
+   "tactics": [
+    "collection"
+   ]
+  },
+  {
+   "id": "T1018",
+   "name": "Remote System Discovery",
+   "source": "MITRE ATT&CK G0034 (2026-07-31)",
+   "tactics": [
+    "discovery"
+   ]
+  },
+  {
+   "id": "T1021.002",
+   "name": "SMB/Windows Admin Shares",
+   "source": "MITRE ATT&CK G0034 (2026-07-31)",
+   "tactics": [
+    "lateral-movement"
+   ]
+  },
+  {
+   "id": "T1027",
+   "name": "Obfuscated Files or Information",
+   "source": "MITRE ATT&CK G0034 (2026-07-31)",
+   "tactics": [
+    "stealth"
+   ]
+  },
+  {
+   "id": "T1027.010",
+   "name": "Command Obfuscation",
+   "source": "MITRE ATT&CK G0034 (2026-07-31)",
+   "tactics": [
+    "stealth"
+   ]
+  },
+  {
+   "id": "T1033",
+   "name": "System Owner/User Discovery",
+   "source": "MITRE ATT&CK G0034 (2026-07-31)",
+   "tactics": [
+    "discovery"
+   ]
+  },
+  {
+   "id": "T1036",
+   "name": "Masquerading",
+   "source": "MITRE ATT&CK G0034 (2026-07-31)",
+   "tactics": [
+    "stealth"
+   ]
+  },
+  {
+   "id": "T1036.005",
+   "name": "Match Legitimate Resource Name or Location",
+   "source": "MITRE ATT&CK G0034 (2026-07-31)",
+   "tactics": [
+    "stealth"
+   ]
+  },
+  {
+   "id": "T1040",
+   "name": "Network Sniffing",
+   "source": "MITRE ATT&CK G0034 (2026-07-31)",
+   "tactics": [
+    "credential-access",
+    "discovery"
+   ]
+  },
+  {
+   "id": "T1041",
+   "name": "Exfiltration Over C2 Channel",
+   "source": "MITRE ATT&CK G0034 (2026-07-31)",
+   "tactics": [
+    "exfiltration"
+   ]
+  },
+  {
+   "id": "T1047",
+   "name": "Windows Management Instrumentation",
+   "source": "MITRE ATT&CK G0034 (2026-07-31)",
+   "tactics": [
+    "execution"
+   ]
+  },
+  {
+   "id": "T1049",
+   "name": "System Network Connections Discovery",
+   "source": "MITRE ATT&CK G0034 (2026-07-31)",
+   "tactics": [
+    "discovery"
+   ]
+  },
+  {
+   "id": "T1053.005",
+   "name": "Scheduled Task",
+   "source": "MITRE ATT&CK G0034 (2026-07-31)",
+   "tactics": [
+    "execution",
+    "persistence",
+    "privilege-escalation"
+   ]
+  },
+  {
+   "id": "T1056.001",
+   "name": "Keylogging",
+   "source": "MITRE ATT&CK G0034 (2026-07-31)",
+   "tactics": [
+    "collection",
+    "credential-access"
+   ]
+  },
+  {
+   "id": "T1059.001",
+   "name": "PowerShell",
+   "source": "MITRE ATT&CK G0034 (2026-07-31)",
+   "tactics": [
+    "execution"
+   ]
+  },
+  {
+   "id": "T1059.005",
+   "name": "Visual Basic",
+   "source": "MITRE ATT&CK G0034 (2026-07-31)",
+   "tactics": [
+    "execution"
+   ]
+  },
+  {
+   "id": "T1070.004",
+   "name": "File Deletion",
+   "source": "MITRE ATT&CK G0034 (2026-07-31)",
+   "tactics": [
+    "stealth"
+   ]
+  },
+  {
+   "id": "T1071.001",
+   "name": "Web Protocols",
+   "source": "MITRE ATT&CK G0034 (2026-07-31)",
+   "tactics": [
+    "command-and-control"
+   ]
+  },
+  {
+   "id": "T1072",
+   "name": "Software Deployment Tools",
+   "source": "MITRE ATT&CK G0034 (2026-07-31)",
+   "tactics": [
+    "execution",
+    "lateral-movement"
+   ]
+  },
+  {
+   "id": "T1078",
+   "name": "Valid Accounts",
+   "source": "MITRE ATT&CK G0034 (2026-07-31)",
+   "tactics": [
+    "stealth",
+    "persistence",
+    "privilege-escalation",
+    "initial-access"
+   ]
+  },
+  {
+   "id": "T1078.002",
+   "name": "Domain Accounts",
+   "source": "MITRE ATT&CK G0034 (2026-07-31)",
+   "tactics": [
+    "stealth",
+    "persistence",
+    "privilege-escalation",
+    "initial-access"
+   ]
+  },
+  {
+   "id": "T1082",
+   "name": "System Information Discovery",
+   "source": "MITRE ATT&CK G0034 (2026-07-31)",
+   "tactics": [
+    "discovery"
+   ]
+  },
+  {
+   "id": "T1083",
+   "name": "File and Directory Discovery",
+   "source": "MITRE ATT&CK G0034 (2026-07-31)",
+   "tactics": [
+    "discovery"
+   ]
+  },
+  {
+   "id": "T1087.002",
+   "name": "Domain Account",
+   "source": "MITRE ATT&CK G0034 (2026-07-31)",
+   "tactics": [
+    "discovery"
+   ]
+  },
+  {
+   "id": "T1087.003",
+   "name": "Email Account",
+   "source": "MITRE ATT&CK G0034 (2026-07-31)",
+   "tactics": [
+    "discovery"
+   ]
+  },
+  {
+   "id": "T1090",
+   "name": "Proxy",
+   "source": "MITRE ATT&CK G0034 (2026-07-31)",
+   "tactics": [
+    "command-and-control"
+   ]
+  },
+  {
+   "id": "T1102.002",
+   "name": "Bidirectional Communication",
+   "source": "MITRE ATT&CK G0034 (2026-07-31)",
+   "tactics": [
+    "command-and-control"
+   ]
+  },
+  {
+   "id": "T1105",
+   "name": "Ingress Tool Transfer",
+   "source": "MITRE ATT&CK G0034 (2026-07-31)",
+   "tactics": [
+    "command-and-control"
+   ]
+  },
+  {
+   "id": "T1106",
+   "name": "Native API",
+   "source": "MITRE ATT&CK G0034 (2026-07-31)",
+   "tactics": [
+    "execution"
+   ]
+  },
+  {
+   "id": "T1132.001",
+   "name": "Standard Encoding",
+   "source": "MITRE ATT&CK G0034 (2026-07-31)",
+   "tactics": [
+    "command-and-control"
+   ]
+  },
+  {
+   "id": "T1133",
+   "name": "External Remote Services",
+   "source": "MITRE ATT&CK G0034 (2026-07-31)",
+   "tactics": [
+    "persistence",
+    "initial-access"
+   ]
+  },
+  {
+   "id": "T1140",
+   "name": "Deobfuscate/Decode Files or Information",
+   "source": "MITRE ATT&CK G0034 (2026-07-31)",
+   "tactics": [
+    "stealth"
+   ]
+  },
+  {
+   "id": "T1190",
+   "name": "Exploit Public-Facing Application",
+   "source": "MITRE ATT&CK G0034 (2026-07-31)",
+   "tactics": [
+    "initial-access"
+   ]
+  },
+  {
+   "id": "T1195",
+   "name": "Supply Chain Compromise",
+   "source": "MITRE ATT&CK G0034 (2026-07-31)",
+   "tactics": [
+    "initial-access"
+   ]
+  },
+  {
+   "id": "T1195.002",
+   "name": "Compromise Software Supply Chain",
+   "source": "MITRE ATT&CK G0034 (2026-07-31)",
+   "tactics": [
+    "initial-access"
+   ]
+  },
+  {
+   "id": "T1199",
+   "name": "Trusted Relationship",
+   "source": "MITRE ATT&CK G0034 (2026-07-31)",
+   "tactics": [
+    "initial-access"
+   ]
+  },
+  {
+   "id": "T1203",
+   "name": "Exploitation for Client Execution",
+   "source": "MITRE ATT&CK G0034 (2026-07-31)",
+   "tactics": [
+    "execution"
+   ]
+  },
+  {
+   "id": "T1204.001",
+   "name": "Malicious Link",
+   "source": "MITRE ATT&CK G0034 (2026-07-31)",
+   "tactics": [
+    "execution"
+   ]
+  },
+  {
+   "id": "T1204.002",
+   "name": "Malicious File",
+   "source": "MITRE ATT&CK G0034 (2026-07-31)",
+   "tactics": [
+    "execution"
+   ]
+  },
+  {
+   "id": "T1213.006",
+   "name": "Databases",
+   "source": "MITRE ATT&CK G0034 (2026-07-31)",
+   "tactics": [
+    "collection"
+   ]
+  },
+  {
+   "id": "T1218.011",
+   "name": "Rundll32",
+   "source": "MITRE ATT&CK G0034 (2026-07-31)",
+   "tactics": [
+    "stealth"
+   ]
+  },
+  {
+   "id": "T1219",
+   "name": "Remote Access Tools",
+   "source": "MITRE ATT&CK G0034 (2026-07-31)",
+   "tactics": [
+    "command-and-control"
+   ]
+  },
+  {
+   "id": "T1485",
+   "name": "Data Destruction",
+   "source": "MITRE ATT&CK G0034 (2026-07-31)",
+   "tactics": [
+    "impact"
+   ]
+  },
+  {
+   "id": "T1486",
+   "name": "Data Encrypted for Impact",
+   "source": "MITRE ATT&CK G0034 (2026-07-31)",
+   "tactics": [
+    "impact"
+   ]
+  },
+  {
+   "id": "T1489",
+   "name": "Service Stop",
+   "source": "MITRE ATT&CK G0034 (2026-07-31)",
+   "tactics": [
+    "impact"
+   ]
+  },
+  {
+   "id": "T1490",
+   "name": "Inhibit System Recovery",
+   "source": "MITRE ATT&CK G0034 (2026-07-31)",
+   "tactics": [
+    "impact"
+   ]
+  },
+  {
+   "id": "T1491.002",
+   "name": "External Defacement",
+   "source": "MITRE ATT&CK G0034 (2026-07-31)",
+   "tactics": [
+    "impact"
+   ]
+  },
+  {
+   "id": "T1499",
+   "name": "Endpoint Denial of Service",
+   "source": "MITRE ATT&CK G0034 (2026-07-31)",
+   "tactics": [
+    "impact"
+   ]
+  },
+  {
+   "id": "T1505.003",
+   "name": "Web Shell",
+   "source": "MITRE ATT&CK G0034 (2026-07-31)",
+   "tactics": [
+    "persistence"
+   ]
+  },
+  {
+   "id": "T1539",
+   "name": "Steal Web Session Cookie",
+   "source": "MITRE ATT&CK G0034 (2026-07-31)",
+   "tactics": [
+    "credential-access"
+   ]
+  },
+  {
+   "id": "T1555.003",
+   "name": "Credentials from Web Browsers",
+   "source": "MITRE ATT&CK G0034 (2026-07-31)",
+   "tactics": [
+    "credential-access"
+   ]
+  },
+  {
+   "id": "T1561.002",
+   "name": "Disk Structure Wipe",
+   "source": "MITRE ATT&CK G0034 (2026-07-31)",
+   "tactics": [
+    "impact"
+   ]
+  },
+  {
+   "id": "T1566.001",
+   "name": "Spearphishing Attachment",
+   "source": "MITRE ATT&CK G0034 (2026-07-31)",
+   "tactics": [
+    "initial-access"
+   ]
+  },
+  {
+   "id": "T1566.002",
+   "name": "Spearphishing Link",
+   "source": "MITRE ATT&CK G0034 (2026-07-31)",
+   "tactics": [
+    "initial-access"
+   ]
+  },
+  {
+   "id": "T1570",
+   "name": "Lateral Tool Transfer",
+   "source": "MITRE ATT&CK G0034 (2026-07-31)",
+   "tactics": [
+    "lateral-movement"
+   ]
+  },
+  {
+   "id": "T1571",
+   "name": "Non-Standard Port",
+   "source": "MITRE ATT&CK G0034 (2026-07-31)",
+   "tactics": [
+    "command-and-control"
+   ]
+  },
+  {
+   "id": "T1583",
+   "name": "Acquire Infrastructure",
+   "source": "MITRE ATT&CK G0034 (2026-07-31)",
+   "tactics": [
+    "resource-development"
+   ]
+  },
+  {
+   "id": "T1583.001",
+   "name": "Domains",
+   "source": "MITRE ATT&CK G0034 (2026-07-31)",
+   "tactics": [
+    "resource-development"
+   ]
+  },
+  {
+   "id": "T1583.004",
+   "name": "Server",
+   "source": "MITRE ATT&CK G0034 (2026-07-31)",
+   "tactics": [
+    "resource-development"
+   ]
+  },
+  {
+   "id": "T1584.004",
+   "name": "Server",
+   "source": "MITRE ATT&CK G0034 (2026-07-31)",
+   "tactics": [
+    "resource-development"
+   ]
+  },
+  {
+   "id": "T1584.005",
+   "name": "Botnet",
+   "source": "MITRE ATT&CK G0034 (2026-07-31)",
+   "tactics": [
+    "resource-development"
+   ]
+  },
+  {
+   "id": "T1585.001",
+   "name": "Social Media Accounts",
+   "source": "MITRE ATT&CK G0034 (2026-07-31)",
+   "tactics": [
+    "resource-development"
+   ]
+  },
+  {
+   "id": "T1585.002",
+   "name": "Email Accounts",
+   "source": "MITRE ATT&CK G0034 (2026-07-31)",
+   "tactics": [
+    "resource-development"
+   ]
+  },
+  {
+   "id": "T1586.001",
+   "name": "Social Media Accounts",
+   "source": "MITRE ATT&CK G0034 (2026-07-31)",
+   "tactics": [
+    "resource-development"
+   ]
+  },
+  {
+   "id": "T1587.001",
+   "name": "Malware",
+   "source": "MITRE ATT&CK G0034 (2026-07-31)",
+   "tactics": [
+    "resource-development"
+   ]
+  },
+  {
+   "id": "T1588.002",
+   "name": "Tool",
+   "source": "MITRE ATT&CK G0034 (2026-07-31)",
+   "tactics": [
+    "resource-development"
+   ]
+  },
+  {
+   "id": "T1588.006",
+   "name": "Vulnerabilities",
+   "source": "MITRE ATT&CK G0034 (2026-07-31)",
+   "tactics": [
+    "resource-development"
+   ]
+  },
+  {
+   "id": "T1589.002",
+   "name": "Email Addresses",
+   "source": "MITRE ATT&CK G0034 (2026-07-31)",
+   "tactics": [
+    "reconnaissance"
+   ]
+  },
+  {
+   "id": "T1589.003",
+   "name": "Employee Names",
+   "source": "MITRE ATT&CK G0034 (2026-07-31)",
+   "tactics": [
+    "reconnaissance"
+   ]
+  },
+  {
+   "id": "T1590.001",
+   "name": "Domain Properties",
+   "source": "MITRE ATT&CK G0034 (2026-07-31)",
+   "tactics": [
+    "reconnaissance"
+   ]
+  },
+  {
+   "id": "T1591.002",
+   "name": "Business Relationships",
+   "source": "MITRE ATT&CK G0034 (2026-07-31)",
+   "tactics": [
+    "reconnaissance"
+   ]
+  },
+  {
+   "id": "T1592.002",
+   "name": "Software",
+   "source": "MITRE ATT&CK G0034 (2026-07-31)",
+   "tactics": [
+    "reconnaissance"
+   ]
+  },
+  {
+   "id": "T1593",
+   "name": "Search Open Websites/Domains",
+   "source": "MITRE ATT&CK G0034 (2026-07-31)",
+   "tactics": [
+    "reconnaissance"
+   ]
+  },
+  {
+   "id": "T1594",
+   "name": "Search Victim-Owned Websites",
+   "source": "MITRE ATT&CK G0034 (2026-07-31)",
+   "tactics": [
+    "reconnaissance"
+   ]
+  },
+  {
+   "id": "T1595.002",
+   "name": "Vulnerability Scanning",
+   "source": "MITRE ATT&CK G0034 (2026-07-31)",
+   "tactics": [
+    "reconnaissance"
+   ]
+  },
+  {
+   "id": "T1598.003",
+   "name": "Spearphishing Link",
+   "source": "MITRE ATT&CK G0034 (2026-07-31)",
+   "tactics": [
+    "reconnaissance"
+   ]
+  },
+  {
+   "id": "T1608.001",
+   "name": "Upload Malware",
+   "source": "MITRE ATT&CK G0034 (2026-07-31)",
+   "tactics": [
+    "resource-development"
+   ]
+  }
+ ],
+ "campaigns": [
+  {
+   "date": "2015-12",
+   "name": "Ukraine power outage (BlackEnergy)",
+   "summary": "First publicly confirmed grid outage caused by a cyberattack; attributed to Sandworm by Mandiant and named in the 2020 DOJ indictment.",
+   "sources": [
+    "S2",
+    "S3"
+   ]
+  },
+  {
+   "date": "2016-12",
+   "name": "Industroyer / CrashOverride",
+   "summary": "Second Ukraine grid attack using malware purpose-built to speak ICS protocols to substation equipment.",
+   "sources": [
+    "S2",
+    "S9"
+   ]
+  },
+  {
+   "date": "2017-06-27",
+   "name": "NotPetya",
+   "summary": "Destructive malware launched against Ukraine spread worldwide through multinational networks; nearly $1 billion in losses to three victims named in the indictment alone.",
+   "sources": [
+    "S2"
+   ]
+  },
+  {
+   "date": "2018-02",
+   "name": "Olympic Destroyer",
+   "summary": "Attack on the PyeongChang Winter Olympics with false flags pointing at North Korea.",
+   "sources": [
+    "S2"
+   ]
+  },
+  {
+   "date": "2020-10-19",
+   "name": "DOJ indictment",
+   "summary": "Six GRU Unit 74455 officers charged for NotPetya, the Ukraine grid attacks, Olympic Destroyer and other operations.",
+   "sources": [
+    "S2"
+   ]
+  },
+  {
+   "date": "2022-04",
+   "name": "Industroyer2 (thwarted)",
+   "summary": "CERT-UA, with ESET and Microsoft, prevented a planned attack on a Ukrainian energy provider's substations.",
+   "sources": [
+    "S5"
+   ]
+  },
+  {
+   "date": "2022-10",
+   "name": "OT-induced outage via MicroSCADA",
+   "summary": "Mandiant documents a power outage caused by native MicroSCADA commands, followed two days later by CaddyWiper in IT. Reported 2023-11-09.",
+   "sources": [
+    "S4"
+   ]
+  },
+  {
+   "date": "2021 to 2025",
+   "name": "BadPilot access subgroup",
+   "summary": "Microsoft reports a Seashell Blizzard subgroup running global opportunistic access operations, expanding from Ukraine (2022) to the US, UK, Canada and Australia (2024). It likely enabled at least three destructive attacks in Ukraine since 2023.",
+   "sources": [
+    "S1"
+   ]
+  },
+  {
+   "date": "2025-12-29",
+   "name": "Poland energy-sector wiper attempt",
+   "summary": "DynoWiper deployed against Polish energy organizations, including combined heat and power plants and a renewables management system. Execution was blocked; ESET attributes it to Sandworm with medium confidence.",
+   "sources": [
+    "S6"
+   ]
+  }
+ ],
+ "diamond": {
+  "adversary": "GRU Unit 74455 (GTsST); six officers named in the 2020 DOJ indictment [S2].",
+  "capability": "OT-specific malware (Industroyer, Industroyer2) and OT living-off-the-land; wipers (NotPetya, KillDisk, CaddyWiper, DynoWiper); n-day edge exploitation; RMM-based persistence; ShadowLink; hacktivist personas [S1][S3][S4][S5][S6].",
+  "infrastructure": "Compromised edge devices and internet-facing servers; RMM services for C2; Tor hidden services via ShadowLink; Telegram personas for influence and leak operations [S1][S3].",
+  "victim": "Ukrainian energy, government, telecom, water and heating; NATO-state energy (Poland); global energy, oil and gas, shipping, telecoms and arms manufacturing reached through BadPilot [S1][S6].",
+  "socioPolitical": "Coercion and sabotage aligned with Russian war aims in Ukraine and pressure on states supporting Ukraine; election interference [S3].",
+  "technology": "IT-to-OT pivot through Windows domain and SCADA management hosts; reuse of native vendor tools to avoid OT-specific malware signatures [S4]."
+ },
+ "gaps": [
+  "Relationship between the BadPilot access subgroup and Sandworm's destructive teams: how accesses are handed off and prioritized is not public [S1].",
+  "Extent of BadPilot access in US, UK, Canadian and Australian networks after Microsoft's 2025 disclosure.",
+  "Primary-source confirmation still needed: the DOJ 2020 indictment, the Mandiant APT44 report and ESET's Industroyer2 analysis were verified through coverage only, because those sites were blocked from this environment.",
+  "Operational coordination between Seashell Blizzard and other GRU units (Forest Blizzard / APT28, Cadet Blizzard) in shared campaigns.",
+  "Whether the Poland attempt reflects an intent change toward NATO critical infrastructure or opportunistic access use.",
+  "Primary-source check (APT44 blog, 2026-10-18): the blog text supports the APT44 rename, destructive/disruptive scope and 2024 election concern. It did not mention Telegram hacktivist personas or the APT28 separation, so those S3-cited points rest on the full Mandiant report, which was not opened."
+ ],
+ "implications": {
+  "jipoe": "Analyst assessment derived from cited sources; validate before use. STEP 1: For any EUCOM or NATO contingency, the cyberspace OE includes allied energy, heating, water and telecom OT, not just DoD networks. Poland in Dec 2025 shows NATO-state energy is in range. STEP 2: Sandworm times effects with kinetic operations, so cyber effects should be modeled alongside the adversary's fires and maneuver timeline, not as a separate line. STEP 3: The template is edge or n-day initial access (often prepared long in advance by BadPilot), then domain compromise, then pivot to SCADA management hosts, then OT effect using native tools, then wiper to destroy evidence and slow recovery. STEP 4: MLCOA is sustained espionage and access maintenance in allied energy and logistics with periodic destructive attacks in Ukraine. MDCOA is synchronized wiper and OT attacks on allied energy and logistics nodes supporting reinforcement of NATO's eastern flank. Candidate indicators: RMM tools (Atera, Splashtop) appearing without change records, Tor hidden-service persistence, new local admin accounts on SCADA management hosts, and abnormal MicroSCADA or engineering tool execution [S1][S4].",
+  "jcc2": "Analyst assessment derived from cited sources; validate before use. (1) Integrate allied CERT reporting (CERT-UA, Polish CSIRTs) and vendor ICS telemetry into shared situational awareness, since the earliest warning is often in partner OT networks. (2) Plan for degraded host-nation infrastructure: C2 resilience and mission assurance assessments should assume possible power and heating loss at staging areas. (3) Authorities: defense of allied civilian infrastructure is a host-nation lead. US cyber forces support through partner agreements and hunt-forward-type missions, which must be coordinated through EUCOM and USCYBERCOM channels. (4) Wiper resilience: offline backups and restoration drills for deployed mission systems are a C2 continuity requirement, not just an IT task."
+ },
+ "sources": [
+  {
+   "ref": "S1",
+   "title": "The BadPilot campaign: Seashell Blizzard subgroup conducts multiyear global access operation",
+   "publisher": "Microsoft Threat Intelligence",
+   "date": "2025-02-12",
+   "url": "https://www.microsoft.com/en-us/security/blog/2025/02/12/the-badpilot-campaign-seashell-blizzard-subgroup-conducts-multiyear-global-access-operation/"
+  },
+  {
+   "ref": "S2",
+   "title": "US Indicts GRU Officers for NotPetya, Olympics Attacks and More (reporting the DOJ indictment)",
+   "publisher": "Infosecurity Magazine",
+   "date": "2020-10-19",
+   "url": "https://infosecurity-magazine.com/news/us-indicts-gru-officers-notpetya"
+  },
+  {
+   "ref": "S3",
+   "title": "Unearthing APT44: Russia's Notorious Cyber Sabotage Unit Sandworm",
+   "publisher": "Mandiant / Google Cloud Blog",
+   "date": "2024-04-17",
+   "url": "https://cloud.google.com/blog/topics/threat-intelligence/apt44-unearthing-sandworm"
+  },
+  {
+   "ref": "S4",
+   "title": "Sandworm hackers incapacitated Ukrainian power grid amid missile strike (reporting Mandiant)",
+   "publisher": "Help Net Security",
+   "date": "2023-11-09",
+   "url": "https://www.helpnetsecurity.com/2023/11/09/ukrainian-power-grid-disruption/"
+  },
+  {
+   "ref": "S5",
+   "title": "Industroyer2 attack on Ukrainian power substation",
+   "publisher": "RISI database (summarizing CERT-UA and ESET)",
+   "date": "2022-04",
+   "url": "https://www.risidata.com/Database/Detail/ukraine-industroyer2-sandworm-substation-2022"
+  },
+  {
+   "ref": "S6",
+   "title": "ESET Research: Sandworm behind cyberattack on Poland's power grid in late 2025",
+   "publisher": "ESET (WeLiveSecurity)",
+   "date": "2026-01",
+   "url": "https://www.welivesecurity.com/en/eset-research/eset-research-sandworm-cyberattack-poland-power-grid-late-2025/"
+  },
+  {
+   "ref": "S7",
+   "title": "Sandworm Team, G0034 (techniques and software)",
+   "publisher": "MITRE ATT&CK",
+   "date": "2026-07-31 (object modified)",
+   "url": "https://attack.mitre.org/groups/G0034/"
+  },
+  {
+   "ref": "S8",
+   "title": "Microsoft threat actor naming mapping (MicrosoftMapping.json)",
+   "publisher": "Microsoft Threat Intelligence",
+   "date": "2026-10-14 (retrieved)",
+   "url": "https://github.com/microsoft/mstic/blob/master/PublicFeeds/ThreatActorNaming/MicrosoftMapping.json"
+  },
+  {
+   "ref": "S9",
+   "title": "TA17-163A: CrashOverride Malware",
+   "publisher": "US-CERT (CISA)",
+   "date": "2017-06-12",
+   "url": "https://www.us-cert.gov/ncas/alerts/TA17-163A"
+  }
+ ],
+ "importFlags": [],
+ "provenance": {
+  "origin": "import+research",
+  "file": "actors.json",
+  "generated": "2026-07-14T22:45:41.952Z",
+  "upstream": [
+   "MITRE ATT&CK",
+   "MISP Galaxy",
+   "Microsoft Threat Intelligence"
+  ],
+  "importedRefs": [
+   "https://attack.mitre.org/groups/G0034/",
+   "https://dragos.com/blog/crashoverride/CrashOverride-01.pdf",
+   "https://www.us-cert.gov/ncas/alerts/TA17-163A",
+   "https://ics.sans.org/blog/2016/01/09/confirmation-of-a-coordinated-attack-on-the-ukrainian-power-grid",
+   "https://web.archive.org/web/20141016132823/https://www.symantec.com/connect/blogs/sandworm-windows-zero-day-vulnerability-being-actively-exploited-targeted-attacks",
+   "https://ics.sans.org/blog/2015/12/30/current-reporting-on-the-cyber-attack-in-ukraine-resulting-in-power-outage",
+   "https://web.archive.org/web/20141224060545/http://blog.trendmicro.com/trendlabs-security-intelligence/timeline-of-sandworm-attacks/",
+   "https://attack.mitre.org/groups/G0034",
+   "https://blog.google/threat-analysis-group/continued-cyber-activity-in-eastern-europe-observed-by-tag",
+   "https://www.welivesecurity.com/wp-content/uploads/2017/06/Win32_Industroyer.pdf",
+   "https://dragos.com/media/2017-Review-Industrial-Control-System-Threats.pdf",
+   "https://dragos.com/adversaries.html",
+   "http://www.welivesecurity.com/2016/12/13/rise-telebots-analyzing-disruptive-killdisk-attacks",
+   "https://www.welivesecurity.com/2017/01/05/killdisk-now-targeting-linux-demands-250k-ransom-cant-decrypt",
+   "https://www.welivesecurity.com/2017/06/30/telebots-back-supply-chain-attacks-against-ukraine",
+   "https://www.welivesecurity.com/2017/05/23/xdata-ransomware-making-rounds-amid-global-wannacryptor-scare",
+   "https://www.welivesecurity.com/2017/06/27/new-ransomware-attack-hits-ukraine",
+   "https://www.welivesecurity.com/2017/10/24/bad-rabbit-not-petya-back",
+   "https://blog.google/threat-analysis-group/fog-of-war-how-the-ukraine-conflict-transformed-the-cyber-threat-landscape/",
+   "https://www.recordedfuture.com/russia-nexus-uac-0113-emulating-telecommunication-providers-in-ukraine"
+  ],
+  "importedSummary": "This threat actor targets industrial control systems, using a tool called Black Energy, associated with electricity and power generation for espionage, denial of service, and data destruction purposes. Some believe that the threat actor is linked to the 2015 compromise of the Ukrainian electrical grid and a distributed denial of service prior to the Russian invasion of Georgia. Believed to be responsible for the 2008 DDoS attacks in Georgia and the 2015 Ukraine power grid outage"
+ },
+ "updatedAt": "2026-10-14T00:00:00Z",
+ "updatedBy": "Research build 2026-10-14",
+ "relatedMs": []
+}

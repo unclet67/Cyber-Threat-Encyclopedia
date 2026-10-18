@@ -13,7 +13,6 @@ These sources were verified only through press or vendor coverage, because the b
 
 | Ref | Date | Secondary source used | Primary to obtain |
 |---|---|---|---|
-| S3 | 2025-05 | [Security Affairs](https://securityaffairs.com/178424/apt/china-linked-apt41-used-google-calendar-as-c2-to-control-its-toughprogress-malware.html) | China-linked APT41 used Google Calendar as C2 to control its TOUGHPROGRESS malware (reporting Google Threat Intelligence Group) |
 
 ## Diamond Sleet
 
@@ -70,7 +69,6 @@ These sources were verified only through press or vendor coverage, because the b
 | Ref | Date | Secondary source used | Primary to obtain |
 |---|---|---|---|
 | S2 | 2020-10-19 | [Infosecurity Magazine](https://infosecurity-magazine.com/news/us-indicts-gru-officers-notpetya) | US Indicts GRU Officers for NotPetya, Olympics Attacks and More (reporting the DOJ indictment) |
-| S3 | 2024-04 | [Infosecurity Magazine](https://www.infosecurity-magazine.com/news/russia-sandworm-upgraded-apt44/) | Russia's Sandworm Upgraded to APT44 by Google's Mandiant (reporting Mandiant 'APT44: Unearthing Sandworm') |
 | S4 | 2023-11-09 | [Help Net Security](https://www.helpnetsecurity.com/2023/11/09/ukrainian-power-grid-disruption/) | Sandworm hackers incapacitated Ukrainian power grid amid missile strike (reporting Mandiant) |
 
 ## Volt Typhoon
