@@ -987,7 +987,9 @@
   "Primary-source confirmation still needed: the DOJ 2020 indictment, the Mandiant APT44 report and ESET's Industroyer2 analysis were verified through coverage only, because those sites were blocked from this environment.",
   "Operational coordination between Seashell Blizzard and other GRU units (Forest Blizzard / APT28, Cadet Blizzard) in shared campaigns.",
   "Whether the Poland attempt reflects an intent change toward NATO critical infrastructure or opportunistic access use.",
-  "Primary-source check (APT44 blog, 2026-10-18): the blog text supports the APT44 rename, destructive/disruptive scope and 2024 election concern. It did not mention Telegram hacktivist personas or the APT28 separation, so those S3-cited points rest on the full Mandiant report, which was not opened."
+  "Primary-source check (APT44 blog, 2026-10-18): the blog text supports the APT44 rename, destructive/disruptive scope and 2024 election concern. It did not mention Telegram hacktivist personas or the APT28 separation, so those S3-cited points rest on the full Mandiant report, which was not opened.",
+  "Primary-source check (2026-10-18): DOJ release confirms the six Unit 74455 officers, the Nov 2015 to at least Oct 2019 conspiracy, the Ukraine grid attacks, NotPetya and Olympic Destroyer. It does not name the GTsST, the 2022 wipers, Microsoft's 'Seashell Blizzard' name or BadPilot.",
+  "Primary-source check (2026-10-18): Mandiant post confirms the 10 Oct 2022 MicroSCADA/ISO OT technique, the 12 Oct CADDYWIPER variant and the overlap with missile strikes (Mandiant says it lacks evidence to assess a link). The profile's 'times effects with kinetic operations' is stronger than that hedged wording."
  ],
  "implications": {
   "jipoe": "Analyst assessment derived from cited sources; validate before use. STEP 1: For any EUCOM or NATO contingency, the cyberspace OE includes allied energy, heating, water and telecom OT, not just DoD networks. Poland in Dec 2025 shows NATO-state energy is in range. STEP 2: Sandworm times effects with kinetic operations, so cyber effects should be modeled alongside the adversary's fires and maneuver timeline, not as a separate line. STEP 3: The template is edge or n-day initial access (often prepared long in advance by BadPilot), then domain compromise, then pivot to SCADA management hosts, then OT effect using native tools, then wiper to destroy evidence and slow recovery. STEP 4: MLCOA is sustained espionage and access maintenance in allied energy and logistics with periodic destructive attacks in Ukraine. MDCOA is synchronized wiper and OT attacks on allied energy and logistics nodes supporting reinforcement of NATO's eastern flank. Candidate indicators: RMM tools (Atera, Splashtop) appearing without change records, Tor hidden-service persistence, new local admin accounts on SCADA management hosts, and abnormal MicroSCADA or engineering tool execution [S1][S4].",
@@ -1003,10 +1005,10 @@
   },
   {
    "ref": "S2",
-   "title": "US Indicts GRU Officers for NotPetya, Olympics Attacks and More (reporting the DOJ indictment)",
-   "publisher": "Infosecurity Magazine",
+   "title": "Six Russian GRU Officers Charged in Connection with Worldwide Deployment of Destructive Malware and Other Disruptive Actions in Cyberspace",
+   "publisher": "U.S. Department of Justice",
    "date": "2020-10-19",
-   "url": "https://infosecurity-magazine.com/news/us-indicts-gru-officers-notpetya"
+   "url": "https://www.justice.gov/archives/opa/pr/six-russian-gru-officers-charged-connection-worldwide-deployment-destructive-malware-and"
   },
   {
    "ref": "S3",
@@ -1017,10 +1019,10 @@
   },
   {
    "ref": "S4",
-   "title": "Sandworm hackers incapacitated Ukrainian power grid amid missile strike (reporting Mandiant)",
-   "publisher": "Help Net Security",
+   "title": "Sandworm Disrupts Power in Ukraine Using a Novel Attack Against Operational Technology",
+   "publisher": "Mandiant (Google Cloud Blog)",
    "date": "2023-11-09",
-   "url": "https://www.helpnetsecurity.com/2023/11/09/ukrainian-power-grid-disruption/"
+   "url": "https://cloud.google.com/blog/topics/threat-intelligence/sandworm-disrupts-power-ukraine-operational-technology"
   },
   {
    "ref": "S5",

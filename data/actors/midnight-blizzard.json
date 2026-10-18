@@ -65,7 +65,7 @@
  "relatedMs": [],
  "mitreGroupId": "G0016",
  "identification": {
-  "summary": "Russian foreign intelligence (SVR) cyber-espionage actor that conducts long-term, patient intrusions against governments, diplomatic entities, NGOs and IT service providers, mainly in the US and Europe [S1]. Responsible for the SolarWinds supply-chain compromise (attributed 2021) [S3] and the 2023\u20132024 breach of Microsoft's corporate email [S1]. Known for identity- and cloud-focused tradecraft: password spraying, OAuth application abuse and residential proxy networks [S1].",
+  "summary": "Russian foreign intelligence (SVR) cyber-espionage actor that conducts long-term, patient intrusions against governments, diplomatic entities, NGOs and IT service providers, mainly in the US and Europe [S1]. Responsible for the SolarWinds supply-chain compromise (attributed 2021) [S3] and the 2023–2024 breach of Microsoft's corporate email [S1]. Known for identity- and cloud-focused tradecraft: password spraying, OAuth application abuse and residential proxy networks [S1].",
   "firstObserved": "MITRE: operating since at least 2008 [S4].",
   "notes": "Microsoft name: Midnight Blizzard (formerly NOBELIUM). Microsoft maps COZY BEAR, UNC2452 and APT29 to it [S6]; MITRE tracks it as APT29 (G0016) [S4]. CERT-UA tracks overlapping 2024 activity as UAC-0215 [S2]."
  },
@@ -930,7 +930,8 @@
   "Full scope of data taken from Microsoft and downstream customers in the 2024 breach.",
   "The Feb 2024 Five Eyes advisory on SVR cloud-access tactics and the Dec 2023 TeamCity advisory were not fetched (government sites blocked); add them after primary review.",
   "Relationship between Midnight Blizzard and other SVR-linked clusters is not addressed in the sources gathered.",
-  "Several APT29 vendor names were moved here from the Forest Blizzard record (e.g. BlueBravo, Cloaked Ursa). Confirm each against vendor reporting."
+  "Several APT29 vendor names were moved here from the Forest Blizzard record (e.g. BlueBravo, Cloaked Ursa). Confirm each against vendor reporting.",
+  "Primary-source check (2026-10-18): White House fact sheet confirms formal SVR attribution of the SolarWinds campaign, high IC confidence and the 16,000-system exposure. It contains no UK NCSC 'highly likely' judgement; that point needs an NCSC primary."
  ],
  "implications": {
   "jipoe": "Analyst assessment derived from cited sources; validate before use. STEP 1: The cyberspace OE includes cloud identity tenants (Entra ID/M365), SaaS providers and IT service providers. For this actor, key terrain is identity infrastructure, not network perimeters. STEP 2: Residential-proxy sourcing defeats IP reputation and geolocation, so detection terrain is authentication telemetry. STEP 3: The template is low-and-slow password spray, then a foothold in an overlooked or legacy account without MFA, then OAuth app abuse or privilege grants, then mailbox and document collection. A parallel option is a supply-chain or provider compromise. STEP 4: MLCOA is persistent collection on NATO and US government decision-making and on IT providers. MDCOA is a supply-chain compromise of a DoD or DIB software or cloud provider giving broad access during a crisis. Candidate indicators: new OAuth app consents or role grants (full_access_as_app), spray patterns against legacy accounts, and RDP files arriving by email [S1][S2].",
@@ -953,10 +954,10 @@
   },
   {
    "ref": "S3",
-   "title": "Biden administration sanctions Russia, attributes SolarWinds hack to SVR (reporting White House statement)",
-   "publisher": "CyberScoop",
+   "title": "FACT SHEET: Imposing Costs for Harmful Foreign Activities by the Russian Government",
+   "publisher": "The White House",
    "date": "2021-04-15",
-   "url": "https://cyberscoop.com/biden-russia-solarwinds-sanctions-white-house/"
+   "url": "https://bidenwhitehouse.archives.gov/briefing-room/statements-releases/2021/04/15/fact-sheet-imposing-costs-for-harmful-foreign-activities-by-the-russian-government/"
   },
   {
    "ref": "S4",

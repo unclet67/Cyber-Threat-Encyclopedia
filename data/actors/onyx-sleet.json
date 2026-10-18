@@ -217,7 +217,8 @@
   "Primary indictment PDF and the joint technical advisory issued alongside it were not fetched (government sites blocked); the advisory identifier should be confirmed.",
   "MITRE's Andariel technique list (12) is far smaller than the reported tradecraft; analyst mapping from Microsoft and advisory reporting is needed.",
   "How ransomware revenue and espionage tasking are balanced within the group is not public.",
-  "Overlap with the Diamond Sleet record's historical 'Lazarus' events (e.g. DarkSeoul) should be reconciled."
+  "Overlap with the Diamond Sleet record's historical 'Lazarus' events (e.g. DarkSeoul) should be reconciled.",
+  "Primary-source check (2026-10-18): DOJ release confirms Rim Jong Hyok (RGB, Andariel/Onyx Sleet/APT45), Maui ransomware, laundering through Hong Kong facilitators, the funded intrusions into defense contractors, Air Force bases and NASA-OIG, Log4Shell access, and the $10M reward. It gives no victim counts, no online-gambling link, no TigerRAT/SmallTiger/Dtrack, and says a grand jury returned the indictment on 24 July (announced 25 July)."
  ],
  "implications": {
   "jipoe": "Analyst assessment derived from cited sources; validate before use. STEP 1: The OE includes DIB contractors, military installations' IT and healthcare systems supporting military communities. This actor targets all three. STEP 2: Ransomware against hospitals near installations can degrade medical support to forces and families. STEP 3: The template is exploitation of internet-facing systems, then custom RATs for espionage, and in some cases ransomware deployment for revenue. STEP 4: MLCOA is persistent espionage against defense and aerospace technology to support weapons programs. MDCOA is ransomware against healthcare or installation-support providers during a Korean Peninsula crisis, combining revenue with disruption. Candidate indicators: TigerRAT or SmallTiger detections, ransomware staging in healthcare networks, and intrusions at aerospace and defense suppliers [S1][S2].",
@@ -233,10 +234,10 @@
   },
   {
    "ref": "S2",
-   "title": "North Korean Government Hacker Charged for Involvement in Ransomware Attacks Targeting U.S. Hospitals (content via coverage)",
+   "title": "North Korean Government Hacker Charged for Involvement in Ransomware Attacks Targeting U.S. Hospitals and Health Care Providers",
    "publisher": "U.S. Department of Justice",
    "date": "2024-07-25",
-   "url": "https://www.justice.gov/opa/pr/north-korean-government-hacker-charged-involvement-ransomware-attacks-targeting-us-hospitals"
+   "url": "https://www.justice.gov/archives/opa/pr/north-korean-government-hacker-charged-involvement-ransomware-attacks-targeting-us-hospitals"
   },
   {
    "ref": "S3",
