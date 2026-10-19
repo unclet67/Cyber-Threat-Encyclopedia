@@ -4,3 +4,13 @@ __pycache__/
 # large upstream inputs; re-download instead of committing
 src/
 .stage/
+node_modules/
+dist/
+.sites-client/
+public/
+.wrangler/
+.vinext/
+.sites-runtime/
+.next/
+.env*
+.dev.vars*

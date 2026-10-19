@@ -196,6 +196,7 @@ footer{max-width:1240px;margin:0 auto;padding-block:0 80px;color:var(--muted);fo
     </div>
     <div class="mast-tools">
       <button class="btn" id="btn-home" type="button">All actors</button>
+      <button class="btn" id="btn-galaxy" type="button">Galaxy research</button>
       <button class="btn" id="btn-scen" type="button">Scenarios</button>
       <button class="btn" id="btn-compare" type="button">Compare<span class="n" id="cmp-n">0</span></button>
       <button class="btn primary" id="btn-new" type="button" hidden>Add profile</button>
@@ -211,7 +212,8 @@ footer{max-width:1240px;margin:0 auto;padding-block:0 80px;color:var(--muted);fo
 <div class="cmpbar gut" id="cmpbar" hidden><div class="in"><strong id="cmpbar-t"></strong><span class="note" id="cmpbar-names"></span><span style="flex:1"></span><button class="btn" id="cmp-clear" type="button">Clear</button><button class="btn primary" id="cmp-go" type="button">Compare selected</button></div></div>
 <div class="toast" id="toast" hidden></div>
 
-<script>
+<script type="module">
+import { compareEntry, actorNames, entryNames, normalizeName } from "./lib/galaxy.mjs";
 (() => {
 "use strict";
 const COUNTRIES = {CN:"China", RU:"Russia", IR:"Iran", KP:"North Korea", FIN:"Financially motivated", DEV:"Groups in development", PSOA:"Private-sector offensive actors", OTH:"Other nations & networks"};
@@ -226,7 +228,7 @@ const S = {actors:new Map(), loaded:false, dbErr:null, country:"ALL", status:"AL
 const TACTICS = ["reconnaissance","resource-development","initial-access","execution","persistence","privilege-escalation","defense-evasion","credential-access","discovery","lateral-movement","collection","command-and-control","exfiltration","impact"];
 const tacLabel = t => t.split("-").map(w=>w==="and"?"and":w[0].toUpperCase()+w.slice(1)).join(" ");
 const tacRank = x => { const r=arr(x.tactics).map(t=>TACTICS.indexOf(t)).filter(i=>i>=0); return r.length?Math.min(...r):99; };
-let db = null, user = null;
+let db = null, user = null, siteMode = false, research = null, researchDraft = false;
 const $ = s => document.querySelector(s);
 const app = $("#app");
 
@@ -309,7 +311,9 @@ function render(){
   const bar=$("#cmpbar"); bar.hidden = !(S.cmp.length && S.view!=="compare");
   if (!bar.hidden){ $("#cmpbar-t").textContent=`${S.cmp.length} selected`; $("#cmpbar-names").textContent=S.cmp.map(id=>S.actors.get(id)?.primaryName).filter(Boolean).join(" · "); }
   app.replaceChildren();
+  if (S.view==="galaxy") return renderGalaxy();
   if (S.view==="edit") return renderEdit();
+  if (S.view==="research" && research) return renderResearch();
   if (!S.loaded) { app.append(h("div",{class:"empty"}, S.dbErr || "Loading the encyclopedia…")); return; }
   if (!S.actors.size){ app.append(h("div",{class:"empty"}, h("p",{}, "No actor profiles are stored yet."), S.admin ? h("p",{},"Use Add profile to create the first record.") : h("p",{},"An editor needs to add or import the first profile."))); return; }
   if (S.view==="profile" && S.actors.has(S.id)) return renderProfile(S.actors.get(S.id));
@@ -378,9 +382,11 @@ function section(n, key, label, a, body){
 
 function renderProfile(a){
   const crumbs=h("div",{class:"crumbs"},
+    h("button",{class:"btn",type:"button",onclick:()=>openGalaxy(a.id)},"Inspect Galaxy enrichment"),
     h("button",{class:"btn",type:"button",onclick:()=>go("list")},"← All actors"),
     h("button",{class:"btn",type:"button",onclick:()=>toggleCmp(a.id)}, S.cmp.includes(a.id)?"Remove from compare":"Add to compare"),
-    S.admin ? h("button",{class:"btn primary",type:"button",onclick:()=>openEdit(a.id)},"Edit profile") : null);
+    S.admin ? h("button",{class:"btn primary",type:"button",onclick:()=>openEdit(a.id)},"Edit profile") : null,
+    siteMode && S.admin ? h("button",{class:"btn",type:"button",onclick:()=>openResearch(a.id)},"Research actor") : null);
   const head=h("div",{class:"p-head"},
     h("div",{class:"eyebrow"}, `${COUNTRIES[a.country]||a.country} · ${a.msName ? "Microsoft designation" : "Source designation (no single Microsoft name)"}${a.mitreGroupId?" · ATT&CK "+a.mitreGroupId:""}`),
     h("h2",{},a.primaryName),
@@ -542,7 +548,7 @@ const pipes = (v, keys) => lines(v).map(l=>{ const p=l.split("|").map(x=>x.trim(
 const unpipes = (list, keys) => arr(list).map(o=>keys.map(k=>Array.isArray(o[k])?o[k].join(", "):(o[k]||"")).join(" | ")).join("\n");
 const slug = t => t.toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"").slice(0,80);
 
-function openEdit(id){ if(!S.admin) return; S.editing = id ? structuredClone(S.actors.get(id)) : null; S.view="edit"; S.id=id||null; render(); window.scrollTo(0,0); }
+function openEdit(id){ if(!S.admin) return; researchDraft=false; S.editing = id ? structuredClone(S.actors.get(id)) : null; S.view="edit"; S.id=id||null; render(); window.scrollTo(0,0); }
 
 function renderEdit(){
   if (!S.admin){ app.append(h("div",{class:"empty"},"Research administration is limited to editors of this encyclopedia.")); return; }
@@ -553,7 +559,7 @@ function renderEdit(){
   const msg=h("div",{class:"msg",role:"status"});
   const form=h("form",{class:"form",onsubmit:e=>{e.preventDefault();save(msg);}},
     h("div",{}, h("div",{class:"eyebrow"},"Research administration"), h("h2",{style:"font:700 32px var(--display);margin:4px 0 0"}, isNew?"New actor profile":`Edit ${a.primaryName}`),
-      h("p",{class:"note"},"Leave anything you cannot source blank. Empty sections display as Research Required. Pipe-delimited fields take one entry per line.")),
+      h("p",{class:"note"},researchDraft ? "Research draft — review the proposed changes and citations below, then Save changes to commit them. Nothing has been saved yet." : "Leave anything you cannot source blank. Empty sections display as Research Required. Pipe-delimited fields take one entry per line.")),
     fs("1 · Identification",
       h("div",{class:"grid2"}, F("f-name","Primary name (Microsoft)",a.primaryName,{hint:"Use the Microsoft weather-family name when one exists."}), F("f-country","Country",a.country||"CN",{select:Object.entries(COUNTRIES)})),
       h("div",{class:"grid2"}, F("f-ms","Microsoft name",a.msName), F("f-gid","MITRE group ID",a.mitreGroupId,{hint:"e.g. G1017"})),
@@ -591,7 +597,7 @@ async function save(msg){
     objectives:val("f-obj").trim(),
     targeting:{sectors:lines(val("f-sectors")), regions:lines(val("f-regions")), notes:val("f-tnotes").trim()},
     capabilities:{summary:val("f-capsum").trim(), software:pipes(val("f-sw"),["id","name","type"]).filter(x=>x.name||x.id)},
-    attack:pipes(val("f-attack"),["id","name","source"]).filter(x=>x.id),
+    attack:pipes(val("f-attack"),["id","name","source"]).filter(x=>x.id).map(x=>({...arr(prev?.attack).find(t=>t.id===x.id),...x})),
     campaigns:camp,
     diamond:{adversary:val("f-dadv").trim(), capability:val("f-dcap").trim(), infrastructure:val("f-dinf").trim(), victim:val("f-dvic").trim(), socioPolitical:val("f-dsp").trim(), technology:val("f-dtech").trim()},
     gaps:lines(val("f-gaps")),
@@ -603,15 +609,195 @@ async function save(msg){
   if (!prev) { doc.importFlags=[]; doc.msCandidates=[]; }
   msg.className="msg"; msg.textContent="Saving…";
   try{
-    await db.doc("actors/"+id).set(JSON.parse(JSON.stringify(doc)));
-    try{ await db.collection("audit").add({actorId:id, action:prev?"edit":"create", at:doc.updatedAt, by:S.uid||""}); }catch(_){}
+    if (siteMode) {
+      const result = await siteRequest(prev ? "PUT" : "POST", {actor:doc, expectedRevision:prev?._revision || 0});
+      Object.assign(doc, result.actor);
+    } else await db.doc("actors/"+id).set(JSON.parse(JSON.stringify(doc)));
+    if (!siteMode) try{ await db.collection("audit").add({actorId:id, action:prev?"edit":"create", at:doc.updatedAt, by:S.uid||""}); }catch(_){}
     S.actors.set(id, doc); S.editing=null; S.view="profile"; S.id=id; history.replaceState(null,"","#"+id); render(); toast(prev?"Profile saved":"Profile created");
-  }catch(e){ msg.className="msg err"; msg.textContent = e?.code==="invalid_argument" ? "Save refused. Only editors of this encyclopedia can change profiles." : e?.code==="quota_exceeded" ? "Storage is full. Delete unused profiles, then save again." : "Save failed. Check your connection and try again."; }
+  }catch(e){ msg.className="msg err"; msg.textContent = siteMode ? e.message : e?.code==="invalid_argument" ? "Save refused. Only editors of this encyclopedia can change profiles." : e?.code==="quota_exceeded" ? "Storage is full. Delete unused profiles, then save again." : "Save failed. Check your connection and try again."; }
 }
 function confirmDelete(btn,id,msg){
   if (btn.dataset.armed!=="1"){ btn.dataset.armed="1"; btn.textContent="Confirm delete"; msg.className="msg err"; msg.textContent="This permanently removes the profile for every viewer."; return; }
-  db.doc("actors/"+id).delete().then(async()=>{ try{ await db.collection("audit").add({actorId:id,action:"delete",at:new Date().toISOString(),by:S.uid||""}); }catch(_){} S.actors.delete(id); S.cmp=S.cmp.filter(x=>x!==id); go("list"); toast("Profile deleted"); })
-    .catch(()=>{ msg.textContent="Delete failed. Only editors can delete profiles."; });
+  (siteMode ? siteRequest("DELETE", {id, expectedRevision:S.actors.get(id)?._revision || 0}) : db.doc("actors/"+id).delete()).then(async()=>{ if (!siteMode) try{ await db.collection("audit").add({actorId:id,action:"delete",at:new Date().toISOString(),by:S.uid||""}); }catch(_){} S.actors.delete(id); S.cmp=S.cmp.filter(x=>x!==id); go("list"); toast("Profile deleted"); })
+    .catch(e=>{ msg.textContent=siteMode ? e.message : "Delete failed. Only editors can delete profiles."; });
+}
+
+/* ---------- research review ---------- */
+const researchActive = job => job && ["starting","queued","in_progress"].includes(job.status);
+async function researchRequest(path, body){
+  const response=await fetch("/api/research"+path,{method:body?"POST":"GET",cache:"no-store",...(body?{headers:{"Content-Type":"application/json"},body:JSON.stringify(body)}:{})});
+  let result;
+  try{result=await response.json();}catch(_){throw new Error("Research could not be reached. Please try again.");}
+  if(!response.ok) throw new Error(result.error||"Research failed. Please try again.");
+  return result.job;
+}
+async function openResearch(id){
+  clearTimeout(openResearch.timer);
+  research={actorId:id,focus:"",job:null,error:"",loading:true,selected:new Set()};
+  const current=research;
+  S.view="research"; S.id=id; render(); window.scrollTo(0,0);
+  try{current.job=await researchRequest("?actor="+encodeURIComponent(id));}
+  catch(e){current.error=e.message;}
+  current.loading=false;
+  if(research===current && S.view==="research") render();
+  if(researchActive(current.job)) pollResearch(current);
+}
+async function pollResearch(current){
+  if(research!==current || !researchActive(current.job)) return;
+  openResearch.timer=setTimeout(async()=>{
+    try{current.job=await researchRequest("?job="+encodeURIComponent(current.job.id));current.error="";}
+    catch(e){current.error=e.message;}
+    if(research===current && S.view==="research") render();
+    if(researchActive(current.job)) pollResearch(current);
+  },5000);
+}
+async function startResearch(){
+  const current=research;
+  if(current.loading || researchActive(current.job)) return;
+  current.loading=true;current.error="";current.selected=new Set();render();
+  try{current.job=await researchRequest("",{actorId:current.actorId,focus:current.focus,requestId:crypto.randomUUID()});}
+  catch(e){current.error=e.message;}
+  current.loading=false;
+  if(research===current && S.view==="research") render();
+  if(researchActive(current.job)) pollResearch(current);
+}
+function researchCited(text, sources){
+  return String(text).split(/(\[R[^\]\s]*\]|\[S\d+\])/g).map(part=>{
+    const source=sources.find(x=>("["+String(x.ref||"").replace(/^\[|\]$/g,"")+"]")===part);
+    return source && safeUrl(source.url) ? h("a",{href:source.url,target:"_blank",rel:"noopener noreferrer"},part) : part;
+  });
+}
+function researchValue(value,sources){
+  const labels={firstObserved:"First observed",summary:"Summary",notes:"Notes",socioPolitical:"Socio-political axis",jipoe:"JIPOE",jcc2:"JCC2"};
+  if(value==null || value==="" || Array.isArray(value)&&!value.length) return h("span",{class:"note"},"No content");
+  if(typeof value==="string") return h("p",{style:"white-space:pre-wrap"},...researchCited(value,sources));
+  if(Array.isArray(value)) return h("ul",{class:"tight"},value.map(item=>h("li",{},researchValue(item,sources))));
+  return h("div",{},Object.entries(value).filter(([,v])=>v!=="" && (!Array.isArray(v)||v.length)).map(([key,val])=>h("div",{},h("strong",{},labels[key]||key.replace(/([A-Z])/g," $1").replace(/^./,c=>c.toUpperCase())),researchValue(val,sources))));
+}
+function renderResearch(){
+  const current=research,a=S.actors.get(current.actorId);
+  if(!a){app.append(h("p",{},"Actor profile not found."));return;}
+  const job=current.job,draft=job?.draft,busy=current.loading||researchActive(job);
+  app.append(h("div",{class:"form"},
+    h("button",{class:"btn",onclick:()=>openProfile(a.id)},"← Back to profile"),
+    h("h2",{},"Research "+a.primaryName),
+    h("p",{class:"note"},"Search current open-source reporting and draft profile updates with citations. Only the actor’s name and your research focus are sent to OpenAI; saved profile notes stay on this Site. Uses paid OpenAI API research."),
+    h("form",{onsubmit:e=>{e.preventDefault();startResearch();}},
+      h("div",{class:"f"},h("label",{for:"research-focus"},"Research focus (optional)"),h("textarea",{id:"research-focus",rows:3,maxlength:1500,disabled:busy,oninput:e=>current.focus=e.target.value},current.focus),h("small",{},"For example: recent campaigns, attribution changes, targeting, or missing profile sections.")),
+      h("button",{class:"btn primary",type:"submit",disabled:busy},busy?"Researching…":job?"Start new research":"Start research")),
+    h("p",{role:"status","aria-live":"polite"},current.loading?"Loading research…":researchActive(job)?"Searching sources and preparing a draft. This can take a few minutes; you can reopen this actor’s research to check progress.":job?.status==="completed"?"Research draft ready. Your profile has not been changed.":""),
+    current.error||job?.error?h("div",{class:"rr-box",role:"alert"},current.error||job.error):null));
+  if(!draft)return;
+  const sources=[...arr(a.sources),...draft.sources];
+  const panel=h("div",{class:"form"},h("h3",{},"Review suggested changes"),h("p",{},...researchCited(draft.summary,sources)));
+  if(draft.cautions.length) panel.append(h("div",{class:"rr-box"},h("strong",{},"Research cautions"),h("ul",{},draft.cautions.map(t=>h("li",{},...researchCited(t,sources))))));
+  const suggestions=SECTIONS.filter(([key])=>draft.sections[key]!=null);
+  if(!suggestions.length)panel.append(h("p",{},"No supported profile changes were identified. Review the sources and cautions, or try a narrower research focus."));
+  for(const [key,label] of suggestions){
+    panel.append(h("fieldset",{class:"fs"},h("legend",{},label),h("label",{},h("input",{type:"checkbox",checked:current.selected.has(key),onchange:e=>{if(e.target.checked)current.selected.add(key);else current.selected.delete(key);}})," Use this suggestion"),
+      h("div",{class:"grid2"},h("div",{},h("h4",{},"Current"),researchValue(a[key],sources)),h("div",{},h("h4",{},"Suggested"),researchValue(draft.sections[key],sources)))));
+  }
+  panel.append(h("h3",{},"Research sources"),h("ol",{class:"tight"},draft.sources.map(source=>h("li",{},h("a",{href:source.url,target:"_blank",rel:"noopener noreferrer"},"["+source.ref+"] "+source.title),h("p",{class:"note"},source.publisher+" · "+(source.date||"Publication date unverified"))))),
+    h("p",{class:"note"},"Moving suggestions to the editor does not save them. Your existing sources are retained."),
+    h("button",{class:"btn primary",disabled:!suggestions.length,onclick:()=>applyResearchDraft()},"Review selected changes in editor"));
+  app.append(panel);
+}
+async function applyResearchDraft(){
+  const current=research;
+  if(!current.selected.size){current.error="Select at least one suggested section.";render();return;}
+  try{
+    const data=await siteRequest();
+    const actor=data.actors.find(a=>a.id===current.actorId);
+    if(!actor || actor._revision!==current.job.baseRevision)throw new Error("This profile changed after research started. Reload the profile and start fresh research before applying this draft.");
+    const edited=structuredClone(actor);
+    for(const key of current.selected)edited[key]=structuredClone(current.job.draft.sections[key]);
+    edited.sources=[...arr(actor.sources),...current.job.draft.sources];
+    S.actors.set(actor.id,actor);S.editing=edited;S.id=actor.id;S.view="edit";researchDraft=true;render();window.scrollTo(0,0);
+  }catch(e){current.error=e.message;render();}
+}
+
+/* ---------- Galaxy analyst workbench ---------- */
+let galaxy=null, galaxyError='', galaxyQuery='', galaxyEntryId=null, galaxyActorId=null, galaxyReviews=[], galaxyLoading=false, galaxyStorage=false, galaxyInputs={};
+async function enrichmentRequest(body){
+  const response=await fetch('/api/enrichment?actor='+encodeURIComponent(galaxyActorId||''),{method:body?'POST':'GET',cache:'no-store',...(body?{headers:{'Content-Type':'application/json'},body:JSON.stringify(body)}:{})});
+  const result=await response.json();
+  if(!response.ok)throw new Error(result.error||'Review storage unavailable.');
+  return result;
+}
+async function openGalaxy(actorId){
+  if(actorId && actorId!==galaxyActorId)galaxyEntryId=null;
+  galaxyActorId=actorId||galaxyActorId||[...S.actors.keys()][0];
+  S.view='galaxy';galaxyError='';galaxyLoading=true;galaxyStorage=false;galaxyReviews=[];render();
+  try {
+    if(!galaxy){const r=await fetch('data/enrichment/galaxy.json');if(!r.ok)throw new Error('Galaxy snapshot unavailable.');galaxy=await r.json();}
+    if(siteMode){try{const result=await enrichmentRequest();galaxyReviews=result.reviews;galaxyStorage=true;}catch(e){galaxyError=e.message;}}
+  }catch(e){galaxyError=e.message;}
+  galaxyLoading=false;if(S.view==='galaxy')render();
+}
+async function galaxyAction(action,extra={}){
+  const review=galaxyReviews.find(x=>x.entryId===galaxyEntryId&&x.snapshotId===galaxy.id&&!x.isStale);
+  galaxyLoading=true;galaxyError='';render();
+  try{
+    const result=await enrichmentRequest({action,actorId:galaxyActorId,entryId:galaxyEntryId,expectedRevision:review?.revision||0,...extra});
+    galaxyReviews=galaxyReviews.filter(x=>!(x.entryId===galaxyEntryId&&x.snapshotId===galaxy.id&&!x.isStale));galaxyReviews.push(result.review);
+  }catch(e){galaxyError=e.message;}
+  galaxyLoading=false;if(S.view==='galaxy')render();
+}
+function galaxyLink(url,label){const safe=safeUrl(url);return safe?h('a',{href:safe,target:'_blank',rel:'noopener noreferrer'},label||url):h('span',{},label||url);}
+function renderGalaxy(){
+  app.append(h('div',{class:'crumbs'},h('button',{class:'btn',onclick:()=>go('list')},'← All actors')),
+    h('h2',{},'Galaxy analyst workbench'),h('p',{},'Inspect source claims, compare scope and citations, and record analyst decisions. Enrichment never changes a profile. Analyst Approved records remain separate; publication requires a separate authorized action.'));
+  if(galaxyError)app.append(h('p',{class:'msg err',role:'alert'},galaxyError));
+  if(!galaxy){app.append(h('p',{},galaxyLoading?'Loading Galaxy…':'No enrichment snapshot is available.'));return;}
+  app.append(h('p',{class:'note'},`${galaxy.entries.length} Galaxy entries · ${galaxy.microsoft.length} Microsoft mappings · retrieved ${galaxy.retrievedAt.slice(0,10)}`),
+    h('div',{class:'grid2'},Object.entries(galaxy.sources).map(([key,p])=>h('div',{class:'card'},h('strong',{},key==='galaxy'?'MISP Galaxy':'Microsoft primary mapping'),h('p',{},galaxyLink(p.url,'Pinned source · '+p.revision.slice(0,12))),h('p',{class:'note'},'Repository commit: '+p.repositoryCommittedAt+' · retrieved: '+p.retrievedAt+' · publication date: unverified')))));
+  const actor=S.actors.get(galaxyActorId);
+  const selector=h('select',{'aria-label':'Compare with profile',onchange:e=>openGalaxy(e.target.value)},[...S.actors.values()].sort((a,b)=>a.primaryName.localeCompare(b.primaryName)).map(a=>h('option',{value:a.id,selected:a.id===galaxyActorId},a.primaryName)));
+  app.append(h('label',{},'Compare with encyclopedia profile ',selector));
+  const query=h('input',{type:'search',value:galaxyQuery,'aria-label':'Search Galaxy names, aliases and UUIDs',placeholder:'Galaxy name, alias or UUID'});
+  app.append(h('form',{class:'form',onsubmit:e=>{e.preventDefault();galaxyQuery=query.value.trim();render();}},query,h('button',{class:'btn',type:'submit'},'Search Galaxy')));
+  const names=new Set(actor?actorNames(actor).map(normalizeName):[]);
+  const entries=galaxy.entries.filter(e=>!galaxyQuery||[...entryNames(e),e.uuid].some(n=>normalizeName(n).includes(normalizeName(galaxyQuery))));
+  entries.sort((a,b)=>Number(entryNames(b).some(n=>names.has(normalizeName(n))))-Number(entryNames(a).some(n=>names.has(normalizeName(n))))||a.name.localeCompare(b.name));
+  if(!galaxyEntryId&&entries.length)galaxyEntryId=entries[0].uuid;
+  const list=h('div',{class:'card'},h('h3',{},'Galaxy entries'),h('p',{class:'note'},`${entries.length} results; showing up to 60. Exact profile-name leads sort first. A match is not an identity finding.`),entries.slice(0,60).map(e=>h('p',{},h('button',{class:'btn','aria-pressed':String(e.uuid===galaxyEntryId),onclick:()=>{galaxyEntryId=e.uuid;render();}},e.name))));
+  const entry=galaxy.entries.find(e=>e.uuid===galaxyEntryId);
+  const detail=h('div',{});app.append(h('div',{class:'grid2',style:'align-items:start'},list,detail));
+  if(!entry||!actor)return;
+  const comparison=compareEntry(entry,actor,galaxy);
+  detail.append(h('h3',{},entry.name),h('p',{class:'mono'},entry.uuid),h('p',{},entry.description),
+    h('div',{class:'grid2'},h('div',{class:'card'},h('h4',{},'Galaxy claims'),h('p',{},'Aliases: '+(entry.aliases.join(', ')||'None')),h('pre',{style:'white-space:pre-wrap;overflow-wrap:anywhere'},JSON.stringify(entry.meta,null,2))),
+      h('div',{class:'card'},h('h4',{},'Current profile'),h('p',{},actor.primaryName+' · '+actor.country),h('p',{},'Microsoft: '+(actor.msName||'Research Required')),h('p',{},'Aliases: '+actorNames(actor).join(', ')),h('p',{},actor.identification?.summary||'Research Required'),h('button',{class:'btn',onclick:()=>openProfile(actor.id)},'Open profile'))),
+    h('h4',{},'Microsoft primary alias correlation'),comparison.microsoft.length?h('ul',{},comparison.microsoft.map(m=>h('li',{},m.name+' · candidate via '+m.matchedNames.join(', ')+' · '+m.origin))):RR('No direct Microsoft mapping'),
+    h('p',{class:'note'},'Shared names, umbrella groups, activity clusters and overlapping operations do not prove equivalence. No fuzzy matching or transitive alias merging is used.'),
+    h('h4',{},'Relationships reported by Galaxy'),h('pre',{style:'white-space:pre-wrap;overflow-wrap:anywhere'},JSON.stringify(entry.related||[],null,2)),
+    h('h4',{},'Research Required'),h('ul',{},comparison.gaps.map(g=>h('li',{},g))),
+    h('h4',{},'Galaxy references · claim support and publication dates unverified'),h('ul',{},comparison.references.map(r=>h('li',{},galaxyLink(r.url),h('span',{class:'note'},' · retrieved '+r.retrievedAt.slice(0,10)+' · Research Required')))),
+    h('h4',{},'Other CTI sources in the current profile'),h('ul',{},arr(actor.sources).map(r=>h('li',{},galaxyLink(r.url,(r.publisher||'Unknown publisher')+' · '+(r.title||r.url)),h('span',{class:'note'},' · published '+(r.date||'unverified'))))));
+  const review=galaxyReviews.find(x=>x.entryId===entry.uuid&&x.snapshotId===galaxy.id&&!x.isStale);
+  detail.append(h('h3',{},'Analyst review'),h('p',{},'Status: '+(review?.status||'Research Required')));
+  if(!galaxyStorage){detail.append(h('p',{class:'note'},siteMode?'Review storage unavailable. Inspection remains available.':'Read-only inspection. Open the private Site to save review decisions.'));return;}
+  const oldReviews=galaxyReviews.filter(x=>x.entryId===entry.uuid&&x.isStale);
+  if(oldReviews.length)detail.append(h('details',{},h('summary',{},oldReviews.length+' historical reviews · changed profile or source snapshot'),oldReviews.map(r=>h('div',{},h('p',{},r.status+' · '+r.snapshotId.slice(0,12)),h('p',{},r.rationale),h('ul',{},r.history.map(x=>h('li',{},x.action+' · '+x.by+' · '+x.at)))))));
+  if(!review){detail.append(h('button',{class:'btn',disabled:galaxyLoading,onclick:()=>galaxyAction('stage')},'Create enrichment draft'));return;}
+  if(review.status==='Research Required'){
+    const inputKey=galaxyActorId+':'+galaxyEntryId+':'+galaxy.id;
+    const inputs=galaxyInputs[inputKey]||{relation:'unresolved',rationale:'',evidence:''};
+    const relation=h('select',{name:'relation','aria-label':'Relationship judgment'},['unresolved','overlap','related','distinct','equivalent'].map(value=>h('option',{value,selected:value===inputs.relation},value)));
+    const rationale=h('textarea',{rows:5,required:true,minlength:15,maxlength:10000,'aria-label':'Analyst rationale',placeholder:'Describe claim support, entity scope, contradictions and remaining gaps.'});
+    const evidence=h('textarea',{rows:5,required:true,'aria-label':'Dated evidence',placeholder:'One per line: URL | publication YYYY-MM-DD | accessed YYYY-MM-DD | publisher | title'});
+    rationale.value=inputs.rationale;evidence.value=inputs.evidence;
+    const remember=()=>galaxyInputs[inputKey]={relation:relation.value,rationale:rationale.value,evidence:evidence.value};
+    [relation,rationale,evidence].forEach(el=>el.addEventListener('input',remember));
+    detail.append(h('form',{class:'form',onsubmit:e=>{e.preventDefault();remember();const citations=evidence.value.split('\n').filter(x=>x.trim()).map(line=>{const [url,publishedAt,accessedAt,publisher,...title]=line.split('|').map(s=>s.trim());return {url,publishedAt,accessedAt,publisher,title:title.join(' | ')};});galaxyAction('ready',{relation:relation.value,rationale:rationale.value,evidence:citations});}},
+      h('label',{},'Relationship judgment ',relation),h('label',{},'Analyst rationale ',rationale),h('label',{},'Dated evidence ',evidence),h('p',{class:'note'},'URL | publication YYYY-MM-DD | accessed YYYY-MM-DD | publisher | title. Dates are analyst-verified; source commit and retrieval dates are not substitutes.'),
+      h('label',{},h('input',{type:'checkbox',required:true}),' I checked these sources, publication dates and the scope of each claim.'),h('button',{class:'btn primary',type:'submit',disabled:galaxyLoading},'Submit as Ready for Review')));
+  }else{
+    detail.append(h('p',{},'Judgment: '+review.relation),h('p',{},review.rationale),h('ul',{},review.evidence.map(r=>h('li',{},galaxyLink(r.url,r.publisher+' · '+r.title),` · published ${r.publishedAt} · accessed ${r.accessedAt}`))));
+    if(review.status==='Ready for Review')detail.append(h('button',{class:'btn primary',disabled:galaxyLoading,onclick:()=>galaxyAction('approve')},'Approve analyst record'),h('button',{class:'btn',disabled:galaxyLoading,onclick:()=>galaxyAction('reject')},'Reject'));
+  }
+  detail.append(h('p',{class:'note'},'Approval records this account’s analyst judgment. It does not edit, complete, or publish a profile.'),h('ul',{class:'note'},review.history.map(x=>h('li',{},x.action+' · '+x.by+' · '+x.at))));
 }
 
 /* ---------- navigation ---------- */
@@ -634,6 +820,7 @@ function openProfile(id){ S.view="profile"; S.id=id; history.replaceState(null,"
 function toggleCmp(id){ S.inject=null; const i=S.cmp.indexOf(id); if(i>=0) S.cmp.splice(i,1); else { if(S.cmp.length>=4){ toast("Compare holds up to 4 actors"); return; } S.cmp.push(id); } render(); }
 $("#btn-home").onclick=()=>go("list");
 $("#btn-compare").onclick=()=>{ S.inject=null; go("compare"); };
+$("#btn-galaxy").onclick=()=>openGalaxy();
 $("#btn-scen").onclick=()=>go("scenarios");
 $("#cmp-go").onclick=()=>go("compare");
 $("#cmp-clear").onclick=()=>{S.cmp=[];render();};
@@ -644,6 +831,31 @@ window.addEventListener("hashchange",()=>{ if (S.view!=="edit" && applyHash()){ 
 $("#foot").append(h("p",{}, "UNCLASSIFIED. Open-source research aid only. For classified TTPs and current reporting, consult JWICS / SIPR holdings. Base records were imported from actors.json (MISP Galaxy, MITRE ATT&CK, Microsoft Threat Intelligence, Google TI / Mandiant). Nothing absent from that file was added to imported records except Microsoft names confirmed against Microsoft's published mapping (MicrosoftMapping.json, retrieved 2026-10-14) and ATT&CK tactic labels from MITRE's published data. Missing sections are marked Research Required."));
 
 /* ---------- boot ---------- */
+async function siteRequest(method="GET", body){
+  const response = await fetch("/api/profiles", {method, cache:"no-store", headers:body?{"Content-Type":"application/json"}:{}, ...(body?{body:JSON.stringify(body)}:{})});
+  if (method==="GET" && response.status===404) return null;
+  if (!(response.headers.get("content-type")||"").includes("application/json")) {
+    if (method==="GET" && response.ok) return null;
+    throw new Error("Profile storage could not be reached. Reload the page and try again.");
+  }
+  const result=await response.json();
+  if (!response.ok) throw new Error(result.error||"Save failed. Please try again.");
+  return result;
+}
+async function loadSite(){
+  let result;
+  try{ result=await siteRequest(); }
+  catch(e){
+    S.dbErr=e.message; S.loaded=false; render(); return true;
+  }
+  if (!result) return false;
+  siteMode=true;
+  S.actors=new Map(result.actors.map(a=>[a.id,a]));
+  S.scenarios=result.scenarios;
+  S.uid=result.userId; S.admin=true; S.loaded=true;
+  $("#foot").prepend(h("p",{},h("strong",{},"Your editable encyclopedia")," · Profile changes are saved to your private Site and available across devices."));
+  applyHash();render();return true;
+}
 /* Read-only snapshot mode: used outside claude.ai (e.g. GitHub Pages), where the live database is unavailable. */
 async function loadSnapshot(){
   try{
@@ -659,7 +871,7 @@ async function loadSnapshot(){
 }
 render();
 (async () => {
-  if (!window.claude?.use){ await loadSnapshot(); return; }
+  if (!window.claude?.use){ if (!await loadSite()) await loadSnapshot(); return; }
   [db, user] = await Promise.all([window.claude.use("db"), window.claude.use("user")]);
   if (user){ try{ S.admin = !!(await user.canEdit()); S.uid = await user.id(); }catch(_){} }
   if (!db){ S.dbErr="Sign in to claude.ai with access to this encyclopedia to load profiles."; render(); return; }

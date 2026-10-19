@@ -27,3 +27,7 @@ Nothing that is absent from those sources has been added to imported records. Re
 
 - **claude.ai (live, editable):** `app/index.html` is the Artifact source. There it reads and writes the live database, and editors get the research administration interface.
 - **GitHub Pages (read-only):** `index.html` at the repo root is the same page wrapped in the document skeleton claude.ai adds at publish time. Outside claude.ai it loads `data/bundle.json`, a snapshot of every actor and scenario. Rebuild both with `python3 scripts/build_pages.py` after syncing `data/`.
+
+## MISP Galaxy analyst enrichment
+
+Use **Galaxy research** to inspect 1,097 Galaxy entries, compare profiles and CTI sources, and review Microsoft-primary alias candidates. Private Site review decisions remain separate from profiles and never publish automatically. See [the analyst workflow and release notes](docs/MISP_GALAXY.md). Run `npm test` and `npm run build` to validate; `npm run enrichment:sync` explicitly refreshes only the pinned enrichment snapshot.
