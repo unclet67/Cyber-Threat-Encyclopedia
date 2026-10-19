@@ -1,0 +1,27 @@
+{
+  "version": "7",
+  "dialect": "sqlite",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "6",
+      "when": 1792077672602,
+      "tag": "0000_dry_deadpool",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "6",
+      "when": 1792078768774,
+      "tag": "0001_glamorous_ultragirl",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "6",
+      "when": 1792418965423,
+      "tag": "0002_mushy_famine",
+      "breakpoints": true
+    }
+  ]
+}
