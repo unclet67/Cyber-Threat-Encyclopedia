@@ -52,5 +52,26 @@ test('creates profiles, prevents duplicates, and preserves deletion across reloa
 test('validates records and fails closed when database is unavailable', async () => {
   const db = database();
   assert.equal((await handleProfiles(request('POST', { actor: { ...actor, id: 'invalid', primaryName: '' }, expectedRevision: 0 }), db, seed)).status, 400);
+  assert.equal((await handleProfiles(request('PUT', { actor: { ...actor, mitreGroupId: 'BAD' }, expectedRevision: 0 }), db, seed)).status, 400);
+  assert.equal((await handleProfiles(request('PUT', { actor: { ...actor, objectives: 'Claim [S999]' }, expectedRevision: 0 }), db, seed)).status, 400);
+  assert.equal((await handleProfiles(request('PUT', {
+    actor: { ...actor, campaigns: [{ date: '2025', name: 'Camp', summary: 'Text', sources: ['S999'] }] },
+    expectedRevision: 0,
+  }), db, seed)).status, 400);
+  assert.equal((await handleProfiles(request('PUT', {
+    actor: { ...actor, sources: [...actor.sources, { ref: 'S99', title: 'Bad URL', publisher: 'Pub', date: '2025-01-01', url: 'ftp://bad.test' }] },
+    expectedRevision: 0,
+  }), db, seed)).status, 400);
+  assert.equal((await handleProfiles(request('PUT', {
+    actor: { ...actor, sources: [...actor.sources, { ref: 'S99', title: 'Bad date', publisher: 'Pub', date: 'n.d.', url: 'https://ok.test' }] },
+    expectedRevision: 0,
+  }), db, seed)).status, 400);
+  assert.equal((await handleProfiles(request('PUT', {
+    actor: { ...actor, sources: [
+      { ref: 'S1', title: 'One', publisher: 'Pub', date: '2025-01-01', url: 'https://ok.test/1' },
+      { ref: 'S1', title: 'Two', publisher: 'Pub', date: '2025-01-01', url: 'https://ok.test/2' },
+    ], objectives: '', identification: { summary: '', firstObserved: '', notes: '' }, attribution: { sponsor: '', confidence: '', basis: '' }, targeting: { sectors: [], regions: [], notes: '' }, capabilities: { summary: '', software: [] }, campaigns: [], diamond: { adversary: '', capability: '', infrastructure: '', victim: '' }, gaps: [], implications: { jipoe: '', jcc2: '' } },
+    expectedRevision: 0,
+  }), db, seed)).status, 400);
   assert.equal((await handleProfiles(request(), null, seed)).status, 503);
 });

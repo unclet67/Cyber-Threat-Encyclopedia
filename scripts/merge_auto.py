@@ -48,10 +48,13 @@ for f in sorted(glob.glob(f"{adir}/*.json")):
     if missing:
         report["skipped"][aid] = f"missing keys {missing}"; continue
     srcs = [s for s in x["sources"] if isinstance(s, dict)]
-    bad = [s.get("ref") for s in srcs if not str(s.get("date", "")).strip() or not re.match(r"https?://", str(s.get("url", "")))]
+    bad = [s.get("ref") for s in srcs if not re.match(r"^(19|20)\d{2}(-\d{2}(-\d{2})?)?\b", str(s.get("date", "")).strip()) or not re.match(r"https?://", str(s.get("url", "")))]
     if bad:
         report["skipped"][aid] = f"undated or URL-less sources {bad}"; continue
-    refs = {s.get("ref") for s in srcs}
+    ref_list = [s.get("ref") for s in srcs if s.get("ref")]
+    if len(ref_list) != len(srcs) or len(set(ref_list)) != len(ref_list):
+        report["skipped"][aid] = "missing or duplicate source refs"; continue
+    refs = set(ref_list)
     # gaps notes that record a removed source may still name it; neutralise those labels (never touches claims)
     for gi, g in enumerate(x.get("gaps") or []):
         if isinstance(g, str) and re.search(r"\b(removed|dropped|deleted)\b", g, re.I):
@@ -85,7 +88,7 @@ for f in sorted(glob.glob(f"{adir}/*.json")):
     if nonempty((x.get("capabilities") or {}).get("summary")):
         d.setdefault("capabilities", {})["summary"] = x["capabilities"]["summary"]
     keep = [s for s in d.get("sources", []) if str(s.get("date", "")).strip() and s.get("url") and s["url"] not in {n.get("url") for n in srcs}]
-    n = len(srcs)
+    n = max((int(m.group(1)) for s in srcs if (m := re.fullmatch(r"S(\d+)", str(s.get("ref", ""))))), default=len(srcs))
     for i, s in enumerate(keep, 1):
         s = dict(s); s["ref"] = f"S{n + i}"; srcs.append(s)
     d["sources"] = srcs

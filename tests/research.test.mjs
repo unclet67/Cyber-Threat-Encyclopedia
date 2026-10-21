@@ -47,6 +47,12 @@ test('matches citation URLs to search evidence and namespaces references', () =>
   assert.throws(() => parseResearch(noSearch, jobId), /web search/);
   const noCitations = completion(); const d = JSON.parse(noCitations.output[1].content[0].text); d.sections.identification.summary = 'Unsupported claim'; noCitations.output[1].content[0].text = JSON.stringify(d);
   assert.throws(() => parseResearch(noCitations, jobId), /lacks valid/);
+  const uncitedAttr = completion(); const da = JSON.parse(uncitedAttr.output[1].content[0].text); da.sections.attribution = { sponsor: 'Sponsor [R1]', confidence: 'High without ref', basis: 'Basis [R1]' }; uncitedAttr.output[1].content[0].text = JSON.stringify(da);
+  assert.throws(() => parseResearch(uncitedAttr, jobId), /attribution field lacks/);
+  const uncitedCamp = completion(); const dc = JSON.parse(uncitedCamp.output[1].content[0].text); dc.sections.campaigns = [{ date: '2025', name: 'Cited', summary: 'Summary [R1]', sources: ['R1'] }, { date: '2025', name: 'Uncited', summary: 'No ref here', sources: [] }]; uncitedCamp.output[1].content[0].text = JSON.stringify(dc);
+  assert.throws(() => parseResearch(uncitedCamp, jobId), /campaign lacks/);
+  const emptyTitle = completion(); const dt = JSON.parse(emptyTitle.output[1].content[0].text); dt.sources[0].title = '   '; emptyTitle.output[1].content[0].text = JSON.stringify(dt);
+  assert.throws(() => parseResearch(emptyTitle, jobId), /matched/);
 });
 test('enforces identity and same-origin writes before calling provider', async () => {
   const env = { DB: database(), OPENAI_API_KEY: 'test-secret' };

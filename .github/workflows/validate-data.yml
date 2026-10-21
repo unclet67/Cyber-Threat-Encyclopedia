@@ -4,12 +4,22 @@ on:
   push:
     paths:
       - "data/**"
+      - "app/**"
+      - "index.html"
+      - "server/**"
+      - "lib/**"
+      - "tests/**"
       - "scripts/validate_bundle.py"
       - "scripts/build_pages.py"
       - ".github/workflows/validate-data.yml"
   pull_request:
     paths:
       - "data/**"
+      - "app/**"
+      - "index.html"
+      - "server/**"
+      - "lib/**"
+      - "tests/**"
       - "scripts/validate_bundle.py"
       - "scripts/build_pages.py"
       - ".github/workflows/validate-data.yml"
@@ -26,5 +36,10 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
       - name: Validate data/bundle.json
         run: python3 scripts/validate_bundle.py
+      - name: Run unit tests
+        run: npm test

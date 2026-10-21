@@ -73,7 +73,7 @@ export function parseResearch(response, jobId) {
   if (!validate(draft, researchSchema) || !draft.sources.length) throw new Error('Research returned an incomplete draft or no sources. Nothing was applied.');
   const refs = new Set();
   for (const source of draft.sources) {
-    if (!/^R\d+$/.test(source.ref) || refs.has(source.ref) || !evidence.has(canonical(source.url)))
+    if (!/^R\d+$/.test(source.ref) || refs.has(source.ref) || !source.title.trim() || !source.publisher.trim() || !evidence.has(canonical(source.url)))
       throw new Error('A research citation could not be matched to the web search evidence. No draft was applied.');
     // Normalize an explicit written date without guessing missing components.
     const namedDate = /^(January|February|March|April|May|June|July|August|September|October|November|December) (\d{1,2}), (\d{4})$/.exec(source.date);
@@ -85,11 +85,23 @@ export function parseResearch(response, jobId) {
       throw new Error('A research source has an invalid publication date. No draft was applied.');
     refs.add(source.ref);
   }
-  for (const section of Object.values(draft.sections)) {
+  const hasValidRefs = text => {
+    const cited = [...String(text).matchAll(/\[(R\d+)\]/g)].map(m => m[1]);
+    return cited.length > 0 && cited.every(ref => refs.has(ref));
+  };
+  for (const [key, section] of Object.entries(draft.sections)) {
     if (section === null) continue;
     const serialized = JSON.stringify(section);
     const cited = [...serialized.matchAll(/\[(R\d+)\]/g)].map(m => m[1]);
     if (!cited.length || cited.some(ref => !refs.has(ref))) throw new Error('A suggested section lacks valid research citations. No draft was applied.');
+    if (key === 'campaigns') {
+      if (!section.length || section.some(c => !c.name.trim() || !c.summary.trim() || !(hasValidRefs(c.summary) || (c.sources.length && c.sources.every(r => refs.has(r.replace(/^\[|\]$/g, '')))))))
+        throw new Error('A suggested campaign lacks valid research citations. No draft was applied.');
+    } else if (key === 'attribution') {
+      const vals = [section.sponsor, section.confidence, section.basis].filter(v => v.trim());
+      if (!vals.length || vals.some(v => !hasValidRefs(v)))
+        throw new Error('A suggested attribution field lacks valid research citations. No draft was applied.');
+    }
   }
   const prefix = `R-${jobId.slice(0,8)}-`;
   const rename = value => {

@@ -250,6 +250,22 @@ const arr = v => Array.isArray(v) ? v : [];
 function toast(t){ const el=$("#toast"); el.textContent=t; el.hidden=false; clearTimeout(toast.t); toast.t=setTimeout(()=>el.hidden=true,2600); }
 
 /* ---------- completeness ---------- */
+const DATE_RE = /^((19|20)\d{2})(?:-(\d{2})(?:-(\d{2}))?)?(?:\s*\([^)]+\))?$/;
+const CITE_RE = /\[(S\d+|R-[0-9a-f]{8}-\d+|MS|M)\]/g;
+function validDate(v){
+  const m = DATE_RE.exec(s(v));
+  if (!m) return false;
+  if (m[3]){
+    const mo = Number(m[3]);
+    if (mo < 1 || mo > 12) return false;
+    if (m[4]){
+      const iso = `${m[1]}-${m[3]}-${m[4]}`;
+      const d = new Date(`${iso}T00:00:00Z`);
+      if (Number.isNaN(d.getTime()) || d.toISOString().slice(0,10) !== iso) return false;
+    }
+  }
+  return true;
+}
 function secState(a, key){
   switch(key){
     case "identification": return s(a.identification?.summary) ? (s(a.identification?.firstObserved) ? "c" : "p") : "m";
@@ -258,11 +274,11 @@ function secState(a, key){
     case "targeting": { const t=a.targeting||{}; return arr(t.sectors).length && arr(t.regions).length ? "c" : (arr(t.sectors).length||arr(t.regions).length||s(t.notes)) ? "p" : "m"; }
     case "capabilities": return s(a.capabilities?.summary) ? "c" : arr(a.capabilities?.software).length ? "p" : "m";
     case "attack": return arr(a.attack).length ? "c" : "m";
-    case "campaigns": return arr(a.campaigns).length ? "c" : "m";
+    case "campaigns": { const cps=arr(a.campaigns); if(!cps.length) return "m"; return cps.every(c=>s(c.name)&&s(c.summary)&&(arr(c.sources).length||CITE_RE.test(c.summary))) ? "c" : "p"; }
     case "diamond": { const d=a.diamond||{}; const n=["adversary","capability","infrastructure","victim"].filter(k=>s(d[k])).length; return n===4?"c":n?"p":"m"; }
-    case "gaps": return arr(a.gaps).length ? "c" : "m";
+    case "gaps": return arr(a.gaps).filter(s).length ? "c" : "m";
     case "implications": { const i=a.implications||{}; return s(i.jipoe)&&s(i.jcc2)?"c":(s(i.jipoe)||s(i.jcc2))?"p":"m"; }
-    case "sources": { const src=arr(a.sources); if(!src.length) return "m"; return src.every(x=>s(x.date)) ? "c" : "p"; }
+    case "sources": { const src=arr(a.sources); if(!src.length) return "m"; return src.every(x=>s(x.ref)&&s(x.title)&&s(x.publisher)&&safeUrl(x.url)&&validDate(x.date)) ? "c" : "p"; }
   }
   return "m";
 }
@@ -585,12 +601,28 @@ function val(id){ return document.getElementById(id)?.value ?? ""; }
 async function save(msg){
   const name=val("f-name").trim();
   if (!name){ msg.className="msg err"; msg.textContent="Add a primary name before saving."; return; }
+  const gid=val("f-gid").trim();
+  if (gid && !/^G\d{4}$/.test(gid)){ msg.className="msg err"; msg.textContent="MITRE group ID must match G#### (e.g. G1017)."; return; }
   const prev=S.editing;
   const id=prev?.id || slug(name);
   if (!prev && S.actors.has(id)){ msg.className="msg err"; msg.textContent=`A profile with the id "${id}" already exists. Open and edit it instead.`; return; }
   const camp=pipes(val("f-camp"),["date","name","summary","sources"]).map(c=>({...c, sources:c.sources?c.sources.split(",").map(x=>x.trim()).filter(Boolean):[]}));
+  const srcs=pipes(val("f-src"),["ref","date","publisher","title","url"]).filter(x=>x.url||x.title||x.ref);
+  const refs=new Set();
+  for (const src of srcs){
+    if (!safeUrl(src.url)){ msg.className="msg err"; msg.textContent=`Source ${src.ref||src.title||"(unnamed)"} requires an http(s) URL.`; return; }
+    if (s(src.date) && !validDate(src.date)){ msg.className="msg err"; msg.textContent=`Source ${src.ref||src.url} has an invalid date "${src.date}". Use YYYY-MM-DD, YYYY-MM, or YYYY.`; return; }
+    if (s(src.ref)){
+      if (refs.has(src.ref)){ msg.className="msg err"; msg.textContent=`Duplicate source ref "${src.ref}". Give each source a unique ref.`; return; }
+      refs.add(src.ref);
+    }
+  }
+  for (const c of camp){
+    if (!s(c.name) || !s(c.summary)){ msg.className="msg err"; msg.textContent="Every campaign entry requires both a name and a summary."; return; }
+    for (const sr of c.sources) if (!refs.has(sr)){ msg.className="msg err"; msg.textContent=`Campaign "${c.name}" cites unknown source ref "${sr}".`; return; }
+  }
   const doc={
-    ...(prev||{}), id, primaryName:name, msName:val("f-ms").trim(), country:val("f-country"), mitreGroupId:val("f-gid").trim(),
+    ...(prev||{}), id, primaryName:name, msName:val("f-ms").trim(), country:val("f-country"), mitreGroupId:gid,
     aliases:pipes(val("f-aliases"),["name","vendor"]).filter(x=>x.name),
     identification:{summary:val("f-summary").trim(), firstObserved:val("f-first").trim(), notes:val("f-idnotes").trim()},
     attribution:{sponsor:val("f-sponsor").trim(), confidence:val("f-conf").trim(), basis:val("f-basis").trim()},
@@ -602,10 +634,14 @@ async function save(msg){
     diamond:{adversary:val("f-dadv").trim(), capability:val("f-dcap").trim(), infrastructure:val("f-dinf").trim(), victim:val("f-dvic").trim(), socioPolitical:val("f-dsp").trim(), technology:val("f-dtech").trim()},
     gaps:lines(val("f-gaps")),
     implications:{jipoe:val("f-jipoe").trim(), jcc2:val("f-jcc2").trim()},
-    sources:pipes(val("f-src"),["ref","date","publisher","title","url"]).filter(x=>x.url||x.title),
+    sources:srcs,
     updatedAt:new Date().toISOString(), updatedBy:S.uid||"",
     provenance: prev?.provenance || {origin:"admin"},
   };
+  const {sources:_s, provenance:_p, ...bodyFields} = doc;
+  for (const m of JSON.stringify(bodyFields).matchAll(CITE_RE)){
+    if (!refs.has(m[1])){ msg.className="msg err"; msg.textContent=`Profile text cites [${m[1]}] which is not in the sources list.`; return; }
+  }
   if (!prev) { doc.importFlags=[]; doc.msCandidates=[]; }
   msg.className="msg"; msg.textContent="Saving…";
   try{
