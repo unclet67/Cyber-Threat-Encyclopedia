@@ -716,7 +716,7 @@
   ],
   "importedSummary": "GhostEmperor is a Chinese-speaking threat actor that targets government entities and telecom companies in Southeast Asia. They employ a Windows kernel-mode rootkit called Demodex to gain remote control over their targeted servers. The actor demonstrates a high level of sophistication and uses various anti-forensic and anti-analysis techniques to evade detection. They have been active for a significant period of time and continue to pose a threat to their targets."
  },
- "updatedAt": "2026-10-14T00:00:00Z",
+ "updatedAt": "2026-10-18T15:04:11Z",
  "updatedBy": "Research build 2026-10-14",
  "relatedMs": []
 }

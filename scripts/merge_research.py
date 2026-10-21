@@ -8,7 +8,8 @@ Usage: python3 merge_research.py <actor.json> <extra.json> <mitre_GXXXX.json> <t
   different actor out of the alias list into relatedMs.
 - Keeps the imported summary and references in provenance for audit.
 """
-import json, re, sys
+import json, re, sys, time
+NOW = time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())  # updatedAt stamp; drives the Pages export date
 
 actor, extra, mitre, tech, msmap, out = sys.argv[1:7]
 d = json.load(open(actor))
@@ -74,7 +75,7 @@ src = f"MITRE ATT&CK {x['mitre']} ({m['modified'][:10]})"
 d["attack"] = [{"id": i, "name": n, "source": src, "tactics": t.get(i, {}).get("tactics", [])} for i, n in m["tech"]]
 d["mitreGroupId"] = x["mitre"]
 d["importFlags"] = []
-d["updatedAt"] = "2026-10-14T00:00:00Z"
+d["updatedAt"] = NOW
 d["updatedBy"] = "Research build 2026-10-14"
 json.dump(d, open(out, "w"), indent=1)
 print(d["id"], "aliases", len(d["aliases"]), "moved", {k: len(v) for k, v in moved.items()}, "attack", len(d["attack"]), "sw", len(d["capabilities"]["software"]))

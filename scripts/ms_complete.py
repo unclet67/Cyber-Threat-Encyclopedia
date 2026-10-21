@@ -10,7 +10,8 @@ Usage: python3 ms_complete.py <data/actors dir> <ms.json> <ea.json (MITRE STIX)>
 3. Refreshes ATT&CK techniques and software for imported (not researched) records from their own MITRE group.
 Writes only records that changed, and a plan.json listing creates and updates.
 """
-import json, os, re, sys, glob, collections
+import json, os, re, sys, glob, collections, time
+NOW = time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())  # updatedAt stamp; drives the Pages export date
 
 ddir, msp, eap, techp, out = sys.argv[1:6]
 ms = json.load(open(msp)); tech = json.load(open(techp))
@@ -117,7 +118,7 @@ for name, e in ENT.items():
         "diamond": {"adversary": "", "capability": "", "infrastructure": "", "victim": ""}, "gaps": [],
         "implications": {"jipoe": "", "jcc2": ""}, "sources": sources, "importFlags": [],
         "provenance": {"origin": "microsoft-mapping", "file": "MicrosoftMapping.json", "generated": "2026-10-14", "upstream": ["Microsoft Threat Intelligence"] + (["MITRE ATT&CK"] if gid else [])},
-        "updatedAt": "2026-10-14T00:00:00Z", "updatedBy": "Microsoft name completion",
+        "updatedAt": NOW, "updatedBy": "Microsoft name completion",
     }
     created.append(sid); primaries.add(name)
 
@@ -146,7 +147,7 @@ for sid, d in docs.items():
     if d.get("provenance", {}).get("origin") == "import" and d.get("mitreGroupId") in groups:
         d["attack"], d["capabilities"]["software"], _ = mitre(d["mitreGroupId"])
     if d != orig[sid]:
-        d["updatedAt"] = "2026-10-14T00:00:00Z"
+        d["updatedAt"] = NOW
 
 os.makedirs(out, exist_ok=True)
 changed = [sid for sid in docs if sid in created or docs[sid] != orig[sid]]
