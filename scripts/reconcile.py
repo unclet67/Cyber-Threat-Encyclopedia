@@ -3,7 +3,8 @@
 Inputs: build/out/docs.json (as written to the db, all version 1), src2/ms.json, src2/tech_lookup.json,
 src2/mitre_G1045.json, build/{salt,flax}_extra.json. Output: build/out2/ (docs, deletes, batches, report).
 """
-import json, os, re, sys
+import json, os, re, sys, time
+NOW = time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())  # updatedAt stamp; drives the Pages export date
 S = sys.argv[1]
 B = f"{S}/build"
 docs = json.load(open(f"{B}/out/docs.json"))
@@ -94,7 +95,7 @@ for d in docs:
         assert nid not in taken, (old, nid)
         taken.add(nid); deletes.append(old)
     d["id"] = nid
-    d["updatedAt"] = "2026-10-14T00:00:00Z"
+    d["updatedAt"] = NOW
     out.append(d)
 
 byid = {d["id"]: d for d in out}

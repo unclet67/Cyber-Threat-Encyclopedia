@@ -996,6 +996,6 @@
   ],
   "importedSummary": "APT29 is threat group that has been attributed to Russia's Foreign Intelligence Service (SVR). They have operated since at least 2008, often targeting government networks in Europe and NATO member countries, research institutes, and think tanks. APT29 reportedly compromised the Democratic National Committee starting in the summer of 2015.\n\nIn April 2021, the US and UK governments attributed the SolarWinds Compromise to the SVR; public statements included citations to APT29, Cozy Bear, and The Dukes. Industry reporting also referred to the actors involved in this campaign as UNC2452, NOBELIUM, StellarParticle, Dark Halo, and SolarStorm."
  },
- "updatedAt": "2026-10-14T00:00:00Z",
+ "updatedAt": "2026-10-18T15:04:11Z",
  "updatedBy": "Research build 2026-10-14"
 }

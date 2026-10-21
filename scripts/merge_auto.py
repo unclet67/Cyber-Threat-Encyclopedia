@@ -14,7 +14,8 @@ Merge rules:
 - ATT&CK techniques and software are not touched (they come from MITRE)
 - imported summary and references are preserved in provenance
 """
-import json, os, re, sys, glob
+import json, os, re, sys, glob, time
+NOW = time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())  # updatedAt stamp; drives the Pages export date
 
 ddir, adir, out = sys.argv[1:4]
 os.makedirs(out, exist_ok=True)
@@ -94,7 +95,7 @@ for f in sorted(glob.glob(f"{adir}/*.json")):
             d.setdefault("aliases", []).append({"name": a["name"], "vendor": a.get("vendor", "")}); have.add(a["name"].lower())
     d["provenance"]["origin"] = "import+research"
     d["importFlags"] = []
-    d["updatedAt"] = "2026-10-14T00:00:00Z"
+    d["updatedAt"] = NOW
     d["updatedBy"] = "Research build 2026-10-14 (workflow)"
     json.dump(d, open(f"{out}/{aid}.json", "w"))
     report["merged"].append(aid)

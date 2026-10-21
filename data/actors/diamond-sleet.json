@@ -1199,7 +1199,7 @@
   ],
   "importedSummary": "CryptoCore is a North Korean APT known for targeting cryptocurrency exchanges and financial institutions, employing spear-phishing techniques that lead to LONEJOGGER malware infections. The group has leveraged social engineering tactics, including deepfake technology and hijacked YouTube accounts, to execute sophisticated giveaway scams that deceive victims into sending cryptocurrencies. Their operations have involved the misuse of platforms like Gemini for reconnaissance and the development of fraudulent content. Additionally, CryptoCore has been linked to a variety of campaigns, including Dangerous Password and SnatchCrypto, focusing on financial gain through cryptocurrency theft."
  },
- "updatedAt": "2026-10-14T00:00:00Z",
+ "updatedAt": "2026-10-18T15:04:11Z",
  "updatedBy": "Research build 2026-10-14",
  "relatedMs": [
   {
