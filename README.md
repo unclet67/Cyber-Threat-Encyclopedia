@@ -26,7 +26,7 @@ Nothing that is absent from those sources has been added to imported records. Re
 ## Running
 
 - **claude.ai (live, editable):** `app/index.html` is the Artifact source. There it reads and writes the live database, and editors get the research administration interface.
-- **GitHub Pages (read-only):** `index.html` at the repo root is the same page wrapped in the document skeleton claude.ai adds at publish time. Outside claude.ai it loads `data/bundle.json`, a snapshot of every actor and scenario. Rebuild both with `python3 scripts/build_pages.py` after syncing `data/`.
+- **GitHub Pages (read-only):** `index.html` at the repo root is the same page wrapped in the document skeleton claude.ai adds at publish time. Outside claude.ai it loads `data/bundle.json`, a snapshot of every actor and scenario. Rebuild both with `python3 scripts/build_pages.py` after syncing `data/`. `python3 scripts/validate_bundle.py` checks the bundle (required fields, citations, export date, sync with `data/`); the **Validate data** GitHub Action runs it on every push and pull request that touches `data/`.
 
 ## MISP Galaxy analyst enrichment
 
