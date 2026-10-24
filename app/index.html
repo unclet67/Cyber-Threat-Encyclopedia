@@ -213,6 +213,7 @@ footer{max-width:1240px;margin:0 auto;padding-block:0 80px;color:var(--muted);fo
 
 <script type="module">
 import { compareEntry, actorNames, entryNames, normalizeName } from "./lib/galaxy.mjs";
+import { compareActors } from "./lib/actor-comparison.mjs";
 import { analyzeIntelligenceGaps } from "./lib/intelligence-gaps.mjs";
 import { createCampaignAssessmentDraft } from "./lib/campaign-assessment.mjs";
 (() => {
@@ -495,6 +496,8 @@ function renderCompare(){
   app.append(h("div",{class:"crumbs"}, inj?h("button",{class:"btn",type:"button",onclick:()=>{go("scenarios");}},"← Back to scenario"):null, h("button",{class:"btn",type:"button",onclick:()=>go("list")},"← All actors"), picks.length?h("button",{class:"btn",type:"button",onclick:()=>{S.cmp=[];S.inject=null;render();}},"Clear selection"):null));
   if (inj) app.append(h("div",{class:"ctx"}, h("div",{class:"eyebrow"},`Inject ${inj.n} · ${inj.time} · ${inj.title}`), h("div",{},inj.situation), h("ol",{style:"margin:0;padding-left:20px"}, arr(inj.tasks).map(t=>h("li",{},t)))));
   if (picks.length<2){ app.append(h("div",{class:"empty"}, "Select at least two actors from the list to compare. Tick the box beside each name.")); return; }
+  const comparison=compareActors(picks);
+  app.append(h('section',{class:'card'},h('h3',{},'Recorded ATT&CK overlap'),h('p',{},comparison.sharedTechniques===null?'Shared coverage: unknown because a selected record has no mappings.':comparison.sharedTechniques.length+' techniques recorded in every selected profile.'),...comparison.pairs.map(pair=>h('p',{},pair.actorIds.map(id=>S.actors.get(id).primaryName).join(' ↔ ')+': '+(pair.jaccard===null?'Similarity unknown':Math.round(pair.jaccard*100)+'% Jaccard overlap of recorded technique IDs'))),h('ul',{},comparison.cautions.map(x=>h('li',{},x)))));
   const count=new Map(); picks.forEach(a=>new Set(arr(a.attack).map(t=>t.id)).forEach(id=>count.set(id,(count.get(id)||0)+1)));
   const swCount=new Map(); picks.forEach(a=>new Set(arr(a.capabilities?.software).map(t=>t.name)).forEach(n=>swCount.set(n,(swCount.get(n)||0)+1)));
   const sharedAll=[...count].filter(([,n])=>n===picks.length).map(([id])=>id).sort();
@@ -511,6 +514,7 @@ function renderCompare(){
     ["Sectors",a=>arr(a.targeting?.sectors).length?h("ul",{class:"tight"},a.targeting.sectors.map(x=>h("li",{},x))):cell("")],
     ["Regions",a=>arr(a.targeting?.regions).length?h("ul",{class:"tight"},a.targeting.regions.map(x=>h("li",{},x))):cell("")],
     ["Software",a=>arr(a.capabilities?.software).length?h("div",{}, a.capabilities.software.map((x,i)=>h("span",{class:swCount.get(x.name)>1?"shared":""}, (i?", ":"")+x.name))):cell("")],
+    ["Observed-unique ATT&CK IDs",a=>comparison.actors.find(x=>x.id===a.id).observedUniqueTechniques.join(", ")||"None recorded / coverage unknown"],
     ["ATT&CK count",a=>h("span",{class:"mono"},`${arr(a.attack).length} techniques · ${arr(a.attack).filter(t=>count.get(t.id)>1).length} shared`)],
     ["Tactic coverage",a=>{ const c=new Map(); arr(a.attack).forEach(t=>arr(t.tactics).forEach(x=>c.set(x,(c.get(x)||0)+1))); return c.size?h("div",{class:"tac",style:"white-space:normal"}, TACTICS.filter(x=>c.has(x)).map(x=>`${tacLabel(x)} ${c.get(x)}`).join(" · ")):cell(""); }],
     ["Campaigns",a=>arr(a.campaigns).length?h("ul",{class:"tight"},a.campaigns.map(c=>h("li",{},(c.date?c.date+" · ":"")+(c.name||"")))):cell("")],
