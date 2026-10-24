@@ -29,6 +29,13 @@
       "when": 1792843200000,
       "tag": "0003_campaign_assessments",
       "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "6",
+      "when": 1792843201000,
+      "tag": "0004_watchlist",
+      "breakpoints": true
     }
   ]
 }

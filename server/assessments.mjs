@@ -24,7 +24,8 @@ export async function handleAssessments(request,db,snapshot) {
   if(row.revision!==body.expectedRevision||draft.status==='approved'||JSON.stringify(actor)!==row.base_document)return json({error:'Assessment or profile changed. Generate a fresh draft or reload.'},409);
   const at=new Date().toISOString(),revision=row.revision+1;
   const updated={...draft,revision,status:body.action==='approve'?'approved':'draft',review:{reviewer:user,reviewedAt:at,rationale:body.rationale.trim(),decision:body.action},history:[...draft.history,{action:body.action,by:user,at,rationale:body.rationale.trim()}]};
-  const result=await db.prepare('UPDATE campaign_assessments SET document = ?, revision = ? WHERE user_id = ? AND id = ? AND revision = ?').bind(JSON.stringify(updated),revision,user,body.id,body.expectedRevision).run();
+  const result=await db.prepare(`UPDATE campaign_assessments SET document = ?, revision = ? WHERE user_id = ? AND id = ? AND revision = ? AND
+   (SELECT CASE WHEN COUNT(*) = 0 THEN 0 WHEN MAX(deleted) = 1 THEN -1 ELSE MAX(revision) END FROM profiles WHERE user_id = ? AND actor_id = ?) = ?`).bind(JSON.stringify(updated),revision,user,body.id,body.expectedRevision,user,row.actor_id,actor._revision||0).run();
   if(!result.meta.changes)return json({error:'Assessment changed. Reload.'},409);return json({assessment:updated});
  }catch{return json({error:'Assessment storage is unavailable.'},503);}
 }

@@ -196,6 +196,7 @@ footer{max-width:1240px;margin:0 auto;padding-block:0 80px;color:var(--muted);fo
     </div>
     <div class="mast-tools">
       <button class="btn" id="btn-home" type="button">All actors</button>
+      <button class="btn" id="btn-watchlist" type="button">Watchlist</button>
       <button class="btn" id="btn-galaxy" type="button">Galaxy research</button>
       <button class="btn" id="btn-scen" type="button">Scenarios</button>
       <button class="btn" id="btn-compare" type="button">Compare<span class="n" id="cmp-n">0</span></button>
@@ -214,6 +215,11 @@ footer{max-width:1240px;margin:0 auto;padding-block:0 80px;color:var(--muted);fo
 
 <script type="module">
 import { compareEntry, actorNames, entryNames, normalizeName } from "./lib/galaxy.mjs";
+import { mergeCampaignEdits } from "./lib/campaign-records.mjs";
+import { generateReport } from "./lib/report.mjs";
+import { campaignTimeline } from "./lib/campaign-timeline.mjs";
+import { compareActors } from "./lib/actor-comparison.mjs";
+import { analyzeIntelligenceGaps } from "./lib/intelligence-gaps.mjs";
 import { createCampaignAssessmentDraft } from "./lib/campaign-assessment.mjs";
 (() => {
 "use strict";
@@ -328,6 +334,8 @@ function render(){
   const bar=$("#cmpbar"); bar.hidden = !(S.cmp.length && S.view!=="compare");
   if (!bar.hidden){ $("#cmpbar-t").textContent=`${S.cmp.length} selected`; $("#cmpbar-names").textContent=S.cmp.map(id=>S.actors.get(id)?.primaryName).filter(Boolean).join(" · "); }
   app.replaceChildren();
+  if (S.view==="watchlist") return renderWatchlist();
+  if (S.view==="gap-analysis") return renderGapAnalysis();
   if (S.view==="assessments") return renderAssessments();
   if (S.view==="galaxy") return renderGalaxy();
   if (S.view==="edit") return renderEdit();
@@ -401,6 +409,10 @@ function section(n, key, label, a, body){
 function renderProfile(a){
   const crumbs=h("div",{class:"crumbs"},
     h("button",{class:"btn",type:"button",onclick:()=>openAssessments(a.id)},"Campaign assessment"),
+    siteMode&&S.admin?h("button",{class:"btn",type:"button",onclick:()=>openWatchlist(a.id)},"Watch actor"):null,
+    h("button",{class:"btn",type:"button",onclick:()=>downloadReport([a],"markdown")},"Export report (.md)"),
+    h("button",{class:"btn",type:"button",onclick:()=>downloadReport([a],"json")},"Export report (.json)"),
+    h("button",{class:"btn",type:"button",onclick:()=>{S.view="gap-analysis";S.id=a.id;render();}},"Analyze intelligence gaps"),
     h("button",{class:"btn",type:"button",onclick:()=>openGalaxy(a.id)},"Inspect Galaxy enrichment"),
     h("button",{class:"btn",type:"button",onclick:()=>go("list")},"← All actors"),
     h("button",{class:"btn",type:"button",onclick:()=>toggleCmp(a.id)}, S.cmp.includes(a.id)?"Remove from compare":"Add to compare"),
@@ -448,7 +460,7 @@ function renderProfile(a){
     h("tbody",{}, tt.map(x=>{ const u=`https://attack.mitre.org/techniques/${String(x.id||"").replace(".","/")}/`; return h("tr",{}, h("td",{class:"tac"}, arr(x.tactics).map(tacLabel).join(" · ")||"—"), h("td",{class:"mono"}, /^T\d{4}(\.\d{3})?$/.test(x.id)?h("a",{href:u,target:"_blank",rel:"noopener"},x.id):x.id), h("td",{},x.name||""), h("td",{class:"note"},x.source||"")); })))) : RR("no technique mappings");
 
   const cps=arr(a.campaigns);
-  const sec7=cps.length ? h("div",{class:"tl"}, cps.map(c=>h("div",{class:"ev"}, h("div",{class:"d"},c.date||"Undated"), h("div",{class:"t"},c.name||""), h("div",{},c.summary||""), arr(c.sources).length?h("div",{class:"note"},"Sources: "+c.sources.join(", ")):null))) : RR("no campaigns recorded");
+  const sec7=cps.length ? h("div",{},h('p',{class:'note'},'Sorted record dates; publication dates appear with sources. Partial dates retain their precision. Advisory and campaign event roles require analyst verification.'),h("div",{class:"tl"},campaignTimeline(a).map(c=>h("div",{class:"ev"},h("div",{class:"d"},c.displayDate+' · '+c.precision+' precision'),h("div",{class:"t"},c.name),h("div",{},c.summary),h('p',{class:'note'},c.dateRole),h('ul',{},c.sources.map(source=>h('li',{},galaxyLink(source.url,'['+source.ref+'] '+source.title+' · published '+(source.date||'unknown'))))),c.unresolvedRefs.length?h('p',{class:'note'},'Research Required · unresolved references: '+c.unresolvedRefs.join(', ')):null)))) : RR("no campaigns recorded");
 
   const d=a.diamond||{};
   const v=(k,l)=>h("div",{class:"v"},h("h4",{},l),h("p",{},s(d[k])||"Research Required"));
@@ -493,6 +505,9 @@ function renderCompare(){
   app.append(h("div",{class:"crumbs"}, inj?h("button",{class:"btn",type:"button",onclick:()=>{go("scenarios");}},"← Back to scenario"):null, h("button",{class:"btn",type:"button",onclick:()=>go("list")},"← All actors"), picks.length?h("button",{class:"btn",type:"button",onclick:()=>{S.cmp=[];S.inject=null;render();}},"Clear selection"):null));
   if (inj) app.append(h("div",{class:"ctx"}, h("div",{class:"eyebrow"},`Inject ${inj.n} · ${inj.time} · ${inj.title}`), h("div",{},inj.situation), h("ol",{style:"margin:0;padding-left:20px"}, arr(inj.tasks).map(t=>h("li",{},t)))));
   if (picks.length<2){ app.append(h("div",{class:"empty"}, "Select at least two actors from the list to compare. Tick the box beside each name.")); return; }
+  const comparison=compareActors(picks);
+  app.append(h("button",{class:"btn",onclick:()=>downloadReport(picks,"markdown")},"Export comparison report"));
+  app.append(h('section',{class:'card'},h('h3',{},'Recorded ATT&CK overlap'),h('p',{},comparison.sharedTechniques===null?'Shared coverage: unknown because a selected record has no mappings.':comparison.sharedTechniques.length+' techniques recorded in every selected profile.'),...comparison.pairs.map(pair=>h('p',{},pair.actorIds.map(id=>S.actors.get(id).primaryName).join(' ↔ ')+': '+(pair.jaccard===null?'Similarity unknown':Math.round(pair.jaccard*100)+'% Jaccard overlap of recorded technique IDs'))),h('ul',{},comparison.cautions.map(x=>h('li',{},x)))));
   const count=new Map(); picks.forEach(a=>new Set(arr(a.attack).map(t=>t.id)).forEach(id=>count.set(id,(count.get(id)||0)+1)));
   const swCount=new Map(); picks.forEach(a=>new Set(arr(a.capabilities?.software).map(t=>t.name)).forEach(n=>swCount.set(n,(swCount.get(n)||0)+1)));
   const sharedAll=[...count].filter(([,n])=>n===picks.length).map(([id])=>id).sort();
@@ -509,6 +524,7 @@ function renderCompare(){
     ["Sectors",a=>arr(a.targeting?.sectors).length?h("ul",{class:"tight"},a.targeting.sectors.map(x=>h("li",{},x))):cell("")],
     ["Regions",a=>arr(a.targeting?.regions).length?h("ul",{class:"tight"},a.targeting.regions.map(x=>h("li",{},x))):cell("")],
     ["Software",a=>arr(a.capabilities?.software).length?h("div",{}, a.capabilities.software.map((x,i)=>h("span",{class:swCount.get(x.name)>1?"shared":""}, (i?", ":"")+x.name))):cell("")],
+    ["Observed-unique ATT&CK IDs",a=>comparison.actors.find(x=>x.id===a.id).observedUniqueTechniques.join(", ")||"None recorded / coverage unknown"],
     ["ATT&CK count",a=>h("span",{class:"mono"},`${arr(a.attack).length} techniques · ${arr(a.attack).filter(t=>count.get(t.id)>1).length} shared`)],
     ["Tactic coverage",a=>{ const c=new Map(); arr(a.attack).forEach(t=>arr(t.tactics).forEach(x=>c.set(x,(c.get(x)||0)+1))); return c.size?h("div",{class:"tac",style:"white-space:normal"}, TACTICS.filter(x=>c.has(x)).map(x=>`${tacLabel(x)} ${c.get(x)}`).join(" · ")):cell(""); }],
     ["Campaigns",a=>arr(a.campaigns).length?h("ul",{class:"tight"},a.campaigns.map(c=>h("li",{},(c.date?c.date+" · ":"")+(c.name||"")))):cell("")],
@@ -590,7 +606,7 @@ function renderEdit(){
     fs("4 · Targeting", h("div",{class:"grid2"}, F("f-sectors","Sectors · one per line",lines(arr(a.targeting?.sectors).join("\n")).join("\n"),{area:true}), F("f-regions","Regions · one per line",arr(a.targeting?.regions).join("\n"),{area:true})), F("f-tnotes","Targeting notes",a.targeting?.notes,{area:true,rows:2})),
     fs("5 · Capabilities", F("f-capsum","Capability assessment",a.capabilities?.summary,{area:true,rows:4}), F("f-sw","Software · id | name | type",unpipes(a.capabilities?.software,["id","name","type"]),{area:true,code:true})),
     fs("6 · MITRE ATT&CK", F("f-attack","Techniques · T-id | name | source",unpipes(a.attack,["id","name","source"]),{area:true,code:true,rows:8})),
-    fs("7 · Campaign history", F("f-camp","Campaigns · date | name | summary | source refs (comma-separated)",unpipes(a.campaigns,["date","name","summary","sources"]),{area:true,code:true,rows:6})),
+    fs("7 · Campaign history", h("p",{class:"note"},"Unchanged uniquely named campaigns preserve recorded evidence. Changing date, summary or source refs marks evidence stale. Renaming or removing a campaign removes that record and its evidence."), F("f-camp","Campaigns · date | name | summary | source refs (comma-separated)",unpipes(a.campaigns,["date","name","summary","sources"]),{area:true,code:true,rows:6})),
     fs("8 · Diamond Model", h("div",{class:"grid2"}, F("f-dadv","Adversary",a.diamond?.adversary,{area:true,rows:3}), F("f-dcap","Capability",a.diamond?.capability,{area:true,rows:3}), F("f-dinf","Infrastructure",a.diamond?.infrastructure,{area:true,rows:3}), F("f-dvic","Victim",a.diamond?.victim,{area:true,rows:3})), h("div",{class:"grid2"}, F("f-dsp","Socio-political axis",a.diamond?.socioPolitical,{area:true,rows:2}), F("f-dtech","Technology axis",a.diamond?.technology,{area:true,rows:2}))),
     fs("9 · Intelligence gaps", F("f-gaps","Gaps · one per line",arr(a.gaps).join("\n"),{area:true,rows:5})),
     fs("10 · Operational implications", F("f-jipoe","JIPOE",a.implications?.jipoe,{area:true,rows:5}), F("f-jcc2","JCC2",a.implications?.jcc2,{area:true,rows:5})),
@@ -609,7 +625,8 @@ async function save(msg){
   const prev=S.editing;
   const id=prev?.id || slug(name);
   if (!prev && S.actors.has(id)){ msg.className="msg err"; msg.textContent=`A profile with the id "${id}" already exists. Open and edit it instead.`; return; }
-  const camp=pipes(val("f-camp"),["date","name","summary","sources"]).map(c=>({...c, sources:c.sources?c.sources.split(",").map(x=>x.trim()).filter(Boolean):[]}));
+  let camp=pipes(val("f-camp"),["date","name","summary","sources"]).map(c=>({...c, sources:c.sources?c.sources.split(",").map(x=>x.trim()).filter(Boolean):[]}));
+  try{camp=mergeCampaignEdits(arr(prev?.campaigns),camp);}catch(e){msg.className="msg err";msg.textContent=e.message;return;}
   const srcs=pipes(val("f-src"),["ref","date","publisher","title","url"]).filter(x=>x.url||x.title||x.ref);
   const refs=new Set();
   for (const src of srcs){
@@ -720,7 +737,9 @@ function renderResearch(){
   const job=current.job,draft=job?.draft,busy=current.loading||researchActive(job);
   app.append(h("div",{class:"form"},
     h("button",{class:"btn",onclick:()=>openProfile(a.id)},"← Back to profile"),
-    h("h2",{},"Research "+a.primaryName),
+    h("h2",{},"AI Research Assistant · "+a.primaryName),
+    h("p",{class:"note"},"Paid API research. Hard limits: 4 starts per user/day, 12 globally/day, 40 globally/month; 4 searches and 4,000 output tokens per run. The owner may lower these limits. Failed attempts count. Drafts require human review and Save changes in the profile editor."),
+    h("button",{class:"btn",type:"button",onclick:async()=>{try{const r=await fetch('/api/research?budget=1',{cache:'no-store'});const data=await r.json();if(!r.ok)throw new Error(data.error);const b=data.budget;alert(`Your starts today: ${b.userDailyUsed}/${b.userDailyLimit} · Global today: ${b.globalDailyUsed}/${b.globalDailyLimit} · Global month: ${b.monthlyUsed}/${b.monthlyLimit}. Resets use UTC.`);}catch(e){alert(e.message);}}},"Check research budget"),
     h("p",{class:"note"},"Search current open-source reporting and draft profile updates with citations. Only the actor’s name and your research focus are sent to OpenAI; saved profile notes stay on this Site. Uses paid OpenAI API research."),
     h("form",{onsubmit:e=>{e.preventDefault();startResearch();}},
       h("div",{class:"f"},h("label",{for:"research-focus"},"Research focus (optional)"),h("textarea",{id:"research-focus",rows:3,maxlength:1500,disabled:busy,oninput:e=>current.focus=e.target.value},current.focus),h("small",{},"For example: recent campaigns, attribution changes, targeting, or missing profile sections.")),
@@ -756,6 +775,29 @@ async function applyResearchDraft(){
   }catch(e){current.error=e.message;render();}
 }
 
+let watchState={entries:[],defaults:[],actorId:'',notes:'',enabled:true,error:'',busy:false};
+async function watchApi(body){const r=await fetch('/api/watchlist',{method:body?'POST':'GET',cache:'no-store',...(body?{headers:{'Content-Type':'application/json'},body:JSON.stringify(body)}:{})});let data;try{data=await r.json();}catch{throw new Error('Watchlist service unavailable.');}if(!r.ok)throw new Error(data.error||'Watchlist failed.');return data;}
+function selectWatchActor(id){watchState.actorId=id;const entry=watchState.entries.find(e=>e.actorId===id);watchState.notes=entry?.notes||'';watchState.enabled=entry?.enabled??true;render();}
+async function openWatchlist(id){S.view='watchlist';watchState.error='';watchState.busy=true;render();try{if(siteMode&&S.admin){Object.assign(watchState,await watchApi());selectWatchActor(id||watchState.actorId||watchState.defaults[0]||[...S.actors.keys()][0]);}}catch(e){watchState.error=e.message;}finally{watchState.busy=false;render();}}
+async function saveWatchActor(){watchState.busy=true;watchState.error='';render();try{const old=watchState.entries.find(e=>e.actorId===watchState.actorId);const {entry}=await watchApi({actorId:watchState.actorId,expectedRevision:old?.revision||0,notes:watchState.notes,enabled:watchState.enabled});watchState.entries=watchState.entries.filter(e=>e.actorId!==entry.actorId).concat(entry);}catch(e){watchState.error=e.message;}finally{watchState.busy=false;render();}}
+function renderWatchlist(){
+ app.append(h('button',{class:'btn',onclick:()=>go('list')},'← All actors'),h('h2',{},'Actor watchlist'),h('p',{},'Private saved interests and notes. Sunday public-feed monitoring uses the shared actor registry in config/monitoring.json. Private notes stay in this Site; they are never sent to GitHub or a model.'),h('p',{class:'note'},'Default shared watch: China, Russia, Iran and North Korea · Sunday 08:00 America/Chicago · public-feed screening · zero paid API calls · human review before profile updates. The GitHub schedule becomes active only after the workflow is approved and merged.'));
+ if(!siteMode||!S.admin)return app.append(RR('Sign in to the private Site to save a watchlist. Public-feed monitoring is configured in the repository.'));
+ const w=watchState;if(w.error)app.append(h('p',{role:'alert'},w.error));
+ app.append(h('label',{for:'watch-actor'},'Actor'),h('select',{id:'watch-actor',disabled:w.busy,onchange:e=>selectWatchActor(e.target.value)},[...S.actors.values()].sort((a,b)=>a.primaryName.localeCompare(b.primaryName)).map(a=>h('option',{value:a.id,selected:a.id===w.actorId},a.primaryName))),h('label',{for:'watch-notes'},'Collection interests / notes'),h('textarea',{id:'watch-notes',rows:3,maxlength:2000,disabled:w.busy,oninput:e=>w.notes=e.target.value},w.notes),h('label',{},h('input',{type:'checkbox',checked:w.enabled,disabled:w.busy,onchange:e=>w.enabled=e.target.checked}),' Active on my watchlist'),h('button',{class:'btn primary',disabled:w.busy||!w.actorId,onclick:saveWatchActor},'Save watchlist entry'));
+ app.append(h('h3',{},'My saved actors'),...w.entries.map(e=>h('section',{class:'card'},h('button',{class:'btn',onclick:()=>selectWatchActor(e.actorId)},S.actors.get(e.actorId)?.primaryName||e.actorId),h('p',{},(e.enabled?'Active':'Paused')+' · '+e.notes),h('button',{class:'btn',onclick:()=>openProfile(e.actorId)},'Open profile'))),h('h3',{},'Shared Sunday monitoring defaults'),h('ul',{},w.defaults.map(id=>h('li',{},S.actors.get(id)?.primaryName||id))));
+}
+
+function downloadReport(actors,format,assessment=null){
+ try{const report=generateReport({actors,format,assessment});const url=URL.createObjectURL(new Blob([report.content],{type:report.mime}));const link=h('a',{href:url,download:report.filename});document.body.append(link);link.click();link.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);}catch(e){toast(e.message);}
+}
+
+function renderGapAnalysis(){
+ const a=S.actors.get(S.id);if(!a)return app.append(RR('Actor unavailable'));
+ const gaps=analyzeIntelligenceGaps(a);
+ app.append(h('button',{class:'btn',onclick:()=>openProfile(a.id)},'← Profile'),h('h2',{},'Intelligence gap analysis · '+a.primaryName),h('p',{},'Analyst collection prompts from the current record. Priority reflects missing evidence, not threat severity. Citation presence does not independently verify a claim.'),h('p',{},gaps.length+' evidence and collection gaps'),...gaps.map(g=>h('section',{class:'card'},h('h3',{},g.priority.toUpperCase()+' · '+g.section),h('p',{},g.reason),h('p',{class:'note'},g.origin==='profile'?'Gap recorded in profile':'Generated analytic prompt'),h('p',{},'Suggested PIR: '+g.pir),h('ul',{},g.eeis.map(x=>h('li',{},x))))));
+}
+
 /* ---------- Campaign assessment review ---------- */
 let assessmentState=null;
 async function assessmentApi(path='',body){
@@ -788,6 +830,7 @@ function renderAssessments(){
  const d=state.draft;if(!d)return;
  app.append(h('h3',{},d.campaign+' · '+d.status),h('p',{},d.campaignSummary),...Object.entries(d.diamond).map(([key,value])=>h('section',{class:'card'},h('h3',{},key),...value.claims.map(c=>h('div',{},h('strong',{},c.classification+' · '+c.confidence),h('p',{},c.text),h('p',{},c.evidence_excerpt),h('p',{class:'note'},c.confidence_rationale),h('p',{},c.source_ids.join(', ')+' · '+(c.source_date||'Date unknown')))))),
  h('h3',{},'JIPOE planning prompts · analyst inference'),...d.jipoe.operational_implications.map(x=>h('p',{},x.text)),h('h4',{},'Suggested PIRs / EEIs'),h('ul',{},[...d.jipoe.pirs,...d.jipoe.eeis].map(x=>h('li',{},x))),h('h4',{},'Sources'),h('ul',{},d.sources.map(x=>h('li',{},galaxyLink(x.url,'['+x.ref+'] '+x.title+' · '+x.date)))),h('ul',{},d.cautions.map(x=>h('li',{},x))));
+ app.append(h('button',{class:'btn',onclick:()=>downloadReport([a],'markdown',d)},'Export assessment report'),h('button',{class:'btn',onclick:()=>downloadReport([a],'json',d)},'Export assessment JSON'));
  if(d.id&&d.status==='draft')app.append(h('label',{for:'assessment-review'},'Review notes / analytic edits (retained in audit history)'),h('textarea',{id:'assessment-review',rows:4,maxlength:6000,disabled:state.busy,oninput:e=>state.rationale=e.target.value},state.rationale),h('label',{},h('input',{type:'checkbox',checked:state.ack,disabled:state.busy,onchange:e=>state.ack=e.target.checked}),' I reviewed the cited evidence and acknowledge all remaining unknowns.'),h('button',{class:'btn',disabled:state.busy||d.isStale,onclick:()=>reviewAssessment('revise')},'Save review notes'),h('button',{class:'btn primary',disabled:state.busy||d.isStale,onclick:()=>reviewAssessment('approve')},'Accept assessment'));
  if(d.isStale)app.append(RR('Profile changed. Generate a fresh assessment before review.'));
  if(d.history)app.append(h('details',{},h('summary',{},'Audit history'),h('pre',{style:'white-space:pre-wrap'},JSON.stringify(d.history,null,2))));
@@ -896,6 +939,7 @@ function openProfile(id){ S.view="profile"; S.id=id; history.replaceState(null,"
 function toggleCmp(id){ S.inject=null; const i=S.cmp.indexOf(id); if(i>=0) S.cmp.splice(i,1); else { if(S.cmp.length>=4){ toast("Compare holds up to 4 actors"); return; } S.cmp.push(id); } render(); }
 $("#btn-home").onclick=()=>go("list");
 $("#btn-compare").onclick=()=>{ S.inject=null; go("compare"); };
+$("#btn-watchlist").onclick=()=>openWatchlist();
 $("#btn-galaxy").onclick=()=>openGalaxy();
 $("#btn-scen").onclick=()=>go("scenarios");
 $("#cmp-go").onclick=()=>go("compare");

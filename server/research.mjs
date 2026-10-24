@@ -1,3 +1,4 @@
+import { researchLimits, researchPeriods, researchBudget } from './research-budget.mjs';
 import { makeResearchRequest, parseResearch } from './research-schema.mjs';
 
 const json = (value, status = 200) => Response.json(value, { status, headers: { 'Cache-Control': 'no-store' } });
@@ -24,6 +25,7 @@ export async function handleResearch(request, env, snapshot, fetchApi = fetch) {
   try {
     if (request.method === 'GET') {
       const url = new URL(request.url);
+      if(url.searchParams.get('budget')==='1')return json({budget:await researchBudget(db,userId,env)});
       const id = url.searchParams.get('job');
       const actor = url.searchParams.get('actor');
       if (!id && !actor) return json({ error: 'Choose an actor to research.' }, 400);
@@ -62,11 +64,15 @@ export async function handleResearch(request, env, snapshot, fetchApi = fetch) {
     const actor = stored ? (stored.deleted ? null : { ...JSON.parse(stored.document), _revision: stored.revision }) : snapshot.actors.find(a => a.id === body.actorId);
     if (!actor) return json({ error: 'Actor profile not found.' }, 404);
     const now = Date.now();
+    const limits=researchLimits(env),period=researchPeriods(now);
     const claim = await db.prepare(`INSERT OR IGNORE INTO research_jobs (id, user_id, actor_id, base_revision, status, created_at)
       SELECT ?, ?, ?, ?, 'starting', ? WHERE NOT EXISTS
-      (SELECT 1 FROM research_jobs WHERE user_id = ? AND ((status IN ('starting','queued','in_progress') AND created_at > ?) OR created_at > ?))`)
-      .bind(body.requestId, userId, actor.id, actor._revision || 0, now, userId, now - 15 * 60000, now - 20000).run();
-    if (!claim.meta.changes) return json({ error: 'A research run is already active or was just started. Reopen that actor’s research to check progress.' }, 429);
+      (SELECT 1 FROM research_jobs WHERE user_id = ? AND ((status IN ('starting','queued','in_progress') AND created_at > ?) OR created_at > ?))
+      AND (SELECT COUNT(*) FROM research_jobs WHERE user_id = ? AND created_at >= ?) < ?
+      AND (SELECT COUNT(*) FROM research_jobs WHERE created_at >= ?) < ?
+      AND (SELECT COUNT(*) FROM research_jobs WHERE created_at >= ?) < ?`)
+      .bind(body.requestId, userId, actor.id, actor._revision || 0, now, userId, now - 15 * 60000, now - 20000, userId,period.day,limits.userDailyLimit,period.day,limits.globalDailyLimit,period.month,limits.monthlyLimit).run();
+    if (!claim.meta.changes) return json({ error: 'Research budget reached, another run is active, or a run just started. Check budget and saved research before retrying.' }, 429);
     try {
       const response = await api('', { method: 'POST', headers: { 'Idempotency-Key': body.requestId }, body: JSON.stringify(makeResearchRequest(actor, body.focus, env.RESEARCH_MODEL || 'gpt-5.5')) });
       let status = ['queued', 'in_progress'].includes(response.status) ? response.status : 'completed';
@@ -83,3 +89,4 @@ export async function handleResearch(request, env, snapshot, fetchApi = fetch) {
     return json({ error: 'Research storage is unavailable. Please try again later.' }, 503);
   }
 }
+

@@ -25,8 +25,8 @@ export function makeResearchRequest(actor, focus, model = 'gpt-5.5') {
   return {
     model, background: true, store: true,
     reasoning: { effort: 'low' },
-    max_output_tokens: 10000, max_tool_calls: 8,
-    tools: [{ type: 'web_search', search_context_size: 'high' }],
+    max_output_tokens: 4000, max_tool_calls: 4,
+    tools: [{ type: 'web_search', search_context_size: 'low' }],
     tool_choice: 'required', include: ['web_search_call.action.sources'],
     text: { format: { type: 'json_schema', name: 'actor_research', strict: true, schema: researchSchema } },
     instructions: `You research cyber threat actors for an UNCLASSIFIED open-source encyclopedia.
@@ -112,3 +112,4 @@ export function parseResearch(response, jobId) {
   };
   return rename(draft);
 }
+

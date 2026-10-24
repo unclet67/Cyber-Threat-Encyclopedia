@@ -1,4 +1,4 @@
-import { sqliteTable, text, integer, primaryKey } from 'drizzle-orm/sqlite-core';
+import { sqliteTable, text, integer, primaryKey, index } from 'drizzle-orm/sqlite-core';
 
 export const profiles = sqliteTable('profiles', {
   userId: text('user_id').notNull(),
@@ -17,7 +17,7 @@ export const researchJobs = sqliteTable('research_jobs', {
   status: text('status').notNull(),
   result: text('result'),
   createdAt: integer('created_at').notNull(),
-});
+}, table => [index('research_jobs_budget_time').on(table.createdAt, table.userId)]);
 
 // Review records are separate from profiles. Approval never publishes a profile.
 export const galaxyReviews = sqliteTable('galaxy_reviews', {
@@ -31,4 +31,9 @@ export const campaignAssessments = sqliteTable('campaign_assessments', {
  id: text('id').notNull(), userId: text('user_id').notNull(), actorId: text('actor_id').notNull(),
  baseDocument: text('base_document').notNull(), document: text('document').notNull(),
  revision: integer('revision').notNull(), createdAt: text('created_at').notNull(),
-}, table => [primaryKey({columns:[table.userId,table.id]})]);
+}, table => [primaryKey({columns:[table.userId,table.id]}), index('campaign_assessments_actor').on(table.userId,table.actorId,table.createdAt)]);
+
+export const watchlist = sqliteTable('watchlist', {
+ userId:text('user_id').notNull(),actorId:text('actor_id').notNull(),notes:text('notes').notNull().default(''),
+ enabled:integer('enabled').notNull().default(1),revision:integer('revision').notNull(),updatedAt:text('updated_at').notNull(),
+}, table=>[primaryKey({columns:[table.userId,table.actorId]})]);

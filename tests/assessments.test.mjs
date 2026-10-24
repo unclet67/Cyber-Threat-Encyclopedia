@@ -42,3 +42,18 @@ test('real Salt Typhoon advisory assessment leaves uncaptured campaign elements 
  assert.ok(d.sources.length);assert.ok(Object.values(d.diamond).every(x=>x.claims[0].classification==='unknown'));
  assert.equal(d.publishable,false);assert.ok(d.campaignSummary.includes('['));
 });
+test('approval rejects a profile edit interleaved immediately before its atomic update',async()=>{
+ const {handleAssessments}=await import('../server/assessments.mjs');const db=database(),snapshot={actors:[actor]};
+ const {assessment:d}=await (await handleAssessments(req({action:'generate',actorId:actor.id,campaign:'Documented campaign'}),db,snapshot)).json();
+ const hooked={prepare(q){const statement=db.prepare(q);return {bind(...args){const bound=statement.bind(...args);if(q.startsWith('UPDATE campaign_assessments'))return {...bound,async run(){db.sql.prepare('INSERT INTO profiles VALUES (?,?,?,?,?)').run('owner',actor.id,JSON.stringify({...actor,objectives:'Concurrent change'}),1,0);return bound.run();}};return bound;}};}};
+ const result=await handleAssessments(req({action:'approve',id:d.id,expectedRevision:1,rationale:'Reviewed original source reporting.',acknowledgeUnknowns:true}),hooked,snapshot);
+ assert.equal(result.status,409);assert.equal(JSON.parse(db.sql.prepare('SELECT document FROM campaign_assessments').get().document).status,'draft');
+});
+test('summary references never include rejected or duplicate source refs',()=>{
+ const a=structuredClone(actor);a.campaigns[0].sources.push('S2');a.sources.push({ref:'S2',title:'Undated source',date:'',url:'https://example.org/undated'});
+ const d=createCampaignAssessmentDraft(a,'Documented campaign');assert.ok(!d.campaignSummary.includes('[S2]'));assert.equal((d.campaignSummary.match(/\[S1\]/g)||[]).length,1);assert.ok(d.gaps.some(g=>g.includes('S2')));
+});
+test('stale campaign excerpts cannot generate sourced facts',()=>{
+ const a=structuredClone(actor);a.campaigns[0].evidenceStatus='stale';a.campaigns[0].evidence=[{element:'victim',text:'Victim',excerpt:'Excerpt',sourceRef:'S1'}];
+ assert.equal(createCampaignAssessmentDraft(a,'Documented campaign').diamond.victim.claims[0].classification,'unknown');
+});
