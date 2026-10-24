@@ -1,0 +1,58 @@
+name: Weekly actor monitoring
+on:
+  schedule:
+    # DST-safe pair; local-time gate permits one Sunday 08:00 America/Chicago scan.
+    - cron: '0 13 * * 0'
+    - cron: '0 14 * * 0'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: weekly-actor-monitoring
+  cancel-in-progress: false
+jobs:
+  monitor:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Sunday local-time gate
+        id: gate
+        env:
+          RUN_EVENT: ${{ github.event_name }}
+        run: |
+          python3 - <<'PY'
+          import datetime, json, os, zoneinfo
+          config=json.load(open('config/monitoring.json'))
+          now=datetime.datetime.now(zoneinfo.ZoneInfo(config['timezone']))
+          run=os.environ['RUN_EVENT']=='workflow_dispatch' or (now.weekday()==6 and now.hour==config['sundayHour'])
+          with open(os.environ['GITHUB_OUTPUT'],'a') as f:f.write('run='+str(run).lower()+'\n')
+          PY
+      - uses: actions/cache/restore@v4
+        if: steps.gate.outputs.run == 'true'
+        with:
+          path: .monitoring/seen.json
+          key: actor-monitor-state-${{ github.ref_name }}-${{ github.run_id }}-${{ github.run_attempt }}
+          restore-keys: actor-monitor-state-${{ github.ref_name }}-
+      - name: Screen public feeds without paid research
+        if: steps.gate.outputs.run == 'true'
+        run: python3 scripts/monitor-watchlist.py
+      - uses: actions/upload-artifact@v4
+        if: always() && steps.gate.outputs.run == 'true'
+        with:
+          name: actor-monitor-review-${{ github.run_id }}
+          path: |
+            .monitoring/review-candidates.json
+            .monitoring/summary.md
+          retention-days: 90
+          if-no-files-found: error
+      - uses: actions/cache/save@v4
+        if: success() && steps.gate.outputs.run == 'true'
+        with:
+          path: .monitoring/seen.json
+          key: actor-monitor-state-${{ github.ref_name }}-${{ github.run_id }}-${{ github.run_attempt }}

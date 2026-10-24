@@ -14,3 +14,7 @@ public/
 .next/
 .env*
 .dev.vars*
+
+.monitoring/
+__pycache__/
+

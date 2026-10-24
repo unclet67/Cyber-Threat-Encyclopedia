@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "timezone": "America/Chicago",
+  "sundayHour": 8,
+  "lookbackDays": 8,
+  "maxFeedBytes": 2000000,
+  "requestTimeoutSeconds": 20,
+  "paidResearchEnabled": false,
+  "profileUpdatesRequireApproval": true,
+  "actorIds": ["volt-typhoon", "salt-typhoon", "flax-typhoon", "brass-typhoon", "midnight-blizzard", "forest-blizzard", "secret-blizzard", "mint-sandstorm", "peach-sandstorm", "cotton-sandstorm", "diamond-sleet", "sapphire-sleet", "jade-sleet", "citrine-sleet"],
+  "feeds": [
+    {"name":"CISA advisories", "url":"https://www.cisa.gov/cybersecurity-advisories/all.xml", "format":"xml"},
+    {"name":"Microsoft Security", "url":"https://www.microsoft.com/en-us/security/blog/feed/", "format":"xml"},
+    {"name":"Google Threat Intelligence", "url":"https://cloud.google.com/blog/topics/threat-intelligence/rss", "format":"xml"},
+    {"name":"Cisco Talos", "url":"https://blog.talosintelligence.com/rss/", "format":"xml"},
+    {"name":"NCSC UK", "url":"https://www.ncsc.gov.uk/api/1/services/v1/all-rss-feed.xml", "format":"xml"},
+    {"name":"MITRE ATT&CK releases", "url":"https://api.github.com/repos/mitre-attack/attack-stix-data/releases?per_page=10", "format":"github-releases"}
+  ]
+}

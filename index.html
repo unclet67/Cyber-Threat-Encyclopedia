@@ -196,6 +196,7 @@ footer{max-width:1240px;margin:0 auto;padding-block:0 80px;color:var(--muted);fo
     </div>
     <div class="mast-tools">
       <button class="btn" id="btn-home" type="button">All actors</button>
+      <button class="btn" id="btn-watchlist" type="button">Watchlist</button>
       <button class="btn" id="btn-galaxy" type="button">Galaxy research</button>
       <button class="btn" id="btn-scen" type="button">Scenarios</button>
       <button class="btn" id="btn-compare" type="button">Compare<span class="n" id="cmp-n">0</span></button>
@@ -332,6 +333,7 @@ function render(){
   const bar=$("#cmpbar"); bar.hidden = !(S.cmp.length && S.view!=="compare");
   if (!bar.hidden){ $("#cmpbar-t").textContent=`${S.cmp.length} selected`; $("#cmpbar-names").textContent=S.cmp.map(id=>S.actors.get(id)?.primaryName).filter(Boolean).join(" · "); }
   app.replaceChildren();
+  if (S.view==="watchlist") return renderWatchlist();
   if (S.view==="gap-analysis") return renderGapAnalysis();
   if (S.view==="assessments") return renderAssessments();
   if (S.view==="galaxy") return renderGalaxy();
@@ -406,6 +408,7 @@ function section(n, key, label, a, body){
 function renderProfile(a){
   const crumbs=h("div",{class:"crumbs"},
     h("button",{class:"btn",type:"button",onclick:()=>openAssessments(a.id)},"Campaign assessment"),
+    siteMode&&S.admin?h("button",{class:"btn",type:"button",onclick:()=>openWatchlist(a.id)},"Watch actor"):null,
     h("button",{class:"btn",type:"button",onclick:()=>downloadReport([a],"markdown")},"Export report (.md)"),
     h("button",{class:"btn",type:"button",onclick:()=>downloadReport([a],"json")},"Export report (.json)"),
     h("button",{class:"btn",type:"button",onclick:()=>{S.view="gap-analysis";S.id=a.id;render();}},"Analyze intelligence gaps"),
@@ -770,6 +773,19 @@ async function applyResearchDraft(){
   }catch(e){current.error=e.message;render();}
 }
 
+let watchState={entries:[],defaults:[],actorId:'',notes:'',enabled:true,error:'',busy:false};
+async function watchApi(body){const r=await fetch('/api/watchlist',{method:body?'POST':'GET',cache:'no-store',...(body?{headers:{'Content-Type':'application/json'},body:JSON.stringify(body)}:{})});let data;try{data=await r.json();}catch{throw new Error('Watchlist service unavailable.');}if(!r.ok)throw new Error(data.error||'Watchlist failed.');return data;}
+function selectWatchActor(id){watchState.actorId=id;const entry=watchState.entries.find(e=>e.actorId===id);watchState.notes=entry?.notes||'';watchState.enabled=entry?.enabled??true;render();}
+async function openWatchlist(id){S.view='watchlist';watchState.error='';watchState.busy=true;render();try{if(siteMode&&S.admin){Object.assign(watchState,await watchApi());selectWatchActor(id||watchState.actorId||watchState.defaults[0]||[...S.actors.keys()][0]);}}catch(e){watchState.error=e.message;}finally{watchState.busy=false;render();}}
+async function saveWatchActor(){watchState.busy=true;watchState.error='';render();try{const old=watchState.entries.find(e=>e.actorId===watchState.actorId);const {entry}=await watchApi({actorId:watchState.actorId,expectedRevision:old?.revision||0,notes:watchState.notes,enabled:watchState.enabled});watchState.entries=watchState.entries.filter(e=>e.actorId!==entry.actorId).concat(entry);}catch(e){watchState.error=e.message;}finally{watchState.busy=false;render();}}
+function renderWatchlist(){
+ app.append(h('button',{class:'btn',onclick:()=>go('list')},'← All actors'),h('h2',{},'Actor watchlist'),h('p',{},'Private saved interests and notes. Sunday public-feed monitoring uses the shared actor registry in config/monitoring.json. Private notes stay in this Site; they are never sent to GitHub or a model.'),h('p',{class:'note'},'Default shared watch: China, Russia, Iran and North Korea · Sunday 08:00 America/Chicago · public-feed screening · zero paid API calls · human review before profile updates. The GitHub schedule becomes active only after the workflow is approved and merged.'));
+ if(!siteMode||!S.admin)return app.append(RR('Sign in to the private Site to save a watchlist. Public-feed monitoring is configured in the repository.'));
+ const w=watchState;if(w.error)app.append(h('p',{role:'alert'},w.error));
+ app.append(h('label',{for:'watch-actor'},'Actor'),h('select',{id:'watch-actor',disabled:w.busy,onchange:e=>selectWatchActor(e.target.value)},[...S.actors.values()].sort((a,b)=>a.primaryName.localeCompare(b.primaryName)).map(a=>h('option',{value:a.id,selected:a.id===w.actorId},a.primaryName))),h('label',{for:'watch-notes'},'Collection interests / notes'),h('textarea',{id:'watch-notes',rows:3,maxlength:2000,disabled:w.busy,oninput:e=>w.notes=e.target.value},w.notes),h('label',{},h('input',{type:'checkbox',checked:w.enabled,disabled:w.busy,onchange:e=>w.enabled=e.target.checked}),' Active on my watchlist'),h('button',{class:'btn primary',disabled:w.busy||!w.actorId,onclick:saveWatchActor},'Save watchlist entry'));
+ app.append(h('h3',{},'My saved actors'),...w.entries.map(e=>h('section',{class:'card'},h('button',{class:'btn',onclick:()=>selectWatchActor(e.actorId)},S.actors.get(e.actorId)?.primaryName||e.actorId),h('p',{},(e.enabled?'Active':'Paused')+' · '+e.notes),h('button',{class:'btn',onclick:()=>openProfile(e.actorId)},'Open profile'))),h('h3',{},'Shared Sunday monitoring defaults'),h('ul',{},w.defaults.map(id=>h('li',{},S.actors.get(id)?.primaryName||id))));
+}
+
 function downloadReport(actors,format,assessment=null){
  try{const report=generateReport({actors,format,assessment});const url=URL.createObjectURL(new Blob([report.content],{type:report.mime}));const link=h('a',{href:url,download:report.filename});document.body.append(link);link.click();link.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);}catch(e){toast(e.message);}
 }
@@ -921,6 +937,7 @@ function openProfile(id){ S.view="profile"; S.id=id; history.replaceState(null,"
 function toggleCmp(id){ S.inject=null; const i=S.cmp.indexOf(id); if(i>=0) S.cmp.splice(i,1); else { if(S.cmp.length>=4){ toast("Compare holds up to 4 actors"); return; } S.cmp.push(id); } render(); }
 $("#btn-home").onclick=()=>go("list");
 $("#btn-compare").onclick=()=>{ S.inject=null; go("compare"); };
+$("#btn-watchlist").onclick=()=>openWatchlist();
 $("#btn-galaxy").onclick=()=>openGalaxy();
 $("#btn-scen").onclick=()=>go("scenarios");
 $("#cmp-go").onclick=()=>go("compare");
