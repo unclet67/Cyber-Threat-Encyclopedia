@@ -25,3 +25,10 @@ export const galaxyReviews = sqliteTable('galaxy_reviews', {
   entryId: text('entry_id').notNull(), snapshotId: text('snapshot_id').notNull(),
   document: text('document').notNull(), revision: integer('revision').notNull(),
 }, table => [primaryKey({ columns: [table.userId, table.actorId, table.entryId, table.snapshotId] })]);
+
+
+export const campaignAssessments = sqliteTable('campaign_assessments', {
+ id: text('id').notNull(), userId: text('user_id').notNull(), actorId: text('actor_id').notNull(),
+ baseDocument: text('base_document').notNull(), document: text('document').notNull(),
+ revision: integer('revision').notNull(), createdAt: text('created_at').notNull(),
+}, table => [primaryKey({columns:[table.userId,table.id]})]);

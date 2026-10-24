@@ -22,6 +22,13 @@
       "when": 1792418965423,
       "tag": "0002_mushy_famine",
       "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "6",
+      "when": 1792843200000,
+      "tag": "0003_campaign_assessments",
+      "breakpoints": true
     }
   ]
 }

@@ -213,6 +213,7 @@ footer{max-width:1240px;margin:0 auto;padding-block:0 80px;color:var(--muted);fo
 
 <script type="module">
 import { compareEntry, actorNames, entryNames, normalizeName } from "./lib/galaxy.mjs";
+import { createCampaignAssessmentDraft } from "./lib/campaign-assessment.mjs";
 (() => {
 "use strict";
 const COUNTRIES = {CN:"China", RU:"Russia", IR:"Iran", KP:"North Korea", FIN:"Financially motivated", DEV:"Groups in development", PSOA:"Private-sector offensive actors", OTH:"Other nations & networks"};
@@ -326,6 +327,7 @@ function render(){
   const bar=$("#cmpbar"); bar.hidden = !(S.cmp.length && S.view!=="compare");
   if (!bar.hidden){ $("#cmpbar-t").textContent=`${S.cmp.length} selected`; $("#cmpbar-names").textContent=S.cmp.map(id=>S.actors.get(id)?.primaryName).filter(Boolean).join(" · "); }
   app.replaceChildren();
+  if (S.view==="assessments") return renderAssessments();
   if (S.view==="galaxy") return renderGalaxy();
   if (S.view==="edit") return renderEdit();
   if (S.view==="research" && research) return renderResearch();
@@ -397,6 +399,7 @@ function section(n, key, label, a, body){
 
 function renderProfile(a){
   const crumbs=h("div",{class:"crumbs"},
+    h("button",{class:"btn",type:"button",onclick:()=>openAssessments(a.id)},"Campaign assessment"),
     h("button",{class:"btn",type:"button",onclick:()=>openGalaxy(a.id)},"Inspect Galaxy enrichment"),
     h("button",{class:"btn",type:"button",onclick:()=>go("list")},"← All actors"),
     h("button",{class:"btn",type:"button",onclick:()=>toggleCmp(a.id)}, S.cmp.includes(a.id)?"Remove from compare":"Add to compare"),
@@ -752,6 +755,43 @@ async function applyResearchDraft(){
   }catch(e){current.error=e.message;render();}
 }
 
+/* ---------- Campaign assessment review ---------- */
+let assessmentState=null;
+async function assessmentApi(path='',body){
+ const r=await fetch('/api/assessments'+path,{method:body?'POST':'GET',cache:'no-store',...(body?{headers:{'Content-Type':'application/json'},body:JSON.stringify(body)}:{})});
+ let data;try{data=await r.json();}catch{throw new Error('Assessment service is unavailable.');}if(!r.ok)throw new Error(data.error||'Assessment failed.');return data;
+}
+async function openAssessments(actorId){
+ const state=assessmentState={actorId,campaign:'',draft:null,saved:[],error:'',busy:false,rationale:'',ack:false};S.view='assessments';render();
+ if(siteMode&&S.admin)try{state.saved=(await assessmentApi('?actor='+encodeURIComponent(actorId))).assessments;if(assessmentState===state)render();}catch(e){state.error=e.message;if(assessmentState===state)render();}
+}
+async function generateAssessment(){
+ const state=assessmentState,a=S.actors.get(state.actorId);state.busy=true;state.error='';render();
+ try{state.draft=siteMode&&S.admin?(await assessmentApi('',{action:'generate',actorId:a.id,campaign:state.campaign})).assessment:createCampaignAssessmentDraft(a,state.campaign);state.rationale='';state.ack=false;}
+ catch(e){state.error=e.message;}finally{state.busy=false;if(assessmentState===state)render();}
+}
+async function reviewAssessment(action){
+ const state=assessmentState;state.busy=true;state.error='';render();
+ try{state.draft=(await assessmentApi('',{action,id:state.draft.id,expectedRevision:state.draft.revision,rationale:state.rationale,acknowledgeUnknowns:state.ack})).assessment;}
+ catch(e){state.error=e.message;}finally{state.busy=false;if(assessmentState===state)render();}
+}
+function renderAssessments(){
+ const state=assessmentState,a=S.actors.get(state?.actorId);if(!a)return app.append(RR('Actor unavailable'));
+ const campaigns=arr(a.campaigns);if(!state.campaign&&campaigns.length)state.campaign=campaigns[0].name;
+ app.append(h('button',{class:'btn',onclick:()=>openProfile(a.id)},'← Profile'),h('h2',{},'Campaign assessment · '+a.primaryName),h('p',{},'Curated evidence first. Generate a separate review draft at no API cost. Unknown elements remain Research Required; accepting an assessment never changes a profile.'),
+ h('label',{for:'assessment-campaign'},'Documented campaign'),h('select',{id:'assessment-campaign',disabled:state.busy,onchange:e=>state.campaign=e.target.value},campaigns.map(c=>h('option',{value:c.name,selected:state.campaign===c.name},c.name))),
+ h('button',{class:'btn primary',disabled:state.busy||!campaigns.length,onclick:generateAssessment},state.busy?'Working…':'Generate assessment'));
+ if(!campaigns.length)app.append(RR('Add a documented campaign with dated sources before generating an assessment.'));
+ if(state.error)app.append(h('p',{role:'alert'},state.error));
+ if(state.saved.length)app.append(h('h3',{},'Saved assessments'),...state.saved.map(d=>h('button',{class:'btn',onclick:()=>{state.draft=d;state.rationale=d.review?.rationale||'';state.ack=false;render();}},d.campaign+' · '+d.status+(d.isStale?' · stale':''))));
+ const d=state.draft;if(!d)return;
+ app.append(h('h3',{},d.campaign+' · '+d.status),h('p',{},d.campaignSummary),...Object.entries(d.diamond).map(([key,value])=>h('section',{class:'card'},h('h3',{},key),...value.claims.map(c=>h('div',{},h('strong',{},c.classification+' · '+c.confidence),h('p',{},c.text),h('p',{},c.evidence_excerpt),h('p',{class:'note'},c.confidence_rationale),h('p',{},c.source_ids.join(', ')+' · '+(c.source_date||'Date unknown')))))),
+ h('h3',{},'JIPOE planning prompts · analyst inference'),...d.jipoe.operational_implications.map(x=>h('p',{},x.text)),h('h4',{},'Suggested PIRs / EEIs'),h('ul',{},[...d.jipoe.pirs,...d.jipoe.eeis].map(x=>h('li',{},x))),h('h4',{},'Sources'),h('ul',{},d.sources.map(x=>h('li',{},galaxyLink(x.url,'['+x.ref+'] '+x.title+' · '+x.date)))),h('ul',{},d.cautions.map(x=>h('li',{},x))));
+ if(d.id&&d.status==='draft')app.append(h('label',{for:'assessment-review'},'Review notes / analytic edits (retained in audit history)'),h('textarea',{id:'assessment-review',rows:4,maxlength:6000,disabled:state.busy,oninput:e=>state.rationale=e.target.value},state.rationale),h('label',{},h('input',{type:'checkbox',checked:state.ack,disabled:state.busy,onchange:e=>state.ack=e.target.checked}),' I reviewed the cited evidence and acknowledge all remaining unknowns.'),h('button',{class:'btn',disabled:state.busy||d.isStale,onclick:()=>reviewAssessment('revise')},'Save review notes'),h('button',{class:'btn primary',disabled:state.busy||d.isStale,onclick:()=>reviewAssessment('approve')},'Accept assessment'));
+ if(d.isStale)app.append(RR('Profile changed. Generate a fresh assessment before review.'));
+ if(d.history)app.append(h('details',{},h('summary',{},'Audit history'),h('pre',{style:'white-space:pre-wrap'},JSON.stringify(d.history,null,2))));
+}
+
 /* ---------- Galaxy analyst workbench ---------- */
 let galaxy=null, galaxyError='', galaxyQuery='', galaxyEntryId=null, galaxyActorId=null, galaxyReviews=[], galaxyLoading=false, galaxyStorage=false, galaxyInputs={};
 async function enrichmentRequest(body){
@@ -924,3 +964,4 @@ render();
 })();
 })();
 </script>
+
