@@ -214,6 +214,7 @@ footer{max-width:1240px;margin:0 auto;padding-block:0 80px;color:var(--muted);fo
 
 <script type="module">
 import { compareEntry, actorNames, entryNames, normalizeName } from "./lib/galaxy.mjs";
+import { mergeCampaignEdits } from "./lib/campaign-records.mjs";
 import { generateReport } from "./lib/report.mjs";
 import { campaignTimeline } from "./lib/campaign-timeline.mjs";
 import { compareActors } from "./lib/actor-comparison.mjs";
@@ -604,7 +605,7 @@ function renderEdit(){
     fs("4 · Targeting", h("div",{class:"grid2"}, F("f-sectors","Sectors · one per line",lines(arr(a.targeting?.sectors).join("\n")).join("\n"),{area:true}), F("f-regions","Regions · one per line",arr(a.targeting?.regions).join("\n"),{area:true})), F("f-tnotes","Targeting notes",a.targeting?.notes,{area:true,rows:2})),
     fs("5 · Capabilities", F("f-capsum","Capability assessment",a.capabilities?.summary,{area:true,rows:4}), F("f-sw","Software · id | name | type",unpipes(a.capabilities?.software,["id","name","type"]),{area:true,code:true})),
     fs("6 · MITRE ATT&CK", F("f-attack","Techniques · T-id | name | source",unpipes(a.attack,["id","name","source"]),{area:true,code:true,rows:8})),
-    fs("7 · Campaign history", F("f-camp","Campaigns · date | name | summary | source refs (comma-separated)",unpipes(a.campaigns,["date","name","summary","sources"]),{area:true,code:true,rows:6})),
+    fs("7 · Campaign history", h("p",{class:"note"},"Unchanged uniquely named campaigns preserve recorded evidence. Changing date, summary or source refs marks evidence stale. Renaming or removing a campaign removes that record and its evidence."), F("f-camp","Campaigns · date | name | summary | source refs (comma-separated)",unpipes(a.campaigns,["date","name","summary","sources"]),{area:true,code:true,rows:6})),
     fs("8 · Diamond Model", h("div",{class:"grid2"}, F("f-dadv","Adversary",a.diamond?.adversary,{area:true,rows:3}), F("f-dcap","Capability",a.diamond?.capability,{area:true,rows:3}), F("f-dinf","Infrastructure",a.diamond?.infrastructure,{area:true,rows:3}), F("f-dvic","Victim",a.diamond?.victim,{area:true,rows:3})), h("div",{class:"grid2"}, F("f-dsp","Socio-political axis",a.diamond?.socioPolitical,{area:true,rows:2}), F("f-dtech","Technology axis",a.diamond?.technology,{area:true,rows:2}))),
     fs("9 · Intelligence gaps", F("f-gaps","Gaps · one per line",arr(a.gaps).join("\n"),{area:true,rows:5})),
     fs("10 · Operational implications", F("f-jipoe","JIPOE",a.implications?.jipoe,{area:true,rows:5}), F("f-jcc2","JCC2",a.implications?.jcc2,{area:true,rows:5})),
@@ -623,7 +624,8 @@ async function save(msg){
   const prev=S.editing;
   const id=prev?.id || slug(name);
   if (!prev && S.actors.has(id)){ msg.className="msg err"; msg.textContent=`A profile with the id "${id}" already exists. Open and edit it instead.`; return; }
-  const camp=pipes(val("f-camp"),["date","name","summary","sources"]).map(c=>({...c, sources:c.sources?c.sources.split(",").map(x=>x.trim()).filter(Boolean):[]}));
+  let camp=pipes(val("f-camp"),["date","name","summary","sources"]).map(c=>({...c, sources:c.sources?c.sources.split(",").map(x=>x.trim()).filter(Boolean):[]}));
+  try{camp=mergeCampaignEdits(arr(prev?.campaigns),camp);}catch(e){msg.className="msg err";msg.textContent=e.message;return;}
   const srcs=pipes(val("f-src"),["ref","date","publisher","title","url"]).filter(x=>x.url||x.title||x.ref);
   const refs=new Set();
   for (const src of srcs){
