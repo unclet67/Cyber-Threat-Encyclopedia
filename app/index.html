@@ -213,6 +213,7 @@ footer{max-width:1240px;margin:0 auto;padding-block:0 80px;color:var(--muted);fo
 
 <script type="module">
 import { compareEntry, actorNames, entryNames, normalizeName } from "./lib/galaxy.mjs";
+import { analyzeIntelligenceGaps } from "./lib/intelligence-gaps.mjs";
 import { createCampaignAssessmentDraft } from "./lib/campaign-assessment.mjs";
 (() => {
 "use strict";
@@ -327,6 +328,7 @@ function render(){
   const bar=$("#cmpbar"); bar.hidden = !(S.cmp.length && S.view!=="compare");
   if (!bar.hidden){ $("#cmpbar-t").textContent=`${S.cmp.length} selected`; $("#cmpbar-names").textContent=S.cmp.map(id=>S.actors.get(id)?.primaryName).filter(Boolean).join(" · "); }
   app.replaceChildren();
+  if (S.view==="gap-analysis") return renderGapAnalysis();
   if (S.view==="assessments") return renderAssessments();
   if (S.view==="galaxy") return renderGalaxy();
   if (S.view==="edit") return renderEdit();
@@ -400,6 +402,7 @@ function section(n, key, label, a, body){
 function renderProfile(a){
   const crumbs=h("div",{class:"crumbs"},
     h("button",{class:"btn",type:"button",onclick:()=>openAssessments(a.id)},"Campaign assessment"),
+    h("button",{class:"btn",type:"button",onclick:()=>{S.view="gap-analysis";S.id=a.id;render();}},"Analyze intelligence gaps"),
     h("button",{class:"btn",type:"button",onclick:()=>openGalaxy(a.id)},"Inspect Galaxy enrichment"),
     h("button",{class:"btn",type:"button",onclick:()=>go("list")},"← All actors"),
     h("button",{class:"btn",type:"button",onclick:()=>toggleCmp(a.id)}, S.cmp.includes(a.id)?"Remove from compare":"Add to compare"),
@@ -755,6 +758,12 @@ async function applyResearchDraft(){
     edited.sources=[...arr(actor.sources),...current.job.draft.sources];
     S.actors.set(actor.id,actor);S.editing=edited;S.id=actor.id;S.view="edit";researchDraft=true;render();window.scrollTo(0,0);
   }catch(e){current.error=e.message;render();}
+}
+
+function renderGapAnalysis(){
+ const a=S.actors.get(S.id);if(!a)return app.append(RR('Actor unavailable'));
+ const gaps=analyzeIntelligenceGaps(a);
+ app.append(h('button',{class:'btn',onclick:()=>openProfile(a.id)},'← Profile'),h('h2',{},'Intelligence gap analysis · '+a.primaryName),h('p',{},'Analyst collection prompts from the current record. Priority reflects missing evidence, not threat severity. Citation presence does not independently verify a claim.'),h('p',{},gaps.length+' evidence and collection gaps'),...gaps.map(g=>h('section',{class:'card'},h('h3',{},g.priority.toUpperCase()+' · '+g.section),h('p',{},g.reason),h('p',{class:'note'},g.origin==='profile'?'Gap recorded in profile':'Generated analytic prompt'),h('p',{},'Suggested PIR: '+g.pir),h('ul',{},g.eeis.map(x=>h('li',{},x))))));
 }
 
 /* ---------- Campaign assessment review ---------- */
