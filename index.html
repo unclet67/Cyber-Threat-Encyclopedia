@@ -214,6 +214,7 @@ footer{max-width:1240px;margin:0 auto;padding-block:0 80px;color:var(--muted);fo
 
 <script type="module">
 import { compareEntry, actorNames, entryNames, normalizeName } from "./lib/galaxy.mjs";
+import { campaignTimeline } from "./lib/campaign-timeline.mjs";
 import { compareActors } from "./lib/actor-comparison.mjs";
 import { analyzeIntelligenceGaps } from "./lib/intelligence-gaps.mjs";
 import { createCampaignAssessmentDraft } from "./lib/campaign-assessment.mjs";
@@ -452,7 +453,7 @@ function renderProfile(a){
     h("tbody",{}, tt.map(x=>{ const u=`https://attack.mitre.org/techniques/${String(x.id||"").replace(".","/")}/`; return h("tr",{}, h("td",{class:"tac"}, arr(x.tactics).map(tacLabel).join(" · ")||"—"), h("td",{class:"mono"}, /^T\d{4}(\.\d{3})?$/.test(x.id)?h("a",{href:u,target:"_blank",rel:"noopener"},x.id):x.id), h("td",{},x.name||""), h("td",{class:"note"},x.source||"")); })))) : RR("no technique mappings");
 
   const cps=arr(a.campaigns);
-  const sec7=cps.length ? h("div",{class:"tl"}, cps.map(c=>h("div",{class:"ev"}, h("div",{class:"d"},c.date||"Undated"), h("div",{class:"t"},c.name||""), h("div",{},c.summary||""), arr(c.sources).length?h("div",{class:"note"},"Sources: "+c.sources.join(", ")):null))) : RR("no campaigns recorded");
+  const sec7=cps.length ? h("div",{},h('p',{class:'note'},'Sorted record dates; publication dates appear with sources. Partial dates retain their precision. Advisory and campaign event roles require analyst verification.'),h("div",{class:"tl"},campaignTimeline(a).map(c=>h("div",{class:"ev"},h("div",{class:"d"},c.displayDate+' · '+c.precision+' precision'),h("div",{class:"t"},c.name),h("div",{},c.summary),h('p',{class:'note'},c.dateRole),h('ul',{},c.sources.map(source=>h('li',{},galaxyLink(source.url,'['+source.ref+'] '+source.title+' · published '+(source.date||'unknown'))))),c.unresolvedRefs.length?h('p',{class:'note'},'Research Required · unresolved references: '+c.unresolvedRefs.join(', ')):null)))) : RR("no campaigns recorded");
 
   const d=a.diamond||{};
   const v=(k,l)=>h("div",{class:"v"},h("h4",{},l),h("p",{},s(d[k])||"Research Required"));
