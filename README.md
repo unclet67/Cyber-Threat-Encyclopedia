@@ -31,3 +31,8 @@ Nothing that is absent from those sources has been added to imported records. Re
 ## MISP Galaxy analyst enrichment
 
 Use **Galaxy research** to inspect 1,097 Galaxy entries, compare profiles and CTI sources, and review Microsoft-primary alias candidates. Private Site review decisions remain separate from profiles and never publish automatically. See [the analyst workflow and release notes](docs/MISP_GALAXY.md). Run `npm test` and `npm run build` to validate; `npm run enrichment:sync` explicitly refreshes only the pinned enrichment snapshot.
+
+## Research and monitoring features
+
+See [the research/review guide](docs/RESEARCH_FEATURES.md) for campaign assessments, AI research budgets, gap analysis, comparison, timelines, reports, private watchlists and Sunday public-feed monitoring. Generated material requires human review; scheduled monitoring never edits profiles.
+

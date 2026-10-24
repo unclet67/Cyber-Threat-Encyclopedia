@@ -19,3 +19,22 @@ jobs:
       - run: npm ci
       - run: npm test
       - run: npm run build
+  monitoring-smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Test public-feed connectivity without paid calls
+        run: python3 scripts/monitor-watchlist.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: monitoring-smoke-review
+          path: |
+            .monitoring/review-candidates.json
+            .monitoring/summary.md
