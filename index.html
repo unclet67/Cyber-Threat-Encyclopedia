@@ -720,7 +720,9 @@ function renderResearch(){
   const job=current.job,draft=job?.draft,busy=current.loading||researchActive(job);
   app.append(h("div",{class:"form"},
     h("button",{class:"btn",onclick:()=>openProfile(a.id)},"← Back to profile"),
-    h("h2",{},"Research "+a.primaryName),
+    h("h2",{},"AI Research Assistant · "+a.primaryName),
+    h("p",{class:"note"},"Paid API research. Hard limits: 4 starts per user/day, 12 globally/day, 40 globally/month; 4 searches and 4,000 output tokens per run. The owner may lower these limits. Failed attempts count. Drafts require human review and Save changes in the profile editor."),
+    h("button",{class:"btn",type:"button",onclick:async()=>{try{const r=await fetch('/api/research?budget=1',{cache:'no-store'});const data=await r.json();if(!r.ok)throw new Error(data.error);const b=data.budget;alert(`Your starts today: ${b.userDailyUsed}/${b.userDailyLimit} · Global today: ${b.globalDailyUsed}/${b.globalDailyLimit} · Global month: ${b.monthlyUsed}/${b.monthlyLimit}. Resets use UTC.`);}catch(e){alert(e.message);}}},"Check research budget"),
     h("p",{class:"note"},"Search current open-source reporting and draft profile updates with citations. Only the actor’s name and your research focus are sent to OpenAI; saved profile notes stay on this Site. Uses paid OpenAI API research."),
     h("form",{onsubmit:e=>{e.preventDefault();startResearch();}},
       h("div",{class:"f"},h("label",{for:"research-focus"},"Research focus (optional)"),h("textarea",{id:"research-focus",rows:3,maxlength:1500,disabled:busy,oninput:e=>current.focus=e.target.value},current.focus),h("small",{},"For example: recent campaigns, attribution changes, targeting, or missing profile sections.")),

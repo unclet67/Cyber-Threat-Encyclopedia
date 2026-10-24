@@ -101,3 +101,22 @@ test('provider errors do not leak keys or payloads', async () => {
   assert.ok(text.includes('quota'));
   assert.ok(!text.includes('test-secret'));
 });
+
+test('research requests have conservative hard ceilings for paid output and search calls',()=>{
+ const r=makeResearchRequest({primaryName:'Salt Typhoon'},'');
+ assert.ok(r.max_output_tokens<=4000);assert.ok(r.max_tool_calls<=4);
+});
+test('global monthly research reservation blocks paid starts, including failed attempts',async()=>{
+ const env={DB:database(),OPENAI_API_KEY:'test-secret',RESEARCH_MONTHLY_RUNS:'1'};
+ const provider=async()=>Response.json({error:{message:'private'}},{status:429});
+ const first=await handleResearch(request('POST','',{actorId:'salt-typhoon',focus:'',requestId:jobId}),env,snapshot,provider);assert.equal(first.status,502);
+ // Failure retains its reservation. Advance its cooldown timestamp while staying in the month.
+ await env.DB.prepare('UPDATE research_jobs SET created_at = ? WHERE id = ?').bind(Date.now()-60000,jobId).run();
+ const second=await handleResearch(request('POST','',{actorId:'salt-typhoon',focus:'',requestId:'b1234567-1234-4234-8234-123456789012'}),env,snapshot,()=>{throw new Error('Budget must block provider');});
+ assert.equal(second.status,429);assert.match((await second.json()).error,/budget/i);
+});
+test('budget status is authenticated and invalid quota settings fail closed',async()=>{
+ const env={DB:database(),OPENAI_API_KEY:'test-secret',RESEARCH_MONTHLY_RUNS:'0'};
+ const status=await handleResearch(request('GET','?budget=1'),env,snapshot);assert.equal(status.status,200);assert.equal((await status.json()).budget.monthlyLimit,0);
+ const r=await handleResearch(request('POST','',{actorId:'salt-typhoon',focus:'',requestId:jobId}),env,snapshot,()=>{throw new Error('disabled');});assert.equal(r.status,429);
+});
