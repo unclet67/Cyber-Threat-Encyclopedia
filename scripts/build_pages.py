@@ -3,7 +3,8 @@
 Usage: python3 scripts/build_pages.py   (run from the repo root)
 
 - index.html: app/index.html wrapped in the same document skeleton claude.ai adds when it publishes
-  the Artifact (doctype, charset, viewport, base reset), so GitHub Pages renders it identically.
+  the Artifact (doctype, charset, viewport, base reset), so GitHub Pages renders it identically,
+  plus the home-screen app tags (manifest, iOS icon, service worker in sw.js).
 - data/bundle.json: every actor record plus scenarios, which the page loads in read-only mode when
   the claude.ai database is not available.
 """
@@ -12,10 +13,17 @@ import glob, json
 RESET = (":root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}"
          "body{margin:0;font:14px/1.5 system-ui,-apple-system,'Segoe UI',sans-serif}"
          "img{max-width:100%}[hidden]{display:none!important}")
+PWA = ("<link rel=\"manifest\" href=\"manifest.webmanifest\">"
+       "<link rel=\"apple-touch-icon\" href=\"icons/icon-180.png\">"
+       "<meta name=\"theme-color\" content=\"#17201e\">"
+       "<meta name=\"apple-mobile-web-app-capable\" content=\"yes\">"
+       "<meta name=\"mobile-web-app-capable\" content=\"yes\">"
+       "<meta name=\"apple-mobile-web-app-title\" content=\"Threat Actors\">"
+       "<script>if('serviceWorker' in navigator)addEventListener('load',()=>navigator.serviceWorker.register('sw.js'))</script>")
 app = open("app/index.html", encoding="utf-8").read()
 page = ("<!doctype html><html lang=\"en\"><head><meta charset=\"utf-8\">"
         "<meta name=\"viewport\" content=\"width=device-width,initial-scale=1,viewport-fit=cover\">"
-        f"<style>{RESET}</style></head><body>\n{app}\n</body></html>\n")
+        f"{PWA}<style>{RESET}</style></head><body>\n{app}\n</body></html>\n")
 open("index.html", "w", encoding="utf-8").write(page)
 
 actors = [json.load(open(f, encoding="utf-8")) for f in sorted(glob.glob("data/actors/*.json"))]

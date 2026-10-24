@@ -11,3 +11,4 @@ for (const [command, args] of [
 await mkdir('public', { recursive: true });
 await cp('.sites-client/assets', 'public/assets', { recursive: true });
 await cp('.sites-client/data', 'public/data', { recursive: true });
+for (const f of ['sw.js', 'manifest.webmanifest', 'icons']) await cp(`.sites-client/${f}`, `public/${f}`, { recursive: true });
