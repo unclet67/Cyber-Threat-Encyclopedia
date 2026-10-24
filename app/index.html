@@ -213,6 +213,7 @@ footer{max-width:1240px;margin:0 auto;padding-block:0 80px;color:var(--muted);fo
 
 <script type="module">
 import { compareEntry, actorNames, entryNames, normalizeName } from "./lib/galaxy.mjs";
+import { generateReport } from "./lib/report.mjs";
 import { campaignTimeline } from "./lib/campaign-timeline.mjs";
 import { compareActors } from "./lib/actor-comparison.mjs";
 import { analyzeIntelligenceGaps } from "./lib/intelligence-gaps.mjs";
@@ -404,6 +405,8 @@ function section(n, key, label, a, body){
 function renderProfile(a){
   const crumbs=h("div",{class:"crumbs"},
     h("button",{class:"btn",type:"button",onclick:()=>openAssessments(a.id)},"Campaign assessment"),
+    h("button",{class:"btn",type:"button",onclick:()=>downloadReport([a],"markdown")},"Export report (.md)"),
+    h("button",{class:"btn",type:"button",onclick:()=>downloadReport([a],"json")},"Export report (.json)"),
     h("button",{class:"btn",type:"button",onclick:()=>{S.view="gap-analysis";S.id=a.id;render();}},"Analyze intelligence gaps"),
     h("button",{class:"btn",type:"button",onclick:()=>openGalaxy(a.id)},"Inspect Galaxy enrichment"),
     h("button",{class:"btn",type:"button",onclick:()=>go("list")},"← All actors"),
@@ -498,6 +501,7 @@ function renderCompare(){
   if (inj) app.append(h("div",{class:"ctx"}, h("div",{class:"eyebrow"},`Inject ${inj.n} · ${inj.time} · ${inj.title}`), h("div",{},inj.situation), h("ol",{style:"margin:0;padding-left:20px"}, arr(inj.tasks).map(t=>h("li",{},t)))));
   if (picks.length<2){ app.append(h("div",{class:"empty"}, "Select at least two actors from the list to compare. Tick the box beside each name.")); return; }
   const comparison=compareActors(picks);
+  app.append(h("button",{class:"btn",onclick:()=>downloadReport(picks,"markdown")},"Export comparison report"));
   app.append(h('section',{class:'card'},h('h3',{},'Recorded ATT&CK overlap'),h('p',{},comparison.sharedTechniques===null?'Shared coverage: unknown because a selected record has no mappings.':comparison.sharedTechniques.length+' techniques recorded in every selected profile.'),...comparison.pairs.map(pair=>h('p',{},pair.actorIds.map(id=>S.actors.get(id).primaryName).join(' ↔ ')+': '+(pair.jaccard===null?'Similarity unknown':Math.round(pair.jaccard*100)+'% Jaccard overlap of recorded technique IDs'))),h('ul',{},comparison.cautions.map(x=>h('li',{},x)))));
   const count=new Map(); picks.forEach(a=>new Set(arr(a.attack).map(t=>t.id)).forEach(id=>count.set(id,(count.get(id)||0)+1)));
   const swCount=new Map(); picks.forEach(a=>new Set(arr(a.capabilities?.software).map(t=>t.name)).forEach(n=>swCount.set(n,(swCount.get(n)||0)+1)));
@@ -765,6 +769,10 @@ async function applyResearchDraft(){
   }catch(e){current.error=e.message;render();}
 }
 
+function downloadReport(actors,format,assessment=null){
+ try{const report=generateReport({actors,format,assessment});const url=URL.createObjectURL(new Blob([report.content],{type:report.mime}));const link=h('a',{href:url,download:report.filename});document.body.append(link);link.click();link.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);}catch(e){toast(e.message);}
+}
+
 function renderGapAnalysis(){
  const a=S.actors.get(S.id);if(!a)return app.append(RR('Actor unavailable'));
  const gaps=analyzeIntelligenceGaps(a);
@@ -803,6 +811,7 @@ function renderAssessments(){
  const d=state.draft;if(!d)return;
  app.append(h('h3',{},d.campaign+' · '+d.status),h('p',{},d.campaignSummary),...Object.entries(d.diamond).map(([key,value])=>h('section',{class:'card'},h('h3',{},key),...value.claims.map(c=>h('div',{},h('strong',{},c.classification+' · '+c.confidence),h('p',{},c.text),h('p',{},c.evidence_excerpt),h('p',{class:'note'},c.confidence_rationale),h('p',{},c.source_ids.join(', ')+' · '+(c.source_date||'Date unknown')))))),
  h('h3',{},'JIPOE planning prompts · analyst inference'),...d.jipoe.operational_implications.map(x=>h('p',{},x.text)),h('h4',{},'Suggested PIRs / EEIs'),h('ul',{},[...d.jipoe.pirs,...d.jipoe.eeis].map(x=>h('li',{},x))),h('h4',{},'Sources'),h('ul',{},d.sources.map(x=>h('li',{},galaxyLink(x.url,'['+x.ref+'] '+x.title+' · '+x.date)))),h('ul',{},d.cautions.map(x=>h('li',{},x))));
+ app.append(h('button',{class:'btn',onclick:()=>downloadReport([a],'markdown',d)},'Export assessment report'),h('button',{class:'btn',onclick:()=>downloadReport([a],'json',d)},'Export assessment JSON'));
  if(d.id&&d.status==='draft')app.append(h('label',{for:'assessment-review'},'Review notes / analytic edits (retained in audit history)'),h('textarea',{id:'assessment-review',rows:4,maxlength:6000,disabled:state.busy,oninput:e=>state.rationale=e.target.value},state.rationale),h('label',{},h('input',{type:'checkbox',checked:state.ack,disabled:state.busy,onchange:e=>state.ack=e.target.checked}),' I reviewed the cited evidence and acknowledge all remaining unknowns.'),h('button',{class:'btn',disabled:state.busy||d.isStale,onclick:()=>reviewAssessment('revise')},'Save review notes'),h('button',{class:'btn primary',disabled:state.busy||d.isStale,onclick:()=>reviewAssessment('approve')},'Accept assessment'));
  if(d.isStale)app.append(RR('Profile changed. Generate a fresh assessment before review.'));
  if(d.history)app.append(h('details',{},h('summary',{},'Audit history'),h('pre',{style:'white-space:pre-wrap'},JSON.stringify(d.history,null,2))));
