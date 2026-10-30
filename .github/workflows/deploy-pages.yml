@@ -1,0 +1,53 @@
+name: Deploy to GitHub Pages
+
+# Rebuilds the read-only site from data/ and publishes it on every push to main,
+# so a merged data PR goes live without a manual rebuild.
+# Requires Settings > Pages > Source set to "GitHub Actions".
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Rebuild index.html and data/bundle.json from data/
+        run: python3 scripts/build_pages.py
+      - name: Validate the bundle (errors stop the deploy)
+        run: python3 scripts/validate_bundle.py
+      - name: Stage the public site
+        run: |
+          mkdir -p _site/data/enrichment
+          cp index.html sw.js manifest.webmanifest CNAME _site/
+          cp -r icons _site/
+          cp data/bundle.json _site/data/
+          cp data/enrichment/galaxy.json data/enrichment/NOTICE.md _site/data/enrichment/
+          touch _site/.nojekyll
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
