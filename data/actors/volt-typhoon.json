@@ -176,7 +176,7 @@
   {
    "id": "T1005",
    "name": "Data from Local System",
-   "source": "MITRE ATT&CK G1017 (via import)",
+   "source": "MITRE ATT&CK G1017 (2026-07-31)",
    "tactics": [
     "collection"
    ]
@@ -184,7 +184,7 @@
   {
    "id": "T1006",
    "name": "Direct Volume Access",
-   "source": "MITRE ATT&CK G1017 (via import)",
+   "source": "MITRE ATT&CK G1017 (2026-07-31)",
    "tactics": [
     "stealth"
    ]
@@ -192,7 +192,7 @@
   {
    "id": "T1007",
    "name": "System Service Discovery",
-   "source": "MITRE ATT&CK G1017 (via import)",
+   "source": "MITRE ATT&CK G1017 (2026-07-31)",
    "tactics": [
     "discovery"
    ]
@@ -200,7 +200,7 @@
   {
    "id": "T1010",
    "name": "Application Window Discovery",
-   "source": "MITRE ATT&CK G1017 (via import)",
+   "source": "MITRE ATT&CK G1017 (2026-07-31)",
    "tactics": [
     "discovery"
    ]
@@ -208,7 +208,7 @@
   {
    "id": "T1012",
    "name": "Query Registry",
-   "source": "MITRE ATT&CK G1017 (via import)",
+   "source": "MITRE ATT&CK G1017 (2026-07-31)",
    "tactics": [
     "discovery"
    ]
@@ -216,7 +216,15 @@
   {
    "id": "T1016",
    "name": "System Network Configuration Discovery",
-   "source": "MITRE ATT&CK G1017 (via import)",
+   "source": "MITRE ATT&CK G1017 (2026-07-31)",
+   "tactics": [
+    "discovery"
+   ]
+  },
+  {
+   "id": "T1016.001",
+   "name": "System Network Configuration Discovery: Internet Connection Discovery",
+   "source": "MITRE ATT&CK G1017 (2026-07-31)",
    "tactics": [
     "discovery"
    ]
@@ -224,7 +232,7 @@
   {
    "id": "T1018",
    "name": "Remote System Discovery",
-   "source": "MITRE ATT&CK G1017 (via import)",
+   "source": "MITRE ATT&CK G1017 (2026-07-31)",
    "tactics": [
     "discovery"
    ]
@@ -248,7 +256,7 @@
   {
    "id": "T1033",
    "name": "System Owner/User Discovery",
-   "source": "MITRE ATT&CK G1017 (via import)",
+   "source": "MITRE ATT&CK G1017 (2026-07-31)",
    "tactics": [
     "discovery"
    ]
@@ -262,9 +270,17 @@
    ]
   },
   {
+   "id": "T1036.008",
+   "name": "Masquerading: Masquerade File Type",
+   "source": "MITRE ATT&CK G1017 (2026-07-31)",
+   "tactics": [
+    "stealth"
+   ]
+  },
+  {
    "id": "T1046",
    "name": "Network Service Discovery",
-   "source": "MITRE ATT&CK G1017 (via import)",
+   "source": "MITRE ATT&CK G1017 (2026-07-31)",
    "tactics": [
     "discovery"
    ]
@@ -272,7 +288,7 @@
   {
    "id": "T1047",
    "name": "Windows Management Instrumentation",
-   "source": "MITRE ATT&CK G1017 (via import)",
+   "source": "MITRE ATT&CK G1017 (2026-07-31)",
    "tactics": [
     "execution"
    ]
@@ -288,15 +304,24 @@
   {
    "id": "T1049",
    "name": "System Network Connections Discovery",
-   "source": "MITRE ATT&CK G1017 (via import)",
+   "source": "MITRE ATT&CK G1017 (2026-07-31)",
    "tactics": [
     "discovery"
    ]
   },
   {
+   "id": "T1056.001",
+   "name": "Input Capture: Keylogging",
+   "source": "MITRE ATT&CK G1017 (2026-07-31)",
+   "tactics": [
+    "collection",
+    "credential-access"
+   ]
+  },
+  {
    "id": "T1057",
    "name": "Process Discovery",
-   "source": "MITRE ATT&CK G1017 (via import)",
+   "source": "MITRE ATT&CK G1017 (2026-07-31)",
    "tactics": [
     "discovery"
    ]
@@ -310,9 +335,25 @@
    ]
   },
   {
+   "id": "T1059.003",
+   "name": "Command and Scripting Interpreter: Windows Command Shell",
+   "source": "MITRE ATT&CK G1017 (2026-07-31)",
+   "tactics": [
+    "execution"
+   ]
+  },
+  {
+   "id": "T1059.004",
+   "name": "Command and Scripting Interpreter: Unix Shell",
+   "source": "MITRE ATT&CK G1017 (2026-07-31)",
+   "tactics": [
+    "execution"
+   ]
+  },
+  {
    "id": "T1068",
    "name": "Exploitation for Privilege Escalation",
-   "source": "MITRE ATT&CK G1017 (via import)",
+   "source": "MITRE ATT&CK G1017 (2026-07-31)",
    "tactics": [
     "privilege-escalation"
    ]
@@ -320,21 +361,55 @@
   {
    "id": "T1069",
    "name": "Permission Groups Discovery",
-   "source": "MITRE ATT&CK G1017 (via import)",
+   "source": "MITRE ATT&CK G1017 (2026-07-31)",
    "tactics": [
     "discovery"
    ]
   },
   {
-   "id": "T1070.001",
-   "name": "Indicator Removal: Clear Windows Event Logs",
-   "source": "CISA AA24-038A",
-   "tactics": []
+   "id": "T1069.001",
+   "name": "Permission Groups Discovery: Local Groups",
+   "source": "MITRE ATT&CK G1017 (2026-07-31)",
+   "tactics": [
+    "discovery"
+   ]
+  },
+  {
+   "id": "T1069.002",
+   "name": "Permission Groups Discovery: Domain Groups",
+   "source": "MITRE ATT&CK G1017 (2026-07-31)",
+   "tactics": [
+    "discovery"
+   ]
+  },
+  {
+   "id": "T1070.004",
+   "name": "Indicator Removal: File Deletion",
+   "source": "MITRE ATT&CK G1017 (2026-07-31)",
+   "tactics": [
+    "stealth"
+   ]
+  },
+  {
+   "id": "T1070.007",
+   "name": "Indicator Removal: Clear Network Connection History and Configurations",
+   "source": "MITRE ATT&CK G1017 (2026-07-31)",
+   "tactics": [
+    "stealth"
+   ]
   },
   {
    "id": "T1074",
    "name": "Data Staged",
-   "source": "MITRE ATT&CK G1017 (via import)",
+   "source": "MITRE ATT&CK G1017 (2026-07-31)",
+   "tactics": [
+    "collection"
+   ]
+  },
+  {
+   "id": "T1074.001",
+   "name": "Data Staged: Local Data Staging",
+   "source": "MITRE ATT&CK G1017 (2026-07-31)",
    "tactics": [
     "collection"
    ]
@@ -342,7 +417,18 @@
   {
    "id": "T1078",
    "name": "Valid Accounts",
-   "source": "MITRE ATT&CK G1017 (via import)",
+   "source": "MITRE ATT&CK G1017 (2026-07-31)",
+   "tactics": [
+    "stealth",
+    "persistence",
+    "privilege-escalation",
+    "initial-access"
+   ]
+  },
+  {
+   "id": "T1078.002",
+   "name": "Valid Accounts: Domain Accounts",
+   "source": "MITRE ATT&CK G1017 (2026-07-31)",
    "tactics": [
     "stealth",
     "persistence",
@@ -353,7 +439,23 @@
   {
    "id": "T1083",
    "name": "File and Directory Discovery",
-   "source": "MITRE ATT&CK G1017 (via import)",
+   "source": "MITRE ATT&CK G1017 (2026-07-31)",
+   "tactics": [
+    "discovery"
+   ]
+  },
+  {
+   "id": "T1087.001",
+   "name": "Account Discovery: Local Account",
+   "source": "MITRE ATT&CK G1017 (2026-07-31)",
+   "tactics": [
+    "discovery"
+   ]
+  },
+  {
+   "id": "T1087.002",
+   "name": "Account Discovery: Domain Account",
+   "source": "MITRE ATT&CK G1017 (2026-07-31)",
    "tactics": [
     "discovery"
    ]
@@ -361,7 +463,7 @@
   {
    "id": "T1090",
    "name": "Proxy",
-   "source": "MITRE ATT&CK G1017 (via import)",
+   "source": "MITRE ATT&CK G1017 (2026-07-31)",
    "tactics": [
     "command-and-control"
    ]
@@ -385,7 +487,7 @@
   {
    "id": "T1105",
    "name": "Ingress Tool Transfer",
-   "source": "MITRE ATT&CK G1017 (via import)",
+   "source": "MITRE ATT&CK G1017 (2026-07-31)",
    "tactics": [
     "command-and-control"
    ]
@@ -401,7 +503,7 @@
   {
    "id": "T1112",
    "name": "Modify Registry",
-   "source": "MITRE ATT&CK G1017 (via import)",
+   "source": "MITRE ATT&CK G1017 (2026-07-31)",
    "tactics": [
     "defense-impairment",
     "persistence"
@@ -410,7 +512,7 @@
   {
    "id": "T1113",
    "name": "Screen Capture",
-   "source": "MITRE ATT&CK G1017 (via import)",
+   "source": "MITRE ATT&CK G1017 (2026-07-31)",
    "tactics": [
     "collection"
    ]
@@ -418,7 +520,7 @@
   {
    "id": "T1120",
    "name": "Peripheral Device Discovery",
-   "source": "MITRE ATT&CK G1017 (via import)",
+   "source": "MITRE ATT&CK G1017 (2026-07-31)",
    "tactics": [
     "discovery"
    ]
@@ -426,7 +528,7 @@
   {
    "id": "T1124",
    "name": "System Time Discovery",
-   "source": "MITRE ATT&CK G1017 (via import)",
+   "source": "MITRE ATT&CK G1017 (2026-07-31)",
    "tactics": [
     "discovery"
    ]
@@ -434,7 +536,7 @@
   {
    "id": "T1133",
    "name": "External Remote Services",
-   "source": "MITRE ATT&CK G1017 (via import)",
+   "source": "MITRE ATT&CK G1017 (2026-07-31)",
    "tactics": [
     "persistence",
     "initial-access"
@@ -443,7 +545,7 @@
   {
    "id": "T1140",
    "name": "Deobfuscate/Decode Files or Information",
-   "source": "MITRE ATT&CK G1017 (via import)",
+   "source": "MITRE ATT&CK G1017 (2026-07-31)",
    "tactics": [
     "stealth"
    ]
@@ -451,7 +553,7 @@
   {
    "id": "T1190",
    "name": "Exploit Public-Facing Application",
-   "source": "MITRE ATT&CK G1017 (via import)",
+   "source": "MITRE ATT&CK G1017 (2026-07-31)",
    "tactics": [
     "initial-access"
    ]
@@ -459,7 +561,7 @@
   {
    "id": "T1217",
    "name": "Browser Information Discovery",
-   "source": "MITRE ATT&CK G1017 (via import)",
+   "source": "MITRE ATT&CK G1017 (2026-07-31)",
    "tactics": [
     "discovery"
    ]
@@ -467,15 +569,32 @@
   {
    "id": "T1218",
    "name": "System Binary Proxy Execution",
-   "source": "MITRE ATT&CK G1017 (via import)",
+   "source": "MITRE ATT&CK G1017 (2026-07-31)",
    "tactics": [
     "stealth"
    ]
   },
   {
+   "id": "T1497.001",
+   "name": "Virtualization/Sandbox Evasion: System Checks",
+   "source": "MITRE ATT&CK G1017 (2026-07-31)",
+   "tactics": [
+    "stealth",
+    "discovery"
+   ]
+  },
+  {
+   "id": "T1505.003",
+   "name": "Server Software Component: Web Shell",
+   "source": "MITRE ATT&CK G1017 (2026-07-31)",
+   "tactics": [
+    "persistence"
+   ]
+  },
+  {
    "id": "T1518",
    "name": "Software Discovery",
-   "source": "MITRE ATT&CK G1017 (via import)",
+   "source": "MITRE ATT&CK G1017 (2026-07-31)",
    "tactics": [
     "discovery"
    ]
@@ -483,7 +602,15 @@
   {
    "id": "T1552",
    "name": "Unsecured Credentials",
-   "source": "MITRE ATT&CK G1017 (via import)",
+   "source": "MITRE ATT&CK G1017 (2026-07-31)",
+   "tactics": [
+    "credential-access"
+   ]
+  },
+  {
+   "id": "T1552.004",
+   "name": "Unsecured Credentials: Private Keys",
+   "source": "MITRE ATT&CK G1017 (2026-07-31)",
    "tactics": [
     "credential-access"
    ]
@@ -491,7 +618,15 @@
   {
    "id": "T1555",
    "name": "Credentials from Password Stores",
-   "source": "MITRE ATT&CK G1017 (via import)",
+   "source": "MITRE ATT&CK G1017 (2026-07-31)",
+   "tactics": [
+    "credential-access"
+   ]
+  },
+  {
+   "id": "T1555.003",
+   "name": "Credentials from Password Stores: Credentials from Web Browsers",
+   "source": "MITRE ATT&CK G1017 (2026-07-31)",
    "tactics": [
     "credential-access"
    ]
@@ -515,7 +650,7 @@
   {
    "id": "T1570",
    "name": "Lateral Tool Transfer",
-   "source": "MITRE ATT&CK G1017 (via import)",
+   "source": "MITRE ATT&CK G1017 (2026-07-31)",
    "tactics": [
     "lateral-movement"
    ]
@@ -529,9 +664,25 @@
    ]
   },
   {
+   "id": "T1573.001",
+   "name": "Encrypted Channel: Symmetric Cryptography",
+   "source": "MITRE ATT&CK G1017 (2026-07-31)",
+   "tactics": [
+    "command-and-control"
+   ]
+  },
+  {
    "id": "T1583.003",
    "name": "Acquire Infrastructure: Virtual Private Server",
    "source": "CISA AA24-038A",
+   "tactics": [
+    "resource-development"
+   ]
+  },
+  {
+   "id": "T1584.003",
+   "name": "Compromise Infrastructure: Virtual Private Server",
+   "source": "MITRE ATT&CK G1017 (2026-07-31)",
    "tactics": [
     "resource-development"
    ]
@@ -553,9 +704,25 @@
    ]
   },
   {
+   "id": "T1584.008",
+   "name": "Compromise Infrastructure: Network Devices",
+   "source": "MITRE ATT&CK G1017 (2026-07-31)",
+   "tactics": [
+    "resource-development"
+   ]
+  },
+  {
    "id": "T1587.004",
    "name": "Develop Capabilities: Exploits",
    "source": "CISA AA24-038A",
+   "tactics": [
+    "resource-development"
+   ]
+  },
+  {
+   "id": "T1588.002",
+   "name": "Obtain Capabilities: Tool",
+   "source": "MITRE ATT&CK G1017 (2026-07-31)",
    "tactics": [
     "resource-development"
    ]
@@ -569,9 +736,17 @@
    ]
   },
   {
+   "id": "T1588.006",
+   "name": "Obtain Capabilities: Vulnerabilities",
+   "source": "MITRE ATT&CK G1017 (2026-07-31)",
+   "tactics": [
+    "resource-development"
+   ]
+  },
+  {
    "id": "T1589",
    "name": "Gather Victim Identity Information",
-   "source": "MITRE ATT&CK G1017 (via import)",
+   "source": "MITRE ATT&CK G1017 (2026-07-31)",
    "tactics": [
     "reconnaissance"
    ]
@@ -587,7 +762,23 @@
   {
    "id": "T1590",
    "name": "Gather Victim Network Information",
-   "source": "MITRE ATT&CK G1017 (via import)",
+   "source": "MITRE ATT&CK G1017 (2026-07-31)",
+   "tactics": [
+    "reconnaissance"
+   ]
+  },
+  {
+   "id": "T1590.004",
+   "name": "Gather Victim Network Information: Network Topology",
+   "source": "MITRE ATT&CK G1017 (2026-07-31)",
+   "tactics": [
+    "reconnaissance"
+   ]
+  },
+  {
+   "id": "T1590.006",
+   "name": "Gather Victim Network Information: Network Security Appliances",
+   "source": "MITRE ATT&CK G1017 (2026-07-31)",
    "tactics": [
     "reconnaissance"
    ]
@@ -595,7 +786,15 @@
   {
    "id": "T1591",
    "name": "Gather Victim Org Information",
-   "source": "MITRE ATT&CK G1017 (via import)",
+   "source": "MITRE ATT&CK G1017 (2026-07-31)",
+   "tactics": [
+    "reconnaissance"
+   ]
+  },
+  {
+   "id": "T1591.004",
+   "name": "Gather Victim Org Information: Identify Roles",
+   "source": "MITRE ATT&CK G1017 (2026-07-31)",
    "tactics": [
     "reconnaissance"
    ]
@@ -603,7 +802,7 @@
   {
    "id": "T1592",
    "name": "Gather Victim Host Information",
-   "source": "MITRE ATT&CK G1017 (via import)",
+   "source": "MITRE ATT&CK G1017 (2026-07-31)",
    "tactics": [
     "reconnaissance"
    ]
@@ -611,7 +810,7 @@
   {
    "id": "T1593",
    "name": "Search Open Websites/Domains",
-   "source": "MITRE ATT&CK G1017 (via import)",
+   "source": "MITRE ATT&CK G1017 (2026-07-31)",
    "tactics": [
     "reconnaissance"
    ]
@@ -619,7 +818,15 @@
   {
    "id": "T1594",
    "name": "Search Victim-Owned Websites",
-   "source": "MITRE ATT&CK G1017 (via import)",
+   "source": "MITRE ATT&CK G1017 (2026-07-31)",
+   "tactics": [
+    "reconnaissance"
+   ]
+  },
+  {
+   "id": "T1596.005",
+   "name": "Search Open Technical Databases: Scan Databases",
+   "source": "MITRE ATT&CK G1017 (2026-07-31)",
    "tactics": [
     "reconnaissance"
    ]
@@ -627,7 +834,7 @@
   {
    "id": "T1614",
    "name": "System Location Discovery",
-   "source": "MITRE ATT&CK G1017 (via import)",
+   "source": "MITRE ATT&CK G1017 (2026-07-31)",
    "tactics": [
     "discovery"
    ]
@@ -635,7 +842,7 @@
   {
    "id": "T1654",
    "name": "Log Enumeration",
-   "source": "MITRE ATT&CK G1017 (via import)",
+   "source": "MITRE ATT&CK G1017 (2026-07-31)",
    "tactics": [
     "discovery"
    ]
@@ -643,9 +850,17 @@
   {
    "id": "T1680",
    "name": "Local Storage Discovery",
-   "source": "MITRE ATT&CK G1017 (via import)",
+   "source": "MITRE ATT&CK G1017 (2026-07-31)",
    "tactics": [
     "discovery"
+   ]
+  },
+  {
+   "id": "T1685.005",
+   "name": "Disable or Modify Tools: Clear Windows Event Logs",
+   "source": "MITRE ATT&CK G1017 (2026-07-31)",
+   "tactics": [
+    "defense-impairment"
    ]
   }
  ],
@@ -822,8 +1037,8 @@
    "https://learn.microsoft.com/en-us/unified-secops/microsoft-threat-actor-naming"
   ]
  },
- "updatedAt": "2026-10-18T15:04:11Z",
- "updatedBy": "Initial research build",
+ "updatedAt": "2026-11-26T18:00:00Z",
+ "updatedBy": "MITRE ATT&CK v20.1 sync",
  "featured": true,
  "relatedMs": []
 }
